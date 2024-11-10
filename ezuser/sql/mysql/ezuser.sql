@@ -87,14 +87,14 @@ CREATE TABLE eZUser_Trustees (
   OwnerID int(11) NOT NULL,
   UserID int(11) NOT NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZUser_UserShippingLink (
   ID int(11) NOT NULL default '0',
   UserID int(11) default '0',
   AddressID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZUser_Module (ID, Name) VALUES (1,'eZTrade');
 INSERT INTO eZUser_Module (ID, Name) VALUES (2,'eZPoll');
@@ -227,7 +227,7 @@ CREATE TABLE eZUser_Photographer (
   Name char(255) default NULL,
   EMail char(255) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE INDEX UserGroupLink_UserID ON eZUser_UserGroupLink (UserID);
 CREATE INDEX UserGroupLink_GroupID ON eZUser_UserGroupLink (GroupID);

@@ -119,7 +119,7 @@ class eZDB
       The second argument defines under what category in the .ini
       file the database information is located.
     */
-    function eZDB( $iniFile, $category )
+    function __construct( $iniFile, $category )
     {
         print( "This object should not be created use eZDB::globalDatabase();" );
     }
@@ -130,12 +130,18 @@ class eZDB
       Returns a reference to the global database object, if it doesn't exists it is initialized.
       This is safe to call without an object since it does not access member variables.
     */
-    function &globalDatabase(  )
+    static public function &globalDatabase(  )
     {
         $impl =& $GLOBALS["eZDB"];
-
-        $class = strtolower( get_class( $impl ) );
-        if ( !preg_match( "/ez.+?db/", $class ) )
+	if( !$impl === null )
+	{
+            $class = strtolower( get_class( $impl ) );
+	}
+	else
+	{
+	    $class = false;
+	}
+        if ( $impl == null || !preg_match( "/ez.+?db/", $class ) )
         {
             $ini =& INIFile::globalINI();
 
@@ -172,7 +178,7 @@ class eZDB
 
                 default :
                 {
-                    print( "Database error: have no support for $implementation" );
+                    print( "Database error: have no support for $databaseImplementation" );
                 }
                 break;
             }

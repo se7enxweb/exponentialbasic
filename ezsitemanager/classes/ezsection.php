@@ -49,7 +49,7 @@ class eZSection
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZSection( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {
@@ -228,7 +228,7 @@ class eZSection
 
       If $sectionID is a number, the function will return the sitedesign for that section ID.
     */
-    function siteDesign( $sectionID=false )
+    static public function siteDesign( $sectionID=false )
     {
         if ( is_numeric ( $sectionID ) )
         {
@@ -325,7 +325,7 @@ class eZSection
       \static
       Will return the global section object for the given section ID.
      */
-    function &globalSectionObject( $sectionID )
+    static public function &globalSectionObject( $sectionID )
     {
         $objName = "eZSectionObject_$sectionID";
 

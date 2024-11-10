@@ -67,10 +67,10 @@ class eZCart
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZCart( $id = "" )
+    function __construct( $id = "" )
     {
-        $PersonID = 0;
-        $CompanyID = 0;
+        $this->PersonID = 0;
+        $this->CompanyID = 0;
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -301,8 +301,8 @@ class eZCart
      */
     function cartTotals( &$tax, &$total, $voucher=false )
     {
-        $tax = "";
-        $total = "";
+        $tax = array();
+        $total = array();
         $totalIncTax = 0;
         $totalExTax = 0;
         $shippingVAT = 0;

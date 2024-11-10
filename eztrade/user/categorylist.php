@@ -127,7 +127,7 @@ if ( $PureStatic == "false" )
         }
     }
              
-    if ( count( $i ) == 0 )
+    if ( $i == 0 || is_array( $i) && count( $i ) == 0 )
     {
         $t->set_var( "category_list", "" );
     }

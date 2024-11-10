@@ -28,7 +28,7 @@ CREATE TABLE eZSiteManager_Section (
   Description text,
   SiteDesign varchar(30) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 ALTER TABLE eZTrade_Link ADD ModuleType int(11) NOT NULL;
 CREATE TABLE eZModule_LinkModuleType

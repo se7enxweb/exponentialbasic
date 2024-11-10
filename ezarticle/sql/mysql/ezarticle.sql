@@ -182,7 +182,7 @@ CREATE TABLE eZArticle_ArticleMediaLink (
   MediaID int(11) NOT NULL default '0',
   Created int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZArticle_ArticleWordLink (
   ArticleID int(11) NOT NULL default '0',
@@ -230,4 +230,3 @@ CREATE INDEX ArticleKeyword_ArticleID ON eZArticle_ArticleKeyword (ArticleID);
 
 CREATE INDEX ArticleAttribute_Placement ON eZArticle_Attribute (Placement);
 CREATE INDEX ArticleAttributeValue_ArticleID ON eZArticle_AttributeValue (ArticleID, AttributeID);
-

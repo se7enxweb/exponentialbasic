@@ -10,7 +10,7 @@ CREATE TABLE `eZAddress_Country` (
   `HasVAT` int(1) default '0',
   `Removed` int(1) NOT NULL default '0',
   PRIMARY KEY  (`ID`)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table `eZAddress_Country`

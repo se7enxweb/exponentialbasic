@@ -55,7 +55,7 @@ CREATE TABLE eZTrade_VoucherInformation (
   FromName varchar(80) default NULL,
   FromOnlineID int(11) default '0',
   ProductID int(11) default '0'
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_VoucherUsed (
   ID int(11) default '0',
@@ -64,7 +64,7 @@ CREATE TABLE eZTrade_VoucherUsed (
   VoucherID int(11) default '0',
   OrderID int(11) default '0',
   UserID int(11) default '0'
-) TYPE=MyISAM;
+)
 
 alter table eZTrade_Voucher add VoucherInformationID int default 0;  
 alter table eZTrade_Voucher add TotalValue float default 0;  

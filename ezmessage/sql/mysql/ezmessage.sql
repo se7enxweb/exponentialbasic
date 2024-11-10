@@ -7,4 +7,4 @@ CREATE TABLE eZMessage_Message (
   Subject varchar(255) NOT NULL default '',
   Description text,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `eZMediaCatalogue_Attribute`;
 CREATE TABLE eZMediaCatalogue_Attribute (
   ID int(11) NOT NULL,
   TypeID int(11) default NULL,
@@ -7,7 +8,7 @@ CREATE TABLE eZMediaCatalogue_Attribute (
   Unit varchar(8) default NULL,
   DefaultValue varchar(100) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZMediaCatalogue_Attribute VALUES (1,1,'width',996137421,0,'','');
 INSERT INTO eZMediaCatalogue_Attribute VALUES (2,1,'height',996137432,1,'','');
@@ -30,6 +31,7 @@ INSERT INTO eZMediaCatalogue_Attribute VALUES (18,4,'height',1004640076,17,'',''
 INSERT INTO eZMediaCatalogue_Attribute VALUES (19,4,'controls',1004640087,18,'','ImageWindow');
 INSERT INTO eZMediaCatalogue_Attribute VALUES (20,4,'autostart',1004640100,19,'','true');
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_Category`;
 CREATE TABLE eZMediaCatalogue_Category (
   ID int(11) NOT NULL,
   Name varchar(100) default NULL,
@@ -39,8 +41,9 @@ CREATE TABLE eZMediaCatalogue_Category (
   WritePermission int(11) default '1',
   ReadPermission int(11) default '1',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_Media`;
 CREATE TABLE eZMediaCatalogue_Media (
   ID int(11) NOT NULL,		    
   Name varchar(100) default NULL,
@@ -54,8 +57,9 @@ CREATE TABLE eZMediaCatalogue_Media (
   PhotographerID int(11) default NULL,
   Created int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_CategoryPermission`;
 CREATE TABLE eZMediaCatalogue_CategoryPermission (
   ID int(11) NOT NULL,
   ObjectID int(11) default NULL,
@@ -63,22 +67,26 @@ CREATE TABLE eZMediaCatalogue_CategoryPermission (
   ReadPermission int(11) default '0',
   WritePermission int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
+
+DROP TABLE IF EXISTS `eZMediaCatalogue_MediaCategoryDefinition`;
 CREATE TABLE eZMediaCatalogue_MediaCategoryDefinition (
   ID int(11) NOT NULL,
   MediaID int(11) default NULL,
   CategoryID int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_MediaCategoryLink`;
 CREATE TABLE eZMediaCatalogue_MediaCategoryLink (
   ID int(11) NOT NULL,		    
   CategoryID int(11) default NULL,
   MediaID int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_MediaPermission`;
 CREATE TABLE eZMediaCatalogue_MediaPermission (
   ID int(11) NOT NULL,		    
   ObjectID int(11) default NULL,
@@ -86,30 +94,33 @@ CREATE TABLE eZMediaCatalogue_MediaPermission (
   ReadPermission int(11) default '0',
   WritePermission int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_Type`;
 CREATE TABLE eZMediaCatalogue_Type (
   ID int(11) NOT NULL,		  
   Name varchar(150) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_TypeLink`;
 CREATE TABLE eZMediaCatalogue_TypeLink (
   ID int(11) NOT NULL,		  
   TypeID int(11) default 0,
   MediaID int(11) default 0,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZMediaCatalogue_Type VALUES (1,'QuickTime');
 INSERT INTO eZMediaCatalogue_Type VALUES (2,'Windows Media Player');
 INSERT INTO eZMediaCatalogue_Type VALUES (3,'ShockWave Flash');
 INSERT INTO eZMediaCatalogue_Type VALUES (4,'Real Player');
 
+DROP TABLE IF EXISTS `eZMediaCatalogue_AttributeValue`;
 CREATE TABLE eZMediaCatalogue_AttributeValue (
   ID int(11) NOT NULL auto_increment,
   MediaID int(11) default NULL,
   AttributeID int(11) default NULL,
   Value varchar(200) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);

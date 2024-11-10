@@ -57,7 +57,7 @@ class INIFile
     /*!
       Constructs a new INIFile object.
     */
-    function INIFile( $inifilename = "", $write = false )
+    function __construct( $inifilename = "", $write = false )
     {
         include_once( "classes/ezfile.php" );
 
@@ -92,10 +92,12 @@ class INIFile
             $buffer = "";
             $i = 0;
             reset( $this->GROUPS );
-            while ( list( $groupKey, $groupVal ) = each ( $this->GROUPS ) )
+
+            foreach( $this->GROUPS as $groupKey => $groupVal )
             {
                 reset( $groupVal );
-                while ( list( $key, $val ) = each ( $groupVal ) )
+		
+                foreach( $groupVal as $key => $val )
                 {
                     $tmpVal = str_replace( "\"", "\\\"", $val );
 
@@ -189,7 +191,7 @@ class INIFile
         }
     }
 
-    function file_exists( $inifilename )
+    static public function file_exists( $inifilename )
     {
         return ( eZFile::file_exists( "override/" . $inifilename . ".append" ) or
                  eZFile::file_exists( "override/" . $inifilename ) or
@@ -221,7 +223,7 @@ class INIFile
 
         $ini_data = preg_split( "/\n/",$contents );
 
-        while( list( $key, $data ) = each( $ini_data ) )
+        foreach( $ini_data as $key => $data )
         {
             // Remove MS-DOS Carriage return from end of line
             $data = preg_replace( "/\r*$/", "", $data );
@@ -287,7 +289,7 @@ class INIFile
 
             $group = $this->read_group( $group_name );
 
-            while( list( $key, $data ) = each( $group ) )
+	    foreach( $group as $key => $data )
             {
                 $res = "$key=$data\n";
                 fwrite( $fp, $res );
@@ -475,7 +477,7 @@ class INIFile
       loaded from the site.ini file. This can be overidden by supplying $type and $file.
       If the ini-file object does not exist it is created before returning.
     */
-    function &globalINI( $type = "SiteIni", $file = "bin/ini/site.ini" )
+    static public function &globalINI( $type = "SiteIni", $file = "bin/ini/site.ini" )
     {
         $ini =& $GLOBALS["INI_$type"];
 

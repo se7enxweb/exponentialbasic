@@ -79,7 +79,7 @@ class eZUser
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZUser( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->InfoSubscription = 0;
         $this->SimultaneousLogins = 0;
@@ -760,7 +760,7 @@ class eZUser
 
       False is returned if unsuccessful.
     */
-    function &currentUser()
+    static public function &currentUser()
     {
         $user =& $GLOBALS["eZCurrentUserObject"];
 

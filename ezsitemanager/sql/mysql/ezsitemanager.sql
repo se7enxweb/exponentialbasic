@@ -7,7 +7,7 @@ CREATE TABLE eZSiteManager_Section (
   TemplateStyle varchar(255) default NULL,
   Language varchar(5) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZSiteManager_SectionFrontPageRow (
   ID int(11) NOT NULL default '0',
@@ -15,20 +15,20 @@ CREATE TABLE eZSiteManager_SectionFrontPageRow (
   CategoryID int(11) default '0',
   Placement int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
  
 CREATE TABLE eZSiteManager_SectionFrontPageRowLink (
   ID int(11) NOT NULL default '0',
   FrontPageID int(11) default '0',
   SectionID int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
  
 CREATE TABLE eZSiteManager_SectionFrontPageSetting (
   ID int(11) NOT NULL default '0',
   Name varchar(30) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
  
 INSERT INTO eZSiteManager_SectionFrontPageSetting VALUES (1,'1column');
 INSERT INTO eZSiteManager_SectionFrontPageSetting VALUES (2,'2column');
@@ -47,11 +47,10 @@ CREATE TABLE eZSiteManager_Menu (
   Type int(11) default '1',
   ParentID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZSiteManager_MenuType (
   ID int(11) NOT NULL default '0',
   Name varchar(30) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
-
+);

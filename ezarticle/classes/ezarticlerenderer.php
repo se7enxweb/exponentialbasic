@@ -33,7 +33,7 @@
 
 class eZArticleRenderer
 {
-    function eZArticleRenderer(  &$article, $template=false )
+    function __construct(  &$article, $template=false )
     {
         $this->Generator = false;
         $this->Article =& $article;

@@ -15,7 +15,7 @@ CREATE TABLE eZBug_Bug (
   PRIMARY KEY (ID)
 );
 
-INSERT INTO eZBug_Bug VALUES (1,'Help!','It dosent work!',33,997357856,0,0,0,'','','','','0');
+INSERT INTO eZBug_Bug VALUES (1,'Help!','It dosent work!',33,997357856,0,0,0,null,'','',null,'0');
 
 CREATE TABLE eZBug_BugCategoryLink (
   ID int NOT NULL,
@@ -118,4 +118,4 @@ CREATE TABLE eZBug_ModulePermission (
   ReadPermission int(11) default '0',
   WritePermission int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);

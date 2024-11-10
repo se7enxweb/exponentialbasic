@@ -48,7 +48,7 @@ class eZArticleCategory
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZArticleCategory( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->SortMode = 1;
         $this->ImageID = 0;
@@ -1134,7 +1134,7 @@ class eZArticleCategory
 
       If $check_write is true then the result will only contain articles which has read AND write permissions.
     */
-    function &articles( $sortMode="time",
+    static public function &articles( $sortMode="time",
                         $fetchAll=true,
                         $fetchPublished=true,
                         $offset=0,
@@ -1146,7 +1146,7 @@ class eZArticleCategory
         if ( $categoryID != 0 )
             $catID = $categoryID;
         else
-            $catID = $this->ID;
+            $catID = -1; //$this->ID;
 
         $db =& eZDB::globalDatabase();
 

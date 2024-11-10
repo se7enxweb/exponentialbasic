@@ -28,7 +28,7 @@ CREATE TABLE eZBulkMail_GroupCategoryLink (
   CategoryID int(11) NOT NULL default '0',
   GroupID int(11) NOT NULL default '0',
   PRIMARY KEY (GroupID, CategoryID)
-) TYPE=MyISAM;
+)
 
 alter table eZBulkMail_SentLog add Mail varchar(255); 
 alter table eZBulkMail_SentLog drop AddressID; 
@@ -49,4 +49,3 @@ CREATE TABLE eZArticle_BulkMailCategoryLink (
   BulkMailCategoryID int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (ArticleCategoryID, BulkMailCategoryID)
 );
-

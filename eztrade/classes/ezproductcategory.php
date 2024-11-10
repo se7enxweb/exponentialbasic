@@ -93,7 +93,7 @@ class eZProductCategory
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZProductCategory( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( $id != -1 )
         {
@@ -664,7 +664,7 @@ class eZProductCategory
     /*!
       Returns every product to a category as a array of eZProduct objects.
     */
-    function products( $sortMode="time",
+    static public function products( $sortMode="time",
                         $fetchNonActive=false,
                         $offset=0,
                         $limit=50,
@@ -753,7 +753,7 @@ class eZProductCategory
        return $return_array;
     }
 
-    function generatePermissionSQL( $categoryID = false )
+    static public function generatePermissionSQL( $categoryID = false )
     {
         $catID = $categoryID;
 

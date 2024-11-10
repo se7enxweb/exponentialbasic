@@ -47,7 +47,7 @@ class eZDate
       Constructs a new eZDate object. If the parameters are set the date
       is set accordingly. If not the current local time is used.
     */
-    function eZDate( $year = 0, $month = 0, $day = 0, $year_add = 0, $month_add = 0, $day_add = 0 )
+    function __construct( $year = 0, $month = 0, $day = 0, $year_add = 0, $month_add = 0, $day_add = 0 )
     {
         if ( is_a( $year, "eZDate" ) )
         {
@@ -195,7 +195,7 @@ class eZDate
     {
         $lastday = mktime( 2, 0, 0, $this->Month + 1, 0, $this->Year );
 
-        return strftime( "%d", $lastday );
+        return date( "%d", $lastday );
     }
 
     /*!

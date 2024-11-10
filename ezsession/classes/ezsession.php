@@ -92,7 +92,7 @@ class eZSession
         // lock the table
         $db->lock( "eZSession_Session" );
 
-        if ( isset( $_COOKIE["eZSessionCookie"] ) && strlen( $GLOBALS["eZSessionCookie"] )  == 32 )
+        if ( isset( $GLOBALS["eZSessionCookie"] ) && isset( $_COOKIE["eZSessionCookie"] ) && strlen( $GLOBALS["eZSessionCookie"] )  == 32 )
         {
             $this->Hash = $_COOKIE["eZSessionCookie"];
         }
@@ -586,7 +586,7 @@ class eZSession
 
       Do not call this method unless you want to fetch the global session variable.
     */
-    function &globalSession( $id="", $fetch=true )
+    static public function &globalSession( $id="", $fetch=true )
     {
         $session =& $GLOBALS["eZSessionObject"];
         if ( !is_a( $session, "eZSession" ) )

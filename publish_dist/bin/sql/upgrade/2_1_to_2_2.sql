@@ -27,7 +27,7 @@ CREATE TABLE eZQuiz_Alternative (
   Name char(100) default NULL,
   IsCorrect int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZQuiz_Alternative'
@@ -47,7 +47,7 @@ CREATE TABLE eZQuiz_Answer (
   UserID int(11) default '0',
   AlternativeID int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZQuiz_Answer'
@@ -66,7 +66,7 @@ CREATE TABLE eZQuiz_Game (
   StartDate date default NULL,
   StopDate date default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZQuiz_Game'
@@ -86,13 +86,13 @@ CREATE TABLE eZQuiz_Question (
   Placement int(11) default '0',
   Score int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZQuiz_Question'
 #
 
-INSERT INTO eZQuiz_Question VALUES (1,'hei å hå',1,0,0);
+INSERT INTO eZQuiz_Question VALUES (1,'hei ï¿½ hï¿½',1,0,0);
 INSERT INTO eZQuiz_Question VALUES (2,'',1,1,0);
 
 #
@@ -108,7 +108,7 @@ CREATE TABLE eZQuiz_Score (
   LastQuestion int(11) default '0',
   FinishedGame int(1) default '1',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZQuiz_Score'
@@ -125,7 +125,7 @@ CREATE TABLE eZQuiz_AllTimeScore (
   TotalScore int(11) default '0',
   GamesPlayed int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZQuiz_AllTimeScore'
@@ -145,7 +145,7 @@ CREATE TABLE eZSession_Preferences (
   GroupName char(50) default NULL,
   PRIMARY KEY (ID),
   KEY GroupName(GroupName,Name)
-) TYPE=MyISAM;
+)
 
 
 alter table eZTrade_OrderOptionValue add RemoteID varchar(100) default ''; 
@@ -181,7 +181,7 @@ CREATE TABLE eZArticle_ArticleTmp (
   Keywords text,
   Discuss int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 
 insert into eZArticle_ArticleTmp( ID, Name, Contents, ContentsWriterID, LinkText, AuthorID, Modified, 
@@ -232,7 +232,7 @@ CREATE TABLE eZArticle_Attribute (
   Created timestamp(14),
   PRIMARY KEY (ID),
   INDEX( Placement )
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZArticle_Attribute'
@@ -249,7 +249,7 @@ CREATE TABLE eZArticle_AttributeValue (
   Value text,
   PRIMARY KEY (ID),
   INDEX( ArticleID, AttributeID )
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZArticle_AttributeValue'
@@ -263,7 +263,7 @@ CREATE TABLE eZArticle_Type (
   ID int(11) DEFAULT '0' NOT NULL auto_increment,
   Name varchar(150),
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZArticle_Type'
@@ -278,7 +278,7 @@ CREATE TABLE eZArticle_ArticleTypeLink (
   ArticleID int(11),
   TypeID int(11),
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Dumping data for table 'eZArticle_ArticleTypeLink'
@@ -303,7 +303,7 @@ CREATE TABLE eZArticle_ArticleFormDict (
   ArticleID int(11),
   FormID int(11),
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZImageCatalogue_ImageCategoryDefinition'
@@ -314,7 +314,7 @@ CREATE TABLE eZImageCatalogue_ImageCategoryDefinition (
   ImageID int,
   CategoryID int,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZImageCatalogue_ImageMap'
@@ -331,7 +331,7 @@ CREATE TABLE eZImageCatalogue_ImageMap (
   EndPosX int(11) NOT NULL default '0',
   EndPosY int(11) NOT NULL default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # convert to new database types for database independence
@@ -771,7 +771,7 @@ CREATE TABLE eZMediaCatalogue_CategoryPermission (
   ReadPermission int(11) default '0',
   WritePermission int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 DROP TABLE IF EXISTS eZArticle_ArticleMediaLink;
 CREATE TABLE eZArticle_ArticleMediaLink (
@@ -780,7 +780,7 @@ CREATE TABLE eZArticle_ArticleMediaLink (
   MediaID int(11) NOT NULL default '0',
   Created int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 
 DROP TABLE IF EXISTS eZUser_Trustees;
@@ -789,7 +789,7 @@ CREATE TABLE eZUser_Trustees (
   OwnerID int(11) NOT NULL,
   UserID int(11) NOT NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 
 
@@ -803,7 +803,7 @@ CREATE TABLE eZMessage_Message (
   Subject varchar(255) NOT NULL default '',
   Description text,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 alter table eZAddress_Country add HasVAT int default 1;
 alter table eZTrade_OrderItem add PriceIncVAT float(10,2);
@@ -916,7 +916,7 @@ CREATE TABLE eZTrade_Voucher (
   UserID int(11) default '0',
   ProductID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZTrade_CategoryPermission'
@@ -929,7 +929,7 @@ CREATE TABLE eZTrade_CategoryPermission (
   ReadPermission int(11) default '0',
   WritePermission int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
  
 #
 # Table structure for table 'eZTrade_ProductPermission'
@@ -946,7 +946,7 @@ CREATE TABLE eZTrade_ProductPermission (
   KEY ProductPermissionGroupID(GroupID),
   KEY ProductPermissionWritePermission(WritePermission),
   KEY ProductPermissionReadPermission(ReadPermission)
-) TYPE=MyISAM;
+)
 
 # eZTrade_Product
 
@@ -1099,9 +1099,9 @@ CREATE TABLE eZTrade_VoucherUsed (
   OrderID int(11) default '0',
   UserID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
-create table eZTrade_ProductPriceRange( ID int NOT NULL, Min int default 0, Max int default 0, ProductID int default 0 );        
+CREATE TABLE eZTrade_ProductPriceRange( ID int NOT NULL, Min int default 0, Max int default 0, ProductID int default 0 );
 
 alter table eZBulkMail_UserSubscriptionCategorySettings rename eZBulkMail_UserCategorySettings;  
 
@@ -1144,7 +1144,7 @@ CREATE TABLE eZTrade_VoucherInformation (
   FromAddressID int(11) default '0',
   ProductID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZForum_MessageWordLink (
   MessageID int(11) NOT NULL default '0',
@@ -1171,20 +1171,20 @@ CREATE TABLE eZSiteManager_SectionFrontPageRow (
   CategoryID int(11) default '0',
   Placement int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
  
 CREATE TABLE eZSiteManager_SectionFrontPageRowLink (
   ID int(11) NOT NULL default '0',
   FrontPageID int(11) default '0',
   SectionID int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
  
 CREATE TABLE eZSiteManager_SectionFrontPageSetting (
   ID int(11) NOT NULL default '0',
   Name varchar(30) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
  
 INSERT INTO eZSiteManager_SectionFrontPageSetting VALUES (1,'1column');
 INSERT INTO eZSiteManager_SectionFrontPageSetting VALUES (2,'2column');
@@ -1197,28 +1197,28 @@ CREATE TABLE eZForm_FormElementFixedValues (
   ID int(11) NOT NULL default '0',
   Value varchar(80) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
  
 CREATE TABLE eZForm_FormElementFixedValueLink (
   ID int(11) NOT NULL default '0',
   ElementID int(11) default '0',
   FixedValueID int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZContact_CompanyIndex (
   CompanyID int(11) NOT NULL default '0',
   Value varchar(255) NOT NULL default '',
   Type int(11) NOT NULL default '0',
   PRIMARY KEY (CompanyID,Value)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZContact_PersonIndex (
   PersonID int(11) NOT NULL default '0',
   Value varchar(255) NOT NULL default '',
   Type int(11) NOT NULL default '0',
   PRIMARY KEY (PersonID,Value)
-) TYPE=MyISAM;
+)
 
 
 CREATE TABLE eZForm_FormElementType (
@@ -1226,7 +1226,7 @@ CREATE TABLE eZForm_FormElementType (
   Name varchar(255) default NULL,
   Description text,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZContact_CompanyIndex (CompanyID, Value, Type) SELECT ID, lower(Name), '0' FROM eZContact_Company;
 INSERT INTO eZContact_CompanyIndex (CompanyID, Value, Type) SELECT C.ID, lower(O.URL), '2' FROM eZContact_Company AS C, eZAddress_Online AS O, eZContact_CompanyOnlineDict AS OD WHERE OD.CompanyID=C.ID AND OD.OnlineID=O.ID;
@@ -1256,7 +1256,7 @@ CREATE TABLE eZBulkMail_CategoryDelay (
   Delay int(11) default '0',
   MailID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_Offset (
   ID int(11) NOT NULL default '0',
@@ -1265,7 +1265,7 @@ CREATE TABLE eZBulkMail_Offset (
   Weekly int(11) default NULL,
   Monthly int(11) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+)
 
 alter table eZBulkMail_Template add Description text;
 alter table eZBulkMail_UserCategoryDelay change ID ID int NOT NULL primary key;      
@@ -1286,7 +1286,7 @@ CREATE TABLE eZForm_Form (
   InstructionPage varchar(255) default NULL,
   Counter int(11) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZForm_FormElement (
   ID int(11) NOT NULL default '0',
@@ -1296,7 +1296,7 @@ CREATE TABLE eZForm_FormElement (
   Size int(11) default '0',
   Break int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZForm_FormElementDict (
   ID int(11) NOT NULL default '0',
@@ -1305,7 +1305,7 @@ CREATE TABLE eZForm_FormElementDict (
   ElementID int(11) default NULL,
   Placement int(11) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+)
 
 
 CREATE INDEX Message_TreeID ON eZForum_Message (TreeID);
@@ -1333,7 +1333,7 @@ CREATE TABLE eZMediaCatalogue_Attribute (
   Unit varchar(8) default NULL,
   DefaultValue varchar(100) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMediaCatalogue_AttributeValue (
   ID int(11) NOT NULL auto_increment,
@@ -1341,7 +1341,7 @@ CREATE TABLE eZMediaCatalogue_AttributeValue (
   AttributeID int(11) default NULL,
   Value varchar(200) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMediaCatalogue_Media (
   ID int(11) NOT NULL default '0',
@@ -1356,21 +1356,21 @@ CREATE TABLE eZMediaCatalogue_Media (
   PhotographerID int(11) default NULL,
   Created int(11) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMediaCatalogue_MediaCategoryDefinition (
   ID int(11) NOT NULL default '0',
   MediaID int(11) default NULL,
   CategoryID int(11) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMediaCatalogue_MediaCategoryLink (
   ID int(11) NOT NULL default '0',
   CategoryID int(11) default NULL,
   MediaID int(11) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMediaCatalogue_MediaPermission (
   ID int(11) NOT NULL default '0',
@@ -1379,20 +1379,20 @@ CREATE TABLE eZMediaCatalogue_MediaPermission (
   ReadPermission int(11) default '0',
   WritePermission int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMediaCatalogue_Type (
   ID int(11) NOT NULL default '0',
   Name varchar(150) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMediaCatalogue_TypeLink (
   ID int(11) NOT NULL default '0',
   TypeID int(11) default '0',
   MediaID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+)
 
 alter table eZPoll_Poll drop Percent;
 alter table eZPoll_Poll drop Number;
@@ -1422,7 +1422,7 @@ CREATE TABLE eZTrade_ProductFormDict (
   ProductID int(11) default NULL,
   FormID int(11) default NULL,
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE INDEX TradeProductOptionLink_ProductID ON eZTrade_ProductOptionLink (ProductID);
 CREATE INDEX TradeProductOptionLink_OptionID ON eZTrade_ProductOptionLink (OptionID);
@@ -1457,14 +1457,14 @@ CREATE TABLE eZSiteManager_Menu (
   Link varchar(40) default NULL,
   Type int(11) default '1',
   ParentID int(11) default '0'
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZSiteManager_MenuType (
   ID int(11) NOT NULL default '0',
   Name varchar(30) default NULL
-) TYPE=MyISAM;
+);
 
-create table eZTrade_UserShippingLink ( ID int NOT NULL primary key, UserID int default 0, AddressID int default 0 );
+CREATE TABLE eZTrade_UserShippingLink ( ID int NOT NULL primary key, UserID int default 0, AddressID int default 0 );
 
 insert into eZUser_UserShippingLink (ID, AddressID, UserID) select eZTrade_Order.ShippingAddressID, eZTrade_Order.ShippingAddressID, eZUser_UserAddressLink.UserID from eZTrade_Order, eZUser_UserAddressLink where eZTrade_Order.ShippingAddressID = eZUser_UserAddressLink.AddressID GROUP BY eZTrade_Order.ShippingAddressID;
 alter table eZTrade_Voucher add TotalValue int default 0;        
@@ -1475,11 +1475,9 @@ CREATE TABLE eZBulkMail_SubscriptionCategorySettings (
   AddressID int(11) NOT NULL default '0',
   Delay int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 
 alter table eZAd_View change ViewPrice ViewPrice float(10,2) default 0;
 
 alter table eZLink_Link change KeyWords KeyWords text;
-
-

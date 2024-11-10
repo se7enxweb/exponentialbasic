@@ -176,7 +176,7 @@ class eZFile
       "unit" - The unit for the shortened size, either B, KB, MB or GB
     */
 
-    function &siFileSize( $size )
+    public static function &siFileSize( $size )
     {
         $units = array( "GB" => 10737741824,
                         "MB" => 1048576,
@@ -184,8 +184,8 @@ class eZFile
                         "B" => 0 );
         $decimals = 0;
         $shortsize = $size;
-        while( list($unit_key,$val) = each( $units ) )
-        {
+	foreach( $units as $unit_key => $val )
+	{
             if ( $size >= $val )
             {
                 $unit = $unit_key;
@@ -207,7 +207,7 @@ class eZFile
     /*!
       Returns the temporary file name.
     */
-    function tmpName()
+    public function tmpName()
     {
         return $this->TmpFileName;
     }
@@ -215,7 +215,7 @@ class eZFile
     /*!
       Sets the mime type of the file.
     */
-    function setType( $type )
+    public function setType( $type )
     {
         $this->FileType = $type;
     }
@@ -223,7 +223,7 @@ class eZFile
     /*!
       Same as file_exists(), but prepends $siteDir if $filename not empty.
     */
-    function file_exists( $filename )
+    public static function file_exists( $filename )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "")
@@ -242,7 +242,7 @@ class eZFile
     /*!
       Same as is_file(), but prepends $siteDir if $filename not empty.
     */
-    function is_file( $filename )
+    public static function is_file( $filename )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "")
@@ -261,7 +261,7 @@ class eZFile
     /*!
       Same as filemtime(), but prepends $siteDir if $filename not empty.
     */
-    function filemtime( $filename )
+    public static function filemtime( $filename )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "" && $GlobalSiteIni)
@@ -281,7 +281,7 @@ class eZFile
     /*!
       Same as fopen(), but prepends $siteDir if $filename not empty.
     */
-    function fopen( $filename, $options )
+    public static function fopen( $filename, $options )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "" && $GlobalSiteIni)
@@ -294,7 +294,7 @@ class eZFile
     /*!
       Same as filesize(), but prepends $siteDir if $filename not empty.
     */
-    function filesize( $filename )
+    public static function filesize( $filename )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "" && $GlobalSiteIni)
@@ -307,7 +307,7 @@ class eZFile
     /*!
       Same as unlink(), but prepends $siteDir if $filename not empty.
     */
-    function unlink( $filename )
+    public static function unlink( $filename )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "" && $GlobalSiteIni)
@@ -320,7 +320,7 @@ class eZFile
     /*!
       Same as chmod(), but prepends $siteDir if $dest not empty.
     */
-    function chmod( $filename, $mode )
+    public static function chmod( $filename, $mode )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "" && $GlobalSiteIni)
@@ -333,7 +333,7 @@ class eZFile
     /*!
       Same as dir(), but prepends $siteDir if $dir not empty.
     */
-    function dir( $dir, $add_sitedir = true )
+    public static function dir( $dir, $add_sitedir = true )
     {
 		global $GlobalSiteIni;
     	if ( $add_sitedir )
@@ -349,7 +349,7 @@ class eZFile
     /*!
       Same as is_dir(), but prepends $siteDir if $dir not empty.
     */
-    function is_dir( $dir )
+    public static function is_dir( $dir )
     {
 		global $GlobalSiteIni;
     	if ( $dir != "" && $GlobalSiteIni)
@@ -362,7 +362,7 @@ class eZFile
     /*!
       Same as realpath(), but prepends $siteDir if $filename not empty.
     */
-    function realpath( $filename )
+    public static function realpath( $filename )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "" && $GlobalSiteIni)
@@ -375,7 +375,7 @@ class eZFile
     /*!
       Same as file(), but prepends $siteDir if $filename not empty.
     */
-    function file( $filename )
+    public static function file( $filename )
     {
         if (file_exists( "sitedir.ini" ) &&  $filename != "" )
         {

@@ -46,7 +46,7 @@ class eZBulkMailCategory
 {
     /*!
     */
-    function eZBulkMailCategory( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->IsPublic = 0;
         $this->IsSingleCategory = 0;
@@ -491,7 +491,7 @@ class eZBulkMailCategory
       \static
       Returns the current selected single list. If none false is returned.
      */
-    function singleList( $asObject = true )
+    static public function singleList( $asObject = true )
     {
         $db =& eZDB::globalDatabase();
         $return_value = false;

@@ -34,7 +34,7 @@
 
 class eZMySQLDB
 {
-    function eZMySQLDB( $server, $db, $user, $password  )
+    function __construct( $server, $db, $user, $password  )
     {
         $this->DB = $db;
         $this->Server = $server;
@@ -50,12 +50,12 @@ class eZMySQLDB
             ini_set( "mysql.default_socket", $socketPath );
         }
 
-        $this->Database = mysql_pconnect( $server, $user, $password );
+        $this->Database = mysqli_connect( $server, $user, $password );
         $numAttempts = 1;
         while ( $this->Database == false && $numAttempts < 5 )
         {
             sleep(5);
-            $this->Database = mysql_pconnect( $server, $user, $password );
+            $this->Database = mysqli_connect( $server, $user, $password );
             $numAttempts++;
         }
 
@@ -66,12 +66,12 @@ class eZMySQLDB
             exit;
         }
 
-        $ret = mysql_select_db( $db, $this->Database );
+        $ret = mysqli_select_db( $this->Database, $db );
 
         if ( !$ret )
         {
             // No reason to continue as nothing will work.
-            print( "<H1>MySQL Error</H1><br />" . mysql_errno( $this->Database ) . ": " . mysql_error( $this->Database )."<br /><hr />Please inform the system administrator." );
+            print( "<H1>MySQL Error</H1><br />" . mysqli_errno( $this->Database ) . ": " . mysqli_error( $this->Database )."<br /><hr />Please inform the system administrator." );
             exit;
         }
     }
@@ -96,7 +96,7 @@ class eZMySQLDB
 
             $bench = new eZBenchmark();
             $bench->start();
-            $result =& mysql_query( $sql, $this->Database );
+            $result =& mysqli_query( $sql, $this->Database );
 
             $bench->stop();
             if ( $bench->elapsed() > 0.01 )
@@ -108,13 +108,13 @@ class eZMySQLDB
         }
         else
         {
-            $result =& mysql_query( $sql, $this->Database );
+            $result =& mysqli_query( $this->Database, $sql );
         }
 
 //          eZLog::writeNotice( $sql );
 
-        $errorMsg = mysql_error( $this->Database );
-        $errorNum = mysql_errno( $this->Database );
+        $errorMsg = mysqli_error( $this->Database );
+        $errorNum = mysqli_errno( $this->Database );
 
         if ( $print )
         {
@@ -131,14 +131,14 @@ class eZMySQLDB
         else
         {
             $this->unlock();
-            $this->Error = "<code>" . htmlentities( $sql ) . "</code><br>\n<b>" . htmlentities(mysql_error( $this->Database)) . "</b>\n" ;
+            $this->Error = "<code>" . htmlentities( $sql ) . "</code><br>\n<b>" . htmlentities(mysqli_error( $this->Database)) . "</b>\n" ;
             if ( $GLOBALS["DEBUG"] == true )
             {
                 print( "<b>MySQL Query Error</b>: " . htmlentities( $sql ) . "<br><b> Error number:</b>" . $errorNum . "<br><b> Error message:</b> ". $errorMsg ."<br>" );
             }
             return false;
         }
-        mysql_free_result( $result );
+        mysqli_free_result( $result );
     }
 
     /*!
@@ -212,20 +212,20 @@ class eZMySQLDB
         $offset = count( $array );
 //          if ( count( $result ) > 0 )
 
-        if ( mysql_num_rows( $result ) > 0 )
+        if ( mysqli_num_rows( $result ) > 0 )
         {
             if ( !is_string( $column ) )
             {
-                for($i = 0; $i < mysql_num_rows($result); $i++)
+                for($i = 0; $i < mysqli_num_rows($result); $i++)
                 {
-                    $array[$i + $offset] =& mysql_fetch_array($result);
+                    $array[$i + $offset] =& mysqli_fetch_array($result);
                 }
             }
             else
             {
-                for($i = 0; $i < mysql_num_rows($result); $i++)
+                for($i = 0; $i < mysqli_num_rows($result); $i++)
                 {
-                    $tmp_row =& mysql_fetch_array($result);
+                    $tmp_row =& mysqli_fetch_array($result);
                     $array[$i + $offset] =& $tmp_row[$column];
                 }
             }
@@ -234,7 +234,7 @@ class eZMySQLDB
         if ( count( $array ) < $min )
         {
             $this->Error = "<code>" . htmlentities( $sql ) . "</code><br>\n<b>" .
-                                      htmlentities( "Received " . count( $array ) . " rows, minimum is $min" ) . "</b>\n" ;
+                                      htmlentities( "Received " . count( $array ) . " rows, minimum is " . (int) $min ) . "</b>\n" ;
         }
         if ( $max >= 0 )
         {
@@ -307,14 +307,14 @@ class eZMySQLDB
     */
     function nextID( $table, $field="ID" )
     {
-        $result = mysql_query( "SELECT $field FROM $table Order BY $field DESC LIMIT 1", $this->Database );
+        $result = mysqli_query( $this->Database, "SELECT $field FROM $table Order BY $field DESC LIMIT 1" );
 
         $id = 1;
         if ( $result )
         {
-            if ( !mysql_num_rows( $result ) == 0 )
+            if ( !mysqli_num_rows( $result ) == 0 )
             {
-                $array = mysql_fetch_row( $result );
+                $array = mysqli_fetch_row( $result );
                 $id = $array[0];
                 $id++;
             }
@@ -329,7 +329,7 @@ class eZMySQLDB
     */
     function escapeString( $str )
     {
-        return mysql_escape_string( $str );
+        return mysqli_real_escape_string( $this->Database, $str );
     }
 
     /*!
@@ -346,7 +346,7 @@ class eZMySQLDB
     */
     function close()
     {
-        mysql_close( $this->Database );
+        mysqli_close( $this->Database );
     }
 
     /*
@@ -355,7 +355,7 @@ class eZMySQLDB
     function insertID()
     {
 //        print( "insertid is obsolete" );
-        return mysql_insert_id( $this->Database );
+        return mysqli_insert_id( $this->Database );
     }
 
     function printConnection()

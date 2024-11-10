@@ -121,7 +121,7 @@ class eZLocale
       an argument the regional file for that language is used. Otherwise
       the default regional settings are used.
     */
-    function eZLocale( $iso="" )
+    function __construct( $iso="" )
     {
         $ini =& INIFile::globalINI();
 

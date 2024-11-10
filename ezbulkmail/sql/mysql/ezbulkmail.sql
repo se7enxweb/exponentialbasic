@@ -5,7 +5,7 @@ CREATE TABLE eZBulkMail_Category (
   IsPublic int NOT NULL,
   IsSingleCategory int default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_Mail (
   ID int(11) NOT NULL,
@@ -18,19 +18,19 @@ CREATE TABLE eZBulkMail_Mail (
   SentDate int(14) default 0,
   IsDraft int(1) NOT NULL default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_MailCategoryLink (
   MailID int(11) NOT NULL default '0',
   CategoryID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,CategoryID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_MailTemplateLink (
   MailID int(11) NOT NULL default '0',
   TemplateID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_SentLog (
   ID int(11) NOT NULL,
@@ -38,20 +38,20 @@ CREATE TABLE eZBulkMail_SentLog (
   Mail varchar(255) default NULL,
   SentDate int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_SubscriptionAddress (
   ID int(11) NOT NULL,
   Password varchar(50) NOT NULL,
   EMail varchar(255) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_SubscriptionLink (
   CategoryID int(11) NOT NULL default '0',
   AddressID int(11) NOT NULL default '0',
   PRIMARY KEY (AddressID,CategoryID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_Template (
   ID int(11) NOT NULL,
@@ -60,13 +60,13 @@ CREATE TABLE eZBulkMail_Template (
   Header text,
   Footer text,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_GroupCategoryLink (
   CategoryID int NOT NULL,
   GroupID int NOT NULL,
   PRIMARY KEY (CategoryID, GroupID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_Forgot (
   ID int(11) NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE eZBulkMail_Forgot (
   Hash varchar(33),
   Time int,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_CategoryDelay (
   ID int(11) NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE eZBulkMail_CategoryDelay (
   Delay int(11) default '0',
   MailID int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_Offset (
   ID int(11) NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE eZBulkMail_Offset (
   Weekly int(11) default NULL,
   Monthly int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_SubscriptionCategorySettings (
   ID int(11) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE eZBulkMail_SubscriptionCategorySettings (
   AddressID int(11) NOT NULL default '0',
   Delay int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_UserCategoryDelay (
   ID int(11) NOT NULL,
@@ -110,13 +110,13 @@ CREATE TABLE eZBulkMail_UserCategoryDelay (
   Delay int(11) default '0',
   MailID int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_UserCategoryLink (
   UserID int(11) NOT NULL default '0',
   CategoryID int(11) NOT NULL default '0',
   PRIMARY KEY (UserID, CategoryID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZBulkMail_UserCategorySettings (
   ID int(11) NOT NULL,
@@ -124,5 +124,4 @@ CREATE TABLE eZBulkMail_UserCategorySettings (
   UserID int(11) default '0',
   Delay int(11) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
-
+);

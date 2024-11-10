@@ -45,7 +45,7 @@ class eZXML
     /*!
       Constructor, should not be used all functions are static.
     */
-    function eZXML( )
+    function __construct( )
     {
         print( "Use the static functions: eZXML::domTree()" );
     }
@@ -56,7 +56,7 @@ class eZXML
 
       $params["TrimWhiteSpace"] = false/true : if the XML parser should ignore whitespace between tags.      
     */
-    function domTree( $xmlDoc, $params=array() )  
+    static public function domTree( $xmlDoc, $params=array() )  
     {
         $TagStack = array();
 
@@ -275,7 +275,7 @@ class eZXML
       \static
       \private
     */
-    function stripComments( &$str )
+    static public function stripComments( &$str )
     {
         $str =& preg_replace( "#<\!--.*?-->#s", "", $str );
         return $str;
@@ -286,7 +286,7 @@ class eZXML
       \private
       Parses the attributes. Returns false if no attributes in the supplied string is found.
     */
-    function &parseAttributes( $attributeString )
+    static public function &parseAttributes( $attributeString )
     {
         $ret = false;
         
@@ -327,6 +327,7 @@ class eZXML
                                 
                 $attrNode->children[] =& $nodeValue;
 
+		$ret = array();
                 $ret[] =& $attrNode;
 
             }

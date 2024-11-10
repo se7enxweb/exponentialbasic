@@ -490,7 +490,7 @@ CREATE TABLE eZTrade_PriceGroup (
   Description text,
   Placement int(11) NOT NULL default '1',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_ProductPriceLink (
   ProductID int(11) NOT NULL default '0',
@@ -499,13 +499,13 @@ CREATE TABLE eZTrade_ProductPriceLink (
   ValueID int(11) NOT NULL default '0',
   Price float(10,2) default NULL,
   PRIMARY KEY (ProductID,PriceID,OptionID,ValueID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_GroupPriceLink (
   GroupID int(11) NOT NULL default '0',
   PriceID int(11) NOT NULL default '0',
   PRIMARY KEY (GroupID,PriceID)
-) TYPE=MyISAM;
+)
 
 # Alternative currency
 create table eZTrade_AlternativeCurrency( ID int primary key auto_increment, Name char(100) not null, PrefixSign int not null default 0, Sign char(5) not null, Value float not null default 1 );
@@ -535,7 +535,7 @@ CREATE TABLE eZTrade_OptionValueHeader (
   OptionID int(11) NOT NULL default '0',
   Placement int(11) NOT NULL default '1',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_OptionValueContent (
   ID int(11) NOT NULL auto_increment,
@@ -543,7 +543,7 @@ CREATE TABLE eZTrade_OptionValueContent (
   ValueID int(11) NOT NULL default '0',
   Placement int(11) NOT NULL default '1',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZTrade_OptionValueContent (Value, ValueID ) SELECT Name,ID FROM eZTrade_OptionValue;
 INSERT INTO eZTrade_OptionValueHeader (Name,OptionID) SELECT 'Name', ID FROM eZTrade_Option;
@@ -596,26 +596,26 @@ CREATE TABLE eZTrade_Quantity (
   ID int(11) NOT NULL auto_increment,
   Quantity int(11) NOT NULL default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_ProductQuantityDict (
   ProductID int(11) NOT NULL default '0',
   QuantityID int(11) NOT NULL default '0',
   PRIMARY KEY (ProductID,QuantityID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_ValueQuantityDict (
   ValueID int(11) NOT NULL default '0',
   QuantityID int(11) NOT NULL default '0',
   PRIMARY KEY (ValueID,QuantityID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_QuantityRange (
   ID int(11) NOT NULL auto_increment,
   MaxRange int(11) default NULL,
   Name varchar(30) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZTrade_QuantityRange VALUES ('',0,'Unavailable');
 INSERT INTO eZTrade_QuantityRange VALUES ('',NULL,'Available');
@@ -635,7 +635,7 @@ CREATE TABLE eZContact_CompanyView (
   Count int(11) NOT NULL default '0',
   Date date NOT NULL default '0000-00-00',
   PRIMARY KEY (ID,CompanyID,Date)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_Link (
   ID int(11) NOT NULL auto_increment,
@@ -644,20 +644,20 @@ CREATE TABLE eZTrade_Link (
   URL text,
   Placement int(11) NOT NULL default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_LinkSection (
   ID int(11) NOT NULL auto_increment,
   Name varchar(30) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_ProductSectionDict (
   ProductID int(11) NOT NULL default '0',
   SectionID int(11) NOT NULL default '0',
   Placement int(11) NOT NULL default '0',
   PRIMARY KEY (ProductID,SectionID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZArticle_ArticleKeyword (
   ID int(11) NOT NULL auto_increment,
@@ -665,7 +665,7 @@ CREATE TABLE eZArticle_ArticleKeyword (
   Keyword varchar(50) NOT NULL,
   Automatic int(1) NOT NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 # Add SimultaneousLogins to eZUser_User
 ALTER TABLE eZUser_User ADD SimultaneousLogins int(11) DEFAULT '0' NOT NULL;

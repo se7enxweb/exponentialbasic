@@ -58,7 +58,7 @@ class eZObjectPermission
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZObjectPermission( )
+    function __construct( )
     {
     }
 
@@ -72,7 +72,7 @@ class eZObjectPermission
 
       NOTE: If you object has an owner, and this user allways should have rights, you must check this yourself.
      */
-    function hasPermission( $objectID, $moduleTable, $permission, $user = false )
+    static public function hasPermission( $objectID, $moduleTable, $permission, $user = false )
     {
         if ( !is_a( $user, "eZUser" ) )
             $user =& eZUser::currentUser();
@@ -137,7 +137,7 @@ class eZObjectPermission
     }
 
 
-    function hasPermissionWithDefinition( $objectID, $moduleTable, $permission, $user=false, $categoryID )
+    static public function hasPermissionWithDefinition( $objectID, $moduleTable, $permission, $user=false, $categoryID )
     {
         if ( !is_a( $user, "eZUser" ) )
         {
@@ -232,7 +232,7 @@ class eZObjectPermission
       $moduleTable is the nickname of the table where the permission is found. The nicknames can be found in site.ini
       $permission either 'r' for readpermission, 'w' for writepermission or 'u' for upload permission.
     */
-    function setPermission( $group, $objectID, $moduleTable, $permission  )
+    static public function setPermission( $group, $objectID, $moduleTable, $permission  )
     {
         if ( is_a( $group, "eZUserGroup" ) )
         {
@@ -316,7 +316,7 @@ class eZObjectPermission
       \static
       Removes all permissions of a given type on an object.
      */
-    function removePermissions( $objectID, $moduleTable, $permission )
+    static public function removePermissions( $objectID, $moduleTable, $permission )
     {
         $tableName = getTableName( $moduleTable );
         if ( $tableName == "" )
@@ -360,7 +360,7 @@ class eZObjectPermission
       $moduleTable is the nickname of the table where the permission is found. The nicknames can be found in site.ini
       $permission either 'r' for readpermission, 'w' for writepermission or 'u' for upload permission
      */
-    function getGroups( $objectID, $moduleTable, $permission, $GroupReturn=true )
+    static public function getGroups( $objectID, $moduleTable, $permission, $GroupReturn=true )
     {
         $ret = array();
         $tableName = getTableName( $moduleTable );
@@ -419,7 +419,7 @@ class eZObjectPermission
       $count if set to true the function will return the count of accessable objects.
       $user of type eZUser, if left out, currentuser is used.
      */
-    function getObjects( $moduleTable, $permission, $count = false , $user=false )
+    static public function getObjects( $moduleTable, $permission, $count = false , $user=false )
     {
         $ret = array();
 

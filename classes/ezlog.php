@@ -78,7 +78,7 @@ class eZLog
       no valid filename is given as argument the log file is read from
       the site.ini file.
     */
-    function eZLog( $fileName="" )
+    function __construct( $fileName="" )
     {
         if ( eZFile::file_exists( $fileName ) )
         {
@@ -134,7 +134,7 @@ class eZLog
     */
     function notice( $notice )
     {
-        $time = strftime ("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
+        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
         $notice = "[ " . $time . " ] [notice] " . $notice . "\n"; 
         fwrite( $this->LogFile, $notice );
     }
@@ -144,7 +144,7 @@ class eZLog
     */
     function warning( $warning )
     {
-        $time = strftime ("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
+        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
         $warning = "[ " . $time . " ] [warning] " . $warning . "\n"; 
         fwrite( $this->LogFile, $warning );
     }
@@ -155,7 +155,7 @@ class eZLog
     */
     function error( $error )
     {
-        $time = strftime ("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
+        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
         $error = "[ " . $time . " ] [error] " . $error . "\n"; 
         fwrite( $this->LogFile, $error );
     }
@@ -164,7 +164,7 @@ class eZLog
       \static
       A simple static function for writing notices to the log file.
      */
-    function writeNotice( $notice )
+    static public function writeNotice( $notice )
     {
         $log = new eZLog();
         $log->notice( $notice );
@@ -175,7 +175,7 @@ class eZLog
       \static
       A simple static function for writing warnings to the log file.
      */
-    function writeWarning( $warning )
+    static public function writeWarning( $warning )
     {
         $log = new eZLog();
         $log->warning( $warning );

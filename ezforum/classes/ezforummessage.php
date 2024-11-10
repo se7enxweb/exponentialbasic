@@ -42,7 +42,7 @@ class eZForumMessage
     /*!
       Constructs a new eZForumMessage object.
     */
-    function eZForumMessage( $id = "" )
+    function __construct( $id = "" )
     {
         $this->IsApproved = true;
         $this->IsTemporary = false;
@@ -864,7 +864,7 @@ class eZForumMessage
       The returned array has the following values
       array( "ID" => $id, "Topic" => $topic );
     */
-    function &lastMessages( $limit, $user = false )
+    static public function &lastMessages( $limit, $user = false )
     {
         $db =& eZDB::globalDatabase();
 

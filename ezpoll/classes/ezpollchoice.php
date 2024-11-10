@@ -46,7 +46,7 @@ class eZPollChoice
       Constructor a new eZPoll object. Retrieves the data from the database
       if a valid id is given as an argument.
     */
-    function eZPollChoice( $id=-1 )
+    function __constrct( $id=-1 )
     {
         if ( $id != -1 )
         {
@@ -168,7 +168,7 @@ class eZPollChoice
     */
     function name( $html = true )
     {
-        if( $html )
+        if( $html && !is_null( $this->Name ) )
             return htmlspecialchars( $this->Name );
         else
             return $this->Name;

@@ -61,7 +61,7 @@ class eZTextTool
       The default is to use xhtml breaks, html breaks is used if the
       $xhtml variable is set to false.
     */
-    function nl2br( $string, $xhtml=true )
+    static public function nl2br( $string, $xhtml=true )
     {
         if ( !is_bool( $xhtml ) )
         {
@@ -75,7 +75,7 @@ class eZTextTool
       \static
       This function will add a > at the beginning of each line.
     */
-    function addPre( $string, $char=">" )
+    static public function addPre( $string, $char=">" )
     {
         $string =& wordwrap( $string, 60, "\n" );
         return preg_replace( "#^#m", "$char ", $string );
@@ -92,7 +92,7 @@ class eZTextTool
       span with class="$bigClass" given as argument.
       
     */
-    function capitalize( $string, $bigClass="h1bigger" )
+    static public function capitalize( $string, $bigClass="h1bigger" )
     {
         $string = strtoupper( $string );
         
@@ -122,7 +122,7 @@ class eZTextTool
       the text "false" if false.
      */
 
-    function boolText( $value )
+    static public function boolText( $value )
     {
     	return $value?'true':'false';
     }
@@ -131,7 +131,7 @@ class eZTextTool
       Performs a normal htmlspecialchars with a striplashes afterwards,
       this is needed to avoid " and \ being slashed on web pages.
     */
-    function htmlspecialchars( $string )
+    static public function htmlspecialchars( $string )
     {
         return stripslashes( htmlspecialchars( $string ) );
     }
@@ -140,7 +140,7 @@ class eZTextTool
       Fixup error made by htmlspecialchars, will convert for instance
       &amp;#8364; back to &#8364; (euro symbol)
     */
-    function fixhtmlentities( $string )
+    static public function fixhtmlentities( $string )
     {
         $string = preg_replace( "/&amp;#([0-9]+);/", "&#\\1;", $string );
         return $string;
@@ -153,7 +153,7 @@ class eZTextTool
       
       You can also add a padding length, if you wish.
      */
-    function lineSplit( $in, $len = 0, $size = 72 )
+    static public function lineSplit( $in, $len = 0, $size = 72 )
     {
         $tmp = "";
         $pad = str_pad( $tmp, $len, " ", STR_PAD_LEFT );
@@ -204,7 +204,7 @@ class eZTextTool
       $src = $tree["top"]["children"]["one"]["src"];
       which is quite easier than traversing an xml tree manually.
     */
-    function parseXML( &$xml, $inline_children = false )
+    static public function parseXML( &$xml, $inline_children = false )
     {
         $msg = array();
         eZTextTool::parseXMLPart( $xml, $msg, $inline_children );
@@ -216,7 +216,7 @@ class eZTextTool
       \private
       Helper function for parseXML.
     */
-    function parseXMLPart( &$xml, &$msg, $inline_children )
+    static public function parseXMLPart( &$xml, &$msg, $inline_children )
     {
         foreach( $xml->children as $child )
         {

@@ -2408,7 +2408,7 @@ CREATE TABLE eZTrade_Voucher (
   VoucherID int(11) default '0',	
   TotalValue int(11) default '0',	
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_VoucherInformation (
   ID int(11) NOT NULL default '0',
@@ -2425,7 +2425,7 @@ CREATE TABLE eZTrade_VoucherInformation (
   FromAddressID int(11) default '0',
   ProductID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_VoucherUsed (
   ID int(11) NOT NULL default '0',
@@ -2435,7 +2435,7 @@ CREATE TABLE eZTrade_VoucherUsed (
   OrderID int(11) default '0',
   UserID int(11) default '0',
   PRIMARY KEY  (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_WishList (
   ID int NOT NULL,
@@ -2717,4 +2717,3 @@ create index eZImageCatalogue_CategoryPermission_ReadPermission on eZImageCatalo
 # Any changes to this file will be lost in the release         #
 # edit [modulename]/sql/postgresql/[modulenname].sql instead   #
 ################################################################
-

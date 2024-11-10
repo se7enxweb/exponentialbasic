@@ -5,7 +5,7 @@ CREATE TABLE eZForum_Category (
   IsPrivate int DEFAULT NULL,
   SectionID int DEFAULT 1,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZForum_Forum (
   ID int NOT NULL,
@@ -17,14 +17,14 @@ CREATE TABLE eZForum_Forum (
   GroupID int DEFAULT '0',
   IsAnonymous int NOT NULL DEFAULT '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZForum_ForumCategoryLink (
   ID int NOT NULL,
   ForumID int NOT NULL DEFAULT '0',
   CategoryID int NOT NULL DEFAULT '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZForum_Message (
   ID int NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE eZForum_Message (
   IsApproved int NOT NULL DEFAULT '1',
   IsTemporary int NOT NULL DEFAULT '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZForum_MessageWordLink (
   MessageID int(11) NOT NULL DEFAULT '0',

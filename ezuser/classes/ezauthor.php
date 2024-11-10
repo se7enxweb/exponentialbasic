@@ -40,7 +40,7 @@ class eZAuthor
     /*!
       Constructs a new eZAuthor object.
     */
-    function eZAuthor( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

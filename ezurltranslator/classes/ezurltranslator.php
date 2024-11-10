@@ -38,7 +38,7 @@ class eZURLTranslator
     /*!
 
      */
-    function eZURLTranslator( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {
@@ -50,7 +50,7 @@ class eZURLTranslator
     /*!
       \static
     */
-    function translate( $url )
+    static public function translate( $url )
     {
         $ret = false;
 

@@ -44,7 +44,7 @@ class eZForumCategory
     /*!
       Constructs a new eZForumCategory object.
     */
-    function eZForumCategory( $id = "" )
+    function __construct( $id = "" )
     {
         if ( $id != "" )
         {

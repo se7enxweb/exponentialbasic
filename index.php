@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors','On');
+ini_set('max_execution_time', '300');
+
 //
 // $Id: index.php 9864 2003-07-11 07:27:00Z br $
 //

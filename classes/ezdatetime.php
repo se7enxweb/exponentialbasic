@@ -56,7 +56,7 @@ class eZDateTime
       Constructs a new eZDateTime object. If the parameters are set the date and
       time is set accordingly. If not the current local time and date are used.
     */
-    function eZDateTime( $year=-1, $month=-1, $day=-1, $hour=-1, $minute=-1, $second=-1 )
+    function __construct( $year=-1, $month=-1, $day=-1, $hour=-1, $minute=-1, $second=-1 )
     {
         if ( ( $year == -1 ) && ( $month == -1 ) && ( $day == -1 ) && ( $hour == -1 ) && ( $minute == -1 ) && ( $second == -1 ) )
         {
@@ -324,10 +324,10 @@ class eZDateTime
 
       If returnNow is set to true a timestamp of the current time is returned.
     */
-    function timeStamp( $returnNow=false )
+    static public function timeStamp( $returnNow=false )
     {
         if ( $returnNow == true )
-            return mktime();
+            return time();
         else
         {
             return mktime( $this->hour(), $this->minute(), $this->second(),
@@ -359,7 +359,7 @@ class eZDateTime
       \private
       Adds a "0" infront of the value if it's below 10.
     */
-    function addZero( $value )
+    static public function addZero( $value )
     {
         $ret = $value;
         if ( $ret < 10 )

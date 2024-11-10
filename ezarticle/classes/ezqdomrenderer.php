@@ -146,7 +146,7 @@ class eZQDomrenderer
     /*!
       Creates a new eZQDomGenerator object.
     */
-    function eZQDomrenderer( &$article, $template=false )
+    function __construct( &$article, $template=false )
     {
         $UsedImageList = array();
         $RollOverCount = 0;
@@ -558,6 +558,7 @@ class eZQDomrenderer
     function &renderImage( $paragraph )
     {
         $pageContent = "";
+	$image = "";
         if ( $paragraph->name == "image" )
         {
             $articleImages = $this->Article->images();
@@ -631,7 +632,7 @@ class eZQDomrenderer
 
             $hasMap = false;
             $mapString = "";
-            if ( is_object( $image ) && ( $image->hasMap() == true ) )
+            if ( isset( $image ) && is_object( $image ) && ( $image->hasMap() == true ) )
             {
                 print( "object image<br>" );
                 $hasMap = true;
@@ -1090,7 +1091,7 @@ class eZQDomrenderer
             case "form" :
             {
                 $tmpContent = "";
-                if ( count( $paragraph->children ) )
+                if ( !is_null( $paragraph->children ) && count( $paragraph->children ) )
                 foreach ( $paragraph->children as $child )
                 {
                     if ( $child->name == "text" )
@@ -1221,6 +1222,10 @@ class eZQDomrenderer
     function &renderLink( $paragraph )
     {
         $pageContent = "";
+	$to = "";
+	$subject = "";
+	$href = "";
+	$text = "";
         if ( $paragraph->name == "link" )
         {
             if ( count( $paragraph->attributes ) > 0 )
@@ -1307,7 +1312,6 @@ class eZQDomrenderer
 
             $pageContent .= "<a name=\"$href\"></a>";
         }
-
 
         // mail
         if ( $paragraph->name == "mail" )

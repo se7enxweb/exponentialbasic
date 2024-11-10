@@ -44,19 +44,19 @@ CREATE TABLE eZMail_MailFolderLink (
   MailID int(11) NOT NULL default '0',
   FolderID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,FolderID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMail_MailAttachmentLink (
   MailID int(11) NOT NULL default '0',
   FileID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,FileID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMail_MailImageLink (
   MailID int(11) NOT NULL default '0',
   ImageID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,ImageID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMail_FilterRule (
   ID int(11) NOT NULL,
@@ -67,13 +67,13 @@ CREATE TABLE eZMail_FilterRule (
   MatchValue varchar(200),
   IsActive int(1) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMail_FetchedMail (
   UserID int(11) NOT NULL,
   MessageID varchar(100) NOT NULL,
   PRIMARY KEY (UserID, MessageID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZMail_MailContactLink (
   ID int NOT NULL,

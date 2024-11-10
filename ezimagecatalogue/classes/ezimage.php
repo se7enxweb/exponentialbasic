@@ -94,7 +94,7 @@ class eZImage
     /*!
       Constructs a new eZImage object.
     */
-    function eZImage( $id = "" )
+    function __construct( $id = "" )
     {
         $this->PhotographerID = 0;
         $this->NewImage = false;

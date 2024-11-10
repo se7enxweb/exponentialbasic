@@ -67,7 +67,7 @@ CREATE TABLE eZMail_MailFolderLink (
   MailID int(11) NOT NULL default '0',
   FolderID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,FolderID)
-) TYPE=MyISAM;
+)
 
 
 #
@@ -79,7 +79,7 @@ CREATE TABLE eZMail_MailAttachmentLink (
   MailID int(11) NOT NULL default '0',
   FileID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,FileID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZMail_MailImageLink'
@@ -90,7 +90,7 @@ CREATE TABLE eZMail_MailImageLink (
   MailID int(11) NOT NULL default '0',
   ImageID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,ImageID)
-) TYPE=MyISAM;
+)
 
 
 #
@@ -107,7 +107,7 @@ CREATE TABLE eZMail_FilterRule (
   MatchValue varchar(200),
   IsActive int(1) default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 
 #
@@ -119,7 +119,7 @@ CREATE TABLE eZMail_FetchedMail (
   UserID int(11) NOT NULL,
   MessageID varchar(100) NOT NULL,
   PRIMARY KEY (UserID, MessageID)
-) TYPE=MyISAM;
+)
 
 
 #
@@ -160,7 +160,7 @@ CREATE TABLE eZBulkMail_MailCategoryLink (
   MailID int(11) NOT NULL default '0',
   CategoryID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID,CategoryID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZBulkMail_MailTemplateLink'
@@ -171,7 +171,7 @@ CREATE TABLE eZBulkMail_MailTemplateLink (
   MailID int(11) NOT NULL default '0',
   TemplateID int(11) NOT NULL default '0',
   PRIMARY KEY (MailID)
-) TYPE=MyISAM;
+)
 
 
 #
@@ -185,7 +185,7 @@ CREATE TABLE eZBulkMail_Template (
   Header text,
   Footer text,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZBulkMail_SubscriptionLink'
@@ -196,7 +196,7 @@ CREATE TABLE eZBulkMail_SubscriptionLink (
   CategoryID int(11) NOT NULL default '0',
   AddressID int(11) NOT NULL default '0',
   PRIMARY KEY (AddressID,CategoryID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZBulkMail_SubscriptionAddress'
@@ -207,7 +207,7 @@ CREATE TABLE eZBulkMail_SubscriptionAddress (
   ID int(11) default '0' NOT NULL auto_increment,
   EMail varchar(255),
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 #
 # Table structure for table 'eZBulkMail_SentLog'
@@ -220,7 +220,7 @@ CREATE TABLE eZBulkMail_SentLog (
   AddressID int(11) NOT NULL default '0',
   SentDate timestamp(14) NOT NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 
 
@@ -229,26 +229,26 @@ CREATE TABLE eZTrade_Quantity (
   ID int(11) NOT NULL auto_increment,
   Quantity int(11) NOT NULL default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_ProductQuantityDict (
   ProductID int(11) NOT NULL default '0',
   QuantityID int(11) NOT NULL default '0',
   PRIMARY KEY (ProductID,QuantityID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_ValueQuantityDict (
   ValueID int(11) NOT NULL default '0',
   QuantityID int(11) NOT NULL default '0',
   PRIMARY KEY (ValueID,QuantityID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_QuantityRange (
   ID int(11) NOT NULL auto_increment,
   MaxRange int(11) default NULL,
   Name varchar(30) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZTrade_QuantityRange VALUES ('',0,'Unavailable');
 INSERT INTO eZTrade_QuantityRange VALUES ('',NULL,'Available');
@@ -268,7 +268,7 @@ CREATE TABLE eZContact_CompanyView (
   Count int(11) NOT NULL default '0',
   Date date NOT NULL default '0000-00-00',
   PRIMARY KEY (ID,CompanyID,Date)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_Link (
   ID int(11) NOT NULL auto_increment,
@@ -277,20 +277,20 @@ CREATE TABLE eZTrade_Link (
   URL text,
   Placement int(11) NOT NULL default '0',
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_LinkSection (
   ID int(11) NOT NULL auto_increment,
   Name varchar(30) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTrade_ProductSectionDict (
   ProductID int(11) NOT NULL default '0',
   SectionID int(11) NOT NULL default '0',
   Placement int(11) NOT NULL default '0',
   PRIMARY KEY (ProductID,SectionID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZArticle_ArticleKeyword (
   ID int(11) NOT NULL auto_increment,
@@ -298,7 +298,7 @@ CREATE TABLE eZArticle_ArticleKeyword (
   Keyword varchar(50) NOT NULL,
   Automatic int(1) NOT NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+)
 
 # Add SimultaneousLogins to eZUser_User
 ALTER TABLE eZUser_User ADD SimultaneousLogins int(11) DEFAULT '0' NOT NULL;

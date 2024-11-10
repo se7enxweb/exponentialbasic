@@ -51,7 +51,7 @@ class eZFormRenderer
     /*!
       Constructs a new eZFormRenderer object.
     */
-    function eZFormRenderer( $form = "" )
+    function __construct( $form = "" )
     {
         $ini =& INIFile::globalINI();
         if ( is_a( $form, "eZForm" ) )

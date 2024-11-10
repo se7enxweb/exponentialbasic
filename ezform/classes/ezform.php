@@ -253,7 +253,14 @@ class eZForm
     */
     function name()
     {
-        return htmlspecialchars( $this->Name );
+	if( is_string( $this->Name ) )
+        {
+	    return htmlspecialchars( $this->Name );
+	}
+	else
+	{
+	    return $this->Name;
+	}
     }
 
     /*!

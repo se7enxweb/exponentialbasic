@@ -104,11 +104,14 @@ include_once( "classes/ezlog.php" );
 
 class eZTemplate
 {
+    var $language;
+    var $phpFile;
+    var $intlDir;
 
     /*!
       Constructs a new eZTemplate object.
     */
-    function eZTemplate( $templateDir = "", $intlDir = "", $language = "",
+    function __construct( $templateDir = "", $intlDir = "", $language = "",
                          $phpFile = "", $style = false, $module_dir = false,
                          $state = false, $mod_time = false )
     {
@@ -222,13 +225,19 @@ class eZTemplate
         if ( isset( $this->TextStrings ) and is_array( $this->TextStrings ) )
         {
             reset( $this->TextStrings );
-            $tmp =& each( $this->TextStrings );
-            while ( $tmp )
-            {
-                $tmp_key = "intl-" . $tmp[0];
-                $this->set_var_internal( $tmp_key, $tmp[1] );
-                $tmp =& each( $this->TextStrings );
-            }
+
+            // DEPRECATED
+	    // $tmp =& each( $this->TextStrings );
+
+	    foreach ($this->TextStrings as $i => $tmp)
+	    {
+                    ////$tmp_key = "intl-" . $tmp[0];
+		    $tmp_key = "intl-" . $tmp;
+
+                    //$this->set_var_internal( $tmp_key, $tmp[1] );
+		    $this->set_var_internal( $tmp_key, $tmp );
+                    //$tmp =& each( $this->TextStrings );
+	    }
         }
     }
 
@@ -456,8 +465,8 @@ class eZTemplate
         {
             $this->files = array();
             reset( $handle );
-            while ( list( $h, $f ) = each( $handle ) )
-            {
+	    foreach ($handle as $h => $f)
+	    {
                 $this->file[$h] = $this->filename( $f );
                 $this->files[] = $f;
             }

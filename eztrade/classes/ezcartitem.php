@@ -59,7 +59,7 @@ class eZCartItem
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZCartItem( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {
@@ -221,7 +221,7 @@ class eZCartItem
     /*!
       Returns the correct localized price of the product.
     */
-    function localePrice( $calcCount=true, $withOptions=true, $calcVAT, $withPriceGroups=true )
+    function localePrice( $calcCount=true, $withOptions=true, $calcVAT = false, $withPriceGroups=true )
     {
         $ini =& INIFile::globalINI();
         $inLanguage = $ini->read_var( "eZTradeMain", "Language" );
@@ -239,7 +239,7 @@ class eZCartItem
       Returns the correct price of the product based on the logged in user, and the
       VAT status and use.
     */
-    function correctPrice( $calcCount=true, $withOptions=true, $calcVAT, $withPriceGroups=true )
+    function correctPrice( $calcCount=true, $withOptions=true, $calcVAT = false, $withPriceGroups=true )
     {
         $optionValues =& $this->optionValues();
         $product =& $this->product();
@@ -290,7 +290,7 @@ class eZCartItem
     /*!
       Returns the correct localized price of the product.
     */
-    function localeSavings( $calcCount=true, $withOptions=true, $calcVAT )
+    function localeSavings( $calcCount=true, $withOptions=true, $calcVAT = false )
     {
         $ini =& INIFile::globalINI();
         $inLanguage = $ini->read_var( "eZTradeMain", "Language" );
@@ -308,7 +308,7 @@ class eZCartItem
       Returns the correct savings of the product based on the logged in user, and the
       VAT status and use.
     */
-    function correctSavings( $calcCount=true, $withOptions=true, $calcVAT )
+    function correctSavings( $calcCount=true, $withOptions=true, $calcVAT = false )
     {
         $optionValues =& $this->optionValues();
         $product =& $this->product();

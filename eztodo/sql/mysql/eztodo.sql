@@ -39,14 +39,14 @@ CREATE TABLE eZTodo_Log (
   Log text,
   Created int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE eZTodo_TodoLogLink (
   ID int(11) NOT NULL auto_increment,
   TodoID int(11) default NULL,
   LogID int(11) default NULL,
   PRIMARY KEY (ID)
-) TYPE=MyISAM;
+);
 
 INSERT INTO eZTodo_Category VALUES (1,'','Work');    
 
@@ -56,4 +56,3 @@ INSERT INTO eZTodo_Status (Description, ID, Name) VALUES (NULL,2,'Done');
 INSERT INTO eZTodo_Priority (ID, Name) VALUES (1,'Low');
 INSERT INTO eZTodo_Priority (ID, Name) VALUES (2,'Medium');
 INSERT INTO eZTodo_Priority (ID, Name) VALUES (3,'High');
-

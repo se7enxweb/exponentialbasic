@@ -192,7 +192,7 @@ class eZDB
       \static
       This function rollbacks if the array supplied contains any false values, else it commits.
      */
-    function finish( &$resultArray, &$db )
+    static public function finish( &$resultArray, &$db )
     {
         $db->unlock();
         if ( !is_array( $resultArray ) )

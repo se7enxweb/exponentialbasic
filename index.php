@@ -184,6 +184,12 @@ if ( isSet( $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] ) and $HTTP_COOKIE_VARS[
 }
 
 $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
+$url_array_count = count( $url_array );
+
+for( $i = $url_array_count; $i <= 25; $i++ )
+{
+    $url_array[$i] = false;
+}
 
 if ( ( $requireUserLogin == "disabled" ) ||
      ( ( $requireUserLogin == "enabled" ) && ( is_a( $user, "eZUser" ) ) && ( $user->id() != 0 ) ) )

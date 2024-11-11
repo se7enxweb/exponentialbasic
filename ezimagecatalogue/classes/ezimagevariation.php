@@ -41,7 +41,7 @@ class eZImageVariation
     /*!
       Constructs a new eZImageVariation object.
     */
-    function eZImageVariation( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

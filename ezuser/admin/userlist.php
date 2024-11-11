@@ -54,11 +54,26 @@ $t->set_var( "site_style", $SiteStyle );
 $t->set_var( "OldSearchText", "" );
 
 $user = new eZUser();
+
 $OrderBy = "name";
-$LastName = addslashes (trim ($LastName));
-$FirstName = addslashes (trim ($FirstName));
-$Login = addslashes (trim ($Login));
-$EMail = addslashes (trim ($EMail));
+
+if( !isset( $LastName ) )
+    $LastName = false;
+if( !isset( $FirstName ) )
+    $FirstName = false;
+if( !isset( $Login ) )
+    $Login = false;
+if( !isset( $EMail ) )
+    $EMail = false;
+if( !isset( $Login ) )
+    $Login = false;
+if( !isset( $SearchText ) )
+    $SearchText = false;
+
+$LastName = addslashes(trim($LastName));
+$FirstName = addslashes(trim($FirstName));
+$Login = addslashes(trim($Login));
+$EMail = addslashes(trim($EMail));
 $SearchText = addslashes (trim ($SearchText) );
 
 if ( !is_numeric( $Max ) )

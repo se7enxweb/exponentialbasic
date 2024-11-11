@@ -52,9 +52,11 @@ $t->set_block( "login_tpl", "max_message_tpl", "max_message" );
 
 if ( $Action == "login" )
 {
-	$Username = $_POST['Username'];
-	$Password = $_POST['Password'];
-	
+    $Username = $_POST['Username'];
+    $Password = $_POST['Password'];
+
+    $remoteAddress = $_SERVER['REMOTE_ADDR'];
+
     $user = new eZUser();
     $user = $user->validateUser( $_POST['Username'], $_POST['Password'] );
 
@@ -76,7 +78,7 @@ if ( $Action == "login" )
 
             if ( ( $logins < $MaxLogins ) || ( $MaxLogins == 0 ) )
             {
-                eZLog::writeNotice( "Admin login: $Username from IP: $REMOTE_ADDR" );
+                eZLog::writeNotice( "Admin login: $Username from IP: $remoteAddress" );
 
                 eZUser::loginUser( $user );
                 if ( !isSet( $RefererURL ) )
@@ -93,21 +95,21 @@ if ( $Action == "login" )
             }
             else
             {
-                eZLog::writeWarning( "Max limit reached: $Username from IP: $REMOTE_ADDR" );
+                eZLog::writeWarning( "Max limit reached: $Username from IP: $remoteAddress" );
         
                 $maxerror = true;    
             }
         }
         else
         {
-            ezLog::writeError( "Couldn't receive admin information on : $Username from IP: $REMOTE_ADDR" );
+            ezLog::writeError( "Couldn't receive admin information on : $Username from IP: $remoteAddress" );
 
             $error = true;
         }
     }
     else
     {
-        eZLog::writeWarning( "Bad admin login: $Username from IP: $REMOTE_ADDR" );
+        eZLog::writeWarning( "Bad admin login: $Username from IP: $remoteAddress" );
         
         $error = true;
     }

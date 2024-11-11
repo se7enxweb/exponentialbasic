@@ -70,8 +70,20 @@ $t->set_block( "link_page_tpl", "path_item_tpl", "path_item" );
 
 $t->set_var( "site_style", $SiteStyle );
 
-if ( !$Offset )
+if ( !isset( $Offset ) )
     $Offset = 0;
+
+if ( !isset( $total_sub_links ) )
+    $total_sub_links = 0;
+
+if ( !isset( $new_sub_links ) )
+    $new_sub_links = 0;
+
+if ( !isset( $links ) )
+    $links = 0;
+
+if ( !isset( $categories ) )
+    $categories = false;
 
 // List all the categoires
 $linkCategory = new eZLinkCategory();

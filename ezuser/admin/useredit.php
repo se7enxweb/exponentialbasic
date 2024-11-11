@@ -29,7 +29,7 @@ include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
-
+$error_msg = false;
 $error = new INIFIle( "ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 
 include_once( "ezmail/classes/ezmail.php" );
@@ -39,22 +39,24 @@ include_once( "ezuser/classes/ezusergroup.php" );
 
 require( "ezuser/admin/admincheck.php" );
 
-if ( isSet ( $DeleteUsers ) )
+if ( isSet( $_POST['DeleteUsers'] ) )
 {
     $Action = "DeleteUsers";
 }
 
-if ( isSet( $Back ) )
+if ( isSet( $_POST['Back'] ) )
 {
     eZHTTPTool::header( "Location: /user/userlist/" );
     exit();
 }
 
+
 // do not allow editing users with root access while you do not.
 $currentUser = eZUser::currentUser();
-if( isset( $UserID ) )
+
+if( isset( $_POST['UserID'] ) && $_POST['UserID'] != '' )
 {
-    $editUser = new eZUser( $UserID );
+    $editUser = new eZUser( $_POST['UserID'] );
     if( !$currentUser->hasRootAccess() && $editUser->hasRootAccess() )
     {
         $info = urlencode( "Can't edit a user with root priveliges." );
@@ -67,38 +69,38 @@ if ( $Action == "insert" )
 {
     if ( eZPermission::checkPermission( $user, "eZUser", "UserAdd" ) )
     {
-        if ( $Login != "" &&
-             $Email != "" &&
-             $FirstName != "" &&
-             $LastName != "" &&
-             $SimultaneousLogins != "")
+        if ( $_POST['Login'] != "" &&
+             $_POST['Email'] != "" &&
+             $_POST['FirstName'] != "" &&
+             $_POST['LastName'] != "" &&
+             $_POST['SimultaneousLogins'] != "")
         {
-            if ( ( $Password == $VerifyPassword ) && ( strlen( $VerifyPassword ) > 2 ) )
+            if ( ( $_POST['Password'] == $_POST['VerifyPassword'] ) && ( strlen( $_POST['VerifyPassword'] ) > 2 ) )
             {
                 $user = new eZUser();
-                $user->setLogin( $Login );
+                $user->setLogin( $_POST['Login'] );
                 if ( !$user->exists( $user->login() ) )
                 {
-                    $tmp[0] = $Email;
+                    $tmp[0] = $_POST['Email'];
                     if ( eZMail::validate( $tmp[0] ) )
                     {
-                        $user->setPassword( $Password );
-                        $user->setEmail( $Email );
-                        $user->setFirstName( $FirstName );
-                        $user->setLastName( $LastName );
-                        $user->setSignature( $Signature );
-                        $user->setSimultaneousLogins( $SimultaneousLogins );
+                        $user->setPassword( $_POST['Password'] );
+                        $user->setEmail( $_POST['Email'] );
+                        $user->setFirstName( $_POST['FirstName'] );
+                        $user->setLastName( $_POST['LastName'] );
+                        $user->setSignature( $_POST['Signature'] );
+                        $user->setSimultaneousLogins( $_POST['SimultaneousLogins'] );
 
-                        if ( $InfoSubscription == "on" )
+                        if ( $_POST['InfoSubscription'] == "on" )
                             $user->setInfoSubscription( true );
                         else
                             $user->setInfoSubscription( false );
                         
                         $user->store();
-                        eZLog::writeNotice( "User created: $FirstName $LastName ($Login) $Email $SimultaneousLogins  from IP: $REMOTE_ADDR" );
+                        eZLog::writeNotice( "User created: " . $_POST['FirstName'] . " " . $_POST['LastName'] ." (" . $_POST['Login'] .") ". $_POST['Email'] . " " . $_POST['SimultaneousLogins'] . " from IP: " . $_SERVER['REMOTE_ADDR'] );
                         
                         // Add user to groups
-                        $GroupArray = array_unique( array_merge( $GroupArray, $MainGroup ) );
+                        $GroupArray = array_unique( array_merge( $_POST['GroupArray'], $_POST['MainGroup'] ) );
                         $group = new eZUserGroup();
                         $user->get( $user->id() );
                         $user->removeGroups();
@@ -112,12 +114,12 @@ if ( $Action == "insert" )
                             {
                                 $group->adduser( $user );
                                 $groupname = $group->name();
-                                eZLog::writeNotice( "User added to group: $groupname from IP: $REMOTE_ADDR" );
+                                eZLog::writeNotice( "User added to group: $groupname from IP: " . $_SERVER['REMOTE_ADDR'] );
                             }
                         }
                         
                         $user->setGroupDefinition( $MainGroup );
-
+			$Action = false;
                         eZHTTPTool::header( "Location: /user/userlist/" );
                         exit();
                     }
@@ -152,8 +154,28 @@ if ( $Action == "update" )
 {
     if ( eZPermission::checkPermission( $user, "eZUser", "UserModify" ) )
     {
-        if ( $Login != "" &&
-        $Email != "" &&
+        if( isset( $_POST['Login'] ) )
+    	    $Login = $_POST['Login'];
+    	if( isset( $_POST['Email'] ) )
+            $Email = $_POST['Email'];
+        if( isset( $_POST['FirstName'] ) )
+            $FirstName = $_POST['FirstName'];
+        if( isset( $_POST['LastName'] ) )
+       	    $LastName = $_POST['LastName'];
+        if( isset( $_POST['Signature'] ) )
+       	    $Signature = $_POST['Signature'];
+        if( isset( $_POST['SimultaneousLogins'] ) )
+       	    $SimultaneousLogins = $_POST['SimultaneousLogins'];
+        if( isset( $_POST['InfoSubscription'] ) )
+            $InfoSubscription = $_POST['InfoSubscription'];
+        if( isset( $_POST['Password'] ) )
+            $Password = $_POST['Password'];
+        if( isset( $_POST['VerifyPassword'] ) )
+            $VerifyPassword = $_POST['VerifyPassword'];
+        if( isset( $_POST['UserID'] ) )
+            $UserID = $_POST['UserID'];
+
+        if ( $Email != "" &&
         $FirstName != "" &&
         $LastName != "" &&
         $SimultaneousLogins != "")
@@ -187,13 +209,19 @@ if ( $Action == "update" )
                         }
                             
                         $user->store();
-                        eZLog::writeNotice( "User updated: $FirstName $LastName ($Login) $Email from IP: $REMOTE_ADDR" );
+                        eZLog::writeNotice( "User updated: $FirstName $LastName ($Login) $Email from IP: " . $_SERVER['REMOTE_ADDR'] );
 
                         // Remove user from groups
                         $user->removeGroups();
                         
                         // Add user to groups
-                        $GroupArray = array_unique( array_merge( $GroupArray, $MainGroup ) );
+			if( isset( $_POST['GroupArray'] ) && isset( $_POST['MainGroup'] ) )
+                        {
+		 	    $GroupArray = array_unique( array_merge( $_POST['GroupArray'], $_POST['MainGroup'] ) );
+			}
+			else {
+		 	    $GroupArray[] = $_POST['MainGroup'];
+			}
                         $group = new eZUserGroup();
                         $user->get( $user->id() );
                         $user->removeGroups();
@@ -207,11 +235,11 @@ if ( $Action == "update" )
                             {
                                 $group->adduser( $user );
                                 $groupname = $group->name();
-                                eZLog::writeNotice( "User added to group: $groupname from IP: $REMOTE_ADDR" );
+                                eZLog::writeNotice( "User added to group: $groupname from IP: " . $_SERVER['REMOTE_ADDR'] );
                             }
                         }
 
-                        $user->setGroupDefinition( $MainGroup );
+                        $user->setGroupDefinition( $_POST['MainGroup'] );
                         eZHTTPTool::header( "Location: /user/userlist/" );
                         exit();
                     }
@@ -314,6 +342,7 @@ if ( $Action == "new" )
     $Lastname = "";
     $Email = "";
     $Login = "";
+    $UserID = eZUser::currentUser()->ID;
     $SimultaneousLogins = $ini->read_var( "eZUserMain", "DefaultSimultaneousLogins" );
 }
 
@@ -335,6 +364,10 @@ $groupList = $group->getAll();
 $user = 0;
 $t->set_var( "read_only", "" );
 $user = new eZUser();
+
+if( isset( $_POST['UserID'] ) )
+    $UserID = $_POST['UserID'];
+
 $user->get( $UserID );
 
 if ( $Action == "edit" )
@@ -360,6 +393,32 @@ if ( $Action == "edit" )
 }
 else // either new or failed edit... must put htmlspecialchars on stuff we got from form.
 {
+    $Login = false;
+    $Email = false;
+    $FirstName = false;
+    $LastName = false;
+    $Signature = false;
+    $SimultaneousLogins = false;
+    $InfoSubscription = false;
+
+
+    if( isset( $_POST['Login'] ) )
+        $Login = $_POST['Login'];
+    if( isset( $_POST['Email'] ) )
+        $Email = $_POST['Email'];
+    if( isset( $_POST['FirstName'] ) )
+        $FirstName = $_POST['FirstName'];
+    if( isset( $_POST['LastName'] ) )
+        $LastName = $_POST['LastName'];
+    if( isset( $_POST['Signature'] ) )
+        $Signature = $_POST['Signature'];
+    if( isset( $_POST['SimultaneousLogins'] ) )
+        $SimultaneousLogins = $_POST['SimultaneousLogins'];
+    if( isset( $_POST['InfoSubscription'] ) )
+        $InfoSubscription = $_POST['InfoSubscription'];
+    if( isset( $_POST['UserID'] ) )
+        $UserID = $_POST['UserID'];
+
     $FirstName = htmlspecialchars( $FirstName );
     $LastName = htmlspecialchars( $LastName );
     $Login = htmlspecialchars( $Login );

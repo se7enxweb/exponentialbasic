@@ -1890,7 +1890,7 @@ class eZArticle
       if SearchExcludedArticles is set to "true" articles which is set non searchable will also be searched.
       $SearchTotalCount will return the total number of items found in the search
     */
-    function &search( &$queryText, $sortMode=time, $fetchPublished=false, $offset=0, $limit=10, $params = array(), &$SearchTotalCount )
+    function &search( &$queryText, $sortMode=time, $fetchPublished=false, $offset=0, $limit=10, $params = array(), &$SearchTotalCount = false )
     {
         $db =& eZDB::globalDatabase();
 
@@ -2169,7 +2169,7 @@ class eZArticle
 
       $SearchTotalCount will return the total number of items found in the search
     */
-    function &searchTitle( &$queryText, $fetchPublished=false, &$SearchTotalCount, $categoryID = false )
+    function &searchTitle( &$queryText, $fetchPublished=false, &$SearchTotalCount = false, $categoryID = false )
     {
         $db =& eZDB::globalDatabase();
 
@@ -3134,6 +3134,9 @@ eZUser_Author as Author
     // variable for storing the number of pages in the article.
     var $PageCount;
 
+    // php8
+    var $AuthorText;
+    var $AuthorEmail;
 
 }
 

@@ -1,4 +1,9 @@
 <?php
+
+ini_set( 'display_errors','On' );
+
+ini_set( 'max_execution_time', '180' );
+
 // 
 // $Id: index_admin.php 9465 2002-04-24 07:38:20Z jhe $
 //
@@ -149,6 +154,13 @@ $SiteStyle =& $ini->read_var( "site", "SiteStyle" );
 $GLOBALS["DEBUG"] = true;
 
 $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
+$url_array_count = count( $url_array );
+
+for( $i = $url_array_count; $i <= 25; $i++ )
+{
+    $url_array[$i] = false;
+}
+
 $HelpMode  = "disabled";
 
 $user =& eZUser::currentUser();
@@ -174,7 +186,7 @@ if ( $user )
     }
               
     
-    require( "ezuser/admin/admincheck.php" );
+//    require( "ezuser/admin/admincheck.php" );
     
     if ( $HelpMode != "enabled" ) 
     {

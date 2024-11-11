@@ -393,7 +393,7 @@ class eZList
           item_name: The item name variable used with hotlinks
           type_list: The block containing the whole navigator HTML
     */
-    function drawNavigator( &$t, $total_types, $max_types, $index, $parent = false,
+    static public function drawNavigator( &$t, $total_types, $max_types, $index, $parent = false,
     	                     $variables = false )
     {
         if ( is_array( $variables ) )

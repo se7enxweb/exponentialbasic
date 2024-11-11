@@ -38,31 +38,31 @@ class eZPublish
       \static
       Returns the eZ publish version number.
     */
-    function version()
+    static public function version()
     {
-        return "2.3.0";
+        return "2.4.0.1";
     }
 
     /*!
       \static
       Returns the eZ publish svn version number.
-      This function is currently static, it will need to become dynamic 
+      This static public function is currently static, it will need to become dynamic 
       to check an external source and return the actual dynamic svn number
     */
-    function svnVersion()
+    static public function svnVersion()
     {
 	//        return "2.2.9";
-	return "trunk_1";
+	return "trunk-1";
     }
 
     /*!
       \static
       Returns the eZ publish installation version number.
     */
-    function installationVersion()
+    static public function installationVersion()
     {
         //        return "2.2.9";
-        return "0.0.4";
+        return "0.0.5";
     }
 
 }

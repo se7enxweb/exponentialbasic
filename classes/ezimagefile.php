@@ -71,7 +71,7 @@ class eZImageFile extends eZFile
     /*!
       Constructs a new eZImageFile object.
     */
-    function eZImageFile()
+    function __construct()
     {
 
     }
@@ -104,7 +104,7 @@ class eZImageFile extends eZFile
       "image-type" - The image type, for instance: image/jpeg, image/png or image/gif
       "support" - True if the image type is supported.
     */
-    function &information( $file, $use_default = false )
+    static public function &information( $file, $use_default = false )
     {
         $ret = array();
         $suffix = "";
@@ -135,7 +135,7 @@ class eZImageFile extends eZFile
       Returns the default image info structure, which uses the jpeg format.
       This is used for returning a standard info structure if the file format is unsupported.
     */
-    function &defaultInformation()
+    static public function &defaultInformation()
     {
         $ret = array( "suffix" => "jpg",
                       "dot-suffix" => ".jpg",

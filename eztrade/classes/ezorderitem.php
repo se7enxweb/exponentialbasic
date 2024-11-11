@@ -51,7 +51,7 @@ class eZOrderItem
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZOrderItem( $id="" )
+    function __construct( $id="" )
     {
         $this->ExpiryDate = 0;
         if ( $id != "" )

@@ -407,10 +407,11 @@ class eZUser
 
         if ( $db->isA() == "mysql" )
         {
-            $db->array_query( $user_array, "SELECT * FROM eZUser_User
+	    $sqlQuery = "SELECT * FROM eZUser_User
                                                     WHERE Login='$login'
-                                                    AND Password=PASSWORD('$password')" );
-        }
+                                                    AND Password=CONCAT('*', UPPER(SHA1(UNHEX(SHA1('$password')))));";
+            $db->array_query( $user_array, $sqlQuery );
+	}
         else
         {
             $password = md5( $password );
@@ -672,7 +673,7 @@ class eZUser
 
       Returns false if unsuccess ful, true if successful.
     */
-    function loginUser( &$user )
+    static public function loginUser( &$user )
     {
         $ret = false;
 
@@ -701,7 +702,7 @@ class eZUser
       \static
       Auto login in a user with a cookie. The function check the database for the same hash, if the hash is found the user is logged in.
      */
-    function autoCookieLogin( $hash )
+    static public function autoCookieLogin( $hash )
     {
         $db =& eZDB::globalDatabase();
 
@@ -740,7 +741,7 @@ class eZUser
       \static
       Logs out a user.
     */
-    function logout()
+    static public function logout()
     {
         $session =& eZSession::globalSession();
         if ( $session->fetch() )
@@ -1296,7 +1297,7 @@ class eZUser
     var $LastName;
     var $InfoSubscription;
     var $Signature;
-    var $CookieLogin;
+    var $CookieLogin = 0;
     var $SimultaneousLogins;
     var $StoredTimeout;
     var $HasRoot;

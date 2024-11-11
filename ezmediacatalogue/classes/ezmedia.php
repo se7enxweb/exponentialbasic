@@ -65,7 +65,7 @@ class eZMedia
     /*!
       Constructs a new eZMedia object.
     */
-    function eZMedia( $id="" )
+    function __construct( $id="" )
     {
         $this->PhotographerID = 0;
         $this->NewMedia = false;
@@ -376,7 +376,7 @@ class eZMedia
     */
     function caption( $html = true )
     {
-       if ( $html )
+       if ( $html && !is_null( $this->Caption ) )
            return htmlspecialchars( $this->Caption );
        else
            return $this->Caption;
@@ -732,6 +732,7 @@ class eZMedia
     var $WritePermission;
     var $UserID;
     var $PhotographerID;
+    var $NewMedia;
 }
 
 ?>

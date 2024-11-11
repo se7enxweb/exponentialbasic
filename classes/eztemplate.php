@@ -226,17 +226,11 @@ class eZTemplate
         {
             reset( $this->TextStrings );
 
-            // DEPRECATED
-	    // $tmp =& each( $this->TextStrings );
-
 	    foreach ($this->TextStrings as $i => $tmp)
 	    {
-                    ////$tmp_key = "intl-" . $tmp[0];
-		    $tmp_key = "intl-" . $tmp;
-
-                    //$this->set_var_internal( $tmp_key, $tmp[1] );
-		    $this->set_var_internal( $tmp_key, $tmp );
-                    //$tmp =& each( $this->TextStrings );
+		$tmp_key = "intl-" . strtolower($i);
+		$this->set_var_internal( $tmp_key, $tmp );
+                //echo '<hr>';var_dump($tmp); echo '<hr>';
 	    }
         }
     }
@@ -501,7 +495,16 @@ class eZTemplate
             $reg = "/<!--\s+BEGIN $handle\s+-->(.*)\n\s*<!--\s+END $handle\s+-->/sm";
             preg_match( $reg, $str, $m );
             $str =& preg_replace( $reg, "{" . "$name}", $str );
-            $this->set_var_internal( $handle, $m[1] );
+
+	    if( is_array( $m ) and isset( $m[1] ) )
+	    {
+	        $handleValue = $m[1];
+	    }
+	    else {
+   	        $handleValue = "";
+		//var_dump($m); echo '<hr>';
+	    }
+            $this->set_var_internal( $handle, $handleValue );
             $this->set_var_internal( $parent, $str );
         }
         else
@@ -560,8 +563,7 @@ class eZTemplate
       \private
       Sets the template variable using references.
     */
-
-    function set_var_internal( &$varname, &$value )
+    function set_var_internal( $varname, $value )
     {
         if ( !is_array( $varname ) )
         {

@@ -43,7 +43,7 @@ include_once( "classes/eztemplate.php" );
 
 class eZMenuBox
 {
-    function eZMenuBox()
+    function __construct()
     {
     }
 
@@ -57,7 +57,7 @@ class eZMenuBox
       $print print the box if true else return the box as text.
     */
 
-    function createBox( $ModuleName, $module_dir, $place, $SiteStyle,
+    static public function createBox( $ModuleName, $module_dir, $place, $SiteStyle,
                         &$menuItems, $print = true, $templatefile = false,
                         $phpfile = false, $ignore_status = false, $allow_module_template = false )
     {
@@ -78,6 +78,7 @@ class eZMenuBox
         if ( $ignore_status )
             $menuStatus = "open";
 
+	$has_cache = false;
         $uri = $_SERVER["REQUEST_URI"];
         $up_uri = $uri;
         $down_uri = $uri;

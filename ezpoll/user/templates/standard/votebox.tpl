@@ -11,10 +11,8 @@
 </tr>
 <!-- BEGIN vote_item_tpl -->
 <tr>
-	<td width="1%">
+	<td class="menutext" width="99%" colspan="2">
 	<input type="radio" value="{choice_id}" name="ChoiceID">
-	</td>
-	<td class="menutext" width="99%">
 	{choice_name}
 	</td>
 </tr>
@@ -38,12 +36,10 @@
 
 <table width="100%" cellspacing="0" cellpadding="2" border="0">
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
-	<td width="99%"><a class="menu" href="{www_dir}{index}/poll/result/{poll_id}">{intl-result}</a></td>
+	<td width="99%" colspan="2"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><a class="menu" href="{www_dir}{index}/poll/result/{poll_id}">{intl-result}</a></td>
 </tr>
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
-	<td width="99%"><a class="menu" href="{www_dir}{index}/poll/polls">{intl-polls}</a></td>
+	<td width="99%" colspan="2"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><a class="menu" href="{www_dir}{index}/poll/polls">{intl-polls}</a></td>
 </tr>
 <tr>
 	<td colspan="2" class="menuspacer">&nbsp;</td>

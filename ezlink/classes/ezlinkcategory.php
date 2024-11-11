@@ -271,7 +271,7 @@ class eZLinkCategory
 
         $parent = $category->parent();
 
-        if ( $parent != 0 )
+        if ( $parent != 0 && $parent != '' )
         {
             $path = array_merge( $path, $this->path( $parent ) );
         }
@@ -519,7 +519,10 @@ class eZLinkCategory
     */
     function name()
     {
+	if( !is_null( $this->Name ) )
         return htmlspecialchars( $this->Name );
+
+	return $this->Name;
     }
 
     /*!

@@ -65,7 +65,7 @@ class eZLink
     /*!
       Constructor
     */
-    function eZLink( $id = -1  )
+    function __construct( $id = -1  )
     {
         $this->ImageID = 0;
         if ( $id != -1 )
@@ -631,7 +631,10 @@ class eZLink
     */
     function &keyWords()
     {
+	if( !is_null( $this->KeyWords ) )
         return htmlspecialchars( $this->KeyWords );
+
+	return $this->KeyWords;
     }
 
     /*!

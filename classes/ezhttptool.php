@@ -39,7 +39,7 @@ class eZHTTPTool
     /*!
       Initialization of object;
       */
-    function eZHTTPTool()
+    function __construct()
     {
         $this->url_array =& explode( "/", $_SERVER['REQUEST_URI'] );
         $this->url_array_length = count( $this->url_array );
@@ -92,7 +92,7 @@ class eZHTTPTool
 
       It enabled cookieless sessions with header.
     */
-    function header( $string )
+    static public function header( $string )
     {
         global $GlobalSiteIni;
 
@@ -120,7 +120,7 @@ class eZHTTPTool
       \static
       Returns a url with the variable added to the url.
     */
-    function &addVariable( $url, $variable, $value )
+    static public function &addVariable( $url, $variable, $value )
     {
         $pos = strpos( $url, "?" );
 
@@ -140,7 +140,7 @@ class eZHTTPTool
       \static
       Returns a url with the variable removed from the url.
     */
-    function &removeVariable( $url, $variable, $value = "" )
+    static public function &removeVariable( $url, $variable, $value = "" )
     {
         $pos = strpos( $url, "?" );
 
@@ -167,7 +167,7 @@ class eZHTTPTool
       to fill in as many as possible.
 
      */
-    function assignDate( $start, $prefix = "", $postfix = "" )
+    static public function assignDate( $start, $prefix = "", $postfix = "" )
     {
         $url_array_length = $this->url_array_length;
         $url_array =& $this->url_array;
@@ -308,7 +308,7 @@ class eZHTTPTool
 
       Will set a cookie variable.
      */
-    function setCookie( $variable, $value, $timeout=365 )
+    static public function setCookie( $variable, $value, $timeout=365 )
     {
         $exp= time() + ( $timeout * 86400 );
         $exp=strftime("%a, %d-%b-%Y %H:%M:%S", $exp);
@@ -321,7 +321,7 @@ class eZHTTPTool
       \static
       Initalizes the global object, and static variables.
      */
-    function globaleZHTTPTool()
+    static public function globaleZHTTPTool()
     {
         global $eZHTTPToolObject;
 

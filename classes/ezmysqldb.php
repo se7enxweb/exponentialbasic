@@ -96,7 +96,7 @@ class eZMySQLDB
 
             $bench = new eZBenchmark();
             $bench->start();
-            $result =& mysqli_query( $sql, $this->Database );
+            $result =& mysqli_query( $this->Database, $sql );
 
             $bench->stop();
             if ( $bench->elapsed() > 0.01 )

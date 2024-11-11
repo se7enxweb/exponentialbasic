@@ -7,7 +7,7 @@
 <tr>
     <td class="repeaty" background="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-m.gif">
         <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-arrow.gif" width="20" height="10">
-           <a class="menu" href="<? print $GlobalSiteIni->WWWDir$GlobalSiteIni->Index; ?>/link/">Bağlantı listesi</a><br>
+           <a class="menu" href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/link/">Bağlantı listesi</a><br>
         <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-arrow.gif" width="20" height="10">
           <a class="menu" href="<? print $GlobalSiteIni->WWWDir$GlobalSiteIni->Index; ?>/link/group/incoming/">Bağlantı kabul et</a><br>
         <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-arrow.gif" width="20" height="10">

@@ -219,7 +219,10 @@ class eZSection
     */
     function name()
     {
-        return htmlspecialchars( $this->Name );
+	if( isset( $this->Name ) )
+            return htmlspecialchars( $this->Name );
+
+	return $this->Name;
     }
 
     /*!
@@ -236,8 +239,11 @@ class eZSection
             $db->query_single( $siteDesign, "SELECT SiteDesign FROM eZSiteManager_Section WHERE ID='$sectionID'" );
             return $siteDesign[$db->fieldName("SiteDesign")];
         }
-        else
-            return htmlspecialchars( $this->SiteDesign );
+        else {
+	    if( isset( $this->SiteDesign ) )
+                return htmlspecialchars( $this->SiteDesign );
+	    return false;
+	}
     }
 
 
@@ -253,8 +259,11 @@ class eZSection
             $db->query_single( $templateStyle, "SELECT TemplateStyle FROM eZSiteManager_Section WHERE ID='$sectionID'" );
             return $templateStyle[$db->fieldName("TemplateStyle")];
         }
-        else
-            return htmlspecialchars( $this->TemplateStyle );
+        else {
+	    if( isset( $this->SiteDesign ) )
+                return htmlspecialchars( $this->SiteDesign );
+            return false;
+	}
     }
 
     /*!
@@ -348,12 +357,12 @@ class eZSection
         // set the sitedesign from the section
         if ( $ini->read_var( "site", "Sections" ) == "enabled" )
         {
-            if ( trim( $this->TemplateStyle ) != "" )
+            if ( !is_null( $this->TemplateStyle ) && trim( $this->TemplateStyle ) != "" )
             {
                 $GLOBALS["eZTemplateOverride"] = trim( $this->TemplateStyle );
             }
 
-            if ( trim( $this->SecLanguage ) != "" )
+            if (  !is_null( $this->SecLanguage ) && trim( $this->SecLanguage ) != "" )
             {
                 $GLOBALS["eZLanguageOverride"] = trim( $this->SecLanguage );
             }

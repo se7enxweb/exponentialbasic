@@ -60,7 +60,7 @@ class eZMail
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZMail( $id = "" )
+    function __construct( $id = "" )
     {
         $this->FilesAttached = false;
 
@@ -596,7 +596,7 @@ class eZMail
 
       Returns true if successful, false if not.
     */
-    function validate( $address )
+    static public function validate( $address )
     {
         $pos = ( preg_match('/^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i', $address) );
 

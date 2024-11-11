@@ -67,8 +67,12 @@ class eZTextTool
         {
             return str_replace( "\n", "$xhtml \n", $string );
         }
-        
-        return nl2br($string, $xhtml);
+        if ( !is_null( $string ) )
+        {
+	    return nl2br($string, $xhtml);
+	} else {
+	    return $string;
+	}
     }    
 
     /*!

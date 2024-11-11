@@ -100,7 +100,7 @@ class eZPermission
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZPermission( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {
@@ -426,7 +426,7 @@ class eZPermission
       Static function for checking permissions.
       Note: If the user has root permissions this function allways returns true.
     */
-    function checkPermission( $user, $moduleName, $permissionName )
+    static public function checkPermission( $user, $moduleName, $permissionName )
     {
         $module = new eZModule();
         $module = $module->exists( $moduleName );

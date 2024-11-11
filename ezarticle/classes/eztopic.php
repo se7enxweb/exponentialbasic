@@ -41,7 +41,7 @@ class eZTopic
     /*!
       Constructs a new eZTopic object.
     */
-    function eZTopic( $id=-1 )
+    function __construct( $id=-1 )
     {
 	if ( $id != -1 )
 	{
@@ -310,7 +310,7 @@ class eZTopic
     */
     function name( $html = true )
     {
-		if( $html )
+		if( $html && isset( $this->Name ) )
 		    return htmlspecialchars( $this->Name );
 		return $this->Name;
     }

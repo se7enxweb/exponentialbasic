@@ -61,7 +61,7 @@ class eZModuleHandler
       \static
       Returns true if the module tabbar is active for the current user.
     */
-    function activeTab()
+    static public function activeTab()
     {
         $preferences = new eZPreferences();
         $module_tab = eZModuleHandler::hasTab();
@@ -77,7 +77,7 @@ class eZModuleHandler
       \static
       Returns true if the module tabbar is activated in the site.ini.
     */
-    function hasTab()
+    static public function hasTab()
     {
         $ini =& INIFile::globalINI();
         $module_tab = $ini->read_var( "site", "ModuleTab" ) == "enabled";
@@ -88,7 +88,7 @@ class eZModuleHandler
       \static
       Sets whether the module tabbar is active or not for the current user.
     */
-    function setActiveTab( $active )
+    static public function setActiveTab( $active )
     {
         $preferences = new eZPreferences();
         $preferences->setVariable( "ModuleTab", $active ? "enabled" : "disabled" );
@@ -98,7 +98,7 @@ class eZModuleHandler
       \static
       Returns true if only a single module is show at a time.
     */
-    function useSingleModule()
+    static public function useSingleModule()
     {
         $preferences = new eZPreferences();
         $single_module = $preferences->variable( "SingleModule" );
@@ -117,7 +117,7 @@ class eZModuleHandler
       \static
       Returns all available modules that you are allowed to see as an array.
     */
-    function all()
+    static public function all()
     {
         $return_array = array();
         $ini =& INIFile::globalINI();
@@ -135,7 +135,7 @@ class eZModuleHandler
       \static
       Returns all active modules as an array.
     */
-    function active()
+    static public function active()
     {
         $ini =& INIFile::globalINI();
         $preferences = new eZPreferences();
@@ -166,7 +166,7 @@ class eZModuleHandler
       \static
       Returns whether the module menubox is open or closed. True is open.
     */
-    function isOpen( $module )
+    static public function isOpen( $module )
     {
         $preferences = new eZPreferences();
         $menuStatus =& $preferences->variable( strtolower( $module ) . "_status" );
@@ -177,7 +177,7 @@ class eZModuleHandler
       \static
       Sets the module menubox to be either open or closed, default is open.
     */
-    function setOpen( $module, $open = true )
+    static public function setOpen( $module, $open = true )
     {
         $preferences = new eZPreferences();
         $preferences->setVariable( strtolower( $module ) . "_status", $open ? "open" : "closed" );
@@ -189,7 +189,7 @@ class eZModuleHandler
       Returns true if menubox was opened, false otherwise.
       \sa setOpen
     */
-    function toggle( $module )
+    static public function toggle( $module )
     {
         $preferences = new eZPreferences();
         eZModuleHandler::setOpen( $module, !eZModuleHandler::isOpen( $module ) );
@@ -199,7 +199,7 @@ class eZModuleHandler
       \static
       Sets the active modules.
     */
-    function setActive( $modules )
+    static public function setActive( $modules )
     {
         $preferences = new eZPreferences();
         $preferences->setVariable( "EnabledModules", $modules );
@@ -210,7 +210,7 @@ class eZModuleHandler
       Appends the module to the end of the modules list if not already present.
       The new list is returned.
     */
-    function append( $modules, $module )
+    static public function append( $modules, $module )
     {
         return array_unique( array_merge( $modules, $module ) );
     }
@@ -220,7 +220,7 @@ class eZModuleHandler
       Removes the module from the modules list.
       The new list is returned.
     */
-    function remove( $modules, $module )
+    static public function remove( $modules, $module )
     {
         return array_diff( $modules, array( $module ) );
     }
@@ -231,7 +231,7 @@ class eZModuleHandler
       if the top is reached it is wrapped to the bottom.
       The variable moved_module is set to true if a move was done.
     */
-    function moveUp( &$modules, $module, &$moved_module )
+    static public function moveUp( &$modules, $module, &$moved_module )
     {
         $module = strtolower( $module );
         reset( $modules );
@@ -270,7 +270,7 @@ class eZModuleHandler
       if the bottom is reached it is wrapped to the top.
       The variable moved_module is set to true if a move was done.
     */
-    function moveDown( &$modules, $module, &$moved_module )
+    static public function moveDown( &$modules, $module, &$moved_module )
     {
         $module = strtolower( $module );
         reset( $modules );

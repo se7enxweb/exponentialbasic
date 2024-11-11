@@ -292,7 +292,7 @@ class eZMediaCategory
     {
         $db =& eZDB::globalDatabase();
 
-        $topic =& new eZMediaCategory();
+        $topic = new eZMediaCategory();
 
         $name = $db->escapeString( $name );
 
@@ -302,7 +302,7 @@ class eZMediaCategory
 
             if( count( $author_array ) == 1 )
             {
-                $topic =& new eZMediaCategory( $author_array[0][$db->fieldName("ID")] );
+                $topic = new eZMediaCategory( $author_array[0][$db->fieldName("ID")] );
             }
         }
 

@@ -1,0 +1,24 @@
+{
+    "name":        "se7enxweb/ezpublishbasic",
+    "description": "eZ Publish Basic 2.4. Maintained by 7x. For General Use With PHP 8.3. Further feature releases in development. Please sponsor our work on the eZ Publish (System). This is capable of being used standalone for a personal home page cms that is simple and easy to understand.",
+    "homepage":    "https://se7enx.com",
+    "license":     "GPL-2.0-or-later",
+    "type":        "ezpublish-legacy",
+    "suggest": {
+    },
+    "require": {
+        "php": "^8.2",
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-pcre": "*",
+        "ext-json": "*",
+        "ext-iconv": "*",
+        "ext-reflection": "*",
+        "ext-session": "*",
+        "ext-spl": "*",
+        "ext-simplexml": "*"
+    },
+    "require-dev": {
+    }
+}

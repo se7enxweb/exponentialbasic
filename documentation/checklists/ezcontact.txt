@@ -1,0 +1,59 @@
+user/admin:
+-create a category
+-edit a category
+*check for cyclic links
+-delete a category
+
+-create a company (only company name)
+-view company, only company name should be present
+-delete company
+
+-create a company (all information filled in, 2 items per address, phone and online)
+-view company, all information should be present
+
+-create a person (only person name)
+-view person, only person name should be present
+-delete person
+
+-create a person (all information filled in, 2 items per address, phone and online, and link with company)
+-view person, all information should be present
+-click on company, person should be in company view
+
+-create 2 persons with company relation named companyperson1 and companyperson2
+-create 2 persons without company relation named person1 and person2
+-click on person list
+-show persons with company relation, companyperson1 and companyperson2 should appear
+-show persons without company relation, person1 and person2 should appear
+-show all persons, all 4 persons should appear
+
+-click on person list
+-search for "company", companyperson1 and companyperson2 should appear
+-search for "person", all 4 should appear
+
+-create project type
+-edit project type
+-delete project type
+
+-create consultation type
+-edit consultation type
+-delete consultation type
+
+-create consultation type, Sale and Purchase
+-create consultation with company
+-view consultation
+-edit consultation
+-delete consultation
+-create consultation with person
+-view consultation
+-edit consultation
+-delete consultation
+-create 2 consultation with company and 3 with person
+-click consultation list, company should appear with 2 and person with 3
+-delete company and person consultations
+
+-create consultation with person and select a notification group
+-users in group should get a mail
+
+-create consultation with person and enter an email notification address
+-email address should get a mail
+

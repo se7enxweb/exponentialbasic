@@ -37,7 +37,7 @@ include_once( "classes/INIFile.php" );
 
 class eZArticleGenerator
 {
-    function eZArticleGenerator( $generatorType="" )
+    function __construct( $generatorType="" )
     {
         if ( $generatorType == "" )
         {

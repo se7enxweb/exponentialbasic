@@ -46,7 +46,7 @@ class eZCartOptionValue
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZCartOptionValue( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {
@@ -255,4 +255,3 @@ class eZCartOptionValue
 }
 
 ?>
-

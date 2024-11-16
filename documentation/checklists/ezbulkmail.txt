@@ -1,0 +1,29 @@
+admin:
+-create a new category
+-edit a category
+-delete a category
+
+-create a template
+-edit a template
+-delete a template
+
+-create a new bulkmail, save it to drafts
+*check that categories and templates show up
+-edit this mail that should now be in the drafts folder
+-create a new bulkmail and send it
+*check that the mail is in the archive and that it is sent with the correct template
+
+-delete a bulkmail from the category list
+
+-in the category list set a single list mode
+*check logging in and out of single mode lists (in user)
+
+user:
+-create a new user
+-login with a user
+-add/remove this user from a few categories
+-check that the user gets mail when a bulkmail is sent to categories she is subscribed to
+
+link with eZ article:
+-configure a category to receive bulkmail when a new article is published (BulkMailNotifyGroup in site.ini)
+-publish an article and check that a subscribed user gets mail

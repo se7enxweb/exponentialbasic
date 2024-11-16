@@ -34,7 +34,7 @@ class eZDOMDocument
 {
     /*!
     */
-    function eZDOMDocument( )
+    function __construct( )
     {
 //        $this->children = array();
     }

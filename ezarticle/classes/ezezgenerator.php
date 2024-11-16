@@ -41,7 +41,7 @@ class eZEzGenerator
     /*!
       Creates a new eZEzGenerator object.
     */
-    function eZEzGenerator( &$contents )
+    function __construct( &$contents )
     {
         $this->PageCount = 0;
         $this->Contents = $contents;

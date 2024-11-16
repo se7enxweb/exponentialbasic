@@ -1,0 +1,363 @@
+/* Standard eZ publish stylesheet */
+
+body, div, span, p, .p, h1, h2, .listheadline, .listproducts, h3, ul, li, a, td ,th, select, input, textarea, credit
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+}
+
+body, p, .p, ul, li, h3, a, .path, th, td, .check
+{
+	font-size: 13px;
+	color: #000000;
+}
+
+h1 
+{
+	font-weight: bold;
+	font-size: 24px;
+	color: #000000;
+	margin-bottom: 8px;
+	text-decoration : none;
+}
+
+h2, .listheadline, .listproducts
+{
+	font-weight: bold;
+	font-size: 18px;
+	color: #000000;
+	margin-top: 16px;
+	margin-bottom: 8px;	
+	text-decoration : none;
+}
+
+h2, .listheadline
+{
+	text-decoration : none;
+}
+
+.listproducts 
+{
+	text-decoration : underline;
+}
+
+.listheadline, .listproducts 
+{
+	margin-top: 8px;
+}
+
+h3, .path
+{
+	font-weight: bold;
+	text-decoration : none;
+}
+
+a:hover 
+{
+	color: #784600;
+	text-decoration: underline;
+}
+
+.menuhead
+{
+	background: #777777;
+	font-size: 18px;
+	color: #ffffff;
+	font-weight: normal;
+	text-align: center;
+}
+
+.menusubhead
+{
+	color: #777777;
+	font-weight: bold;
+}
+
+.menu, .menutext, .menubold, .pictext, .credit, .byline, .subhead
+{
+	font-size: 11px;
+}
+
+.menu 
+{
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.menutext 
+{
+	margin-bottom: 4px;
+}
+
+.menuspacer
+{
+	font-size: 2px;
+}
+
+.spacer
+{
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.boxtext 
+{
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.small, .smallbold
+{
+	font-size: 10px;
+}
+
+.smallbold 
+{
+	font-weight: bold;
+}
+
+.check 
+{
+	margin-bottom: 8px;
+}
+
+.checkhead
+{
+	font-weight: bold;
+	margin-bottom: 16px;
+}
+
+.list
+{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	padding: 4px;
+}
+
+th 
+{
+	font-weight: bold;
+	text-align: left;
+}
+
+th.right
+{
+	text-align: right;
+}
+
+.tdmini
+{
+	font-size: 1px;
+}
+
+.byline
+{
+	font-weight: bold;
+	font-style: normal;
+	color: #000000;
+}
+
+.pictext
+{
+	font-style: normal;
+}
+
+.linkselect
+{
+	color: #ffffff;
+}
+
+.linkselect:hover
+{
+	color: #dcdcdc;
+}
+
+.linknormal
+{
+	color: #000000;
+}
+
+.bglight 
+{
+	background-color: #f0f0f0;
+}
+
+.bgdark 
+{
+	background-color: #dcdcdc;
+}
+
+.bgselect
+{
+	color: #ffffff;
+	background-color: #787878;
+}
+
+form
+{
+	margin: 0px;
+}
+
+hr
+{
+	color: #808080;
+}
+
+.stdbutton 
+{
+	font-size: 11px;
+	font-weight: bold;
+}
+ 
+.okbutton 
+{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.divider
+{
+	float: left;
+	padding-right: 10px;
+}
+
+.box
+{
+	width: 500px;
+}
+
+.halfbox
+{
+	width: 230px;
+}
+
+.error
+{
+	font-size: 14;
+	font-weight: bold;
+    color: #f07800;
+}
+
+/* Hellstrøm 28.5.2001 */
+
+a.sectionpath:hover
+{
+	color: #ffffff;
+}
+
+.toppath
+{
+	background: #f08c00;
+	font-size: 13px;
+	color: #000000;
+	font-weight: bold;
+	text-decoration : none;
+}
+
+a.toppath:hover
+{
+	color: #ffffff;
+}
+
+.toppathbottom
+{
+	background: #000000;
+}
+
+input.textfield 
+{
+	font : 11px Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.path 
+{
+	font : 11px Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.path a 
+{
+	color : Black;
+	font-weight : bold;
+}
+
+td.section 
+{
+    background : #f08c00;
+	color : white;
+	font : bold 11px Verdana, Arial, Helvetica, sans-serif;
+	padding : 2px 10px 2px 10px;
+	text-decoration : none;
+}
+
+td.sectionblack 
+{
+    background : #000000;
+	color : white;
+	font : bold 11px Verdana, Arial, Helvetica, sans-serif;
+	padding : 2px 10px 2px 10px;
+}
+
+td.section a 
+{
+	color : #000000;
+	text-decoration : none;
+	font-size: 11px;
+}
+
+.orange 
+{
+	background : #f08c00;
+}
+
+
+div.leftmenu 
+{
+	font : bold 11px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin : 0px 10px 3px 10px;
+}
+
+div.leftmenu a, a.menu 
+{
+	font-size: 11px;
+	color : #f08c00;
+	text-decoration : none;
+}
+
+div.leftmenu a:hover 
+{
+	color: #ffffff;
+	text-decoration : underline;
+}
+
+div.rightmenu 
+{
+	font : bold 11px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin : 0px 10px 3px 10px;
+	color: #000000;
+	text-decoration : none;
+}
+
+div.rightmenuboxtext
+{
+	font : bold 11px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin : 0px 10px 0px 10px;
+	color: #000000;
+	text-decoration : none;
+}
+
+div.rightmenu a
+{
+	font-size: 11px;
+	color: #000000;
+	text-decoration : none;
+}
+
+div.rightmenu a:hover 
+{
+	color: #ffffff;
+	text-decoration : underline;
+}
+
+div.pageheading 
+{
+	font : bold 26px Georgia, "Times New Roman", Times, serif;
+}

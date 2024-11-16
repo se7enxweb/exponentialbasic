@@ -64,7 +64,7 @@ class eZSession
     /*!
       Creates a new eZSession object.
     */
-    function eZSession( $id="", $fetch=true  )
+    function __construct( $id="", $fetch=true  )
     {
         $this->IsFetched = false;
 

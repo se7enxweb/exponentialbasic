@@ -30,7 +30,7 @@ class eZFreeTradeImport
     /*!
       constructor
     */
-    function eZFreeTradeImport()
+    function __construct()
     {
     }
 

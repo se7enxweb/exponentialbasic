@@ -1,0 +1,264 @@
+/* News eZ publish stylesheet */
+
+body, div, span, p, .p, h1, h2, .listheadline, .listproducts, h3, ul, li, a, td ,th, select, input, textarea, credit
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+}
+
+body, p, .p, ul, li, a, h3, .path, th, td, .check
+{
+	font-size: 13px;
+	color: #000000;
+}
+
+h1 
+{
+	font-weight: bold;
+	font-size: 22px;
+	color: #000000;
+	margin-bottom: 8px;
+	text-decoration : none;
+}
+
+h2, .listheadline, .listproducts
+{
+	font-weight: bold;
+	font-size: 17px;
+	color: #000000;
+	margin-top: 16px;
+	margin-bottom: 8px;	
+	text-decoration : none;
+}
+
+h2, .listheadline
+{
+	text-decoration : none;
+}
+
+.listproducts 
+{
+	text-decoration : underline;
+}
+
+.listheadline, .listproducts 
+{
+	margin-top: 8px;
+}
+
+h3, .path
+{
+	font-weight: bold;
+	text-decoration : none;
+}
+
+.tab, .tab a
+{
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+}
+
+a:hover 
+{
+	color: #404040;
+	text-decoration: underline;
+}
+
+.menuhead
+{
+	background: #663333;
+	font-size: 13px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: center;
+}
+
+.menusubhead
+{
+	color: #8c4f4f;
+	font-weight: bold;
+}
+
+.menu, .menutext, .menubold, .pictext, .credit, .byline, .subhead
+{
+	font-size: 11px;
+}
+
+.menu 
+{
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.menutext 
+{
+	margin-bottom: 4px;
+}
+
+.menubold 
+{
+	font-weight: bold;
+}
+
+.menuspacer
+{
+	font-size: 2px;
+}
+
+.spacer
+{
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.boxtext 
+{
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.small, .smallbold
+{
+	font-size: 10px;
+}
+
+.smallbold 
+{
+	font-weight: bold;
+}
+
+.check 
+{
+	margin-bottom: 8px;
+}
+
+.checkhead
+{
+	font-weight: bold;
+	margin-bottom: 16px;
+}
+
+.list
+{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	padding: 4px;
+}
+
+th 
+{
+	font-weight: bold;
+	text-align: left;
+}
+
+th.right
+{
+	text-align: right;
+}
+
+.tdmini
+{
+	font-size: 1px;
+}
+
+.pictext
+{
+	font-style: normal;
+	background-color: #f0f0f0;
+}
+
+.pris
+{
+	font-weight: bold;
+	padding-top: 8px;
+	padding-bottom: 12px;
+}
+
+.linkselect
+{
+	color: #ffffff;
+}
+
+.linknormal
+{
+	color: #000000;
+}
+
+.linkselect:hover
+{
+	color: #eee4e4;
+}
+
+.bglight 
+{
+	background-color: #fbf7f7;
+}
+
+.bgdark 
+{
+	background-color: #eee4e4;
+}
+
+.bgcurrent
+{
+	background-color: #db8e3a;
+}
+
+.bgweekend
+{
+	background-color: #bc9090;
+}
+
+.bgselect
+{
+	color: #ffffff;
+	background-color: #8c4f4f;
+}
+
+form
+{
+	margin: 0px;
+}
+
+hr
+{
+	color: #8c4f4f;
+}
+
+.stdbutton 
+{
+	font-size: 11px;
+	font-weight: bold;
+}
+ 
+.okbutton 
+{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.divider
+{
+	float: left;
+	padding-right: 10px;
+}
+
+.box
+{
+	width: 440px;
+}
+
+.halfbox
+{
+	width: 200px;
+}
+
+.error
+{
+	font-size: 14;
+	font-weight: bold;
+    color: #f08c00;
+}
+
+/* Hellstrøm 24.8.2001 */

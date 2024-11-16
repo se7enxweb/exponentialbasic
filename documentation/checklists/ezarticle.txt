@@ -1,0 +1,18 @@
+Checklist for eZ article
+-----------------------
+
+admin:
+
+- Create a new article, add images upload files, do not publish it.
+  Check that the article comes up in the unpublished list
+- Publish the article 
+  Check that the article, images and files are accessable on the user site.
+- Edit the article check upload new files and new images.
+  Check that all the data on the user side is updated and that the correct 
+  images and files are shown.
+- Create a new article category
+  Check that all user pages are updated and cache is cleared.
+- Edit that article category.
+  Check that all user pages are updated and cache is cleared.
+- Search after the article in the admin.
+  Check that you find it with keywords in name and body.

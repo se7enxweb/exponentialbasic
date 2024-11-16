@@ -58,7 +58,7 @@ class eZWishListItem
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZWishListItem( $id="", $fetch=true )
+    function __construct( $id="", $fetch=true )
     {
         if ( $id != "" )
         {

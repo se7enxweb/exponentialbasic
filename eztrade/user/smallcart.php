@@ -116,7 +116,7 @@ foreach ( $items as $item )
 
         $priceobj = new eZCurrency();
 
-        if ( ( !$RequireUserLogin or is_a( $user, "eZUser" ) ) and
+        if ( ( isset( $RequireUserLogin ) && !$RequireUserLogin or is_a( $user, "eZUser" ) ) and
              $ShowPrice and $product->showPrice() == true and $product->hasPrice() )
         {
             $t->set_var( "product_price", $item->localePrice( true, true, $PricesIncludeVAT ) );
@@ -213,4 +213,3 @@ $t->set_var( "sitedesign", $GlobalSiteDesign );
 $t->pparse( "output", "cart_page_tpl" );
 
 ?>
-

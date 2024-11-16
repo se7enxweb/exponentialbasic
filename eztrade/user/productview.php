@@ -546,7 +546,7 @@ if ( $type )
     }
 }
 
-if ( count( $attributes ) > 0 )
+if ( isset( $attributes ) && count( $attributes ) > 0 )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }
@@ -723,7 +723,7 @@ if ( ( $PurchaseProduct and !$product->discontinued() and $can_checkout ) and !$
 if ( ( $PurchaseProduct and !$product->discontinued() and $can_checkout ) and $useVoucher )
     $t->parse( "voucher_buttons", "voucher_buttons_tpl" );
 
-if ( $PrintableVersion == "enabled" )
+if ( isset( $PrintableVersion ) && $PrintableVersion == "enabled" )
 {
     $t->parse( "numbered_page_link", "numbered_page_link_tpl" );
     $t->set_var( "print_page_link", "" );
@@ -748,7 +748,7 @@ $SiteKeywordsOverride = str_replace( "\"", "", strip_tags( $product->keywords() 
 
 
 
-if ( $GenerateStaticPage == "true" && !$useVoucher )
+if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" && !$useVoucher )
 {
     $template_var = "product_view_tpl";
 

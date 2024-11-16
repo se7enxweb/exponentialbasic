@@ -82,7 +82,7 @@ class eZXMLRPCServer
     /*!
 
     */
-    function eZXMLRPCServer(  )
+    function __construct(  )
     {
         global $HTTP_RAW_POST_DATA;
         $this->RawPostData = $HTTP_RAW_POST_DATA;

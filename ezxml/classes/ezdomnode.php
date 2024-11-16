@@ -34,7 +34,7 @@ class eZDOMNode
 {
     /*!
     */
-    function eZDOMNode( )
+    function __construct( )
     {
     }
 

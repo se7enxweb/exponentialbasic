@@ -47,7 +47,7 @@ class eZPreOrder
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZPreOrder( $id="" )
+    function __construct( $id="" )
     {
         $this->OrderID = 0;
 

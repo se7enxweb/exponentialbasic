@@ -45,7 +45,7 @@ class eZShippingType
     /*!
       Constructs a new object.
     */
-    function eZShippingType( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

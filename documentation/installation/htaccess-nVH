@@ -1,0 +1,14 @@
+# This files is needed if you use the non-virtual-hosts setup
+# Please read the documentation!
+
+order deny,allow
+
+# Deny everything sensible
+<FilesMatch "\.(php|ini|tpl|txt|info|cache|gz|sh|sql)$">
+	deny from all
+</FilesMatch>
+
+# .php would be denied normally, but we want to allow index*.php and cron.php
+<FilesMatch "(index.*|cron)\.php$">
+	allow from all
+</FilesMatch>

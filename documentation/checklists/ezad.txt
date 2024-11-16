@@ -1,0 +1,18 @@
+admin:
+-create a category
+-edit a category
+*check for cyclic links
+-delete a folder
+
+-create a new ad (Image and HTML)
+-edit the ad
+-delete the ad
+
+user:
+-create two ads(in admin)
+-refresh page (each ad should appear after another)
+-create new ad(in admin)
+-refresh page (new ad shoudl appear)
+
+-click on ad
+*check stats in admin

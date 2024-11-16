@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCDataTypeDecoder class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <01-Jan-2001 14:33:43 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -37,7 +37,7 @@ class eZXMLRPCDataTypeDecoder
     /*!
       Creates a new eZXMLRPCDataTypeDecoder object.
     */
-    function eZXMLRPCDataTypeDecoder(  )
+    function __construct(  )
     {
     }
 

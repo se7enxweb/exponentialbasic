@@ -34,7 +34,7 @@ include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 class eZImageMap
 {
-    function eZImageMap( $image )
+    function __construct( $image )
     {
         $this->Elements = array();
         $this->get( $image );

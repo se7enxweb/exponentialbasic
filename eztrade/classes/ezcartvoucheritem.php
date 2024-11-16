@@ -57,7 +57,7 @@ class eZCartVoucherItem
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZCartVoucherItem( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

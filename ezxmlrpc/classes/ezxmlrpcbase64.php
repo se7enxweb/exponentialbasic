@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCBase64 class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <17-Dec-2000 15:32:50 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -37,7 +37,7 @@ class eZXMLRPCBase64
     /*!
       Creates a new eZXMLRPCBase64 object.
     */
-    function eZXMLRPCBase64( $value=0 )
+    function __construct( $value=0 )
     {
         if ( !isset( $value ) )
              $value = 0;

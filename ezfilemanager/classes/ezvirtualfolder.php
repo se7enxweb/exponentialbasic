@@ -46,7 +46,7 @@ class eZVirtualFolder
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZVirtualFolder( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->ExcludeFromSearch = false;
         if ( $id != -1 )

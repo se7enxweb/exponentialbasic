@@ -47,7 +47,7 @@ class eZSourceSite
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZSourceSite( $id="" )
+    function __construct( $id="" )
     {
         // default value
         $this->IsPublished = "0";

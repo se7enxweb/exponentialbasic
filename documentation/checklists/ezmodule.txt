@@ -1,0 +1,20 @@
+user:
+
+admin:
+-edit "User settings"
+-turn off "Use module tab bar" and press "OK", module tab bar should disappear
+
+-edit "User settings"
+-turn on "Use module tab bar" and press "OK", module tab bar should appear
+
+-edit "User settings"
+-turn off "Open one module at a time" and press "OK"
+-click on "All on", all modules should appear
+-click on "All off", all modules should disappear
+-click on 2-3 modules, they should appear
+-click on same module again, they should disappear
+
+-edit "User settings"
+-turn on "Open one module at a time" and press "OK"
+-click on a module, it should appear and all others disappear
+-click on a different module, it should appear and the other disappear

@@ -127,7 +127,7 @@ class eZTechRenderer
     /*!
       Creates a new eZTechGenerator object.
     */
-    function eZTechRenderer( &$article )
+    function __construct( &$article )
     {
         $this->Article = $article;
     }
@@ -1195,4 +1195,3 @@ class eZTechRenderer
 }
 
 ?>
-

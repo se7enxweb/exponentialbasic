@@ -47,7 +47,7 @@ class eZAdCategory
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZAdCategory( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->ParentID = 0;
 

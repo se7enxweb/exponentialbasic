@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCDouble class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <17-Dec-2000 15:05:48 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -37,7 +37,7 @@ class eZXMLRPCDouble
     /*!
       Creates a new eZXMLRPCDouble object.
     */
-    function eZXMLRPCDouble( $value=0 )
+    function __construct( $value=0 )
     {
         if ( !isset( $value ) )
              $value = 0;

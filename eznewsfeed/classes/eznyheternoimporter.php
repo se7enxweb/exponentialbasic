@@ -45,7 +45,7 @@ class eZNyheterNOImporter
     /*!
       Constructor.
     */
-    function eZNyheterNOImporter( $site, $login="", $password="" )
+    function __construct( $site, $login="", $password="" )
     {
         $this->Site = $site;
         $this->Login = $login;

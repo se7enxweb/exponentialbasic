@@ -45,7 +45,7 @@ class eZOrderOptionValue
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZOrderOptionValue( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

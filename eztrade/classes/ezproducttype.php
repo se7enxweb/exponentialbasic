@@ -47,7 +47,7 @@ class eZProductType
       Constructs a new eZProductType object. Retrieves the data from the database
       if a valid id is given as an argument.
     */
-    function eZProductType( $id=-1, $fetch=true )
+    function __construct( $id=-1, $fetch=true )
     {
         if ( $id != -1 )
         {

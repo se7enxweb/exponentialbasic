@@ -1,0 +1,264 @@
+body 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+p 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+h1 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;	
+	font-weight: bold;
+	font-size: 24px;
+	color: #000000;
+	margin-bottom: 8px;
+}
+
+h2 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;	
+	font-weight: bold;
+	font-size: 18px;
+	color: #000000;
+	margin-top: 16px;
+	margin-bottom: 8px;	
+}
+
+h3 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;	
+	font-weight: bold;
+	font-size: 13px;
+	color: #000000;
+}
+
+a 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+	font-size: 13px;		
+	color : #000000;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+.p
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+.small 
+{
+	font-size: 10px;
+}
+
+.smallbold 
+{
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.top
+{
+	color: #000000;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.topusername
+{
+	color: #000000;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.topmenu
+{
+	color: #ffffff;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.menu 
+{
+	font-size: 11px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.modulename
+{
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: normal;
+}
+
+.path 
+{
+	font-size: 13px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.byline 
+{
+	font-style: italic;
+}
+
+.pictext 
+{
+	font-size: 10px;
+	font-style: italic;
+}
+
+.boxtext 
+{
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.check 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;	
+	font-size: 13px;
+	color: #000000;
+	margin-bottom: 8px;
+}
+
+.checkhead
+{
+	font-weight: bold;
+	margin-bottom: 16px;
+}
+
+.list
+{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	padding: 4px;
+}
+
+th 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;	
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+	text-align: left;
+}
+
+td 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;	
+	font-size: 13px;
+	color: #000000;
+	background-repeat: no-repeat;
+}
+
+.tdmini
+{
+	font-size: 1px;
+}
+
+.repeatx
+{
+	background-repeat: repeat-x;
+	font-size: 1px;
+}
+
+.repeaty
+{
+	background-repeat: repeat-y;
+	font-size: 1px;
+}
+
+.bglight 
+{
+	background-color: #f0f0f0;
+}
+
+.bgdark 
+{
+	background-color: #dcdcdc;
+}
+
+.bgselect
+{
+	color: #ffffff;
+	background-color: #787878;
+}
+
+.linkselect
+{
+	color: #ffffff;
+}
+
+.linknormal
+{
+	color: #000000;
+}
+
+select 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+input 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+textarea 
+{
+	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+.stdbutton 
+{
+	font-size: 11px;
+	font-weight: bold;
+}
+ 
+.okbutton 
+{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.pris
+{
+	font-weight: bold;
+}
+
+.error
+{
+	font-size: 14;
+	font-weight: bold;
+    color: #f07800;
+}
+
+hr
+{
+	color: #808080;
+}
+
+

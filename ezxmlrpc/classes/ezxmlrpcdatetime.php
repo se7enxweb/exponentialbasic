@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCDateTime class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <17-Dec-2000 17:28:13 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -39,7 +39,7 @@ class eZXMLRPCDatetime
 
       If 
     */
-    function eZXMLRPCDatetime( $year=0, $month=0, $day=0, $hour=0, $minute=0, $second=0  )
+    function __construct( $year=0, $month=0, $day=0, $hour=0, $minute=0, $second=0  )
     {
         if ( ( $year == 0 )  && ( $month == 0 ) && ( $day == 0 ) && ( $hour == 0 ) && ( $minute == 0 ) && ( $second == 0 ) )
         {

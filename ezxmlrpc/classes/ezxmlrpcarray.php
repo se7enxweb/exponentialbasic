@@ -39,7 +39,7 @@ class eZXMLRPCArray
 
       The default value is true.
     */
-    function eZXMLRPCArray( $array=array(), $type = false, $rec = false )
+    function __construct( $array=array(), $type = false, $rec = false )
     {
         $this->Array = $array;
         $this->Type = $type;
@@ -127,7 +127,7 @@ class eZXMLRPCArray
       \private
       \static
     */
-    function serializeArray( $array, $type = false, $rec = false )
+    static public function serializeArray( $array, $type = false, $rec = false )
     {
         $ret = "<value><array><data>";
         foreach ( $array as $value )

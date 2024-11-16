@@ -41,7 +41,7 @@ class eZBulkMailUserSubscripter
 {
     /*!
     */
-    function eZBulkMailUserSubscripter( $user, $categoryID=false )
+    function __construct( $user, $categoryID=false )
     {
         if ( get_class ( $user ) )
             $this->setUser( $user );

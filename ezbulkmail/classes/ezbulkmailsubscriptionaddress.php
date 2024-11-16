@@ -39,7 +39,7 @@ class eZBulkMailSubscriptionAddress
 {
     /*!
     */
-    function eZBulkMailSubscriptionAddress( $id=-1, $categoryID=false )
+    function __construct( $id=-1, $categoryID=false )
     {
         if ( $id != -1 )
         {

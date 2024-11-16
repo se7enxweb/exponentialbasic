@@ -39,7 +39,7 @@ class eZMessage
     /*!
       Constructs a new eZMessage object.
     */
-    function eZMessage( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

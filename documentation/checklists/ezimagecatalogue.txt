@@ -1,0 +1,25 @@
+user:
+(user and admin code is the same)
+
+admin:
+-create a folder
+-edit a folder
+*check for cyclic links
+-delete a folder
+
+-upload a image
+-edit the image
+-delete the image
+-download the image
+-check that the preview works
+
+permission checks:
+-create a user without write to root access
+-check that you can't create any images/folders in the root with this user
+
+-create a user with root access, check that this user can upload images/folder to root
+-create a folder with no permissions, check that only this user can see and edit
+-create an image with no permissions, check that only this user can see and edit
+-edit the folder and image and make them readable by everyone, check that they are readable but not editable(both another logged in user and an anonymous)
+-create a folder editable by one group, check that this group can edit it, and only this one group
+-create an image editable by one group, check that this group can edit it, and only this one group

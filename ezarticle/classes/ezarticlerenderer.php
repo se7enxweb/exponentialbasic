@@ -41,13 +41,13 @@ class eZArticleRenderer
 
         $contents =& $this->Article->contents();
 
-//        print( nl2br( htmlspecialchars( $contents ) ) );
+        //print( nl2br( htmlspecialchars( $contents ) ) );
 
         // find the generator used
         if ( preg_match("/<generator>(.*)<\/generator>/", substr( $contents, 0, 200 ), $regs ) )
         {
-            $generator =& $regs[1];
-            
+            $generator = $regs[1];
+
             switch ( $generator )
             {
                 case "qdom" :
@@ -70,14 +70,14 @@ class eZArticleRenderer
                     $this->RendererClass = "eZEzRenderer";
                 }
                 break;
-                
+
                 case "flower" :
                 {
                     $this->RendererFile = "ezflowerrenderer.php";
                     $this->RendererClass = "eZFlowerRenderer";
                 }
                 break;
-                
+
                 case "simple" :
                 {
                     $this->RendererFile = "ezsimplerenderer.php";
@@ -138,7 +138,7 @@ class eZArticleRenderer
     */
     function &generator()
     {
-        if ( $this->Generator == false )
+        if (  isset( $this->RendererFile ) && $this->Generator == false )
         {
             include_once( "ezarticle/classes/" . $this->RendererFile );
             $this->Generator = new $this->RendererClass( $this->Article, $this->Template );

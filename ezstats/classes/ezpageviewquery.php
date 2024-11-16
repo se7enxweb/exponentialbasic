@@ -45,7 +45,7 @@ class eZPageViewQuery
     /*!
       Constructs a new eZPageViewQuery object.
     */
-    function eZPageViewQuery()
+    function __construct()
     {
     }
 

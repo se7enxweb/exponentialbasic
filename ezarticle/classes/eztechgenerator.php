@@ -45,7 +45,7 @@ class eZTechGenerator
     /*!
       Creates a new eZTechGenerator object.
     */
-    function eZTechGenerator( &$contents )
+    function __construct( &$contents )
     {
         $this->Level = 0;
         $this->PageCount = 0;

@@ -38,7 +38,7 @@ class eZSimpleGenerator
     /*!
       Creates a new eZSimpleGenerator object.
     */
-    function eZSimpleGenerator( &$contents )
+    function __construct( &$contents )
     {
         $this->Contents = $contents;
     }

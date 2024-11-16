@@ -541,7 +541,7 @@ class eZCartItem
     var $VoucherInformationID;
 
     /// ID to a wishlist item. Indicates which wishlistitem the cart item comes from. 0 if added from product.
-    var $WishListItemID;
+    var $WishListItemID = 0;
 }
 
 ?>

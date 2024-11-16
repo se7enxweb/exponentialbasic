@@ -46,7 +46,7 @@ class eZBulkMail
     /*!
       Constructor.
     */
-    function eZBulkMail( $id = -1 )
+    function __construct( $id = -1 )
     {
         // default values...
         $this->isDraft = 1;

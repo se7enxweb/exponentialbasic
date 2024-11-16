@@ -47,7 +47,7 @@ class eZPageView
     /*!
       Constructs a new eZPageView object.
     */
-    function eZPageView( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

@@ -65,7 +65,7 @@ include_once( "classes/ezgpg.php" );
 
 class eZOrderConfirmation
 {
-    function eZOrderConfirmation( $id = "" )
+    function __construct( $id = "" )
     {
         if ( $id )
         {

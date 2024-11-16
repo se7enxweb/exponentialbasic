@@ -39,7 +39,7 @@ class eZSimpleRenderer
     /*!
       Creates a new eZSimpleGenerator object.
     */
-    function eZSimpleRenderer( &$article )
+    function __construct( &$article )
     {
         $this->Article = $article;
     }

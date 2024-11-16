@@ -48,7 +48,7 @@ class eZCheckout
     /*!
       Instantiates the checkout and finds the correct checkout class.
     */
-    function eZCheckout()
+    function __construct()
     {
         $ini =& INIFile::globalINI();
 

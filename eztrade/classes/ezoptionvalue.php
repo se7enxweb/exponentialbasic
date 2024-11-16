@@ -54,7 +54,7 @@ class eZOptionValue
     /*!
       Constructs a new eZOptionValue object.
     */
-    function eZOptionValue( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

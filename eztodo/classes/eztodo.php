@@ -40,7 +40,7 @@ class eZTodo
     /*!
       eZtodo Constructor.
     */
-    function eZTodo( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( $id != -1 )
         {

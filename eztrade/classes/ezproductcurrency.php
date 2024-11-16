@@ -40,7 +40,7 @@ class eZProductCurrency
     /*!
       Constructs a new object.
     */
-    function eZProductCurrency( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

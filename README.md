@@ -189,6 +189,20 @@ This project involves documenting and updating the following:
   - categorylist/ - Tests as 100% Functional. No errors but no listing.
   - categoryedit/new - Needs work. Warnings blocking form.
   - forumedit/new - Needs work. Fatal errors on page load.
+- eztrade
+  - orderlist - Needs work. Fatal errors on page load.
+  - customerlist - Needs work. Fatal errors on page load.
+  - categorylist - Needs work. Fatal errors on page load.
+  - typelist -  Tests as 100% Functional.
+  - vattypes -  Needs work. Warnings blocking form.
+  - shippingtypes - Needs work. Warnings blocking form.
+  - currency - Needs work. Warnings blocking form.
+  - pricegroups/list - Needs work. Fatal errors on page load.
+  - categoryedit - Needs work. Warnings blocking form.
+  - typeedit - Needs work. Fatal errors on page load.
+  - productedit - Needs work. Fatal errors on page load.
+  - voucher - Needs work. Fatal errors on page load.
+  - voucherlist - Needs work. Fatal errors on page load.
 - ezarticle
   - archive - Needs work. Tests as 90% Functional. Actions not yet tested as error free. View does not display current articles only categories.
   - article/search - Needs Work. Tests as 80% Functional. Warnings on page blocking display after search.
@@ -274,7 +288,8 @@ Currently by default there are 34 modules which offer user, admin or combined si
 
 ## Module Views Available
 
-The following modules views are included in eZ Publish Basic:
+### eZ Publish Basic Admin Module Views Available
+The following admin modules views are included in eZ Publish Basic:
 
 - ezuser
   - userlist
@@ -398,7 +413,21 @@ The following modules views are included in eZ Publish Basic:
   - unapprovedlist
   - categorylist
   - categoryedit/new
-  - forumedit/new 
+  - forumedit/new
+- eztrade
+  - orderlist
+  - customerlist
+  - categorylist
+  - typelist
+  - vattypes
+  - shippingtypes
+  - currency
+  - pricegroups/list
+  - categoryedit
+  - typeedit
+  - productedit
+  - voucher
+  - voucherlist
 - ezarticle
   - archive
   - article/search
@@ -411,6 +440,253 @@ The following modules views are included in eZ Publish Basic:
   - categoryedit/new
   - articleedit/new
   - search
+
+### eZ Publish Basic User Module Views Available
+
+The following user modules views are included in eZ Publish Basic:
+
+- ezuser
+  - addressedit
+  - forgot
+  - forgotmessage
+  - login
+  - missingmailmessage
+  - norights
+  - userbox
+  - usercheck
+  - useredit
+  - userwithaddress
+- ezurltranslator
+  - None (Admin Only)
+- ezsitemanager
+  - static - undocumented static content view.
+- ezstats
+  - storestats
+- ezsysinfo
+  - No user module views. Only Admin module views.
+- ezstats
+  - overview
+  - entryexitreport
+  - pageviewlist/last/20
+  - visitorlist/top/20
+  - refererlist/top/20
+  - browserlist/top/25
+  - requestpagelist/top/20
+  - yearreport
+  - monthreport
+  - dayreport
+- ezquiz
+  - menubox
+  - quizlist
+  - quizmyscores
+  - quizopen
+  - quizplay
+  - quizscores
+- ezbulkmail
+  - bulklist
+  - categoryedit
+  - cron
+  - mailview
+  - menubox
+  - singlelist
+  - subscriptionlist
+  - subscriptionlogin
+  - usermessages
+- ezform
+  - formview
+- ezadddress
+  - No user modules views. Admin only.
+- ezmediacatalogue
+  - No user module views. Only Admin module views.
+- ezmessage
+  - No user module views. Only Admin module views.
+- ezmodule
+  - No user module views. Only Admin module views.
+- ezimagecatalogue
+  - categoryedit
+  - customimage
+  - filedownload
+  - imageedit
+  - imagelist
+  - imageview
+  - menubox
+  - menucategorylist
+  - searchsupplier
+  - slideshow
+- ezfilemanager
+  - filedownload
+  - filelist
+  - fileupload
+  - fileview
+  - folderedit
+  - menubox
+  - menufilelist
+  - menufolderlist
+  - search
+  - viewfile
+- ezcalendar
+  - appointmentedit
+  - appointmentview
+  - dayview
+  - monthview
+  - trustees
+  - yearview
+- eztodo
+  - menubox
+  - todoedit
+  - todoinfo
+  - todolist
+  - todomenulist
+  - todoview
+- ezcontact
+  - companysearch
+  - consultationlist
+  - menubox
+  - personsearch
+  - searchsupplier
+  - urlsupplier
+- ezerror
+  - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
+- ezexample
+  - listtable
+  - page
+- ezsearch
+  - menubox
+  - search
+- ezsession
+  - No user module views. Admin only.
+- ezbug
+  - bugslist
+  - bugreport
+  - bugview
+  - fileedit
+  - imageedit
+  - menubox
+  - menumodulelist
+  - reportsuccess
+  - search
+  - unhandledbugs
+- eznewsfeed
+  - allcategories
+  - headlines
+  - menubox
+  - newslist
+  - search
+- ezabout
+  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+- ezad
+  - adlist
+  - gotoadd
+  - queuedadlist
+- ezpoll
+  - pollist
+  - result
+  - userlogin
+  - vote
+  - votebox
+  - votepage
+- ezlink
+  - gotolink
+  - latest
+  - linkcategorylist
+  - menubox
+  - onepagelinklist
+  - search
+  - success
+  - suggestlink
+- ezforum
+  - categorylist
+  - forumlist
+  - latestmessages
+  - menubox
+  - menuforumlist
+  - message
+  - messagebody
+  - messageedit
+  - messageform
+  - messagelist
+  - messagelistflat
+  - messagepath
+  - messagepermissions
+  - messagereply
+  - messagesearch
+  - messagesimplelist
+  - search
+  - searchsupplier
+  - userlogin
+- ezmail
+  - accountedit
+  - configure
+  - fileedit
+  - folderlist
+  - link
+  - mailedit
+  - maillist
+  - mailview
+  - menubox
+  - search
+- eztrade
+  - cart
+  - categorylist
+  - categorytreelist
+  - checkout
+  - confirmation
+  - customerlogin
+  - extendedsearch
+  - findwishlist
+  - hostdealslist
+  - invoice
+  - mastercard
+  - menubox
+  - metasupplier
+  - orderlist
+  - ordersendt
+  - orderview
+  - payment
+  - paypalnotify
+  - precheckout
+  - productlist
+  - productsearch
+  - productview
+  - searchsupplier
+  - sendwishlist
+  - smallcart
+  - smallproductlist
+  - viewwishlist
+  - visa
+  - voucher
+  - voucherinformation
+  - vouchermain
+  - voucherview
+  - wishlist
+- ezarticle
+  - articleedit
+  - articleheaderlist
+  - articlelinks
+  - articlelist
+  - articlelistrss
+  - articleview
+  - authorlist
+  - authorview
+  - extendedsearch
+  - fileedit
+  - filelist
+  - frontpage
+  - headlines
+  - imageedit
+  - imagelist
+  - mailtofriend
+  - menuarticleview
+  - menumaker
+  - newsgroup
+  - search
+  - searchform
+  - searchsupplier
+  - sitemap
+  - smallarticlelist
+  - topiclist
+  - urlsupplier
+
 
 ---
 

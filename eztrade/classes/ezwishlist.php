@@ -67,7 +67,7 @@ class eZWishList
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZWishList( $id="" )
+    function __construct( $id="" )
     {
         $this->IsConnected = false;
 

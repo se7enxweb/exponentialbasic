@@ -1,0 +1,46 @@
+# The various tags for eZ publish 2 SVN
+
+
+
+# The various tags for eZ publish CVS.
+# The format is:
+# Tag-name [Branch:] Tag-description
+# cvs usage:
+# cvs tag "tag_name" tags your current version
+# cvs tag -F "tag_name" moves allready existant tags to the newest version
+
+2.2 Final branch:
+
+eZPublish_2_2_final_branch
+
+To check out the 2.2 final branch type:
+
+cvs co -r eZPublish_2_2_final_branch  publish_dist
+
+eZPublish_2_2_9                   Stable fix of 2.2
+eZPublish_2_2_8                   Stable fix of 2.2
+eZPublish_2_2_7                   Stable fix of 2.2
+eZPublish_2_2_6                   Stable fix of 2.2
+eZPublish_2_2_5                   Stable fix of 2.2
+eZPublish_2_2_4                   Stable fix of 2.2
+eZPublish_2_2_3                   Stable fix of 2.2
+eZPublish_2_2_2                   Stable fix of 2.2
+eZPublish_2_2_1		          Stable fix of 2.2
+eZPublish_2_2_final		  Stable release of 2.2
+eZPublish_2_2_pre                 Pre release of 2.2
+eZPublish_2_2_beta_2              2nd public beta of 2.2
+eZPublish_2_2_beta_1              First public beta of 2.2
+eZPublish_eZ_Intranett	          eZ intranet tag
+eZPublish_2_2_alpha		  2.2 preview release
+eZPublish_2_1			  2.1 Stable
+eZPublish_2_1_Beta_3              Beta 3 of upcoming 2.1 version 
+eZPublish_2_1_Beta_2		  Beta 2 of upcoming 2.1 version
+eZPublish_2_1_Beta_1		  Beta 1 of upcoming 2.1 version
+eZPublish_2_0_0_final-shop	  Branch: Final 2.0 release, customizations for ez shop.
+eZPublish_2_0_0_final		  Final 2.0 release
+eZPublish_2_0_pre_2-trade_custom  Branch: Customization of trade, code not meant to be released for 2.0.
+eZPublish_2_0_pre_2               Prerelease 2 of 2.0 version
+eZPublish_2_0_pre                 Prelease 1 of 2.0 version
+eZPublish_2_0_Beta_2              Beta 2 of upcoming 2.0 version
+eZPublish-1_0_2                   1.0.2 version
+eZ-publish-1-FINAL                Final 1.0 version

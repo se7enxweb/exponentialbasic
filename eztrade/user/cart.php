@@ -260,7 +260,7 @@ if ( $Action == "AddToBasket" )
                     }
                     else
                     { // product without options
-                        if ( count( $OptionValueArray ) == 0 )
+                        if ( isset( $OptionValueArray ) && count( $OptionValueArray ) == 0 )
                         {
                             $item->setCount( $item->count() + 1 );
                             $item->store();
@@ -277,7 +277,7 @@ if ( $Action == "AddToBasket" )
             if ( !$product->hasQuantity() )
                 $can_add = false;
 
-            if ( count( $OptionValueArray ) > 0 )
+            if ( isset( $OptionValueArray ) && count( $OptionValueArray ) > 0 )
             {
                 foreach ( $OptionValueArray as $value )
                 {
@@ -301,7 +301,7 @@ if ( $Action == "AddToBasket" )
 
                 $cartItem->store();
 
-                if ( count( $OptionValueArray ) > 0 )
+                if ( isset( $OptionValueArray ) && count( $OptionValueArray ) > 0 )
                 {
                     $i = 0;
                     foreach ( $OptionValueArray as $value )
@@ -636,4 +636,3 @@ else
 $t->pparse( "output", "cart_page_tpl" );
 
 ?>
-

@@ -75,7 +75,7 @@ class eZProduct
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZProduct( $id="" )
+    function __construct( $id="" )
     {
         $this->ExpiryTime = 0;
         if ( $id != "" )
@@ -551,8 +551,8 @@ class eZProduct
 
         $options = $this->options();
 
-        $lowPrice = "";
-        $maxPrice = "";
+        $lowPrice = 0;
+        $maxPrice = 0;
 
         foreach ( $options as $option )
         {
@@ -560,6 +560,7 @@ class eZProduct
             $tmpMaxPrice = eZPriceGroup::highestPrice( $this->ID, $groups, $option->id() );
 
             $lowPrice += $tmpLowPrice;
+
             $maxPrice += $tmpMaxPrice;
         }
 

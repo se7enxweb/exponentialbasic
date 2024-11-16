@@ -1,0 +1,30 @@
+user:
+-create a new folder
+-edit the folder
+*test for cyclic links
+-delete a folder
+
+-create a filter
+-edit a filter
+-delete a filter
+
+-create an account
+-edit an account
+-delete an account
+
+-check mail
+*check that all mail are downloaded
+*check that they are error free and that all attachments are received and downloadable
+*check that the counts in the folderlist are ok
+*check that the filters work
+
+-create a new mail save it to drafts
+-edit this mail that is now in the drafts folder, add an attachment save (as draft again)
+-edit it again, preview, send it this time.
+*check that it is received corectly
+-reply, replyall and forward a message (it is not nesecary to send it)
+
+-move a mail to trash
+-empty trash
+
+admin:

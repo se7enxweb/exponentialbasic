@@ -67,15 +67,18 @@ class eZOnline
 
         $ret = false;
         $url = $db->escapeString( $this->URL );
+        $onlineTypeID = $db->escapeString( $this->OnlineTypeID );
         if ( !isset( $this->ID ) )
         {
             $db->lock( "eZAddress_Online" );
 			$this->ID = $db->nextID( "eZAddress_Online", "ID" );
 
-            $res[] = $db->query( "INSERT INTO eZAddress_Online
+            $queryText = "INSERT INTO eZAddress_Online
                                   (ID, URL, OnlineTypeID)
                                   VALUES
-                                  ('$this->ID', '$url', '$this->OnlineTypeID')" );
+                                  ('$this->ID', '$url', '$onlineTypeID')";
+
+            $res[] = $db->query( $queryText );
             $db->unlock();
             $ret = true;
         }
@@ -124,7 +127,15 @@ class eZOnline
             {
                 $this->ID =& $online_array[ 0 ][ $db->fieldName( "ID" ) ];
                 $this->URL =& $online_array[ 0 ][ $db->fieldName( "URL" ) ];
-                $this->OnlineTypeID =& $online_array[ 0 ][ $db->fieldName( "OnlineTypeID" ) ];
+
+                if( is_null( $online_array[ 0 ][ $db->fieldName( "OnlineTypeID" ) ] ) )
+                {
+                    $this->OnlineTypeID = 0;
+                }
+                else
+                {
+                    $this->OnlineTypeID =& $online_array[ 0 ][ $db->fieldName( "OnlineTypeID" ) ];
+                }
             }
         }
     }
@@ -247,7 +258,7 @@ class eZOnline
     var $URL;
 
     /// Relation to an eZOnlineType
-    var $OnlineTypeID;
+    var $OnlineTypeID = 0;
 }
 
 ?>

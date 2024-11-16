@@ -39,7 +39,7 @@ class eZXMLRPCStruct
 
       The default value is true.
     */
-    function eZXMLRPCStruct( $struct = array(), $type = false, $rec = false )
+    function __construct( $struct = array(), $type = false, $rec = false )
     {
         $this->Struct = $struct;
 

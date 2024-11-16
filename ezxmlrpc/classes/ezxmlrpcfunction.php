@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCFunction class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <16-Dec-2000 14:57:57 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -37,7 +37,7 @@ class eZXMLRPCFunction
     /*!
       Creates a new XML-RPC server function.
     */
-    function eZXMLRPCFunction( $name, $parameters=0 )
+    function __construct( $name, $parameters=0 )
     {
         $this->Name =& $name;
         $this->ParameterList = array();

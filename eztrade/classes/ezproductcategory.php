@@ -319,7 +319,7 @@ class eZProductCategory
     /*!
       \static
     */
-    function &getTree( $parentID=0, $level=0 )
+    static public function &getTree( $parentID=0, $level=0 )
     {
         $category = new eZProductCategory( $parentID );
 
@@ -377,7 +377,7 @@ class eZProductCategory
       \static
       Returns the Section ID. Returns false if the Category was not found.
     */
-    function sectionIDStatic( $categoryID )
+    static public function sectionIDStatic( $categoryID )
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZTrade_Category WHERE ID='$categoryID'");
@@ -523,7 +523,7 @@ class eZProductCategory
       Adds a product to the category.
       Can be used as a static function if $categoryid is supplied
     */
-    function addProduct( &$value, $categoryid = false )
+    static public function addProduct( &$value, $categoryid = false )
     {
         if ( is_a( $value, "eZProduct" ) )
             $prodID = $value->id();
@@ -565,7 +565,7 @@ class eZProductCategory
       Removes a product from the category.
       Can be used as a static function if $categoryid is supplied
     */
-    function removeProduct( &$value, $categoryid = false )
+    static public function removeProduct( &$value, $categoryid = false )
     {
         if ( is_a( $value, "eZProduct" ) )
             $prodID = $value->id();

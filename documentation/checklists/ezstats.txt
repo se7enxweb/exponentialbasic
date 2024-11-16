@@ -1,0 +1,17 @@
+Checklist for eZ stats
+---------------------
+
+admin:
+
+Check that the statistcs is stored correctly. This is done by checking the 
+following reports:
+
+	  Overview
+	  Last page views
+	  Top visitors
+	  Referer list
+	  Browser list
+	  Request page list
+	  Year report
+	  Month report
+	  Day report

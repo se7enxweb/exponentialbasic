@@ -58,7 +58,7 @@ class eZVoucherEMail
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZVoucherEMail( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( is_array( $id ) )
         {

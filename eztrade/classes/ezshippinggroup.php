@@ -44,7 +44,7 @@ class eZShippingGroup
     /*!
       Constructs a new object.
     */
-    function eZShippingGroup( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

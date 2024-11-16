@@ -42,7 +42,7 @@ class eZQDomGenerator
     /*!
       Creates a new eZQDomGenerator object.      
     */
-    function eZQDomGenerator( &$contents )
+    function __construct( &$contents )
     {
         $this->Level = 0;
         $this->PageCount = 0;

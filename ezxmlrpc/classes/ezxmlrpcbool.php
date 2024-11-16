@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCBool class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <17-Dec-2000 14:15:13 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -39,7 +39,7 @@ class eZXMLRPCBool
 
       The default value is true.
     */
-    function eZXMLRPCBool( $value=true )
+    function __construct( $value=true )
     {
         $this->Value = $value;
         setType( $this->Value, "boolean" );

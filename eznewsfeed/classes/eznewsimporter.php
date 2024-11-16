@@ -47,7 +47,7 @@ class eZNewsImporter
       Create a new importer with the given decoder and site. Login and
       password are default not used.
     */
-    function eZNewsImporter( $decoder, $site, $category,  $login="", $password="", $autoPublish=false )
+    function __construct( $decoder, $site, $category,  $login="", $password="", $autoPublish=false )
     {
         $this->Site = $site;
         $this->Decoder = $decoder;

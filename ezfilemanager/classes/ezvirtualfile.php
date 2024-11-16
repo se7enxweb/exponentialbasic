@@ -42,7 +42,7 @@ class eZVirtualfile
     /*!
       Constructs a new eZVirtualfile object.
     */
-    function eZVirtualfile( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

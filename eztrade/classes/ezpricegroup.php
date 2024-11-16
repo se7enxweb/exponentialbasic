@@ -35,7 +35,7 @@ include_once( "classes/ezdb.php" );
 
 class eZPriceGroup
 {
-    function eZPriceGroup( $id = false )
+    function __construct( $id = false )
     {
         if ( is_array( $id ) )
             $this->fill( $id );
@@ -157,7 +157,7 @@ class eZPriceGroup
     /*!
       Returns all price groups which are connected to a user through the user's user groups.
     */
-    function &priceGroups( $inUser, $as_object = true )
+    static public function &priceGroups( $inUser, $as_object = true )
     {
         if ( is_a( $inUser, "eZUser" ) )
         {
@@ -235,7 +235,7 @@ class eZPriceGroup
     /*!
       Returns the price group which the user group is connected to or false if none.
     */
-    function correctPriceGroup( $group_id, $debug=false )
+    static public function correctPriceGroup( $group_id, $debug=false )
     {
         $db =& eZDB::globalDatabase();
         if ( is_array( $group_id ) )
@@ -268,7 +268,7 @@ class eZPriceGroup
     /*
         Returns the lowest price for an option.
      */
-    function lowestPrice( $productid, $priceid, $optionid )
+    static public function lowestPrice( $productid, $priceid, $optionid )
     {
         $db =& eZDB::globalDatabase();
 
@@ -337,7 +337,7 @@ class eZPriceGroup
     /*
         Returns the highest price for an option.
      */
-    function highestPrice( $productid, $priceid, $optionid )
+    static public function highestPrice( $productid, $priceid, $optionid )
     {
         $db =& eZDB::globalDatabase();
 
@@ -454,7 +454,7 @@ class eZPriceGroup
     /*!
       Returns all prices for a specific product with a specific option and value id.
     */
-    function prices( $productid, $optionid = 0, $valueid = 0 )
+    static public function prices( $productid, $optionid = 0, $valueid = 0 )
     {
         $db =& eZDB::globalDatabase();
         $db->array_query( $array, "SELECT PriceID, Price FROM eZTrade_ProductPriceLink

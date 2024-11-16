@@ -1,0 +1,122 @@
+admin
+
+- Create a new category, give it the name "a new category".
+
+- Create a new forum
+  Give it the name "anonymous forum"
+  Put it in the category "a new category"
+  Allow anonymous posting
+  Don't select a moderator and let everyone have read permission.
+
+- Create another forum
+  Call this forum "moderated forum"
+  Select yourself as the moderator
+  Select moderated forum
+  Don't allow anonymous posting
+  Put it in the category "a new category"
+  Let everybody have read permission
+
+- Create a third forum
+  Call this forum "closed forum"
+  Put it in the category "a new category"
+  Don't allow anonymous posting
+  Don't select a moderator
+  Set the read permission to be only one group, for example "administrators"
+
+user
+
+- Make sure that you're not logged in.
+
+- Look for the forum category "a new category".
+  Press the link and enter the category.
+  
+- Check that you can see the forums:
+
+    "anonymous forum"
+    "moderated forum"
+
+- Try to post in "anonymous forum"
+  This should work
+  
+- Try to post in "moderated forum"
+  This shouldn't work
+  
+- Log in as the administrator
+
+- Look for the forum category "a new category".
+  Press the link and enter the category.
+  
+- Check that you can see the forums:
+
+    "anonymous forum"
+    "moderated forum"
+    "closed forum"
+    
+- Try to post in all forums, be sure to select "notice requested"
+  This should work
+
+- Check that you've received an e-mail
+  The e-mails should inform you of the fact that someone has posted in
+  the moderated forum.
+  
+- Test the links in the e-mail.
+
+- Reply to the postings you made.
+  There shouldn't be any to reply to in the "moderated forum"; in the others
+  you should see your own postings.
+
+- Check that the "administrator" gets e-mails message to the posts you
+  created with that user.
+  
+- Test the links in the notifications for the "administrator"
+
+- Enter the "closed forum"
+
+- Select the last post you made.
+
+- Check that you can edit the posting.
+
+- Try to delete that last posting.
+
+admin
+
+- Check the message queue
+  You should find the message you posted to that forum
+
+- Approve the posting
+
+user
+
+- Reply to your posting in the "moderated forum"
+
+admin
+
+- Check the message queue
+  You  should find the message you posted to that forum
+
+- Reject the posting
+
+- Check that you receive an rejection e-mail
+
+- Browse the category list
+
+- Enter any forum
+
+- Try to delete a message
+  Should work
+
+- Try to edit a message
+  Should work
+  
+- Delete a forum
+  Should work
+  
+- Delete the category
+  Should work
+
+
+
+  
+  
+  
+

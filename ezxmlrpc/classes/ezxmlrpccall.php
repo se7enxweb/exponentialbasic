@@ -40,7 +40,7 @@ class eZXMLRPCCall
     /*!
       Creates a new eZXMLRPCCall object.
     */
-    function eZXMLRPCCall(  )
+    function __construct(  )
     {
         $this->clearParameters( );
     }

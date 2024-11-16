@@ -49,7 +49,7 @@ class eZAd
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZAd( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

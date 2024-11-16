@@ -55,7 +55,7 @@ class eZOrder
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZOrder( $id="" )
+    function __construct( $id="" )
     {
         $this->IsExported = 0;
         $this->PersonID = 0;

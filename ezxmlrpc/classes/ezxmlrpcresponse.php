@@ -50,7 +50,7 @@ class eZXMLRPCResponse
     /*!
       Creates a new eZXMLRPCResponse object.
     */
-    function eZXMLRPCResponse( )
+    function __construct( )
     {
         $this->Result = 0;
         $this->Error = 0;

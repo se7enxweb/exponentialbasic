@@ -45,7 +45,7 @@ class eZAppointmentType
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZAppointmentType( $id = -1 )
+    function __construct( $id = -1 )
     {
         $db =& eZDB::globalDatabase();
 

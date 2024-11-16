@@ -1,0 +1,36 @@
+eZ publish 2.3.0
+----------------
+
+eZ publish is a content management system for e-commerce, e-publishing and intranets. 
+The software is licensed under the GPL as described in the file LICENSE.
+
+For the changelog consult the file CHANGELOG.
+
+For the credits (who made what) consult the CREDITS file.
+
+For information about how to translate eZ publish consult the file TRANSLATION
+
+For installation information consult the file INSTALL.txt
+
+NOTE: There are structural changes in the database that might make your old articles unavaliable when you upgrade. There are some SQL sentences in the SQL_UPDATES file to fix this. To them read the comments.
+
+L I N K S:
+----------
+
+For developer information / contribution / internationalisation issues / documentation issues and information contact Graham Brookins (info at brookinsconsulting dot com).
+
+eZ Community : eZ publish 2 homepage:
+http://ezcommunity.net
+
+Latest eZ publish documentation:
+http://ezcommunity.net/filemanager/list/1/
+
+Latest eZ publish 2 version:
+http://ezcommunity.net/filemanager/list/3/
+
+
+U P G R A D E:
+--------------
+
+For information about how you can upgrade your database to fit a new eZ publish release
+consult the files ending with sql in the directories in the upgrade directory.

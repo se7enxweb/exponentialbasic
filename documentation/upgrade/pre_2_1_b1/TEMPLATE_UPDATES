@@ -1,0 +1,7 @@
+This file contains the files where template blocks
+have been altered.
+
+
+Files changed from 2.0.1 to 2.1 beta 1
+-------------------------
+Added modules eZBulkMail and eZMail

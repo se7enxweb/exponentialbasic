@@ -318,6 +318,10 @@ class eZCart
             {
                 $product =& $item->product();
                 $vatPercentage = $product->vatPercentage();
+                $tax["$vatPercentage"] = array();
+                $tax["$vatPercentage"]["basis"] = false;
+                $tax["$vatPercentage"]["tax"] = false;
+                $tax["$vatPercentage"]["percentage"] = false;
 
                 $exTax = $item->correctPrice( true, true, false );
                 $incTax = $item->correctPrice( true, true, true );

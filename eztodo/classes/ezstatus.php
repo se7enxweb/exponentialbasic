@@ -36,7 +36,7 @@ class eZStatus
     /*!
       eZStatus Constructor.
     */
-    function eZStatus( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( $id != -1 )
         {

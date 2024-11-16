@@ -89,7 +89,7 @@ class eZEzRenderer
     /*!
       Creates a new eZEzGenerator object.
     */
-    function eZEzRenderer( &$article )
+    function __construct( &$article )
     {
         $this->Article = $article;
     }
@@ -495,4 +495,3 @@ class eZEzRenderer
 }
 
 ?>
-

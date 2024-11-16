@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCString class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <16-Dec-2000 12:04:35 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -37,7 +37,7 @@ class eZXMLRPCString
     /*!
       Creates a new eZXMLRPCString object.
     */
-    function eZXMLRPCString( $value="" )
+    function __construct( $value="" )
     {
         $this->Value = $value;
     }

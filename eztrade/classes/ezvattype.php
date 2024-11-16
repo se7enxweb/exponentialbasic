@@ -41,7 +41,7 @@ class eZVATType
     /*!
       Constructs a new object.
     */
-    function eZVATType( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->VATValue = 0;
         if ( $id != -1 )

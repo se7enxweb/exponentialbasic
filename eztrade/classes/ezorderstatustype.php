@@ -47,7 +47,7 @@ class eZOrderStatusType
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZOrderStatusType( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

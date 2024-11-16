@@ -45,7 +45,7 @@ class eZNewsCategory
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZNewsCategory( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

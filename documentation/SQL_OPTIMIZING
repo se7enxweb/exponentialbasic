@@ -1,0 +1,239 @@
+#
+#
+#
+# Test SQL statements
+#
+#
+
+SELECT Article.ID as ArticleID FROM eZArticle_Article AS Article, eZArticle_ArticleCategoryLink as Link, eZArticle_ArticlePermission AS Permission WHERE Link.CategoryID='1' AND Permission.ObjectID=Article.ID AND Link.ArticleID=Article.ID ORDER BY Article.Name LIMIT 0,10;
+
+# indexes:
+
+alter table eZArticle_Article add index ( ID );  
+alter table eZArticle_Article add index ( Name );  
+alter table eZArticle_Article add index ( IsPublished );  
+alter table eZArticle_ArticlePermission add index ( ObjectID );  
+alter table eZArticle_ArticleCategoryLink add index ( ArticleID );  
+alter table eZArticle_ArticleCategoryLink add index ( CategoryID );  
+alter table eZArticle_ArticleCategoryLink add index ( Placement );  
+alter table eZArticle_ArticlePermission add index ( ReadPermission );  
+alter table eZArticle_ArticlePermission add index ( WritePermission );  
+alter table eZArticle_Article add index ( Published );  
+
+# uses much space:
+# alter table eZArticle_Article add index ( Keywords );  
+
+optimize table eZArticle_Article;
+optimize table eZArticle_ArticlePermission;
+optimize table eZArticle_ArticleCategoryLink;
+optimize table eZArticle_Category;
+
+
+# forum:
+alter table eZForum_Message add index ( Depth );  
+alter table eZForum_Message add index ( PostingTime ); 
+alter table eZForum_Message add index ( ForumID ); 
+alter table eZForum_Message add index ( ThreadID ); 
+
+#
+# Order by the field which you normally order articles by
+alter table eZArticle_Article order by Published;  
+
+
+SELECT Article.ID as ArticleID FROM eZArticle_Article AS Article, eZArticle_ArticleCategoryLink as Link, eZArticle_ArticlePermission AS Permission, eZArticle_Category AS Category WHERE ( (  ( Permission.GroupID='-1') AND Permission.ReadPermission='1' )  ) AND Article.IsPublished = 'true'  AND Link.CategoryID='1' AND Permission.ObjectID=Article.ID AND Link.ArticleID=Article.ID AND Category.ID=Link.CategoryID ORDER BY Article.Published DESC LIMIT 10,10
+
+
+SELECT Article.ID as ArticleID FROM eZArticle_Article AS Article, eZArticle_ArticleCategoryLink as Link, eZArticle_ArticlePermission AS Permission, eZArticle_Category AS Category WHERE Article.IsPublished = 'true'  AND Link.CategoryID='1' AND Permission.ObjectID=Article.ID AND Link.ArticleID=Article.ID AND Category.ID=Link.CategoryID GROUP BY Article.ID ORDER BY Article.Published DESC LIMIT 10,10
+
+SELECT Article.ID as ArticleID
+                  FROM eZArticle_Article AS Article,
+                       eZArticle_ArticleCategoryLink as Link, eZArticle_ArticlePermission AS Permission,
+                       eZArticle_Category AS Category
+                  WHERE (
+                        (  ( Permission.GroupID='-1') AND Permission.ReadPermission='1' )
+                        )
+                         AND Article.IsPublished = 'true' 
+                        AND Link.CategoryID='1'
+                        AND Permission.ObjectID=Article.ID
+                        AND Link.ArticleID=Article.ID
+                        AND Category.ID=Link.CategoryID
+                 ORDER BY Article.Published DESC
+                 LIMIT 10,10
+
+
+#
+# Force MyISAM on all tables
+#
+
+alter table eZAd_Ad                              type=myisam;
+alter table eZAd_AdCategoryLink                  type=myisam;
+alter table eZAd_Category                        type=myisam;
+alter table eZAd_Click                           type=myisam;
+alter table eZAd_View                            type=myisam;
+alter table eZAddress_Address                    type=myisam;
+alter table eZAddress_AddressDefinition          type=myisam;
+alter table eZAddress_AddressType                type=myisam;
+alter table eZAddress_Country                    type=myisam;
+alter table eZAddress_Online                     type=myisam;
+alter table eZAddress_OnlineType                 type=myisam;
+alter table eZAddress_Phone                      type=myisam;
+alter table eZAddress_PhoneType                  type=myisam;
+alter table eZArticle_Article                    type=myisam;
+alter table eZArticle_ArticleCategoryDefinition  type=myisam;
+alter table eZArticle_ArticleCategoryLink        type=myisam;
+alter table eZArticle_ArticleFileLink            type=myisam;
+alter table eZArticle_ArticleForumLink           type=myisam;
+alter table eZArticle_ArticleImageDefinition     type=myisam;
+alter table eZArticle_ArticleImageLink           type=myisam;
+alter table eZArticle_ArticlePermission          type=myisam;
+alter table eZArticle_Category                   type=myisam;
+alter table eZArticle_CategoryPermission         type=myisam;
+alter table eZArticle_CategoryReaderLink         type=myisam;
+alter table eZBug_Bug                            type=myisam;
+alter table eZBug_BugCategoryLink                type=myisam;
+alter table eZBug_BugFileLink                    type=myisam;
+alter table eZBug_BugImageLink                   type=myisam;
+alter table eZBug_BugModuleLink                  type=myisam;
+alter table eZBug_Category                       type=myisam;
+alter table eZBug_Log                            type=myisam;
+alter table eZBug_Module                         type=myisam;
+alter table eZBug_ModulePermission               type=myisam;
+alter table eZBug_Priority                       type=myisam;
+alter table eZBug_Status                         type=myisam;
+alter table eZContact_Address                    type=myisam;
+alter table eZContact_AddressDefinition          type=myisam;
+alter table eZContact_Country                    type=myisam;
+alter table eZFileManager_File                   type=myisam;
+alter table eZFileManager_FileFolderLink         type=myisam;
+alter table eZFileManager_FilePageViewLink       type=myisam;
+alter table eZFileManager_FilePermission         type=myisam;
+alter table eZFileManager_Folder                 type=myisam;
+alter table eZFileManager_FolderPermission       type=myisam;
+alter table eZForum_Category                     type=myisam;
+alter table eZForum_Forum                        type=myisam;
+alter table eZForum_ForumCategoryLink            type=myisam;
+alter table eZForum_Message                      type=myisam;
+alter table eZImageCatalogue_Category            type=myisam;
+alter table eZImageCatalogue_CategoryPermission  type=myisam;
+alter table eZImageCatalogue_Image               type=myisam;
+alter table eZImageCatalogue_ImageCategoryLink   type=myisam;
+alter table eZImageCatalogue_ImagePermission     type=myisam;
+alter table eZImageCatalogue_ImageVariation      type=myisam;
+alter table eZImageCatalogue_ImageVariationGroup type=myisam;
+alter table eZLink_Hit                           type=myisam;
+alter table eZLink_Link                          type=myisam;
+alter table eZLink_LinkGroup                     type=myisam;
+alter table eZNewsFeed_Category                  type=myisam;
+alter table eZNewsFeed_News                      type=myisam;
+alter table eZNewsFeed_NewsCategoryLink          type=myisam;
+alter table eZNewsFeed_SourceSite                type=myisam;
+alter table eZPoll_MainPoll                      type=myisam;
+alter table eZPoll_Poll                          type=myisam;
+alter table eZPoll_PollChoice                    type=myisam;
+alter table eZPoll_Vote                          type=myisam;
+alter table eZSession_Preferences                type=myisam;
+alter table eZSession_Session                    type=myisam;
+alter table eZSession_SessionVariable            type=myisam;
+alter table eZStats_BrowserType                  type=myisam;
+alter table eZStats_PageView                     type=myisam;
+alter table eZStats_RefererURL                   type=myisam;
+alter table eZStats_RemoteHost                   type=myisam;
+alter table eZStats_RequestPage                  type=myisam;
+alter table eZUser_Forgot                        type=myisam;
+alter table eZUser_Group                         type=myisam;
+alter table eZUser_GroupPermissionLink           type=myisam;
+alter table eZUser_Module                        type=myisam;
+alter table eZUser_Permission                    type=myisam;
+alter table eZUser_User                          type=myisam;
+alter table eZUser_UserAddressLink               type=myisam;
+alter table eZUser_UserGroupLink                 type=myisam;
+
+##
+##
+## Optimizing of all tables
+##
+
+
+optimize table eZAd_Ad                              ;
+optimize table eZAd_AdCategoryLink                  ;
+optimize table eZAd_Category                        ;
+optimize table eZAd_Click                           ;
+optimize table eZAd_View                            ;
+optimize table eZAddress_Address                    ;
+optimize table eZAddress_AddressDefinition          ;
+optimize table eZAddress_AddressType                ;
+optimize table eZAddress_Country                    ;
+optimize table eZAddress_Online                     ;
+optimize table eZAddress_OnlineType                 ;
+optimize table eZAddress_Phone                      ;
+optimize table eZAddress_PhoneType                  ;
+optimize table eZArticle_Article                    ;
+optimize table eZArticle_ArticleCategoryDefinition  ;
+optimize table eZArticle_ArticleCategoryLink        ;
+optimize table eZArticle_ArticleFileLink            ;
+optimize table eZArticle_ArticleForumLink           ;
+optimize table eZArticle_ArticleImageDefinition     ;
+optimize table eZArticle_ArticleImageLink           ;
+optimize table eZArticle_ArticlePermission          ;
+optimize table eZArticle_Category                   ;
+optimize table eZArticle_CategoryPermission         ;
+optimize table eZArticle_CategoryReaderLink         ;
+optimize table eZBug_Bug                            ;
+optimize table eZBug_BugCategoryLink                ;
+optimize table eZBug_BugFileLink                    ;
+optimize table eZBug_BugImageLink                   ;
+optimize table eZBug_BugModuleLink                  ;
+optimize table eZBug_Category                       ;
+optimize table eZBug_Log                            ;
+optimize table eZBug_Module                         ;
+optimize table eZBug_ModulePermission               ;
+optimize table eZBug_Priority                       ;
+optimize table eZBug_Status                         ;
+optimize table eZContact_Address                    ;
+optimize table eZContact_AddressDefinition          ;
+optimize table eZContact_Country                    ;
+optimize table eZFileManager_File                   ;
+optimize table eZFileManager_FileFolderLink         ;
+optimize table eZFileManager_FilePageViewLink       ;
+optimize table eZFileManager_FilePermission         ;
+optimize table eZFileManager_Folder                 ;
+optimize table eZFileManager_FolderPermission       ;
+optimize table eZForum_Category                     ;
+optimize table eZForum_Forum                        ;
+optimize table eZForum_ForumCategoryLink            ;
+optimize table eZForum_Message                      ;
+optimize table eZImageCatalogue_Category            ;
+optimize table eZImageCatalogue_CategoryPermission  ;
+optimize table eZImageCatalogue_Image               ;
+optimize table eZImageCatalogue_ImageCategoryLink   ;
+optimize table eZImageCatalogue_ImagePermission     ;
+optimize table eZImageCatalogue_ImageVariation      ;
+optimize table eZImageCatalogue_ImageVariationGroup ;
+optimize table eZLink_Hit                           ;
+optimize table eZLink_Link                          ;
+optimize table eZLink_LinkGroup                     ;
+optimize table eZNewsFeed_Category                  ;
+optimize table eZNewsFeed_News                      ;
+optimize table eZNewsFeed_NewsCategoryLink          ;
+optimize table eZNewsFeed_SourceSite                ;
+optimize table eZPoll_MainPoll                      ;
+optimize table eZPoll_Poll                          ;
+optimize table eZPoll_PollChoice                    ;
+optimize table eZPoll_Vote                          ;
+optimize table eZSession_Preferences                ;
+optimize table eZSession_Session                    ;
+optimize table eZSession_SessionVariable            ;
+optimize table eZStats_BrowserType                  ;
+optimize table eZStats_PageView                     ;
+optimize table eZStats_RefererURL                   ;
+optimize table eZStats_RemoteHost                   ;
+optimize table eZStats_RequestPage                  ;
+optimize table eZUser_Forgot                        ;
+optimize table eZUser_Group                         ;
+optimize table eZUser_GroupPermissionLink           ;
+optimize table eZUser_Module                        ;
+optimize table eZUser_Permission                    ;
+optimize table eZUser_User                          ;
+optimize table eZUser_UserAddressLink               ;
+optimize table eZUser_UserGroupLink                 ;
+

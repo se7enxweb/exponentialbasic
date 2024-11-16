@@ -36,7 +36,7 @@ class eZCheckoutSupplier
     /*!
       
     */
-    function eZCheckoutSupplier()
+    function __construct()
     {
         $this->PaymentMethods = array( array( "ID" => 1, "Text" => "VISA" ),
                                        array( "ID" => 2, "Text" => "Mastercard" ),

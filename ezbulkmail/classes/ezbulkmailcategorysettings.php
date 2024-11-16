@@ -43,7 +43,7 @@ class eZBulkMailCategorySettings
 {
     /*!
     */
-    function eZBulkMailCategorySettings( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

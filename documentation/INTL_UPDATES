@@ -1,0 +1,37 @@
+INTL UPDATES for eZ publish:
+---------------------------
+
+The INTL_UPDATES file is no longer used. Please use the Perl script
+check_lang.pl instead. This script will check your current translation
+and warn about any missing files or keys.
+
+
+Usage (Unix)
+------------
+
+If you do not have perl installed, get it from
+http://www.perl.com
+
+Run
+./check_lang.pl [iso_code]
+Where [iso_code] is the ISO code of your language.
+E.g. for Norwegian Bokmaal:
+./check_lang.pl no_NO
+
+
+Usage (Win32)
+-------------
+
+If you do not have perl installed, get it from
+http://aspn.activestate.com/ASPN/Downloads/ActivePerl/index/
+Please see the documentation on Win32 Perl for information on how to run
+the script.
+
+
+Usage (Mac)
+-----------
+
+If you do not have perl installed, get it from
+http://www.macperl.com/
+Please see the documentation on Mac Perl for information on how to run
+the script.

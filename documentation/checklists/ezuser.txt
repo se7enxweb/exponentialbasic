@@ -1,0 +1,14 @@
+eZ user checklist
+-----------------
+
+admin:
+- Create a new user
+- Create a new category
+- Assign the user to a category
+
+- Edit the user settings
+- Edit the user group settings
+
+- Delete the user
+- Delete the user group
+

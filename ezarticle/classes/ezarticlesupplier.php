@@ -33,7 +33,7 @@
 
 class eZArticleSupplier
 {
-    function eZArticleSupplier()
+    function __construct()
     {
     }
 

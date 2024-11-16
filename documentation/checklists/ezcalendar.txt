@@ -1,0 +1,76 @@
+admin:
+
+- Create an appointment type
+  Give it a name and a description. Don't give it a parent.
+
+- Use the appointment type list to find your recently added appointment type.
+
+- Edit the appointment type, try to give it itself as a parent.
+
+- Delete the appointment type.
+
+- Create two new appointment types, call them "meeting" and "meditation".
+
+user:
+
+- Log in as a user.
+
+- Select the "month view" of the calendar.
+  You should see the current month with today marked in orange/red.
+
+- Press the "+" link of the marked day (today).
+  You should be taken to the "edit appointment" view.
+
+- Create a new appointment. Check that the type list includes "meeting" and
+  "meditation". Make it a private meeting.
+  You should now see the appointment in the day view.
+
+- Press the "new appointment" menu choice.
+
+- Create another appointment, make it a public meditation.
+  You should now see the appointment in the day view.
+
+- Test the "month" button.
+  You should see the current month with today marked in orange/red, you
+  should also see links to the appointments you just created.
+
+- Click on any of the appointments you created.
+  You should see the appointment view with more info about this item.
+
+- Edit the appointment
+
+- Test the "year" button.
+  You should see the months of the current year and you should be able to
+  jump to any specific date by pressing the link.
+
+- Test the "today" button.
+  You should be shown the appointments of today.
+
+- Test the "day" button.
+
+- Log out.
+
+- Press "month view".
+  You should see the current month with today marked in orange/red.
+ 
+- Select the user you used to add apointments from the drop down.
+
+- Press "show".
+  You should see the current month with today marked in orange/red, you
+  should also find the public appointment you created for that user.
+
+- Make sure that you only see the public appointment you created.
+
+- Try to view the appointment by clicking on its link.
+  You should see the appointment view with more info about this item.
+
+- Try to edit the appointment.
+  This shouldn't be possible.
+
+- Try to delete the appointment.
+  This shouldn't be possible.
+  
+- Log in as the user again.
+
+- Delete one of the appointments.
+  Should work.

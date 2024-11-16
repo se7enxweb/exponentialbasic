@@ -59,7 +59,7 @@ class eZVoucherInformation
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZVoucherInformation( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( is_array( $id ) )
         {
@@ -193,7 +193,7 @@ class eZVoucherInformation
         $this->ID = $value[$db->fieldName( "ID" )];
         $this->Description = $value[$db->fieldName( "Description" )];
         $this->OnlineID = $value[$db->fieldName( "OnlineID" )];
-        $this->AddressID = $value[$db->fieldName( "AddressID" )];
+        $this->AddressID = isset( $value[$db->fieldName( "AddressID" )] ) ? $value[$db->fieldName( "AddressID" )] : null;
         $this->VoucherID = $value[$db->fieldName( "VoucherID" )];
         $this->PreOrderID = $value[$db->fieldName( "PreOrderID" )];
         $this->MailMethod = $value[$db->fieldName( "MailMethod" )];
@@ -598,17 +598,18 @@ class eZVoucherInformation
 
     var $ID;
     var $Description;
-    var $PreOrderID;
+    var $PreOrderID = 0;
     var $OnlineID;
-    var $ToAddressID;
-    var $FromAddressID;
-    var $VoucherID;
+    var $ToAddressID = 0;
+    var $FromAddressID = 0;
+    var $VoucherID = 0;
     var $MailMethod;
     var $Price;
     var $ToName;
     var $FromName;
     var $FromOnlineID;
     var $ProductID;
+    var $AddressID;
 }
 
 ?>

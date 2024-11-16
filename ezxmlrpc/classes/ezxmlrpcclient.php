@@ -62,7 +62,7 @@ class eZXMLRPCClient
       You can specify a port for communication, the default port is
       80.
     */
-    function eZXMLRPCClient( $server, $path, $port=80  )
+    function __construct( $server, $path, $port=80  )
     {
         $this->Server = $server;
         $this->Path = $path;

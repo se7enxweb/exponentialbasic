@@ -4,7 +4,7 @@
 //
 // Definition of eZXMLRPCInt class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <16-Dec-2000 12:08:19 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -37,7 +37,7 @@ class eZXMLRPCInt
     /*!
       Creates a new eZXMLRPCInt object.
     */
-    function eZXMLRPCInt( $value=0 )
+    function __construct( $value=0 )
     {
         if ( !is_numeric( $value ) )
             $value = 0;

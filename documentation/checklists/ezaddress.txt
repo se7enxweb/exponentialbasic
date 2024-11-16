@@ -1,0 +1,14 @@
+admin:
+
+- Create a new telephone type
+- Create a new address type
+- Create a new online type
+- Create a new country
+
+- Create a new contactperson/company from the eZ contact module.
+  Check that the types you defined above is avilable from the select
+  boxes/drop down menus.
+  
+- Edit the types you added above.
+
+- Delete the types you added above.

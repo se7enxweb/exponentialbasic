@@ -329,6 +329,8 @@ class eZMySQLDB
     */
     function escapeString( $str )
     {
+        if( is_null( $str ) )
+            return false;
         return mysqli_real_escape_string( $this->Database, $str );
     }
 
@@ -381,4 +383,3 @@ class eZMySQLDB
     var $Counter;
 
 }
-

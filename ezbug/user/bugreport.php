@@ -45,7 +45,7 @@ include_once( "ezbug/classes/ezbugmodule.php" );
 $t = new eZTemplate( "ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
                      "ezbug/user/intl", $Language, "bugreport.php" );
 $t->setAllStrings();
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "sitedesign", $GlobalSiteDesign );
 
 $t->set_file( "bug_report_tpl", "bugreport.tpl" );
 
@@ -168,6 +168,9 @@ if ( isSet( $Ok ) ) // here check for errors. and display them if nescacary
         $AllFieldsError = true;
     }
 }
+else{
+    $BugID = 0;
+}
 
 if ( isSet( $InsertFile ) )
 {
@@ -208,16 +211,35 @@ if ( isSet( $DeleteSelected ) )
 $catName = "";
 $modName = "";
 
-$t->set_var( "description_value", $Description );
-$t->set_var( "title_value", eZTextTool::htmlspecialchars( $Name ) );
+if( isset( $Description ) )
+{
+    $t->set_var( "description_value", $Description );
+}
+else
+{
+    $t->set_var( "description_value", '' );
+}
+
+if( isset( $Name ) )
+{
+    $t->set_var( "title_value", eZTextTool::htmlspecialchars( $Name ) );
+}
+else
+{
+    $t->set_var( "title_value", '' );
+}
+
 $t->set_var( "file", "" );
 $t->set_var( "image", "" );
 $t->set_var( "private_checked", "" );
 $t->set_var( "version_value", "" );
 
-if ( $IsPrivate == "On" )
+if ( isset( $IsPrivate ) && $IsPrivate == "On" )
     $t->set_var( "private_checked", "checked" );
-$t->set_var( "usr_email", $Email );
+
+$user =& eZUser::currentUser();
+if ( !$user )
+    $t->set_var( "usr_email", $user->userEmail() );
 
 if( $Action == "Edit" ) // load values from database
 {
@@ -239,7 +261,7 @@ if( $Action == "Edit" ) // load values from database
     $t->set_var( "title_value", $bug->name() );
     $t->set_var( "version_value", $bug->version() );
 
-    if ( $bug->isPrivate() )
+    if ( is_object( $bug ) && $bug->isPrivate() )
         $t->set_var( "private_checked", "checked" );
 
 // get the files
@@ -302,17 +324,18 @@ if( $Action == "Edit" ) // load values from database
     }
     $actionValue = "update";
 }
-if ( count( $images ) > 0 )
+
+if ( isset( $images ) && count( $images ) > 0 )
 {
     $anyDeleteItems = true;
    $t->parse( "inserted_images", "inserted_images_tpl", false );
 }
 
-if ( $anyDeleteItems )
+if (isset( $anyDeleteItems ) &&  $anyDeleteItems )
     $t->parse( "delete_items", "delete_items_tpl", false );
 
 // if any errors are set, lets display them to the user.
-if ( $AllFieldsError == true )
+if ( isset( $AllFieldsError ) && $AllFieldsError == true )
 {
     $t->parse( "all_fields_error", "all_fields_error_tpl" );
 }
@@ -321,7 +344,7 @@ else
     $t->set_var( "all_fields_error", "" );
 }
 
-if ( $EmailError == true )
+if ( isset( $EmailError ) && $EmailError == true )
 {
     $t->parse( "email_error", "email_error_tpl" );
 }

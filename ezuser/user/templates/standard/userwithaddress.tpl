@@ -171,6 +171,13 @@
 <div class="boxtext"><input {info_subscription} type="checkbox" name="InfoSubscription" />&nbsp;{intl-infosubscription}</div>
 <br />
 
+<hr noshade="noshade" size="4" />
+<!-- BEGIN ok_button_tpl -->
+<input class="okbutton" type="submit" name="OK" value="{intl-ok}" />
+<!-- END ok_button_tpl -->
+<!-- BEGIN submit_button_tpl -->
+<input class="okbutton" type="submit" name="OK" value="{intl-submit}" />
+<!-- END submit_button_tpl -->
 <!-- BEGIN address_actions_tpl -->
 <hr noshade="noshade" size="4" />
 
@@ -178,19 +185,9 @@
 <input class="stdbutton" type="submit" value="{intl-delete_address}" name="DeleteAddress" />
 <!-- END address_actions_tpl -->
 
-<hr noshade="noshade" size="4" />
 
 
 <input type="hidden" name="UserID" value="{user_id}" />
-<!-- BEGIN ok_button_tpl -->
-<input class="okbutton" type="submit" name="OK" value="{intl-ok}" />
-<!-- END ok_button_tpl -->
-<!-- BEGIN submit_button_tpl -->
-<input class="okbutton" type="submit" name="OK" value="{intl-submit}" />
-<!-- END submit_button_tpl -->
 <input type="hidden" name="GlobalSectionIDOverride" value="{global_section_id}" />
 <input type="hidden" name="RedirectURL" value="{redirect_url}" />
 </form>
-
-
-

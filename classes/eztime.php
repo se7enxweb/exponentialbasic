@@ -38,7 +38,7 @@ class eZTime
     /*!
       Constructs a new eZTime object.
     */
-    function eZTime( $hour=-1, $minute=-1, $second=-1 )
+    function __construct( $hour=-1, $minute=-1, $second=-1 )
     {
         if ( ( $hour == -1 )  && ( $minute == -1 ) && ( $second == -1 ) )
         {
@@ -338,4 +338,3 @@ class eZTime
     /// Store the number of seconds since 00:00:00
     var $SecondsElapsed;
 }
-

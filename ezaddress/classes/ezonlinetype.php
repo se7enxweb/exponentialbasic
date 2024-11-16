@@ -51,7 +51,7 @@ class eZOnlineType
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZOnlineType( $id= -1 )
+    function __construct( $id= -1 )
     {
         if ( is_array( $id ) )
         {
@@ -171,7 +171,7 @@ class eZOnlineType
     /*
       Fetches out all the online types that is stored in the database.
     */
-    function &getAll( $as_object = true )
+    static public function &getAll( $as_object = true )
     {
                
         $db =& eZDB::globalDatabase();

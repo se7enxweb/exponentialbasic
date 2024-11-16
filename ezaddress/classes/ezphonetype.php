@@ -49,7 +49,7 @@ class eZPhoneType
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZPhoneType( $id= -1 )
+    function __construct( $id= -1 )
     {
         if ( is_array( $id ) )
         {
@@ -156,7 +156,7 @@ class eZPhoneType
       \static
       Fetches the addresstype id from the database. And returns a array of eZAddressType objects.
     */
-    function getAllCount()
+    static public function getAllCount()
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $phone_type_array,
@@ -168,7 +168,7 @@ class eZPhoneType
       \static
       Fetches the phonetype id from the database. And returns a array of eZPhoneType objects.
     */
-    function getAll( $as_object = true, $offset = 0, $max = -1 )
+    static public function getAll( $as_object = true, $offset = 0, $max = -1 )
     {
         $db =& eZDB::globalDatabase();
 

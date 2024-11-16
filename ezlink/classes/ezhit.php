@@ -63,9 +63,9 @@ class eZHit
         $nextID = $db->nextID( "eZLink_Hit", "ID" );
 
         $res[] = $db->query( "INSERT INTO eZLink_Hit
-                                        ( RemoteIP, ID, Link)
+                                        ( RemoteIP, ID, Link, Time)
                                         VALUES
-                                        ('$this->RemoteIP','$nextID','$this->Link')" );
+                                        ('$this->RemoteIP','$nextID','$this->Link','$this->Time')" );
         $db->unlock();
 
         eZDB::finish( $res, $db );
@@ -131,6 +131,15 @@ class eZHit
     function setRemoteIP( $value )
     {
         $this->RemoteIP = ( $value );
+    }
+
+    /*!
+      Set the time.
+    */
+    function setTime( $timestsamp )
+    {
+        $this->Time = $timestsamp;
+        return $this->Time;
     }
 
     /*!

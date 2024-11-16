@@ -49,7 +49,7 @@ class eZAddressType
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZAddressType( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( is_array( $id ) )
         {
@@ -109,7 +109,7 @@ class eZAddressType
       Deletes a eZAddressType object from the database.
      */
 
-    function delete( $id = false )
+    static public function delete( $id = false )
     {
         $db =& eZDB::globalDatabase();
         if ( !$id )
@@ -159,7 +159,7 @@ class eZAddressType
       \static
       Fetches the addresstype id from the database. And returns a array of eZAddressType objects.
     */
-    function &getAll( $as_object = true )
+    static public function &getAll( $as_object = true )
     {
         $db =& eZDB::globalDatabase();
         $online_type_array = 0;

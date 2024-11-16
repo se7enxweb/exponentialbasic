@@ -315,7 +315,7 @@ class eZOrderItem
       Returns the correct price of the product based on the logged in user, and the
       VAT status and use.
     */
-    function correctPrice( $calcCount=true, $withOptions=true, $calcVAT )
+    function correctPrice( $calcCount=true, $withOptions=true, $calcVAT=true )
     {
         if ( $calcVAT == true )
         {
@@ -337,7 +337,7 @@ class eZOrderItem
     /*!
       Returns the correct localized price of the product.
     */
-    function localePrice( $calcCount=true, $withOptions=true, $calcVAT )
+    function localePrice( $calcCount=true, $withOptions=true, $calcVAT=true )
     {
         $ini =& INIFile::globalINI();
         $Language = $ini->read_var( "eZTradeMain", "Language" );

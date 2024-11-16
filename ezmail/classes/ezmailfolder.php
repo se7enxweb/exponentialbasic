@@ -49,7 +49,7 @@ class eZMailFolder
     /*!
       constructor
     */
-    function eZMailFolder( $id="", $fetch=true )
+    function __construct( $id="", $fetch=true )
     {
         // default value
         $this->IsPublished = "false";
@@ -324,7 +324,7 @@ class eZMailFolder
       Returns all folders that belongs to this
       user as an array of eZMailFolders.
      */
-    function getByUser( $user = false, $withSpecialFolders=false, $parentFolder = -1 )
+    static public function getByUser( $user = false, $withSpecialFolders=false, $parentFolder = -1 )
     {
         if ( !is_a( $user, "eZUser" ) )
             $user =& eZUser::currentUser();
@@ -356,7 +356,7 @@ class eZMailFolder
     /*
       Creates a tree of the folders for the current user.
      */
-    function &getTree( $parentID=0, $level=0 )
+    static public function &getTree( $parentID=0, $level=0 )
     {
         $folderList = eZMailFolder::getByUser( false, false, $parentID );
 
@@ -473,7 +473,7 @@ class eZMailFolder
       TRASH
       If the folder does not exist it will be created. If the creation should fail the function returns false.
      */
-    function getSpecialFolder( $specialType, $user=false )
+    static public function getSpecialFolder( $specialType, $user=false )
     {
         if ( !is_a( $user, "eZUser" ) )
             $user =& eZUser::currentUser();
@@ -567,7 +567,7 @@ class eZMailFolder
 
       Returns true if the given mail belongs to the given user.
      */
-    function isOwner( $user, $folderID )
+    static public function isOwner( $user, $folderID )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();
@@ -586,6 +586,7 @@ class eZMailFolder
     var $ParentID;
     var $Name;
     var $FolderType=0;
+    var $IsPublished;
 }
 
 ?>

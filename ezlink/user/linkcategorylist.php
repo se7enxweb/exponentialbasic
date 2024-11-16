@@ -34,8 +34,11 @@ include_once( "ezlink/classes/ezhit.php" );
 include_once( "ezlink/classes/ezlinktype.php" );
 include_once( "ezsitemanager/classes/ezsection.php" );
 
-if ( !$Offset )
+if ( !isset( $Offset ) )
     $Offset = 0;
+
+if ( !isset( $LinkCategoryID ) )
+    $LinkCategoryID = false;
 
 // List all the categories
 $linkCategory = new eZLinkCategory();
@@ -113,9 +116,9 @@ else
     $t->set_var( "headline_item", "" );
 }	 
 
-$linkCategory_array =& $linkCategory->getByParent( $LinkCategoryID );
+$linkCategory_array = $linkCategory->getByParent( $LinkCategoryID );
 
-if ( count( $linkCategory_array ) == 0 )
+if ( empty( $linkCategory_array ) or count( $linkCategory_array ) == 0 )
 {
     $t->set_var( "categories", "" );
     $t->set_var( "category_list", "" );
@@ -274,7 +277,7 @@ else
             }
         }
 
-        if ( count( $attributes ) > 0 and $type )
+        if ( isset( $attributes ) && count( $attributes ) > 0 and $type )
         {
             $t->parse( "attribute_list", "attribute_list_tpl" );
         }
@@ -293,7 +296,7 @@ $t->set_var( "link_start", $Offset + 1 );
 $t->set_var( "link_end", min( $Offset + $UserLimit, $linkCount ) );
 $t->set_var( "link_total", $linkCount );
 
-$t->set_var( "linkcategory_id", $LinkCategorID );
+$t->set_var( "linkcategory_id", $LinkCategoryID );
                        
 $t->pparse( "output", "link_page_tpl" );    
 

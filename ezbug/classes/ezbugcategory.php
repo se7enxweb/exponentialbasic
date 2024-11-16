@@ -58,7 +58,7 @@ class eZBugCategory
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZBugCategory( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( $id != -1 )
         {

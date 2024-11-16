@@ -234,6 +234,53 @@ if ( ( $requireUserLogin == "disabled" ) ||
         $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
     }
 
+    // 7x Register Globals Replacement
+    foreach($_COOKIE as $key => $value) {
+        if(!is_array($value)){
+            ${$key} = trim(rawurldecode($value));
+            //echo "$key $value<br>";
+        }
+        else{
+            ${$key} = $value;
+        }
+    }
+    foreach($_GET as $key => $value) {
+        if(!is_array($value)){
+            ${$key} = trim(rawurldecode($value));
+            //echo "$key $value<br>";
+        }
+        else{
+            ${$key} = $value;
+        }
+    }
+    foreach($_POST as $key => $value) {
+        if(!is_array($value)){
+            ${$key} = trim(rawurldecode($value));
+            //echo "$key $value<br>";
+        }
+        else{
+            ${$key} = $value;
+        }
+    }
+    foreach($_REQUEST as $key => $value) {
+        if(!is_array($value)){
+            ${$key} = trim(rawurldecode($value));
+            //echo "$key $value<br>";
+        }
+        else{
+            ${$key} = $value;
+        }
+    }
+    foreach($_SERVER as $key => $value) {
+        if(!is_array($value)){
+            ${$key} = trim(rawurldecode($value));
+            //echo "$key $value<br>";
+        }
+        else{
+            ${$key} = $value;
+        }
+    }
+
     // Load the main contents and store in a variable
     $content_page = "ez" . $url_array[1] . "/user/datasupplier.php";
 

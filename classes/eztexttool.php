@@ -137,7 +137,10 @@ class eZTextTool
     */
     static public function htmlspecialchars( $string )
     {
+        if( !is_null( $string ) )
         return stripslashes( htmlspecialchars( $string ) );
+
+        return false;
     }
 
     /*!

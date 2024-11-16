@@ -44,7 +44,7 @@ class eZSlideshow
     /*!
       Constructs a new eZSlideshow object
     */
-    function eZSlideshow( $category, $user, $pos = 0 )
+    function __construct( $category, $user, $pos = 0 )
     {
         $this->CategoryID = $category;
         $this->User = $user;

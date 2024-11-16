@@ -33,7 +33,7 @@
 
 class eZContactSupplier
 {
-    function eZContactSupplier()
+    function __construct()
     {
     }
 

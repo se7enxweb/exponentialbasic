@@ -68,7 +68,7 @@ class eZMediaFile extends eZFile
     /*!
       Constructs a new eZMediaFile object.
     */
-    function eZMediaFile()
+    function __construct()
     {
 
     }

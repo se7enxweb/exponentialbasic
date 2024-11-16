@@ -69,7 +69,7 @@ if ( isSet( $Back ) )
     }
     else
     {
-        eZHTTPTool::header( "Location: $RefererURL" );
+        eZHTTPTool::header( "Location: " . $_SERVER['HTTP_REFERER'] );
         exit();
     }
 }
@@ -86,7 +86,7 @@ if ( ( isSet( $AddImages ) ) and ( is_numeric( $LinkID ) ) and ( is_numeric( $Li
     $Action = "edit";
 }
 
-if ( $GetSite )
+if ( isset( $GetSite ) && $GetSite )
 {
     if ( $Url )
     {
@@ -135,7 +135,7 @@ if ( $GetSite )
 }
 
 // Update a link.
-if ( $Action == "update" )
+if ( isset( $Action ) && $Action == "update" )
 {
     if ( $Name != "" && $LinkCategoryID != "" && $Url != "" )
     {
@@ -248,7 +248,7 @@ if ( $Action == "update" )
 
 
 // Insert a link.
-if ( $Action == "insert" )
+if ( isset( $Action ) && $Action == "insert" )
 {
     if ( $Name != "" && $LinkCategoryID != "" && $Url != "" )
     {
@@ -329,11 +329,17 @@ if ( $Action == "insert" )
         $error_msg = $error->read_var( "strings", "error_missingdata" );
     }
 }
-//else
-//{
+else
+{
 //    eZHTTPTool::header( "Location: /link/norights" );
-//}
-
+    $LinkID = false;
+    $error_msg = false;
+    $tdescription = false;
+    $tkeywords = false;
+    $turl = false;
+    $tname = false;
+    $linkType = false;
+}
 
 // set the template files.
 
@@ -377,13 +383,13 @@ $t->set_var( "image_item", "" );
 $yes_selected = "selected";
 $no_selected = "";
 
-if ( $RefererURL != "" )
+if ( $_SERVER['HTTP_REFERER'] != "" )
 {
-    $t->set_var( "referer_url", $RefererURL );
+    $t->set_var( "referer_url", $_SERVER['HTTP_REFERER'] );
 }
 else
 {
-    $refererURL = $GLOBALS["HTTP_REFERER"];
+    $refererURL = $_SERVER['HTTP_REFERER'];
     if ( $refererURL != "" )
     {
         $t->set_var( "referer_url", $refererURL );
@@ -395,7 +401,7 @@ else
 }
 
 
-if ( $Action == "AttributeList" )
+if ( isset( $Action ) && $Action == "AttributeList" )
 {
     $tname = $Name;
     $tkeywords = $Keywords;
@@ -447,7 +453,7 @@ foreach ( $linkCategoryList as $linkCategoryItem )
 
     $link_select_dict[$linkCategoryItem[0]->id()] = $i;
 
-    if ( is_array( $LinkCategoryIDArray ) and in_array( $linkCategoryItem[0]->id(), $LinkCategoryIDArray )
+    if ( isset( $LinkCategoryIDArray ) && is_array( $LinkCategoryIDArray ) and in_array( $linkCategoryItem[0]->id(), $LinkCategoryIDArray )
          and ( $LinkCategoryID != $linkCategoryItem[0]->id() ) )
     {
         $t->set_var( "multiple_selected", "selected" );
@@ -509,7 +515,7 @@ if ( is_a( $linkType, "eZLinkType" ) )
     }
 }
 
-if ( count( $attributes ) > 0 || !isSet( $type ) )
+if ( isset( $attributes ) && count( $attributes ) > 0 || !isSet( $type ) )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }

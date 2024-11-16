@@ -40,7 +40,7 @@ class eZGPG
       \static
       Encrypt function
     */
-   function eZGPG( $plaintxt, $keyname, $wwwuser)
+   function __construct( $plaintxt, $keyname, $wwwuser)
    {
 
       $this->keyname=$keyname;

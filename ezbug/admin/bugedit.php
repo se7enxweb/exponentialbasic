@@ -69,7 +69,7 @@ $t->setAllStrings();
 
 $t->set_file( "bug_edit_tpl", "bugedit.tpl" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $GlobalSiteDesign );
 
 $t->set_block( "bug_edit_tpl", "module_item_tpl", "module_item" );
 $t->set_block( "bug_edit_tpl", "category_item_tpl", "category_item" );
@@ -513,7 +513,7 @@ foreach ( $modules as $module )
 $priorities = $priority->getAll();
 foreach ( $priorities as $priority )
 {
-    if ( $priority->id() == $priorityID )
+    if ( isset( $priorityID ) && $priority->id() == $priorityID )
     {
         $t->set_var( "selected", "selected" );
     }
@@ -532,7 +532,7 @@ foreach ( $priorities as $priority )
 $statuses = $status->getAll();
 foreach ( $statuses as $status )
 {
-    if ( $status->id() == $statusID )
+    if (  isset( $statusID ) && $status->id() == $statusID )
     {
         $t->set_var( "selected", "selected" );
     }

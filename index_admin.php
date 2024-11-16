@@ -249,6 +249,53 @@ if ( $user )
             }
         }
 
+        // 7x Register Globals Replacement
+        foreach($_COOKIE as $key => $value) {
+            if(!is_array($value)){
+                ${$key} = trim(rawurldecode($value));
+                //echo "$key $value<br>";
+            }
+            else{
+                ${$key} = $value;
+            }
+        }
+        foreach($_GET as $key => $value) {
+            if(!is_array($value)){
+                ${$key} = trim(rawurldecode($value));
+                //echo "$key $value<br>";
+            }
+            else{
+                ${$key} = $value;
+            }
+        }
+        foreach($_POST as $key => $value) {
+            if(!is_array($value)){
+                ${$key} = trim(rawurldecode($value));
+                //echo "$key $value<br>";
+            }
+            else{
+                ${$key} = $value;
+            }
+        }
+        foreach($_REQUEST as $key => $value) {
+            if(!is_array($value)){
+                ${$key} = trim(rawurldecode($value));
+                //echo "$key $value<br>";
+            }
+            else{
+                ${$key} = $value;
+            }
+        }
+        foreach($_SERVER as $key => $value) {
+            if(!is_array($value)){
+                ${$key} = trim(rawurldecode($value));
+                //echo "$key $value<br>";
+            }
+            else{
+                ${$key} = $value;
+            }
+        }
+
         // parse the URI
         $page = "";
     
@@ -347,5 +394,3 @@ $db->close();
 
 // flush the buffer cache
 ob_end_flush();
-
-

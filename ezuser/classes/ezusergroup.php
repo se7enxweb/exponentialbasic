@@ -192,7 +192,7 @@ class eZUserGroup
       Returns every user group from the database. The result is returned as an
       array of eZUserGroup objects.
     */
-    function &getAll( $as_object = true )
+    static public function &getAll( $as_object = true )
     {
         $db =& eZDB::globalDatabase();
 
@@ -231,7 +231,7 @@ class eZUserGroup
       The result is returned as an array of eZUserGroup object. An empty array
       is returned if there are none.
     */
-    function getByUser( $user )
+    static public function getByUser( $user )
     {
         $return_array = array();
 

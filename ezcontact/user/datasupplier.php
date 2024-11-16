@@ -299,7 +299,7 @@ switch ( $url_array[2] )
 
     case "consultation":
     {
-        if ( !isSet( $ConsultationID ) or !is_numeric( $ConsultationID ) )
+        if ( isset( $url_array[4] ) && ( !isSet( $ConsultationID ) or !is_numeric( $ConsultationID ) ) )
             $ConsultationID = $url_array[4];
         if ( isSet( $new_consultation ) )
         {

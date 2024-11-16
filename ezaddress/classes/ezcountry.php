@@ -39,7 +39,7 @@ class eZCountry
     /*!
       Constructs a new eZCountry object.
     */
-    function eZCountry( $id = "" )
+    function __construct( $id = "" )
     {
         if ( is_array( $id ) )
         {
@@ -115,7 +115,7 @@ class eZCountry
     /*!
       Returns the total number of countries
     */
-    function &getAllCount( $search = "" )
+    static public function &getAllCount( $search = "" )
     {
         $db =& eZDB::globalDatabase();
 
@@ -135,7 +135,7 @@ class eZCountry
     /*!
       Returns every country as a eZCountry object
     */
-    function &getAll( $as_object = true, $search = "", $offset = 0, $max = -1 )
+    static public function &getAll( $as_object = true, $search = "", $offset = 0, $max = -1 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -184,7 +184,7 @@ class eZCountry
     /*!
       Returns every country as an array. This function is faster then the one above.
     */
-    function &getAllArray( )
+    static public function &getAllArray( )
     {
         $db =& eZDB::globalDatabase();
         $country_array = 0;

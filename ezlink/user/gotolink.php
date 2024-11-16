@@ -35,6 +35,7 @@ if ( $Action == "addhit" )
     $hit = new eZHit();
     $hit->setLink( $LinkID );
     $hit->setRemoteIP( $REMOTE_ADDR );
+    $hit->setTime( time() );
     $hit->store();
 }
 $link = new eZLink( $LinkID );

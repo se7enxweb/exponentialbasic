@@ -34,6 +34,8 @@ include_once( "ezarticle/classes/ezarticlecategory.php" );
 
 include_once( "ezad/classes/ezadcategory.php" );
 
+$Action = "";
+
 if ( isSet ( $OK ) )
 {
     $Action = "Insert";
@@ -80,14 +82,6 @@ $t->set_block( "setting_item_tpl", "item_move_down_tpl", "item_move_down" );
 $t->set_block( "setting_item_tpl", "no_item_move_up_tpl", "no_item_move_up" );
 $t->set_block( "setting_item_tpl", "no_item_separator_tpl", "no_item_separator" );
 $t->set_block( "setting_item_tpl", "no_item_move_down_tpl", "no_item_move_down" );
-
-
-$t->set_var( "section_name", $Name );
-$t->set_var( "section_sitedesign", $SiteDesign );
-$t->set_var( "section_templatestyle", $TemplateStyle );
-$t->set_var( "section_description", $Description );
-$t->set_var( "section_language", $SecLanguage );
-$t->set_var( "setting_list", "" );
 
 $warning = true;
 
@@ -206,6 +200,15 @@ if ( is_numeric( $SectionID ) )
     $t->set_var( "section_sitedesign", $section->siteDesign() );
     $t->set_var( "section_language", $section->language() );
     $t->set_var( "section_templatestyle", $section->templateStyle() );
+}
+else
+{
+    $t->set_var( "section_name", $Name );
+    $t->set_var( "section_sitedesign", $SiteDesign );
+    $t->set_var( "section_templatestyle", $TemplateStyle );
+    $t->set_var( "section_description", $Description );
+    $t->set_var( "section_language", $SecLanguage );
+    $t->set_var( "setting_list", "" );
 }
 
 if ( $section )

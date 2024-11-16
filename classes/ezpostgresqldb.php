@@ -33,7 +33,7 @@
 
 class eZPostgreSQLDB
 {
-    function eZPostgreSQLDB( $server, $db, $user, $password  )
+    function __construct( $server, $db, $user, $password  )
     {
         if ( $GLOBALS["DEBUG"] == true)
         {

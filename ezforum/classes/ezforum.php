@@ -44,7 +44,7 @@ class eZForum
     /*!
       Constructs a new eZForum object.
     */
-    function eZForum( $id = "" )
+    function __construct( $id = "" )
     {
         $this->IsModerated = 0;
         $this->IsAnonymous = 0;
@@ -711,4 +711,3 @@ class eZForum
     var $ModeratorID;
     var $GroupID;
 }
-

@@ -167,11 +167,12 @@ class eZSection
     }
 
     /*!
+      Static
       Returns all the categories found in the database.
 
       The categories are returned as an array of eZSection objects.
     */
-    function getAll( $offset=0, $limit=40)
+    static public function getAll( $offset=0, $limit=40)
     {
         $db =& eZDB::globalDatabase();
 
@@ -194,7 +195,7 @@ class eZSection
     /*!
       Returns the total count.
     */
-    function count()
+    static public function count()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -239,11 +240,11 @@ class eZSection
             $db->query_single( $siteDesign, "SELECT SiteDesign FROM eZSiteManager_Section WHERE ID='$sectionID'" );
             return $siteDesign[$db->fieldName("SiteDesign")];
         }
-        else {
+        /*else {
 	    if( isset( $this->SiteDesign ) )
                 return htmlspecialchars( $this->SiteDesign );
 	    return false;
-	}
+	} */
     }
 
 
@@ -369,7 +370,7 @@ class eZSection
         }
     }
 
-    function &settingNames()
+    static public function &settingNames()
     {
         $db =& eZDB::globalDatabase();
 

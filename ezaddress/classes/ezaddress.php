@@ -42,7 +42,7 @@ class eZAddress
     /*!
       Constructs a new eZAddress object.
     */
-    function eZAddress( $id = "" )
+    function __construct( $id = "" )
     {
         if ( $id != "" )
         {
@@ -62,12 +62,12 @@ class eZAddress
 
         $ret = false;
         if ( $this->CountryID <= 0 )
-            $country_id = "NULL";
+            $country_id = 0;
         else
             $country_id = "$this->CountryID";
 
         if ( $this->RegionID <= 0 )
-            $region_id = "NULL";
+            $region_id = 0;
         else
             $region_id = "$this->RegionID";
 
@@ -88,7 +88,7 @@ class eZAddress
                                    '$this->Zip',
                                    '$place',
                                    '$country_id',
-				   '$region_id',
+				                   '$region_id',
                                    '$this->AddressTypeID',
                                    '$name')" );
             $db->unlock();
@@ -100,11 +100,11 @@ class eZAddress
                                   SET Street1='$street1',
                                   Street2='$street2',
                                   Zip='$this->Zip',
-	                          Place='$place',
-				  AddressTypeID='$this->AddressTypeID',
+	                              Place='$place',
+				                  AddressTypeID='$this->AddressTypeID',
                                   Name='$name',
                                   CountryID='$country_id',
-			          RegionID='$region_id'
+			                      RegionID='$region_id'
                                   WHERE ID='$this->ID'" );
             $ret = true;
         }
@@ -151,7 +151,7 @@ class eZAddress
     /*!
       Henter ut alle adressene lagret i databasen.
     */
-    function getAll( )
+    static public function getAll( )
     {
         $db =& eZDB::globalDatabase();
         $address_array = 0;
@@ -164,7 +164,7 @@ class eZAddress
     /*!
       Sletter adressen med ID == $id;
      */
-    function delete( $id = false )
+    static public function delete( $id = false )
     {
         if ( !$id )
             $id = $this->ID;
@@ -262,9 +262,9 @@ class eZAddress
     /*!
       Sets the main address
     */
-    function setMainAddress( $mainAddress, $user )
+    static public function setMainAddress( $mainAddress, $user )
     {
-        if( is_a( $value, "eZAddressType" ) )
+        if( is_a( $mainAddress, "eZAddressType" ) )
             $addressID = $mainAddress->id();
         else
             $addressID = $mainAddress;
@@ -301,7 +301,7 @@ class eZAddress
     /*!
       Returns the main address
     */
-    function mainAddress( $user )
+    static public function mainAddress( $user )
     {
         if ( is_a ( $user, "eZUser" ) )
             $userID = $user->id();
@@ -462,12 +462,12 @@ return new eZCountry( $this->CountryID );
     var $Street2;
     var $Zip;
     var $Place;
-    var $RegionID;
-    var $CountryID;
+    var $RegionID = 0;
+    var $CountryID = 0;
     var $Name;
 
     /// Relation to an eZAddressTypeID
-    var $AddressTypeID;
+    var $AddressTypeID = 0;
 }
 
 ?>

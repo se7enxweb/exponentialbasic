@@ -56,7 +56,7 @@ $preferences = new eZPreferences();
 // get the preferences
 $QueryPref =& $preferences->variableArray( "QueryPref" );
 
-if ( $Run2 )
+if ( isset( $Run2 ) )
 {
     $QueryText = $QueryText2;    
 }
@@ -80,7 +80,7 @@ $db =& eZDB::globalDatabase();
 $QueryRes   = '';
 $QueryError = '';
 
-if ( ! $QueryText )
+if ( !isset( $QueryText ) )
 {
     $QueryError = 'No query specified';        
 }
@@ -153,10 +153,46 @@ else
 
 }
 
-$t->set_var( "query_text",   $QueryText  );
-$t->set_var( "query_text2",   $QueryText2  );
+if( isset( $QueryText ) )
+{
+
+    $t->set_var( "query_text",   $QueryText  );
+}
+else
+{
+
+    $t->set_var( "query_text", '' );
+}
+
+if( isset( $QueryText2 ) )
+{
+    $t->set_var( "query_text2",  $QueryText2 );
+}
+else
+{
+    $t->set_var( "query_text2", '' );
+}
+
+if( isset( $return_array ) )
+{
+    $t->set_var( "query_rows",   count ($return_array));
+}
+else
+{
+    $t->set_var( "query_rows", 0 );
+}
+
+
 $t->set_var( "query_result", $QueryRes   );
-$t->set_var( "query_rows",   count ($return_array));
+
+if( isset( $return_array ) )
+{
+    $t->set_var( "query_rows",   count ($return_array));
+}
+else
+{
+    $t->set_var( "query_rows", 0 );
+}
 
 $t->set_var( "error", 	     $QueryError );
 

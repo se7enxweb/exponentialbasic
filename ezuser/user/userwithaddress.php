@@ -116,20 +116,12 @@ $t->set_var( "error_address_zip", "" );
 $t->set_var( "error_address_street1", "" );
 $t->set_var( "error_address_street2", "" );
 
-$t->set_var( "first_name_value", $FirstName );
-$t->set_var( "last_name_value", $LastName );
-$t->set_var( "login_value", $Login );
-$t->set_var( "email_value", $Email );
-$t->set_var( "password_value", $Password );
-$t->set_var( "verify_password_value", $VerifyPassword );
-$t->set_var( "address_actions", "" );
-
 if ( $AutoCookieLogin == "on" )
 {
     $t->set_var( "is_cookie_selected", "checked" );
 }
 
-if( $NoAddress == true )
+if( isset($NoAddress) && $NoAddress == true )
 {
     $t->set_var( "no_address", "no" );
 }
@@ -157,6 +149,9 @@ else
     $t->parse( "new_user", "new_user_tpl" );
 }
 
+// Defaults
+$user_insert = false;
+$Signature = '';
 // Set error checking.
 $error = false;
 $nameCheck = true;
@@ -172,7 +167,7 @@ $placeCheck = true;
 $addressCheck = true;
 
 // If the user is trying to buy without having a address
-if ( $MissingAddress == true )
+if ( isset( $MissingAddress ) && $MissingAddress == true )
 {
     $t->parse( "error_missing_address", "error_missing_address_tpl" );
 
@@ -187,7 +182,7 @@ else
 }
 
 // If the user is trying to buy without having a address
-if ( $MissingCountry == true )
+if ( isset( $MissingCountry ) && $MissingCountry == true )
 {
     $t->parse( "error_missing_country", "error_missing_country_tpl" );
 
@@ -266,6 +261,9 @@ if ( isSet( $OK ) or isSet( $OK_x ) )
     }
     if ( $addressCheck )
     {
+        if( !isset( $AddressID ) )
+            $AddressID = array();
+
         for( $i=0; $i < count ( $AddressID ); $i++ )
         {
             if ( $ini->read_var( "eZUserMain", "RequireAddress" ) == "enabled" )
@@ -320,10 +318,21 @@ if ( isSet( $OK ) or isSet( $OK_x ) )
         $t->parse( "errors_item", "errors_item_tpl" );
     }
 }
+else
+{
+    $Password = false;
+    $VerifyPassword = false;
+}
 
 // Add a new address
 if ( isSet( $NewAddress ) )
 {
+    if ( !isset( $AddressID ) )
+        $AddressID = array();
+
+    if ( !isset( $CountryID ) )
+        $CountryID = array();
+
     if ( count( $AddressID ) > 0 )
         $AddressID[] = $AddressID[count( $AddressID ) - 1] + 1;
     else
@@ -386,7 +395,7 @@ if ( ( isSet( $OK ) or isSet( $OK_x ) ) and $error == false )
         $user_insert->setGroupDefinition( $group );
     }
 
-    if ( !$MainAddressID )
+    if ( !isset( $MainAddressID ) )
     {
         $mainAddress = eZAddress::mainAddress( $user );
 
@@ -394,7 +403,7 @@ if ( ( isSet( $OK ) or isSet( $OK_x ) ) and $error == false )
             $MainAddressID = $mainAddress->id();
     }
 
-    if ( !$MainAddressID && count( $AddressID ) > 0 )
+    if ( !isset( $MainAddressID ) && count( $AddressID ) > 0 )
         $MainAddressID = $AddressID[0];
 
 //    if ( !$new_user )
@@ -568,6 +577,14 @@ if ( is_a( $user, "eZUser" ) )
             ++$i;
         }
     }
+
+    $t->set_var( "first_name_value", $FirstName );
+    $t->set_var( "last_name_value", $LastName );
+    $t->set_var( "login_value", $Login );
+    $t->set_var( "email_value", $Email );
+    $t->set_var( "password_value", $Password );
+    $t->set_var( "verify_password_value", $VerifyPassword );
+    $t->set_var( "address_actions", "" );
 }
 else
 {
@@ -613,9 +630,9 @@ else
 }
 
 if ( is_a( $user, "eZUser" ) and $Password == "" )
-    $Password = "dummy";
+    $Password = "";
 if ( is_a( $user, "eZUser" ) and $VerifyPassword == "" )
-    $VerifyPassword = "dummy";
+    $VerifyPassword = "";
 $t->set_var( "password_value", $Password );
 $t->set_var( "verify_password_value", $VerifyPassword );
 $t->set_var( "email_value", $Email );
@@ -691,7 +708,7 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
         $variable = "DeleteAddressButton$address_id";
         if ( !in_array( $AddressID[$i], $DeleteAddressArrayID ) and !isSet( $$variable ) )
         {
-            if ( is_numeric( $MainAddressID ) )
+            if ( isset( $MainAddressID ) && is_numeric( $MainAddressID ) )
             {
                 $t->set_var( "is_checked", $RealAddressID[$i] == $MainAddressID ? "checked" : "" );
             }
@@ -746,7 +763,14 @@ $t->set_var( "global_section_id", $GlobalSectionID );
 
 $t->set_var( "user_id", $UserID );
 
-$t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
+if( isset( $RedirectURL ) )
+{
+    $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
+}
+else
+{
+    $t->set_var( "redirect_url", '' );
+}
 
 $t->pparse( "output", "user_edit_tpl" );
 

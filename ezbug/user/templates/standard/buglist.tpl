@@ -19,7 +19,7 @@
 <!-- BEGIN path_tpl -->
 
 
-<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+<img src="{www_dir}/design/admin/images/white/path-arrow.gif" height="10" width="12" border="0" alt="" />
 
 <a class="path" href="{www_dir}{index}/bug/archive/0/">{intl-top_level}</a>
 
@@ -27,7 +27,7 @@
 
 <!-- BEGIN path_item_tpl -->
 
-<img src="{www_dir}/images/path-slash.gif" height="10" width="16" border="0" alt="" />
+<img src="{www_dir}/design/admin/images/path-slash.gif" height="10" width="16" border="0" alt="" />
 
 <a class="path" href="{www_dir}{index}/bug/archive/{module_id}/">{module_name}</a>
 <!-- END path_item_tpl -->

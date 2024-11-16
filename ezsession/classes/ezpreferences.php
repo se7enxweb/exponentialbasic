@@ -64,7 +64,7 @@ class eZPreferences
 
       It will automatically fetch the currently logged in user.
     */
-    function eZPreferences( )
+    function __construct( )
     {
     }
 
@@ -91,7 +91,7 @@ class eZPreferences
 
       If the variable does not exist 0 (false) is returned.
     */
-    function variable( $name, $group = false )
+    static public function variable( $name, $group = false )
     {
         $ret = false;
         $user =& eZUser::currentUser();

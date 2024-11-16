@@ -57,7 +57,7 @@ class eZCompany
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZCompany( $id= -1 )
+    function __construct( $id= -1 )
     {
         if ( is_numeric( $id ) and $id > -1 )
         {
@@ -271,7 +271,7 @@ class eZCompany
 
       The companies are returned as an array of eZCompany objects.
     */
-    function getByCategory( $categoryID, $offset = 0, $limit = -1, $order = "name" )
+    static public function getByCategory( $categoryID, $offset = 0, $limit = -1, $order = "name" )
     {
         $db =& eZDB::globalDatabase();
 
@@ -715,10 +715,10 @@ class eZCompany
     /*!
       Returns the logo image of the company as a eZImage object.
     */
-    function logoImage( $id = false )
+   static public function logoImage( $id = false )
     {
         if ( !$id )
-            $id = $this->ID;
+            $id = 0;
 
         $ret = false;
         $db =& eZDB::globalDatabase();
@@ -849,10 +849,10 @@ class eZCompany
     /*!
       Returns the image of the company as a eZImage object.
     */
-    function companyImage( $id = false )
+    static public function companyImage( $id = false )
     {
         if ( !$id )
-            $id = $this->ID;
+            $id = 0;
         $ret = false;
         $db =& eZDB::globalDatabase();
 
@@ -1259,4 +1259,3 @@ class eZCompany
     var $PersonContactID;
     var $CompanyNo;
 }
-

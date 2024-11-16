@@ -890,7 +890,7 @@ if ( !$confirm )
                 $categoryList =& array_unique( array_merge( $NewCompanyCategory, $categoryList ) );
             if ( isSet( $CompanyCategoryID ) )
                 $categoryList =& array_unique( array_merge( $CompanyCategoryID, $categoryList ) );
-            if ( count( $categoryList ) > 0 )
+            if ( isset( $categoryList ) && count( $categoryList ) > 0 )
                 $category_values = array_values( $categoryList );
             else
                 $category_values = array();
@@ -1028,11 +1028,15 @@ if ( !$confirm )
             $Zip[] = "";
             $Place[] = "";
             $Country[] = count( $Country ) > 0 ? $Country[count( $Country ) - 1] : "";
-        }
 
-        $count = max( count( $AddressTypeID ), count( $AddressID ),
-                      count( $Street1 ), count( $Street2 ),
-                      count( $Zip ), count( $Place ) );
+            $count = max( count( $AddressTypeID ), count( $AddressID ),
+                count( $Street1 ), count( $Street2 ),
+                count( $Zip ), count( $Place ) );
+        }
+        else
+        {
+            $count = false;
+        }
         $item = 0;
         $AddressDeleteValues =& array_values( $AddressDelete );
         $last_id = 0;
@@ -1074,9 +1078,9 @@ if ( !$confirm )
                     $t->set_var( "type_id", $country["ID"] );
                     $t->set_var( "type_name", eZTextTool::htmlspecialchars( $country["Name"] ) );
                     $t->set_var( "selected", "" );
-                    if ( $Country[$i] == -1 )
+                    if ( isset( $Country ) && $Country[$i] == -1 )
                         $t->set_var( "no_country_selected", "selected" );
-                    else if ( $country["ID"] == $Country[$i] )
+                    else if ( isset( $Country ) && $country["ID"] == $Country[$i] )
                         $t->set_var( "selected", "selected" );
                     $t->parse( "country_item_select", "country_item_select_tpl", true );
                 }
@@ -1096,8 +1100,12 @@ if ( !$confirm )
             $PhoneTypeID[] = "";
             $PhoneID[] = count( $PhoneID ) > 0 ? $PhoneID[count( $PhoneID ) - 1] + 1 : 1;
             $Phone[] = "";
+            $count = max( count( $PhoneTypeID ), count( $PhoneID ), count( $Phone ) );
         }
-        $count = max( count( $PhoneTypeID ), count( $PhoneID ), count( $Phone ) );
+        else
+        {
+            $count = false;
+        }
         $item = 0;
         $last_id = 0;
         $PhoneDeleteValues =& array_values( $PhoneDelete );
@@ -1125,7 +1133,7 @@ if ( !$confirm )
                     $t->set_var( "type_id", $phone_type->id() );
                     $t->set_var( "type_name", eZTextTool::htmlspecialchars( $phone_type->name() ) );
                     $t->set_var( "selected", "" );
-                    if ( $phone_type->id() == $PhoneTypeID[$i] )
+                    if ( isset( $PhoneTypeID ) && $phone_type->id() == $PhoneTypeID[$i] )
                         $t->set_var( "selected", "selected" );
                     $t->parse( "phone_item_select", "phone_item_select_tpl", true );
                 }
@@ -1143,8 +1151,12 @@ if ( !$confirm )
             $OnlineTypeID[] = "";
             $OnlineID[] = count( $OnlineID ) > 0 ? $OnlineID[count( $OnlineID ) - 1] + 1 : 1;
             $Online[] = "";
+            $count = max( count( $OnlineTypeID ), count( $OnlineID ), count( $Online ) );
         }
-        $count = max( count( $OnlineTypeID ), count( $OnlineID ), count( $Online ) );
+        else
+        {
+            $count = false;
+        }
         $item = 0;
         $last_id = 0;
         $OnlineDeleteValues =& array_values( $OnlineDelete );
@@ -1352,4 +1364,3 @@ if ( !$confirm )
 $t->pparse( "output", "person_edit" );
 
 ?>
-

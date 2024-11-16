@@ -39,7 +39,7 @@ class eZRegion
     /*!
       Constructs a new eZRegion object.
     */
-    function eZRegion( $id = "" )
+    function __construct( $id = "" )
     {
         if ( is_array( $id ) )
         {

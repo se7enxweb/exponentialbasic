@@ -44,7 +44,7 @@ $t->set_file( array(
 $t->set_block( "section_page", "section_list_tpl", "section_list" );
 $t->set_block( "section_list_tpl", "section_item_tpl", "section_item" );
 
-if ( !$Offset )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 $t->set_var( "site_style", $SiteStyle );
@@ -81,4 +81,3 @@ $t->set_var( "section_total", $totalCount );
 $t->pparse( "output", "section_page" );
 
 ?>
-

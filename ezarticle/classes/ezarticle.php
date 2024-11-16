@@ -358,7 +358,7 @@ class eZArticle
 
         Returns an object of eZArticle.
      */
-    function &getByName( $name )
+    static public function &getByName( $name )
     {
         $db =& eZDB::globalDatabase();
 
@@ -384,7 +384,7 @@ class eZArticle
 
         Returns an object of eZArticle.
      */
-    function &getByImportID( $name )
+    static public function &getByImportID( $name )
     {
         $db =& eZDB::globalDatabase();
 
@@ -966,7 +966,7 @@ class eZArticle
 
       Returns an array of letters which is the unique first character of all keywords.
     */
-    function &keywordFirstLetters( )
+    static public function &keywordFirstLetters( )
     {
         $db =& eZDB::globalDatabase();
 
@@ -1048,7 +1048,7 @@ class eZArticle
       It returns an array of unique keywords.
       If $firstLetter is set only the keywords with this first letter are returned.
     */
-    function &manualKeywordIndex( $firstLetter = false )
+    static public function &manualKeywordIndex( $firstLetter = false )
     {
         $user =& eZUser::currentUser();
         $currentUserSQL = "";
@@ -1143,7 +1143,7 @@ class eZArticle
       \static
       Returns an array of articles which match short contents and the keywords.
     */
-    function &searchByShortContent( $short_content, $keywords, $offset = 0, $max = -1, $as_object = true )
+    static public function &searchByShortContent( $short_content, $keywords, $offset = 0, $max = -1, $as_object = true )
     {
         $db =& eZDB::globalDatabase();
         $content_sql = "";
@@ -2518,7 +2518,7 @@ class eZArticle
 
       false is returned if no article was found.
     */
-    function categoryDefinitionStatic( $id )
+    static public function categoryDefinitionStatic( $id )
     {
         $db =& eZDB::globalDatabase();
 
@@ -2642,7 +2642,7 @@ class eZArticle
       $user is either a userID or an eZUser.
       $article is the articleID
      */
-    function isAuthor( $user, $articleID )
+    static public function isAuthor( $user, $articleID )
     {
         if( !is_a( $user, "eZUser" ) )
             return false;
@@ -2680,8 +2680,10 @@ class eZArticle
     /*!
       Returns a list of authors and their article count.
     */
-    function authorList( $offset = 0, $limit = -1, $sort = false )
+    static public function authorList( $offset = 0, $limit = -1, $sort = false )
     {
+        $sort_text = false;
+
         if ( is_string( $sort ) )
         {
             switch( $sort )
@@ -2715,7 +2717,7 @@ class eZArticle
     /*!
       Returns a all articles an author has written that currentuser is allowed to see.
     */
-    function authorArticleList( $authorid, $offset = 0, $limit = -1, $sort = false )
+    static public function authorArticleList( $authorid, $offset = 0, $limit = -1, $sort = false )
     {
         if ( is_string( $sort ) )
         {
@@ -2790,7 +2792,7 @@ eZUser_Author as Author
     /*!
       Returns the number of articles this author has written that the user is allowed to see.
     */
-    function authorArticleCount( $authorid )
+    static public function authorArticleCount( $authorid )
     {
         $user =& eZUser::currentUser();
         $currentUserSQL = "";

@@ -124,7 +124,7 @@ class eZTemplate
         $release = $versionArray[2];
 
         if ( $major >= 4 && ( ( $minor == 0 && $release >= 5 ) || ( $minor > 0 ) ) )
-        {        
+        {
             $this->ReplaceFunc = "str_replace";
         }
         else

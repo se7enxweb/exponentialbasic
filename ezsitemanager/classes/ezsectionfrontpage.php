@@ -191,7 +191,7 @@ class eZSectionFrontPage
         return $setting[$db->fieldName( "Name" )];
     }
     
-    function &settingNames()
+    static public function &settingNames()
     {
         $db =& eZDB::globalDatabase();
         $ret = array();
@@ -259,4 +259,3 @@ class eZSectionFrontPage
 }
 
 ?>
-

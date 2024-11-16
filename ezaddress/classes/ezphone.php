@@ -39,7 +39,7 @@ class eZPhone
     /*
 
     */
-    function eZPhone( $id = "" )
+    function __construct( $id = "" )
     {
         if ( !empty( $id ) )
         {

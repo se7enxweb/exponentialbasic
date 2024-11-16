@@ -21,7 +21,7 @@
 
 <!-- BEGIN path_tpl -->
 
-<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+<img src="{www_dir}/design/admin/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
 
 <a class="path" href="{www_dir}{index}/link/category/0/">{intl-top}</a>
 
@@ -29,7 +29,7 @@
 
 <!-- BEGIN path_item_tpl -->
 
-<img src="{www_dir}/images/path-slash.gif" height="10" width="16" border="0" alt="" />
+<img src="{www_dir}/design/admin/images/path-slash.gif" height="10" width="16" border="0" alt="" />
 
 <a class="path" href="{www_dir}{index}/link/category/{category_id}/">{category_name}</a>
 
@@ -49,7 +49,7 @@
 <!-- BEGIN category_item_tpl -->
 <tr>
 	<td class="{td_class}" valign="top" width="1%">
-	<img src="{www_dir}/images/folder.gif" height="16" width="16" border="0" alt="" /><br />
+	<img src="{www_dir}/design/admin/images/folder.gif" height="16" width="16" border="0" alt="" /><br />
 	</td>
 	<td class="{td_class}" valign="top" width="98%" colspan="2">
 	<span class="boxtext"><a href="{www_dir}{index}/link/category/{linkcategory_id}/">{linkcategory_name}</a></span>
@@ -87,7 +87,7 @@
 <!-- BEGIN link_item_tpl -->
 <tr class="{td_class}">
 	<td class="{td_class}" valign="top" width="1%">
-	<img src="{www_dir}/images/link.gif" height="16" width="16" border="0" alt="" /><br />
+	<img src="{www_dir}/design/admin/images/link.gif" height="16" width="16" border="0" alt="" /><br />
 	</td>
 	<td valign="top" width="99%" colspan="2">
 	<span class="boxtext"><a href="{www_dir}{index}/link/gotolink/addhit/{link_id}/?Url={link_url}" target="_blank">{link_name}</a></span>

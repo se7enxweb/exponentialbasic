@@ -44,29 +44,29 @@ $t->set_file( "mem_info_tpl", "meminfo.tpl" );
 $t->setAllStrings();
 
 $sys = eZSysinfo::cpu();
+$scsi_bus = eZSysinfo::scsibus();
 
 $t->set_var( "scsi_bus", $scsi_bus );
 
 $mem = eZSysinfo::meminfo();
 
-$t->set_var( "physical_free", eZSysinfo::format_bytesize($mem['ram']['t_free']) );
-$t->set_var( "physical_used", eZSysinfo::format_bytesize($mem['ram']['t_used']) );
-$t->set_var( "physical_total", eZSysinfo::format_bytesize($mem['ram']['total']) );
+$t->set_var( "physical_free", eZSysinfo::format_bytesize(@$mem['ram']['t_free']) );
+$t->set_var( "physical_used", eZSysinfo::format_bytesize(@$mem['ram']['t_used']) );
+$t->set_var( "physical_total", eZSysinfo::format_bytesize(@$mem['ram']['total']) );
 
-$t->set_var( "physical_percent", $mem['ram']['percent'] );
-$t->set_var( "physical_invert_percent", 100 - $mem['ram']['percent'] );
+$t->set_var( "physical_percent", @$mem['ram']['percent'] );
+$t->set_var( "physical_invert_percent", 100 - @$mem['ram']['percent'] );
 
 
-$t->set_var( "swap_free", eZSysinfo::format_bytesize($mem['swap']['free']) );
-$t->set_var( "swap_used", eZSysinfo::format_bytesize($mem['swap']['used']) );
-$t->set_var( "swap_total", eZSysinfo::format_bytesize($mem['swap']['total']) );
+$t->set_var( "swap_free", eZSysinfo::format_bytesize(@$mem['swap']['free']) );
+$t->set_var( "swap_used", eZSysinfo::format_bytesize(@$mem['swap']['used']) );
+$t->set_var( "swap_total", eZSysinfo::format_bytesize(@$mem['swap']['total']) );
 
-$t->set_var( "swap_percent", $mem['swap']['percent'] );
-$t->set_var( "swap_invert_percent", 100 - $mem['swap']['percent'] );
+$t->set_var( "swap_percent", @$mem['swap']['percent'] );
+$t->set_var( "swap_invert_percent", 100 - @$mem['swap']['percent'] );
 
 
 
 $t->pparse( "output", "mem_info_tpl" );
 
 ?>
-

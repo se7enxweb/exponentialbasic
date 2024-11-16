@@ -46,7 +46,7 @@ class eZPerson
       If $id is set, the object's values are fetched from the
       database.
     */
-    function eZPerson( $id="" )
+    function __construct( $id="" )
     {
         if ( !empty( $id ) )
         {
@@ -1017,10 +1017,10 @@ class eZPerson
     /*!
       Returns an array of companies this person is related to.
     */
-    function companies( $id = false, $as_object = true )
+    static public function companies( $id = false, $as_object = true )
     {
         if ( !$id )
-            $id = $this->ID;
+            $id = 0;
 
         $db =& eZDB::globalDatabase();
         $db->array_query( $arr,

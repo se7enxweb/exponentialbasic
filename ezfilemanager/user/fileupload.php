@@ -200,7 +200,7 @@ if ( $Action == "Insert" && !$error )
     $uploadedFile = new eZVirtualFile();
     $uploadedFile->setDescription( $Description );
     $uploadedFile->setUser( $user );
-    $uploadedFile->setFile( &$file );
+    $uploadedFile->setFile( $file );
     
     if ( empty( $Name ) )
         $Name = $uploadedFile->originalFileName();

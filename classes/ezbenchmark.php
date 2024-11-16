@@ -47,7 +47,7 @@ class eZBenchmark
     /*!
       Creates a new eZBenchmark object.
     */
-    function eZBenchmark( )
+    function __construct( )
     {
 
     }
@@ -104,4 +104,3 @@ class eZBenchmark
     var $StartTime;
     var $StopTime;
 }
-

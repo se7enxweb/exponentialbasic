@@ -49,7 +49,7 @@ class eZCompanyType
     /*!
       Constructor of the eZCompanyType.
     */
-    function eZCompanyType( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( $id != -1 )
         {
@@ -146,7 +146,7 @@ class eZCompanyType
     /*!
         Fetches all the company types in the db and return them as an array of objects.
      */
-    function getAll( $OrderBy = "ID", $LimitStart = "None", $LimitBy = "None" )
+    static public function getAll( $OrderBy = "ID", $LimitStart = "None", $LimitBy = "None" )
     {
         $db =& eZDB::globalDatabase();
 
@@ -202,7 +202,7 @@ class eZCompanyType
     /*!
         Fetches all the company types in the db and return them as an array of objects.
      */
-    function &getByParentID( $parent = 0, $OrderBy = "ID", $LimitStart = "None", $LimitBy = "None" )
+    static public function &getByParentID( $parent = 0, $OrderBy = "ID", $LimitStart = "None", $LimitBy = "None" )
     {
         $db =& eZDB::globalDatabase();
 
@@ -268,7 +268,7 @@ class eZCompanyType
     /*!
         Check if this item has children
      */
-    function hasChildren( &$childrenCount, $id = "this" )
+    static public function hasChildren( &$childrenCount, $id = "this" )
     {
         $ret = false;
 
@@ -297,11 +297,11 @@ class eZCompanyType
     /*!
       Print out the group path.
     */
-    function path( $categoryID = 0 )
+    static public function path( $categoryID = 0 )
     {
         if ( $categoryID == 0 )
         {
-            $categoryID = $this->ID;
+            $categoryID = false;
         }
 
         $category = new eZCompanyType( $categoryID );
@@ -321,7 +321,7 @@ class eZCompanyType
         return $path;
     }
 
-    function &getTree( $parentID=0, $level=0, $add_top = false, $name = false )
+    static public function &getTree( $parentID=0, $level=0, $add_top = false, $name = false )
     {
         if ( $add_top )
         {

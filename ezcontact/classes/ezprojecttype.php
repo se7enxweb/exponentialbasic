@@ -57,7 +57,7 @@ class eZProjectType
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZProjectType( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( is_array( $id ) )
         {
@@ -251,7 +251,7 @@ class eZProjectType
       Finds all project types.
       Returns an array with eZProjectType objects taken from the database.
     */
-    function &findTypes( $as_object = true )
+    static public function &findTypes( $as_object = true )
     {
         $qry_array = array();
         $db =& eZDB::globalDatabase();

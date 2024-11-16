@@ -38,7 +38,7 @@ class eZInformixDB
     /*!
       Constructor
     */
-    function eZInformixDB( $server, $db, $user, $password  )
+    function __construct( $server, $db, $user, $password  )
     {
         putenv('INFORMIXSERVER=localhost');
         putenv('INFORMIXDIR=/opt/informix');

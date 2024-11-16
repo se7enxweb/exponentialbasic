@@ -49,7 +49,7 @@ class eZMenu
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZMenu( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( is_array( $id ) )
         {
@@ -115,13 +115,14 @@ class eZMenu
     */
     function delete( $catID=-1 )
     {
+        $ret = false;
         if ( $catID == -1 )
             $catID = $this->ID;
 
         $db =& eZDB::globalDatabase();
         $db->begin();
 
-        $res = $db->query( "DELETE FROM eZSiteManager_Menu WHERE ID='$this->ID'" );
+        $ret = $db->query( "DELETE FROM eZSiteManager_Menu WHERE ID='$this->ID'" );
 
         if ( $ret == false )
             $db->rollback( );
@@ -145,7 +146,7 @@ class eZMenu
                               0, 1 );
             if( count( $quizArray ) == 1 )
             {
-                $this->fill( &$quizArray[0] );
+                $this->fill( $quizArray[0] );
                 $ret = true;
             }
             elseif( count( $quizArray ) == 1 )
@@ -174,7 +175,7 @@ class eZMenu
 
       The categories are returned as an array of ezmenu objects.
     */
-    function &getAll( $offset=0, $limit=20 )
+    static public function &getAll( $offset=0, $limit=20 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -200,8 +201,9 @@ class eZMenu
 
       The categories are returned as an array of ezmenu objects.
     */
-    function &getByParent( $parent=0, $offset=0, $limit=20 )
+    static public function &getByParent( $parent=0, $offset=0, $limit=20 )
     {
+        $parentID = 0;
         $db =& eZDB::globalDatabase();
 
         $returnArray = array();
@@ -209,7 +211,7 @@ class eZMenu
 
         if ( is_a( $parent, "eZMenu" ) )
             $parentID = $parent->id();
-        else if ( is_numeric ( $parent ) )
+        elseif ( is_numeric( $parent ) )
             $parentID = $parent;
 
         $db->array_query( $quizArray, "SELECT ID
@@ -229,8 +231,9 @@ class eZMenu
     /*!
       Returns the total count.
      */
-    function count( $parent=0 )
+    static public function count( $parent=0 )
     {
+        $parentID = 0;
         $db =& eZDB::globalDatabase();
         $ret = false;
 

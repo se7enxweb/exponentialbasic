@@ -65,7 +65,7 @@ class eZModuleLink
     /*!
       Initializes the object with the module name, the sub type and the id of the item.
     */
-    function eZModuleLink( $module, $type, $id )
+    function __construct( $module, $type, $id )
     {
         $this->Module = $module;
         $this->Type = $type;

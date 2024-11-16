@@ -63,7 +63,7 @@ class eZConsultation
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZConsultation( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( $id != -1 )
         {
@@ -360,7 +360,7 @@ class eZConsultation
       \static
       Finds all consultations on a specific state type.
     */
-    function findConsultationsByState( $state )
+    static public function findConsultationsByState( $state )
     {
     }
 
@@ -394,7 +394,7 @@ class eZConsultation
       \static
       Finds all companies which the user has consultations with and returns an array with IDs.
     */
-    function findConsultedCompanies( $user )
+    static public function findConsultedCompanies( $user )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();
@@ -419,7 +419,7 @@ class eZConsultation
       \static
       Finds all persons which the user has consultations with and returns an array with IDs.
     */
-    function findConsultedPersons( $user )
+    static public function findConsultedPersons( $user )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();
@@ -625,7 +625,7 @@ class eZConsultation
       \static
       Finds the n latest consultations.
     */
-    function findLatestConsultations( $user, $max )
+    static public function findLatestConsultations( $user, $max )
     {
         if ( is_a( $user, "eZUser" ) )
         {

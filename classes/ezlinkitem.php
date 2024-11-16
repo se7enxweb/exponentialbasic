@@ -38,7 +38,7 @@ class eZLinkItem
     /*!
       Initializes the link item with an id and a module name.
     */
-    function eZLinkItem( $id, $module )
+    function __construct( $id, $module )
     {
         $this->Module = $module;
         if ( is_array( $id ) )

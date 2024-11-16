@@ -46,7 +46,7 @@ include_once( "classes/ezdatetime.php" );
 
 class eZCacheFile
 {
-    function eZCacheFile( $root, $component, $suffix = "cache", $separator = "-" )
+    function __construct( $root, $component, $suffix = "cache", $separator = "-" )
     {
         if ( strlen( $root ) > 1 and $root[strlen($root) - 1] != "/" )
             $root .= "/";

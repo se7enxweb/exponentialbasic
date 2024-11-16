@@ -137,7 +137,7 @@ class eZObjectPermission
     }
 
 
-    static public function hasPermissionWithDefinition( $objectID, $moduleTable, $permission, $user=false, $categoryID )
+    static public function hasPermissionWithDefinition( $objectID, $moduleTable, $permission, $user=false, $categoryID=false )
     {
         if ( !is_a( $user, "eZUser" ) )
         {

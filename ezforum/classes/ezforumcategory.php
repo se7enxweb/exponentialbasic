@@ -279,7 +279,7 @@ class eZForumCategory
       \static
       Returns the Section ID. Returns false if the Category was not found.
     */
-    function sectionIDStatic( $categoryID )
+    static public function sectionIDStatic( $categoryID )
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZForum_Category WHERE ID='$categoryID'");

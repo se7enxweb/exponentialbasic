@@ -45,7 +45,7 @@ class eZBugLog
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZBugLog( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( $id != -1 )
         {
@@ -159,7 +159,7 @@ class eZBugLog
 
       The bugs are returned as an array of eZBug objects.
     */
-    function getByBug( $bug )
+    static public function getByBug( $bug )
     {
         $db =& eZDB::globalDatabase();
 
@@ -266,7 +266,6 @@ class eZBugLog
     var $Created;
     var $UserID;
     var $BugID;
-    var $Created;
 }
 
 ?>

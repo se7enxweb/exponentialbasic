@@ -22,7 +22,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
-
+$sum = array();
 
 include_once( "classes/eztemplate.php" );
 include_once( "classes/ezlocale.php" );
@@ -47,16 +47,16 @@ $fs = eZSysinfo::fsinfo();
 
 for ( $i = 0; $i < sizeof($fs); $i++ )
 {
-    $sum['size'] += $fs[$i]['size'];
-    $sum['used'] += $fs[$i]['used'];
-    $sum['free'] += $fs[$i]['free']; 
+    $sum['size'] = $fs[$i]['size'];
+    $sum['used'] = $fs[$i]['used'];
+    $sum['free'] = $fs[$i]['free'];
 
     $t->set_var( "mount_point", $fs[$i]['mount'] );
     $t->set_var( "fs_type", $fs[$i]['fstype'] );
     $t->set_var( "device", $fs[$i]['disk'] );    
 
     $t->set_var( "capacity_percent", $fs[$i]['percent'] );
-    $t->set_var( "capacity_inverted_percent", 100 - $fs[$i]['percent'] );
+    $t->set_var( "capacity_inverted_percent", 100 - (int) $fs[$i]['percent'] );
 
     $t->set_var( "free", eZSysinfo::format_bytesize( $fs[$i]['free'] ) );
     $t->set_var( "used", eZSysinfo::format_bytesize( $fs[$i]['used'] ) );
@@ -77,4 +77,3 @@ $t->set_var( "sum_total", eZSysinfo::format_bytesize( $sum['size'] ) );
 $t->pparse( "output", "file_info_tpl" );
 
 ?>
-

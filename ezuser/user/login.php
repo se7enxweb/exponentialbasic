@@ -116,7 +116,7 @@ if ( $Action == "login" )
                 }
                 else if ( isSet( $_REQUEST['RedirectURL'] ) )
                 {
-                    $stringTmp = split( "/", $_REQUEST['RedirectURL'] );
+                    $stringTmp = preg_split( "/", $_REQUEST['RedirectURL'] );
                     
                     if ( $stringTmp[2] == "norights" )
                     {

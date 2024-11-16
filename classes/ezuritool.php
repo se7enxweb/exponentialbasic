@@ -54,7 +54,7 @@ class eZURITool
       Splits the URI into an array and returns the array.
       \sa merge
     */
-    function &split( &$uri )
+    static public function &split( &$uri )
     {
         $uri_array = explode( "/", $uri );
         return $uri_array;
@@ -65,7 +65,7 @@ class eZURITool
       Merges an split URI array into a full URI and returns it.
       \sa split
     */
-    function &merge( &$uri_array )
+    static public function &merge( &$uri_array )
     {
         $uri = implode( "/", $uri_array );
         return $uri;
@@ -77,7 +77,7 @@ class eZURITool
       \sa encode
     */
 
-    function &decode( &$text )
+    static public function &decode( &$text )
     {
         $text = preg_replace( "/%([0-9a-fA-F]{2})/", "".chr(hexdec('\\1'))."", $text );
         return $text;
@@ -89,7 +89,7 @@ class eZURITool
       \sa decode
     */
 
-    function &encode( &$text )
+    static public function &encode( &$text )
     {
         $text = preg_replace( '/\\\\"/', '"', $text );
         $text = preg_replace( "/([ \"'&%])/", "%".bin2hex('\\1')."", $text );

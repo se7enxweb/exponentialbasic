@@ -46,7 +46,7 @@ class eZCurrency
     /*!
       Constructs a new eZCurrency object.
     */
-    function eZCurrency( $value=0 )
+    function __construct( $value=0 )
     {
         $this->Value = $value;
         settype( $this->Value, 'double' );

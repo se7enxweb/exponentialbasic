@@ -48,7 +48,7 @@ $t->set_block( "menu_list_tpl", "menu_item_tpl", "menu_item" );
 $t->set_block( "menu_page", "path_item_tpl", "path_item" );
 
 
-if ( !$Offset )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 $t->set_var( "site_style", $SiteStyle );
@@ -99,4 +99,3 @@ $t->set_var( "menu_total", $totalCount );
 $t->pparse( "output", "menu_page" );
 
 ?>
-

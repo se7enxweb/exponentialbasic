@@ -47,7 +47,7 @@ $t->setAllStrings();
 
 $t->set_block( "unhandled_bugs_tpl", "bug_tpl", "bug" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $GlobalSiteDesign );
 
 $bug = new eZBug();
 

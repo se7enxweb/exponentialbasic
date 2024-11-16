@@ -46,7 +46,7 @@ class eZImageCategory
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZImageCategory( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->ExcludeFromSearch = "false";
         if ( $id != -1 )
@@ -609,7 +609,7 @@ class eZImageCategory
     */
     function imageCount( $check_write = false )
     {
-        if ( $limit == 0 )
+        if ( !isset( $limit ) or $limit == 0 )
         {
             $ini =& INIFile::globalINI();
             $limit = $ini->read_var( "eZImageCatalogueMain", "ListImagesPerPage" );
@@ -619,6 +619,7 @@ class eZImageCategory
 
         $user =& eZUser::currentUser();
         $usePermission = true;
+        $groupSQL = false;
         if ( $user )
         {
             $groups =& $user->groups( false );
@@ -817,7 +818,7 @@ class eZImageCategory
         return $this->SectionID;
     }
 
-    function sectionIDStatic( $categoryID )
+    static public function sectionIDStatic( $categoryID )
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZImageCatalogue_Category WHERE ID='$categoryID'" );
@@ -840,7 +841,7 @@ class eZImageCategory
     var $Description;
     var $UserID;
     var $SectionID;
-
+    var $ExcludeFromSearch;
 }
 
 ?>

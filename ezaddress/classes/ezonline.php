@@ -48,7 +48,7 @@ class eZOnline
     /*!
       Constructs a new eZOnline object.
     */
-    function eZOnline( $id = "" )
+    function __construct( $id = "" )
     {
         if ( !empty( $id ) )
         {

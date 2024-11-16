@@ -64,7 +64,7 @@ class eZMailFilterRule
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZMailFilterRule( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

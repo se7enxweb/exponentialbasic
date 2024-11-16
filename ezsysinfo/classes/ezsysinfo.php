@@ -43,11 +43,11 @@ class eZSysinfo
       Function that emulate the compat_array_keys function of PHP4
       for PHP3 compatability
     */
-    function compat_array_keys( $arr )
+    static public function compat_array_keys( $arr )
     {
         $result=array();
 
-        while ( list($key,$val) = each($arr) )
+        foreach ($arr as $key => $val)
         {
             $result[] = $key;
         }
@@ -60,9 +60,10 @@ class eZSysinfo
       Function that emulates the compat_in_array function of PHP4
       for PHP3 compatability
     */
-    function compat_in_array( $value, $arr )
+    static public function compat_in_array( $value, $arr )
     {
-        while ( list($key,$val) = each($arr) )
+
+        foreach ($arr as $val)
         {
             if ( $value == $val )
             {
@@ -78,7 +79,7 @@ class eZSysinfo
       and optionally the number of decimal places required,
       it returns a formated number string, with unit identifier.
     */
-    function format_bytesize( $kbytes, $dec_places = 2 )
+    static public function format_bytesize( $kbytes, $dec_places = 2 )
     {   
         if ( $kbytes > 1048576 )
         {
@@ -104,7 +105,7 @@ class eZSysinfo
       \static
       Returns the virtual hostname accessed.
     */
-    function vhostname()
+    static public function vhostname()
     {
         if ( !( $result = getenv( 'SERVER_NAME' ) ) )
         {
@@ -119,7 +120,7 @@ class eZSysinfo
       \static
       Returns the Cannonical machine hostname.
     */
-    function chostname()
+    static public function chostname()
     {
         if ( $fp = fopen('/proc/sys/kernel/hostname','r') )
         {
@@ -138,7 +139,7 @@ class eZSysinfo
       \static
       Returns the IP address that the request was made on.
     */
-    function ip_addr()
+    static public function ip_addr()
     {
         if ( !( $result = getenv( 'SERVER_ADDR' ) ) )
         {
@@ -154,11 +155,11 @@ class eZSysinfo
       Returns an array of all meaningful devices      
       on the PCI bus.
     */
-    function pcibus()
+    static public function pcibus()
     {
         $results = array();
 
-        if ( $fd = fopen("/proc/pci", "r") )
+        if ( $fd = @fopen("/proc/pci", "r") )
         {
             while ( $buf = fgets( $fd, 4096 ) )
             {
@@ -170,7 +171,7 @@ class eZSysinfo
 
                 if ( $device )
                 { 
-                    list($key, $value) = split(": ", $buf, 2);
+                    list($key, $value) = preg_split(": ", $buf, 2);
 	
                     if ( !preg_match( "/bridge/i", $key ) && !preg_match( "/USB/i", $key ) )
                     {
@@ -191,34 +192,35 @@ class eZSysinfo
       to the system, as determined by the aliased
       shortcuts in /proc/ide
     */
-    function idebus()
+    static public function idebus()
     {
         $results = array();
 
-        $handle = opendir( "/proc/ide" );
-
-        while ( $file = readdir($handle) )
+        $handle = @opendir( "/proc/ide" );
+        if( $handle !== false )
         {
-            if ( preg_match( "/^hd/", $file ) )
-            {                
-                $results["$file"] = array();
+            while ( $file = readdir($handle) )
+            {
+                if ( preg_match( "/^hd/", $file ) )
+                {
+                    $results["$file"] = array();
 
-                if ( file_exists( "/proc/ide/$file/model" ) )
-                if ( $fd = fopen("/proc/ide/$file/model", "r") )
-                {
-                    $results["$file"]["model"] = trim( fgets($fd, 4096) );
-                    fclose( $fd );
-                }
-                if ( file_exists( "/proc/ide/$file/capacity" ) )
-                if ( $fd = fopen("/proc/ide/$file/capacity", "r") )
-                {
-                    $results["$file"]["capacity"] = trim( fgets($fd, 4096) );
-                    fclose( $fd );
+                    if ( file_exists( "/proc/ide/$file/model" ) )
+                        if ( $fd = fopen("/proc/ide/$file/model", "r") )
+                        {
+                            $results["$file"]["model"] = trim( fgets($fd, 4096) );
+                            fclose( $fd );
+                        }
+                    if ( file_exists( "/proc/ide/$file/capacity" ) )
+                        if ( $fd = fopen("/proc/ide/$file/capacity", "r") )
+                        {
+                            $results["$file"]["capacity"] = trim( fgets($fd, 4096) );
+                            fclose( $fd );
+                        }
                 }
             }
+            closedir($handle);
         }
-
-        closedir($handle); 
 
         return $results;
     }
@@ -229,13 +231,14 @@ class eZSysinfo
       Returns an array of all meaningful devices 
       on the SCSI bus.
     */
-    function scsibus()
+    static public function scsibus()
     {
         $results = array();
         $dev_vendor = "";
         $dev_model = "";
         $dev_rev = "";
         $dev_type = "";
+        $get_type = false;
 
         if ( file_exists( "/proc/scsi/scsi" ) and $fd = fopen("/proc/scsi/scsi", "r") )
         {
@@ -244,7 +247,7 @@ class eZSysinfo
                 if ( preg_match( "/Vendor/", $buf ) )
                 {
                     preg_match("/Vendor: (.*) Model: (.*) Rev: (.*)/i", $buf, $dev );
-                    list($key, $value) = split(": ", $buf, 2);
+                    list($key, $value) = preg_split("/: /", $buf, 2);
                     $dev_str = $value;
                     $get_type = 1;
                     continue;
@@ -267,8 +270,12 @@ class eZSysinfo
       Returns an associative array of two associative
       arrays, containg the memory statistics for RAM and swap
     */
-    function meminfo()
+    static public function meminfo()
     {
+        $results = array();
+        $results['ram'] = array();
+        $results['swap'] = array();
+
         if ( $fd = fopen("/proc/meminfo", "r") )
         {
             while ( $buf = fgets( $fd, 4096 ) )
@@ -279,16 +286,16 @@ class eZSysinfo
 
                     $results['ram'] = array();
 
-                    $results['ram']['total'] = $ar_buf[0] / 1024;
-                    $results['ram']['used'] = $ar_buf[1] / 1024;
-                    $results['ram']['free'] = $ar_buf[2] / 1024;
-                    $results['ram']['shared'] = $ar_buf[3] / 1024;
-                    $results['ram']['buffers'] = $ar_buf[4] / 1024;
-                    $results['ram']['cached'] = $ar_buf[5] / 1024;
+                    @$results['ram']['total'] = $ar_buf[0] / 1024;
+                    @$results['ram']['used'] = $ar_buf[1] / 1024;
+                    @$results['ram']['free'] = $ar_buf[2] / 1024;
+                    @$results['ram']['shared'] = $ar_buf[3] / 1024;
+                    @$results['ram']['buffers'] = $ar_buf[4] / 1024;
+                    @$results['ram']['cached'] = $ar_buf[5] / 1024;
 
-                    $results['ram']['t_used'] = $results['ram']['used'] - $results['ram']['cached'] - $results['ram']['buffers'];
-                    $results['ram']['t_free'] = $results['ram']['total'] - $results['ram']['t_used'];
-                    $results['ram']['percent'] = round( ($results['ram']['t_used'] * 100) / $results['ram']['total']);
+                    @$results['ram']['t_used'] = $results['ram']['used'] - $results['ram']['cached'] - $results['ram']['buffers'];
+                    @$results['ram']['t_free'] = $results['ram']['total'] - $results['ram']['t_used'];
+                    @$results['ram']['percent'] = round( ($results['ram']['t_used'] * 100) / $results['ram']['total']);
                 }
 
                 if ( preg_match("/Swap:\s+(.*)$/", $buf, $ar_buf ) )
@@ -297,10 +304,10 @@ class eZSysinfo
 
                     $results['swap'] = array();
 
-                    $results['swap']['total'] = $ar_buf[0] / 1024;
-                    $results['swap']['used'] = $ar_buf[1] / 1024;
-                    $results['swap']['free'] = $ar_buf[2] / 1024;
-                    $results['swap']['percent'] = round( ($ar_buf[1] * 100) / $ar_buf[0] );
+                    @$results['swap']['total'] = $ar_buf[0] / 1024;
+                    @$results['swap']['used'] = $ar_buf[1] / 1024;
+                    @$results['swap']['free'] = $ar_buf[2] / 1024;
+                    @$results['swap']['percent'] = round( ($ar_buf[1] * 100) / $ar_buf[0] );
 	
                     break;
                 }
@@ -310,8 +317,8 @@ class eZSysinfo
         }
         else
         {
-            $results['ram'] = array();
-            $results['swap'] = array();
+            @$results['ram'] = array();
+            @$results['swap'] = array();
         }
 
         return $results;
@@ -323,7 +330,7 @@ class eZSysinfo
       Returns an array of all network devices 
       and their tx/rx stats.
     */
-    function netdevs()
+    static public function netdevs()
     {
         $results = array();
 
@@ -360,7 +367,7 @@ class eZSysinfo
       \static
       Returns a string equivilant to `uname --release`)
     */
-    function kernel()
+    static public function kernel()
     {
         if ( $fd = fopen("/proc/version", "r") )
         {
@@ -394,11 +401,11 @@ class eZSysinfo
       Returns a 1x3 array of load avg's in
       standard order and format.
     */
-    function loadavg()
+    static public function loadavg()
     {
         if ( $fd = fopen("/proc/loadavg", "r") )
         {
-            $results = split( " ", fgets( $fd, 4096 ) );
+            $results = preg_split( "/[|\s:]/", fgets( $fd, 4096 ) );
             fclose( $fd );
         }
         else
@@ -415,15 +422,16 @@ class eZSysinfo
       Returns a formatted english string,
       enumerating the uptime verbosely.
     */
-    function uptime()
+    static public function uptime()
     {
+        $result = false;
         $fd = fopen("/proc/uptime", "r");
-        $ar_buf = split( " ", fgets( $fd, 4096 ) );
+        $ar_buf = preg_split( "/[|\s:]/", fgets( $fd, 4096 ) );
         fclose( $fd );
 
         $sys_ticks = trim( $ar_buf[0] );
 
-        $min   = $sys_ticks / 60;
+        $min   = (int) $sys_ticks / 60;
         $hours = $min / 60;
         $days  = floor( $hours / 24 );
         $hours = floor( $hours - ($days * 24) );
@@ -436,7 +444,7 @@ class eZSysinfo
         if ( $hours != 0 )
         {
             $result .= "$hours hours, ";
-        }  
+        }
         $result .= "$min minutes";
     
         return $result;
@@ -447,7 +455,7 @@ class eZSysinfo
       \static
       Returns the number of users currently logged in.
     */      
-    function users()
+    static public function users()
     {
         $result = trim( `who | wc -l` );
 
@@ -460,7 +468,7 @@ class eZSysinfo
       Returns an associative array containing all
       relevant info about the processors in the system.
     */
-    function cpu()
+    static public function cpu()
     {
         $results = array();
         $ar_buf = array();
@@ -469,7 +477,7 @@ class eZSysinfo
         {
             while ( $buf = fgets( $fd, 4096 ) )
             {
-                list($key, $value) = preg_split("/\s+:\s+/", trim($buf), 2);
+                list($key, $value) = array_pad( preg_split("/\s+:\s+/", trim($buf), 2), 2, null );
 
 
                 // All of the tags here are highly architecture dependant.
@@ -478,28 +486,28 @@ class eZSysinfo
                 // supported, tell me you want it written in. <infinite@sigkill.com>
                 switch ( $key ) {
                     case "model name":
-                        $results['model'] = $value;
+                        @$results['model'] = $value;
 					break;
                     case "cpu MHz":
-                        $results['mhz'] = sprintf("%.2f", $value );
+                        @$results['mhz'] = sprintf("%.2f", $value );
 					break;
                     case "clock": // For PPC arch (damn borked POS)
-                        $results['mhz'] = sprintf("%.2f", $value );
+                        @$results['mhz'] = sprintf("%.2f", $value );
 					break;
                     case "cpu": // For PPC arch (damn borked POS)
-                        $results['model'] = $value;
+                        @$results['model'] = $value;
 					break;
                     case "revision": // For PPC arch (damn borked POS)
-                        $results['model'] .= " ( rev: " . $value . ")";
+                        @$results['model'] .= " ( rev: " . $value . ")";
 					break;
                     case "cache size":
-                        $results['cache'] = $value;
+                        @$results['cache'] = $value;
 					break;
                     case "bogomips":
-                        $results['bogomips'] += $value;
+                        @$results['bogomips'] += $value;
 					break;
                     case "processor":
-                        $results['cpus'] += 1;
+                        @$results['cpus'] += 1;
 					break;
                 }	
             }
@@ -509,7 +517,7 @@ class eZSysinfo
         $keys = eZSysinfo::compat_array_keys( $results );
         $keys2be = array( "model", "mhz", "cache", "bogomips", "cpus" );
 
-        while ( $ar_buf = each( $keys2be ) )
+        foreach ($keys2be as $key => $ar_buf)
         {
             if (! eZSysinfo::compat_in_array( $ar_buf[1], $keys ) ) $results[$ar_buf[1]] = 'N.A.';
         }
@@ -522,10 +530,11 @@ class eZSysinfo
       Returns an array of associative arrays
       containing information on every mounted partition.
     */
-    function fsinfo()
+    static public function fsinfo()
     {
+        $results = array();
         $df = `/bin/df -kP`;
-        $mounts = split( "\n", $df );
+        $mounts = preg_split( "/(\n)/", $df );
         $fstype = array();
 
         if ( $fd = fopen("/proc/mounts", "r") )

@@ -46,7 +46,7 @@ $t->setAllStrings();
 $net = eZSysinfo::netdevs();
 
 $t->set_var( "net_interface", "" );
-while ( list($dev, $stats) = each($net) )
+foreach ($net as $dev => $stats)
 {
     $t->set_var( "device", $dev );
     $t->set_var( "received", eZSysinfo::format_bytesize( $stats['rx_bytes'] / 1024 )  );

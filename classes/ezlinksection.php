@@ -44,7 +44,7 @@ class eZLinkSection
       Initializes the link section with an $id and $module name.
       Set the id to false to create a new section.
     */
-    function eZLinkSection( $id, $module )
+    function __construct( $id, $module )
     {
         $this->Module = $module;
         $this->ID = $id;

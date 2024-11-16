@@ -38,7 +38,7 @@ class eZImageVariationGroup
     /*!
       Constructs a new eZImageVariationGroup object.
     */
-    function eZImageVariationGroup( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

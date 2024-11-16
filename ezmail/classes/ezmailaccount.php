@@ -61,7 +61,7 @@ class eZMailAccount
     /*!
       constructor
     */
-    function eZMailAccount( $id="" )
+    function __construct( $id="" )
     {
         if ( $id != "" )
         {

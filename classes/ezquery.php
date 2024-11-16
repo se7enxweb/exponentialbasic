@@ -59,7 +59,7 @@ class eZQuery
       $fields is an array of strings which is used for matching against, it can also be a single
       string in which case it is converted to an array with one element.
     */
-    function eZQuery( $fields, $queryText, $single_string = false )
+    function __construct( $fields, $queryText, $single_string = false )
     {
         if ( !is_array( $fields ) )
             $fields = array( $fields );

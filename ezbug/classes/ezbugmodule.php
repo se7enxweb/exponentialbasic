@@ -59,7 +59,7 @@ class eZBugModule
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZBugModule( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {
@@ -296,7 +296,7 @@ class eZBugModule
     */
     function description( $html = true )
     {
-        if ( $html )
+        if ( !is_null( $this->Description ) && $html )
             return htmlspecialchars( $this->Description );
         else
             return $this->Description;

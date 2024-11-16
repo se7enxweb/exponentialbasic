@@ -5,6 +5,7 @@ CREATE TABLE eZAddress_Address (
   AddressTypeID int(11),
   Place varchar(50),
   Zip varchar(10),
+  RegionID int(11),
   CountryID int(11),
   Name varchar(50),
   PRIMARY KEY (ID)
@@ -323,6 +324,3 @@ INSERT INTO eZAddress_PhoneType VALUES (3,'Personal Fax',1,0);
 INSERT INTO eZAddress_PhoneType VALUES (4,'Office Phone',1,0);
 INSERT INTO eZAddress_PhoneType VALUES (5,'Office Cell',1,0);
 INSERT INTO eZAddress_PhoneType VALUES (6,'Office Fax',1,0);
-
-
-

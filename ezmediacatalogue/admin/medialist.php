@@ -86,13 +86,16 @@ $t->set_var( "delete_categories_button" , "" );
 $t->set_var( "default_new" , "" );
 $t->set_var( "default_delete" , "" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $siteDesign );
 
 $category = new eZMediaCategory( $CategoryID );
 
 // Check if user have permission to the current category
 
 $error = true;
+
+if( !isset( $Offset ) )
+    $Offset = false;
 
 if ( eZObjectPermission::hasPermission( $category->id(), "mediacatalogue_category", "r", $user )
      || eZMediaCategory::isOwner( $user, $CategoryID ) )
@@ -250,9 +253,10 @@ foreach ( $mediaList as $media )
 
     $counter++;
 }
+
 eZList::drawNavigator( $t, $category->mediaCount(), $limit, $Offset, "media_list_page_tpl" );
 
-if ( $can_write )
+if ( isset( $can_write ) && $can_write )
 {
     $t->parse( "delete_media_button", "delete_media_button_tpl" );
     $t->parse( "default_delete", "default_delete_tpl" );
@@ -303,4 +307,3 @@ else
 
 
 ?>
-

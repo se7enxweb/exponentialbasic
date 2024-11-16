@@ -80,7 +80,7 @@ if ( isSet( $Update ) )
         {
             $image = new eZImage( $ImageArrayID[$i] );
             $category = new eZImageCategory( $CategoryArrayID[$i] );
-            $category->addImage( &$image );
+            $category->addImage( $image );
         }
     }
 }
@@ -103,7 +103,7 @@ else
 $i = 0;
 $counter = 0;
 
-if ( count ( $imageList ) > 0 )
+if ( !is_null( $imageList ) && count ( $imageList ) > 0 )
 {
     foreach ( $imageList as $image )
     {
@@ -188,7 +188,7 @@ if ( count ( $imageList ) > 0 )
 
 eZList::drawNavigator( $t, $imageCount, $Limit, $Offset, "image_list_page_tpl" );
 
-if ( count( $imageList ) > 0 )
+if ( !is_null( $imageList ) && count( $imageList ) > 0 )
 {
     $t->parse( "image_list", "image_list_tpl" );
 }
@@ -226,4 +226,3 @@ $t->set_var( "image_dir", $ImageDir );
 $t->pparse( "output", "image_list_page_tpl" );
 
 ?>
-

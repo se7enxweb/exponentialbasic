@@ -100,7 +100,6 @@ ob_start();
 // Turn on output buffering with gz compression
 //ob_start("ob_gzhandler");
 
-
 if ( $UsePHPSessions == true )
 {
     // start session handling
@@ -145,6 +144,9 @@ unset( $wwwDir );
 //  $session =& eZSession::globalSession();
 //  $session->fetch();
 //  print( "<pre>" . $session->hash() . "</pre>" );
+
+$siteDesign = & $ini->read_var( "site", "SiteStyle" );
+$GlobalSiteDesign = $siteDesign;
 
 // do the statistics
 include_once( "ezstats/classes/ezpageview.php" );

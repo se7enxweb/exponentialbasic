@@ -822,8 +822,16 @@ class eZImageCategory
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZImageCatalogue_Category WHERE ID='$categoryID'" );
+        $sectionID = (int) $db->fieldName( "SectionID" );
 
-        $sectionID = $res[$db->fieldName( "SectionID" )];
+        if( isset( $res[ $sectionID ] ) )
+        {
+            $sectionID = $res[ (int) $db->fieldName( "SectionID" )];
+        }
+        else
+        {
+            $sectionID = 0;
+        }
 
         if ( $sectionID > 0 )
         {

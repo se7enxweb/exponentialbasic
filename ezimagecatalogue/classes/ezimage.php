@@ -476,9 +476,11 @@ class eZImage
 
       The images are returned as an array of eZImage objects.
      */
-    function getUnassigned( $offset = -1, $limit = -1 )
+    static public function getUnassigned( $offset = -1, $limit = -1 )
     {
         $db =& eZDB::globalDatabase();
+        $returnArray = array();
+
         if ( $offset > 0 || $limit > 0 )
             $limitArray = array( "Offset" => $offset, "Limit" => $limit );
         else

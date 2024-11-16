@@ -267,6 +267,8 @@ class eZQuery
     
     var $StopWordColumn;
     var $StopPercent;
-    
+
+    var $SingleString;
+    var $Literal;
 }
 ?>

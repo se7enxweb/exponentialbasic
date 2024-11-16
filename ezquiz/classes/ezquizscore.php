@@ -47,7 +47,7 @@ class eZQuizScore
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZQuizScore( $id = -1, $fetch = true )
+    function __construct( $id = -1, $fetch = true )
     {
         if ( is_array( $id ) )
         {

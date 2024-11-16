@@ -46,7 +46,7 @@ class eZQuizAlternative
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZQuizAlternative( $id = -1 )
+    function __construct( $id = -1 )
     {
         if ( is_array( $id ) )
         {
@@ -145,7 +145,7 @@ class eZQuizAlternative
 
             if ( count( $alternativeArray ) == 1 )
             {
-                $this->fill( &$alternativeArray[0] );
+                $this->fill( $alternativeArray[0] );
                 $ret = true;
             }
             elseif ( count( $alternativeArray ) == 1 )

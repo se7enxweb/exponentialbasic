@@ -44,7 +44,7 @@ $t->set_file( array(
 $t->set_block( "game_page", "game_list_tpl", "game_list" );
 $t->set_block( "game_list_tpl", "game_item_tpl", "game_item" );
 
-if ( !$Offset )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 $t->set_var( "site_style", $SiteStyle );
@@ -82,4 +82,3 @@ $t->set_var( "game_total", $totalCount );
 $t->pparse( "output", "game_page" );
 
 ?>
-

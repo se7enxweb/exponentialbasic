@@ -38,7 +38,7 @@ class eZQuizTool
       \static
       Deletes the cache files for a given article and it's categories.
     */
-    function deleteCache()
+    static public function deleteCache()
     {
         $user =& eZUser::currentUser();
 

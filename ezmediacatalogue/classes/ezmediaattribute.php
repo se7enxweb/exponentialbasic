@@ -50,7 +50,7 @@ class eZMediaAttribute
       Constructs a new eZMediaAttribute object. Retrieves the data from the database
       if a valid id is given as an argument.
     */
-    function eZMediaAttribute( $id=-1 )
+    function __construct( $id=-1 )
     {
         if ( $id != -1 )
         {

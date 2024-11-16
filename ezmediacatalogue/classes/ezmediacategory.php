@@ -58,7 +58,7 @@ class eZMediaCategory
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZMediaCategory( $id=-1 )
+    function __construct( $id=-1 )
     {
         $this->ExcludeFromSearch = "false";
         if ( $id != -1 )
@@ -575,7 +575,7 @@ class eZMediaCategory
     */
     function mediaCount()
     {
-        if ( $limit == 0 )
+        if ( !isset($limit) || isset($limit) && $limit == 0 )
         {
             $ini =& INIFile::globalINI();
             $limit = $ini->read_var( "eZMediaCatalogueMain", "ListMediaPerPage" );
@@ -632,6 +632,7 @@ class eZMediaCategory
     var $ParentID;
     var $Description;
     var $UserID;
+    var $ExcludeFromSearch;
 }
 
 ?>

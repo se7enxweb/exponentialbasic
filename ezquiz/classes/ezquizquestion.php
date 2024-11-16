@@ -48,7 +48,7 @@ class eZQuizQuestion
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZQuizQuestion( $id = -1, $fetch = true )
+    function __construct( $id = -1, $fetch = true )
     {
         if ( is_array( $id ) )
         {
@@ -148,7 +148,7 @@ class eZQuizQuestion
                               0, 1 );
             if ( count( $questionArray ) == 1 )
             {
-                $this->fill( &$questionArray[0] );
+                $this->fill( $questionArray[0] );
                 $ret = true;
             }
             elseif ( count( $questionArray ) == 1 )

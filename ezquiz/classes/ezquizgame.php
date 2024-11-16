@@ -47,7 +47,7 @@ class eZQuizGame
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZQuizGame( $id = -1, $fetch = true )
+    function __construct( $id = -1, $fetch = true )
     {
         if ( is_array( $id ) )
         {
@@ -138,7 +138,7 @@ class eZQuizGame
 
             if ( count( $quizArray ) == 1 )
             {
-                $this->fill( &$quizArray[0] );
+                $this->fill( $quizArray[0] );
                 $ret = true;
             }
             elseif ( count( $quizArray ) == 1 )
@@ -169,7 +169,7 @@ class eZQuizGame
 
       The categories are returned as an array of eZQuizGame objects.
     */
-    function &getAll( $offset = 0, $limit = 20 )
+    static public function &getAll( $offset = 0, $limit = 20 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -202,7 +202,7 @@ class eZQuizGame
     /*!
       Returns the total count.
      */
-    function count()
+    static public function count()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;

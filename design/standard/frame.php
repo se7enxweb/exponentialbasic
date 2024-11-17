@@ -115,35 +115,37 @@ else
 </tr>
    <tr>
    <td class="tdmini" width="99%" colspan="2">
-<!--     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif" height="20" width="290" border="0" alt="" /></a><br />
+     <!--     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif" height="20" width="290" border="0" alt="" /></a><br />
    </td>
    <td class="tdmini" width="1%" align="right">
--->
-<table class="header" width="100%" border="0" cellspacing="0" cellpadding="0">
+     -->
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-   <td class="tdmini" width="2%">
-   <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-left.gif" height="20" width="20" border="0" alt="" /><br />
-   </td>
-   <td class="tab" bgcolor="#ffffff" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-standard/">Standard</a>&nbsp;&nbsp;</td>
-   <td class="tdmini" width="1%">
-   <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
-   </td>
-   <td class="tab" bgcolor="#dcdcdc" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-intranet/">Intranet</a>&nbsp;&nbsp;</td>
-   <td class="tdmini" width="1%">
-   <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
-   </td>
-   <td class="tab" bgcolor="#dcdcdc" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-trade/">Trade</a>&nbsp;&nbsp;</td>
-   <td class="tdmini" width="1%">
-   <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
-   </td>
-   <td class="tab" bgcolor="#dcdcdc" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-news/">News</a>&nbsp;&nbsp;</td>
-   <td class="tdmini" width="1%">
-   <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-right.gif" height="20" width="20" border="0" alt="" /><br />
-   </td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-left.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#ffffff" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-standard/">Standard</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#dcdcdc" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-intranet/">Intranet</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#dcdcdc" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-trade/">Trade</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#dcdcdc" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-news/">News</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-right.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
 </tr>
 </table>
 
-   </td>
+        </td>
 </tr>
 </table>
 

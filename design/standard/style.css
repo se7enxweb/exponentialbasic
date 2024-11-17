@@ -1,72 +1,95 @@
 /* Standard eZ publish stylesheet */
 
-body, div, span, p, .p, h1, h2, .listheadline, .listproducts, h3, ul, li, a, td ,th, select, input, textarea, credit
-{
+body,
+div,
+span,
+p,
+.p,
+h1,
+h2,
+.listheadline,
+.listproducts,
+h3,
+ul,
+li,
+a,
+td,
+th,
+select,
+input,
+textarea,
+credit {
 	font-family: Verdana, Arial, Helvetica, Swiss, Futura, sans-serif;
 }
 
-body, p, .p, ul, li, a, h3, .path, th, td, .check
-{
+body,
+p,
+.p,
+ul,
+li,
+a,
+h3,
+.path,
+th,
+td,
+.check {
 	font-size: 13px;
 	color: #000000;
 }
 
-h1 
-{
+h1 {
 	font-weight: bold;
 	font-size: 22px;
 	color: #000000;
 	margin-bottom: 8px;
-	text-decoration : none;
+	text-decoration: none;
 }
 
-h2, .listheadline, .listproducts
-{
+h2,
+.listheadline,
+.listproducts {
 	font-weight: bold;
 	font-size: 17px;
 	color: #000000;
 	margin-top: 16px;
-	margin-bottom: 8px;	
-	text-decoration : none;
+	margin-bottom: 8px;
+	text-decoration: none;
 }
 
-h2, .listheadline
-{
-	text-decoration : none;
+h2,
+.listheadline {
+	text-decoration: none;
 }
 
-.listproducts 
-{
-	text-decoration : underline;
+.listproducts {
+	text-decoration: underline;
 }
 
-.listheadline, .listproducts 
-{
+.listheadline,
+.listproducts {
 	margin-top: 8px;
 }
 
-h3, .path
-{
+h3,
+.path {
 	font-weight: bold;
-	text-decoration : none;
+	text-decoration: none;
 }
 
-.tab, .tab a
-{
+.tab,
+.tab a {
 	font-size: 11px;
 	font-weight: bold;
 	text-align: center;
 	text-decoration: none;
 }
 
-a:hover 
-{
+a:hover {
 	color: #404040;
 	text-decoration: underline;
 }
 
-.menuhead
-{
+.menuhead {
 	background: #666666;
 	font-size: 13px;
 	color: #ffffff;
@@ -74,219 +97,253 @@ a:hover
 	text-align: center;
 }
 
-.menusubhead
-{
+.menusubhead {
 	color: #777777;
 	font-weight: bold;
 }
 
-.menu, .menutext, .menubold, .pictext, .credit, .byline, .subhead
-{
+.menu,
+.menutext,
+.menubold,
+.pictext,
+.credit,
+.byline,
+.subhead {
 	font-size: 11px;
 }
 
-.menu 
-{
+.menu {
 	font-weight: normal;
 	text-decoration: none;
 }
 
-.menutext 
-{
+.menutext {
 	margin-bottom: 4px;
 }
 
-.menubold 
-{
+.menubold {
 	font-weight: bold;
 }
 
-.menuspacer
-{
+.menuspacer {
 	font-size: 2px;
 }
 
-.spacer
-{
+.spacer {
 	padding-top: 8px;
 	padding-bottom: 8px;
 }
 
-.boxtext 
-{
+.boxtext {
 	font-weight: bold;
 	margin-bottom: 4px;
 }
 
-.small, .smallbold
-{
+.small,
+.smallbold {
 	font-size: 10px;
 }
 
-.smallbold 
-{
+.smallbold {
 	font-weight: bold;
 }
 
-.check 
-{
+.check {
 	margin-bottom: 8px;
 }
 
-.checkhead
-{
+.checkhead {
 	font-weight: bold;
 	margin-bottom: 16px;
 }
 
-.list
-{
+.list {
 	margin-top: 5px;
 	margin-bottom: 10px;
 	padding: 4px;
 }
 
-th 
-{
+th {
 	font-weight: bold;
 	text-align: left;
 }
 
-th.right
-{
+th.right {
 	text-align: right;
 }
 
-.tdmini
-{
+.tdmini {
 	font-size: 1px;
 }
 
-.pictext
-{
+.pictext {
 	font-style: normal;
 	background-color: #f0f0f0;
 }
 
-.pris
-{
+.pris {
 	font-weight: bold;
 	padding-top: 8px;
 	padding-bottom: 12px;
 }
 
-.linkselect
-{
+.linkselect {
 	color: #ffffff;
 }
 
-.linkselect:hover
-{
+.linkselect:hover {
 	color: #dcdcdc;
 }
 
-.linknormal
-{
+.linknormal {
 	color: #000000;
 }
 
-.bglight 
-{
+.bglight {
 	background-color: #f0f0f0;
 }
 
-.bgdark 
-{
+.bgdark {
 	background-color: #dcdcdc;
 }
 
-.bgcurrent
-{
+.bgcurrent {
 	background-color: #f07800;
 }
 
-.bgweekend
-{
+.bgweekend {
 	background-color: #a0a0a0;
 }
 
-.bgselect
-{
+.bgselect {
 	color: #ffffff;
 	background-color: #787878;
 }
 
-form
-{
+form {
 	margin: 0px;
 }
 
-hr
-{
+hr {
 	color: #808080;
 }
 
-.stdbutton 
-{
+.stdbutton {
 	font-size: 11px;
 	font-weight: bold;
 }
- 
-.okbutton 
-{
+
+.okbutton {
 	font-size: 18px;
 	font-weight: bold;
 }
 
-.divider
-{
+.divider {
 	float: left;
 	padding-right: 10px;
 }
 
-.box
-{
+.box {
 	width: 440px;
 }
 
-.halfbox
-{
+.halfbox {
 	width: 200px;
 }
 
-.searchbox
-{
+.searchbox {
 	width: 120px;
 }
 
-.error
-{
+.error {
 	font-size: 14;
 	font-weight: bold;
-    color: #f08c00;
+	color: #f08c00;
 }
 
 /* 7x */
 
-table.all, table.header, table.body {
-    table-layout: fixed;
-    width: 100%;
-    /* border:1px solid; */
-    border-collapse: collapse;
-}
-td {
+table.all,
+table.header,
+table.body {
+	table-layout: fixed;
+	width: 100%;
+	/* border:1px solid; */
+	border-collapse: collapse;
 }
 
+td {}
+
 td.menu-left {
-    min-width: 125px;
-    width: 5.8%;
+	min-width: 125px;
+	width: 5.8%;
 }
 
 td.menu-right {
-    min-width: 125px;
-    width: 8%;
+	min-width: 125px;
+	width: 8%;
 }
 
 
 
-/* Hellstrøm 24.8.2001 */
+/* Hellstrï¿½m 24.8.2001 */
+
+/* 
+ * 7x - Responsive redesign of eZ Publish 2
+ * Date: 2024/11/17
+ */
+@media screen and (max-width: 575.98px) {
+	.main-body tr {
+		display: grid;
+	}
+
+	td.menu-left {
+		width: auto;
+		order: 2;
+	}
+
+	td.menu-right {
+		width: auto;
+		order: 3;
+	}
+
+	.spacer {
+		padding: 0.5rem;
+		transform: translateX(0.5rem);
+	}
+
+	[valign="top"] {
+		width: auto;
+	}
+
+	[valign="top"] img {
+		margin-left: 0.5rem;
+	}
+
+	[valign="top"] .path:last-of-type {
+		margin-right: 0.5rem;
+	}
+
+	.small + table img {
+		width: 10rem;
+		height: auto;
+	}
+
+	[valign="top"] td[bgcolor="#ffffff"] {
+		width: auto;
+		padding: 0.5rem;
+	}
+
+	body {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.p {
+		padding-bottom: 0.5rem;
+	}
+
+	.path {
+		font-size: 0.75rem;
+	}
+}

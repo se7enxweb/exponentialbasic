@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="no" lang="en">
 
 <head>
-<title><?php
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php
 if ( isset( $Title ) )
     print( $Title );
 else
 	print( "eZ publish" );
     ?></title>
 
-<link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/news/style.css" />
+    <link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/news/style.css" />
+    <link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/standard/responsive.css" />
 
 <script language="JavaScript1.2">
 <!--//
@@ -91,16 +94,19 @@ else
 
 <body bgcolor="#996666" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"  onload="MM_preloadImages('<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/redigerminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/slettminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/downloadminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/addminimrk.gif')">
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="body" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<td>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="all" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-	<td class="tdmini" width="99%">
-          <a href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif" height="20" width="290" border="0" alt="" /></a><br />
-	</td>
-	<td class="tdmini" width="1%" align="right">
+   <td class="tdmini" width="99%" colspan="2">
+     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif"
+									 height="20" width="290" border="0" alt="" /></a><br />
+   </td>
+</tr>
+   <tr>
+   <td class="tdmini" width="99%" colspan="2">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -132,7 +138,7 @@ else
 
 <table width="100%" border="0" cellspacing="0" cellpadding="4">
 <tr valign="top">
-    <td width="1%" bgcolor="#fbf7f7">
+    <td class="menu-left" width="1%" bgcolor="#fbf7f7">
 
 	<!-- Left menu start -->
 
@@ -155,7 +161,7 @@ else
 	</td>
 
 	<td width="1%" bgcolor="#ffffff"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="2" height="1" border="0" alt="" /></td>
-    <td width="96%" bgcolor="#ffffff">
+    <td class="main-body" width="96%" bgcolor="#ffffff">
 
     <!-- Banner start -->
 <!--
@@ -181,7 +187,7 @@ else
     </td>
    	<td width="1%" bgcolor="#ffffff"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="2" height="1" border="0" alt="" /></td>
 
-	<td width="1%" bgcolor="#fbf7f7">
+	<td class="menu-right" width="1%" bgcolor="#fbf7f7">
 
    	<!-- Right menu start -->
 

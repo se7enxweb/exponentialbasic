@@ -1,8 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
+  <head>
+    <?php /*
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<title><?php
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      */?>
+      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?php
 if ( isset( $Title ) )
     print( $Title );
 else
@@ -10,6 +20,7 @@ else
     ?></title>
 
 <link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/trade/style.css" />
+<link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/standard/responsive.css" />
 
 <script language="JavaScript1.2">
 <!--//
@@ -92,48 +103,57 @@ else
 
 <body bgcolor="#666699" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"  onload="MM_preloadImages('/design/base/images/icons/redigerminimrk.gif','/design/base/images/icons/slettminimrk.gif','/design/base/images/icons/downloadminimrk.gif','/design/base/images/icons/addminimrk.gif')">
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="body" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-	<td>
+        <td>
+
+<table class="all" width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+   <td class="tdmini" width="99%" colspan="2">
+     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif"
+									 height="20" width="290" border="0" alt="" /></a><br />
+   </td>
+</tr>
+   <tr>
+   <td class="tdmini" width="99%" colspan="2">
+     <!--     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" 
+	      src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif"
+	      height="20" width="290" border="0" alt="" /></a><br />
+     </td>
+     <td class="tdmini" width="1%" align="right">
+     -->
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-	<td class="tdmini" width="99%">
-          <a href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif" height="20" width="290" border="0" alt="" /></a><br />
-	</td>
-	<td class="tdmini" width="1%" align="right">
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr>
-	<td class="tdmini" width="1%">
-	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-left.gif" height="20" width="20" border="0" alt="" /><br />
-	</td>
-	<td class="tab" bgcolor="#e3e3ec" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-standard/">Standard</a>&nbsp;&nbsp;</td>
-	<td class="tdmini" width="1%">
-	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
-	</td>
-	<td class="tab" bgcolor="#e3e3ec" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-intranet/">Intranet</a>&nbsp;&nbsp;</td>
-	<td class="tdmini" width="1%">
-	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-mrk.gif" height="20" width="20" border="0" alt="" /><br />
-	</td>
-	<td class="tab" bgcolor="#ffffff" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-trade/">Trade</a>&nbsp;&nbsp;</td>
-	<td class="tdmini" width="1%">
-	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
-	</td>
-	<td class="tab" bgcolor="#e3e3ec" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-news/">News</a>&nbsp;&nbsp;</td>
-	<td class="tdmini" width="1%">
-	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-right.gif" height="20" width="20" border="0" alt="" /><br />
-	</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-left.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#e3e3ec" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-standard/">Standard</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#e3e3ec" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-intranet/">Intranet</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-mrk.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#ffffff" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-trade/">Trade</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
+        <td class="tab" bgcolor="#e3e3ec" width="23%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-news/">News</a>&nbsp;&nbsp;</td>
+        <td class="tdmini" width="1%">
+        <img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-right.gif" height="20" width="20" border="0" alt="" /><br />
+        </td>
 </tr>
 </table>
 
-	</td>
+        </td>
 </tr>
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="4">
 <tr valign="top">
-    <td width="1%" bgcolor="#f6f6fa">
+    <td class="menu-left" width="1%" bgcolor="#f6f6fa">
 
 	<!-- Left menu start -->
 
@@ -186,7 +206,7 @@ else
     </td>
    	<td width="1%" bgcolor="#ffffff"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="2" height="1" border="0" alt="" /></td>
 
-	<td width="1%" bgcolor="#f6f6fa">
+	<td class="menu-right" width="1%" bgcolor="#f6f6fa">
 
 
    	<!-- Right menu start -->

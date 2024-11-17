@@ -1,0 +1,87 @@
+/* 7x */
+
+table.all,
+table.header,
+table.body {
+	table-layout: fixed;
+	width: 100%;
+	/* border:1px solid; */
+	border-collapse: collapse;
+}
+
+td {}
+
+td.menu-left {
+	min-width: 125px;
+	width: 5.8%;
+}
+
+td.menu-right {
+	min-width: 125px;
+	width: 8%;
+}
+
+
+
+/* Hellstr�m 24.8.2001 */
+
+/* 
+ * 7x - Responsive redesign of eZ Publish 2
+ * Date: 2024/11/17
+ */
+@media screen and (max-width: 575.98px) {
+	.main-body tr {
+		display: grid;
+	}
+
+	td.menu-left {
+		width: auto;
+		order: 2;
+	}
+
+	td.menu-right {
+		width: auto;
+		order: 3;
+	}
+
+	.spacer {
+		padding: 0.5rem;
+		transform: translateX(0.5rem);
+	}
+
+	table tr [valign="top"] {
+	         width: auto;
+	         display:grid;
+	}
+
+	[valign="top"] img {
+		margin-left: 0.5rem;
+	}
+
+	[valign="top"] .path:last-of-type {
+		margin-right: 0.5rem;
+	}
+
+	.small + table img {
+		width: 10rem;
+		height: auto;
+	}
+
+	[valign="top"] td[bgcolor="#ffffff"] {
+		width: auto;
+		padding: 0.5rem;
+	}
+
+	body {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.p {
+		padding-bottom: 0.5rem;
+	}
+
+	.path {
+		font-size: 0.75rem;
+	}
+}

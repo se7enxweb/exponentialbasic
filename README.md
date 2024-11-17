@@ -71,9 +71,9 @@ The remaining work to test, bugfix and document all modules individually as PHP8
 - Follow up efforts surround going through each admin and user module views per module an additional time and making certain the actual output is sane and correct for the given database content and feature interactions (Actions; Feature usage accurate and valid results output to user every time). This will require additional documentation to ensure repeatable results.
 - Final efforts surround going through all module views with various error logging being monitored to capture debug, errors, warnings, any output that creates a log entry will be reviewed and if needed refactored as needed. This should be automated with testing software in the future.
 
-## Installation
+## Installation via Git & GitHub
 
-Follow these steps to set up eZ Publish Basic:
+Follow these steps to set up eZ Publish Basic via GitHub:
 
 1. Clone the repository:
    ```bash
@@ -87,13 +87,32 @@ Follow these steps to set up eZ Publish Basic:
    ```bash
     composer install
 
-4. Configure your environment:
+## Installation via Composer & Packagist
 
-5. Update settings files as needed.
+Follow these steps to set up eZ Publish Basic via Composer:
 
-6. Ensure your server supports PHP 8.
+1. Clone the latest release:
+   ```bash
+   composer create-project se7enxweb/ezpublishbasic -s dev ezpublishbasic;
+   cd ezpublishbasic;
 
-7. Set up your database and initialize the application in your web browser.
+## Configure your installation of the software package
+
+1. Configure your environment:
+
+- Web Server setup a new virtual host for the website(s) that power this software package. There are two by default. User and Admin websites.
+  - You will require separate virtual hosts for www and admin domains.
+- Database Server
+  - You will require a new database and database user and password access configured.
+- Filesystem User and Group Permissions
+
+2. Set up your database in your database server.
+
+3. Update settings files as needed. 
+
+- Update site name, domain hostnames for user and admin websites, default design, database name and connecting username and password settings all in the site.ini in bin/ini/override/site.ini
+
+3. Initialize the application in your web browser. We recommend loading the admin site first but it doesn't matter much.
 
 # Default Admin Account in eZ Publish Basic
 

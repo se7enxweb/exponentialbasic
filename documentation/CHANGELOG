@@ -2,10 +2,22 @@ eZ publish changelog:
 ---------------------
 
 
+Changes from 2.3.0 to 2.4.0 (alpha)
+---------------------------
+
+- Work to replace register globals functionality in userland custom php temporarily until project is stable enough to consider a new project to replace each module views variables scope and usage.
+-- From php variables to explicit use of $_POST or $_GET or $_SERVER scopes ensuring greater security in the core kernel of each module views provided by this software package.
+
+- Extend Project Documentation Extensively.
+-- Documented in README.md the extensive nature of the status, listings of available module views in detail of status and testing results.
+-- Documented in README.md how to install eZ Publish Basic via git
+
+
 Changes from 2.2.10 to 2.3.0 (alpha)
 ---------------------------
 
-
+- Incomplete work to upgrade php4 code to php5 code.
+- Incomplete work restructuring design internals and paths to ensure all images link to desired files correctly.
 
 Changes from 2.2.9 to 2.2.10
 ---------------------------

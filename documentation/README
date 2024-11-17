@@ -1,7 +1,8 @@
-eZ publish 2.3.0
+eZ publish Basic 2.4.0
 ----------------
 
-eZ publish is a content management system for e-commerce, e-publishing and intranets. 
+eZ publish Basic is a content management system for e-commerce, e-publishing and intranets.
+
 The software is licensed under the GPL as described in the file LICENSE.
 
 For the changelog consult the file CHANGELOG.
@@ -12,7 +13,7 @@ For information about how to translate eZ publish consult the file TRANSLATION
 
 For installation information consult the file INSTALL.txt
 
-NOTE: There are structural changes in the database that might make your old articles unavaliable when you upgrade. There are some SQL sentences in the SQL_UPDATES file to fix this. To them read the comments.
+NOTE: There are structural changes in the database that might make your old articles unavailable when you upgrade. There are some SQL sentences in the SQL_UPDATES file to fix this. To them read the comments.
 
 L I N K S:
 ----------

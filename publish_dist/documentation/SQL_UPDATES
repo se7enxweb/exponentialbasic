@@ -1,5 +1,0 @@
-SQL UPDATES for eZ publish:
----------------------------
-
-From version 2.0.0 the SQL updates are located in the updates folder.
-With the version number as name. SQL_UPDATES from pre 2.0 is in one file.

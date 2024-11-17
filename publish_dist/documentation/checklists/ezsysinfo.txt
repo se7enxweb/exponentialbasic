@@ -1,9 +1,0 @@
-Checklist for eZ sysinfo
-------------------------
-
-- Check that the correct information is displayed in:
-  System info
-  Network info
-  Hardware info
-  Memory info
-  Filesystem info

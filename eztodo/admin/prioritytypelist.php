@@ -48,7 +48,7 @@ $t->set_file( array(
 
 $t->set_block( "priority_type_page", "priority_item_tpl", "priority_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $priority_type = new eZPriority();
 $priority_type_array = $priority_type->getAll();

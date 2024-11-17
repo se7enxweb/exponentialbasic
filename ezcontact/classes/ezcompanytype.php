@@ -205,6 +205,7 @@ class eZCompanyType
     static public function &getByParentID( $parent = 0, $OrderBy = "ID", $LimitStart = "None", $LimitBy = "None" )
     {
         $db =& eZDB::globalDatabase();
+        $LimitArray = false;
 
         if ( is_a( $parent, "eZCompanyType" ) )
         {

@@ -54,9 +54,9 @@ $t->set_block( "order_item_list_tpl", "order_item_tpl", "order_item" );
 
 $t->set_block( "order_item_tpl", "order_status_tpl", "order_status" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
-$t->set_var( "query_string", $QueryText );
+$t->set_var( "query_string", isset( $QueryText ) ? $QueryText : '' );
 
 if ( !isSet( $OrderBy ) )
     $OrderBy = "Date";

@@ -38,10 +38,10 @@ for( $i = 0; $i < count( $LinkArrayID ); $i++ )
 
     // Calculate new and unused categories
     $old_maincategory = $link->categoryDefinition();
-    $old_categories =& array_unique( array_merge( $old_maincategory->id(),
+    $old_categories =& array_unique( array_merge( array( $old_maincategory->id() ),
                                                   $link->categories( false ) ) );
 
-    $new_categories =& array_unique( array_merge( $LinkCategoryID[$i], $CategoryArray[$i] ) );
+    $new_categories =& array_unique( array_merge( array( $LinkCategoryID[$i] ), array( $CategoryArray[$i] ) ) );
     $remove_categories = array_diff( $old_categories, $new_categories );
     $add_categories = array_diff( $new_categories, $old_categories );
 

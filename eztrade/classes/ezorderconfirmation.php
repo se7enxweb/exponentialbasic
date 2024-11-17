@@ -818,7 +818,8 @@ class eZOrderConfirmation
 
             if ( is_array ( $payedWith ) )
             {
-                while( list($voucherID,$price) = each( $payedWith ) )
+                //while( list($voucherID,$price) = each( $payedWith ) )
+                foreach( $payedWith as $voucherID => $price )
                 {
                     $voucher = new eZVoucher( $voucherID );
                     $voucher->setPrice( $voucher->price() - $price );

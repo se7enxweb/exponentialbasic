@@ -485,7 +485,7 @@ class eZVirtualfile
             $this->OriginalFileName = $file->name();
 
             $suffix = "";
-            if ( ereg( "\\.([a-z]+)$", $this->OriginalFileName, $regs ) )
+            if ( preg_match( "\\.([a-z]+)$", $this->OriginalFileName, $regs ) )
             {
                 // We got a suffix, make it lowercase and store it
                 $suffix = strtolower( $regs[1] );

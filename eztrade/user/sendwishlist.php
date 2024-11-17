@@ -69,7 +69,7 @@ if ( !$wishlist )
     exit();    
 }
 
-if ( $Action == "SendWishlist" )
+if ( isset( $Action ) && $Action == "SendWishlist" )
 {
     $SendToArray = explode( ",", $SendTo );
 

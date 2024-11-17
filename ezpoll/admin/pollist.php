@@ -106,7 +106,7 @@ $t->set_file( array(
 
 $t->set_block( "poll_list_page", "poll_item_tpl", "poll_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $nopolls = "";
 

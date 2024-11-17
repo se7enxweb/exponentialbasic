@@ -47,7 +47,7 @@ $t->set_block( "section_list_tpl", "section_item_tpl", "section_item" );
 if ( !isset( $Offset ) )
     $Offset = 0;
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $sectionList =& eZSection::getAll( $Offset, $Limit );
 $totalCount =& eZSection::count();
 

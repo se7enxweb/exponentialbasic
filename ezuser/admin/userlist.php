@@ -50,7 +50,7 @@ $t->set_block( "user_item_tpl", "user_empty_email_item_tpl", "user_empty_email_i
 
 $t->set_block( "user_list_page", "group_item_tpl", "group_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_var( "OldSearchText", "" );
 
 $user = new eZUser();

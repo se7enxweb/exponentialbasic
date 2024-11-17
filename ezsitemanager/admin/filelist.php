@@ -81,7 +81,7 @@ $t->set_block( "file_list_tpl", "image_tpl", "image" );
 $t->set_var( "file", "" );
 $t->set_var( "image", "" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $dir = eZFile::dir( "ezsitemanager/staticfiles/" );
 $ret = array();

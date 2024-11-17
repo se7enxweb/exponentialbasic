@@ -173,6 +173,7 @@ class eZPhoneType
         $db =& eZDB::globalDatabase();
 
         $phone_type_edit = array();
+        $limit = array();
         $return_array = array();
 
         if ( $max >= 0 && is_numeric( $offset ) && is_numeric( $max ) )
@@ -285,6 +286,7 @@ class eZPhoneType
 
     var $ID;
     var $Name;
+    var $ListOrder;
 }
 
 ?>

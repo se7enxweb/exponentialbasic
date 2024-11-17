@@ -364,7 +364,7 @@ class eZVirtualFolder
     /*!
       Returns the group description.
     */
-    function &description()
+    function &description( $html = false )
     {
        if ( $html )
            return htmlspecialchars( $this->Description );
@@ -411,7 +411,7 @@ class eZVirtualFolder
       $user is either a userID or an eZUser.
       $folder is the virtual folder ID
      */
-    function isOwner( $user, $folderID )
+    static public function isOwner( $user, $folderID )
     {
         if ( !is_a( $user, "eZUser" ) )
             return false;
@@ -614,7 +614,7 @@ class eZVirtualFolder
       \static
       Returns the Section ID. Returns false if the Folder was not found.
     */
-    function sectionIDStatic($folderID )
+    static public function sectionIDStatic($folderID )
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZFileManager_Folder WHERE ID='$folderID'");
@@ -633,6 +633,7 @@ class eZVirtualFolder
     var $Description;
     var $UserID;
     var $SectionID;
+    var $ExcludeFromSearch;
 }
 
 ?>

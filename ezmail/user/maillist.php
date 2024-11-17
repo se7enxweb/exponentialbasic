@@ -80,7 +80,7 @@ $t->setAllStrings();
 
 $t->set_file( "mail_list_page_tpl", "maillist.tpl" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_block( "mail_list_page_tpl", "mail_item_tpl", "mail_item" );
 $t->set_block( "mail_item_tpl", "mail_edit_item_tpl", "mail_edit_item" );
 $t->set_block( "mail_list_page_tpl", "mail_item_unread_tpl", "mail_item_unread" );

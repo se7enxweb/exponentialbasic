@@ -119,7 +119,7 @@ $t->set_file( array(
     "mail_configure_page_tpl" => "configure.tpl"
     ) );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $siteDesign );
 $t->set_block( "mail_configure_page_tpl", "account_item_tpl", "account_item" );
 $t->set_block( "mail_configure_page_tpl", "filter_item_tpl", "filter_item" );
 $t->set_var( "account_item", "" );

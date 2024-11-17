@@ -66,6 +66,7 @@ $t->set_block( "search", "company_new_button_tpl", "company_new_button" );
 
 $t->set_var( "search_box", "" );
 $t->set_var( "search_results", "" );
+$t->set_var( "results", "" );
 $t->set_var( "result_item", "" );
 $t->set_var( "category_option", "" );
 $t->set_var( "result_category", "" );
@@ -73,12 +74,12 @@ $t->set_var( "companies_table", "" );
 $t->set_var( "command_type", "company" );
 
 $t->set_var( "search_text", htmlspecialchars( $SearchText ) );
-$t->set_var( "current_id", $SearchCategory );
+$t->set_var( "current_id", isset( $SearchCategory ) ? $SearchCategory : false );
 
 $Action = "new";
 $results = "false";
 
-if ( $SearchObject == "company" )
+if ( isset( $SearchObject) && $SearchObject == "company" )
 {
     $Action = "search";
 }
@@ -108,7 +109,7 @@ if ( $results == true )
     $t->set_var( "results", $count );
     $i = 0;
 
-    $can_view_stats = eZPermission::checkPermission( $user, "eZContact", "CompanyStats" ) && $ShowStats;
+    $can_view_stats = eZPermission::checkPermission( $user, "eZContact", "CompanyStats" ) && isset( $ShowStats ) && $ShowStats;
     $t->set_var( "company_stats_header", "" );
     if ( $can_view_stats )
         $t->parse( "company_stats_header", "company_stats_header_tpl" );
@@ -135,7 +136,7 @@ if ( $results == true )
         $t->parse( "no_company_view_button", "no_company_view_button_tpl" );
     }
 
-    if ( count( $companyList ) == 0 )
+    if ( !isset( $companyList ) || isset( $companyList ) && count( $companyList ) == 0 )
     {
         $t->set_var( "company_item", "" );
         $t->set_var( "companies_table", "" );

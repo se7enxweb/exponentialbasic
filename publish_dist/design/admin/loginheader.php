@@ -33,7 +33,7 @@ $Locale = new eZLocale( $Language );
 $iso = $Locale->languageISO();
 
 
-$t = new eZTemplate( "design/admin/templates/" . $SiteStyle,
+$t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
                      "ezuser/admin/intl/", $Language, "menubox.php" );
 $t->set_file( array(
     "header_tpl" => "loginheader.tpl"
@@ -42,7 +42,7 @@ $t->set_file( array(
 $SiteURL =& $ini->read_var( "site", "SiteURL" );
 
 $t->set_var( "site_url", $SiteURL );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $moduleName = "user";
 $t->set_var( "module_name", $moduleName );

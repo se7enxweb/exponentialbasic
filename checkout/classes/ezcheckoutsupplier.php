@@ -4,7 +4,7 @@
 //
 // Definition of eZCheckoutSupplier class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <02-Feb-2001 15:22:14 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -36,7 +36,7 @@ class eZCheckoutSupplier
     /*!
       
     */
-    function eZCheckoutSupplier()
+    function __construct()
     {
 		
 		$ini =& INIFile::globalINI();
@@ -102,7 +102,8 @@ class eZCheckoutSupplier
 			}
 
         return $ret;
-    }    
+    }
+    var $PaymentMethods;
 }
 
 ?>

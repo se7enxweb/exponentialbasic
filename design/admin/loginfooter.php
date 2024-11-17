@@ -30,15 +30,15 @@ $Language = $ini->read_var( "eZArticleMain", "Language" );
 
 include_once( "classes/template.inc" );
 
-// $t = new Template( $siteDir . "design/admin/templates/" . $SiteStyle );
-$t = new eZTemplate( "design/admin/templates/" . $SiteStyle,
+// $t = new Template( $siteDir . "design/admin/templates/" . $SiteDesign );
+$t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
                      "ezuser/admin/intl/", $Language, "menubox.php" );
 
 $t->set_file( array(
     "footer_tpl" => "loginfooter.tpl"
     ) );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_var( "module_dir", $moduleName );
 $t->set_var( "www_dir", $GlobalSiteIni->WWWDir );
 $t->set_var( "index", $GlobalSiteIni->Index );
@@ -48,4 +48,3 @@ $t->pparse( "output", "footer_tpl" );
     
 
 ?>
-

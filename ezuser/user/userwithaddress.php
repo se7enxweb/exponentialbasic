@@ -588,6 +588,11 @@ if ( is_a( $user, "eZUser" ) )
 }
 else
 {
+    $UserID = false;
+    $LastName = false;
+    $FirstName = false;
+    $Login = false;
+    $Email = false;
     if ( $ini->read_var( "eZUserMain", "RequireFirstAddress" ) == "enabled" )
     {
         if ( !isSet( $AddressID ) )

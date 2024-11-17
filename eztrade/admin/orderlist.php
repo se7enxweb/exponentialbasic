@@ -71,14 +71,14 @@ $t->set_block( "order_item_list_tpl", "order_item_tpl", "order_item" );
 $t->set_block( "order_list_tpl", "previous_tpl", "previous" );
 $t->set_block( "order_list_tpl", "next_tpl", "next" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 if ( isSet( $URLQueryText ) )
 {
     $QueryText = urldecode( $URLQueryText );
 }
 
-$t->set_var( "query_string", $QueryText );
+$t->set_var( "query_string",  isset( $QueryText ) ? $QueryText : ''  );
 
 $t->set_var( "previous", "" );
 $t->set_var( "next", "" );
@@ -152,7 +152,7 @@ foreach ( $orderArray as $order )
 eZList::drawNavigator( $t, $total_count, $Limit, $Offset, "order_list_tpl" );
 
 
-$t->set_var( "url_query_string", urlencode( $QueryText ) );
+$t->set_var( "url_query_string", isset( $QueryText ) ? urlencode( $QueryText ) : '' );
 $t->parse( "order_item_list", "order_item_list_tpl" );
 $t->pparse( "output", "order_list_tpl" );
 

@@ -513,7 +513,7 @@ switch( $module )
 
 $t->set_var( "link_id", $LinkID );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->setAllStrings();
 

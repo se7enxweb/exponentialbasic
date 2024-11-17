@@ -27,7 +27,7 @@ include_once( "classes/INIFile.php" );
 include_once( "classes/ezmenubox.php" );
 
 $ini =& INIFile::globalINI();
-$SiteStyle =& $ini->read_var( "site", "SiteStyle" );
+$SiteDesign =& $ini->read_var( "site", "SiteStyle" );
 
 $Language = $ini->read_var( "eZStatsMain", "Language" );
 
@@ -66,7 +66,7 @@ $menuItems = array(
     );
 
 eZMenuBox::createBox( "eZStats", "ezstats", "admin",
-                      $SiteStyle, $menuItems, true, "menuitems.tpl", "ezstats/admin/overview.php", true );
+                      $SiteDesign, $menuItems, true, "menuitems.tpl", "ezstats/admin/overview.php", true );
 
 
 ?>

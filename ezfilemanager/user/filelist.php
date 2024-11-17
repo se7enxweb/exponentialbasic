@@ -136,15 +136,17 @@ else
 $pathArray =& $folder->path();
 
 $t->set_var( "path_item", "" );
+$lastPath = false;
 foreach ( $pathArray as $path )
 {
     $t->set_var( "folder_id", $path[0] );
     $t->set_var( "folder_name", $path[1] );
     
     $t->parse( "path_item", "path_item_tpl", true );
+    $lastPath = $path;
 }
 
-$t->set_var( "top_folder_name", $path[1] );
+$t->set_var( "top_folder_name", $lastPath );
 
 // Print out the folders.
 $folderList =& $folder->getByParent( $folder );

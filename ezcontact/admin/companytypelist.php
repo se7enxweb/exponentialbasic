@@ -121,6 +121,8 @@ else
     $t->set_var( "image_item", "" );
     $t->set_var( "command_type", "company" );
 
+    $args = false;
+
     if ( empty( $OrderBy ) )
     {
         $OrderBy = "Name";
@@ -381,7 +383,7 @@ else
     if ( eZPermission::checkPermission( $user, "eZContact", "CompanyAdd" ) )
         $t->parse( "company_new_button", "company_new_button_tpl" );
 
-    if ( $typesDone == true )
+    if ( isset( $typesDone ) && $typesDone == true )
     {
         $t->set_var( "no_type_item", "" );
         $t->parse( "type_list", "type_list_tpl" );
@@ -392,7 +394,7 @@ else
         $t->parse( "no_type_item", "no_type_item_tpl" );
     }
 
-    if ( $categoriesDone == true )
+    if ( isset( $categoriesDone ) && $categoriesDone == true )
     {
         $t->set_var( "no_category_item", "" );
         $t->parse( "category_list", "category_list_tpl" );
@@ -404,7 +406,19 @@ else
     }
 
     eZList::drawNavigator( $t, $total_companies, $MaxCompanyList, $Offset, "type_page",
-                           array( "type_list" => "company_list" ) );
+                           array( "type_list" => "company_list",
+                                  "next" => "",
+                                  "previous" => "",
+                                  "next_inactive" => "",
+                                  "previous_inactive" => "",
+                                  "item" => "",
+                                  "item_inactive" => "",
+                                  "item_list" => "",
+                                  "next_index" => "",
+                                  "previous_index" => "",
+                                  "type_item_name" => "",
+                                  "item_index" => "",
+                                  "item_name" => "" ) );
 
     $t->pparse( "output", "type_page" );
 }

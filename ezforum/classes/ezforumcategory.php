@@ -284,7 +284,7 @@ class eZForumCategory
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZForum_Category WHERE ID='$categoryID'");
 
-        $sectionID = $res[$db->fieldName("SectionID")];
+        $sectionID = $res[ (int) $db->fieldName("SectionID")];
 
         if ( $sectionID > 0 )
             return $sectionID;

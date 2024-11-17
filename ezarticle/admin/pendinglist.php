@@ -95,7 +95,7 @@ $t->set_block( "article_item_tpl", "article_edit_tpl", "article_edit" );
 $t->set_block( "pending_list_page_tpl", "previous_tpl", "previous" );
 $t->set_block( "pending_list_page_tpl", "next_tpl", "next" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 
 // set the offset/limit

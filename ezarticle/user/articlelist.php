@@ -47,7 +47,10 @@ $GrayScaleImageList = $ini->read_var( "eZArticleMain", "GrayScaleImageList" );
 $ForceCategoryDefinition = $ini->read_var( "eZArticleMain", "ForceCategoryDefinition" );
 $TemplateDir = $ini->read_var( "eZArticleMain", "TemplateDir" );
 
-$GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
+if ( isset( $CategoryID ) )
+{
+    $GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
+}
 
 // init the section
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
@@ -123,9 +126,8 @@ $t->set_block( "article_item_tpl", "article_topic_tpl", "article_topic" );
 $t->set_block( "article_list_page_tpl", "previous_tpl", "previous" );
 $t->set_block( "article_list_page_tpl", "next_tpl", "next" );
 
-
 // print headline
-if ( $CategoryID == 0 )
+if ( isset( $CategoryID ) && $CategoryID == 0 )
 {
     $t->parse( "latest_headline_item", "latest_headline_tpl" );
     $t->set_var( "category_headline_item", "" );
@@ -135,7 +137,6 @@ else
     $t->parse( "category_headline_item", "category_headline_tpl" );
     $t->set_var( "latest_headline_item", "" );
 }
-
 
 
 // read user override variables for image size
@@ -360,7 +361,7 @@ if ( $CategoryID == 0 )
 }
 else
 {
-    $articleList =& $category->articles( $category->sortMode(), false, true, $Offset, $Limit );
+    $articleList =& $category->articles( $category->sortMode(), false, true, $Offset, $Limit, $category->id() );
     $articleCount = $category->articleCount( false, true  );
 }
 

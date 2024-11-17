@@ -33,7 +33,7 @@ $Locale = new eZLocale( $Language );
 $iso = $Locale->languageISO();
 
 
-$t = new eZTemplate( "admin/templates/" . $SiteStyle,
+$t = new eZTemplate( "admin/templates/" . $SiteDesign,
                      "admin/intl/", $Language, "help_header.php" );
 
 
@@ -59,7 +59,7 @@ else
 
 $t->set_var( "site_url", $SiteURL );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_var( "module_name", $url_array[2] );
 

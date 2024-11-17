@@ -30,7 +30,7 @@ $ini =& $GLOBALS["GlobalSiteIni"];
 $Language = $ini->read_var( "eZCalendarMain", "Language" );
 $Locale = new eZLocale( $Language );
 
-if ( $ShowMessage )
+if ( isset( $ShowMessage ) && $ShowMessage )
 {
     include_once( "classes/eztexttool.php" );
     $AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
@@ -39,12 +39,16 @@ if ( $ShowMessage )
     $t->set_file( "body", "messagebody.tpl" );
     
     $msg = new eZForumMessage( $MessageID );
+
+    if( !isset( $MessageTopic ) )
     $MessageTopic = $msg->topic();
+
+    if( !isset( $MessageBody ) )
     $MessageBody = $msg->body();
     
     $author = new eZUser( $msg->userID() );
-    
     $MessageNotice = $msg->emailNotice();
+
     if ( isSet( $NewMessageAuthor ) )
     {
         if ( $msg->userName() && $Action != "reply" )
@@ -114,7 +118,8 @@ if ( $ShowMessage )
     $t->set_var( "message_author", htmlspecialchars( $MessageAuthor ) );
     $t->set_var( "message_id", $MessageID );
     $t->set_var( "message_notice", $MessageNotice );
-    if ( $doPrint == true )
+
+    if ( isset( $doPrint ) && $doPrint == true )
     {
         $t->pparse( "message_body_file", "body" );
     }

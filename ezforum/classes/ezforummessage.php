@@ -368,7 +368,7 @@ class eZForumMessage
         // strip multiple whitespaces
         $contents = preg_replace("(\s+)", " ", $contents );
 
-        $contents_array =& split( " ", $contents );
+        $contents_array =& preg_split( "/ /", $contents );
 
         $totalWordCount = count( $contents_array );
         $wordCount = array_count_values( $contents_array );
@@ -562,7 +562,7 @@ class eZForumMessage
     */
     function &topic( $htmlchars = true )
     {
-       if ( $htmlchars == true )
+       if ( !is_null( $this->Topic ) && $htmlchars == true )
        {
             return htmlspecialchars( $this->Topic );
        }
@@ -737,7 +737,7 @@ class eZForumMessage
     /*!
       Returns the number of messages in the given thread.
     */
-    function threadMessageCount( $threadID )
+    static public function threadMessageCount( $threadID )
     {
         $db =& eZDB::globalDatabase();
 
@@ -755,7 +755,7 @@ class eZForumMessage
     /*!
       Returns the number of messages.
     */
-    function countMessages( $ID )
+    static public function countMessages( $ID )
     {
         $db =& eZDB::globalDatabase();
 
@@ -771,7 +771,7 @@ class eZForumMessage
     /*!
 
      */
-    function countReplies( $ID )
+    static public function countReplies( $ID )
     {
         $db =& eZDB::globalDatabase();
 
@@ -920,6 +920,8 @@ class eZForumMessage
 
     // indicates the depth of the message in the tree
     var $Depth;
+
+    var $Keywords;
 
 }
 ?>

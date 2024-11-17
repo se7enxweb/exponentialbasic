@@ -48,7 +48,7 @@ $t->set_block( "image_list_page_tpl", "no_images_tpl", "no_images" );
 $t->set_block( "image_list_page_tpl", "image_list_tpl", "image_list" );
 $t->set_block( "image_list_tpl", "image_tpl", "image" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $product = new eZProduct( $ProductID );
 

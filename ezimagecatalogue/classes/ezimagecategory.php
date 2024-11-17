@@ -469,7 +469,7 @@ class eZImageCategory
       $user is either a userID or an eZUser.
       $imagecategory is the ID of the image category.
      */
-    function isOwner( $user, $imagecategory )
+    static public function isOwner( $user, $imagecategory )
     {
         if ( !is_a( $user, "eZUser" ) )
             return false;
@@ -721,6 +721,8 @@ class eZImageCategory
        $article_array = array();
        $user =& eZUser::currentUser();
        $usePermission = true;
+       $groupSQL = false;
+
        if ( $user )
        {
            $groups =& $user->groups( false );

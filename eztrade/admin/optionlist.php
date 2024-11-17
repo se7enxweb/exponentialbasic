@@ -46,7 +46,7 @@ $t->set_file( array(
 
 $t->set_block( "option_list_tpl", "option_tpl", "option" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $product = new eZProduct( $ProductID );
     

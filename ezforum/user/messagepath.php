@@ -55,6 +55,14 @@ if ( $ShowPath == true )
         {
             $ForumCategoryName = $ForumCategory->name();
         }
+        $ArticleID = false;
+        $ArticleName = false;
+        $isArticle = false;
+        $doPrint = false;
+        $ReplyToID = false;
+        $PreviewID = false;
+        $OriginalID = false;
+        $RedirectURL = '/forum/messagelist/' . $ForumID;
     }
     else
     {

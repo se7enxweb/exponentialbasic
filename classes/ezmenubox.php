@@ -52,12 +52,12 @@ class eZMenuBox
       $ModuleName used for looking up language in the site.ini file,
       $module_dir used for locating translation files,
       $place where in the module, either "admin" or "user"
-      $SiteStyle used for setting the look of the boxes,
+      $SiteDesign used for setting the look of the boxes,
       $menuItems contains the menu items and
       $print print the box if true else return the box as text.
     */
 
-    static public function createBox( $ModuleName, $module_dir, $place, $SiteStyle,
+    static public function createBox( $ModuleName, $module_dir, $place, $SiteDesign,
                         &$menuItems, $print = true, $templatefile = false,
                         $phpfile = false, $ignore_status = false, $allow_module_template = false )
     {
@@ -92,7 +92,7 @@ class eZMenuBox
             $modified = eZFile::filemtime( $phpfile );
         }
 
-        $template_dir = "design/admin/templates/" . $SiteStyle;
+        $template_dir = "design/admin/templates/" . $SiteDesign;
         if ( $allow_module_template )
         {
             $mod_dir = $ini->read_var( $ModuleName . "Main", "AdminTemplateDir" );
@@ -106,7 +106,7 @@ class eZMenuBox
 
         $t = new eZTemplate( $template_dir,
                              $module_dir . "/$place/intl", $Language, "menubox.php",
-                             $SiteStyle, $module_dir . "/$place", $menuStatus, $modified );
+                             $SiteDesign, $module_dir . "/$place", $menuStatus, $modified );
 
         if ( $menuStatus == "open" )
         {
@@ -139,7 +139,7 @@ class eZMenuBox
                 $t->set_block( "menu_item_tpl", "menu_item_link_tpl", "menu_item_link" );
                 $t->set_block( "menu_item_tpl", "menu_item_break_tpl", "menu_item_break" );
 
-                $t->set_var( "site_style", $SiteStyle );
+                $t->set_var( "site_style", $SiteDesign );
                 $t->set_var( "module_dir", $module_dir );
             
                 foreach ( $menuItems as $menuItem )
@@ -185,7 +185,7 @@ class eZMenuBox
             }
             else
             {
-                $t->set_var( "site_style", $SiteStyle );
+                $t->set_var( "site_style", $SiteDesign );
                 $t->set_var( "module_dir", $module_dir );
             }
             $t->setAllStrings();
@@ -220,4 +220,3 @@ class eZMenuBox
         return false;
     }
 };
-

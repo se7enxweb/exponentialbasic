@@ -107,6 +107,7 @@ foreach ( $pathArray as $path )
     $t->set_var( "category_name", $path[1] );
     $t->parse( "path", "path_tpl", true );
 
+    if( isset( $SiteTitleAppend ) )
     $SiteTitleAppend .= $path[1] . " - ";
 }
 
@@ -188,7 +189,7 @@ foreach ( $productList as $product )
     {
         $t->set_var( "product_image", "" );    
     }
-
+    if( isset( $SiteDescriptionOverride ) )
     $SiteDescriptionOverride .= $product->name() . " ";
 
     $t->set_var( "product_name", $product->name() );
@@ -234,7 +235,7 @@ else
 
 eZList::drawNavigator( $t, $TotalTypes, $Limit, $Offset, "product_list_page_tpl" );
 
-if ( $GenerateStaticPage == "true" )
+if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
     if ( $user )
         $CategoryArray =& $user->groups( false );

@@ -44,7 +44,7 @@ $t->set_file( array(
 
 $t->set_block( "group_list_page", "group_item_tpl", "group_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $group = new eZUserGroup();
 

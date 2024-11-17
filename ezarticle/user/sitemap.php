@@ -43,7 +43,7 @@ $Language = $ini->read_var( "eZArticleMain", "Language" );
 // sections
 include_once( "ezsitemanager/classes/ezsection.php" );
 
-if ( ($CategoryID != 0) )
+if ( isset( $CategoryID ) )
 {
     $GlobalSectionID = eZArticleCategory::sectionIDstatic ( $CategoryID );
 }
@@ -64,7 +64,7 @@ $t->set_block( "article_sitemap_page_tpl", "article_value_tpl", "article_value" 
 $t->set_block( "article_sitemap_page_tpl", "value_tpl", "value" );
 
 $tree = new eZArticleCategory();
-$treeArray =& $tree->getTree( $CategoryID );
+$treeArray = $tree->getTree( $CategoryID );
 $user =& eZUser::currentUser();
 
 $t->set_var( "category_value", "" );
@@ -77,7 +77,8 @@ if ( $CategoryID != 0 && is_numeric( $CategoryID ) )
     if ( eZObjectPermission::hasPermission( $frontCategory->id(), "article_category", 'r', $user ) == true  ||
          eZArticleCategory::isOwner( eZUser::currentUser(), $frontCategory->id() ) )
     {    
-        $articleFrontList =& $frontCategory->articles( 1, false, true, 0, 50 );
+        $articleFrontList =& $frontCategory->articles( 1, false, true, 0, 50, $frontCategory->id() );
+
         $itemCount++;
 
         foreach ( $articleFrontList as $article )
@@ -136,7 +137,7 @@ foreach ( $treeArray as $catItem )
             
             $t->parse( "value", "category_value_tpl", true );    
             
-            $articleList =& $category->articles( 1, false, true, 0, 50 );
+            $articleList =& $category->articles( 1, false, true, 0, 50, $catItem[0]->id() );
             $itemCount++;
 
             foreach ( $articleList as $article )

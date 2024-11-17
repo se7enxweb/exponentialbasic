@@ -72,7 +72,7 @@ foreach ( $moduleArray as $module )
         $t->set_var( "search_item", "" );
         $t->set_var( "module_name", $ModuleName );
         $i = 0;
-        if ( !is_array( $SearchResult[0] ) )
+        if ( isset( $SearchResult ) && isset( $SearchResult[0] ) && !is_array( $SearchResult[0] ) )
         {
             $SearchResult = array( $SearchResult );
         }
@@ -80,7 +80,7 @@ foreach ( $moduleArray as $module )
         $t->set_var( "search_sub_module", "" );
         foreach ( $SearchResult as $Result )
         {
-            if ( count( $Result ) > 0 && count( $Result["Result"] ) > 0 )
+            if ( is_array( $Result ) && isset( $Result["Result"] ) && count( $Result ) > 0 && count( $Result["Result"] ) > 0 )
             {
                 $ResultArray = $Result["Result"];
                 foreach ( $ResultArray as $res )
@@ -97,9 +97,13 @@ foreach ( $moduleArray as $module )
                     $i++;
                 }
             }
+
+            if( isset( $Result["DetailedSearchPath"] ) )
             $t->set_var( "search_more_link", $Result["DetailedSearchPath"] . "?" .
                          $Result["DetailedSearchVariable"] . "=". urlencode( $SearchText ) );
-            $t->set_var( "search_count", $Result["SearchCount"] ? $Result["SearchCount"] : count( $Result["Result"] ) );
+
+            if( isset( $Result["SearchCount"] ) )
+            $t->set_var( "search_count", $Result["SearchCount"] ? $Result["SearchCount"] : isset( $Result["Result"] ) && count( $Result["Result"] ) );
             if ( isSet( $Result["SubModuleName"] ) )
             {
                 $t->set_var( "sub_module_name", $Result["SubModuleName"] );

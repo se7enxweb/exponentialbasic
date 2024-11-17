@@ -497,7 +497,7 @@ class eZConsultation
       \static
       Finds all consultations on a specific contact person or company.
     */
-    function findConsultationsByContact( $contact, $user, $OrderBy = "ID", $is_person = true, $index = 0, $max = -1, $relations = false )
+    static public function findConsultationsByContact( $contact, $user, $OrderBy = "ID", $is_person = true, $index = 0, $max = -1, $relations = false )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();
@@ -834,7 +834,7 @@ class eZConsultation
       \static
       Returns the name of the state id.
     */
-    function stateName( $state )
+    static public function stateName( $state )
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $state_row, "SELECT Name FROM eZContact_ConsultationType WHERE ID='$state'" );

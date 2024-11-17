@@ -376,7 +376,7 @@ foreach ( $types as $type )
 }
 
 $vat = true;
-if ( is_numeric( $BillingAddressID ) )
+if ( isset( $BillingAddressID ) && is_numeric( $BillingAddressID ) )
 {
     $address = new eZAddress( $BillingAddressID );
     $country =& $address->country();
@@ -452,7 +452,10 @@ foreach ( $items as $item )
     $t->set_var( "product_total_ex_tax", $item->localePrice( true, true, false ) );
     $t->set_var( "product_total_inc_tax", $item->localePrice( true, true, true ) );
 
-    $numberOfItems++;
+    if( !isset( $numberOfItems ) )
+        $numberOfItems = 1;
+    else
+        $numberOfItems++;
 
     $numberOfOptions = 0;
 
@@ -606,7 +609,7 @@ if ( $ShowCart == true )
     else
         $t->set_var( "remove_voucher", "" );
 
-    if ( is_array ( $voucherSession ) )
+    if ( isset( $voucherSession ) && is_array ( $voucherSession ) )
     {
         $t->parse( "vouchers", "vouchers_tpl" );
         $session->setArray( "PayedWith", $voucherSession );
@@ -827,14 +830,16 @@ else
 $t->set_var( "sendorder_item", "" );
 
 // Print the total sum.
-
-$total["inctax"] = $total["inctax"] - $totalVoucher["inctax"];
+if ( isset( $totalVoucher ) )
+    $total["inctax"] = $total["inctax"] - $totalVoucher["inctax"];
+else
+    $total["inctax"] = $total["inctax"];
 
 $currency->setValue( $total["inctax"] );
 $t->set_var( "cart_sum", $locale->format( $currency ) );
 $t->set_var( "cart_colspan", 1 + $i );
 
-if ( $sum <= 0 )
+if ( isset( $sum ) && $sum <= 0 )
         $payment = false;
 else
 $payment = true;

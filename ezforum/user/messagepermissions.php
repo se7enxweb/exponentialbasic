@@ -57,7 +57,7 @@ $CheckForumPost = true;
 $CheckForumRead = true;
 
 // Anonymous users "have" user id 0.
-if ( is_object( $user ) )
+if ( isset( $user ) && is_object( $user ) )
 {
     $UserID = $user->id();
 }
@@ -68,7 +68,7 @@ else
 
 // If a forum id isn''t provided for checking, we can''t check
 // the forum permissions.
-if ( $CheckForumID > 0 )
+if ( isset( $CheckForumID ) && $CheckForumID > 0 )
 {
     $checkForum = new eZForum( $CheckForumID );
 }
@@ -82,7 +82,7 @@ else
 
 // If a message id isn''t provided for checking, we can''t check
 // the message permissions.
-if ( $CheckMessageID > 0 )
+if ( isset( $CheckMessageID ) && $CheckMessageID > 0 )
 {
     $checkMessage = new eZForumMessage( $CheckMessageID );
     // Check if the current user is the message owner.
@@ -106,13 +106,13 @@ else
 // a certain group of people.
 if ( $CheckForumRead )
 {
-    $group =& $checkForum->group();
+    $group = $checkForum->group();
 
     if ( ( is_a( $group, "eZUserGroup" ) ) && ( $group->id() != 0 ) )
     {
         if ( is_a( $user, "eZUser" ) )
         {
-            $groupList =& $user->groups();
+            $groupList = $user->groups();
 
             foreach ( $groupList as $userGroup )
             {
@@ -129,12 +129,16 @@ if ( $CheckForumRead )
         $ForumRead = true;
     }
 }
+else
+{
+    $ForumRead = true;
+}
 
 // You can post to a forum you can read if you''re a logged in user.
 // If the forum is set to anonymous anyone can post.
 if ( $CheckForumPost && $ForumRead )
 {
-    if ( $checkForum->isAnonymous() == true )
+    if ( isset( $checkForum ) && $checkForum->isAnonymous() == true )
     {
         $ForumPost = true;
     }
@@ -146,6 +150,10 @@ if ( $CheckForumPost && $ForumRead )
         }
     }
 }
+else
+{
+    $ForumPost = true;
+}
 
 // If you can read the forum, you can read the message if:
 //    * it is approved when in a moderated forum
@@ -153,7 +161,7 @@ if ( $CheckForumPost && $ForumRead )
 //    * none of the above conditions are met
 if ( $CheckMessageRead && $ForumRead )
 {
-    if ( $checkMessage->isTemporary() == true )
+    if ( isset( $checkMessage ) && $checkMessage->isTemporary() == true )
     {
         if ( $MessageOwner == true )
         {

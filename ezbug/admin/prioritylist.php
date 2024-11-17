@@ -45,7 +45,7 @@ $t->set_file( array(
 
 $t->set_block( "priority_page", "priority_item_tpl", "priority_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 
 if( isset( $DeletePriorities ) )

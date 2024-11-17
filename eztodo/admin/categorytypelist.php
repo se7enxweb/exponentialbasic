@@ -47,7 +47,7 @@ $t->set_file( array(
 
 $t->set_block( "category_type_page", "category_item_tpl", "category_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $category_type = new eZCategory();
 $category_type_array = $category_type->getAll();

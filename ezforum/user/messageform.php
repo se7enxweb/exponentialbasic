@@ -32,9 +32,9 @@ $author = eZUser::currentUser();
 
 $locale = new eZLocale( $language );
 
-if ( $ShowMessageForm )
+if ( isset( $ShowMessageForm ) && $ShowMessageForm )
 {
-    if ( $ShowVisibleMessageForm )
+    if ( isset( $ShowVisibleMessageForm ) && $ShowVisibleMessageForm )
     {
         $t->set_file( "form", "messageform.tpl"  );
         $t->set_block( "form", "author_field_tpl", "author_field" );
@@ -51,27 +51,27 @@ if ( $ShowMessageForm )
         $t->set_var( "headline", $t->Ini->read_var( "strings", $Action . "_headline" ) );
     }
 
-    if ( $ShowHiddenMessageForm )
+    if ( isset( $ShowHiddenMessageForm ) && $ShowHiddenMessageForm )
     {
         $t->set_file( "hidden_form", "messagehiddenform.tpl" );
     }
 
-    if ( $BodyInfo )
+    if (  isset( $BodyInfo ) && $BodyInfo )
     {
         $t->parse( "message_body_info_item", "message_body_info_tpl" );
     }
 
-    if ( $ShowVisibleMessageForm && is_a( eZUser::currentUser(), "eZUser" ) )
+    if (  isset( $ShowVisibleMessageForm ) && $ShowVisibleMessageForm && is_a( eZUser::currentUser(), "eZUser" ) )
     {
         $t->parse( "message_notice_checkbox", "message_notice_checkbox_tpl" );
     }
 
-    if ( $ReplyInfo )
+    if ( isset( $ReplyInfo ) && $ReplyInfo )
     {
         $t->parse( "message_reply_info_item", "message_reply_info_tpl" );
     }
 
-    if ( $Error )
+    if ( isset( $Error ) && $Error )
     {
         $MessageTopic = $NewMessageTopic;
         $MessageBody = $NewMessageBody;
@@ -100,7 +100,7 @@ if ( $ShowMessageForm )
         $t->parse( "errors_item", "errors_tpl" );
     }
 
-    if ( !$ShowEmptyMessageForm )
+    if ( isset( $ShowEmptyMessageForm ) && $ShowEmptyMessageForm === true )
     {
         if ( !is_object( $msg ) )
         {
@@ -209,16 +209,21 @@ if ( $ShowMessageForm )
         }
         break;
     }
-    $quote = chr( 34 );
-    $MessageTopic = ereg_replace( $quote, "&#034;", $MessageTopic );
-    $MessageBody = ereg_replace( $quote, "&#034;", $MessageBody );
+
+    $quote = "/". chr( 34 ) . "/";
+
+    if( !is_null( $MessageTopic ) )
+    $MessageTopic = preg_replace( $quote, "&#034;", $MessageTopic );
+
+    if( !is_null( $MessageBody ) )
+    $MessageBody = preg_replace( $quote, "&#034;", $MessageBody );
 
     include_once( "classes/eztexttool.php" );
 
     $t->set_var( "message_topic", $MessageTopic );
-    $t->set_var( "new_message_topic", $MessageTopic );
+    $t->set_var( "new_message_topic", $NewMessageTopic );
     $t->set_var( "message_body", $MessageBody );
-    $t->set_var( "new_message_body", $MessageBody );
+    $t->set_var( "new_message_body", $NewMessageBody );
     $t->set_var( "message_posted_at", $MessagePostedAt );
     $t->set_var( "message_author", $MessageAuthor );
     $t->set_var( "message_id", $MessageID );

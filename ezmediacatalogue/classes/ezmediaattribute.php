@@ -380,7 +380,7 @@ class eZMediaAttribute
     var $Name;
     var $Placement;
     var $Unit;
-    var $DefaltValue;
+    var $DefaultValue;
 
 }
 

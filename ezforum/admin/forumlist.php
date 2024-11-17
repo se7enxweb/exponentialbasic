@@ -43,7 +43,7 @@ $t->set_file(Array( "forum_page" => "forumlist.tpl"
 
 $t->set_block( "forum_page", "forum_item_tpl", "forum_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 // Forum list for current category
 $forum = new eZForum();

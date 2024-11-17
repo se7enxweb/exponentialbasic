@@ -62,7 +62,7 @@ $t->set_block( "bug_item_tpl", "bug_is_open_tpl", "bug_is_open" );
 // delete button
 $t->set_block( "bug_list_page_tpl", "bug_delete_button_tpl", "bug_delete_button" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $module = new eZBugModule( $ModuleID );
 

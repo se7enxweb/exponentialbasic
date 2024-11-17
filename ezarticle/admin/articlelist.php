@@ -221,7 +221,7 @@ $t->set_block( "article_item_tpl", "absolute_placement_item_tpl", "absolute_plac
 $t->set_block( "article_item_tpl", "article_edit_tpl", "article_edit" );
 
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $category = new eZArticleCategory( $CategoryID );
 

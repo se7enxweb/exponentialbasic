@@ -268,7 +268,7 @@ class eZUser
     /*!
       Returns the number of rows a getAll with the same search param would give.
     */
-    function &getAllCount( $search = false )
+    static public function &getAllCount( $search = false )
     {
         $db =& eZDB::globalDatabase();
 
@@ -287,7 +287,7 @@ class eZUser
     /*!
       Fetches the user id from the database. And returns a array of eZUser objects.
     */
-    function &getAll( $order="Login", $as_object = true, $search = false, $max = -1, $index = 0 )
+    static public function &getAll( $order="Login", $as_object = true, $search = false, $max = -1, $index = 0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -524,7 +524,7 @@ class eZUser
     */
     function firstName( $html = true )
     {
-        if ( $html )
+        if ( isset( $this->FirstName ) && $html )
             return htmlspecialchars( $this->FirstName );
         else
             return $this->FirstName;
@@ -535,7 +535,7 @@ class eZUser
     */
     function lastName( $html = true  )
     {
-        if ( $html )
+        if ( isset( $this->LastName ) && $html )
             return htmlspecialchars( $this->LastName );
         else
             return $this->LastName;
@@ -722,7 +722,7 @@ class eZUser
         return false;
     }
 
-    function clearAutoCookieLogin()
+    static public function clearAutoCookieLogin()
     {
         $user =& eZUser::currentUser();
         $db =& eZDB::globalDatabase();
@@ -1113,7 +1113,7 @@ class eZUser
     function getByTrustee( $id = -1, $as_object = false )
     {
         $db =& eZDB::globalDatabase();
-        if ( get_class( $id ) )
+        if ( !is_integer( $id ) && get_class( $id ) )
             $id = $id->ID();
         if ( $id < 0 )
             $id = $this->ID;

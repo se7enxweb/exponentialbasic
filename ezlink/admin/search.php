@@ -57,7 +57,7 @@ $t->set_block( "search_list", "search_item_tpl", "search_item" );
 $t->set_block( "search_list", "empty_result_tpl", "empty_result" );
 $t->set_block( "search_list", "search_result_tpl", "search_result" );
 
-if ( !$Offset )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 $link = new eZLink();
@@ -131,7 +131,7 @@ $t->set_var( "link_total", $total_count );
 
 $t->set_var( "hit_count", $total_count );
 
-$t->set_var( "linkcategory_id", $LGID );
+$t->set_var( "linkcategory_id", isset( $LGID ) ? $LGID : 0 );
 
 
 $t->pparse( "output", "search_list" );

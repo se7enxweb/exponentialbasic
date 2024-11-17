@@ -41,15 +41,15 @@ function &errorPage( $PrimaryName, $PrimaryURL, $type )
     $t->set_var( "primary_url_name", $t->Ini->read_var( "strings", $PrimaryName  ) );
     if ( $type == 404 )
     {
-        $t->set_var( "error_1", $t->Ini->read_var( "strings", error_missing_page_1  ) );
-        $t->set_var( "error_2", $t->Ini->read_var( "strings", error_missing_page_2  ) );
-        $t->set_var( "error_3", $t->Ini->read_var( "strings", error_missing_page_3  ) );
+        $t->set_var( "error_1", $t->Ini->read_var( "strings", 'error_missing_page_1'  ) );
+        $t->set_var( "error_2", $t->Ini->read_var( "strings", 'error_missing_page_2'  ) );
+        $t->set_var( "error_3", $t->Ini->read_var( "strings", 'error_missing_page_3'  ) );
     }
     else
     {
-        $t->set_var( "error_1", $t->Ini->read_var( "strings", error_forbidden_page_1  ) );
-        $t->set_var( "error_2", $t->Ini->read_var( "strings", error_forbidden_page_2  ) );
-        $t->set_var( "error_3", $t->Ini->read_var( "strings", error_forbidden_page_3  ) );
+        $t->set_var( "error_1", $t->Ini->read_var( "strings", 'error_forbidden_page_1'  ) );
+        $t->set_var( "error_2", $t->Ini->read_var( "strings", 'error_forbidden_page_2'  ) );
+        $t->set_var( "error_3", $t->Ini->read_var( "strings", 'error_forbidden_page_3'  ) );
     }
     $t->setAllStrings();
 
@@ -156,6 +156,12 @@ switch ( $url_array[2] )
             {
                 $ReplyToID = $ID;
                 $ForumID = $url_array[5];
+            }
+            break;
+
+            case "preview":
+            {
+                $ReplyToID = $ID;
             }
             break;
 

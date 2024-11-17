@@ -921,14 +921,19 @@ class eZProduct
       exact quantity but instead give indications.
       If no named quantity can be found the quantity is returned.
     */
-    function namedQuantity( $quantity )
+    static public function namedQuantity( $quantity )
     {
         $db =& eZDB::globalDatabase();
+        $name = false;
         if ( is_bool( $quantity ) and !$quantity )
         {
             $db->array_query( $qry_array, "SELECT Name FROM eZTrade_QuantityRange
                                        WHERE MaxRange=-1", array( "Limit" => 1 ), 1 );
-            $name = $qry_array[0][$db->fieldName( "Name" )];
+
+            if ( count( $qry_array ) == 1 )
+            {
+                $name = $qry_array[0][$db->fieldName( "Name" )];
+            }
         }
         else
         {
@@ -2120,8 +2125,8 @@ class eZProduct
 
         $db->query_single( $priceRange, "SELECT ID FROM eZTrade_ProductPriceRange WHERE ProductID='$id'" );
 
-        if ( is_numeric ( $priceRange[$db->fieldName( "ID" )] ) )
-            $ret = new eZProductPriceRange( $priceRange[$db->fieldName( "ID" )] );
+        if ( isset( $priceRange[ (int) $db->fieldName( "ID" ) ] ) && is_numeric( $priceRange[ (int) $db->fieldName( "ID" ) ] ) )
+            $ret = new eZProductPriceRange( $priceRange[ (int) $db->fieldName( "ID" ) ] );
         else
             $ret = new eZProductPriceRange();
 

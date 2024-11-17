@@ -132,7 +132,7 @@ else
 }
 
 $t->set_var( "action_value", $ActionValue );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->pparse( "output", "value_list_page_tpl" );
 
 ?>

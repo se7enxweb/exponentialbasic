@@ -56,7 +56,7 @@ $t->set_var( "mail_replied", "" );
 $t->set_var( "mail_repliedall", "" );
 $t->set_var( "mail_edit_item", "" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_var( "search_string", htmlspecialchars( $SearchText ) );
 
 if ( isSet( $Move ) )

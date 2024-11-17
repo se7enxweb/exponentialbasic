@@ -156,7 +156,7 @@ class eZAppointmentType
 
       The categories are returned as an array of eZAppointmentType objects.
     */
-    function &getByParent( $parent, $showAll=false, $sortby=name )
+    function &getByParent( $parent, $showAll=false, $sortby="name" )
     {
         if ( is_a( $parent, "eZAppointmentType" ) )
         {

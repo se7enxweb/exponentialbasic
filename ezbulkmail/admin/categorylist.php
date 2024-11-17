@@ -75,7 +75,7 @@ $locale = new eZLocale( $Language );
 $t->set_file( "category_list_tpl", "categorylist.tpl" );
 
 $t->setAllStrings();
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_block( "category_list_tpl", "category_tpl", "category" );
 $t->set_block( "category_tpl", "category_item_tpl", "category_item" );

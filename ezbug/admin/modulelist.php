@@ -45,7 +45,7 @@ $t->set_file( array(
 $t->set_block( "module_page", "module_item_tpl", "module_item" );
 $t->set_block( "module_page", "path_item_tpl", "path_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $module = new eZBugModule( $ParentID );
 $t->set_var( "this_id", $ParentID );

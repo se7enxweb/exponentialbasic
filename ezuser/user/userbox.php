@@ -137,9 +137,9 @@ else
     $t->set_var( "first_name", $user->firstName() );
     $t->set_var( "last_name", $user->lastName() );
     $t->set_var( "user_id", $user->id() );
-    if ( ! isset( $SiteStyle ) )
-        $SiteStyle = "";
-    $t->set_var( "style", $SiteStyle );
+    if ( ! isset( $SiteDesign ) )
+        $SiteDesign = "";
+    $t->set_var( "style", $SiteDesign );
     
     if ( ! isset( $no_address ) )
         $no_address = "";

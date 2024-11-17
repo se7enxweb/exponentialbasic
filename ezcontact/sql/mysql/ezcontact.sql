@@ -131,6 +131,13 @@ CREATE TABLE eZContact_Person (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE eZContact_PersonImageDefinition (
+  PersonID int NOT NULL,
+  PersonImageID int DEFAULT '0' NOT NULL,
+  LogoImageID int DEFAULT '0' NOT NULL,
+  PRIMARY KEY (PersonID)
+);
+
 CREATE TABLE eZContact_PersonAddressDict (
   PersonID int NOT NULL,
   AddressID int NOT NULL,

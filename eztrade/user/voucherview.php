@@ -37,7 +37,7 @@ $move_item = true;
 
 include_once( "eztrade/classes/ezvoucher.php" );
 
-if ( ( $Action == "Update" ) || ( isset ( $Update ) ) )
+if ( ( isset( $Action ) && $Action == "Update" ) || ( isset ( $Update ) ) )
 {
     $voucher = new eZVoucher( $VoucherID );
 
@@ -59,7 +59,7 @@ if( isset( $Ok ) )
     exit();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $voucher = new eZVoucher( $VoucherID );
 
@@ -86,7 +86,12 @@ $currency = new eZCurrency();
 
 $t->set_var( "action_value", "Insert" );
 $t->set_var( "view_voucher", "" );
-$t->set_var( "voucher_key", eZTextTool::htmlspecialchars( $Key ) );
+
+if( isset( $Key ) )
+    $t->set_var( "voucher_key", eZTextTool::htmlspecialchars( $Key ) );
+else
+    $t->set_var( "voucher_key", '' );
+
 $t->set_var( "error", "" );
 
 if ( isSet ( $Key ) )

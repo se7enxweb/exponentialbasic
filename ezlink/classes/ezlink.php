@@ -268,7 +268,7 @@ class eZLink
         $res[] = $db->query( "DELETE FROM eZLink_LinkCategoryDefinition WHERE LinkID='$this->ID'" );
         $res[] = $db->query( "DELETE FROM eZLink_LinkCategoryLink WHERE LinkID='$this->ID'" );
 
-        if ( in_array( $res, false ) )
+        if ( in_array( false, $res ) )
             $db->rollback();
         else
             $db->commit();

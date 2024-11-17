@@ -124,7 +124,7 @@ $t->set_file( array(
     ) );
 
 $t->setAllStrings();
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_block( "subscription_login_tpl", "second_password_tpl", "second_password" );
 $t->set_block( "subscription_login_tpl", "new_tpl", "new" );

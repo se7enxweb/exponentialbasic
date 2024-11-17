@@ -52,9 +52,15 @@ $t->set_block( "findwishlist_page_tpl", "wishlist_tpl", "wishlist" );
 
 $wishlist = new eZWishList();
 
-$wishLists = $wishlist->search( $SearchText );
+if( isset( $SearchText ) )
+    $wishLists = $wishlist->search( $SearchText );
+else
+    $wishLists = array();
 
-$t->set_var( "search_text", $SearchText );
+if( isset( $SearchText ) )
+    $t->set_var( "search_text", $SearchText );
+else
+    $t->set_var( "search_text", '' );
 
 $t->set_var( "wishlist", "" );
 

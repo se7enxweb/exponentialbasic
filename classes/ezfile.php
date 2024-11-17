@@ -56,9 +56,9 @@ class eZFile
     */
     function getUploadedFile( $name_var )
     {
-        global $HTTP_POST_FILES;
+        global $_FILES;
 
-        $name_var = $HTTP_POST_FILES[ $name_var ];
+        $name_var = $_FILES[ $name_var ];
         $ret = true;
 
         $this->FileName = $name_var['name'];
@@ -314,7 +314,13 @@ class eZFile
         {
     		$filename = $GlobalSiteIni->SiteDir . $filename;
         }
-        return unlink( $filename );
+
+        if( file_exists( $filename ) )
+        {
+            return @unlink( $filename );
+        }
+        else
+            return true;
     }
 
     /*!

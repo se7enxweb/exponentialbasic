@@ -147,7 +147,7 @@ $t->set_block( "no_error_tpl", "value_tpl", "value" );
 $t->set_block( "no_error_tpl", "month_tpl", "month" );
 $t->set_block( "no_error_tpl", "day_tpl", "day" );
 
-if ( isSet( $ChangeView ) || $ViewType == "multiple" )
+if ( isSet( $ChangeView ) || isset( $ViewType ) && $ViewType == "multiple" )
 {
     $typeID = $TypeID;
     $t->set_var( "select_multiple", "multiple" );
@@ -593,12 +593,12 @@ if ( $Action == "Edit" )
 
 
 // print out error messages
-if ( $TitleError == true )
+if ( isset( $TitleError ) && $TitleError == true )
     $t->parse( "title_error", "title_error_tpl" );
 else
     $t->set_var( "title_error", "" );
 
-if ( $StartTimeError )
+if ( isset( $StartTimeError ) && $StartTimeError )
 {
     $t->parse( "start_time_error", "start_time_error_tpl" );
     $t->set_var( "action_value", "insert" );
@@ -609,7 +609,7 @@ else
     $t->set_var( "start_time_error", "" );
 }
 
-if ( $StopTimeError )
+if ( isset( $StopTimeError ) && $StopTimeError )
 {
     $t->parse( "stop_time_error", "stop_time_error_tpl" );
     $t->set_var( "action_value", "insert" );
@@ -620,7 +620,7 @@ else
     $t->set_var( "stop_time_error", "" );
 }
 
-if ( $DateError )
+if ( isset( $DateError ) && $DateError )
 {
     $t->parse( "date_error", "date_error_tpl" );
     $t->set_var( "action_value", "insert" );
@@ -785,7 +785,7 @@ for ( $i = 1; $i <= 31; $i++ )
             $t->set_var( "selected", "" );
         }
     }
-    else if ( $DateError )
+    else if ( isset( $DateError ) && $DateError )
     {
         if ( $Day == $i )
         {
@@ -823,7 +823,7 @@ for ( $i = 1; $i <= 12; $i++ )
             $t->set_var( "selected", "" );
         }
     }
-    else if ( $DateError )
+    else if ( isset( $DateError ) && $DateError )
     {
         if ( $i == $Month )
         {
@@ -844,13 +844,13 @@ for ( $i = 1; $i <= 12; $i++ )
 
 if ( $Action != "Edit" )
 {
-    if ( $DateError )
+    if ( isset( $DateError ) && $DateError )
         $t->set_var( "year_value", $Year );
     else
         $t->set_var( "year_value", $tmpdate->year() );
 }
 
-if ( $UserError == false )
+if ( !isset( $DateError ) )
 {
     $t->parse( "no_error", "no_error_tpl" );
     $t->pparse( "output", "appointment_edit_tpl" );
@@ -858,12 +858,12 @@ if ( $UserError == false )
 
 
 // deletes the dayview cache file for a given day
-function deleteCache( $siteStyle, $language, $year, $month, $day, $userID )
+function deleteCache( $SiteDesign, $language, $year, $month, $day, $userID )
 {
-    @eZFile::unlink( "ezcalendar/user/cache/dayview.tpl-$siteStyle-$language-$year-$month-$day-$userID.cache" );
-    @eZFile::unlink( "ezcalendar/user/cache/monthview.tpl-$siteStyle-$language-$year-$month-$userID.cache" );
-    @eZFile::unlink( "ezcalendar/user/cache/dayview.tpl-$siteStyle-$language-$year-$month-$day-$userID-private.cache" );
-    @eZFile::unlink( "ezcalendar/user/cache/monthview.tpl-$siteStyle-$language-$year-$month-$userID-private.cache" );
+    @eZFile::unlink( "ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID.cache" );
+    @eZFile::unlink( "ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID.cache" );
+    @eZFile::unlink( "ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID-private.cache" );
+    @eZFile::unlink( "ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID-private.cache" );
 }
 
 //Adds a "0" in front of the value if it's below 10.

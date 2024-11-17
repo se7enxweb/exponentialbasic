@@ -232,6 +232,8 @@ if ( $user )
     $t->parse( "shipping_address", "shipping_address_tpl" );
 }
 
+if ( !isset( $OrderType ) )
+    $OrderType = false;
 
 // fetch the order items
 $items = $order->items( $OrderType );

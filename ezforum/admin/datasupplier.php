@@ -65,7 +65,7 @@ switch ( $url_array[2] )
     {
         $ForumID = $url_array[3];
 
-        if ( $url_array[4] == "parent" )
+        if ( isset( $url_array[5] ) && isset( $url_array[4] ) && $url_array[4] == "parent" )
             $Offset = $url_array[5];
         else
             $Offset = 0;

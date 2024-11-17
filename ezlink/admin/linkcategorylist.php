@@ -68,7 +68,7 @@ $t->set_block( "link_item_tpl", "no_image_tpl", "no_image" );
 
 $t->set_block( "link_page_tpl", "path_item_tpl", "path_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 if ( !isset( $Offset ) )
     $Offset = 0;

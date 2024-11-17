@@ -160,11 +160,13 @@ $t->set_var( "inserted_attachments", "" );
 $t->set_var( "attachment_delete", "" );
 
 $t->set_var( "error_message", "" );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $to_string = "";
 $id_string = "";
 $company_list = false;
+
+if( isset( $toArray) )
 for ( $i = 0; $i < count( $toArray["Email"] ); $i++ )
 {
     $to_string .= $toArray["Email"][$i];
@@ -263,7 +265,7 @@ if ( $MailID != 0 && eZMail::isOwner( $user, $MailID ) ) // load values from dis
         $t->parse( "inserted_attachments", "inserted_attachments_tpl", false );
     }
 }
-else if ( $MailID == 0 && ( $showcc || $showbcc || $Signature ) ) //mail not saved, but there is data
+else if ( $MailID == 0 && ( isset( $showcc ) && $showcc || isset( $showbcc) && $showbcc || isset( $Signature ) && $Signature ) ) //mail not saved, but there is data
 {
     $t->set_var( "to_value", htmlspecialchars( $To ) );
     $t->set_var( "id_value", $IDList );

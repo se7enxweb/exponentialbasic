@@ -83,7 +83,7 @@ $t->set_var( "multiple_value", "" );
 $t->set_var( "template_item", "" );
 $t->set_var( "error_message", "" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_var( "from_value", "" );
 $t->set_var( "from_name_value", "" );
 $t->set_var( "subject_value", "" );

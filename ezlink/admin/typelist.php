@@ -55,7 +55,7 @@ $t->set_file( "type_list_page_tpl", "typelist.tpl" );
 $t->set_block( "type_list_page_tpl", "type_list_tpl", "type_list" );
 $t->set_block( "type_list_tpl", "type_item_tpl", "type_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $type = new eZLinkType();
 

@@ -45,7 +45,7 @@ $t->setAllStrings();
 
 $t->set_file( "message_tpl", "message.tpl"  );
 $t->set_block( "message_tpl", "message_item_tpl", "message_item" );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $message = new eZForumMessage( $MessageID );
 $forum = new eZForum( $message->forumID() );

@@ -221,7 +221,7 @@ class eZForum
     function search( $queryText, $offset, $limit, &$SearchTotalCount, $params = array() )
     {
         $db =& eZDB::globalDatabase();
-
+        $return_array = array();
         $queryText = $db->escapeString( $queryText );
 
         $query = new eZQuery( "eZForum_Word.Word", $queryText );
@@ -279,7 +279,7 @@ class eZForum
 
                 $db->query_single( $WordFreq, $queryString, array( "LIMIT" => 1 ) );
 
-                if ( $WordFreq["Frequency"] <= 0.7 )
+                if ( isset( $WordFreq["Frequency"] ) && $WordFreq["Frequency"] <= 0.7 )
                     $count += 1;
             }
             $count -= 1;

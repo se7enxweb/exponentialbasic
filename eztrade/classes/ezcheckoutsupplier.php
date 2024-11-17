@@ -33,9 +33,6 @@
 
 class eZCheckoutSupplier
 {
-    /*!
-      
-    */
     function __construct()
     {
         $this->PaymentMethods = array( array( "ID" => 1, "Text" => "VISA" ),
@@ -108,7 +105,9 @@ class eZCheckoutSupplier
             break;
         }
         return $ret;
-    }    
+    }
+
+    var $PaymentMethods;
 }
 
 ?>

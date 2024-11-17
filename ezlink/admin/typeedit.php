@@ -42,7 +42,7 @@ $move_item = true;
 include_once( "ezlink/classes/ezlinktype.php" );
 include_once( "ezlink/classes/ezlinkattribute.php" );
 
-if ( $Action == "Insert" )
+if (isset( $Action ) && $Action == "Insert" )
 {
     $type = new eZLinkType();
     $type->setName( $Name );
@@ -54,7 +54,7 @@ if ( $Action == "Insert" )
 }
 
 
-if ( ( $Action == "Update" ) || ( isset ( $Update ) ) )
+if ( ( isset( $Action ) && $Action == "Update" ) || ( isset ( $Update ) ) )
 {
     $type = new eZLinkType( $TypeID );
     $type->setName( $Name );
@@ -78,7 +78,7 @@ if ( ( $Action == "Update" ) || ( isset ( $Update ) ) )
     $Action = "Edit";
 }
 
-if( $Action == "up" )
+if( isset( $Action ) && $Action == "up" )
 {
     $attribute = new eZLinkAttribute( $AttributeID );
     $attribute->moveUp();
@@ -86,7 +86,7 @@ if( $Action == "up" )
     exit();
 }
 
-if( $Action == "down" )
+if( isset( $Action ) && $Action == "down" )
 {
     $attribute = new eZLinkAttribute( $AttributeID );
     $attribute->moveDown();
@@ -123,7 +123,7 @@ if ( isset( $NewAttribute ) )
 }
 
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $type = new eZProductType();
     $type->get( $TypeID );
@@ -165,7 +165,7 @@ $t->set_var( "type_id", "" );
 $t->set_var( "action_value", "Insert" );
 
 // edit
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $type = new eZLinkType();
     $type->get( $TypeID );

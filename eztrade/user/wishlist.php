@@ -79,7 +79,7 @@ if ( !$wishlist )
     $wishlist->store();
 }
 
-if ( $Action == "AddToBasket" )
+if ( isset( $Action ) && $Action == "AddToBasket" )
 {
     $product = new eZProduct( $ProductID );
 
@@ -185,7 +185,7 @@ if ( $Action == "AddToBasket" )
 }
 
 
-if ( $Action == "RemoveFromWishlist" )
+if ( isset( $Action ) && $Action == "RemoveFromWishlist" )
 {
     $wishListItem = new eZWishListItem( );
     if ( $wishListItem->get( $WishListItemID ) )
@@ -199,7 +199,7 @@ if ( $Action == "RemoveFromWishlist" )
 }
 
 
-if ( $Action == "Refresh" )
+if ( isset( $Action ) && $Action == "Refresh" )
 {
     $i=0;
     if ( count( $WishlistIDArray ) > 0 )
@@ -233,7 +233,7 @@ if ( $Action == "Refresh" )
 }
 
 
-if ( $Action == "MoveToCart" )
+if ( isset( $Action ) && $Action == "MoveToCart" )
 {
     $wishListItem = new eZWishListItem( );
     if ( $wishListItem->get( $WishListItemID ) )

@@ -51,18 +51,374 @@ This project involves documenting and updating the following:
 - EL5: eZ User Websites Boot (Lead the expected page site wide without errors)
 - Extended: eZ Administration Website Boots (loads the UI without fatal or distracting errors)
 - Real story: eZ Admin and eZ User Website Currently Require Extensive Development to free eZ Publish Basic from existing implementation limitations resulting in conflicts with the language preventing error free usage on a per siteacccess, module view, module view action(s) per module view.
+
 ---
+
 - Default eZPB User Modules Views Boot with Minror warnings or visual errors.
 - Default eZPB Admin Module Views Boot With Major warnings or errors per module view set.
 - eZ User, eZ SysInfo, eZ Site Manager Are the First 3 Upgraded Default eZPB Admin siteaccess module views to Run 98% without visual or noticeable issues.
 
----
+### Modules Tested with PHP 8.3
 
-## Modules Tested with PHP 8.3
+- All modules have been tested, documented and bugfixed to run with known patterns of php4 code which still generate warnings and fatal errors upon usage beyond and including page loading.
 
-- Several to be documented
+#### Remaining work to provide full PHP 8.3+ Compatibility
 
----
+The remaining work to test, bugfix and document all modules individually as PHP8 Compatible
+
+- Current efforts surround going through each admin and user module views per module and fixing all warnings and errors on initial page load. (Page load error free)
+- Next efforts surround going through each admin and user module views per module and fixing all usage / interaction / form submissions / CRUD operations php warnings and errors on normal module view Actions usage (Features usage error free). Most time consuming phase.
+- Follow up efforts surround going through each admin and user module views per module an additional time and making certain the actual output is sane and correct for the given database content and feature interactions (Actions; Feature usage accurate and valid results output to user every time). This will require additional documentation to ensure repeatable results.
+- Final efforts surround going through all module views with various error logging being monitored to capture debug, errors, warnings, any output that creates a log entry will be reviewed and if needed refactored as needed. This should be automated with testing software in the future.
+
+## Installation
+
+Follow these steps to set up eZ Publish Basic:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/se7enxweb/ezpublishbasic.git
+
+2. Navigate to the project directory:
+   ```bash 
+   cd ezpublishbasic
+
+3. Install dependencies:
+   ```bash
+    composer install
+
+4. Configure your environment:
+
+5. Update settings files as needed.
+
+6. Ensure your server supports PHP 8.
+
+7. Set up your database and initialize the application in your web browser.
+
+# Default Admin Account in eZ Publish Basic
+
+- Username: 'admin'
+- Password: 'publish'
+
+## Example usage of user login view
+
+- Example usage via web browser using eZ User URL: https://basic.ezpublish.one/user/login
+- Example usage via web browser using eZ Admin URL: https://admin.basic.ezpublish.one/user/login
+
+## History of Authentication in eZ publish v1 through v2.3
+
+- Since it's creation eZ publish v2 authentication information was stored in the database (MySQL / Postgres) using the database provided functions to convert private password strings into once secure MySQL based MD5 Hashes.
+- Future plans: We plan to change the MD5 user authentication layers to instead support bcrypt hashes for more secure authentication.
+
+# Database Support
+
+- MySQL
+- PostgreSQL
+- Informix
+
+## Sections
+
+Sections in eZ Publish Basic (and eZ publish / eZ community 2) are dynamic and PHP file based.
+
+The following section URIs are supported by default thanks to mod_rewrite rules in your webserver or .htaccess configuration.
+
+### Default Sections
+
+- /section-standard/
+  - Articles MenuBox
+  - Headlines MenuBox
+  - Links MenuBox
+  - User Info MenuBox
+  - Poll MenuBox
+  - SiteSearch MenuBox
+  - Print MenuBox
+- /section-intranet/
+  - Articles MenuBox
+  - Bug MenuBox
+  - Contact MenuBox
+  - Forum MenuBox
+  - Filemanger MenuBox
+  - Image catalogue MenuBox
+  - User Info MenuBox
+  - Mail MenuBox
+  - Todo MenuBox
+  - Calendar MenuBox
+  - SiteSearch MenuBox
+  - Print MenuBox
+- /section-trade/
+  - Articles MenuBox
+  - Products MenuBox
+  - Host Deals MenuBox
+  - User Info MenuBox
+  - Customer Cart MenuBox
+  - SiteSearch MenuBox
+  - Print MenuBox
+- /section-news/
+  - Articles MenuBox
+  - Newsfeed MenuBox
+  - User Info MenuBox
+  - News from Freshmeat MenuBox
+  - SiteSearch MenuBox
+  - Print MenuBox
+
+### Default Section PHP8 Compatability
+
+The eZ Publish Basic Default Provided User Website Modules have all been tested as PHP8 Compatible and 100% working by default without errors or warnings.
+
+eZ Publish Basic default sections detailing each section status.
+
+- /section-standard
+  - 98% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
+- /section-intranet/
+  - 95% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
+- /section-trade/
+  - 95% Complete By Default. Products are not displayed normally without loging in first. Links provided from navigational menus serve module views successfully with some minor warnings and some POST/GET module view Actions (user interaction; submitting forms for creation of content) generate errors and warnings.
+- /section-news/
+  - 98% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
+
+## User Modules That Need Work
+
+- ezuser
+  - addressedit
+  - forgot
+  - forgotmessage
+  - login
+  - missingmailmessage
+  - norights
+  - userbox
+  - usercheck
+  - useredit
+  - userwithaddress
+- ezurltranslator
+  - None (Admin Only)
+- ezsitemanager
+  - static - undocumented static content view.
+- ezstats
+  - storestats
+- ezsysinfo
+  - No user module views. Only Admin module views.
+- ezstats
+  - overview
+  - entryexitreport
+  - pageviewlist/last/20
+  - visitorlist/top/20
+  - refererlist/top/20
+  - browserlist/top/25
+  - requestpagelist/top/20
+  - yearreport
+  - monthreport
+  - dayreport
+- ezquiz
+  - menubox
+  - quizlist
+  - quizmyscores
+  - quizopen
+  - quizplay
+  - quizscores
+- ezbulkmail
+  - bulklist
+  - categoryedit
+  - cron
+  - mailview
+  - menubox
+  - singlelist
+  - subscriptionlist
+  - subscriptionlogin
+  - usermessages
+- ezform
+  - formview
+- ezadddress
+  - No user modules views. Admin only.
+- ezmediacatalogue
+  - No user module views. Only Admin module views.
+- ezmessage
+  - No user module views. Only Admin module views.
+- ezmodule
+  - No user module views. Only Admin module views.
+- ezimagecatalogue
+  - categoryedit
+  - customimage
+  - filedownload
+  - imageedit
+  - imagelist
+  - imageview
+  - menubox
+  - menucategorylist
+  - searchsupplier
+  - slideshow
+- ezfilemanager
+  - filedownload
+  - filelist
+  - fileupload
+  - fileview
+  - folderedit
+  - menubox
+  - menufilelist
+  - menufolderlist
+  - search
+  - viewfile
+- ezcalendar
+  - appointmentedit
+  - appointmentview
+  - dayview
+  - monthview
+  - trustees
+  - yearview
+- eztodo
+  - menubox
+  - todoedit
+  - todoinfo
+  - todolist
+  - todomenulist
+  - todoview
+- ezcontact
+  - companysearch
+  - consultationlist
+  - menubox
+  - personsearch
+  - searchsupplier
+  - urlsupplier
+- ezerror
+  - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
+- ezexample
+  - listtable
+  - page
+- ezsearch
+  - menubox
+  - search
+- ezsession
+  - No user module views. Admin only.
+- ezbug
+  - bugslist
+  - bugreport
+  - bugview
+  - fileedit
+  - imageedit
+  - menubox
+  - menumodulelist
+  - reportsuccess
+  - search
+  - unhandledbugs
+- eznewsfeed
+  - allcategories
+  - headlines
+  - menubox
+  - newslist
+  - search
+- ezabout
+  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+- ezad
+  - adlist
+  - gotoadd
+  - queuedadlist
+- ezpoll
+  - pollist
+  - result
+  - userlogin
+  - vote
+  - votebox
+  - votepage
+- ezlink
+  - gotolink
+  - latest
+  - linkcategorylist
+  - menubox
+  - onepagelinklist
+  - search
+  - success
+  - suggestlink
+- ezforum
+  - categorylist
+  - forumlist
+  - latestmessages
+  - menubox
+  - menuforumlist
+  - message
+  - messagebody
+  - messageedit
+  - messageform
+  - messagelist
+  - messagelistflat
+  - messagepath
+  - messagepermissions
+  - messagereply
+  - messagesearch
+  - messagesimplelist
+  - search
+  - searchsupplier
+  - userlogin
+- ezmail
+  - accountedit
+  - configure
+  - fileedit
+  - folderlist
+  - link
+  - mailedit
+  - maillist
+  - mailview
+  - menubox
+  - search
+- eztrade
+  - cart - Needs work. Cart Prices are all Zeros.
+  - categorylist
+  - categorytreelist
+  - checkout - Fatal error on page load.
+  - confirmation
+  - customerlogin
+  - extendedsearch
+  - findwishlist
+  - hostdealslist
+  - invoice
+  - mastercard
+  - menubox
+  - metasupplier
+  - orderlist
+  - ordersendt
+  - orderview
+  - payment
+  - paypalnotify
+  - precheckout
+  - productlist
+  - productsearch
+  - productview
+  - searchsupplier
+  - sendwishlist
+  - smallcart
+  - smallproductlist
+  - viewwishlist
+  - visa
+  - voucher
+  - voucherinformation
+  - vouchermain
+  - voucherview
+  - wishlist
+- ezarticle
+  - articleedit
+  - articleheaderlist
+  - articlelinks
+  - articlelist
+  - articlelistrss
+  - articleview
+  - authorlist
+  - authorview
+  - extendedsearch
+  - fileedit
+  - filelist
+  - frontpage
+  - headlines
+  - imageedit
+  - imagelist
+  - mailtofriend
+  - menuarticleview
+  - menumaker
+  - newsgroup
+  - search
+  - searchform
+  - searchsupplier
+  - sitemap
+  - smallarticlelist
+  - topiclist
+  - urlsupplier
 
 ## Admin Modules That Need Work
 
@@ -178,12 +534,12 @@ This project involves documenting and updating the following:
   - polledit/new - Needs work. Tests as 90% Functional. Some warnings on Page Load.
 - ezlink
   - category/0 - Tests as 100% Functional.
-  - categoryedit/edit/1 - Needs work. Warnings blocking form.
-  - unacceptedlist -  Needs work. Warnings on page load.
-  - typelist - Needs Further Testing as no data displayed from system. Tests OK.
-  - typeedit - Needs work. Warnings blocking form.
-  - categoryedit/new - Needs work. Warnings blocking form.
-  - linkedit/new - Needs work. Fatal Errors on Page Load.
+  - categoryedit/edit/1 - Tests as 100% Functional.
+  - unacceptedlist -  Tests as 100% Functional.
+  - typelist - Tests as 100% Functional.
+  - typeedit - Tests as 100% Functional.
+  - categoryedit/new -Tests as 100% Functional.
+  - linkedit/new - Tests as 100% Functional.
 - ezforum
   - unapprovedlist - Tests as 100% Functional. No errors but no listing.
   - categorylist/ - Tests as 100% Functional. No errors but no listing.
@@ -220,12 +576,14 @@ Note: Printable admin view features currently has fatal errors and distracting w
 
 ## Admin Module Default Views That Test OK
 
+- ezlink
 - ezurltranslator
 - ezuser
 - ezsysinfo
 
 ### Mostly Finished
 
+- ezlink
 - ezurltranslator
 - ezuser
   - userlist -  Tests as 100% Functional.
@@ -690,35 +1048,13 @@ The following user modules views are included in eZ Publish Basic:
 
 ---
 
+# Contributions
+
 ## Community eZ Publish 2 Modules
 
 The worldwide eZ community on the internet likely holds old copies of custom modules. Some community members may be willing to contribute their modules for inclusion in eZ Publish Basic.
 
-## Installation
-
-Follow these steps to set up eZ Publish Basic:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/se7enxweb/ezpublishbasic.git
-
-2. Navigate to the project directory:
-   ```bash 
-   cd ezpublishbasic
-
-3. Install dependencies:
-   ```bash
-    composer install
-
-4. Configure your environment:
-
-5. Update settings files as needed.
-
-6. Ensure your server supports PHP 8.
-
-7. Set up your database and initialize the application in your web browser.
-
-# Contributions
+## How to Contribute
 
 We welcome contributions from the community! To get involved:
 
@@ -732,7 +1068,6 @@ Check out the Contributing Guidelines for more details.
 
 Developed with ❤️ by 7x.
 
----
 
 ## About (Original)
 

@@ -59,7 +59,7 @@ $thumbnail = $article->thumbnailImage();
 
 $t->set_var( "article_name", $article->name() );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 if ( isSet( $AddImages ) )
 {

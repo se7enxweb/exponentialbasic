@@ -28,14 +28,14 @@ include_once( "classes/ezmenubox.php" );
 include_once( "classes/INIFile.php" );
 
 $ini =& $GlobalSiteIni;
-$SiteStyle =& $ini->read_var( "site", "SiteStyle" );
+$SiteDesign =& $ini->read_var( "site", "SiteStyle" );
 
 $menuItems = array(
     array( "/contact/consultationtype/list/", "{intl-consultationtypelist}" ),
     array( "/contact/projecttype/list/", "{intl-projecttypelist}" )
     );
 
-eZMenuBox::createBox( "eZContact", "ezcontact", "admin", $SiteStyle, $menuItems,
+eZMenuBox::createBox( "eZContact", "ezcontact", "admin", $SiteDesign, $menuItems,
                       true, "menuitems.tpl", false, true );
 
 ?>

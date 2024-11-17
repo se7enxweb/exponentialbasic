@@ -44,7 +44,7 @@ $t->set_file( "category_page", "categorylist.tpl" );
 
 $t->set_block( "category_page", "category_item_tpl", "category_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $category = new eZForumCategory();
 $categoryList = $category->getAll();

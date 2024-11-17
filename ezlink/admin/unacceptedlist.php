@@ -54,10 +54,10 @@ $t->set_block( "unacceptedlist", "link_item_tpl", "link_item" );
 $t->set_block( "link_item_tpl", "category_item_tpl", "category_item" );
 $t->set_block( "link_item_tpl", "multiple_category_tpl", "multiple_category" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_var( "link_item", "" );
 
-if ( !$Offset )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 $link = new eZLink();

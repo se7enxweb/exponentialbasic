@@ -126,6 +126,12 @@ if ( isset( $Submit ) || isset( $RealName ) ||  isset( $SendTo  ) || isset( $Fro
     if (! ( eZMail::validate( $From ) ) )
         $errorArr["from"] = true;
 
+    if( !isset( $Textarea ) )
+        $Textarea = false;
+
+    if( !isset( $RealName ) )
+        $RealName = false;
+
     if ( $errorArr )
         errorMsg( $ArticleID, $CategoryID, $tpl, $RealName, $SendTo, $From, $Textarea, $errorArr );
     else
@@ -138,7 +144,7 @@ if ( isset( $Submit ) || isset( $RealName ) ||  isset( $SendTo  ) || isset( $Fro
 /*!
   build up the mail to send.
  */
-function sendmail ( $article_id, $CategoryID, $tpl, $sendmail_tpl, $real_name, $to_name, $from_name, $text, $Sender )
+function sendmail ( $article_id, $CategoryID, $tpl, $sendmail_tpl, $real_name, $to_name, $from_name, $text=false, $Sender=false )
 {
     $article = getArticle( $article_id );
     $renderer = new eZArticleRenderer( $article );

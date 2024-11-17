@@ -42,6 +42,7 @@ class eZLinkCategory
         if ( $id != -1 )
         {
             $this->ID = $id;
+            $this->ImageID = 0;
             $this->get( $this->ID );
         }
     }
@@ -61,7 +62,7 @@ class eZLinkCategory
         $db->lock( "eZLink_Category" );
 
         $nextID = $db->nextID( "eZLink_Category", "ID" );
-        $res = $db->query( "INSERT INTO eZLink_Category
+        $queryText = "INSERT INTO eZLink_Category
                 (ID, Parent, Name, ImageID, Description, SectionID)
                 VALUES
                 ('$nextID',
@@ -69,7 +70,9 @@ class eZLinkCategory
                  '$name',
                  '$this->ImageID',
                  '$description',
-                 '$this->SectionID' )" );
+                 '$this->SectionID' )";
+
+        $res = $db->query( $queryText );
 
         $db->unlock();
 
@@ -110,7 +113,7 @@ class eZLinkCategory
     /*!
       Remove links from the database.
     */
-    function removeLink( $value, $categoryid = false )
+    static public function removeLink( $value, $categoryid = false )
     {
         if( is_a( $value, "eZLink" ) )
             $linkID = $value->id();
@@ -120,7 +123,7 @@ class eZLinkCategory
             return false;
 
         if ( !$categoryid )
-            $categoryid = $this->ID;
+            $categoryid = 0;
 
         $db =& eZDB::globaldatabase();
         $db->query( "DELETE FROM eZLink_LinkCategoryLink
@@ -132,7 +135,7 @@ class eZLinkCategory
     /*!
       Add a link to the database.
     */
-    function addLink( $value, $categoryid = false )
+    static public function addLink( $value, $categoryid = false )
     {
         if ( is_a( $value, "eZLink" ) )
             $linkID = $value->id();
@@ -142,7 +145,7 @@ class eZLinkCategory
             return false;
 
         if ( !$categoryid )
-            $categoryid = $this->ID;
+            $categoryid = 0;
 
         $db =& eZDB::globalDatabase();
 
@@ -262,7 +265,7 @@ class eZLinkCategory
 			if ( isset( $this->ID ) )
 	            $categoryID = $this->ID;
 			else
-				$categoryID = "";
+				$categoryID = false;
         }
 
         $category = new eZLinkCategory( $categoryID );
@@ -547,7 +550,7 @@ class eZLinkCategory
     /*!
         Set an image for this category.
      */
-    function setImage( &$value )
+    function setImage( $value )
     {
         if ( is_a( $value, "eZImage" ) )
         {

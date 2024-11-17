@@ -84,6 +84,8 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) )
     }
     
     $article->setLinkText( $LinkText );
+    $article->setStartDate( eZDateTime::timeStamp(true) );
+    $article->setStopDate( eZDateTime::timeStamp(true) );
     $article->store(); // to get ID
 
     // remove from category if update
@@ -109,7 +111,7 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) )
         // generate keywords
         $contents = strip_tags( $contents );
         $contents = preg_replace( "#\n#", "", $contents );
-        $contents_array =& split( " ", $contents );
+        $contents_array =& preg_split( "/ /", $contents );
         $contents_array = array_unique( $contents_array );
 
         $keywords = "";
@@ -120,7 +122,6 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) )
         }
 
         $article->setKeywords( $keywords );
-        
         $article->store();
     
         // Go to insert item..
@@ -160,7 +161,6 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) )
         {
             $article->setIsPublished( false );
         }
-
         $article->store();
         
         $session->setVariable( "ArticleEditID", "" );
@@ -215,7 +215,7 @@ $t->set_block( "article_edit_page_tpl", "value_tpl", "value" );
 $t->set_block( "article_edit_page_tpl", "error_message_tpl", "error_message" );
 
 
-if ( $ErrorParsing == true )
+if ( isset( $ErrorParsing ) && $ErrorParsing == true )
 {
     $t->parse( "error_message", "error_message_tpl" );
 }
@@ -224,20 +224,38 @@ else
     $t->set_var( "error_message", "" );
 }
 
+if ( $Action == "New" )
+{
+    $user =& eZUser::currentUser();
+    $t->set_var( "author_text", $user->firstName() . " " . $user->lastName());
+    $catDefID = false;
+    $Name = false;
+    $ContentsSet = array();
+    $ContentsSet[0] = false;
+    $ContentsSet[1] = false;
+    $AuthorText = false;
+    $LinkText = false;
+}
+
+if ( $Action == "Edit" )
+{
+    $AuthorText = false;
+    $LinkText = false;
+    $NameSet = false;
+    $ContentsSet = array();
+    $ContentsSet[0] = false;
+    $ContentsSet[1] = false;
+}
+
 $t->set_var( "article_id", "" );
 $t->set_var( "article_name", stripslashes( $Name ) );
-$t->set_var( "article_contents_0", stripslashes( $Contents[0] ) );
-$t->set_var( "article_contents_1", stripslashes( $Contents[1] ) );
+$t->set_var( "article_contents_0", stripslashes( $ContentsSet[0] ) );
+$t->set_var( "article_contents_1", stripslashes( $ContentsSet[1] ) );
 $t->set_var( "author_text", stripslashes( $AuthorText ) );
 $t->set_var( "link_text", stripslashes( $LinkText  ) );
 
 $t->set_var( "action_value", "insert" );
 
-if ( $Action == "New" )
-{
-    $user =& eZUser::currentUser();
-    $t->set_var( "author_text", $user->firstName() . " " . $user->lastName());    
-}
 
 $articleID = $session->variable( "ArticleEditID" );
 if ( $Action == "Edit" )

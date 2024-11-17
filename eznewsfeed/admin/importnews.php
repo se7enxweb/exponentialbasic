@@ -96,7 +96,7 @@ $t->set_block( "import_news_tpl", "source_site_list_tpl", "source_site_list" );
 $t->set_block( "source_site_list_tpl", "source_site_tpl", "source_site" );
 $t->set_var( "source_site", "" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $sourceSite = new eZSourceSite();
 

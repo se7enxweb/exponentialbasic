@@ -130,6 +130,7 @@ else
     $today = new eZDate();
     $tmpDate = new eZDate();
     $tmpAppointment = new eZAppointment();
+    $firstDay = false;
 
     for ( $week = 0; $week < 6; $week++ )
     { 

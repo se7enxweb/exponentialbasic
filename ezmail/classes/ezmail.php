@@ -572,7 +572,7 @@ class eZMail
       \static
       Splits a list of email addresses into an array where each entry is an email address.
     */
-    function &splitList( $emails )
+    static public function &splitList( $emails )
     {
         $emails =& preg_split( "/[,;]/", $emails );
         return $emails;
@@ -582,7 +582,7 @@ class eZMail
       \static
       Merges an array of email addresses into a list of email addresses.
     */
-    function &mergeList( $emails )
+    static public function &mergeList( $emails )
     {
         if ( !is_array( $emails ) )
             return false;
@@ -609,7 +609,7 @@ class eZMail
 
       Returns the first valid e-mail in address, returns false if no e-mail addresses found
     */
-    function stripEmail( $address )
+    static public function stripEmail( $address )
     {
         $res = preg_match( '/[\/0-9A-Za-z\.\?\-\_]+' . '@' .
                      '[\/0-9A-Za-z\.\?\-\_]+/', $address, $email );
@@ -625,7 +625,7 @@ class eZMail
       Returns true if the mail with the given identification is allready downloaded for the given user.
      Note: this is the header ID we are talking about.
     */
-    function isDownloaded( $mailident, $userID )
+    static public function isDownloaded( $mailident, $userID )
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT count(*) as Count FROM eZMail_FetchedMail WHERE UserID='$userID' AND MessageID='$mailident'" );
@@ -678,7 +678,7 @@ class eZMail
       \static
       Returns all mail that belongs to this user as an array of eZMail objects.
      */
-    function getByUser( $user = false, $onlyUnread = false )
+    static public function getByUser( $user = false, $onlyUnread = false )
     {
         if ( !is_a( $user, "eZUser" ) )
             $user =& eZUser::currentUser();
@@ -708,7 +708,7 @@ class eZMail
       \static
       Returns all mail that is sendt to a contact
     */
-    function getByContact( $ContactID, $CompanyEdit, $Offset, $Limit, $user = false )
+    static public function getByContact( $ContactID, $CompanyEdit, $Offset, $Limit, $user = false )
     {
         if ( !is_a( $user, "eZUser" ) )
             $user =& eZUser::currentUser();
@@ -864,7 +864,7 @@ class eZMail
 
       Returns true if the given account belongs to the given user.
      */
-    function isOwner( $user, $mailID )
+    static public function isOwner( $user, $mailID )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();
@@ -1036,29 +1036,33 @@ class eZMail
         $mime = "";
         if ( !empty( $this->From ) )
         {
-	    $envelope = "-f " . $this->From;
+	        $envelope = "-f " . $this->From;
+        }
+        /*
             if ( !empty( $this->FromName ) )
-                $mime .= "From: " . $this->FromName . " <" . $this->From . ">\n";
+                $mime .= "From: " . $this->FromName . " <" . $this->From . ">";
             else
-                $mime .= "From: "  . $this->From . "\n";
+                $mime .= "From: "  . $this->From . "";
         }
         if ( !empty( $this->Cc ) )
-            $mime .= "Cc: " . $this->Cc . "\n";
+            $mime .= "Cc: " . $this->Cc . "";
         if ( !empty( $this->Bcc ) )
-            $mime .= "Bcc: " . $this->Bcc . "\n";
+            $mime .= "Bcc: " . $this->Bcc . "";
         if ( !empty( $this->ReplyTo ) )
-            $mime .= "Reply-To: " . $this->ReplyTo . "\n";
+            $mime .= "Reply-To: " . $this->ReplyTo . "";
+
+        */
         if ( !empty( $this->BodyText ) )
         {
-            $body = preg_replace( "/(?<![\r])\n(?![\r])/", "\r\n", $this->BodyText );
+            $body = $this->BodyText; //preg_replace( "/(?<![\r])\n(?![\r])/", "\r\n", $this->BodyText );
             $this->add_attachment( $body, "", "text/plain");
         }
 
-        $mime .= "MIME-Version: 1.0\n" . $this->build_multipart();
+        $mime .= "MIME-Version: 1.0" . $this->build_multipart();
 
 	if ( isset ( $envelope ) )
 	{
-	    mail( $this->To, $this->Subject, "", $mime, $envelope );
+	    //mail( $this->To, $this->Subject, "", $mime, $envelope );
 	} else
 	{
             mail( $this->To, $this->Subject, "", $mime );
@@ -1074,7 +1078,7 @@ class eZMail
        void add_attachment(string message, [string name], [string ctype])
        Add an attachment to the mail object
      */
-    function add_attachment( $message, $name = "", $ctype = "application/octet-stream" )
+    function add_attachment( $message, $name = "", $ctype = "application/octet-stream", $encode = '' )
     {
         $this->parts[] = array (
             "ctype" => $ctype,
@@ -1142,7 +1146,7 @@ class eZMail
 
       returns every mail that is containing the search string
     */
-    function search( $text, $user = -1 )
+    static public function search( $text, $user = -1 )
     {
         $db =& eZDB::globalDatabase();
         $return_array = array();
@@ -1195,6 +1199,8 @@ class eZMail
     /* database specific variables */
     var $ID;
     var $UserID;
+
+    var $IsPublished;
 }
 
 ?>

@@ -310,7 +310,7 @@ if ( isset( $Action ) && $Action == "insert" )
         $cat = new eZLinkCategory( $LinkCategoryID );
         $cat->addLink( $link );
         $link->setCategoryDefinition( $cat );
-        if ( count( $CategoryArray ) > 0 )
+        if ( isset( $CategoryArray ) && count( $CategoryArray ) > 0 )
         {
             foreach ( $CategoryArray as $categoryItem )
             {

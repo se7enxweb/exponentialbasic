@@ -77,7 +77,7 @@ $t->set_file( array(
 
 $t->setAllStrings();
 $t->set_block( "category_edit_tpl", "subscribe_group_item_tpl", "subscribe_group_item" );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_var( "category_name", "" );
 $t->set_var( "description", "" );

@@ -344,7 +344,7 @@ else
 {
     $t->set_var( "question_list", "" );
 }
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->pparse( "output", "game_edit_page" );
 
 ?>

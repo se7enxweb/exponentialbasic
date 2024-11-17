@@ -208,7 +208,7 @@ class eZCacheFile
       // For instance "articleview,1,2.cache" and "articleview,2,2.cache" matches.
       $files = eZCacheFile::files( "ezarticle/cache", array( "articleview", array( "1", 2" ), "2" ), "cache", "," );
     */
-    function files( $root, $components, $suffix = "cache", $separator = "-", $as_object = true )
+    static public function files( $root, $components, $suffix = "cache", $separator = "-", $as_object = true )
     {
         if ( strlen( $root ) > 1 and $root[strlen($root) - 1] != "/" )
             $root .= "/";

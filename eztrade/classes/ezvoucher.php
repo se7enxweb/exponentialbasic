@@ -192,7 +192,7 @@ class eZVoucher
 
       The categories are returned as an array of eZVoucher objects.
     */
-    function &getAll( $offset=0, $limit=20 )
+    static public function &getAll( $offset=0, $limit=20 )
     {
         $db =& eZDB::globalDatabase();
 

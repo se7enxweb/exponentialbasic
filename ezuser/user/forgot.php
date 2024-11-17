@@ -33,7 +33,7 @@ $headersInfo = getallheaders();
 $languageIni = new INIFIle( "ezuser/user/intl/" . $Language . "/forgot.php.ini", false );
 
 // Get the user.
-if ( $Login )
+if ( isset( $Login ) && $Login )
 {
     $getUser = new eZUser();
     $user = $getUser->getUser( $Login );

@@ -52,10 +52,10 @@ switch ( $url_array[2] )
 
     case "sitemap":
     {
-        if ( isset( $url_array[3] ) )
+        if ( isset( $url_array[3] ) && $url_array[3] != '' )
             $CategoryID = $url_array[3];
         else
-            $CategoryID = "";
+            $CategoryID = false;
         include( "ezarticle/user/sitemap.php" );
     }
     break;

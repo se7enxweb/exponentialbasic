@@ -71,7 +71,7 @@ class eZQDomGenerator
         $newContents .= "<intro>" . $this->generatePage( $this->Contents[0] ) . "</intro>";
 
         // get every page in an array
-        $pages = split( "<page>" , $this->Contents[1] );
+        $pages = preg_split( "/<page>/" , $this->Contents[1] );
 
         $body = "";
         foreach ( $pages as $page )
@@ -1212,6 +1212,7 @@ class eZQDomGenerator
     var $PageCount;
 
     var $CustomTagsArray;
+    var $Level;
 }
 
 

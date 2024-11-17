@@ -277,6 +277,7 @@ class eZCompany
 
         $company_array = array();
         $return_array = array();
+        $limit_array = array();
 
         if ( $limit > 0 )
         {
@@ -379,7 +380,7 @@ class eZCompany
     /*!
       Henter ut alle firma i databasen som inneholder s�kestrengen.
     */
-    function search( $query )
+    static public function search( $query )
     {
         $db =& eZDB::globalDatabase();
 
@@ -1105,7 +1106,7 @@ class eZCompany
     /*!
       Returns an array of persons related to this company
     */
-    function persons( $id = false, $as_object = true, $limit = -1, $offset = 0 )
+    static public function persons( $id = false, $as_object = true, $limit = -1, $offset = 0 )
     {
         if ( !$id )
             $id = $this->ID;
@@ -1113,6 +1114,8 @@ class eZCompany
         {
             $limit_array = array( "Limit" => $limit, "Offset" => $offset );
         }
+        else
+            $limit_array = false;
         $db =& eZDB::globalDatabase();
         $db->array_query( $arr, "SELECT CPD.PersonID
                                  FROM eZContact_CompanyPersonDict AS CPD, eZContact_Person AS P

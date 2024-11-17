@@ -31,11 +31,11 @@
 
 <hr noshade="noshade" size="4" />
 
-<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+<img src="{www_dir}/design/admin/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
 <a class="path" href="{www_dir}{index}/filemanager/list/0/">{intl-file_root}</a>
 
 <!-- BEGIN path_item_tpl -->
-<img src="{www_dir}/images/path-slash.gif" height="10" width="16" border="0" alt="" />
+<img src="{www_dir}/design/admin/images/path-slash.gif" height="10" width="16" border="0" alt="" />
 <a class="path" href="{www_dir}{index}/filemanager/list/{folder_id}/">{folder_name}</a>
 <!-- END path_item_tpl -->
 
@@ -46,7 +46,7 @@
 <!-- BEGIN parent_folder_tpl -->
 <tr>
 <td class="{td_class_parent}" width="%1">
-<img src="{www_dir}/images/folder.gif" alt="" width="16" height="16" border="0" />
+<img src="{www_dir}/design/admin/images/folder.gif" alt="" width="16" height="16" border="0" />
 </td>
 <td class="{td_class_parent}" colspan="3" width="99%">
 <a href="{www_dir}{index}/filemanager/list/{parent_folder_id}/">..</a><br />
@@ -58,7 +58,7 @@
 <tr>
         <!-- BEGIN folder_read_tpl -->
 	<td class="{td_class}" width="1%">
-	<img src="{www_dir}/images/folder.gif" alt="" width="16" height="16" border="0" />
+	<img src="{www_dir}/design/admin/images/folder.gif" alt="" width="16" height="16" border="0" />
 	</td>
 	<td class="{td_class}" width="98%">
 	<a href="{www_dir}{index}/filemanager/list/{folder_id}/">{folder_name}</a><br />
@@ -93,7 +93,7 @@
 <tr>
 	<!-- BEGIN read_tpl -->
 	<td class="{td_class}" width="1%">
-	<img src="{www_dir}/images/file.gif" border="0" alt="" width="16" height="16" border="0" />
+	<img src="{www_dir}/design/admin/images/file.gif" border="0" alt="" width="16" height="16" border="0" />
 	</td>
 	<td class="{td_class}" width="40%">
 	<a href="{www_dir}{index}/filemanager/fileview/{file_id}/">{original_file_name}</a><br />
@@ -104,12 +104,12 @@
 	{file_size}&nbsp;{file_unit}
 	</td>
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/filemanager/download/{file_id}/{original_file_name_without_spaces}" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-dl','','{www_dir}/images/downloadminimrk.gif',1)"><img name="ezf{file_id}-dl" border="0" src="{www_dir}/images/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a>
+	<a href="{www_dir}{index}/filemanager/download/{file_id}/{original_file_name_without_spaces}" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-dl','','{www_dir}/design/admin/images/layout/downloadminimrk.gif',1)"><img name="ezf{file_id}-dl" border="0" src="{www_dir}/design/admin/images/layout/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a>
 	</td>
 	<!-- END read_tpl -->
 	<!-- BEGIN write_tpl -->
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/filemanager/edit/{file_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-red','','{www_dir}/images/redigerminimrk.gif',1)"><img name="ezf{file_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
+	<a href="{www_dir}{index}/filemanager/edit/{file_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-red','','{www_dir}/design/admin/images/redigerminimrk.gif',1)"><img name="ezf{file_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
 	</td>
 	<td class="{td_class}" width="1%" align="center">
 	<input type="checkbox" name="FileArrayID[]" value="{file_id}">

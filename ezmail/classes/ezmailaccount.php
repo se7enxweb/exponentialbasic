@@ -365,7 +365,7 @@ class eZMailAccount
 
       Returns all mail accounts for a selected user as an array of eZMailAccount objects.
      */
-    function getByUser( $user )
+    static public function getByUser( $user )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();

@@ -50,7 +50,7 @@ $t->set_block( "search_tpl", "search_result_tpl", "search_result" );
 
 $t->set_block( "search_tpl", "previous_tpl", "previous" );
 $t->set_block( "search_tpl", "next_tpl", "next" );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 
 if ( !isset( $Offset ) )

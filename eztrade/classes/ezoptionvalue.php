@@ -507,12 +507,12 @@ class eZOptionValue
             $price = $this->Price;
         }
 
-        if (  $maxPrice <= $price )
+        if ( isset( $maxPrice ) && $maxPrice <= $price )
         {
             $maxPrice = $this->Price;
         }
 
-        if ( $maxPrice > $price )
+        if (  isset( $maxPrice ) && $maxPrice > $price )
         {
             $savings = $maxPrice - $price;
         }

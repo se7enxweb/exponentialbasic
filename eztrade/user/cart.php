@@ -81,11 +81,11 @@ if ( isset( $DeleteSelected ) )
     exit();
 }
 
-if ( ( $Action == "Refresh" ) || isSet( $DoCheckOut ) )
+if ( ( isset( $Action ) && $Action == "Refresh" ) || isSet( $DoCheckOut ) )
 {
     $i = 0;
     $delete = false;
-    if ( count( $CartIDArray ) > 0 )
+    if ( isset( $CartCountArray ) && count( $CartIDArray ) > 0 )
     foreach ( $CartIDArray as $cartID )
     {
         if ( $CartCountArray[$i] < 1 )
@@ -193,7 +193,7 @@ if ( !$cart )
 $items = $cart->items( );
 
 
-if ( $Action == "AddToBasket" )
+if ( isset( $Action ) && $Action == "AddToBasket" )
 {
     $product = new eZProduct();
     if ( !$product->get( $ProductID ) )

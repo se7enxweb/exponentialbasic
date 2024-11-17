@@ -93,14 +93,23 @@ $t->set_block( "product_item_tpl", "ex_vat_item_tpl", "ex_vat_item" );
 $t->set_block( "product_list_tpl", "absolute_placement_header_tpl", "absolute_placement_header" );
 $t->set_block( "product_item_tpl", "absolute_placement_item_tpl", "absolute_placement_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $category = new eZProductCategory( 1 );
 // $category->copy( true );
 
+$ParentID = 1;
 
 $category = new eZProductCategory();
-$category->get( $ParentID );
+
+if( isset( $ParentID ) )
+{
+    $category->get( $ParentID );
+}
+else
+{
+    $category->get();
+}
 
 // move products  up / down
 

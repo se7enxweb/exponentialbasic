@@ -135,7 +135,7 @@ $t->set_block( "news_list_tpl", "news_item_tpl", "news_item" );
 $t->set_block( "news_unpublished_page_tpl", "previous_tpl", "previous" );
 $t->set_block( "news_unpublished_page_tpl", "next_tpl", "next" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $category = new eZNewsCategory( $CategoryID );
 

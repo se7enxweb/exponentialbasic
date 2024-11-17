@@ -63,7 +63,7 @@ if ( ( isSet ( $AddImages ) ) and ( is_numeric( $LinkCategoryID ) ) and ( is_num
 
 // Insert a category.
 
-if ( $Action == "insert" )
+if ( isset( $Action ) && $Action == "insert" )
 {
     // clear the menu cache
     $files =& eZCacheFile::files( "ezlink/cache/",
@@ -101,6 +101,7 @@ if ( $Action == "insert" )
             }
             else
             {
+                $category->setImage( 0 );
             }
 
             $category->store();
@@ -133,7 +134,7 @@ if ( $Action == "insert" )
 }
 
 // Delete a category.
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     // clear the menu cache
     $files =& eZCacheFile::files( "ezlink/cache/",
@@ -160,7 +161,7 @@ if ( $Action == "delete" )
     }
 }
 
-if ( $Action == "DeleteCategories" )
+if ( isset( $Action ) && $Action == "DeleteCategories" )
 {
     // clear the menu cache
     $files =& eZCacheFile::files( "ezlink/cache/",
@@ -194,7 +195,7 @@ if ( $Action == "DeleteCategories" )
 }
 
 // Update a category.
-if ( $Action == "update" )
+if ( isset( $Action ) && $Action == "update" )
 {
     // clear the menu cache
     $files =& eZCacheFile::files( "ezlink/cache/",
@@ -296,6 +297,10 @@ if ( $Action == "new" )
     $t->set_var( "category_id", "" );
 
     $t->set_var( "action_value", "insert" );
+
+    $error_msg = false;
+    $sectionID = false;
+    $parentID = false;
 }
 
 // Modifing a category.
@@ -354,7 +359,7 @@ if ( $Action == "edit" )
 
 // Selecter
 $category_select_dict = "";
-foreach( $categoryLinkList as $categoryLinkItem )
+foreach( $categoryLinkList as $i => $categoryLinkItem )
 {
     $t->set_var( "categorylink_id", $categoryLinkItem[0]->id() );
     $t->set_var( "categorylink_name", $categoryLinkItem[0]->name() );

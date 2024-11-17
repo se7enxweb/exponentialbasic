@@ -174,7 +174,14 @@ class eZFormRenderer
                 $this->Template->parse( $name . "_sub_item", $name . "_sub_item_tpl", true );
             }
 
-            $elementValue = str_replace( "eZFormElement_", "", $$elementName );
+            if( !is_null( $$elementName ) )
+            {
+                $elementValue = str_replace( "eZFormElement_", "", $$elementName );
+            }
+            else
+            {
+                $elementValue = $elementName;
+            }
 
             if ( trim( $type ) != "" )
                 $output =& $this->Template->parse( $target, $type . "_tpl" );

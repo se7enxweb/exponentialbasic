@@ -611,15 +611,26 @@ class eZTemplate
             $this->halt( "subst: unable to load $handle." );
             return false;
         }
-
+        $replacedString = array();
         $str = $this->get_var( $handle );
-
         $rFunc = $this->ReplaceFunc;
-        $str =& $rFunc( $this->varkeys, $this->varvals, $str );
+
+        if( is_string( $str ) )
+        {
+            // 7x - Note: Refactor this code
+            //foreach( (array) $str as $string ) {
+            //    $replacedString[] = $string;
+            //}
+            $str = @$rFunc( $this->varkeys, $this->varvals, $str );
+        }
+        else
+        {
+            $replacedString =& $rFunc( $this->varkeys, $this->varvals, $str );
+        }
         
         return $str;
     }
-  
+
     /*!
       Same as subst() but prints it.
     */

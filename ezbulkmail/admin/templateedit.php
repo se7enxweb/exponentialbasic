@@ -59,7 +59,7 @@ $t = new eZTemplate( "ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "Ad
 $t->set_file( "template_edit_tpl", "templateedit.tpl" );
 
 $t->setAllStrings();
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_var( "template_name", "" );
 $t->set_var( "description", "" );

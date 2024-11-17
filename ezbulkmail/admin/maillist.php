@@ -50,7 +50,7 @@ $t->set_file( array(
     ) );
 
 $t->setAllStrings();
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_block( "bulkmail_list_tpl", "bulkmail_tpl", "bulkmail" );
 $t->set_block( "bulkmail_tpl", "bulkmail_item_tpl", "bulkmail_item" );

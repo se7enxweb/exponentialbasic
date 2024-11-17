@@ -53,7 +53,7 @@ $t->set_block( "product_list_tpl", "product_item_tpl", "product_item" );
 $t->set_block( "product_item_tpl", "product_active_item_tpl", "product_active_item" );
 $t->set_block( "product_item_tpl", "product_inactive_item_tpl", "product_inactive_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 if ( !isset( $Limit ) or !is_numeric( $Limit ) )
     $Limit = 10;

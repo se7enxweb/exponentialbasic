@@ -30,6 +30,7 @@ include_once( "ezuser/classes/ezuser.php" );
 
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZMailMain", "DefaultSection" );
+$SiteDesign = $ini->read_var( "site", "SiteDesign" );
 
 switch ( $url_array[2] )
 {

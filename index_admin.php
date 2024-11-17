@@ -151,7 +151,7 @@ $GlobalSiteDesign = $siteDesign;
 // do the statistics
 include_once( "ezstats/classes/ezpageview.php" );
 
-$SiteStyle =& $ini->read_var( "site", "SiteStyle" );
+$SiteDesign =& $ini->read_var( "site", "SiteStyle" );
 
 $GLOBALS["DEBUG"] = true;
 
@@ -245,7 +245,7 @@ if ( $user )
                     include( "$module_dir/admin/menubox.php" );
                     if ( isset( $menuItems ) )
                         eZMenuBox::createBox( $module, $module_dir, "admin",
-                        $SiteStyle, $menuItems, true, false,
+                        $SiteDesign, $menuItems, true, false,
                         "$module_dir/admin/menubox.php", false, true );
                 }
             }

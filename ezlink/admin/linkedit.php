@@ -47,7 +47,7 @@ include_once( "ezlink/classes/ezmeta.php" );
 require( "ezuser/admin/admincheck.php" );
 
 
-if ( $Accepted == "1" || !isSet( $Accepted ) )
+if ( isset( $Accepted ) && $Accepted == "1" || !isSet( $Accepted ) )
 {
     $yes_selected = "selected";
     $no_selected = "";
@@ -106,6 +106,16 @@ if ( $Action == "new" )
     }
 
     $action_value = "new";
+
+    $LinkID = 0;
+    $error_msg = false;
+    $tdescription = false;
+    $tkeywords = false;
+    $tname = false;
+    $turl = false;
+    $linkType = false;
+    $LinkCategoryID = false;
+
     if ( isSet( $OK ) || isSet( $Browse ) )
     {
         $Action = "insert";
@@ -131,7 +141,7 @@ if ( ( isSet( $AddImages ) ) and ( is_numeric( $LinkID ) ) and ( is_numeric( $Li
     $Action = "edit";
 }
 
-if ( $GetSite )
+if ( isset( $GetSite ) && $GetSite )
 {
     if ( $Url )
     {
@@ -742,7 +752,7 @@ if ( is_a( $linkType, "eZLinkType") )
     }
 }
 
-if ( count( $attributes ) > 0 || !isSet( $type ) )
+if ( isset( $attributes ) && count( $attributes ) > 0 || !isSet( $type ) )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }

@@ -419,7 +419,7 @@ if ( $Action == "view" )
 if ( is_a( $user, "eZUser" ) and eZPermission::checkPermission( $user, "eZContact", "buy" ) )
 {
     $max = $ini->read_var( "eZContactMain", "MaxCompanyConsultationList" );
-    if ( $CompanyEdit )
+    if ( isset( $CompanyEdit ) && $CompanyEdit )
         $orders = eZOrder::getByContact( $CompanyID, false, 0, $max );
     else
         $orders = eZOrder::getByContact( $PersonID, false, 0, $max );

@@ -122,7 +122,7 @@ $modules =& eZModuleHandler::active();
 // $modules =& $preferences->variableArray( "EnabledModules" );
 $single_module = eZModuleHandler::useSingleModule();
 
-$t = new eZTemplate( "design/admin/templates/" . $SiteStyle,
+$t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
                      "design/admin/intl/", $Language, "header.php" );
 
 
@@ -188,7 +188,7 @@ if ( $CharsetSwitch == "enabled" )
 
 $t->set_var( "site_url", $SiteURL );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_var( "module_name", isset($moduleName)?$moduleName:'' );
 
@@ -258,5 +258,3 @@ if ( ( $moduletab == "enabled" ) && ( count ( $modules ) != 0 ) )
 
 
 $t->pparse( "output", "header_tpl" );
-
-

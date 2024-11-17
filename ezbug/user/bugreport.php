@@ -238,8 +238,10 @@ if ( isset( $IsPrivate ) && $IsPrivate == "On" )
     $t->set_var( "private_checked", "checked" );
 
 $user =& eZUser::currentUser();
-if ( !$user )
+if ( $user )
     $t->set_var( "usr_email", $user->userEmail() );
+else
+    $t->set_var( "usr_email", '' );
 
 if( $Action == "Edit" ) // load values from database
 {

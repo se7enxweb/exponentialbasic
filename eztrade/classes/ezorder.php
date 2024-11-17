@@ -125,7 +125,7 @@ class eZOrder
 
             $status->setOrderID( $this->ID );
 
-//              $user =& eZUser::currentUser();
+            $user =& eZUser::currentUser();
 //              print( $user->id() );
 
             $status->setAdmin( $user );
@@ -348,7 +348,7 @@ class eZOrder
 
       Note: Default limit is 40.
     */
-    function &getCountByUser( $user = false )
+    function &getCountByUser( $user = false, $OrderBy = false )
     {
         switch ( strtolower( $OrderBy ) )
         {
@@ -394,7 +394,7 @@ class eZOrder
         return $res[$db->fieldName( "Count" )];
     }
 
-    function &getByContact( $contact, $is_person = true, $offset = 0, $limit = 40 )
+    static public function &getByContact( $contact, $is_person = true, $offset = 0, $limit = 40 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -1135,13 +1135,22 @@ class eZOrder
     {
         $items = $this->items( );
 
-        $tax = "";
-        $total = "";
+        $tax = array();
+        $total = array();
+
+        $totalIncTax = 0;
+        $totalExTax = 0;
 
         foreach ( $items as $item )
         {
             $product =& $item->product();
             $vatPercentage = $product->vatPercentage();
+
+            $tax["$vatPercentage"] = array();
+            $tax["$vatPercentage"]["basis"] = false;
+            $tax["$vatPercentage"]["tax"] = false;
+            $tax["$vatPercentage"]["percentage"] = false;
+
             $exTax = $item->correctPrice( true, true, false );
             $incTax = $item->correctPrice( true, true, true );
 
@@ -1258,6 +1267,7 @@ class eZOrder
     var $ShippingTypeID;
     var $OrderStatus_;
     var $IsExported;
+    var $TextPaymentMethod;
 
 }
 

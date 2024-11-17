@@ -87,7 +87,7 @@ $t->set_block( "folders_item_tpl", "folders_item_edit_tpl", "folders_item_edit" 
 $t->set_block( "folders_item_tpl", "edit_empty_tpl", "edit_empty" );
 $t->set_var( "folders_item_edit", "" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 /** insert the special folders **/
 $i=0;

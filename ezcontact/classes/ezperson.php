@@ -48,6 +48,7 @@ class eZPerson
     */
     function __construct( $id="" )
     {
+        $this->ContactType = 0;
         if ( !empty( $id ) )
         {
             $this->ID = $id;
@@ -100,21 +101,27 @@ class eZPerson
         }
         else
         {
-            $res[] = $db->query( "UPDATE eZContact_Person SET
+            $queryText = "UPDATE eZContact_Person SET
                                           FirstName='$firstname',
                                           LastName='$lastname',
 	                                      Comment='$comment',
 	                                      BirthDate=$birth,
                                           ContactTypeID='$this->ContactType'
-                                          WHERE ID='$this->ID'" );
+                                          WHERE ID='$this->ID'";
+
+            $res[] = $db->query( $queryText );
+            /*
             $firstname = strtolower( $firstname );
             $lastname = strtolower( $lastname );
-            $res[] = $db->query( "UPDATE eZContact_PersonIndex SET
+            $queryText = "UPDATE eZContact_PersonIndex SET
                                           Value='$firstname'
-                                          WHERE PersonID='$this->ID' AND Type='0'" );
+                                          WHERE PersonID='$this->ID' AND Type='0'";
+            var_dump($queryText);
+            $res[] = $db->query( $queryText );
             $res[] = $db->query( "UPDATE eZContact_PersonIndex SET
                                           Value='$lastname'
                                           WHERE PersonID='$this->ID' AND Type='0'" );
+            */
         }
         eZDB::finish( $res, $db );
     }
@@ -415,7 +422,7 @@ class eZPerson
     /*!
       Fetches all persons whith first name or last name equal to the query string.
     */
-    function search( $query )
+    static public function search( $query )
     {
         $db =& eZDB::globalDatabase();
         $person_array = 0;
@@ -1045,6 +1052,86 @@ class eZPerson
         }
         return $ret;
     }
+
+    /*!
+      Sets the logo image for the company.
+
+      The argument must be a eZImage object.
+    */
+    function setImage( &$image, $id = false )
+    {
+        if ( !$id )
+            $id = $this->ID;
+
+        if ( is_a( $image, "eZImage" ) )
+        {
+            $db =& eZDB::globalDatabase();
+            $db->begin();
+
+            $imageID =& $image->id();
+
+            $db->array_query( $res_array, "SELECT COUNT(*) AS Number FROM eZContact_PersonImageDefinition
+                                           WHERE PersonID='$id'" );
+
+            if ( $res_array[0][ $db->fieldName( "Number" ) ] == "1" )
+            {
+                $res[] = $db->query( "UPDATE eZContact_PersonImageDefinition
+                                      SET
+                                      LogoImageID='$imageID'
+                                      WHERE
+                                      PersonID='$id'" );
+            }
+            else
+            {
+                $res[] = $db->query( "INSERT INTO eZContact_PersonImageDefinition
+                                      (PersonID, LogoImageID)
+                                      VALUES
+                                      ('$id', '$imageID')" );
+            }
+            eZDB::finish( $res, $db );
+        }
+    }
+
+    /*!
+      Returns the logo image of the company as a eZImage object.
+    */
+    static public function image( $id = false )
+    {
+        if ( !$id )
+            $id = 0;
+
+        $ret = false;
+        $db =& eZDB::globalDatabase();
+var_dump( $id);
+        $db->array_query( $res_array, "SELECT * FROM eZContact_PersonImageDefinition
+                                       WHERE PersonID='$id'" );
+
+        if ( count( $res_array ) == 1 )
+        {
+            if ( $res_array[0][$db->fieldName( "LogoImageID" )] != "NULL"
+                and $res_array[0][$db->fieldName( "LogoImageID" )] != "0" )
+            {
+                $ret = new eZImage( $res_array[0][$db->fieldName( "LogoImageID" )], false );
+            }
+        }
+        return $ret;
+    }
+
+    /*!
+      Deletes the image for the company.
+    */
+    function removeImage( $id = false )
+    {
+        if ( !$id )
+            $id = $this->ID;
+
+        $db =& eZDB::globalDatabase();
+        $db->begin();
+        $res[] = $db->query( "UPDATE eZContact_PersonImageDefinition
+                              SET PersonImageID='0' WHERE PersonID='$id'" );
+        eZDB::finish( $res, $db );
+    }
+
 
     var $ID;
     var $FirstName;

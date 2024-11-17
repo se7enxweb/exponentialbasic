@@ -38,7 +38,7 @@ $t->set_file( "module_list",  "menumodulelist.tpl" );
 
 $t->set_block( "module_list", "module_item_tpl", "module_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $module = new eZBugModule( $ParentID );
 $t->set_var( "this_id", $ParentID );

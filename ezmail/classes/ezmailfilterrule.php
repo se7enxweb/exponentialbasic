@@ -276,9 +276,9 @@ class eZMailFilterRule
 
       Returns all mail filters for a selected user as an array of eZMailFilterRules objects.
      */
-    function getByUser( $user )
+    static public function getByUser( $user )
     {
-        if( get_class( $user ) == "ezuser" )
+        if( !is_string( $user ) && get_class( $user ) == "ezuser" )
             $user = $user->id();
 
         $database =& eZDB::globalDatabase();

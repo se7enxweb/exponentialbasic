@@ -1146,7 +1146,7 @@ class eZArticleCategory
         if ( $categoryID != 0 )
             $catID = $categoryID;
         else
-            $catID = -1; //$this->ID;
+            $catID = false; //$this->ID;
 
         $db =& eZDB::globalDatabase();
 
@@ -1251,26 +1251,36 @@ class eZArticleCategory
            if ( $permissionSQL == "" )
                $publishedSQL = "";
            else
-               $publishedSQL = " AND";
+               $publishedSQL = "";
        }
 
        // fetch only published articles
        else if ( $fetchPublished  == true )
        {
            if ( $permissionSQL == "" )
-               $publishedSQL = " Article.IsPublished = '1' AND ";
+               $publishedSQL = " Article.IsPublished = '1' ";
            else
-               $publishedSQL = " AND Article.IsPublished = '1' AND ";
+               $publishedSQL = " AND Article.IsPublished = '1' ";
        }
 
        // fetch only non-published articles
        else
        {
            if ( $permissionSQL == "" )
-               $publishedSQL = " Article.IsPublished = '0' AND ";
+               $publishedSQL = " Article.IsPublished = '0' ";
            else
-               $publishedSQL = " AND Article.IsPublished = '0' AND ";
+               $publishedSQL = " AND Article.IsPublished = '0' ";
        }
+
+       if( $catID == false )
+       {
+           $categorySQL = '';
+       }
+       else
+       {
+           $categorySQL = "AND Link.CategoryID='$catID'";
+       }
+
 	  $query = "SELECT Article.* $perm_str
                   FROM eZArticle_ArticleCategoryDefinition as Definition,
                        eZArticle_Article as Article,
@@ -1280,7 +1290,7 @@ class eZArticleCategory
                   WHERE
                         $permissionSQL
                         $publishedSQL
-                        Link.CategoryID='$catID'
+                        $categorySQL
                         AND Permission.ObjectID=Article.ID
                         AND Link.ArticleID=Article.ID
                         AND Definition.ArticleID=Article.ID
@@ -1288,7 +1298,6 @@ class eZArticleCategory
                  GROUP BY $PermGroupBy Article.ID, Article.Published, Article.Name, Article.Contents, Article.ContentsWriterID, Article.LinkText, Article.AuthorID, Article.Modified, Article.Created, Article.PageCount, Article.IsPublished, Article.Keywords, Article.Discuss, Article.TopicID, Article.StartDate, Article.StopDate, Article.ImportID $GroupBy
                  $having_str
                  ORDER BY $OrderBy";
-
 
        if ( $limit == -1 )
        {

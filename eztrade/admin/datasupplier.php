@@ -80,10 +80,13 @@ switch ( $url_array[2] )
 
     case "categorylist" :
 
-        if ( ( $url_array[3] == "parent") && ( $url_array[4] != "" ) )
+        if ( isset( $url_array[4] ) && ( $url_array[3] == "parent") && ( $url_array[4] != "" ) )
         {
             $ParentID = $url_array[4];
+
+            if( isset( $url_array[5] ) )
             $Offset = $url_array[5];
+
             include( "eztrade/admin/categorylist.php" );
         }
         else

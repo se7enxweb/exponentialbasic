@@ -30,11 +30,11 @@ $Language = $ini->read_var( "eZArticleMain", "Language" );
 
 include_once( "classes/template.inc" );
 
-$t = new Template( "admin/templates/" . $SiteStyle );
+$t = new Template( "admin/templates/" . $SiteDesign );
 
 $t->set_file( "help_footer_tpl", "help_footer.tpl" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_var( "module_dir", $moduleName );
 
 
@@ -42,4 +42,3 @@ $t->pparse( "output", "help_footer_tpl" );
     
 
 ?>
-

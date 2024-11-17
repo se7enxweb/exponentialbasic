@@ -97,6 +97,9 @@ class eZImage
     function __construct( $id = "" )
     {
         $this->PhotographerID = 0;
+        $this->UserID = 0;
+        $this->WritePermission = 0;
+        $this->ReadPermission = 0;
         $this->NewImage = false;
         if ( $id != "" )
         {
@@ -1140,7 +1143,7 @@ class eZImage
       $user is either a userID or an eZUser.
       $image is the ID of the image.
      */
-    function isOwner( $user, $image )
+    static public function isOwner( $user, $image )
     {
         if ( !is_a( $user, "eZUser" ) )
             return false;

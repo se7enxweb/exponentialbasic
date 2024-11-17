@@ -47,7 +47,7 @@ $t->set_block( "game_list_tpl", "game_item_tpl", "game_item" );
 if ( !isset( $Offset ) )
     $Offset = 0;
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $gameList =& eZQuizGame::getAll( $Offset, $Limit );
 $totalCount =& eZQuizGame::count();
 

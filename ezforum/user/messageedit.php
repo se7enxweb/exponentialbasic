@@ -94,15 +94,6 @@ switch ( $Action )
     }
     break;
 
-/*    case "preview":
-    {
-        $t = new eZTemplate( "ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
-                             "ezforum/user/intl", $Language, "message.php" );
-
-        $t->set_file( "page", "messagepreview.tpl"  );
-    }
-    break;*/
-
     case "completed":
     {
         $t = new eZTemplate( "ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
@@ -116,7 +107,7 @@ switch ( $Action )
 
 
 // Any errors?
-
+$Error = false;
 $Errors = false;
 
 $Locale = new eZLocale( $Language );
@@ -137,7 +128,7 @@ switch ( $Action )
         include_once( "classes/ezhttptool.php" );
         if ( $MessageDelete == false )
         {
-            eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
+            die('bath');// eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
         $msg->delete();
@@ -183,9 +174,9 @@ switch ( $Action )
         include( "ezforum/user/messagepermissions.php" );
 
         include_once( "classes/ezhttptool.php" );
-        if ( $MessageEdit == false )
+        if ( isset( $MessageEdit ) && $MessageEdit == false )
         {
-            eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
+            die('mondays'); //eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
         // Just tell the geezers that their posting has been sent or queued for moderation.
@@ -232,16 +223,17 @@ switch ( $Action )
     case "insert":
     {
         $ActionValue = "completed";
-        $msg = new eZForumMessage( $OriginalID );
+        $msg = new eZForumMessage( $MessageID );
 
-        $CheckMessageID = $OriginalID;
+        $CheckMessageID = $MessageID;
         $ForumID = $msg->forumID();
         $CheckForumID = $ForumID;
 
         include( "ezforum/user/messagepermissions.php" );
 
         include_once( "classes/ezhttptool.php" );
-        if ( !$ForumPost )
+
+        if ( isset( $ForumPost ) && !$ForumPost )
         {
             eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
@@ -342,7 +334,7 @@ switch ( $Action )
             }
         }
 
-        if ( $RedirectURL != "" )
+        if ( isset( $RedirectURL ) && $RedirectURL != "" )
         {
             eZHTTPTool::header( "Location: $RedirectURL" );
         }
@@ -365,9 +357,9 @@ switch ( $Action )
         include( "ezforum/user/messagepermissions.php" );
 
         include_once( "classes/ezhttptool.php" );
-        if ( $MessageEdit == false )
+        if ( isset( $MessageEdit ) && $MessageEdit == false )
         {
-            eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
+            die('pink');//eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
         $msg->setTopic( $tmpmsg->topic() );
@@ -375,7 +367,7 @@ switch ( $Action )
         $msg->setEmailNotice( $tmpmsg->emailNotice() );
 
         $msg->store();
-        if ( $RedirectURL )
+        if ( $RedirectURL != "" )
         {
             eZHTTPTool::header( "Location: $RedirectURL" );
         }
@@ -391,7 +383,6 @@ switch ( $Action )
         $StartAction = "new";
         $EndAction = "insert";
         $ActionValue = "preview";
-
         $NewMessagePostedAt = htmlspecialchars( $ini->read_var( "eZForumMain", "FutureDate" ) );
 
         $ShowMessage = false;
@@ -408,7 +399,7 @@ switch ( $Action )
         if ( !$ForumPost )
         {
             include_once( "classes/ezhttptool.php" );
-            eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
+            die('green');// eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
         $doParse = true;
@@ -454,10 +445,10 @@ switch ( $Action )
 
         include( "ezforum/user/messagepermissions.php" );
 
-        if ( !$MessageEdit && !$Error )
+        if ( isset( $MessageEdit ) && !$MessageEdit && !$Error )
         {
             include_once( "classes/ezhttptool.php" );
-            eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
+            die('blueboy');//eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
 
@@ -499,13 +490,14 @@ switch ( $Action )
 
         if ( !$MessageReply )
         {
-            #include_once( "classes/ezhttptool.php" );
-            #eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
+            //#include_once( "classes/ezhttptool.php" );
+            //#eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
         if ( $ReplyTags == "enabled" )
         {
-            $NewMessageBody = $ReplyStartTag . "\n" . $msg->body() . "\n" . $ReplyEndTag;
+            $NewMessageBody = "$ReplyStartTag" . "\n" . $msg->body() . "\n" . "$ReplyEndTag";
+            $MessageBody = $NewMessageBody;
         }
         else
         {
@@ -519,9 +511,10 @@ switch ( $Action )
 
         $ReplyPrefix = $ini->read_var( "eZForumMain", "ReplyPrefix" );
 
-        if ( !ereg( "^$ReplyPrefix", $NewMessageTopic ) )
+        if ( !preg_match( "/^$ReplyPrefix/", $NewMessageTopic ) )
         {
             $NewMessageTopic = $ReplyPrefix . $NewMessageTopic;
+            $MessageTopic = $NewMessageTopic;
         }
 
         $doParse = true;
@@ -548,7 +541,7 @@ switch ( $Action )
     case "preview":
     {
         $ActionValue = $EndAction;
-        if ( $Error == false )
+        if ( isset( $Error ) && $Error == false )
         {
             if ( empty( $PreviewID ) )
             {
@@ -656,10 +649,10 @@ switch ( $Action )
             $CheckForumID = $msg->forumID();
             include( "ezforum/user/messagepermissions.php" );
 
-            if ( $MessageEdit == false )
+            if ( isset( $MessageEdit ) && $MessageEdit == false )
             {
                 include_once( "classes/ezhttptool.php" );
-                eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
+                die('purplemonster');//eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
             }
 
             $ShowPath = true;
@@ -685,7 +678,7 @@ switch ( $Action )
     default:
     {
         include_once( "classes/ezhttptool.php" );
-        eZHTTPTool::header( "Location: /error/404?Info=" . errorPage( "forum_main", "/forum/categorylist/", 404 ) );
+        die('aqua'); //eZHTTPTool::header( "Location: /error/404?Info=" . errorPage( "forum_main", "/forum/categorylist/", 404 ) );
     }
     break;
 }

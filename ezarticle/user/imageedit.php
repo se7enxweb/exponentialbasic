@@ -243,7 +243,7 @@ $author = new eZAuthor();
 $authorArray = $author->getAll();
 foreach ( $authorArray as $author )
 {
-    if ( $photographerID == $author->id() )
+    if ( isset( $photographerID ) && $photographerID == $author->id() )
     {
         $t->set_var( "selected", "selected" );
     }

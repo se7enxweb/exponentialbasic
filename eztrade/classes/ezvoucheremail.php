@@ -155,7 +155,7 @@ class eZVoucherEMail
                               0, 1 );
             if( count( $quizArray ) == 1 )
             {
-                $this->fill( &$quizArray[0] );
+                $this->fill( $quizArray[0] );
                 $ret = true;
             }
             elseif( count( $quizArray ) == 1 )

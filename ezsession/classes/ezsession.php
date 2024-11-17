@@ -536,6 +536,7 @@ class eZSession
 
     function setArray( $name, $array, $append=false )
     {
+        $string = false;
         if ( $append )
         {
             $string = $this->variable( $name );
@@ -544,7 +545,7 @@ class eZSession
         }
 
         $i=0;
-        while( list($key,$val) = each( $array ) )
+        foreach( $array as $key => $val )
         {
             if ( ( !$string ) || ( $i == 0 ) )
                 $string .= $key . "->" . $val;

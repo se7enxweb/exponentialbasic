@@ -56,7 +56,6 @@
 */
 
 include_once( "classes/ezdb.php" );
-
 include_once( "eztrade/classes/ezwishlistitem.php" );
 
 class eZWishList
@@ -70,6 +69,8 @@ class eZWishList
     function __construct( $id="" )
     {
         $this->IsConnected = false;
+        $this->IsPublic = 0;
+        $this->IsBought = 0;
 
         if ( $id != "" )
         {
@@ -344,5 +345,7 @@ class eZWishList
     var $ID;
     var $UserID;
     var $IsPublic;
+    var $IsBought;
+    var $IsConnected;
 }
 ?>

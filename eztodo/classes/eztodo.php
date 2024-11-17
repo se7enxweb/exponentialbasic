@@ -196,6 +196,8 @@ class eZTodo
 
         $return_array = array();
         $todo_array = array();
+        $showStatus = false;
+        $showCategory = false;
 
         if ( $statusID != 0 )
         {

@@ -33,7 +33,7 @@ $Locale = new eZLocale( $Language );
 $iso = $Locale->languageISO();
 $SiteURL =& $ini->read_var( "site", "SiteURL" );
 
-$t = new eZTemplate( "design/admin/templates/" . $SiteStyle,
+$t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
                      "design/admin/intl/", $Language, "print_header.php" );
 
 $t->set_file( array(
@@ -56,7 +56,7 @@ else
 
 $t->set_var( "site_url", $SiteURL );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->set_var( "module_name", $moduleName );
 

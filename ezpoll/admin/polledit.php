@@ -237,7 +237,7 @@ $t->set_file( array( "poll_edit_page" => "polledit.tpl"
 
 $t->set_block( "poll_edit_page", "poll_choice_tpl", "poll_choice" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $Action_value = "insert";
 $Name = "";

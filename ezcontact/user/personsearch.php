@@ -70,12 +70,12 @@ $t->set_var( "companies_table", "" );
 $t->set_var( "command_type", "person" );
 
 $t->set_var( "search_text", htmlspecialchars( $SearchText ) );
-$t->set_var( "current_id", $SearchCategory );
+$t->set_var( "current_id", isset( $SearchCategory ) ? $SearchCategory : false );
 
 $Action = "new";
 $results = "false";
 
-if ( $SearchObject == "person" )
+if ( isset( $SearchObject ) && $SearchObject == "person" )
 {
     $Action = "search";
 }
@@ -103,7 +103,7 @@ if ( $results )
     $t->set_var( "results", $count );
     $i = 0;
 
-    $can_view_stats = eZPermission::checkPermission( $user, "eZContact", "PersonStats" ) && $ShowStats;
+    $can_view_stats = eZPermission::checkPermission( $user, "eZContact", "PersonStats" ) && isset( $ShowStats ) && $ShowStats;
     $t->set_var( "person_stats_header", "" );
     if ( $can_view_stats )
         $t->parse( "person_stats_header", "person_stats_header_tpl" );
@@ -130,7 +130,7 @@ if ( $results )
         $t->parse( "no_person_view_button", "no_person_view_button_tpl" );
     }
 
-    if ( count( $personList ) == 0 )
+    if ( !isset( $personList ) || isset( $personList ) && count( $personList ) == 0 )
     {
         $t->set_var( "person_item", "" );
         $t->set_var( "companies_table", "" );
@@ -138,7 +138,7 @@ if ( $results )
     }
     else
     {
-        $can_view_stats = eZPermission::checkPermission( $user, "eZContact", "PersonStats" ) && $ShowStats;
+        $can_view_stats = eZPermission::checkPermission( $user, "eZContact", "PersonStats" ) && isset( $ShowStats ) && $ShowStats;
         $t->set_var( "person_stats_header", "" );
         if ( $can_view_stats )
             $t->parse( "person_stats_header", "person_stats_header_tpl" );

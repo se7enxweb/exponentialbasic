@@ -437,7 +437,15 @@ class eZCart
                $values =& $shippingGroup->startAddValue( $shippingType );
 
                $shipid = $shippingGroup->id();
-               $count = $item->count() + $ShippingCostValues[$shipid]["Count"];
+               if( isset( $ShippingCostValues[$shipid] ) )
+               {
+                   $count = $item->count() + $ShippingCostValues[$shipid]["Count"];
+               }
+               else
+               {
+                   $count = $item->count();
+               }
+
                $ShippingCostValues[$shipid]["Count"] = $count;
                $ShippingCostValues[$shipid]["ID"] = $shipid;
                $ShippingCostValues[$shipid]["Values"] = $values;

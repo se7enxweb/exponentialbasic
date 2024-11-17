@@ -33,8 +33,9 @@ include_once( "classes/ezcctool.php" );
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
+$PaymentSuccess = false;
 
-if ( $Action == "Verify" )
+if ( isset( $Action ) && $Action == "Verify" )
 {
     // Add VISA transaction code here..
 
@@ -49,8 +50,8 @@ $t->set_file( "visa_tpl", "visa.tpl" );
 
 $t->setAllStrings();
 
-$t->set_var( "order_id", $OrderID );
-$t->set_var( "payment_type", $PaymentType );
+$t->set_var( "order_id", isset( $OrderID ) ? $OrderID : 0 );
+$t->set_var( "payment_type", isset( $PaymentType ) ? $PaymentType : '' );
 
 $t->pparse( "output", "visa_tpl" );
 ?>

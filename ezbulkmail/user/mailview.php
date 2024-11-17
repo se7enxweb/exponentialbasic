@@ -45,7 +45,7 @@ $t->set_file( array(
     ) );
 
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $mail = new eZBulkMail( $MailID );
 if( is_object( $mail ) )

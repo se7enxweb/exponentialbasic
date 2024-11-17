@@ -52,8 +52,9 @@ function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
         $file->delete();
     }
     $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
-                                                          array_merge( $CategoryID, $CategoryArray ) ),
+                                                          array_merge( array( $CategoryID ), $CategoryArray ) ),
                                  "cache", "," );
+
     foreach ( $files as $file )
     {
         $file->delete();
@@ -224,8 +225,14 @@ if ( $Action == "Update"  or $Action == "Insert" )
         if ( $ProductID )
             eZPriceGroup::removePrices( $ProductID, -1 );
 
-        $count = max( count( $PriceGroup ), count( $PriceGroupID ) );
-
+        if( isset( $PriceGroup ) && isset( $PriceGroupID ) )
+        {
+            $count = max( count( $PriceGroup ), count( $PriceGroupID ) );
+        }
+        else
+        {
+            $count = false;
+        }
         for ( $i = 0; $i < $count; $i++ )
         {
             if ( is_numeric( $PriceGroupID[$i] ) and $PriceGroup[$i] != "" )
@@ -281,11 +288,18 @@ if ( $Action == "Update"  or $Action == "Insert" )
         if ( $Action == "Update" )
         {
             $old_maincategory = $product->categoryDefinition();
-            $old_categories = array_merge( $old_maincategory->id(), $product->categories( false ) );
+
+            $old_categories = array_merge( array( $old_maincategory->id() ), $product->categories( false ) );
             $old_categories = array_unique( $old_categories );
 
-            $new_categories = array_unique( array_merge( $CategoryID, $CategoryArray ) );
-
+            if( isset( $CategoryArray ) )
+            {
+                $new_categories = array_unique( array_merge( array( $CategoryID ), $CategoryArray ) );
+            }
+            else
+            {
+                $new_categories = array( $CategoryID );
+            }
             $remove_categories = array_diff( $old_categories, $new_categories );
             $add_categories = array_diff( $new_categories, $old_categories );
 
@@ -299,10 +313,14 @@ if ( $Action == "Update"  or $Action == "Insert" )
             $add_categories = array_unique( array_merge( $CategoryID, $CategoryArray ) );
         }
 
-
         // add a product to the categories
         $category = new eZProductCategory( $CategoryID );
         $product->setCategoryDefinition( $category );
+
+        if( empty( $add_categories ) )
+        {
+             $add_categories = array( $old_maincategory->id() );
+        }
 
         foreach ( $add_categories as $categoryItem )
         {
@@ -536,7 +554,7 @@ if ( $Action == "Edit" )
     $generator = new eZArticleGenerator();
     $contentsArray =& $generator->decodeXML( $product->contents() );
 
-    if ( count( $Contents_Override ) == 2 )
+    if ( isset( $Contents_Override ) && count( $Contents_Override ) == 2 )
     {
         $t->set_var( "brief_value", $Contents_Override[0] );
         $t->set_var( "description_value", $Contents_Override[1] );

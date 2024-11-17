@@ -44,7 +44,7 @@ if ( !$user )
 
 $session =& eZSession::globalSession();
 $session->fetch();
-if ( $Action == "edit" )
+if ( isset( $Action ) && $Action == "edit" )
 {
     $trustees = $user->trustees();
     if ( !isSet( $TrusteesList ) )

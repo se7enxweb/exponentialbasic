@@ -51,7 +51,7 @@ $t->set_block( "menu_page", "path_item_tpl", "path_item" );
 if ( !isset( $Offset ) )
     $Offset = 0;
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_var( "menu_list", "" );
 $t->set_var( "path_item", "" );
 $menuList =& eZMenu::getByParent( $ParentID, $Offset, $Limit );

@@ -1,25 +1,23 @@
 <tr>
-    <td background="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-t.gif" valign="top">
-      <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/1x1.gif" width="15" height="1">
-      <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-link.gif" width="120" height="50">
+    <td background="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-t.gif" valign="top">
+      <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/1x1.gif" width="15" height="1">
+      <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-link.gif" width="120" height="50">
     </td>
 </tr>
 <tr>
-    <td class="repeaty" background="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-m.gif">
-        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-arrow.gif" width="20" height="10">
-           <a class="menu" href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/link/">Baðlantý listesi</a><br>
-        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-arrow.gif" width="20" height="10">
-          <a class="menu" href="<? print $GlobalSiteIni->WWWDir$GlobalSiteIni->Index; ?>/link/group/incoming/">Baðlantý kabul et</a><br>
-        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-arrow.gif" width="20" height="10">
+    <td class="repeaty" background="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-m.gif">
+        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-arrow.gif" width="20" height="10">
+           <a class="menu" href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/link/">Baï¿½lantï¿½ listesi</a><br>
+        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-arrow.gif" width="20" height="10">
+          <a class="menu" href="<? print $GlobalSiteIni->WWWDir$GlobalSiteIni->Index; ?>/link/group/incoming/">Baï¿½lantï¿½ kabul et</a><br>
+        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-arrow.gif" width="20" height="10">
           <a class="menu" href="<? print $GlobalSiteIni->WWWDir$GlobalSiteIni->Index; ?>/link/groupedit/new//">Yeni kategori</a><br>
-        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-arrow.gif" width="20" height="10">
-          <a class="menu" href="<? print $GlobalSiteIni->WWWDir$GlobalSiteIni->Index; ?>/link/linkedit/new//">Yeni baðlantý</a><br>
+        <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-arrow.gif" width="20" height="10">
+          <a class="menu" href="<? print $GlobalSiteIni->WWWDir$GlobalSiteIni->Index; ?>/link/linkedit/new//">Yeni baï¿½lantï¿½</a><br>
     </td>
 </tr>
 <tr>
     <td>
-      <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteStyle; ?>/menu-b.gif" width="150" height="40">
+      <img src="<? print $GlobalSiteIni->WWWDir; ?>/images/<? echo $SiteDesign; ?>/menu-b.gif" width="150" height="40">
     </td>
 </tr>
-
-

@@ -59,7 +59,7 @@ $t->set_block( "ad_item_tpl", "image_item_tpl", "image_item" );
 $t->set_block( "ad_item_tpl", "html_item_tpl", "html_item" );
 $t->set_block( "ad_item_tpl", "no_image_tpl", "no_image" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 if ( !is_numeric( $CategoryID ) )
     $CategoryID = 0;

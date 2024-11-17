@@ -50,13 +50,13 @@ $t->set_file( array(
 $user =& eZUser::currentUser();
 if ( !$user ) 
 {
-    print( "Du må logge inn" );
+    print( "Du mï¿½ logge inn" );
     eZHTTPTool::header( "Location: /user/login/" );
     exit();
 }
 $t->set_var( "first_name", $user->firstName() );
 $t->set_var( "last_name", $user->lastName() );
-$t->set_var( "style", $SiteStyle );
+$t->set_var( "style", $SiteDesign );
 $t->pparse( "output", "userbox" );
 
 ?>

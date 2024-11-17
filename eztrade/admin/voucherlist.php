@@ -60,7 +60,7 @@ $t->set_block( "voucher_list_tpl", "voucher_item_tpl", "voucher_item" );
 $t->set_block( "voucher_item_tpl", "voucher_is_available_tpl", "voucher_is_available" );
 $t->set_block( "voucher_item_tpl", "voucher_is_not_available_tpl", "voucher_is_not_available" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $voucherlist = eZVoucher::getAll( );
 

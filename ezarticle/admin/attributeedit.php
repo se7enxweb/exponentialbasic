@@ -122,7 +122,7 @@ $t->set_var( "action_value", $ActionValue );
 $t->set_var( "article_name", $article->name() );
 $t->set_var( "article_id", $article->id() );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $t->pparse( "output", "attribute_edit_page_tpl" );
 

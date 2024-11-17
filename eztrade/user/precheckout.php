@@ -85,7 +85,7 @@ elseif ( $ForceSSL == "choose" )
         ) );
 
     $t->set_var( "host", $HTTP_HOST );
-    $t->set_var( "php_session", "?PHPSESSID=" . $GLOBALS["PHPSESSID"] );
+    $t->set_var( "php_session", "" );
 
     $t->pparse( "output", "precheckout_tpl" );
 }

@@ -80,7 +80,7 @@ $t->setAllStrings();
 $t->set_file( "mail_view_page_tpl", "mailview.tpl" );
 
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->set_block( "mail_view_page_tpl", "send_button_tpl", "send_button" );
 $t->set_block( "mail_view_page_tpl", "edit_button_tpl", "edit_button" );
 $t->set_var( "send_button", "" );

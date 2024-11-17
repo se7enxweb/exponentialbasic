@@ -103,7 +103,7 @@ else
 eZList::drawNavigator( $t, $totalCount, $Limit, $Offset, "form_list_page_tpl" );
 
 $t->set_var( "action_value", $ActionValue );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->pparse( "output", "form_list_page_tpl" );
 
 ?>

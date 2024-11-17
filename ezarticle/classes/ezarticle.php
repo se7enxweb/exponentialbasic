@@ -91,6 +91,8 @@ class eZArticle
         $this->IsPublished = "0";
         $this->StartDate = 0;
         $this->StopDate = 0;
+        $this->Discuss = 0;
+        $this->TopicID = 0;
 
         $this->PublishedOverride = 0;
 
@@ -240,7 +242,7 @@ class eZArticle
 
             if ( ( count( $res ) > 0 ) && ( $this->IsPublished == "1" ) )
             {
-                $ret = $db->query( "UPDATE eZArticle_Article SET
+                $queryText = "UPDATE eZArticle_Article SET
 		                         Name='$name',
                                  $contentsStr
                                  LinkText='$linktext',
@@ -257,16 +259,23 @@ class eZArticle
                                  Modified='$timeStamp',
                                  ImportID='$importID'
                                  WHERE ID='$this->ID'
-                                 " );
+                                 ";
+                $ret = $db->query( $queryText );
             }
             else
             {
                 if ( $this->PublishedOverride != 0 )
+                {
                     $published = $this->PublishedOverride;
+                }
                 else
-                    $published = $this->Published;
-
-                $ret = $db->query( "UPDATE eZArticle_Article SET
+                {
+                    if( $this->Published != '' )
+                        $published = $this->Published;
+                    else
+                        $published = $timeStamp;
+                }
+                $queryText = "UPDATE eZArticle_Article SET
 		                         Name='$name',
                                  $contentsStr
                                  LinkText='$linktext',
@@ -283,7 +292,9 @@ class eZArticle
                                  Modified='$timeStamp',
                                  ImportID='$importID'
                                  WHERE ID='$this->ID'
-                                 " );
+                                 ";
+
+                $ret = $db->query( $queryText );
             }
         }
 
@@ -465,7 +476,7 @@ class eZArticle
     */
     function name( $asHTML = true )
     {
-        if( $asHTML == true )
+        if( $this->Name != '' && $asHTML == true )
             return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Name ) );
         return $this->Name;
     }
@@ -771,7 +782,7 @@ class eZArticle
         // strip multiple whitespaces
         $contents = preg_replace("(\s+)", " ", $contents );
 
-        $contents_array =& split( " ", $contents );
+        $contents_array =& preg_split( "/ /", $contents );
         $contents_array =& array_merge( $contents_array, $this->manualKeywords( true ) );
 
         $totalWordCount = count( $contents_array );

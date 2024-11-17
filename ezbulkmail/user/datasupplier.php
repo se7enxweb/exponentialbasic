@@ -27,6 +27,7 @@ include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZBulkmailMain", "DefaultSection" );
+$SiteDesign = $ini->read_var( "site", "SiteDesign" );
 
 switch ( $url_array[2] )
 {

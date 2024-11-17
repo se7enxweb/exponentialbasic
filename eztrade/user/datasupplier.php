@@ -30,7 +30,9 @@ $PageCaching = $ini->read_var( "eZTradeMain", "PageCaching");
 include_once( "ezuser/classes/ezuser.php" );
 include_once( "eztrade/classes/ezpricegroup.php" );
 include_once( "classes/ezhttptool.php" );
+
 $user =& eZUser::currentUser();
+$SiteDesign = $ini->read_var( "site", "SiteDesign" );
 
 $RequireUser = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
 $ShowPrice = $RequireUser ? is_a( $user, "eZUser" ) : true;

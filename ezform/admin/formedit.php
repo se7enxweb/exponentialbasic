@@ -478,7 +478,7 @@ if ( count( $errorMessages ) > 0 && !isSet( $NewElement ) && !isSet( $DeleteSele
 $t->parse( "form_item", "form_item_tpl" );
 
 $t->set_var( "action_value", $ActionValue );
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 $t->setAllStrings();
 $t->pparse( "output", "form_edit_page_tpl" );
 

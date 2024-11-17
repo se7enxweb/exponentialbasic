@@ -49,7 +49,7 @@ $t->set_file( array(
 
 $t->set_block( "status_type_page", "status_item_tpl", "status_item" );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $category_type = new eZStatus();
 $category_type_array = $category_type->getAll();

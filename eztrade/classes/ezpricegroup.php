@@ -123,7 +123,7 @@ class eZPriceGroup
     /*!
       Returns all product groups from db.
     */
-    function &getAll( $as_object = true )
+    static public function &getAll( $as_object = true )
     {
         $db =& eZDB::globalDatabase();
         $db->array_query( $array, "SELECT ID FROM eZTrade_PriceGroup
@@ -159,6 +159,7 @@ class eZPriceGroup
     */
     static public function &priceGroups( $inUser, $as_object = true )
     {
+        $group_string = false;
         if ( is_a( $inUser, "eZUser" ) )
         {
             $user =& $inUser;
@@ -409,13 +410,13 @@ class eZPriceGroup
     /*!
       Returns the price of a product according to it's price group, option and value type.
     */
-    function correctPrice( $productid, $priceid, $optionid = 0, $valueid = 0 )
+    static public function correctPrice( $productid, $priceid, $optionid = 0, $valueid = 0 )
     {
         $db =& eZDB::globalDatabase();
 
         $ini =& INIFile::globalINI();
         $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
-
+        $group_text = false;
         if ( $ShowPriceGroups == true )
         {
             if ( is_array( $priceid ) )
@@ -445,7 +446,7 @@ class eZPriceGroup
                                          AND OptionID='$optionid' AND ValueID='$valueid' ORDER BY Price" );
 
             }
-            if ( count( $array ) == 1 )
+            if ( isset( $array ) && count( $array ) == 1 )
                 return $array[0][$db->fieldName("Price")];
         }
         return false;
@@ -489,7 +490,7 @@ class eZPriceGroup
     /*!
       Removes all prices from a product with the specific option and value id.
     */
-    function removePrices( $productid, $optionid = 0, $valueid = 0 )
+    static public function removePrices( $productid, $optionid = 0, $valueid = 0 )
     {
         $db =& eZDB::globalDatabase();
         $db->begin();

@@ -60,6 +60,8 @@ class eZWishListItem
     */
     function __construct( $id="", $fetch=true )
     {
+        $this->IsBought = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -352,7 +354,7 @@ class eZWishListItem
     */
     function setCount( $count )
     {
-       if ( $this->State_ == "Dirty" )
+       if ( isset( $this->State_ ) && $this->State_ == "Dirty" )
             $this->get( $this->ID );
 
        $this->Count = $count;

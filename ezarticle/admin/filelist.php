@@ -67,7 +67,7 @@ if ( isSet ( $AddFiles ) )
 
 $t->set_var( "article_name", $article->name() );
 
-$t->set_var( "site_style", $SiteStyle );
+$t->set_var( "site_style", $SiteDesign );
 
 $files =& $article->files();
 if ( count( $files ) == 0 )

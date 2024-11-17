@@ -3,7 +3,7 @@
     "description": "eZ Publish Basic 2.4. Maintained by 7x. For General Use With PHP 8.3. Further feature releases in development. Please sponsor our work on the eZ Publish (System). This is capable of being used standalone for a personal home page cms that is simple and easy to understand.",
     "homepage":    "https://se7enx.com",
     "license":     "GPL-2.0-or-later",
-    "type":        "ezpublish-legacy",
+    "type":        "project",
     "suggest": {
     },
     "require": {

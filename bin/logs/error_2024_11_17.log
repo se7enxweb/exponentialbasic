@@ -144,3 +144,131 @@
 
 [ %b %17 %2024 %11:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load image_item_tpl.<br>
 
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> set_root: /home/ez/public_html/ezarticle/user//templates/trade is not a directory.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> filename: file /articleview.tpl does not exist.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: attached_file_list_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load attached_file_list_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: image_list_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load image_list_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: attribute_list_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load attribute_list_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: type_item_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load type_item_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: path_item_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load path_item_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: article_intro_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_intro_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: image_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load image_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: image_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load image_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: image_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load image_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: image_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load image_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: image_list_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load image_list_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: article_header_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_header_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: print_page_link_tpl is not a valid handle.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load print_page_link_tpl.<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> loadfile: Cannot find template file "/articleview.tpl"<br>
+
+[ %b %17 %2024 %12:%Nov:%th ] [notice] <b>Template Error:</b> subst: unable to load article_view_page_tpl.<br>
+

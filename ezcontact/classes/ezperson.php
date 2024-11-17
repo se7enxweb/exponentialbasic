@@ -130,7 +130,7 @@ class eZPerson
     /*!
       Deletes an eZPerson from the database.
     */
-    function delete( $id = false )
+    static public function delete( $id = false )
     {
         $db =& eZDB::globalDatabase();
         $db->begin();
@@ -971,7 +971,7 @@ class eZPerson
     /*!
       Returns the project state of this person.
     */
-    function setProjectState( $value, $id = false )
+    static public function setProjectState( $value, $id = false )
     {
         if ( !$id )
             $id = $this->ID;
@@ -1102,7 +1102,7 @@ class eZPerson
 
         $ret = false;
         $db =& eZDB::globalDatabase();
-var_dump( $id);
+
         $db->array_query( $res_array, "SELECT * FROM eZContact_PersonImageDefinition
                                        WHERE PersonID='$id'" );
 

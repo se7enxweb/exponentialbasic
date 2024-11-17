@@ -239,7 +239,7 @@ if ( isset( $IsPrivate ) && $IsPrivate == "On" )
 
 $user =& eZUser::currentUser();
 if ( $user )
-    $t->set_var( "usr_email", $user->userEmail() );
+    $t->set_var( "usr_email", $user->email() );
 else
     $t->set_var( "usr_email", '' );
 

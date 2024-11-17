@@ -1,0 +1,58 @@
+<?php
+//
+// $Id: datasupplier.php 6212 2001-07-19 12:48:35Z jakobn $
+//
+// Created on: <23-Oct-2000 17:53:46 bf>
+//
+// This source file is part of eZ publish, publishing software.
+//
+// Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
+//
+
+switch ( $url_array[2] )
+{
+    case "page":
+    {
+        include( "ezexample/admin/page.php" );
+    }
+    break;
+   
+    case "page2":
+    {
+        include( "ezexample/admin/page2.php" );
+    }
+    break;
+
+    case "page3":
+    {
+        include( "ezexample/admin/page3.php" );
+    }
+    break;
+    
+    case "page4":
+    {
+        include( "ezexample/admin/page4.php" );
+    }
+    break;
+
+    default :
+    {
+        // go to default module page or show an error message
+        print( "Error: your page request was not found" );
+    }
+}
+?>

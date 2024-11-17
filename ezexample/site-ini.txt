@@ -1,0 +1,17 @@
+        **** Explanation of site.ini variables ****
+
+This file explains the variables used in the module eZExample.
+
+
+AdminTemplateDir:      The folder for the admin templates.
+TemplateDir:	       The folder for the user page templates.
+Language:	       The language to use in the module.
+Preference:	      This variable sets the preference value to be used.
+
+Example group:
+
+[eZExampleMain]
+AdminTemplateDir=templates/standard/
+TemplateDir=templates/standard/
+Language=en_GB
+Preference=value

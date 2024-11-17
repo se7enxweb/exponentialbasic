@@ -1,0 +1,191 @@
+How to Write Your First eZ publish Module
+
+Extending eZ publish with your own modules is really simple. This tutorial is the first in a series. It will show you how to integrate a simple PHP script into eZ publish.
+
+A module resides in its own subdirectory in the same directory as the index.php file, site.ini and the distribution information. Each directory has a name which starts with ez + the name of the module, the ez part is mandatory. For this tutorial we will create a module called example:
+
+<shell>
+mkdir ezexample
+</shell>
+
+In that directory we need to create a few more directories:
+
+ezexample/classes
+ezexample/admin
+ezexample/user
+
+The classes directory is used for storage of your class libraries. The admin directory will contain the logic used when you access the admin portion of your site. The user directory will contain the logic which governs what will appear on your public site.
+
+<header>The Datasupplier</header>
+The data supplier is the heart of both the admin and user directories. This is a file which must be named "datasupplier.php", and it is responsible of serving the correct data from your module based on the URL it was requested.
+
+A minimal data supplier could look like this:
+
+<php>
+switch ( $url_array[2] )
+{
+    case "page":
+    {
+
+    }
+    break;
+
+    default :
+    {
+        // go to default module page or show an error message
+        print( "Error: your page request was not found" );
+    }
+}
+</php>
+
+The array $url_array contains all the URL parts used from the first slash ("/") after the site's address (for example http://yoursite.com/). The URL parts are then used in the module to serve the correct data.
+
+In the above example of a data supplier, an URL like this: "http://yoursite.com/example/page" would be handled by the example module stored in the ezexample directory. The datasupplier will then based on the second part of the array select the correct operation. By default it will print an error message.
+
+<header>Modfix</header>
+Back to the root directory. You'll find a file called "modfix.sh" which must be run after CVS updates or changes in the file hierarchy of your site. The modfix script will link your module into the admin site as well as enable writing to the cache directory.
+
+First you'll need to find the part of the script where the link to the admin pages are made, if you use eZ publish 2.0 beta 2 or newer you can just search for "admin section", else you need to look for the info manually. You'll find a section which defines the modules which are implemented.
+There you add your own module like this:
+
+<pre> 
+files="
+...
+...
+ezexample
+"
+</pre>
+
+Then you have to add the cache dir (again in 2.0 beta 2 you can just search for "cache section":
+
+<pre>
+dirs="
+...
+...
+ezexample/admin/cache
+"
+</pre>
+
+Finally you need to run the modfix.sh script.
+
+<image 1 right medium><header>Icon</header>
+
+You need to create a icon for your module. This must be a 32x32 gif with the name module_icon.gif and it should be placed in the directory "ezexample/admin/images/".
+
+<header>Site.ini</header>
+
+The file "site.ini" is the main configuration file for eZ publish. Every module needs to have a few default configuration values set, mainly where to look for templates and which language to use. This example will not use this information, but to create a menu for your module in the admin site eZ publish needs access to that information.
+
+<pre>
+[eZExampleMain]
+AdminTemplateDir=templates/standard/
+TemplateDir=templates/standard/
+Language=en_GB
+Preference=value
+</pre>
+
+<image 2 right medium>We also need to tell eZ publish that we wish it to recognise that module, that is done by adding the module to the end of the "EnabledModules"-list at the start of the file, in the "[site]" section.
+
+<header>Menu Box</header>
+The next step is to create your menu items for your module. The menu box must be placed in the directory "ezexample/admin/menubox.php" and could look like this:
+
+<php>
+$menuItems = array(
+    array( "/example/page/", "{intl-example_page}" )
+    );
+</php>
+
+The first value in the array is the URL to the first operation you want to enable, here it is the URL "/example/page/". Again, the first part tells us that we want to do something in the example module, and the second part says we want to try out operation "page". The second part is the name of the variable which we will use for internationalisation purposes.
+
+<header>Language Files</header>
+The language files are where we tell eZ publish which text we want to replace the internationalisation variables with. For this example internationalisation will only be applied to the menu box. You'll need to create a file called "ezexample/admin/intl/en_GB/menubox.php.ini" and it should look like this:
+
+<pre>
+[strings]
+module_name=example
+example_page=Example page
+</pre>
+
+As you can see the variable we called "intl-example_page" in the menu box is only called "example_page" here, that's because the "intl-" part is reserved as a signal to the template engine that we're dealing with a string which should be translated, as opposed to other variables which are replaced by actual content from a database, or other means.
+
+<image 3 right medium>If you want a different language, you need to create another directory for that language in the "ezexample/admin/intl/" directory. For Norwegian Bokmål we would create the file: "ezexample/admin/intl/no_NO/menubox.php.ini".
+
+<header>Your Script</header>
+Now all we need to do is create the actual functionality of the module. First create a file  "ezexample/admin/page.php" with the following content:
+
+<php>
+<h1>This is an eZ publish admin page</h1>
+
+<form action="<? print $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/example/page/" method="post">
+
+<input type="text" name="Value" value="" />
+
+<input type="submit" value="send" />
+
+</form>
+
+<?
+if ( isset( $Value ) )
+{
+    print( "You entered: " . $Value );
+}
+?>
+</php>
+
+This will be the page which is executed when you're in your admin site (http://admin.yoursite.com/example/page/). Then you'll need a page which is public, that file is called "ezexample/user/page.php" with the following content:
+
+<php>
+<?
+
+print( "<h1>This is an eZ publish example page </h1>" );
+
+?>
+</php>
+
+Then you need to include the files in the datasupplier, first admin:
+
+<php>
+switch ( $url_array[2] )
+{
+    case "page":
+    {
+        include( "ezexample/admin/page.php" );
+    }
+    break;
+
+    default :
+    {
+        // go to default module page or show an error message
+        print( "Error: your page request was not found" );
+    }
+}
+</php>
+
+Then for the user page:
+
+<php>
+switch ( $url_array[2] )
+{
+    case "page":
+    {
+        include( "ezexample/user/page.php" );
+    }
+    break;
+
+    default :
+    {
+        // go to default module page or show an error message
+        print( "Error: your page request was not found" );
+    }
+}
+</php>
+
+Voilá, you're done, your first module for eZ publish is finished. You should now be able to point your browser to the admin site and see the menu box as the last menu box on your site. If you want to access the menu from the public part of your site, all  you have to do is add "/example/page" to the sites URL.
+
+If you want to give people permanent access to your new module you need to insert the appropriate url into the design of the public site. That is left as an exercise for you.
+
+<header>Getting Your Modules into eZ publish</header>
+You can send your code to the developers of eZ publish so they can add you module as an extension to eZ publish. Code can be sent to <mail bf@ez.no eZ publish contribution, bf@ez.no>.
+
+All the code of this example is available in the eZ publish 2.0 beta 2 release, which will be out in the near future.
+

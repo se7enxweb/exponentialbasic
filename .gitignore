@@ -1,0 +1,15 @@
+error_log
+classes/cache
+ezimagecatalogue/catalogue
+ezmediacatalogue/catalogue
+ezfilemanager/files
+ezarticle/cache
+ezarticle/admin/cache
+ezcalendar/user/cache
+ezfilemanager/admin/cache
+ezforum/admin/cache
+ezlink/admin/cache
+ezmessage/admin/cache
+ezpoll/admin/cache
+eztrade/admin/cache
+#vendor

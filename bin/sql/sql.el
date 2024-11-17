@@ -1,0 +1,70 @@
+;; #\s+#\s+Table structure for table 'eZArticle_[a-zA-Z]+'\s+#\s+DROP TABLE IF EXISTS eZArticle_[a-zA-Z]+;\s+CREATE TABLE eZArticle_[a-zA-Z]+
+;; 
+(let ((buf (find-file-noselect "publish.sql" t t))
+      oldbuf
+      (lst '(
+	     ("ezad" "eZAd" "ezad")
+	     ("ezaddress" "eZAddress" "ezaddress")
+	     ("ezarticle" "eZArticle" "ezarticle")
+	     ("ezcalendar" "eZCalendar" "ezcalendar")
+	     ("ezcontact" "eZContact" "ezcontact")
+	     ("ezfilemanager" "eZFileManager" "ezfilemanager")
+	     ("ezforum" "eZForum" "ezforum")
+	     ("ezimagecatalogue" "eZImageCatalogue" "ezimagecatalogue")
+	     ("ezlink" "eZLink" "ezlink")
+	     ("eznewsfeed" "eZNewsfeed" "eznewsfeed")
+	     ("ezpoll" "eZPoll" "ezpoll")
+	     ("ezsession" "eZSession" "ezsession")
+	     ("ezstats" "eZStats" "ezstats")
+	     ("eztodo" "eZTodo" "eztodo")
+	     ("eztrade" "eZTrade" "eztrade")
+	     ("ezuser" "eZUser" "ezuser")
+	     ("ezbug" "eZBug" "ezbug")
+	     )
+	   ))
+  (setq oldbuf (current-buffer))
+  (set-buffer buf)
+  (mapcar (lambda (x)
+	    (let ((dir (car x))
+		  (name (cadr x))
+		  start end fullname
+		  curbuf newbuf match)
+	      (beginning-of-buffer)
+	      (setq curbuf (current-buffer))
+; 	      (setq newbuf (find-file-noselect (concat dir ".sql") t))
+	      (setq newbuf (find-file-noselect (concat dir "/sql/" dir ".sql")))
+	      (set-buffer newbuf)
+	      (kill-region (point-min) (point-max))
+	      (set-buffer curbuf)
+	      (while (search-forward-regexp
+		      (concat "#[ \t\n\r\f]+#[ \t\n\r\f]+Table structure for table '"
+			      name
+			      "_[a-zA-Z]+'[ \t\n\r\f]+#[ \t\n\r\f]+DROP TABLE IF EXISTS "
+			      name
+			      "_[a-zA-Z]+;[ \t\n\r\f]+CREATE TABLE "
+			      name
+			      "_[a-zA-Z]+") nil t)
+		(setq start (match-beginning 0))
+		(if (search-forward-regexp ");" nil t)
+		    (setq end (match-end 0)))
+		(if (search-forward-regexp (concat "#[ \t\n\r\f]+#[ \t\n\r\f]+Dumping data for table '" name "_\\([a-zA-Z]+\\)'[ \t\n\r\f]+#[ \t\n\r\f]+") nil t)
+		    (let ()
+		      (setq end (match-end 0))
+		      (setq fullname (buffer-substring (match-beginning 1) (match-end 1)))))
+		(while (search-forward-regexp (concat "INSERT INTO " name "_" fullname ".+);$") nil t)
+		  (setq end (match-end 0)))
+		(setq match (buffer-substring start end))
+		(kill-region start end)
+		(set-buffer newbuf)
+		(insert match)
+		(insert "\n\n")
+		(set-buffer curbuf))
+	      (set-buffer newbuf)
+	      (save-buffer)
+	      (set-buffer curbuf)
+ 	      (kill-buffer newbuf)))
+	  lst)
+  (save-buffer)
+  (set-buffer oldbuf)
+  (kill-buffer buf))
+

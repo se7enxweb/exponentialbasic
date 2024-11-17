@@ -1,0 +1,336 @@
+REMEMBER: NEWEST ENTRY ON TOP
+This file contains all changes in intl files.
+Example:
+mod: bug/user, fileedit.php.ini
+change: added user_edit=Some text
+--------------------------------------------------------------------
+
+mod: ezbulkmail
+change: added module
+
+mod: ezmail
+change: added module
+
+mod: ezuser/admin, settings.php.ini
+changed: new file
+
+mod: eztrade/user, menubox.php.ini
+change: added
+headline=Customer
+your_cart=Your cart
+your_wishlist=Your wishlist
+find_wishlist=Find wishlist
+send_wishlist=Send wishlist
+
+mod: general admin interface, header.php.ini
+change: added
+user_settings=User&nbsp;settings
+all=All&nbsp;on
+none=All&nbsp;off
+
+mod: ezarticle/user, menubox.php.ini
+change: added
+latest=Latest
+authors=Authors
+archive=Archive
+categories=Categories
+
+mod: ezcalendar/user, menubox.php.ini
+change: added
+calendar=Calendar
+new_appointment=New appointment
+month_view=Month view
+
+mod: eznewsfeed/user, menubox.php.ini
+change: added
+newsfeed=Newsfeed
+latest=Latest newsfeeds
+
+### 2.0 - 2.0.1 ####################
+mod: eztodo/admin, statustypeedit.php.ini
+change: added
+name=Name
+head_line=New status
+submit_text=OK
+
+mod: eztodo/admin, statustypeedit.php.ini
+change: added
+headline=Status overview
+newstatus=New status
+delete_selected=Delete selected status
+
+mod: eztodo/admin, menubox.php.ini
+change: added
+statustypelist=Status Overview
+
+mod: eztodo/user, todoedit.php.ini
+change: added
+mail_status=Status
+mail_status_changed=Status changed
+subject_status_changed=Status changed
+
+mod: ezuser/admin, userlist.php.ini
+change: added search=Search
+
+mod: ezcontact/admin, companytype.php.ini
+changed: added
+next=Next
+previous=Previous
+
+mod: eztrade/admin, productedit.php.ini
+changed: added
+discontinued=Discontinued
+
+mod: ezbug/user/, menubox.php.ini
+change: added bug_unhandled
+
+mod: ezcontact/admin, companystats.php.in
+change: new file
+
+mod: ezcontact/user, urlsupplier.php.ini
+change: new file
+
+mod: ezcontact/admin, companytype.php.ini
+change: added views=Views
+
+mod: eztrade/admin, productedit.php.ini
+change: added links=Links
+
+mod: eztrade/admin, linklist.php.ini
+change: new file
+
+mod: eztrade/admin, linkselect.php.ini
+change: new file
+
+mod: eztrade/user, categorylist.php.ini
+change: added products=Products
+
+mod: eztrade/user, extendedsearch.php.ini
+change: all_category=All
+
+mod: ezuser/user, norights.php.ini
+change: max_logins=The maximum number of users on this account are aleready logged in
+
+mod: ezuser/admin, login.php.ini
+change: max_logins=The maximum number of users on this account are aleready logged in
+
+
+#### PRE2 - 2.0 Final ####################
+
+mod: ezcontact/admin, menubox.php.ini
+change: changed projecttypelist and constultationtypelist to say "types" instead of "type list"
+
+mod: eztrade/admin, shippingtypes.php.ini
+change: added
+shipping_type=Shipping Type
+
+mod; ezcontact/admin companyview.php.ini
+changed: added
+no_company_defined=No company defined with ID
+
+mod; eztrade/admin shippingtypes.php.ini
+change: added
+vat_type=VAT type
+
+mod; eztodo/user todolist.php.ini
+change: added delete_selected
+
+mod: ezcontact/admin companyview.php.ini
+changed: added
+no_company_defined=No company defined with ID
+
+mod: eztrade/admin shippingtypes.php.ini
+change: added
+vat_type=VAT type
+
+mod: eztrade/user ordersendt.php.ini
+change: added
+shipping_type=Shipping type
+
+mod: eztrade/user mailorder.php.ini
+change: added
+other_instructions_on_web_site=For further instructions please visit:
+shipping_type=Shipping type
+payment_method=Payment method
+
+
+### PRE 1 - PRE 2 #########################
+
+mod: ezuser/admin welcome.php.ini
+change: added
+error_headline=Failed to run the following functions
+libxml_error=You've failed to install the libXml2 package properly, please visit get it from
+qtdom_error=You've failed to install the Qt package properly, please get it from
+convert_error=You've failed to install the ImageMagick package properly, please get it from
+
+mod: eztrade/admin, orderedit.php.ini
+change: added
+shipping_method=Shipping Method
+
+mod: ezuser/user, forgotmessage.php.ini
+change: added
+mail_sent=Mail sent
+mail_sent_text=You will receive an e-mail with an link from us
+mail_sent_text_2=Visit that link to change your password
+mail_sent_text_3=The link will be available for 24 hours; if you haven't visited it within that period you will have to go through this procedure one more time
+mail_sent_text_4=If you don't receive the e-mail within a short while, please contact the site admininstrator
+user_not_exists_text=Please go back to the previous page, and make sure that you write the user name you selected when you first registered with us
+user_not_exists=The user does not exist
+generated_password_text=Your new password 
+generated_password=Your new password has been generated and sent to your e-mail address
+generated_password_2=Your new password has been generated and sent to your e-mail address
+generated_password_3=Login with your user name and your new password, then go to your user page
+generated_password_4=and change the generated password to something which is easier to remember for you
+change_user_info=Change user info here
+
+mod: ezforum/user, forumlist.php.ini
+change: added
+no_forums=There are no forums available
+no_forums_for_you=There are no forums which you can view
+
+mod: ezarticle/ admin , search.php.ini
+change: added delete=Delete selected articles
+
+mod: eztrade/admin, productedit.php.ini
+change: added
+no_price_groups=No price groups has been defined
+
+mod: ezlink/user, categorylist.php.ini
+change: added
+no_link_groups=No link groups found.
+
+##################### BETA 3 --- PRE 1 #############################################
+mod: ezforum/ admin, forumedit.php.ini
+change: added
+no_moderator=No moderator selected
+
+mod: ezforum/ admin, search.php.ini
+change: added
+deletemessages=Delete selected messages
+
+mod: ezforum/ user, mailreply.php.ini
+change: added
+moderator_subject=Message posted to your moderated forum
+moderator_info_message_1=You are the moderator of the forum
+moderator_info_message_4=The new message is presented below
+
+mod: ezbug/ admin, mailreply.php.ini
+change:
+added bug_handled=BUG HANDLED
+
+mod: admin, print_header.php.ini
+change: added
+site=Site
+user_name=User name
+back_to_normal_view=Back to normal view
+
+mod: ezforum/admin, forumedit.php.ini
+change: added forum_is_anonymous=Anonymous posting allowed
+
+mod: ezarticle/admin, categoryedit.php.ini
+change: added write_groups=Groups with write access
+
+mod: trade, optionedit.php.ini
+change: added main_price=Price
+
+mod: stats/admin, dayreport.php.ini
+change: removed
+january_month=January
+february_month=February
+march_month=March
+april_month=April
+may_month=May
+june_month=June
+july_month=July
+august_month=August
+september_month=September
+october_month=October
+november_month=November
+december_month=December
+
+mod: stats/admin, monthreport.php.ini
+change: removed
+january_month=January
+february_month=February
+march_month=March
+april_month=April
+may_month=May
+june_month=June
+july_month=July
+august_month=August
+september_month=September
+october_month=October
+november_month=November
+december_month=December
+
+mod: stats/admin, yearreport.php.ini
+change: removed
+january_month=January
+february_month=February
+march_month=March
+april_month=April
+may_month=May
+june_month=June
+july_month=July
+august_month=August
+september_month=September
+october_month=October
+november_month=November
+december_month=December
+
+mod: ezerror/admin, menubox.php.ini
+Change: added menubox.php.ini
+
+mod: ezcalendar/user, dayview.php.ini
+change: added
+previous_day=Previous day
+next_day=Next day
+
+mod: eztrade/admin, optionedit.php.ini
+change: added
+value_description=Value description
+value_header=Header
+new_description=New description
+
+mod: eztrade/admin, optionlist.php.ini
+change: added
+delete_selected=Delete selected options
+
+mod: ezcontact/admin personedit.php.ini
+change: added
+top_category=Top
+
+mod: ezbug/admin, mailreply.php.ini
+change: added bug_title=Bug title, original_bug_report=Original bug report
+
+mod: ezcontact/admin personedit.php.ini
+change: added
+new_consultation=New consultation with person
+edit_person=Edit person information
+delete_person=Delete person
+show_persons=Show persons
+show_all=Everybody
+without_relation=Without company relation
+with_relation=With company relation
+reload=Reload
+
+mod: ezcontact/admin companytype.php.ini
+change: added
+new_consultation=New consultation with company
+edit_person=Edit company/category information
+delete_person=Delete company/category
+
+mod: ezcontact/admin companyedit.php.ini
+change: added
+error_logo=Invalid image format for company logo
+error_image=Invalid image format for company image
+
+mod: eztodo/user todolist.php.ini
+change: added
+show=Show
+show_all=Show all
+show_not_done=Show not done
+show_done=Show done
+category_all=All categories
+
+

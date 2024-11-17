@@ -1,0 +1,39 @@
+#php_admin_value safe_mode off
+#php_admin_value safe_mode_gid off
+
+# php_flag safe_mode off
+# php_flag safe_mode_gid off
+
+php_flag register_globals on 
+php_flag magic_quotes_gpc off
+
+ #   Options FollowSymLinks Indexes ExecCGI
+
+    RewriteEngine On
+
+    RewriteRule ^/stats/store/(.*).gif$    /home/bc/public_html/aihalaska/ezstats/user/storestats.php [S=2]
+
+    # The two lines above should appear on the
+
+    # same line in your configuration file.
+
+    RewriteRule ^/filemanager/filedownload/([^/]+)/(.*)$    /home/bc/public_html/aihalaska/ezfilemanager/files/$1   [T="application/oct-stream",S=1]
+
+    # The three lines above should appear on the
+
+    # same line in your configuration file!
+    RewriteCond %{HTTP_HOST} ^aihalaska\.kracker\.org$
+    RewriteRule !\.(gif|css|jpg|png)$ /home/bc/public_html/aihalaska/index.php
+
+#4.1.2.2 Admin Site
+
+#In your admin subdomain home directory, create a file with
+#the following text:
+
+#    php_flag magic_quotes_gpc off
+#    RewriteEngine On
+
+   RewriteCond %{HTTP_HOST} ^admin-aihalaska\.kracker\.org$
+   RewriteRule !\.(gif|css|jpg|png)$ /home/bc/public_html/admin-aihalaska/index_admin.php
+
+

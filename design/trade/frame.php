@@ -230,7 +230,7 @@ else
 
 	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="130" height="20" border="0" alt="" /><br />
 
-   <div align="center"><a class="path" href="?PrintableVersion=enabled">Printable page</a></div><br />
+        <div align="center"><a class="path" href="?PrintableVersion=enabled">Printable page</a></div><br />
 
 	<div align="center">
 	<a target="_blank" href="https://basic.ezpublish.one"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/logo/powered-by-ezpublish-100x35-trans-lgrey.gif" width="100" height="35" border="0" alt="Powered by eZ publish" /></a>

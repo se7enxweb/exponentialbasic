@@ -121,8 +121,8 @@ Follow these steps to set up eZ Publish Basic via Composer:
 
 ## Example usage of user login view
 
-- Example usage via web browser using eZ User URL: https://basic.ezpublish.one/user/login
-- Example usage via web browser using eZ Admin URL: https://admin.basic.ezpublish.one/user/login
+- Example usage via web browser using eZ User URL: https://basic.demo.ezpublish.one/user/login
+- Example usage via web browser using eZ Admin URL: https://admin.basic.demo.ezpublish.one/user/login
 
 ## History of Authentication in eZ publish v1 through v2.3
 

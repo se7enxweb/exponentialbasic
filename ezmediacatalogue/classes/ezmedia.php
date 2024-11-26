@@ -212,7 +212,7 @@ class eZMedia
       \static
       Fetches an media from the database if one with the same "original filename" is found.
     */
-    function getByOriginalFileName( $id = "" )
+    static public function getByOriginalFileName( $id = "" )
     {
         $db =& eZDB::globalDatabase();
         $ret = new eZMedia();
@@ -365,7 +365,7 @@ class eZMedia
     */
     function name( $html = true )
     {
-       if ( $html )
+       if ( !is_null( $this->Name ) && $html )
            return htmlspecialchars( $this->Name );
        else
            return $this->Name;
@@ -387,7 +387,7 @@ class eZMedia
     */
     function description( $html = true )
     {
-        if ( $html )
+        if ( !is_null( $this->Description ) && $html )
             return htmlspecialchars( $this->Description );
         else
             return $this->Description;
@@ -596,7 +596,7 @@ class eZMedia
       $user is either a userID or an eZUser.
       $media is the ID of the media.
      */
-    function isOwner( &$user, &$media )
+    static public function isOwner( &$user, &$media )
     {
         if( !is_a( $user, "eZUser" ) )
             return false;

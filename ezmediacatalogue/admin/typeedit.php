@@ -42,7 +42,7 @@ $move_item = true;
 include_once( "ezmediacatalogue/classes/ezmediatype.php" );
 include_once( "ezmediacatalogue/classes/ezmediaattribute.php" );
 
-if ( $Action == "Insert" )
+if ( isset( $Action ) && $Action == "Insert" )
 {
     $type = new eZMediaType();
     $type->setName( $Name );
@@ -54,7 +54,7 @@ if ( $Action == "Insert" )
 }
 
 
-if ( ( $Action == "Update" ) || ( isset ( $Update ) ) )
+if ( ( isset( $Action ) && $Action == "Update" ) || ( isset ( $Update ) ) )
 {
     $type = new eZMediaType( $TypeID );
     $type->setName( $Name );
@@ -78,7 +78,7 @@ if ( ( $Action == "Update" ) || ( isset ( $Update ) ) )
     $Action = "Edit";
 }
 
-if( $Action == "up" )
+if( isset( $Action ) && $Action == "up" )
 {
     $attribute = new eZMediaAttribute( $AttributeID );
     $attribute->moveUp();
@@ -86,7 +86,7 @@ if( $Action == "up" )
     exit();
 }
 
-if( $Action == "down" )
+if( isset( $Action ) && $Action == "down" )
 {
     $attribute = new eZMediaAttribute( $AttributeID );
     $attribute->moveDown();
@@ -123,7 +123,7 @@ if ( isset( $NewAttribute ) )
 }
 
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $type = new eZProductType();
     $type->get( $TypeID );
@@ -140,8 +140,6 @@ $t = new eZTemplate( "ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalog
 $t->setAllStrings();
 
 $t->set_file( "type_edit_tpl", "typeedit.tpl" );
-
-
 $t->set_block( "type_edit_tpl", "value_tpl", "value" );
 
 $t->set_block( "type_edit_tpl", "attribute_list_tpl", "attribute_list" );
@@ -154,7 +152,6 @@ $t->set_block( "attribute_tpl", "no_item_move_up_tpl", "no_item_move_up" );
 $t->set_block( "attribute_tpl", "no_item_separator_tpl", "no_item_separator" );
 $t->set_block( "attribute_tpl", "no_item_move_down_tpl", "no_item_move_down" );
 
-
 $type = new eZMediaType();
 
 $typeArray = $type->getAll( );
@@ -165,7 +162,7 @@ $t->set_var( "type_id", "" );
 $t->set_var( "action_value", "Insert" );
 
 // edit
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $type = new eZMediaType();
     $type->get( $TypeID );
@@ -244,7 +241,6 @@ if ( $Action == "Edit" )
     }
     
 }
-
 
 $t->pparse( "output", "type_edit_tpl" );
 

@@ -47,6 +47,7 @@ function writeAtAll()
 }
 
 $user =& eZUser::currentUser();
+
 switch ( $url_array[2] )
 {
     case "browse":

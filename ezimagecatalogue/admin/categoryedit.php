@@ -38,6 +38,28 @@ include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 
 include_once( "ezsitemanager/classes/ezsection.php" );
 
+if (isset( $Action ) && $Action == "New" )
+{
+    $Name = false;
+    $Description = false;
+    $sectionID = false;
+}
+
+// Insert the category values when editing.
+if ( isset( $Action ) && $Action == "Edit" )
+{
+    $category = new eZImageCategory( $CategoryID );
+
+    $Name = $category->name();
+    $Description = $category->description();
+
+    $parent = $category->parent();
+    if ( $parent )
+        $CurrentCategoryID = $parent->id();
+    else
+        $CurrentCategoryID = $CategoryID;
+}
+
 if ( isSet ( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" );
@@ -98,7 +120,7 @@ $permissionCheck = true;
 $nameCheck = true;
 $descriptionCheck = true;
 
-if ( $Action == "Insert" || $Action == "Update" )
+if ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" )
 {
     // Check if the user have write access to the category
     if ( $permissionCheck )
@@ -127,7 +149,7 @@ if ( $Action == "Insert" || $Action == "Update" )
     }
 
     // Check if parent is the same as category.
-    if ( $Action == "Update" )
+    if ( isset( $Action ) && $Action == "Update" )
     {
         if ( $ParentID == $CategoryID )
         {
@@ -165,9 +187,9 @@ if ( $Action == "Insert" || $Action == "Update" )
 }
 
 // Insert or update a category
-if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
+if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" ) && $error == false )
 {
-    if ( $Action == "Insert" )
+    if ( isset( $Action ) && $Action == "Insert" )
     {
         $category = new eZImageCategory();
         $category->setUser( $user );
@@ -203,7 +225,7 @@ if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
     }
     // if update and moving into a category that has upload permission and not owner of that category
     // TODO: this part has to be extended on imagefolder to support images in multiple categories..
-    if ( $Action == "Update" && eZObjectPermission::hasPermission( $ParentID, "imagecatalogue_category", 'w' ) == false
+    if ( isset( $Action ) && $Action == "Update" && eZObjectPermission::hasPermission( $ParentID, "imagecatalogue_category", 'w' ) == false
     && $parent->user( false ) != $user->id() )
     {
         // recursivly edit permissions on all file and folders...
@@ -235,7 +257,7 @@ if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
 }
 
 // Delete the selected categories.
-if ( $Action == "Delete" && $error == false )
+if ( isset( $Action ) && $Action == "Delete" && $error == false )
 {
     if ( count ( $CategoryArrayID ) > 0 )
     {
@@ -248,7 +270,7 @@ if ( $Action == "Delete" && $error == false )
 }
     
 // Insert default values when creating a new category.
-if ( $Action == "New" || $error )
+if (isset( $Action ) &&  $Action == "New" || $error )
 {
     $t->set_var( "action_value", "insert" );
     $t->set_var( "category_id", "" );
@@ -258,7 +280,7 @@ if ( $Action == "New" || $error )
 }
 
 // Insert the category values when editing.
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $category = new eZImageCategory( $CategoryID );
 
@@ -434,4 +456,3 @@ function getImagesAndCategories( &$folderArray, &$fileArray, $fromFolder )
 }
 
 ?>
-

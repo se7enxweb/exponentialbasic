@@ -216,7 +216,7 @@ class eZImage
       \static
       Searches the database for images.
     */
-    function search( &$queryText, $offset = 0, $limit = 30, $userID = -1 )
+    static public function search( &$queryText, $offset = 0, $limit = 30, $userID = -1 )
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -264,7 +264,7 @@ class eZImage
       \static
       Searches the database for images.
     */
-    function searchCount( $name, $literal = false )
+    static public function searchCount( $name, $literal = false )
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -373,7 +373,7 @@ class eZImage
         \static
       Fetches an image from the database if one with the same "original filename" is found.
     */
-    function getByOriginalFileName( $id = "" )
+    static public function getByOriginalFileName( $id = "" )
     {
         $db =& eZDB::globalDatabase();
         $ret = new eZImage();
@@ -505,7 +505,7 @@ class eZImage
     /*!
       Get the total count of all the unassigned images.
      */
-    function countUnassigned()
+    static public function countUnassigned()
     {
         $db =& eZDB::globalDatabase();
 

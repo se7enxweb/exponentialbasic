@@ -66,6 +66,24 @@ if ( isSet( $DeleteCategories ) )
     $Action = "DeleteCategories";
 }
 
+if ( isset( $Action ) && $Action == "New" )
+{
+    $Name = false;
+    $Description = false;
+    $Caption = false;
+    $mediaType = false;
+    $readGroupArrayID[0] = -1;
+    $writeGroupArrayID[0] = -1;
+    $uploadGroupArrayID[0] = -1;
+}
+
+if ( isset( $Action ) && $Action == "Edit" )
+{
+    $Name = false;
+    $Description = false;
+    $Caption = false;
+}
+
 include_once( "classes/INIFile.php" );
 include_once( "classes/eztemplate.php" );
 include_once( "classes/ezlog.php" );
@@ -133,7 +151,7 @@ $t->set_block( "errors_tpl", "error_write_everybody_permission_tpl", "error_writ
 $t->set_var( "error_write_everybody_permission", "&nbsp;" );
 
 // Check for errors when inserting or updating.
-if ( $Action == "Insert" || $Action == "Update" )
+if ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" )
 {
     if ( $nameCheck )
     {
@@ -232,7 +250,7 @@ if ( $Action == "Insert" || $Action == "Update" )
 }
 
 // Insert if error == false
-if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
+if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" ) && $error == false )
 {
     $media = new eZMedia( $MediaID );
     $media->setName( $Name );
@@ -311,7 +329,7 @@ if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
         }
     }
 
-    if ( $Action == "Insert" )
+    if ( isset( $Action ) && $Action == "Insert" )
     {
         $category = new eZMediaCategory( $CategoryID );
 
@@ -325,7 +343,7 @@ if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
         }
         eZLog::writeNotice( "Video added to catalogue: $media->name() from IP: $REMOTE_ADDR" );
     }
-    elseif ( $Action == "Update" )
+    elseif ( isset( $Action ) && $Action == "Update" )
     {
         $categoryArray = $media->categories();
         // Calculate new and unused categories
@@ -360,13 +378,13 @@ if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
     }
     else
     {
-        $Action = "Edit";
+        //$Action = "Edit";
         $MediaID = $media->id();
     }
 }
 
 // Delete an media
-if ( $Action == "DeleteMedia" )
+if ( isset( $Action ) && $Action == "DeleteMedia" )
 {
     if ( count( $MediaArrayID ) != 0 )
     {
@@ -383,7 +401,7 @@ if ( $Action == "DeleteMedia" )
 }
 
 // Delete a category
-if ( $Action == "DeleteCategories" )
+if ( isset( $Action ) && $Action == "DeleteCategories" )
 {
     if ( count( $CategoryArrayID ) > 0 )
     {
@@ -400,7 +418,7 @@ if ( $Action == "DeleteCategories" )
 }
 
 // Set the default values to null
-if ( $Action == "New" || $error )
+if ( isset( $Action ) && $Action == "New" || $error )
 {
     $t->set_var( "action_value", "Insert" );
     $t->set_var( "media", "" );
@@ -420,7 +438,7 @@ if ( $Action == "New" || $error )
 }
 
 // Sets the values to the current media
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $media = new eZMedia( $MediaID );
 
@@ -589,7 +607,7 @@ if ( is_a( $mediaType, "eZMediaType") )
     }
 }
 
-if ( count( $attributes ) > 0 || !isSet( $type ) )
+if ( isset( $attributes ) && count( $attributes ) > 0 || !isSet( $type ) )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }
@@ -627,7 +645,7 @@ foreach ( $groups as $group )
         }
     }
 
-    if ( $Action = "new" )
+    if ( isset( $Action ) && $Action == "new" )
         $t->set_var( "read_everybody", "selected" );
     $t->parse( "read_group_item", "read_group_item_tpl", true );
 

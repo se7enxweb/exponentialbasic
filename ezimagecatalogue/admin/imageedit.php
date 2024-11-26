@@ -29,7 +29,6 @@ include_once( "ezuser/classes/ezpermission.php" );
 include_once( "ezuser/classes/ezobjectpermission.php" );
 include_once( "ezuser/classes/ezauthor.php" );
 
-
 $user =& eZUser::currentUser();
 
 $CurrentCategoryID = eZHTTPTool::getVar( "CategoryID" );
@@ -61,6 +60,18 @@ if ( isSet( $DeleteImages ) )
 if ( isSet( $DeleteCategories ) )
 {
     $Action = "DeleteCategories";
+}
+
+if (isset( $Action ) && $Action == "New" )
+{
+    $Name = false;
+    $Description = false;
+    $sectionID = false;
+    $Caption = false;
+    $ImageID = false;
+    $readGroupArrayID[0] = -1;
+    $writeGroupArrayID[0] = -1;
+    $uploadGroupArrayID[0] = -1;
 }
 
 include_once( "classes/INIFile.php" );

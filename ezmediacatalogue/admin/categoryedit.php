@@ -35,6 +35,29 @@ include_once( "ezuser/classes/ezobjectpermission.php" );
 
 include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
 
+if ( isset( $Action ) && $Action == "New" )
+{
+    $Name = false;
+    $Description = false;
+    $CategoryID = false;
+    $readGroupArrayID[0] = -1;
+    $writeGroupArrayID[0] = -1;
+    $uploadGroupArrayID[0] = -1;
+}
+
+// Insert the category values when editing.
+if ( $Action == "Edit" ) {
+    $category = new eZMediaCategory($CategoryID);
+
+    $Name = $category->name();
+    $Description = $category->description();
+    $parent =& $category->parent();
+    if ($parent)
+        $CurrentCategoryID = $parent->id();
+    else
+        $CurrentCategoryID = $CategoryID;
+}
+
 if ( isSet( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /mediacatalogue/media/list/" );
@@ -364,7 +387,7 @@ foreach ( $categoryList as $categoryItem )
 
         $t->set_var( "is_selected", "" );
 
-        if ( $CurrentCategoryID != 0 )
+        if ( isset( $CurrentCategoryID ) && $CurrentCategoryID != 0 )
         {
             if ( $categoryItem[0]->id() == $CurrentCategoryID )
             {
@@ -382,4 +405,3 @@ foreach ( $categoryList as $categoryItem )
 
 $t->pparse( "output", "category_edit_tpl" );
 ?>
-

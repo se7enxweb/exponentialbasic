@@ -260,6 +260,7 @@ class eZArticle
                                  ImportID='$importID'
                                  WHERE ID='$this->ID'
                                  ";
+                echo $queryText;
                 $ret = $db->query( $queryText );
             }
             else
@@ -357,10 +358,6 @@ class eZArticle
         $this->StartDate =& $article_array[$db->fieldName("StartDate")];
         $this->StopDate =& $article_array[$db->fieldName("StopDate")];
         $this->ImportID =& $article_array[$db->fieldName("ImportID")];
-        if ( $this->StartDate == 0 )
-            $this->StartDate = false;
-        if ( $this->StopDate == 0 )
-            $this->StopDate = false;
     }
 
     /*!

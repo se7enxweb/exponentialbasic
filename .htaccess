@@ -57,6 +57,8 @@
     RewriteCond %{HTTP_HOST} ^version\.demo\.se7enx\.com$
     # eZ publish Installation Test : The following line allows access test page.
     #RewriteCond %{REQUEST_URI} !^/index_verify.php*
+    RewriteCond %{REQUEST_URI} !^/documentation*
+    RewriteCond %{REQUEST_URI} !^/design*
     RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf)$ index.php
 
 

@@ -527,7 +527,7 @@ switch ( $url_array[2] )
             {
                 if ( !isset( $Action ) )
                     $Action = $url_array[3];
-                if ( is_numeric( $TypeID ) )
+                if ( isset( $TypeID ) && is_numeric( $TypeID ) )
                 {
                     $ActionValue = "update";
                 }
@@ -536,7 +536,7 @@ switch ( $url_array[2] )
                     $TypeID = $url_array[4];
                 }
                 
-                if ( !is_array( $AttributeID ) )
+                if ( !isset( $TypeID ) && !is_array( $AttributeID ) )
                 {
                     $AttributeID = $url_array[5];
                 }
@@ -556,4 +556,3 @@ switch ( $url_array[2] )
 }
 
 // display a page with error msg
-

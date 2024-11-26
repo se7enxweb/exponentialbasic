@@ -1258,7 +1258,7 @@ class eZArticleCategory
        else if ( $fetchPublished  == true )
        {
            if ( $permissionSQL == "" )
-               $publishedSQL = " Article.IsPublished = '1' ";
+               $publishedSQL = " Article.IsPublished = '1' AND ";
            else
                $publishedSQL = " AND Article.IsPublished = '1' ";
        }
@@ -1278,7 +1278,7 @@ class eZArticleCategory
        }
        else
        {
-           $categorySQL = "AND Link.CategoryID='$catID'";
+           $categorySQL = "Link.CategoryID='$catID' ";
        }
 
 	  $query = "SELECT Article.* $perm_str

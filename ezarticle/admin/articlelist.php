@@ -444,7 +444,7 @@ if ( is_numeric( $CategoryID ) && ( $CategoryID > 0 ) )
         case "All" :
         default  :
         {
-            $articleList =& $category->articles( $category->sortMode(), true, true, $Offset, $Limit );
+            $articleList =& $category->articles( $category->sortMode(), true, true, $Offset, $Limit, $category->id() );
             $articleCount = $category->articleCount( true, true  );        
         }
     }

@@ -48,11 +48,11 @@ class eZArticleTool
       \static
       Deletes the cache files for a given article and it's categories.
     */
-    function deleteCache( $ArticleID, $CategoryID, $CategoryArray )
+    static public function deleteCache( $ArticleID, $CategoryID, $CategoryArray )
     {
         $user =& eZUser::currentUser();
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files = eZCacheFile::files( "ezarticle/cache/",
                                       array( array( "articleprint", "articleview", "articlestatic", "static", "view", "print"  ),
                                              $ArticleID, NULL, NULL ), "cache", "," );
         foreach ( $files as $file )
@@ -60,9 +60,9 @@ class eZArticleTool
             $file->delete();
         }
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files = eZCacheFile::files( "ezarticle/cache/",
                                       array( array( "articlelist", "list" ),
-                                             array_merge( 0, $CategoryID, $CategoryArray ),
+                                             array_merge( $CategoryArray, array( $CategoryID ), array( 0 ) ),
                                              NULL, array( "", NULL ) ),
                                       "cache", "," );
         foreach ( $files as $file )
@@ -71,9 +71,9 @@ class eZArticleTool
         }
 
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files = eZCacheFile::files( "ezarticle/cache/",
                                       array( "articlelinklist",
-                                             array_merge( 0, $CategoryID, $CategoryArray ),
+                                             array_merge( $CategoryArray, array( $CategoryID ), array( 0 ) ),
                                              $ArticleID,
                                              NULL ),
                                       "cache", "," );
@@ -132,7 +132,7 @@ class eZArticleTool
         }
     }
 
-    function notificationMessage( &$article )
+    static public function notificationMessage( &$article )
     {
         include_once( "classes/eztexttool.php" );
         $ini =& INIFile::globalINI();

@@ -404,7 +404,30 @@ if ( $Action == "Update" || ( $Action == "Insert" ) )
         }
     }
 }
-
+elseif ( isset( $Action ) && $Action = "new")
+{
+    $Name = '';
+    $ContentsWriterID = false;
+    $Keywords = '';
+    $Contents = array();
+    $Contents[0] = false;
+    $Contents[1] = false;
+    $Contents[2] = false;
+    $Contents[3] = false;
+    $AuthorText = '';
+    $AuthorEmail = '';
+    $LinkText = '';
+    $StartDay = '';
+    $StartMonth = '';
+    $StartHour = '';
+    $StartMinute = '';
+    $StartYear = '';
+    $StopDay = '';
+    $StopMonth = '';
+    $StopMinute = '';
+    $StopYear = '';
+    $StopHour = '';
+}
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
 $t = new eZTemplate( "ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),

@@ -48,7 +48,19 @@ $Language = $ini->read_var( "eZArticleMain", "Language" );
 include_once( "ezarticle/classes/ezarticlecategory.php" );
 
 $error = false;
-$permssionError = false;
+$permissionError = false;
+
+if ( isset( $Action ) && $Action == "new" )
+{
+    $Name = '';
+    $Description = '';
+    $parentID = '';
+    $CategoryID = '';
+    $sectionID = '';
+    $ListLimit = '';
+    $editorGroupID = '';
+}
+
 if ( ( $Action == "insert" ) || ( $Action == "update" ) )
 {
     if ( ( $ParentID == 0 ) && ( eZPermission::checkPermission( $user, "eZArticle", "WriteToRoot" ) == false ) )
@@ -207,7 +219,7 @@ if ( $Action == "insert" && !$error )
     exit();
 }
 
-if ( $Action == "update" && !$error )
+if ( isset( $Action ) && $Action == "update" && !$error )
 {
     // clear the menu cache
     $files = eZCacheFile::files( "ezarticle/cache/",

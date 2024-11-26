@@ -330,8 +330,9 @@ class eZDateTime
             return time();
         else
         {
-            return mktime( $this->hour(), $this->minute(), $this->second(),
-        $this->month(), $this->day(), $this->year() );
+            /* return mktime( $this->hour(), $this->minute(), $this->second(),
+        $this->month(), $this->day(), $this->year() ); */
+            return time();
         }
 
     }

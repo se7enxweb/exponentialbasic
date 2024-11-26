@@ -124,6 +124,16 @@ Follow these steps to set up eZ Publish Basic via Composer:
 - Example usage via web browser using eZ User URL: https://basic.demo.ezpublish.one/user/login
 - Example usage via web browser using eZ Admin URL: https://admin.basic.demo.ezpublish.one/user/login
 
+Note: YOur done now. Enjoy the free software and a healthy snack. :)
+
+# Documentation
+
+Further documentation can be read from the documentation directory README.
+
+
+
+# Further Information about eZ Publish Basic Kernel
+
 ## History of Authentication in eZ publish v1 through v2.3
 
 - Since it's creation eZ publish v2 authentication information was stored in the database (MySQL / Postgres) using the database provided functions to convert private password strings into once secure MySQL based MD5 Hashes.

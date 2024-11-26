@@ -185,7 +185,7 @@ class eZBulkMailCategory
 
       The categories are returned as an array of eZBulkMailCategory objects.
     */
-    function getAll( $withPrivate = true )
+    static public function getAll( $withPrivate = true )
     {
         $db =& eZDB::globaldatabase();
         $return_array = array();

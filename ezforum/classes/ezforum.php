@@ -50,6 +50,7 @@ class eZForum
         $this->IsAnonymous = 0;
         $this->IsPrivate = 0;
         $this->ModeratorID = 0;
+        $this->GroupID = 0;
 
         if ( $id != "" )
         {

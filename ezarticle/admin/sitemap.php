@@ -56,7 +56,7 @@ $user =& eZUser::currentUser();
 $t->set_var( "category_value", "" );
 $t->set_var( "article_value", "" );
 
-foreach ( $treeArray as $catItem )
+foreach ( $treeArray as $index => $catItem )
 {
     if ( eZObjectPermission::hasPermission( $catItem[0]->id(), "article_category", 'w', $user ) == true  ||
          eZArticleCategory::isOwner( eZUser::currentUser(), $catItem[0]->id() ) )
@@ -74,7 +74,7 @@ foreach ( $treeArray as $catItem )
 
         $category = new eZArticleCategory( $catItem[0]->id() );
 
-        $articleList =& $category->articles( "time", false, true, 0, 50 );
+        $articleList =& $category->articles( "time", false, true, 0, 50, $catItem[0]->id() );
 
         foreach ( $articleList as $article )
         {

@@ -39,6 +39,15 @@ include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
 
 $user =& eZUser::currentUser();
 
+if ( isSet( $NewFolder ) )
+{
+    $Description = false;
+    $Name = false;
+    $readGroupArrayID = array();
+    $writeGroupArrayID = array();
+    $uploadGroupArrayID = array();
+    $sectionID = false;
+}
 // check if user has rights to edit the current folder.
 if ( isSet( $FolderID ) && $FolderID != 0 &&
      !eZObjectPermission::hasPermission( $FolderID, "filemanager_folder", 'w' ) &&

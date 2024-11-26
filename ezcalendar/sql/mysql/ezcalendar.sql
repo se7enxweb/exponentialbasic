@@ -18,5 +18,6 @@ CREATE TABLE eZCalendar_AppointmentType (
   ParentID int DEFAULT '0' NOT NULL,
   Description varchar(200) DEFAULT NULL,
   Name varchar(200),
+  ExcludeFromSearch int DEFAULT NULL,
   PRIMARY KEY (ID)
 );

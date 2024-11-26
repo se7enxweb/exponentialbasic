@@ -41,13 +41,13 @@ $LanguageIni = new INIFile( "ezcalendar/admin/intl/" . $Language . "/typeedit.ph
 include_once( "ezcalendar/classes/ezappointment.php" );
 include_once( "ezcalendar/classes/ezappointmenttype.php" );
 
-if ( $Action == "Insert" )
+if ( isset( $Action ) && $Action == "Insert" )
 {
     $type = new eZAppointmentType();
     $type->setName( $Name );
     $type->setDescription( $Description );
 
-    if ( $ParentID != 0 && $ParentID != $type->id() )
+    if ( isset( $ParentID ) && $ParentID != $type->id() )
     {
         $type->setParent( $ParentID );
     }
@@ -58,7 +58,7 @@ if ( $Action == "Insert" )
     exit();
 }
 
-if ( $Action == "Update" )
+if ( isset( $Action ) && $Action == "Update" )
 {
     $type = new eZAppointmentType( $TypeID );
     $type->setName( $Name );
@@ -75,7 +75,7 @@ if ( $Action == "Update" )
     exit();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     if ( count( $TypeArrayID ) != 0 )
     {

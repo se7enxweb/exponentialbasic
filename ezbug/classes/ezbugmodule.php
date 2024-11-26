@@ -200,7 +200,7 @@ class eZBugModule
 
       The categories are returned as an array of eZBugModule objects.
     */
-    function getByParent( $parent, $sortby=name, $recursive=false )
+    function getByParent( $parent, $sortby="name", $recursive=false )
     {
         $db =& eZDB::globalDatabase();
 

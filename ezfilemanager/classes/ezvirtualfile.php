@@ -284,7 +284,7 @@ class eZVirtualfile
 
       The images are returned as an array of eZVirtualFile objects.
      */
-    function &getUnassigned()
+    static public function &getUnassigned()
     {
         $db =& eZDB::globalDatabase();
 

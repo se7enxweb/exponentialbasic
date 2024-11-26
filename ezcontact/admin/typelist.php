@@ -125,16 +125,16 @@ $t->set_var( "item_delete_command", "$page_path/delete" );
 $t->set_var( "item_view_command", "$page_path/view" );
 $t->set_var( "item_list_command", "$page_path/list" );
 $t->set_var( "item_new_command", "$page_path/new" );
-$t->set_var( "item_id", $ItemID );
-$t->set_var( "item_name", $ItemName );
+$t->set_var( "item_id", isset( $ItemID ) ? $ItemID : false );
+$t->set_var( "item_name", isset( $ItemName ) ? $ItemName : false );
 $t->set_var( "back_url", $back_command );
 $t->set_var( "item_back_command", $back_command );
 
 $t->set_var( "action", $Action );
 $t->set_var( "type", $ListType );
 
-$t->set_var( "search_form_text", $SearchText );
-$t->set_var( "search_text", $search_encoded );
+$t->set_var( "search_form_text", isset( $SearchText ) ? $SearchText : false );
+$t->set_var( "search_text", isset( $search_encoded ) ? $search_encoded : false );
 
 if ( isSet( $Searchable ) )
     $t->parse( "search_item", "search_item_tpl" );    
@@ -224,7 +224,7 @@ else
     $t->parse( "list_item", "list_item_tpl" );
 }
 
-if ( $total_types > $Max || $Offset > 0 )
+if ( isset( $total_types ) && $total_types > $Max || $Offset > 0 )
 {
     $t->set_var( "type_list_previous", "" );
     $t->set_var( "type_list_item", "" );

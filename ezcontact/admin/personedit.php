@@ -91,7 +91,7 @@ if ( isSet( $OK ) )
 {
     if ( $CompanyEdit )
     {
-        if ( $Action == "edit" || $Action == "update" )
+        if ( isset( $Action ) && $Action == "edit" || isset( $Action ) && $Action == "update" )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "CompanyModify" ) )
             {
@@ -100,7 +100,7 @@ if ( isSet( $OK ) )
                 exit();
             }
         }
-        else if ( $Action == "new" || $Action == "insert" )
+        else if ( isset( $Action ) && $Action == "new" || isset( $Action ) && $Action == "insert" )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "CompanyAdd" ) )
             {
@@ -112,7 +112,7 @@ if ( isSet( $OK ) )
     }
     else
     {
-        if ( $Action == "edit" || $Action == "update" )
+        if ( isset( $Action ) && $Action == "edit" || isset( $Action ) && $Action == "update" )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "PersonModify" ) )
             {
@@ -121,7 +121,7 @@ if ( isSet( $OK ) )
                 exit();
             }
         }
-        else if ( $Action == "new" || $Action == "insert" )
+        else if ( isset( $Action ) && $Action == "new" || isset( $Action ) && $Action == "insert" )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "PersonAdd" ) )
             {
@@ -170,7 +170,7 @@ if ( isSet( $Delete ) )
     $Action = "delete";
 }
 
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     if ( $CompanyEdit )
     {
@@ -304,7 +304,7 @@ $t->set_block( "errors_tpl", "error_image_item_tpl", "error_image_item" );
 
 $confirm = false;
 
-if( $Action == "new" )
+if( isset( $Action ) && $Action == "new" )
 {
     if( !isset( $BirthDay ) )
         $BirthDay = false;
@@ -318,7 +318,7 @@ if( $Action == "new" )
     $t->set_var( "image_caption", '' );
 }
 
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     if ( !isSet( $Confirm ) )
     {
@@ -362,13 +362,13 @@ if ( !$confirm )
         $t->set_var( "person_id", "" );
     }
 
-    $t->set_var( "user_id", $UserID );
+    $t->set_var( "user_id", isset( $UserID ) ? $UserID : false );
 
     $t->set_var( "contact_group_item_select", "" );
     $t->set_var( "contact_item_select", "" );
 
 /* End of the pre-defined values */
-    if ( ( $Action == "insert" || $Action == "update" ) )
+    if ( ( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "update" ) )
     {
         if ( $Action == "update" )
         {

@@ -37,6 +37,8 @@ switch ( $url_array[2] )
     case "new" :        
     {
         $Action = "New";
+        $NewFile = true;
+        $FolderID = false;
         include( "ezfilemanager/user/fileupload.php" );
     }
     break;
@@ -99,6 +101,8 @@ switch ( $url_array[2] )
             {
                 $parentID = $url_array[4];
                 $Action = "New";
+                $NewFolder = true;
+                $FolderID = false;
                 include( "ezfilemanager/user/folderedit.php" );
             }
             break;

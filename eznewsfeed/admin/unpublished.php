@@ -41,7 +41,7 @@ if ( isset( $Delete ) )
 if( isset( $DeleteCat ) )
     $Action = "DeleteCat";
 
-if ( $Action == "Publish" )
+if ( isset( $Action ) && $Action == "Publish" )
 {
     if ( count( $NewsPublishIDArray ) > 0 )
     {
@@ -84,7 +84,7 @@ if ( $Action == "Publish" )
 }
 
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     if ( count( $NewsDeleteIDArray ) > 0 )
     {
@@ -96,7 +96,7 @@ if ( $Action == "Delete" )
     }
 }
 
-if( $Action == "DeleteCat" )
+if( isset( $Action ) && $Action == "DeleteCat" )
 {
     if( count( $CategoryArrayID ) > 0 )
     {

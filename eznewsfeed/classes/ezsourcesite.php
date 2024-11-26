@@ -367,6 +367,7 @@ class eZSourceSite
 
     /// bool represented as an int. For automatically publishing of articles.
     var $AutoPublish;
+    var $IsPublished;
 }
 
 

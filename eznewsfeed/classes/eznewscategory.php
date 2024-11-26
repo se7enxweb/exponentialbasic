@@ -168,7 +168,7 @@ class eZNewsCategory
 
       The categories are returned as an array of eZNewsCategory objects.
     */
-    function getByParent( $parent, $showAll=false, $sortby=name )
+    function getByParent( $parent, $showAll=false, $sortby="name" )
     {
         if ( is_a( $parent, "eZNewsCategory" ) )
         {

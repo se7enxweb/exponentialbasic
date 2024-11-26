@@ -217,7 +217,7 @@ class eZConsultationType
       Finds all consultation types.
       Returns an array with eZConsultationType objects taken from the database.
     */
-    function findTypes()
+    static public function findTypes()
     {
         $qry_array = array();
         $db =& eZDB::globalDatabase();

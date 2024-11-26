@@ -68,10 +68,12 @@ class eZAppointmentType
         {
             $db->lock( "eZCalendar_AppointmentType" );
             $this->ID = $db->nextID( "eZCalendar_AppointmentType", "ID" );
-            $res[] = $db->query( "INSERT INTO eZCalendar_AppointmentType
+            $queryText = "INSERT INTO eZCalendar_AppointmentType
                                   (ID, Name, Description, ParentID)
                                   VALUES
-                                  ('$this->ID', '$this->Name', '$this->Description', '$this->ParentID')" );
+                                  ('$this->ID', '$this->Name', '$this->Description', '$this->ParentID')";
+            var_dump( $queryText );
+            $res[] = $db->query( $queryText );
             $db->unlock();
         }
         else
@@ -347,6 +349,7 @@ class eZAppointmentType
     var $Name;
     var $ParentID;
     var $Description;
+    var $ExcludeFromSearch;
 
 }
 

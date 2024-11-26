@@ -31,7 +31,7 @@ include_once( "eznewsfeed/classes/ezsourcesite.php" );
 include_once( "classes/ezdatetime.php" );
 
 // fetch one site
-if ( $Action == "Fetch" )
+if ( isset( $Action ) && $Action == "Fetch" )
 {
     $site = new eZSourceSite( $SourceSiteID );
 
@@ -45,7 +45,7 @@ if ( $Action == "Fetch" )
 }
 
 // fetch every site
-if ( $Action == "ImportNews" && !isset( $Delete ) )
+if ( isset( $Action ) && $Action == "ImportNews" && !isset( $Delete ) )
 {
     $sourceSite = new eZSourceSite();
     

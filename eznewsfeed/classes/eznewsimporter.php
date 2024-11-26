@@ -66,7 +66,7 @@ class eZNewsImporter
       This funcion returns an array of strings with the avaliable decoders.
       NOTE: When you create a new decoder you must add it to this function or the decoder will not be avaliable for users to select.
      */
-    function listDecoders( )
+    static public function listDecoders( )
     {
         $list = array( "rdf", "rss", "backslash" );
         return $list;

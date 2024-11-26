@@ -80,7 +80,9 @@ if ( $FileID != 0 )
     if ( $parent_folder )
     {
         $t->set_var( "folder_name", $parent_folder->name() );
-    
+
+        $FolderID = $parent_folder->id();
+
         // tempo fix for admin users - maybe in the future must be changed
         if ( $parent_folder != 0 && ! eZPermission::checkPermission( $user, "eZUser", "AdminLogin" ) )
         {
@@ -152,6 +154,4 @@ foreach ( $folderList as $folder )
 
 $t->pparse( "output", "file_view" );
 
-
 ?>
-

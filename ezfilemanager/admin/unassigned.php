@@ -63,7 +63,7 @@ if ( isSet( $Update ) )
         {
             $file = new eZVirtualFile( $FileArrayID[$i] );
             $folder = new eZVirtualFolder( $FolderArrayID[$i] );
-            $folder->addFile( &$file );
+            $folder->addFile( $file );
         }
     }
 }
@@ -71,7 +71,7 @@ if ( isSet( $Update ) )
 // Print out the files.
 $fileList =& eZVirtualFile::getUnAssigned();
 // $fileCount =& eZFileManager::countUnAssigned();
-if ( count( $fileList ) > 0 )
+if ( !is_null( $fileList ) && count( $fileList ) > 0 )
 {
     foreach ( $fileList as $file )
     {
@@ -125,4 +125,3 @@ $t->set_var( "image_dir", $ImageDir );
 $t->pparse( "output", "unassigned_page_tpl" );
 
 ?>
-

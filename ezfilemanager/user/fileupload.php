@@ -37,6 +37,12 @@ include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
 if ( isSet( $NewFile ) )
 {
     $Action = "New";
+    $Description = false;
+    $Name = false;
+    $readGroupArrayID = array();
+    $writeGroupArrayID = array();
+    $uploadGroupArrayID = array();
+    $sectionID = false;
 }
 if ( isSet( $NewFolder ) )
 {
@@ -138,7 +144,7 @@ $t->set_block( "errors_tpl", "error_write_everybody_permission_tpl", "error_writ
 $t->set_var( "error_write_everybody_permission", "" );
 
 
-if ( $Action == "Insert" || $Action == "Update" )
+if ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" )
 {
     if ( $folderPermissionCheck )
     {
@@ -158,7 +164,7 @@ if ( $Action == "Insert" || $Action == "Update" )
             $error = true;
         }
         // if update but not owner or write.
-        if ( $Action == "Update" &&
+        if ( isset( $Action ) && $Action == "Update" &&
             !eZObjectPermission::hasPermission( $folder->id(), "filemanager_folder", "w", $user ) &&
             !eZVirtualFolder::isOwner( $user, $FolderID ) )
         {
@@ -181,7 +187,7 @@ if ( $Action == "Insert" || $Action == "Update" )
         $file = new eZFile();
         if ( $file->getUploadedFile( "userfile" ) == false )
         {
-            if ( $Action == "Insert" )
+            if ( isset( $Action ) && $Action == "Insert" )
             {
                 $error = true;
                 $t->parse( "error_file_upload", "error_file_upload_tpl" );
@@ -195,7 +201,7 @@ if ( $Action == "Insert" || $Action == "Update" )
     }
 }
  
-if ( $Action == "Insert" && !$error )
+if ( isset( $Action ) && $Action == "Insert" && !$error )
 {
     $uploadedFile = new eZVirtualFile();
     $uploadedFile->setDescription( $Description );
@@ -242,7 +248,7 @@ if ( $Action == "Insert" && !$error )
     exit();
 }
 
-if ( $Action == "Update" && $error == false )
+if ( isset( $Action ) && $Action == "Update" && $error == false )
 {
     $file = new eZFile();
 
@@ -270,7 +276,7 @@ if ( $Action == "Update" && $error == false )
     eZHTTPTool::header( "Location: /filemanager/list/$FolderID/" );
 }
 
-if ( $Action == "DeleteFiles" )
+if ( isset( $Action ) && $Action == "DeleteFiles" )
 {
     $oldFolder = 0;
     if ( count( $FileArrayID ) != 0 )
@@ -291,7 +297,7 @@ if ( $Action == "DeleteFiles" )
     exit();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $file = new eZVirtualFile( $FileID );
     $oldParent = $file->folder();
@@ -305,7 +311,7 @@ if ( $Action == "Delete" )
     exit();
 }
 
-if ( $Action == "DeleteFolders" )
+if ( isset( $Action ) && $Action == "DeleteFolders" )
 {
     $oldFolder = 0;
     if ( count( $FolderArrayID ) > 0 )
@@ -329,7 +335,7 @@ if ( $Action == "DeleteFolders" )
 
 $t->set_var( "write_everybody", "" );
 $t->set_var( "read_everybody", "" );
-if ( $Action == "New" || $error )
+if ( isset( $Action ) && $Action == "New" || $error )
 {
     $t->set_var( "action_value", "insert" );
     $t->set_var( "file_id", "" );
@@ -345,7 +351,7 @@ if ( $Action == "New" || $error )
     }
 }
 
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $file = new eZVirtualFile( $FileID );
 

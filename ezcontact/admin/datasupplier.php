@@ -35,6 +35,12 @@ if ( !eZPermission::checkPermission( $user, "eZContact", "ModuleEdit" ) )
 }
 
 $url_array = eZURITool::split( $REQUEST_URI );
+$url_array_count = count( $url_array );
+
+for( $i = $url_array_count; $i <= 25; $i++ )
+{
+    $url_array[$i] = false;
+}
 
 $ListType = $url_array[2];
 switch ( $ListType )
@@ -441,6 +447,8 @@ switch ( $ListType )
             {
                 if ( is_numeric( $url_array[4] ) )
                     $Offset = $url_array[4];
+                else
+                    $Offset = false;
                 include( "ezcontact/admin/consultationtypelist.php" );
             }
             break;
@@ -492,6 +500,9 @@ switch ( $ListType )
             {
                 if ( is_numeric( $url_array[4] ) )
                     $Offset = $url_array[4];
+                else
+                    $Offset = false;
+
                 include( "ezcontact/admin/projecttypelist.php" );
             }
             break;

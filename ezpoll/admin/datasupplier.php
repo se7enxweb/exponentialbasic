@@ -57,6 +57,7 @@ switch ( $url_array[2] )
     case "polledit" :
         if ( ( $url_array[3] == "new" ) )
         {
+            $Action = "New";
             include( "ezpoll/admin/polledit.php" );
         }
         else if ( ( $url_array[3] == "insert" ) )

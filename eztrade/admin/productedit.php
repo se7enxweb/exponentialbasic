@@ -120,12 +120,12 @@ if ( isSet( $DeleteProducts ) )
     $Action = "DeleteProducts";
 }
 
-if ( $Action == "Update"  or $Action == "Insert" )
+if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == "Insert" )
 {
     $parentCategory = new eZProductCategory();
     $parentCategory->get( $CategoryID );
 
-    if ( $Action == "Insert" )
+    if ( isset( $Action ) && $Action == "Insert" )
     {
         $product = new eZProduct();
     }
@@ -285,7 +285,7 @@ if ( $Action == "Update"  or $Action == "Insert" )
 
         // Calculate which categories are new and which are unused
 
-        if ( $Action == "Update" )
+        if ( isset( $Action ) && $Action == "Update" )
         {
             $old_maincategory = $product->categoryDefinition();
 
@@ -392,7 +392,7 @@ if ( $Action == "Update"  or $Action == "Insert" )
     else
     {
         $Contents_Override = $Contents;
-        if ( $Action == "Update" )
+        if ( isset( $Action ) && $Action == "Update" )
         {
             $Action = "Edit";
         }
@@ -403,7 +403,7 @@ if ( $Action == "Update"  or $Action == "Insert" )
     }
 }
 
-if ( $Action == "Cancel" )
+if ( isset( $Action ) && $Action == "Cancel" )
 {
     if ( is_numeric( $ProductID ) )
     {
@@ -420,7 +420,7 @@ if ( $Action == "Cancel" )
     }
 }
 
-if ( $Action == "DeleteProducts" )
+if ( isset( $Action ) && $Action == "DeleteProducts" )
 {
     if ( count ( $ProductArrayID ) != 0 )
     {
@@ -458,7 +458,7 @@ if ( $Action == "DeleteProducts" )
     exit();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $product = new eZProduct();
     $product->get( $ProductID );
@@ -538,9 +538,12 @@ $t->set_var( "action_value", "insert" );
 $writeGroupsID = array();
 $readGroupsID = array();
 
+$PriceGroup = array();
+$PriceGroupID = array();
+
 $VatType = false;
 // edit
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $product = new eZProduct();
     $product->get( $ProductID );
@@ -616,9 +619,9 @@ if ( $Action == "Edit" )
     $ShippingGroup =& $product->shippingGroup();
 }
 
-if ( $UseVoucher )
+if ( isset( $UseVoucher ) && $UseVoucher )
 {
-    if ( $priceRange )
+    if ( isset( $priceRange ) && $priceRange )
     {
         $t->set_var( "price_max", $priceRange->max() );
         $t->set_var( "price_min", $priceRange->min() );
@@ -645,7 +648,7 @@ $categoryArray = $category->getTree( );
 
 foreach ( $categoryArray as $catItem )
 {
-    if ( $Action == "Edit" )
+    if ( isset( $Action ) && $Action == "Edit" )
     {
         $defCat = $product->categoryDefinition();
         if ( $product->existsInCategory( $catItem[0] ) &&
@@ -673,7 +676,7 @@ foreach ( $categoryArray as $catItem )
         $t->set_var( "multiple_selected", "" );
     }
 
-//      if ( $Action == "Edit" )
+//      if ( isset( $Action ) && $Action == "Edit" )
 //      {
 //          if ( $product->existsInCategory( $catItem ) )
 //              $t->set_var( "selected", "selected" );
@@ -727,7 +730,7 @@ $groups =& $group->getAll();
 
 foreach ( $groups as $group )
 {
-    if ( $ShippingGroup and $ShippingGroup->id() == $group->id() )
+    if ( isset( $ShippingGroup ) && $ShippingGroup and $ShippingGroup->id() == $group->id() )
     {
         $t->set_var( "selected", "selected" );
     }
@@ -745,8 +748,8 @@ foreach ( $groups as $group )
 
 // Show quantity
 $t->set_var( "quantity_item", "" );
-$t->set_var( "quantity_value", $Quantity );
-if ( $ShowQuantity )
+$t->set_var( "quantity_value", isset( $Quantity ) ? $Quantity : false );
+if ( isset( $ShowQuantity ) && $ShowQuantity )
 {
     $t->parse( "quantity_item", "quantity_item_tpl" );
 }
@@ -798,7 +801,7 @@ if ( $ShowPriceGroups )
 //        $t->parse( "price_groups_no_item", "price_groups_no_item_tpl" );
 }
 
-    if ( $ShippingGroup and ( $ShippingGroup->id() == $group->id() ) )
+    if ( isset( $ShippingGroup ) && $ShippingGroup and ( $ShippingGroup->id() == $group->id() ) )
     {
         $t->set_var( "selected", "selected" );
     }

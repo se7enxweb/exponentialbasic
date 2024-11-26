@@ -42,7 +42,7 @@ $no = $LangaugeIni->read_var( "strings", "no" );
 $closed = $LangaugeIni->read_var( "strings", "closed" );
 $notClosed = $LangaugeIni->read_var( "strings", "not_closed" );
 
-if ( $Action == "StoreMainPoll" )
+if ( isset( $Action ) && $Action == "StoreMainPoll" )
 {
     // clear the menu cache
     $files =& eZCacheFile::files( "ezpoll/cache/",
@@ -70,7 +70,7 @@ if ( $Action == "StoreMainPoll" )
     }
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     // clear the menu cache
     $files =& eZCacheFile::files( "ezpoll/cache/",
@@ -168,7 +168,7 @@ foreach( $pollList as $pollItem )
     $i++;
 }
 
-$t->set_var( "error_msg", $errorMsg );
+$t->set_var( "error_msg", isset( $errorMsg ) ? $errorMsg : false );
 $t->set_var( "nopolls", $nopolls );
 
 $t->pparse( "output", "poll_list_page" );

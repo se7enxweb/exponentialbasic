@@ -232,7 +232,6 @@ $headline =  $languageIni->read_var( "strings", "head_line_insert" );
 $t->set_var( "forum_name", "" );
 $t->set_var( "forum_description", "" );
 $action_value = "update";
-$t->set_var( "forum_id", $ForumID );
 
 if ( $Action == "new" )
 {
@@ -244,8 +243,12 @@ if ( $Action == "new" )
     }
 
     $action_value = "insert";
+    $groupUser = false;
+    $forum = false;
+    $ForumID = false;
 }
 
+$t->set_var( "forum_id", $ForumID );
 
 if ( $Action == "edit" )
 {
@@ -302,7 +305,7 @@ foreach ( $categoryList as $categoryItem )
     $t->set_var( "category_name", $categoryItem->name() );
 
 
-    if ( count( $categories ) > 0 )
+    if ( isset( $categories ) && count( $categories ) > 0 )
     {
         if ( $categoryItem->id() == $categories[0]->id() )
             $t->set_var( "is_selected", "selected" );
@@ -397,8 +400,8 @@ foreach ( $groupList as $group )
 }
 
 $t->set_var( "action_value", $action_value );
-$t->set_var( "error_msg", $error_msg );
-$t->set_var( "category_id", $CategoryID );
+$t->set_var( "error_msg", isset( $error_msg ) ? $error_msg : false );
+$t->set_var( "category_id", isset( $CategoryID ) ? $CategoryID : false );
 $t->set_var( "headline", $headline );
 
 $t->pparse( "output", "forum_page");

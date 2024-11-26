@@ -52,7 +52,8 @@ if ( isSet ( $Preview ) )
     }
 }
 
-$adUrl = trim( $AdURL );
+if( isset( $AdURL ) )
+    $adUrl = trim( $AdURL );
 
 // Get images from the image browse function.
 if ( ( isSet ( $AddImages ) ) and ( is_numeric( $AdID ) ) and ( is_numeric ( $AdID ) ) )

@@ -1231,7 +1231,7 @@ class eZOrder
 
       The users are returned as an array of eZUser objects.
     */
-    function &customers()
+    static public function &customers()
     {
         $db =& eZDB::globalDatabase();
 

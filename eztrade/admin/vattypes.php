@@ -35,7 +35,7 @@ $Language = $ini->read_var( "eZTradeMain", "Language" );
 include_once( "eztrade/classes/ezvattype.php" );
 
 
-if ( $Action == "Store" )
+if ( isset( $Action ) && $Action == "Store" )
 {
     $i =0;
     foreach ( $VatID as $id )
@@ -48,7 +48,7 @@ if ( $Action == "Store" )
     }    
 }
 
-if ( $Action == "Add" )
+if ( isset( $Action ) && $Action == "Add" )
 {
     $type = new eZVATType();
     $type->setName( "" );
@@ -56,7 +56,7 @@ if ( $Action == "Add" )
     $type->store();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     foreach ( $VatArrayID as $id )
     {

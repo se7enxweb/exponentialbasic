@@ -45,6 +45,12 @@ $Language = $ini->read_var( "eZTradeMain", "Language" );
 
 include_once( "eztrade/classes/ezproductcategory.php" );
 
+if ( isset( $Action ) && $Action == "New" )
+{
+    $CategoryID = false;
+    $sectionID = false;
+}
+
 // Get images from the image browse function.
 if ( ( isSet ( $AddImages ) ) and ( is_numeric( $CategoryID ) ) and ( is_numeric ( $ImageID ) ) )
 {
@@ -56,7 +62,7 @@ if ( ( isSet ( $AddImages ) ) and ( is_numeric( $CategoryID ) ) and ( is_numeric
 }
 
 // Direct actions
-if ( $Action == "Insert" )
+if ( isset( $Action ) && $Action == "Insert" )
 {
     $parentCategory = new eZProductCategory();
     $parentCategory->get( $ParentID );
@@ -150,7 +156,7 @@ if ( $Action == "Insert" )
     exit();
 }
 
-if ( $Action == "Update" )
+if ( isset( $Action ) && $Action == "Update" )
 {
     $parentCategory = new eZProductCategory();
     $parentCategory->get( $ParentID );
@@ -248,7 +254,7 @@ if ( $Action == "Update" )
     exit();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $category = new eZProductCategory();
     $category->get( $CategoryID );
@@ -277,7 +283,7 @@ if ( $Action == "Delete" )
     exit();
 }
 
-if ( $Action == "DeleteCategories" )
+if ( isset( $Action ) && $Action == "DeleteCategories" )
 {
     if ( count ( $CategoryArrayID ) != 0 )
     {
@@ -311,7 +317,7 @@ if ( $Action == "DeleteCategories" )
     exit();
 }
 
-if ( $Action == "CopyCategoires" )
+if ( isset( $Action ) && $Action == "CopyCategoires" )
 {
     if ( count ( $CategoryArrayID ) > 0 )
     {
@@ -358,7 +364,7 @@ $writeGroupsID = array();
 $readGroupsID = array();
 
 // edit
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $category = new eZProductCategory();
     $category->get( $CategoryID );

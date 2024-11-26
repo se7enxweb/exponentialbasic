@@ -286,7 +286,7 @@ class eZAdCategory
     */
     function name( $html = true )
     {
-       if( $html )
+       if( $this->Name != '' && $html )
            return htmlspecialchars( $this->Name );
         return $this->Name;
     }
@@ -296,7 +296,7 @@ class eZAdCategory
     */
     function description( $html = true )
     {
-       if( $html )
+        if( $this->Description != '' && $html )
            return htmlspecialchars( $this->Description );
         return $this->Description;
     }

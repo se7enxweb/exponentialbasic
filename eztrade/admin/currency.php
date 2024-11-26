@@ -36,7 +36,7 @@ $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
 
-if ( $Action == "Store" )
+if ( isset( $Action ) && $Action == "Store" )
 {
     $i=0;
     if ( count( $CurrencyID ) > 0 )
@@ -68,14 +68,14 @@ if ( $Action == "Store" )
     }
 }
 
-if ( $Action == "AddCurrency" )
+if ( isset( $Action ) && $Action == "AddCurrency" )
 {
     $currency = new eZProductCurrency( );
     $currency->store();
 }
 
 
-if ( $Action == "DeleteSelected" )
+if ( isset( $Action ) && $Action == "DeleteSelected" )
 {
     foreach ( $DeleteID as $id )
     {

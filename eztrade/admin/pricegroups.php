@@ -33,6 +33,12 @@ include_once( "eztrade/classes/ezpricegroup.php" );
 
 $page_path = "/trade/pricegroups";
 
+if ( isset( $Action ) && $Action == "list" )
+{
+    $Offset = false;
+    $ListType = false;
+}
+
 if ( isset( $New ) )
 {
     eZHTTPTool::header( "Location: $page_path/new" );
@@ -67,6 +73,15 @@ eZList::drawList( array( "language_file" => $language_file,
                          "list_type" => $ListType,
                          "module" => "eztrade",
                          "module_main" => "eZTradeMain",
+                         "place" => "admin",
+                         "templatedir" => "AdminTemplateDir",
+                         "HTTP_REFERER" => $_SERVER['HTTP_REFERER'],
+                         "back_url" => false,
+                         "item_id" => false,
+                         "item_name" => false,
+                         "search_text" => false,
+                         "search_encoded" => false,
+                         "max" => false,
                          "header_names" => array( "{intl-name}", "{intl-description}" ),
                          "custom_func_call" => array( "description" ),
                          "form_command" => "$page_path/list" ) );

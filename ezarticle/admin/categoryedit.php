@@ -61,7 +61,7 @@ if ( isset( $Action ) && $Action == "new" )
     $editorGroupID = '';
 }
 
-if ( ( $Action == "insert" ) || ( $Action == "update" ) )
+if ( ( isset( $Action ) && $Action == "insert" ) || ( isset( $Action ) && $Action == "update" ) )
 {
     if ( ( $ParentID == 0 ) && ( eZPermission::checkPermission( $user, "eZArticle", "WriteToRoot" ) == false ) )
     {

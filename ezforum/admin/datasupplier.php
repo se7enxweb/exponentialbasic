@@ -158,6 +158,8 @@ switch ( $url_array[2] )
         if ( $url_array[3] == "new" )
         {
             $Action = "new";
+            $CategoryID = false;
+            $sectionID = false;
             include( "ezforum/admin/categoryedit.php" );
         }
         if ( $url_array[3] == "insert" )

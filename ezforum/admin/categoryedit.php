@@ -266,7 +266,7 @@ else
     $t->set_var( "section_item", "" );
 
 $t->set_var( "action_value", $action_value );
-$t->set_var( "error_msg", $error_msg );
+$t->set_var( "error_msg", isset( $error_msg ) ? $error_msg : false );
 $t->set_var( "headline", $headline );
 
 $t->pparse( "output", "category_page" );

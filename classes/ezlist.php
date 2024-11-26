@@ -66,7 +66,7 @@ class eZList
       If $template_array, $variable_array and $block_array is set they are used for extending the
       list with extra information.
     */
-    function drawList( $params, $no_print = false )
+    static public function drawList( $params, $no_print = false )
     {
         if ( !is_array( $params ) )
         {
@@ -77,6 +77,8 @@ class eZList
 
         if ( isset( $params["ini"] ) )
             $ini =& $params["ini"];
+        else
+            $ini =& INIFile::globalINI();
         if ( !is_a( $ini, "INIFile" ) )
             $ini =& INIFile::globalINI();
 
@@ -111,6 +113,7 @@ class eZList
         $HTTP_REFERER = $params["HTTP_REFERER"];
         $BackUrl = $params["back_url"];
         $page_path = $params["page_path"];
+        $search_encoded = $params['search_encoded'];
 
         if( $HTTP_REFERER == "" )
         {
@@ -557,4 +560,3 @@ class eZList
         }
     }
 }
-

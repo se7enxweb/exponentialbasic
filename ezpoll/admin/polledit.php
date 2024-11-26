@@ -46,7 +46,13 @@ if ( isSet( $Back ) )
 }
 
 // Insert
-if ( $Action == "Insert" )
+if ( isset( $Action ) && $Action == "New" )
+{
+    $PollID = false;
+    $ShowResult = false;
+}
+// Insert
+if ( isset( $Action ) && $Action == "Insert" )
 {
     if ( $Name )
     {
@@ -142,7 +148,7 @@ if ( isset( $DeleteChoice ) )
 
 
 // Update
-if ( $Action == "Update" )
+if ( isset( $Action ) && $Action == "Update" )
 {
     $poll = new eZPoll();
     $poll->get( $PollID );
@@ -213,7 +219,7 @@ if ( $Action == "Update" )
 }
 
 // Delete
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $poll = new eZPoll();
     $poll->get( $PollID );
@@ -247,7 +253,7 @@ $IsClosed = "";
 $Anonymous = "";
 $nopolls = "";
 // Edit
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $poll = new eZPoll();
     $poll->get( $PollID );
@@ -329,7 +335,7 @@ if ( !isset ( $headline ) )
     $headline =  $languageIni->read_var( "strings", "head_line_insert" );
 }
 $t->set_var( "head_line", $headline );
-$t->set_var( "error_msg", $errorMsg );
+$t->set_var( "error_msg", isset( $errorMsg ) ? $errorMsg : false );
 
 $t->pparse( "output", "poll_edit_page" );
 ?>

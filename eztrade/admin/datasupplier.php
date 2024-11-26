@@ -133,6 +133,10 @@ switch ( $url_array[2] )
             $Action = "down";
         }
 
+        if ( !isset( $Action ) )
+        {
+            $Action = "New";
+        }
         include( "eztrade/admin/typeedit.php" );
     }
     break;
@@ -178,6 +182,7 @@ switch ( $url_array[2] )
         }
         else
         {
+            $Action = "New";
             include( "eztrade/admin/categoryedit.php" );
         }
         break;

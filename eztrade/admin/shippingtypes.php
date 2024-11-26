@@ -38,7 +38,7 @@ include_once( "eztrade/classes/ezshippinggroup.php" );
 include_once( "eztrade/classes/ezvattype.php" );
 
 
-if ( $Action == "Store" )
+if ( isset( $Action ) && $Action == "Store" )
 {
     if ( is_numeric( $DefaultTypeID ) )
     {
@@ -88,14 +88,14 @@ if ( $Action == "Store" )
     }
 }
 
-if ( $Action == "AddType" )
+if ( isset( $Action ) && $Action == "AddType" )
 {
     $shippingType = new eZShippingType();
     $shippingType->setName( "" );
     $shippingType->store();
 }
 
-if ( $Action == "AddGroup" )
+if ( isset( $Action ) && $Action == "AddGroup" )
 {
     $shippingType = new eZShippingGroup();
     $shippingType->setName( "" );
@@ -103,7 +103,7 @@ if ( $Action == "AddGroup" )
 }
 
 
-if ( $Action == "DeleteSelected" )
+if ( isset( $Action ) && $Action == "DeleteSelected" )
 {
     if ( count( $DeleteType ) > 0 )
     foreach ( $DeleteType as $id )

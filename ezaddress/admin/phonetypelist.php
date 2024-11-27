@@ -24,7 +24,6 @@
 //
 
 include_once( "ezaddress/classes/ezphonetype.php" );
-
 include( "ezaddress/admin/typelist_pre.php" );
 
 $language_file = "phonetype.php";

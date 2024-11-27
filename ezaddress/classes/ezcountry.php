@@ -125,6 +125,10 @@ class eZCountry
             $search_arg = "AND " . $query->buildQuery();
 //              $search_arg = "WHERE Name like '%$search%'";
         }
+        else
+        {
+            $search_arg = '';
+        }
 
         $db->query_single( $countries, "SELECT COUNT( ID ) as Count FROM eZAddress_Country
                                         WHERE Removed=0 $search_arg
@@ -153,6 +157,10 @@ class eZCountry
             $query = new eZQuery( array( "Name", "ISO" ), $search );
             $search_arg = "AND " . $query->buildQuery();
 //              $search_arg = "WHERE Name like '%$search%'";
+        }
+        else
+        {
+            $search_arg = '';
         }
 
         if ( $as_object )

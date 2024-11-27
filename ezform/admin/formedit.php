@@ -44,7 +44,7 @@ $ActionValue="edit";
 
 $form = new eZForm( $FormID );
 
-if ( $Action == "up" )
+if ( isset( $Action ) && $Action == "up" )
 {
     $element = new eZFormElement( $ElementID );
     $form->moveUp( $element );
@@ -52,7 +52,7 @@ if ( $Action == "up" )
     exit();
 }
 
-if ( $Action == "down" )
+if ( isset( $Action ) && $Action == "down" )
 {
     $element = new eZFormElement( $ElementID );
     $form->moveDown( $element );
@@ -290,7 +290,7 @@ else
     }
 }
 
-if ( $action != "new" && $form->numberOfTypes() == 0 && !isSet( $NewElement ) && !isSet( $DeleteSelected ) )
+if ( isset( $Action ) && $Action != "new" && $form->numberOfTypes() == 0 && !isSet( $NewElement ) && !isSet( $DeleteSelected ) )
 {
     $t->parse( "no_types_item", "no_types_item_tpl" );
 }
@@ -320,7 +320,7 @@ if ( $form->numberOfElements() == 0 )
     }
     else
     {
-        if ( $Action != "new" && !isSet( $NewElement ) && !isSet( $DeleteSelected ) )
+        if ( isset( $Action ) && $Action != "new" && !isSet( $NewElement ) && !isSet( $DeleteSelected ) )
             $t->parse( "no_elements_item", "no_elements_item_tpl" );
     }
 }

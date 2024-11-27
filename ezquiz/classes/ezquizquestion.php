@@ -349,6 +349,7 @@ class eZQuizQuestion
 
     var $ID;
     var $Name;
+    var $Description;
     var $Score;
     var $Game;
 }

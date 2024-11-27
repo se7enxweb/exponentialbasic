@@ -56,8 +56,14 @@ switch ( $url_array[2] )
             case "update":
             case "insert":
             {
-                if ( is_numeric( $url_array[4] ) )
+                if ( isset( $url_array[4] ) && is_numeric( $url_array[4] ) )
                     $GameID = $url_array[4];
+                else
+                {
+                    $GameID = false;
+                    $Action = "New";
+                }
+
                 include ( "ezquiz/admin/gameedit.php" );
             }
             break;

@@ -32,6 +32,8 @@ include_once( "classes/eztemplate.php" );
 include_once( "classes/INIFile.php" );
 include_once( "classes/ezlist.php" );
 
+$mailCount = false;
+
 if ( isset( $Ok ) || isset( $New ) )
 {
     eZBulkMailCategory::setSingleList( false );

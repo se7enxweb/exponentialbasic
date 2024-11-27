@@ -64,6 +64,31 @@ if ( isSet( $DeleteQuestions ) )
     }
 }
 
+if ( isset( $Action ) && $Action == "New" )
+{
+    $Name = false;
+    $Description = false;
+    $StartMonth = false;
+    $StartDay = false;
+    $StartYear = false;
+    $StopDay = false;
+    $StopYear = false;
+    $StopMonth = false;
+}
+else
+{
+    $Name = false;
+    $Description = false;
+    $StartMonth = false;
+    $StartDay = false;
+    $StartYear = false;
+    $StopDay = false;
+    $StopYear = false;
+    $StopMonth = false;
+    $game = false;
+}
+
+
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZQuizMain", "Language" );
 
@@ -105,7 +130,7 @@ $t->set_var( "error_question", "" );
 
 $error = false;
 $checkDate = true;
-if ( $Action == "Insert" )
+if ( isset( $Action ) && $Action == "Insert" )
 {
     if ( $GameID > 0 && !isSet( $NewQuestion ) )
     {
@@ -242,7 +267,7 @@ if ( $Action == "Insert" )
 }
 
 
-if ( ( $Action == "Insert" ) && ( $error == false ) )
+if ( ( isset( $Action ) && $Action == "Insert" ) && ( $error == false ) )
 {
     if ( is_numeric( $GameID ) )
         $game = new eZQuizGame( $GameID );
@@ -285,7 +310,7 @@ if ( ( $Action == "Insert" ) && ( $error == false ) )
     }
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     if ( count( $GameArrayID ) > 0 )
     {
@@ -321,7 +346,7 @@ if ( is_numeric( $GameID ) && !isset( $OK ) && !isset( $NewQuestion ) )
     $questionList =& $game->questions();
 }
 
-if ( count( $questionList ) > 0 )
+if ( isset( $questionList ) && count( $questionList ) > 0 )
 {
     $i = 0;
     foreach ( $questionList as $question )

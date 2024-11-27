@@ -114,6 +114,14 @@ $t->set_var( "line_item", "" );
 $t->set_var( "list_item", "" );    
 $t->set_var( "search_item", "" );    
 
+if( isset( $Action ) && $Action == "list" )
+{
+    $SearchText = false;
+    $search_encoded = false;
+    $total_types = false;
+    $Max = false;
+}
+
 $t->set_var( "item_up_command", "$page_path/up" );
 $t->set_var( "item_down_command", "$page_path/down" );
 $t->set_var( "item_edit_command", "$page_path/edit" );
@@ -121,8 +129,8 @@ $t->set_var( "item_delete_command", "$page_path/delete" );
 $t->set_var( "item_view_command", "$page_path/view" );
 $t->set_var( "item_list_command", "$page_path/list" );
 $t->set_var( "item_new_command", "$page_path/new" );
-$t->set_var( "item_id", $ItemID );
-$t->set_var( "item_name", $ItemName );
+$t->set_var( "item_id", isset( $ItemID ) ? $ItemID : false );
+$t->set_var( "item_name", isset( $ItemName ) ? $ItemName : false );
 $t->set_var( "back_url", $back_command );
 $t->set_var( "item_back_command", $back_command );
 
@@ -159,7 +167,7 @@ foreach( $item_type_array as $item )
     if ( isset( $func_call ) and is_array( $func_call ) )
     {
         reset( $func_call );
-        while( list($key,$val) = each( $func_call ) )
+        foreach( $func_call as $key => $val )
         {
             $t->set_var( $key, $item->$val() );
         }

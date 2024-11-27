@@ -141,7 +141,7 @@ class eZBulkMailTemplate
 
       The categories are returned as an array of eZBulkMailTemplate objects.
     */
-    function getAll()
+    static public function getAll()
     {
         $db =& eZDB::globaldatabase();
         $return_array = array();

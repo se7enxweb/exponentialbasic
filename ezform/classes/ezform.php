@@ -195,7 +195,7 @@ class eZForm
 
       The objects are returned as an array of eZForm objects.
     */
-    function &getAll( $offset=0, $limit=20 )
+    static public function &getAll( $offset=0, $limit=20 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -229,7 +229,7 @@ class eZForm
     /*!
       Returns the total count of objects in the database.
      */
-    function count()
+    static public function count()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -253,14 +253,14 @@ class eZForm
     */
     function name()
     {
-	if( is_string( $this->Name ) )
+        if( is_string( $this->Name ) )
         {
-	    return htmlspecialchars( $this->Name );
-	}
-	else
-	{
-	    return $this->Name;
-	}
+            return htmlspecialchars( $this->Name );
+        }
+        else
+        {
+            return $this->Name;
+        }
     }
 
     /*!
@@ -268,15 +268,29 @@ class eZForm
     */
     function receiver()
     {
-        return htmlspecialchars( $this->Receiver );
+        if( is_string( $this->Receiver ) )
+        {
+            return htmlspecialchars( $this->Receiver );
+        }
+        else
+        {
+            return $this->Receiver;
+        }
     }
 
     /*!
       Returns the cc of the object.
-  ion 
+    */
     function cc()
     {
-        return htmlspecialchars( $this->CC );
+        if( is_string( $this->CC ) )
+        {
+            return htmlspecialchars( $this->CC );
+        }
+        else
+        {
+            return $this->CC;
+        }
     }
 
     /*!

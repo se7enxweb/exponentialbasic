@@ -82,7 +82,7 @@ if ( isset( $Delete ) and isset( $ItemArrayID ) and isset( $item_types ) )
     exit();
 }
 
-if( $Action == "up" )
+if( isset( $Action ) && $Action == "up" )
 {
     $item_type->moveUp();
     include_once( "classes/ezhttptool.php" );
@@ -90,7 +90,7 @@ if( $Action == "up" )
     exit();
 }
 
-if( $Action == "down" )
+if( isset( $Action ) && $Action == "down" )
 {
     $item_type->moveDown();
     include_once( "classes/ezhttptool.php" );
@@ -98,15 +98,15 @@ if( $Action == "down" )
     exit();
 }
 
-if( $Action == "insert" or $Action == "update" )
+if( isset( $Action ) && $Action == "insert" or isset( $Action ) && $Action == "update" )
 {
-    if ( $Action == "insert" )
+    if ( isset( $Action ) && $Action == "insert" )
         unset( $item_type->ID );
 
     if ( isset( $func_call_set ) and is_array( $func_call_set ) )
     {
         reset( $func_call_set );
-        while( list($key,$val) = each( $func_call_set ) )
+        foreach( $func_call_set as $key => $val )
         {
             if ( $key == "setHasVAT" )
             {
@@ -151,13 +151,13 @@ $t->set_block( "type_edit_tpl", "no_line_item_tpl", "no_line_item" );
 $t->set_var( "no_line_item", "" );
 $t->set_var( "line_item", "" );
 
-$t->set_var( "item_id", $ItemID );
-$t->set_var( "item_name", $ItemName );
+$t->set_var( "item_id", isset( $ItemID ) ? $ItemID : false );
+$t->set_var( "item_name", isset( $ItemName ) ? $ItemName : false );
 
 $t->set_var( "back_url", $back_command );
 $t->set_var( "item_back_command", $back_command );
 
-if( $error == false )
+if( !isset( $error ) || $error == false )
 {
     $t->set_var( "errors", "" );
 }
@@ -165,7 +165,7 @@ if( $error == false )
 if ( isset( $func_call ) and is_array( $func_call ) )
 {
     reset( $func_call );
-    while( list($key,$val) = each( $func_call ) )
+    foreach( $func_call as $key => $val )
     {
         if ( $key == "item_has_vat" )
         {
@@ -189,7 +189,7 @@ else
     }
 }
 
-if( $Action == "edit" )
+if( isset( $Action ) && $Action == "edit" )
 {
     $action_value = "update";
 
@@ -199,7 +199,7 @@ if( $Action == "edit" )
     }
 }
 
-if( $Action == "new" )
+if( isset( $Action ) && $Action == "new" )
 {
     $action_value = "insert";
 

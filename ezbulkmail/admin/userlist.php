@@ -62,7 +62,7 @@ $t->set_block( "user_list_page_tpl", "no_subscribers_tpl", "no_subscribers" );
 $t->set_var( "no_subscribers", "" );
 
 // some logic to set the CategoryID right. (we can get it both from url and from the list)
-if( is_numeric( $ListID ) )
+if( isset( $ListID ) && is_numeric( $ListID ) )
     $CategoryID = $ListID;
 
 $categories = eZBulkMailCategory::getAll();

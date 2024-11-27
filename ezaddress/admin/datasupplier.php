@@ -52,6 +52,8 @@ switch ( $ListType )
             {
                 if ( is_numeric( $url_array[4] ) )
                     $Index = $url_array[4];
+                else
+                    $Index = false;
                 include( "ezaddress/admin/phonetypelist.php" );
                 break;
             }
@@ -79,7 +81,10 @@ switch ( $ListType )
 
     case "addresstype":
     {
-        $AddressTypeID = $url_array[4];
+        if( isset( $url_array[4] ) )
+            $AddressTypeID = $url_array[4];
+        else
+            $AddressTypeID = false;
         $Action = $url_array[3];
         switch( $url_array[3] )
         {
@@ -96,15 +101,19 @@ switch ( $ListType )
             }
             case "list":
             {
-                if ( is_numeric( $url_array[4] ) )
+                if ( isset( $url_array[4] ) && is_numeric( $url_array[4] ) )
                     $Index = $url_array[4];
+                else
+                    $Index = false;
                 include( "ezaddress/admin/addresstypelist.php" );
                 break;
             }
             case "search":
             {
-                if ( is_numeric( $url_array[4] ) )
+                if ( isset( $url_array[4] ) && is_numeric( $url_array[4] ) )
                     $Index = $url_array[4];
+                else
+                    $Index = false;
                 if ( count( $url_array ) >= 5 && !isset( $SearchText ) )
                 {
                     $SearchText = $url_array[5];
@@ -126,7 +135,10 @@ switch ( $ListType )
     case "onlinetype":
     {
         $Action = $url_array[3];
-        $OnlineTypeID = $url_array[4];
+        if( isset( $url_array[4] ) )
+            $OnlineTypeID = $url_array[4];
+        else
+            $OnlineTypeID = false;
         
         switch( $Action )
         {
@@ -143,8 +155,10 @@ switch ( $ListType )
             }
             case "list":
             {
-                if ( is_numeric( $url_array[4] ) )
+                if ( isset( $url_array[4] ) && is_numeric( $url_array[4] ) )
                     $Index = $url_array[4];
+                else
+                    $Index = false;
                 include( "ezaddress/admin/onlinetypelist.php" );
                 break;
             }
@@ -172,7 +186,11 @@ switch ( $ListType )
 
     case "country":
     {
-        $CountryID = $url_array[4];
+        if( isset( $url_array[4] ) )
+            $CountryID = $url_array[4];
+        else
+            $CountryID = false;
+
         $Action = $url_array[3];
         switch ( $Action )
         {
@@ -189,8 +207,10 @@ switch ( $ListType )
             }
             case "list":
             {
-                if ( is_numeric( $url_array[4] ) )
+                if ( isset( $url_array[4] ) && is_numeric( $url_array[4] ) )
                     $Index = $url_array[4];
+                else
+                    $Index = false;
                 include( "ezaddress/admin/countrylist.php" );
                 break;
             }

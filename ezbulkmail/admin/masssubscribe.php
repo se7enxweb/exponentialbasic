@@ -58,7 +58,7 @@ $t->set_var( "new_email_list", "" );
 $t->set_var( "email_exists_list", "" );
 $t->set_var( "not_valid_list", "" );
 
-$t->set_var( "addresses", "$Addresses" );
+$t->set_var( "addresses", isset( $Addresses ) ? $Addresses : false );
 
 if ( isSet ( $OK ) && ( count ( $CategoryArrayID ) > 0 ) )
 {

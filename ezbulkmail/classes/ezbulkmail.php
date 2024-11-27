@@ -175,7 +175,7 @@ class eZBulkMail
 
       The categories are returned as an array of eZBulkMail objects.
     */
-    function getAll( $draftsOnly = false )
+    static public function getAll( $draftsOnly = false )
     {
         $db =& eZDB::globalDatabase();
 

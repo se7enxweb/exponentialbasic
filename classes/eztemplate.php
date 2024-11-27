@@ -525,7 +525,7 @@ class eZTemplate
         if ( is_array( $parent ) )
         {
             reset( $parent );
-            while ( list( $file, $val ) = each( $parent ) )
+            foreach ( $parent as $file => $val )
             {
                 if ( !$this->loadfile( $file ) )
                 {
@@ -651,7 +651,7 @@ class eZTemplate
         if ( is_array( $target ) )
         {
             reset( $target );
-            while ( list( $targ,$hndl ) = each( $target ) )
+            foreach ( $target as $targ => $hndl )
             {
                 unset( $str );
                 $str =& $this->subst( $hndl );

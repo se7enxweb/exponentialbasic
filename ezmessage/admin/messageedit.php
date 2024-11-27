@@ -90,9 +90,9 @@ $t->set_block( "message_page_tpl", "message_edit_tpl", "message_edit" );
 
 $t->setAllStrings();
 
-$t->set_var( "receiver", $Receiver );
-$t->set_var( "subject", $Subject );
-$t->set_var( "description", $Description );
+$t->set_var( "receiver", isset( $Receiver ) ? $Receiver : false );
+$t->set_var( "subject", isset( $Subject ) ? $Subject : false );
+$t->set_var( "description", isset( $Description ) ? $Description : false );
 
 $t->set_var( "error", "" );
 
@@ -162,4 +162,3 @@ else
 $t->pparse( "output", "message_page_tpl" );
 
 ?>
-

@@ -41,6 +41,8 @@ class eZMessage
     */
     function __construct( $id=-1 )
     {
+        $this->IsRead = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;

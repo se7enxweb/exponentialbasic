@@ -76,7 +76,7 @@ $t->set_var( "form_name", $form->name() );
 $t->set_var( "form_completed_page", $form->completedPage() );
 $t->set_var( "form_instruction_page", $form->instructionPage() );
 
-$renderer =& new eZFormRenderer( $form );
+$renderer = new eZFormRenderer( $form );
 $output =& $renderer->renderForm( $form, false, false );
 $t->set_var( "form", $output );
 

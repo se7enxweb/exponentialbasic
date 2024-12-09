@@ -159,8 +159,10 @@ class eZQuizGame
         $this->Name =& $quizArray[$db->fieldName( "Name" )];
         $this->Description =& $quizArray[$db->fieldName( "Description" )];
         $this->StartDate = new eZDate();
+        if( isset( $quizArray[$db->fieldName( "StartDate" )] ) )
         $this->StartDate->setTimeStamp( $quizArray[$db->fieldName( "StartDate" )] );
         $this->StopDate = new eZDate();
+        if( isset( $quizArray[$db->fieldName( "StopDate" )] ) )
         $this->StopDate->setTimeStamp( $quizArray[$db->fieldName( "StopDate" )] );
     }
 
@@ -225,7 +227,10 @@ class eZQuizGame
     */
     function &name()
     {
+        if( !is_null( $this->Name ) )
         return htmlspecialchars( $this->Name );
+        else
+            return $this->Name;
     }
 
     /*!
@@ -499,10 +504,11 @@ class eZQuizGame
     /*!
       Returns all the games started within a period.
     */
-    function &startedInPeriod( &$inStartDate, &$inStopDate )
+    static public function &startedInPeriod( &$inStartDate, &$inStopDate )
     {
         $db =& eZDB::globalDatabase();
 
+        $result = array();
         $returnArray = array();
         $quizArray = array();
 
@@ -512,7 +518,7 @@ class eZQuizGame
         $db->array_query( $quizArray, "SELECT ID FROM eZQuiz_Game
                                        WHERE StartDate >= '$startDate' AND StartDate <= '$stopDate'
                                        ORDER BY StartDate" );
-        $ret = $result[$db->fieldName( "Count" )];
+        //$ret = $result[$db->fieldName( "Count" )];
 
         for ( $i = 0; $i < count( $quizArray ); $i++ )
         {
@@ -525,10 +531,10 @@ class eZQuizGame
     /*!
       Returns all the games ended within a period.
     */
-    function &endedInPeriod( &$inStartDate, &$inStopDate )
+    static public function &endedInPeriod( &$inStartDate, &$inStopDate )
     {
         $db =& eZDB::globalDatabase();
-
+        $result = array();
         $returnArray = array();
         $quizArray = array();
 
@@ -538,7 +544,7 @@ class eZQuizGame
         $db->array_query( $quizArray, "SELECT * FROM eZQuiz_Game
                                        WHERE StopDate >= '$startDate' AND StopDate <= '$stopDate'
                                        ORDER BY StartDate" );
-        $ret = $result[$db->fieldName( "Count" )];
+        //$ret = $result[$db->fieldName( "Count" )];
 
         for ( $i = 0; $i < count( $quizArray ); $i++ )
         {
@@ -551,10 +557,11 @@ class eZQuizGame
      /*!
       Returns all the games which embraces this period.
     */
-    function &embracingPeriod( &$inStartDate, &$inStopDate )
+    static public function &embracingPeriod( &$inStartDate, &$inStopDate )
     {
         $db =& eZDB::globalDatabase();
 
+        $result = array();
         $returnArray = array();
         $quizArray = array();
 
@@ -564,7 +571,7 @@ class eZQuizGame
         $db->array_query( $quizArray, "SELECT ID FROM eZQuiz_Game
                                        WHERE StartDate <= '$startDate' AND StopDate >= '$stopDate'
                                        ORDER BY StartDate" );
-        $ret = $result[$db->fieldName( "Count" )];
+        //$ret = $result[$db->fieldName( "Count" )];
 
         for ( $i = 0; $i < count( $quizArray ); $i++ )
         {

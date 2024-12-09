@@ -44,7 +44,7 @@ if ( isset( $Cancel ) )
     exit();
 }
 
-if ( $Action == "insert" )
+if ( isset( $Action ) && $Action == "insert" )
 {
     $type = new eZStatus();
     $type->setName( $Name );
@@ -55,7 +55,7 @@ if ( $Action == "insert" )
 }
 
 // Update a category.
-if ( $Action == "update" )
+if ( isset( $Action ) && $Action == "update" )
 {
     $type = new eZStatus();
     $type->get( $CategoryID );
@@ -67,7 +67,7 @@ if ( $Action == "update" )
 }
 
 // Delete a category.
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
 
     $type = new eZStatus();
@@ -89,7 +89,7 @@ $t->setAllStrings();
 $t->set_var( "action_value", "insert" );
 
 // Edit a category.
-if ( $Action == "edit" )
+if ( isset( $Action ) && $Action == "edit" )
 {
     $type = new eZStatus();
     $type->get( $CategoryID );
@@ -98,7 +98,8 @@ if ( $Action == "edit" )
 
     {
         $type_array = $type->get( $CategoryID );
-
+        if ( is_bool( $type_array ) )
+            $type_array = array();
         for ( $i=0; $i<count( $type_array); $i++ )
         {
             print( $type_array[$i][ "Name" ] );
@@ -114,6 +115,3 @@ $t->set_var( "document_root", $DOC_ROOT );
 
 $t->pparse( "output", "statustypeedit" );
 ?>
-
-
-    

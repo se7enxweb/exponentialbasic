@@ -164,6 +164,8 @@ if ( $Action == "login" )
 }
 else
 {
+    if( !isset( $RedirectURL ) )
+        $RedirectURL = false;
 }
 
 if ( $Action == "logout" )

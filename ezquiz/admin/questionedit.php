@@ -30,15 +30,19 @@ include_once( "classes/ezhttptool.php" );
 include_once( "ezquiz/classes/ezquizquestion.php" );
 
 $errorMessages = array();
-
 if ( isSet( $NewAlternative ) )
 {
     $question = new eZQuizQuestion( $QuestionID );
     $alternative = new eZQuizAlternative();
-    $alternative->setQuestion( &$question );
+    $alternative->setQuestion( $question );
     $alternative->store();
     $Action = "Update";
 }
+else
+{
+    $question = new eZQuizQuestion( $QuestionID );
+}
+
 
 if ( isSet( $OK ) )
 {
@@ -93,10 +97,10 @@ $t->set_block( "alternative_list_tpl", "alternative_item_tpl", "alternative_item
 $t->set_block( "question_edit_page", "error_list_tpl", "error_list" );
 $t->set_block( "error_list_tpl", "error_item_tpl", "error_item" );
 
-$t->set_var( "question_name", $Name );
-$t->set_var( "question_description", $Description );
+$t->set_var( "question_name", isset( $Name ) ? $Name : false );
+$t->set_var( "question_description", isset( $Description ) ? $Description : false );
 
-if ( $Action == "Update" )
+if ( isset( $Action ) && $Action == "Update" )
 {
     if ( is_numeric( $QuestionID ) )
         $question = new eZQuizQuestion( $QuestionID );
@@ -114,7 +118,7 @@ if ( $Action == "Update" )
     }
     $question->store();
     $alternativeNameError = false;
-    if ( count( $AlternativeArrayID ) > 0 )
+    if ( isset( $AlternativeArrayID ) && count( $AlternativeArrayID ) > 0 )
     {
         for ( $i = 0; $i < count( $AlternativeArrayID ); $i++ )
         {
@@ -133,7 +137,7 @@ if ( $Action == "Update" )
                 $alternative->setName( $AlternativeArrayName[$i] );
             }
 
-            if ( $IsCorrect == $AlternativeArrayID[$i] )
+            if ( isset( $IsCorrect ) && $IsCorrect == $AlternativeArrayID[$i] )
                 $alternative->setIsCorrect( true );
             else
                 $alternative->setIsCorrect( false );
@@ -158,7 +162,7 @@ if ( $Action == "Update" )
     }
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     if ( count( $AlternativeArrayID ) > 0 )
     {

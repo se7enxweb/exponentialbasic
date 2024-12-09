@@ -163,8 +163,11 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
         {
             $form->addElement( $element );
         }
+        if( isset( $elementID ) )
+            $elementCount = count( $elementID );
+        else
+            $elementCount = false;
 
-        $elementCount = count( $elementID );
         $elementTypeError = false;
         
         for ( $i = 0; $i < $elementCount; $i++ )
@@ -180,12 +183,16 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
             }
 
             $element->setName( $elementName[$i] );
-            $element->setSize( $Size[$i] );
+
+            if( isset( $Size[ $i ] ) )
+                $element->setSize( $Size[$i] );
+            else
+                $element->setSize( 0 );
 
 
             $required = false;
             $break = false;
-            if ( count( $elementRequired ) > 0 )
+            if ( isset( $elementRequired ) && count( $elementRequired ) > 0 )
             {
                 foreach ( $elementRequired as $requiredID )
                 {
@@ -196,7 +203,7 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
                     }
                 }
             }
-            if ( count( $ElementBreak ) > 0 )
+            if ( isset( $ElementBreak ) && count( $ElementBreak ) > 0 )
             {
                 foreach ( $ElementBreak as $breakID )
                 {
@@ -381,7 +388,10 @@ if ( $count > 0 )
         }
 
         $currentType = $element->elementType();
-        $types = $currentType->getAll();
+        if( !is_null( $currentType  ) )
+            $types = $currentType->getAll();
+        else
+            $types = array();
 
         $t->set_var( "fixed_values", "" );
         $t->set_var( "size", "" );

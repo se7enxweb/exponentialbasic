@@ -1,0 +1,400 @@
+## Module Views Available
+
+### eZ Publish Basic Admin Module Views Available
+The following admin modules views are included in eZ Publish Basic:
+
+- ezuser
+    - userlist
+    - grouplist
+    - useredit/new
+    - groupedit/new
+    - authorlist
+    - extsearch
+    - sessioninfo
+    - passwordchange
+- ezsitemanager
+    - section/list
+    - cache
+    - file/list
+    - template/list
+    - siteconfig
+    - menu/list
+    - sqladmin/query
+- ezsysinfo
+    - sysinfo
+    - netinfo
+    - hwinfo
+    - meminfo
+    - fileinfo
+- ezstats
+    - overview
+    - entryexitreport
+    - pageviewlist/last/20
+    - visitorlist/top/20
+    - refererlist/top/20
+    - browserlist/top/25
+    - requestpagelist/top/20
+    - yearreport
+    - monthreport
+    - dayreport
+- ezquiz
+    - game/list
+    - game/new
+- ezmessage
+    - list
+    - edit
+- ezbulkmail
+    - categorylist
+    - templatelist
+    - drafts
+    - mailedit
+    - templateedit
+    - masssubscribe
+    - userlist
+- ezform
+    - form/list
+    - form/new
+- ezadddress
+    - phonetype/list
+    - addresstype/list
+    - onlinetype/list
+    - country/list/
+- ezmediacatalogue
+    - category/list
+    - category/new
+    - media/new
+    - unassigned
+    - typelist
+    - typeedit
+- ezimagecatalogue
+    - image/list
+    - category/new
+    - image/new
+    - unassigned
+- ezfilemanager
+    - list
+    - folder/new
+    - new
+    - unassigned
+- ezcalendar
+    - typelist
+    - typeedit/new
+- eztodo
+    - categorytypelist
+    - prioritytypelist
+    - statustypelist
+- ezcontact
+    - company/list
+    - person/list
+    - consultation/list
+    - company/new
+    - person/new
+    - projecttype/list
+    - consultationtype/list
+- ezbug
+    - unhandled
+    - archive
+    - priority/edit
+    - priority/list
+    - category/list
+    - module/list
+    - status/list
+- eznewsfeed
+    - unpublished
+    - archive
+    - news/new
+    - category/new
+    - sourcesite/new
+    - importnews
+- ezad
+    - archive
+    - category/new
+    - ad/new
+- ezpoll
+    - pollist
+    - polledit/new
+- ezlink
+    - category/0
+    - categoryedit/edit/1
+    - unacceptedlist
+    - typelist
+    - typeedit
+    - categoryedit/new
+    - linkedit/new
+- ezforum
+    - unapprovedlist
+    - categorylist
+    - categoryedit/new
+    - forumedit/new
+- eztrade
+    - orderlist
+    - customerlist
+    - categorylist
+    - typelist
+    - vattypes
+    - shippingtypes
+    - currency
+    - pricegroups/list
+    - categoryedit
+    - typeedit
+    - productedit
+    - voucher
+    - voucherlist
+- ezarticle
+    - archive
+    - article/search
+    - unpublished
+    - pendinglist
+    - sitemap
+    - topiclist
+    - type/list
+    - type/edit
+    - categoryedit/new
+    - articleedit/new
+    - search
+
+### eZ Publish Basic User Module Views Available
+
+The following user modules views are included in eZ Publish Basic:
+
+- ezuser
+    - addressedit
+    - forgot
+    - forgotmessage
+    - login
+    - missingmailmessage
+    - norights
+    - userbox
+    - usercheck
+    - useredit
+    - userwithaddress
+- ezurltranslator
+    - None (Admin Only)
+- ezsitemanager
+    - static - undocumented static content view.
+- ezstats
+    - storestats
+- ezsysinfo
+    - No user module views. Only Admin module views.
+- ezstats
+    - overview
+    - entryexitreport
+    - pageviewlist/last/20
+    - visitorlist/top/20
+    - refererlist/top/20
+    - browserlist/top/25
+    - requestpagelist/top/20
+    - yearreport
+    - monthreport
+    - dayreport
+- ezquiz
+    - menubox
+    - quizlist
+    - quizmyscores
+    - quizopen
+    - quizplay
+    - quizscores
+- ezbulkmail
+    - bulklist
+    - categoryedit
+    - cron
+    - mailview
+    - menubox
+    - singlelist
+    - subscriptionlist
+    - subscriptionlogin
+    - usermessages
+- ezform
+    - formview
+- ezadddress
+    - No user modules views. Admin only.
+- ezmediacatalogue
+    - No user module views. Only Admin module views.
+- ezmessage
+    - No user module views. Only Admin module views.
+- ezmodule
+    - No user module views. Only Admin module views.
+- ezimagecatalogue
+    - categoryedit
+    - customimage
+    - filedownload
+    - imageedit
+    - imagelist
+    - imageview
+    - menubox
+    - menucategorylist
+    - searchsupplier
+    - slideshow
+- ezfilemanager
+    - filedownload
+    - filelist
+    - fileupload
+    - fileview
+    - folderedit
+    - menubox
+    - menufilelist
+    - menufolderlist
+    - search
+    - viewfile
+- ezcalendar
+    - appointmentedit
+    - appointmentview
+    - dayview
+    - monthview
+    - trustees
+    - yearview
+- eztodo
+    - menubox
+    - todoedit
+    - todoinfo
+    - todolist
+    - todomenulist
+    - todoview
+- ezcontact
+    - companysearch
+    - consultationlist
+    - menubox
+    - personsearch
+    - searchsupplier
+    - urlsupplier
+- ezerror
+    - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
+- ezexample
+    - listtable
+    - page
+- ezsearch
+    - menubox
+    - search
+- ezsession
+    - No user module views. Admin only.
+- ezbug
+    - bugslist
+    - bugreport
+    - bugview
+    - fileedit
+    - imageedit
+    - menubox
+    - menumodulelist
+    - reportsuccess
+    - search
+    - unhandledbugs
+- eznewsfeed
+    - allcategories
+    - headlines
+    - menubox
+    - newslist
+    - search
+- ezabout
+    - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+- ezad
+    - adlist
+    - gotoadd
+    - queuedadlist
+- ezpoll
+    - pollist
+    - result
+    - userlogin
+    - vote
+    - votebox
+    - votepage
+- ezlink
+    - gotolink
+    - latest
+    - linkcategorylist
+    - menubox
+    - onepagelinklist
+    - search
+    - success
+    - suggestlink
+- ezforum
+    - categorylist
+    - forumlist
+    - latestmessages
+    - menubox
+    - menuforumlist
+    - message
+    - messagebody
+    - messageedit
+    - messageform
+    - messagelist
+    - messagelistflat
+    - messagepath
+    - messagepermissions
+    - messagereply
+    - messagesearch
+    - messagesimplelist
+    - search
+    - searchsupplier
+    - userlogin
+- ezmail
+    - accountedit
+    - configure
+    - fileedit
+    - folderlist
+    - link
+    - mailedit
+    - maillist
+    - mailview
+    - menubox
+    - search
+- eztrade
+    - cart
+    - categorylist
+    - categorytreelist
+    - checkout
+    - confirmation
+    - customerlogin
+    - extendedsearch
+    - findwishlist
+    - hostdealslist
+    - invoice
+    - mastercard
+    - menubox
+    - metasupplier
+    - orderlist
+    - ordersendt
+    - orderview
+    - payment
+    - paypalnotify
+    - precheckout
+    - productlist
+    - productsearch
+    - productview
+    - searchsupplier
+    - sendwishlist
+    - smallcart
+    - smallproductlist
+    - viewwishlist
+    - visa
+    - voucher
+    - voucherinformation
+    - vouchermain
+    - voucherview
+    - wishlist
+- ezarticle
+    - articleedit
+    - articleheaderlist
+    - articlelinks
+    - articlelist
+    - articlelistrss
+    - articleview
+    - authorlist
+    - authorview
+    - extendedsearch
+    - fileedit
+    - filelist
+    - frontpage
+    - headlines
+    - imageedit
+    - imagelist
+    - mailtofriend
+    - menuarticleview
+    - menumaker
+    - newsgroup
+    - search
+    - searchform
+    - searchsupplier
+    - sitemap
+    - smallarticlelist
+    - topiclist
+    - urlsupplier

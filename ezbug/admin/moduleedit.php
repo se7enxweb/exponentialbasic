@@ -38,12 +38,16 @@ include_once( "classes/eztemplate.php" );
 include_once( "ezuser/classes/ezusergroup.php" );
 include_once( "ezbug/classes/ezbugmodule.php" );
 
-if ( $Action == "insert" )
+if( !isset( $ModuleID ) )
+    $ModuleID = 0;
+
+if ( isset( $Action ) && $Action == "insert" )
 {
     $module = new eZBugModule();
     $module->setName( $Name );
     $parent = new eZBugModule( $ParentID );
     $module->setParent( $parent );
+    $module->setOwnerGroup( $WriteGroupArrayID );
     $module->store();
     $ModuleID = $module->id();
     eZObjectPermission::removePermissions( $ModuleID, "bug_module", "w" );
@@ -58,7 +62,7 @@ if ( $Action == "insert" )
 }
 
 // Updates a module.
-if ( $Action == "update" )
+if ( isset( $Action ) &&  $Action == "update" )
 {
     $module = new eZBugModule( $ModuleID );
     $parent = new eZBugModule( $ParentID );
@@ -104,7 +108,7 @@ if ( $Action == "update" )
 }
 
 // Delete a module.
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     $module = new eZBugModule( $ModuleID );
     $module->delete();
@@ -127,15 +131,16 @@ $t->set_block( "moduleedit", "module_owner_tpl", "module_owner" );
 
 $t->set_block( "moduleedit", "write_group_item_tpl", "write_group_item" );
 
-if ( $Action == "new" )
+if ( isset( $Action ) && $Action == "new" )
 {
     $parent = new eZBugModule( $ParentID );
     $t->set_var( "module_name", "" );
+    $t->set_var("module_id", 0);
     $t->set_var( "action_value", "insert" );
 }
 
 // Edit a module.
-if ( $Action == "edit" )
+if ( isset( $Action ) && $Action == "edit" )
 {
     $module = new eZBugModule( $ModuleID );
 
@@ -193,7 +198,7 @@ foreach ( $groupList as $groupItem )
 
     $t->set_var( "is_write_selected1", "" );
 
-    if ( $writeGroupArrayID )
+    if ( isset( $writeGroupArrayID ) && $writeGroupArrayID )
     {
         foreach ( $writeGroupArrayID as $writeGroup )
         {

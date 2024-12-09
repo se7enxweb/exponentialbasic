@@ -54,7 +54,7 @@
 #   By DNS Name : example.org
 #
 
-    RewriteCond %{HTTP_HOST} ^version\.demo\.se7enx\.com$
+    RewriteCond %{HTTP_HOST} ^basic\.demo\.ezpublish\.one$
     # eZ publish Installation Test : The following line allows access test page.
     #RewriteCond %{REQUEST_URI} !^/index_verify.php*
     RewriteCond %{REQUEST_URI} !^/documentation*
@@ -72,7 +72,7 @@
 
 #   By DNS Name (Admin Site) :  admin.example.org  or  my.example.org
 #
-     RewriteCond %{HTTP_HOST} ^admin\.version\.demo\.se7enx\.com$
+     RewriteCond %{HTTP_HOST} ^admin\.basic\.demo\.ezpublish\.one$
      # eZ publish Installation Test : The following line allows access test page.
      # RewriteCond %{REQUEST_URI} !^/index_verify.php*
      RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf) index_admin.php

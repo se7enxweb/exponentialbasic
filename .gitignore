@@ -3,6 +3,8 @@ error_log
 classes/cache
 ezimagecatalogue/catalogue
 ezmediacatalogue/catalogue
+ezcalendar/admin/cache
+ezcontact/admin/cache
 ezfilemanager/files
 ezarticle/cache
 ezarticle/admin/cache

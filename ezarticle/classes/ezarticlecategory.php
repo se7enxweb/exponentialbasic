@@ -1240,7 +1240,7 @@ class eZArticleCategory
            }
            else
                $permissionSQL = "( $loggedInSQL ( $groupSQL Permission.GroupID='-1' AND CategoryPermission.GroupID='-1' )
-                                               AND Permission.ReadPermission='1' AND CategoryPermission.ReadPermission='1' ) ";
+                                               AND Permission.ReadPermission='1' AND CategoryPermission.ReadPermission='1' ) AND ";
        }
        else
            $permissionSQL = "";
@@ -1258,9 +1258,9 @@ class eZArticleCategory
        else if ( $fetchPublished  == true )
        {
            if ( $permissionSQL == "" )
-               $publishedSQL = " Article.IsPublished = '1' AND ";
+               $publishedSQL = " Article.IsPublished = '1' ";
            else
-               $publishedSQL = " AND Article.IsPublished = '1' ";
+               $publishedSQL = " Article.IsPublished = '1' ";
        }
 
        // fetch only non-published articles
@@ -1278,7 +1278,7 @@ class eZArticleCategory
        }
        else
        {
-           $categorySQL = "Link.CategoryID='$catID' ";
+           $categorySQL = "AND Link.CategoryID='$catID' ";
        }
 
 	  $query = "SELECT Article.* $perm_str

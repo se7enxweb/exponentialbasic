@@ -285,7 +285,7 @@ class eZUserGroup
     /*!
       Returns the users who is a member of the eZUserGroup object.
     */
-    function users( $GroupID = false, $order = "Login", $search = false )
+    static public function users( $GroupID = false, $order = "Login", $search = false )
     {
         switch ( $order )
         {

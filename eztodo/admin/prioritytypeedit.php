@@ -45,7 +45,7 @@ if ( isset( $Cancel ) )
     exit();
 }
 
-if ( $Action == "insert" )
+if ( isset( $Action ) && $Action == "insert" )
 {
     $type = new eZPriority();
     $type->setName( $Name );
@@ -55,7 +55,7 @@ if ( $Action == "insert" )
 }
 
 // Updates a priority.
-if ( $Action == "update" )
+if ( isset( $Action ) && $Action == "update" )
 {
     $type = new eZPriority();
     $type->get( $PriorityID );
@@ -67,7 +67,7 @@ if ( $Action == "update" )
 }
 
 // Delete a priority.
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     $type = new eZPriority();
     $type->get( $PriorityID );
@@ -88,7 +88,7 @@ $t->set_file( array(
 $t->set_var( "action_value", "insert" );
 
 // Edit a priority.
-if ( $Action == "edit" )
+if ( isset( $Action ) && $Action == "edit" )
 {
     $type = new eZPriority();
     $type->get( $PriorityID );
@@ -97,6 +97,8 @@ if ( $Action == "edit" )
 
     {
         $type_array = $type->get( $PriorityID );
+        if ( is_bool( $type_array ) )
+            $type_array = array();
 
         for ( $i=0; $i<count( $type_array); $i++ )
         {
@@ -109,8 +111,8 @@ if ( $Action == "edit" )
 }
 
 $t->set_var( "priority_type_name", $PriorityName );
-$t->set_var( "head_line", $headline );
-$t->set_var( "submit_text", $submittext );
+$t->set_var( "head_line", isset( $headline ) ? $headline : false );
+$t->set_var( "submit_text", isset( $submittext ) ? $submittext : false );
 $t->set_var( "document_root", $DOC_ROOT );
 
 $t->pparse( "output", "prioritytypeedit" );

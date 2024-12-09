@@ -216,4 +216,3 @@ class eZDB
     // the last error message
     var $Error;
 }
-

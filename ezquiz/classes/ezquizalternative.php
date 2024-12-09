@@ -60,6 +60,7 @@ class eZQuizAlternative
         else
         {
             $this->Name = "";
+            $this->IsCorrect = 0;
         }
     }
 

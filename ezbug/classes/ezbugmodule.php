@@ -61,6 +61,7 @@ class eZBugModule
     */
     function __construct( $id=-1 )
     {
+        $this->OwnerGroupID = 0;
         if ( $id != -1 )
         {
             $this->ID = $id;

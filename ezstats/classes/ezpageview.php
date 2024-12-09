@@ -192,7 +192,7 @@ class eZPageView
             $requestURI = $GLOBALS["REQUEST_URI"];
 
             // Remove url parameters
-            ereg( "([^?]+)", $requestURI, $regs);
+            preg_match( "([^?]+)", $requestURI, $regs);
             $requestURI =& $regs[1];
 
             $db->begin();

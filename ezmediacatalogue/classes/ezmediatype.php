@@ -49,6 +49,7 @@ class eZMediaType
     function store()
     {
         $db =& eZDB::globalDatabase();
+        $res = false;
 
         if ( !isset( $this->ID ) )
         {

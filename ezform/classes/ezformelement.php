@@ -50,6 +50,11 @@ class eZFormElement
     */
     function __construct( $id=-1 )
     {
+        $this->Required = 0;
+        $this->Size = 0;
+        $this->Break = 0;
+        $this->ID = $id;
+
         if ( is_array( $id ) )
         {
             $this->fill( $id );
@@ -76,6 +81,9 @@ class eZFormElement
         if ( is_a( $this->ElementType, "eZFormElementType" ) )
         {
             $elementTypeID = $this->ElementType->id();
+        }
+        else {
+            $elementTypeID = false;
         }
 
         if ( empty( $this->ID ) )
@@ -237,7 +245,10 @@ class eZFormElement
     */
     function name()
     {
-        return htmlspecialchars( $this->Name );
+        if( !is_null( $this->Name ) )
+            return htmlspecialchars( $this->Name );
+        else
+            return $this->Name;
     }
 
     /*!

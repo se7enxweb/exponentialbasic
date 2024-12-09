@@ -377,7 +377,7 @@ class eZUser
 
       False (0) is returned if the users isn't validated.
     */
-    function getUser( $login )
+    static public function getUser( $login )
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -435,7 +435,7 @@ class eZUser
 
       False (0) is returned if not.
     */
-    function exists( $login )
+    static public function exists( $login )
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -811,7 +811,7 @@ class eZUser
       Returns the currently logged in users with sessions. It is returned as an
       array of eZUser and eZSession objects.
     */
-    function currentUsers()
+    static public function currentUsers()
     {
         $globalSession =& eZSession::globalSession();
 

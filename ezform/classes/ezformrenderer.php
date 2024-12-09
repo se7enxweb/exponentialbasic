@@ -333,6 +333,7 @@ class eZFormRenderer
         global $redirectTo;
 
         $output = "";
+        $target = false;
         $errorMessages = array();
         $errorMessagesAdditionalInfo = array();
         $ini =& INIFile::globalINI();

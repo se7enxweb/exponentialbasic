@@ -63,7 +63,7 @@ if ( ( isset( $Action ) && $Action == "Update" ) || ( isset ( $Update ) ) )
 
     // update attributes
     $i =0;
-    if ( count( $AttributeName ) > 0 )
+    if ( isset( $AttributeName ) && count( $AttributeName ) > 0 )
     {
         foreach ( $AttributeName as $attribute )
         {
@@ -102,7 +102,7 @@ if( isset( $Ok ) )
 
 if ( isset ( $DeleteSelected ) )
 {
-    if ( count ( $DeleteAttributes ) > 0 )
+    if ( isset( $DeleteAttributes ) && count ( $DeleteAttributes ) > 0 )
     {
         foreach ( $DeleteAttributes as $attID )
         {
@@ -237,7 +237,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     }
     else
     {
-        $t->set_var( "attribute_list", "", true );
+        $t->set_var( "attribute_list", " ", true );
     }
     
 }

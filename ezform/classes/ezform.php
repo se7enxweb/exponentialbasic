@@ -48,6 +48,8 @@ class eZForm
     */
     function __construct( $id = -1 )
     {
+        $this->Counter = 0;
+
         if ( is_array( $id ) )
         {
             $this->fill( $id );

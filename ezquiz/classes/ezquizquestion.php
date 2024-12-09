@@ -50,6 +50,7 @@ class eZQuizQuestion
     */
     function __construct( $id = -1, $fetch = true )
     {
+        $this->Score = 0;
         if ( is_array( $id ) )
         {
             $this->fill( $id );
@@ -87,11 +88,12 @@ class eZQuizQuestion
         {
             $db->lock( "eZQuiz_Question" );
 			$this->ID = $db->nextID( "eZQuiz_Question", "ID" );
-
-            $res[] = $db->query( "INSERT INTO eZQuiz_Question
+            $queryText = "INSERT INTO eZQuiz_Question
                                   (ID, Name, Score, GameID, Placement)
                                   VALUES
-                                  ('$this->ID','$name','$this->Score','$gameID','$place')" );
+                                  ('$this->ID','$name','$this->Score','$gameID','$place')";
+            var_dump( $queryText );
+            $res[] = $db->query( $queryText );
             $db->unlock();
 
         }

@@ -1,0 +1,439 @@
+# eZ Publish Basic Module Compatibility with PHP8.x
+
+# Note: This document and related code are in active development and testing.
+
+## User Modules
+
+- ezuser
+    - addressedit
+    - forgot
+    - forgotmessage
+    - login
+    - missingmailmessage
+    - norights
+    - userbox
+    - usercheck
+    - useredit
+    - userwithaddress
+- ezurltranslator
+    - None (Admin Only)
+- ezsitemanager
+    - static - undocumented static content view.
+- ezstats
+    - storestats
+- ezsysinfo
+    - No user module views. Only Admin module views.
+- ezstats
+    - overview
+    - entryexitreport
+    - pageviewlist/last/20
+    - visitorlist/top/20
+    - refererlist/top/20
+    - browserlist/top/25
+    - requestpagelist/top/20
+    - yearreport
+    - monthreport
+    - dayreport
+- ezquiz
+    - menubox
+    - quizlist
+    - quizmyscores
+    - quizopen
+    - quizplay
+    - quizscores
+- ezbulkmail
+    - bulklist
+    - categoryedit
+    - cron
+    - mailview
+    - menubox
+    - singlelist
+    - subscriptionlist
+    - subscriptionlogin
+    - usermessages
+- ezform
+    - formview
+- ezadddress
+    - No user modules views. Admin only.
+- ezmediacatalogue
+    - No user module views. Only Admin module views.
+- ezmessage
+    - No user module views. Only Admin module views.
+- ezmodule
+    - No user module views. Only Admin module views.
+- ezimagecatalogue
+    - categoryedit
+    - customimage
+    - filedownload
+    - imageedit
+    - imagelist
+    - imageview
+    - menubox
+    - menucategorylist
+    - searchsupplier
+    - slideshow
+- ezfilemanager
+    - filedownload
+    - filelist
+    - fileupload
+    - fileview
+    - folderedit
+    - menubox
+    - menufilelist
+    - menufolderlist
+    - search
+    - viewfile
+- ezcalendar
+    - appointmentedit
+    - appointmentview
+    - dayview
+    - monthview
+    - trustees
+    - yearview
+- eztodo
+    - menubox
+    - todoedit
+    - todoinfo
+    - todolist
+    - todomenulist
+    - todoview
+- ezcontact
+    - companysearch
+    - consultationlist
+    - menubox
+    - personsearch
+    - searchsupplier
+    - urlsupplier
+- ezerror
+    - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
+- ezexample
+    - listtable
+    - page
+- ezsearch
+    - menubox
+    - search
+- ezsession
+    - No user module views. Admin only.
+- ezbug
+    - bugslist
+    - bugreport
+    - bugview
+    - fileedit
+    - imageedit
+    - menubox
+    - menumodulelist
+    - reportsuccess
+    - search
+    - unhandledbugs
+- eznewsfeed
+    - allcategories
+    - headlines
+    - menubox
+    - newslist
+    - search
+- ezabout
+    - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+- ezad
+    - adlist
+    - gotoadd
+    - queuedadlist
+- ezpoll
+    - pollist
+    - result
+    - userlogin
+    - vote
+    - votebox
+    - votepage
+- ezlink
+    - gotolink
+    - latest
+    - linkcategorylist
+    - menubox
+    - onepagelinklist
+    - search
+    - success
+    - suggestlink
+- ezforum
+    - categorylist
+    - forumlist
+    - latestmessages
+    - menubox
+    - menuforumlist
+    - message
+    - messagebody
+    - messageedit
+    - messageform
+    - messagelist
+    - messagelistflat
+    - messagepath
+    - messagepermissions
+    - messagereply
+    - messagesearch
+    - messagesimplelist
+    - search
+    - searchsupplier
+    - userlogin
+- ezmail
+    - accountedit
+    - configure
+    - fileedit
+    - folderlist
+    - link
+    - mailedit
+    - maillist
+    - mailview
+    - menubox
+    - search
+- eztrade
+    - cart - Needs work. Cart Prices are all Zeros.
+    - categorylist
+    - categorytreelist
+    - checkout - Fatal error on page load.
+    - confirmation
+    - customerlogin
+    - extendedsearch
+    - findwishlist
+    - hostdealslist
+    - invoice
+    - mastercard
+    - menubox
+    - metasupplier
+    - orderlist
+    - ordersendt
+    - orderview
+    - payment
+    - paypalnotify
+    - precheckout
+    - productlist
+    - productsearch
+    - productview
+    - searchsupplier
+    - sendwishlist
+    - smallcart
+    - smallproductlist
+    - viewwishlist
+    - visa
+    - voucher
+    - voucherinformation
+    - vouchermain
+    - voucherview
+    - wishlist
+- ezarticle
+    - articleedit
+    - articleheaderlist
+    - articlelinks
+    - articlelist
+    - articlelistrss
+    - articleview
+    - authorlist
+    - authorview
+    - extendedsearch
+    - fileedit
+    - filelist
+    - frontpage
+    - headlines
+    - imageedit
+    - imagelist
+    - mailtofriend
+    - menuarticleview
+    - menumaker
+    - newsgroup
+    - search
+    - searchform
+    - searchsupplier
+    - sitemap
+    - smallarticlelist
+    - topiclist
+    - urlsupplier
+
+## Admin Modules That Need Work
+
+- ezuser
+    - userlist -  Tests as 100% Functional.
+    - grouplist - Tests as OK but with 1 - 2 missing icons.
+    - useredit/new - Tests as 100% Functional.
+    - groupedit/new - Tests as OK but with 7 - 10 warnings.
+    - authorlist - Tests as 100% Functional.
+    - extsearch - Tests as 100% Functional.
+    - sessioninfo - Needs work. Fatal Errors on Page Load.
+    - passwordchange - Needs work. Usage error as screen is blank and no form to change password is displayed from admin header link to change password.
+- ezsitemanager
+    - section/list - Tests as Loading Page OK.
+    - cache - Tests as OK but with 1 - 2 warnings.
+    - file/list - Tests as Loading Page OK.
+    - template/list - Tests as 100% Functional.
+    - siteconfig - Tests as OK but with 1 - 2 warnings.
+    - menu/list - Tests as Loading Page OK.
+    - sqladmin/query - Tests as Loading Page OK. (Non Functional) Fatal Errors On Usage.
+- ezsysinfo
+    - sysinfo - Tests as Loading Page OK. Verify System Information Valid In Greater Detail.
+    - netinfo - Tests as 100% Functional.
+    - hwinfo - Tests as 100% Functional.
+    - meminfo - Tests as 99% Functional. One critical template system problem requireing refactoring to solve a array to string conversion (Warning: Array to string conversion in /home/ez/public_html/classes/eztemplate.php on line 618).
+    - fileinfo - Tests as 100% Functional.
+- ezstats
+    - overview - Needs work. Fatal Errors on Page Load.
+    - entryexitreport - Needs work. Empty template variables on page and no stats.
+    - pageviewlist/last/20 - Needs work. Fatal Errors on Page Load.
+    - visitorlist/top/20 - Needs work. Fatal Errors on Page Load.
+    - refererlist/top/20/ - Needs work. Fatal Errors on Page Load.
+    - browserlist/top/25/ - Needs work. Fatal Errors on Page Load.
+    - requestpagelist/top/20/ - Needs work. Fatal Errors on Page Load.
+    - yearreport - Needs work. Fatal Errors on Page Load.
+    - monthreport - Needs work. Empty template variables on page and no stats.
+    - dayreport - Needs work. Fatal Errors on Page Load.
+- ezquiz
+    - game/list - Tests as 100% Functional.
+    - game/new - Tests as 100% Functional. 
+- ezmessage
+    - list - Tests as 100% Functional.
+    - edit - Tests as 100% Functional.
+- ezbulkmail - This admin module views all require real usage refactoring on actions per view.
+    - categorylist - Tests as Loading Page OK. 
+    - templatelist - Tests as Loading Page OK.
+    - drafts - Tests as Loading Page OK.
+    - mailedit - Tests as Loading Page OK.
+    - templateedit - Tests as Loading Page OK.
+    - masssubscribe - Tests as Loading Page OK.
+    - userlist - Tests as Loading Page OK. No users displayed by default possible bug.
+- ezform
+    - form/list - Tests as 100% Functional.
+    - form/new - Tests as 100% Functional.
+- ezadddress
+    - phonetype/list - Tests as 100% Functional.
+    - addresstype/list - Tests as 100% Functional.
+    - onlinetype/list - Tests as 100% Functional.
+    - country/list/ - Tests as 100% Functional.
+- ezmediacatalogue
+    - category/list - Tests as 100% Functional.
+    - category/new - Tests as 100% Functional.
+    - media/new - Tests as 100% Functional.
+    - unassigned - Tests as 100% Functional.
+    - typelist - Tests as 100% Functional.
+    - typeedit - Tests as 100% Functional.
+- ezimagecatalogue
+    - image/list - Tests as 100% Functional.
+    - category/new - Tests as 100% Functional.
+    - image/new - Tests as 100% Functional.
+    - unassigned - Tests as 100% Functional.
+- ezfilemanager
+    - list - Tests as 100% Functional.
+    - folder/new - Tests as 100% Functional.
+    - new - Tests as 100% Functional.
+    - unassigned - Tests as 100% Functional.
+- ezcalendar
+    - typelist - Tests as 100% Functional.
+    - typeedit/new - Tests as 100% Functional.
+- eztodo
+    - categorytypelist - Tests as 100% Functional.
+    - prioritytypelist - Tests as 100% Functional.
+    - statustypelist - Tests as 100% Functional.
+- ezcontact
+    - company/list - Tests as 80% Functional. Some Warnings on Page Load.
+    - person/list - Needs work. Edit buttons all trigger fatal user form load and store Fatal errors.
+    - consultation/list -  Needs work. Edit buttons all trigger fatal user form load and store Fatal errors.
+    - company/new - Needs work. Massive warnings blocking display.
+    - person/new - Needs work. Massive warnings blocking display.
+    - projecttype/list - Tests as 80% Functional. Some Warnings on Page Load. Does not store fatal error on form submission.
+    - consultationtype/list - Needs work. Fatal Errors on Page Load.
+- ezbug
+    - unhandled - Tests as 100% Functional.
+    - archive - Tests as 100% Functional.
+    - priority/edit - Tests as 100% Functional.
+    - priority/list - Tests as 100% Functional.
+    - category/list - Tests as 100% Functional.
+    - module/list - Tests as 100% Functional.
+    - status/list - Tests as 100% Functional.
+- eznewsfeed
+    - unpublished - Needs work. Fatal Errors on Page Load.
+    - archive - Needs work. Fatal Errors on Page Load.
+    - news/new - Tests as 90% Functional. Fatal errors on submit.
+    - category/new - Tests as 90% Functional. Fatal errors on submit.
+    - sourcesite/new - Needs work. Fatal Errors on Page Load.
+    - importnews - Needs work. Warnings and Fatal errors on submit buttons usage.
+- ezad
+    - archive - Needs work. Warning Errors on Page Load.
+    - category/new - Tests as 90% Functional. Warnings on Page Load. Fatal errors on submit.
+    - ad/new - Tests as 90% Functional. Warnings on Page Load. Fatal errors on submit.
+- ezpoll
+    - pollist - Needs work. Tests as 90% Functional. Some warnings on Page Load.
+    - polledit/new - Needs work. Tests as 90% Functional. Some warnings on Page Load.
+- ezlink
+    - category/0 - Tests as 100% Functional.
+    - categoryedit/edit/1 - Tests as 100% Functional.
+    - unacceptedlist -  Tests as 100% Functional.
+    - typelist - Tests as 100% Functional.
+    - typeedit - Tests as 100% Functional.
+    - categoryedit/new -Tests as 100% Functional.
+    - linkedit/new - Tests as 100% Functional.
+- ezforum
+    - unapprovedlist - Tests as 100% Functional. No errors but no listing.
+    - categorylist/ - Tests as 100% Functional. No errors but no listing.
+    - categoryedit/new - Needs work. Warnings blocking form.
+    - forumedit/new - Needs work. Fatal errors on page load.
+- eztrade
+    - orderlist - Needs work. Fatal errors on page load.
+    - customerlist - Needs work. Fatal errors on page load.
+    - categorylist - Needs work. Fatal errors on page load.
+    - typelist -  Tests as 100% Functional.
+    - vattypes -  Needs work. Warnings blocking form.
+    - shippingtypes - Needs work. Warnings blocking form.
+    - currency - Needs work. Warnings blocking form.
+    - pricegroups/list - Needs work. Fatal errors on page load.
+    - categoryedit - Needs work. Warnings blocking form.
+    - typeedit - Needs work. Fatal errors on page load.
+    - productedit - Needs work. Fatal errors on page load.
+    - voucher - Needs work. Fatal errors on page load.
+    - voucherlist - Needs work. Fatal errors on page load.
+- ezarticle
+    - archive - Needs work. Tests as 90% Functional. Actions not yet tested as error free. View does not display current articles only categories.
+    - article/search - Needs Work. Tests as 80% Functional. Warnings on page blocking display after search.
+    - unpublished - Needs testing. No results on page load. Tested Ok.
+    - pendinglist - Needs testing. No results on page load. Tested Ok.
+    - sitemap - Needs testing. No articles displayed on page load. Tested Ok.
+    - topiclist - Needs testing. No errors on page load but Actions need testing.
+    - type/list - Needs testing. No errors on page load.
+    - type/edit - Needs work. Warnings on page load.
+    - categoryedit/new - Needs work. Fatal Errors on Page Load.
+    - articleedit/new - Needs work major warnings on page load. Exect errors on article storage.
+    - search - Needs major work, fatal error upon search results view POST.
+
+Note: Printable admin view features currently has fatal errors and distracting warnings.
+
+## Admin Module Default Views That Test OK Based On Actual Use
+
+- ezlink
+- ezurltranslator
+- ezuser
+- ezsysinfo
+- ezquiz
+- ezmessage
+- ezform
+- ezmediacatalogue
+- ezimagecatalogue
+- ezfilemanager
+- ezcalendar
+- eztodo
+- ezbug
+
+
+
+### Mostly Finished
+
+- ezlink
+- ezurltranslator
+- ezuser
+    - userlist -  Tests as 100% Functional.
+    - useredit/new - Tests as 100% Functional.
+    - authorlist - Tests as 100% Functional.
+    - extsearch - Tests as 100% Functional.
+- ezsysinfo - the stats were variable on our vm so this may need improvement on the actual data displayed.
+    - sysinfo - Tests as Loading Page OK. Verify System Information Valid In Greater Detail.
+    - netinfo - Tests as 100% Functional.
+    - hwinfo - Tests as 100% Functional.
+    - fileinfo - Tests as 100% Functional.
+
+## Admin Module Menu Views That Test OK
+
+- ezurltranslator
+    - urledit - Tests as 100% Functional.

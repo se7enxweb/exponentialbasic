@@ -75,7 +75,7 @@ if ( isset( $Action ) && $Action == "New" )
     $StopYear = false;
     $StopMonth = false;
 }
-else
+elseif ( isset( $Action ) && $Action != "Insert" )
 {
     $Name = false;
     $Description = false;
@@ -87,7 +87,18 @@ else
     $StopMonth = false;
     $game = false;
 }
-
+elseif ( isset( $Action ) && $Action != "Insert" )
+{
+    $Name = false;
+    $Description = false;
+    $StartMonth = false;
+    $StartDay = false;
+    $StartYear = false;
+    $StopDay = false;
+    $StopYear = false;
+    $StopMonth = false;
+    $game = false;
+}
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZQuizMain", "Language" );
@@ -282,7 +293,7 @@ if ( ( isset( $Action ) && $Action == "Insert" ) && ( $error == false ) )
 
     $game->store();
 
-    if ( count( $QuestionArrayID ) > 0 )
+    if ( isset( $QuestionArrayID ) && count( $QuestionArrayID ) > 0 )
     {
         for ( $i = 0; $i < count( $QuestionArrayID ); $i++ )
         {

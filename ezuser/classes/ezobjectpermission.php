@@ -349,6 +349,7 @@ class eZObjectPermission
             return false;
 
         $query = "UPDATE $tableName SET $SQLPermission WHERE ObjectID='$objectID'";
+
         $database =& eZDB::globalDatabase();
         $database->query( $query );
     }
@@ -388,6 +389,7 @@ class eZObjectPermission
         }
 
         $query = "SELECT GroupID FROM $tableName WHERE ObjectID='$objectID' AND $SQLPermission";
+
         $db =& eZDB::globalDatabase();
         $db->array_query( $res, $query );
 

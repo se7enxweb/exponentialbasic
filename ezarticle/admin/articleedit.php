@@ -701,11 +701,6 @@ if ( isset( $Action ) && $Action == "Edit" || $Action == "Insert" )
     $writeGroupsID = eZObjectPermission::getGroups( $ArticleID, "article_article", 'w' , false );
     $readGroupsID = eZObjectPermission::getGroups( $ArticleID, "article_article", 'r', false );
 
-    if ( count($writeGroupsID) && $writeGroupsID[0] != -1 )
-        $t->set_var( "all_write_selected", "" );
-    if ( count($readGroupsID) && $readGroupsID[0] != -1 )
-        $t->set_var( "all_selected", "" );
-
     // dates
     $published =& $article->published();
     $created =& $article->created();
@@ -752,11 +747,39 @@ $t->set_var( "stop_minute", stripslashes( $StopMinute ) );
 if( isset( $Action ) && $Action == "New" )
 $t->set_var( "action_value", "insert" );
 
-$t->set_var( "all_selected", "selected" );
-$t->set_var( "all_write_selected", "selected" );
+$group = new eZUserGroup();
+$groupList = $group->getAll();
+$groupListIDs = array( "0" );
+foreach( $groupList as $index => $group )
+{
+    $groupListIDs[] = $group->id();
+}
 
-$writeGroupsID = array();
-$readGroupsID = array();
+if( $readGroupsID[0] == "-1" )
+    $groupListIDsSelection = 0;
+else
+    $groupListIDsSelection = $readGroupsID[0];
+
+if( $writeGroupsID[0] == "-1" )
+    $writeGroupsIDsSelection = 0;
+else
+    $writeGroupsIDsSelection = $writeGroupsID[0];
+
+if( $groupListIDsSelection == $groupListIDs[0] )
+    $t->set_var( "all_selected", "selected" );
+else
+    $t->set_var( "all_selected", "" );
+
+if( $writeGroupsIDsSelection == $groupListIDs[0] )
+    $t->set_var( "all_write_selected", "selected" );
+else
+    $t->set_var( "all_write_selected", "" );
+
+if( !isset( $writeGroupsID ) )
+    $writeGroupsID = array();
+
+if( !isset( $readGroupsID ) )
+    $readGroupsID = array();
 
 // author select
 $author = new eZAuthor();
@@ -777,7 +800,6 @@ foreach ( $authorArray as $author )
 }
 
 // topic select
-
 $topic = new eZTopic();
 $topicArray = $topic->getAll();
 foreach ( $topicArray as $topic )
@@ -879,7 +901,9 @@ foreach ( $groupList as $groupItem )
     $t->set_var( "module_owner_name", $groupItem->name() );
 
     if ( in_array( $groupItem->id(), $writeGroupsID ) )
-        $t->set_var( "is_selected", "selected" );
+    {
+        $t->set_var("is_selected", "selected");
+    }
     else
         $t->set_var( "is_selected", "" );
 
@@ -892,6 +916,8 @@ foreach ( $groupList as $groupItem )
         $t->set_var( "selected", "selected" );
     else
         $t->set_var( "selected", "" );
+
+
     $t->parse( "group_item", "group_item_tpl", true );
 }
 

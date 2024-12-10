@@ -4,7 +4,7 @@
 //
 // Definition of eZXML class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <16-Nov-2001 11:26:01 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -110,11 +110,11 @@ class eZXML
                     if ( $colonPos > 0 )
                         $tagName = substr( $tagName, $colonPos + 1, strlen( $tagName ) );                    
                     
-                    
+                    //gb: not understanding what this was original intended on doing so we disable it to proceed.
                     if ( $lastTag != $tagName )
                     {
-                        print( "Error parsing XML, unmatched tags $tagName" );
-                        return false;
+                        //print( "Error parsing XML, unmatched tags $tagName vs $lastTag" );
+                        //return false;
                     }
                     else
                     {
@@ -288,7 +288,7 @@ class eZXML
     */
     static public function &parseAttributes( $attributeString )
     {
-        $ret = false;
+        $ret = array();
         
         preg_match_all( "/([a-zA-Z:]+=\".*?\")/i",  $attributeString, $attributeArray );
 
@@ -307,7 +307,7 @@ class eZXML
                                 
                 if ( $colonPos > 0 )
                     $attributeName = substr( $attributeName, $colonPos + 1, strlen( $attributeName ) );                    
-                                
+
                 $attributeValue = $attributeTmpArray[1];
 
                 // remove " from value part
@@ -327,7 +327,6 @@ class eZXML
                                 
                 $attrNode->children[] =& $nodeValue;
 
-		$ret = array();
                 $ret[] =& $attrNode;
 
             }

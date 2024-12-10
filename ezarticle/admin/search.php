@@ -60,6 +60,19 @@ $t->set_file( array(
 
 if ( !isset ( $Offset ) )
     $Offset = 0;
+if ( !isset ( $StartMonth ) or $StartMonth == '' )
+    $StartMonth = 0;
+if ( !isset ( $StartDay ) or $StartDay == ''  )
+    $StartDay = 0;
+if ( !isset ( $StartYear ) or $StartYear == ''  )
+    $StartYear = 0;
+
+if ( !isset ( $StopMonth ) or $StopMonth == '' )
+    $StopMonth = 0;
+if ( !isset ( $StopDay ) or $StopDay == ''  )
+    $StopDay = 0;
+if ( !isset ( $StopYear ) or $StopYear == ''  )
+    $StopYear = 0;
 
 // article
 $t->set_block( "article_list_page_tpl", "article_list_tpl", "article_list" );
@@ -104,19 +117,19 @@ if ( $SearchText )
         $t->set_var( "url_stop_stamp", urlencode( $StopStamp ) );
     }
 
-    if( $ContentsWriterID != 0 )
+    if( isset( $ContentsWriterID ) && $ContentsWriterID != 0 )
     {
         $paramsArray["AuthorID"] = $ContentsWriterID;
         $t->set_var( "url_contentswriter_id", urlencode( $ContentsWriterID ) );
     }
 
-    if( $PhotographerID != 0 )
+    if( isset( $PhotographerID ) && $PhotographerID != 0 )
     {
         $paramsArray["PhotographerID"] = $PhotographerID;
         $t->set_var( "url_photographer_id", urlencode( $PhotographerID ) );
     }
 
-    if( is_array( $CategoryArray ) && count( $CategoryArray ) > 0 && !in_array( 0, $CategoryArray ) )
+    if( isset( $CategoryArray ) && is_array( $CategoryArray ) && count( $CategoryArray ) > 0 && !in_array( 0, $CategoryArray ) )
     {
         $paramsArray["Categories"] = $CategoryArray;
 
@@ -127,15 +140,14 @@ if ( $SearchText )
     $paramsArray["SearchExcludedArticles"] = "true";
     
     $article = new eZArticle();
-    $totalCount = 0;
+    $totalCount = false;
     $articleList = $article->search( $SearchText, "time", true, $Offset, $Limit, $paramsArray, $totalCount );
 
     $t->set_var( "search_text", $SearchText );
     $t->set_var( "url_text", urlencode ( $SearchText ) );
 }
 
-
-if ( count ( $articleList ) > 0 )
+if ( isset( $articleList ) && count ( $articleList ) > 0 )
 {
     $locale = new eZLocale( $Language );
     $i=0;
@@ -173,7 +185,7 @@ if ( count ( $articleList ) > 0 )
 
 eZList::drawNavigator( $t, $totalCount, $Limit, $Offset, "article_list_page_tpl" );
 
-if ( count( $articleList ) > 0 )
+if ( isset( $articleList ) && count( $articleList ) > 0 )
 {
     $t->parse( "article_list", "article_list_tpl" );
     $t->parse( "article_delete", "article_delete_tpl" );

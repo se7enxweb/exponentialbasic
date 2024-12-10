@@ -66,7 +66,7 @@ if ( isset( $Action ) && $Action == "Insert" )
             $poll->setIsEnabled ( false );
         }
 
-        if ( $IsClosed == "on" )
+        if ( isset( $IsClosed ) && $IsClosed == "on" )
         {
             $poll->setIsClosed ( true );
         }
@@ -84,7 +84,7 @@ if ( isset( $Action ) && $Action == "Insert" )
             $poll->setShowResult ( false );
         }
         
-        if ( $Anonymous == "on" )
+        if ( isset( $Anonymous ) && $Anonymous == "on" )
         {
             $poll->setAnonymous ( true );
         }

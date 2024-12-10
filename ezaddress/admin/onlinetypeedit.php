@@ -84,7 +84,7 @@ if ( isset( $Delete ) and isset( $ItemArrayID ) and isset( $item_types ) )
     exit();
 }
 
-if( $Action == "up" )
+if( isset( $Action ) && $Action == "up" )
 {
     $item_type->moveUp();
     include_once( "classes/ezhttptool.php" );
@@ -92,7 +92,7 @@ if( $Action == "up" )
     exit();
 }
 
-if( $Action == "down" )
+if( isset( $Action ) && $Action == "down" )
 {
     $item_type->moveDown();
     include_once( "classes/ezhttptool.php" );
@@ -100,7 +100,7 @@ if( $Action == "down" )
     exit();
 }
 
-if( $Action == "insert" || $Action == "update" )
+if( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "update" )
 {
     if ( $Action == "insert" )
         unset( $item_type->ID );
@@ -111,6 +111,16 @@ if( $Action == "insert" || $Action == "update" )
     $item_type->store();
     include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
+}
+
+if( isset( $Action ) && $Action == "new" )
+{
+    $ItemID = 0;
+    $ItemName = false;
+    $Prefix = false;
+    $PrefixLink = false;
+    $PrefixVisual = false;
+    $error = false;
 }
 
 $t->set_file( array(
@@ -154,7 +164,7 @@ if( is_numeric( $item_type->id() ) )
         $t->set_var( "prefix_visual_checked", "" );
 }
 
-if( $Action == "edit" )
+if( isset( $Action ) && $Action == "edit" )
 {
     $action_value = "update";
 
@@ -164,7 +174,7 @@ if( $Action == "edit" )
     }
 }
 
-if( $Action == "new" )
+if( isset( $Action ) && $Action == "new" )
 {
     $action_value = "insert";
 

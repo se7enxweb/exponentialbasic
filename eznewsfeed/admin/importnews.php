@@ -43,7 +43,6 @@ if ( isset( $Action ) && $Action == "Fetch" )
                                         $site->autoPublish() );
     $newsImporter->importNews();
 }
-
 // fetch every site
 if ( isset( $Action ) && $Action == "ImportNews" && !isset( $Delete ) )
 {
@@ -70,7 +69,7 @@ if ( isset( $Action ) && $Action == "ImportNews" && !isset( $Delete ) )
 // Delete selected sites.
 if ( isset( $Delete ) )
 {
-    if ( count( $DeleteArray ) > 0 )
+    if ( isset( $DeleteArray ) && count( $DeleteArray ) > 0 )
     {
         foreach( $DeleteArray as $row )
         {
@@ -133,7 +132,5 @@ $sourceSite = new eZSourceSite();
 //  $newsImporter->importNews();
 
 $t->pparse( "output", "import_news_tpl" );
-
-
 
 ?>

@@ -396,9 +396,9 @@ class eZQDomGenerator
         $contentsArray = array();
         
         $xml =& eZXML::domTree( $this->Contents );
-//        $xml =& xmltree( $this->Contents );
 
-//        $xml =& qdom_tree( $this->Contents );
+        //        $xml =& xmltree( $this->Contents );
+        //        $xml =& qdom_tree( $this->Contents );
 
         if ( !$xml )
         {
@@ -739,6 +739,7 @@ class eZQDomGenerator
     */
     function &decodeLink( $paragraph )
     {
+        $href = false;
     	$target = $pageContent = '';
         // link
         if ( $paragraph->name == "link" )

@@ -27,8 +27,18 @@
 
 include_once( "classes/ezuritool.php" );
 
-$url_array = eZURITool::split( $REQUEST_URI );
 $ListType = $url_array[2];
+
+
+$url_array = eZURITool::split( $_SERVER['REQUEST_URI'] );
+// $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
+$url_array_count = count( $url_array );
+
+for( $i = $url_array_count; $i <= 25; $i++ )
+{
+    $url_array[$i] = false;
+}
+
 switch ( $ListType )
 {
     case "phonetype":

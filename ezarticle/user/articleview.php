@@ -55,7 +55,6 @@ if ( !is_numeric( $PageNumber) )
 if ( !is_numeric( $CategoryID ) )
     $CategoryID = eZArticle::categoryDefinitionStatic( $ArticleID );
 
-
 if ( $ForceCategoryDefinition == "enabled" )
 {
     $CategoryID = eZArticle::categoryDefinitionStatic( $ArticleID );

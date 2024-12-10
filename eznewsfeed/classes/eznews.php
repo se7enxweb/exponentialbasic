@@ -68,6 +68,8 @@ class eZNews
     */
     function __construct( $id=""  )
     {
+        $this->IsPublished = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;

@@ -43,7 +43,7 @@ if( isset( $DeleteCat ) )
 
 if ( isset( $Action ) && $Action == "Publish" )
 {
-    if ( count( $NewsPublishIDArray ) > 0 )
+    if ( isset( $NewsPublishIDArray ) && count( $NewsPublishIDArray ) > 0 )
     {
         foreach ( $NewsPublishIDArray as $newsID )
         {

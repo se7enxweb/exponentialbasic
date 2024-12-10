@@ -112,7 +112,8 @@ class eZPhoneType
 
         $db->begin();
         $result = $db->query( "UPDATE eZAddress_PhoneType SET Removed=1 WHERE ID='$id'" );
-        if ( $result == true )
+
+        if ( $result != true )
             $db->rollback( );
         else
             $db->commit();

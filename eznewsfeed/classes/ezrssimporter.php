@@ -114,7 +114,7 @@ class eZRSSImporter
                                     foreach ( $channel->children as $value )
                                     {
                                         $contentValue = "";
-                                        if ( count( $value->children ) > 0 )
+                                        if ( isset( $value->children ) && count( $value->children ) > 0 )
                                         {
                                             foreach ( $value->children as $content )
                                             {

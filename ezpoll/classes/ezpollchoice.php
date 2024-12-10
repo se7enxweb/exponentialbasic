@@ -48,6 +48,8 @@ class eZPollChoice
     */
     function __construct( $id=-1 )
     {
+        $this->Offset = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;

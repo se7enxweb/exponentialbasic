@@ -109,7 +109,7 @@ class eZAddressType
       Deletes a eZAddressType object from the database.
      */
 
-    static public function delete( $id = false )
+    function delete( $id = false )
     {
         $db =& eZDB::globalDatabase();
         if ( !$id )

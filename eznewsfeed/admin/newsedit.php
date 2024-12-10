@@ -36,14 +36,14 @@ include_once( "eznewsfeed/classes/eznews.php" );
 include_once( "eznewsfeed/classes/eznewscategory.php" );
 include_once( "classes/ezhttptool.php" );
 
+
 if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /newsfeed/archive/" );
     exit();
 }
 
-
-if ( $Action == "Insert" )
+if ( isset( $Action ) && $Action == "Insert" )
 {
     $category = new eZNewsCategory( $CategoryID );
     
@@ -109,7 +109,7 @@ if ( $Action == "Insert" )
     exit();
 }
 
-if ( $Action == "Update" )
+if ( isset( $Action ) && $Action == "Update" )
 {
     $category = new eZNewsCategory( $CategoryID );
     
@@ -180,7 +180,7 @@ if ( $Action == "Update" )
 }
 
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $news = new eZNews( $NewsID );
 
@@ -256,7 +256,7 @@ $t->set_var( "news_url_value", "" );
 $t->set_var( "news_keywords_value", "" );
 $t->set_var( "news_id", "" );
 
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $news = new eZNews( $NewsID );
 
@@ -298,7 +298,7 @@ $categoryArray = $category->getAll( );
 
 foreach ( $categoryArray as $catItem )
 {
-    if ( $Action == "Edit" )
+    if ( isset( $Action ) && $Action == "Edit" )
     {
         if ( $defCat->id() == $catItem->id() )
         {

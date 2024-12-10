@@ -13,7 +13,7 @@
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
-    <td class="repeaty" rowspan="2" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-l02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-l01.gif" width="10" height="10" border="0" alt="" /><br /></td>
+    <td class="repeaty" rowspan="2" width="0%" background="{www_dir}/design/admin/images/{site_style}/box-l02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-l01.gif" width="10" height="10" border="0" alt="" /><br /></td>
     <td class="repeatx" width="98%" background="{www_dir}/design/admin/images/{site_style}/box-m01.gif" valign="absmiddle" bgcolor="#ffffff"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
     <td class="repeaty" rowspan="2" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-r02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-r01.gif" width="10" height="10" border="0" alt="" /><br /></td>
 </tr>

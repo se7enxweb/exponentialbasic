@@ -51,6 +51,8 @@ class eZAd
     */
     function __construct( $id="" )
     {
+        $this->ImageID = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -77,8 +79,7 @@ class eZAd
             $db->lock( "eZAd_Ad" );
 
             $nextID = $db->nextID( "eZAd_Ad", "ID" );
-
-            $res = $db->query( "INSERT INTO eZAd_Ad
+            $queryText = "INSERT INTO eZAd_Ad
                          ( ID,
                            Name,
                            Description,
@@ -100,7 +101,9 @@ class eZAd
                             '$this->ViewPrice',
                             '$htmlbanner',
                             '$this->UseHTML' )
-                                 " );
+                                 ";
+
+            $res = $db->query( $queryText );
 
 			$this->ID = $nextID;
 

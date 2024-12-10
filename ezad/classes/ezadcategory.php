@@ -504,6 +504,7 @@ class eZAdCategory
     var $Name;
     var $ParentID;
     var $Description;
+    var $ExcludeFromSearch;
 
 }
 

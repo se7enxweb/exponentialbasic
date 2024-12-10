@@ -257,11 +257,12 @@ class eZUserGroup
       Returns true if the user $user is a member of the group
       $user is of type eZUser
      */
-    function isMember( $user )
+    static public function isMember( $user )
     {
         if ( is_a( $user, "eZUser" ) )
         {
-            $userList = $this->users( );
+            $userTemp = new eZUserGroup();
+            $userList = $userTemp->users( );
             if ( count( $userList ) > 0 )
             {
                 foreach ( $userList as $usr )
@@ -332,7 +333,7 @@ class eZUserGroup
         }
         else if ( !is_numeric( $GroupID ) )
         {
-            $GroupID = $this->ID;
+            //$GroupID = $this->ID;
             $userSQL = "UGL.GroupID='$GroupID'";
         }
         else

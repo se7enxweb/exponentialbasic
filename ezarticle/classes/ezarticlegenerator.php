@@ -168,7 +168,7 @@ class eZArticleGenerator
         include_once( "ezarticle/classes/" . $this->GeneratorFile );
 
         $generator = new $this->GeneratorClass( $contents );
-              
+
         return $generator->decodeXML();        
     }
         

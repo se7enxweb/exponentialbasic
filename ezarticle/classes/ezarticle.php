@@ -91,7 +91,7 @@ class eZArticle
         $this->IsPublished = "0";
         $this->StartDate = 0;
         $this->StopDate = 0;
-        $this->Discuss = 0;
+        //$this->Discuss = 0;
         $this->TopicID = 0;
 
         $this->PublishedOverride = 0;
@@ -260,7 +260,7 @@ class eZArticle
                                  ImportID='$importID'
                                  WHERE ID='$this->ID'
                                  ";
-                echo $queryText;
+
                 $ret = $db->query( $queryText );
             }
             else
@@ -1344,6 +1344,7 @@ class eZArticle
             if ( is_bool( $placement ) )
             {
                 $db->array_query( $image_array, "SELECT ID, ImageID, Placement, Created FROM eZArticle_ArticleImageLink WHERE ArticleID='$this->ID' ORDER BY Placement DESC" );
+
                 if ( $image_array[0][$db->fieldName("Placement")] == "0" )
                 {
                     $placement=1;
@@ -2421,8 +2422,8 @@ class eZArticle
                $publishedSQL = " AND Article.IsPublished = '2' AND ";
        }
 
-
-        if ($ExcludeCategories && $ExcludeCategories<>"") $excludeSQL .= " AND Category.ID NOT IN (".$ExcludeCategories.")";
+        if ( $ExcludeCategories && $ExcludeCategories <> "" )
+            $excludeSQL .= " AND Category.ID NOT IN (".$ExcludeCategories.")";
 
         $query = "SELECT Article.ID as ArticleID
                   FROM eZArticle_ArticleCategoryDefinition as Definition,
@@ -2440,7 +2441,6 @@ class eZArticle
                         AND Definition.ArticleID=Article.ID
                         AND CategoryPermission.ObjectID=Definition.CategoryID
                  GROUP BY Article.ID, Article.IsPublished, $GroupBy ORDER BY $OrderBy";
-
 
         $db->array_query( $article_array, $query, array( "Limit" => $limit, "Offset" => $offset )  );
 
@@ -2480,7 +2480,6 @@ class eZArticle
                            ( '$nextID',
                              '$categoryID',
                              '$this->ID' )";
-
 
             $res[] = $db->query( $query );
 

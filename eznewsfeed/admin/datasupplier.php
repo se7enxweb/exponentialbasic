@@ -25,6 +25,7 @@
 
 include_once( "ezuser/classes/ezpermission.php" );
 include_once( "classes/ezhttptool.php" );
+
 $user =& eZUser::currentUser();
 if( eZPermission::checkPermission( $user, "eZNews", "ModuleEdit" ) == false )
 {
@@ -152,6 +153,8 @@ switch ( $url_array[2] )
 
     case "importnews":
     {
+        $Action = "ImportNews";
+
         if ( $url_array[3]  == "fetch" )
         {
             $Action = "Fetch";

@@ -1022,7 +1022,7 @@ class eZArticleCategory
       Removes an article from the category.
       Can be used as a static function if $categoryid is supplied
     */
-    function removeArticle( $value, $categoryid = false )
+    static public function removeArticle( $value, $categoryid = false )
     {
         if ( is_a( $value, "eZArticle" ) )
             $articleID = $value->id();
@@ -1032,7 +1032,7 @@ class eZArticleCategory
             return false;
 
         if ( !$categoryid )
-            $categoryid = $this->ID;
+            $categoryid = false; //this->ID;
 
         $db =& eZDB::globalDatabase();
         $query = "DELETE FROM eZArticle_ArticleCategoryLink
@@ -1047,7 +1047,7 @@ class eZArticleCategory
       Adds an article to the category.
       Can be used as a static function if $categoryid is supplied
     */
-    function addArticle( $value, $categoryid = false )
+    static public function addArticle( $value, $categoryid = false )
     {
         $db =& eZDB::globalDatabase();
 
@@ -1059,7 +1059,8 @@ class eZArticleCategory
             return false;
 
         if ( !$categoryid )
-            $categoryid = $this->ID;
+            $categoryid = 1;
+            //$categoryid = $this->ID;
 
         // check if article already exists in category.
         $db->array_query( $qry, "SELECT ID FROM eZArticle_ArticleCategoryLink
@@ -1208,7 +1209,7 @@ class eZArticleCategory
        $usePermission = true;
        if ( $user )
        {
-           $groups =& $user->groups( false );
+           $groups = $user->groups( false );
 
            foreach ( $groups as $group )
            {
@@ -1276,12 +1277,16 @@ class eZArticleCategory
        {
            $categorySQL = '';
        }
+       elseif ($permissionSQL == '' && $publishedSQL == '')
+       {
+           $categorySQL = "Link.CategoryID='$catID' ";
+       }
        else
        {
-           $categorySQL = "AND Link.CategoryID='$catID' ";
-       }
+            $categorySQL = "AND Link.CategoryID='$catID' ";
+        }
 
-	  $query = "SELECT Article.* $perm_str
+        $query = "SELECT Article.* $perm_str
                   FROM eZArticle_ArticleCategoryDefinition as Definition,
                        eZArticle_Article as Article,
                        eZArticle_ArticleCategoryLink as Link,

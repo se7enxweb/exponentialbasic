@@ -182,6 +182,7 @@ switch ( $url_array[2] )
             case "insert" :
             {
                 $Action = "Insert";
+                $ArticleID = $url_array[4];
                 include( "ezarticle/admin/articleedit.php" );
             }
             break;

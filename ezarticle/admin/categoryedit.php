@@ -423,10 +423,10 @@ $category = new eZArticleCategory();
 
 $categoryArray = $category->getAll( );
 
-$t->set_var( "description_value", $Description );
+$t->set_var( "description_value", isset( $Description ) ? $Description : false );
 
-$t->set_var( "name_value", $Name );
-$t->set_var( "list_limit_value", $ListLimit );
+$t->set_var( "name_value", isset( $Name ) ? $Name : false );
+$t->set_var( "list_limit_value", isset( $ListLimit ) ? $ListLimit : false );
 $t->set_var( "action_value", "insert" );
 $t->set_var( "exclude_checked", "" );
 $t->set_var( "all_selected", "selected" );
@@ -547,7 +547,7 @@ foreach ( $tree as $item )
         else
             $t->set_var( "option_level", "" );
 
-        if ( $item[0]->id() == $parentID )
+        if ( isset( $parentID ) && $item[0]->id() == $parentID )
         {
             $t->set_var( "selected", "selected" );
             $selected = true;

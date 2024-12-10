@@ -345,19 +345,19 @@
     - module/list - Tests as 100% Functional.
     - status/list - Tests as 100% Functional.
 - eznewsfeed
-    - unpublished - Needs work. Fatal Errors on Page Load.
-    - archive - Needs work. Fatal Errors on Page Load.
-    - news/new - Tests as 90% Functional. Fatal errors on submit.
-    - category/new - Tests as 90% Functional. Fatal errors on submit.
-    - sourcesite/new - Needs work. Fatal Errors on Page Load.
-    - importnews - Needs work. Warnings and Fatal errors on submit buttons usage.
+    - unpublished - Tests as 100% Functional.
+    - archive - Tests as 100% Functional.
+    - news/new - Tests as 100% Functional.
+    - category/new - Tests as 100% Functional.
+    - sourcesite/new - Tests as 100% Functional.
+    - importnews - Tests as 100% Functional.
 - ezad
-    - archive - Needs work. Warning Errors on Page Load.
-    - category/new - Tests as 90% Functional. Warnings on Page Load. Fatal errors on submit.
-    - ad/new - Tests as 90% Functional. Warnings on Page Load. Fatal errors on submit.
+    - archive - Tests as 100% Functional.
+    - category/new - Tests as 100% Functional.
+    - ad/new - Tests as 100% Functional.
 - ezpoll
-    - pollist - Needs work. Tests as 90% Functional. Some warnings on Page Load.
-    - polledit/new - Needs work. Tests as 90% Functional. Some warnings on Page Load.
+    - pollist - Tests as 100% Functional.
+    - polledit/new - Tests as 100% Functional.
 - ezlink
     - category/0 - Tests as 100% Functional.
     - categoryedit/edit/1 - Tests as 100% Functional.
@@ -386,17 +386,19 @@
     - voucher - Needs work. Fatal errors on page load.
     - voucherlist - Needs work. Fatal errors on page load.
 - ezarticle
-    - archive - Needs work. Tests as 90% Functional. Actions not yet tested as error free. View does not display current articles only categories.
-    - article/search - Needs Work. Tests as 80% Functional. Warnings on page blocking display after search.
-    - unpublished - Needs testing. No results on page load. Tested Ok.
-    - pendinglist - Needs testing. No results on page load. Tested Ok.
-    - sitemap - Needs testing. No articles displayed on page load. Tested Ok.
-    - topiclist - Needs testing. No errors on page load but Actions need testing.
-    - type/list - Needs testing. No errors on page load.
-    - type/edit - Needs work. Warnings on page load.
-    - categoryedit/new - Needs work. Fatal Errors on Page Load.
-    - articleedit/new - Needs work major warnings on page load. Exect errors on article storage.
-    - search - Needs major work, fatal error upon search results view POST.
+    - archive - Tests as 100% Functional.
+    - article/search - Tests as 100% Functional.
+    - unpublished - Tests as 100% Functional.
+    - pendinglist - Tests as 100% Functional.
+    - sitemap - Tests as 100% Functional.
+    - topiclist - Tests as 100% Functional.
+    - type/list - Tests as 100% Functional.
+    - type/edit - Tests as 100% Functional.
+    - categoryedit/new - Tests as 100% Functional.
+    - articleedit/new - Tests as 100% Functional.
+    - search - Tests as 100% Functional.
+
+Note: Admin password change menu feature does not function as desired.
 
 Note: Printable admin view features currently has fatal errors and distracting warnings.
 
@@ -415,6 +417,10 @@ Note: Printable admin view features currently has fatal errors and distracting w
 - ezcalendar
 - eztodo
 - ezbug
+- eznewsfeed
+- ezad
+- ezpoll
+- ezarticle
 
 
 

@@ -47,7 +47,7 @@ include_once( "ezad/classes/ezadcategory.php" );
 
 
 // Direct actions
-if ( $Action == "Insert" )
+if ( isset( $Action ) && $Action == "Insert" )
 {
 
     $category = new eZAdCategory();
@@ -68,7 +68,7 @@ if ( $Action == "Insert" )
     exit();
 }
 
-if ( $Action == "Update" )
+if ( isset( $Action ) && $Action == "Update" )
 {
     $category = new eZAdCategory();
     $category->get( $CategoryID );
@@ -88,7 +88,7 @@ if ( $Action == "Update" )
     exit();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     $category = new eZAdCategory();
     $category->get( $CategoryID );
@@ -99,7 +99,7 @@ if ( $Action == "Delete" )
     exit();
 }
 
-if ( $Action == "DeleteCategories" )
+if ( isset( $Action ) && $Action == "DeleteCategories" )
 {
     if ( count ( $CategoryArrayID ) != 0 )
     {
@@ -112,6 +112,11 @@ if ( $Action == "DeleteCategories" )
 
     eZHTTPTool::header( "Location: /ad/archive/" );
     exit();
+}
+
+if ( isset( $Action ) && $Action == "New" )
+{
+   $parentID = false;
 }
 
 $t = new eZTemplate( "ezad/admin/" . $ini->read_var( "eZAdMain", "AdminTemplateDir" ),
@@ -135,7 +140,7 @@ $t->set_var( "category_id", "" );
 
 
 // edit
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $category = new eZAdCategory();
     $category->get( $CategoryID );
@@ -188,8 +193,6 @@ foreach( $tree as $item )
 
     $t->parse( "value", "value_tpl", true );
 }
-
-
 
 $t->pparse( "output", "category_edit_tpl" );
 

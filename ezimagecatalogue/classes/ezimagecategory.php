@@ -529,7 +529,7 @@ class eZImageCategory
       Adds a file to the category.
       Can be used as a static function if $categoryid is supplied
     */
-    function addImage( $value, $categoryid = false )
+    static public function addImage( $value, $categoryid = false )
     {
        if ( is_a( $value, "eZImage" ) )
            $imageID = $value->id();
@@ -539,7 +539,7 @@ class eZImageCategory
            return false;
 
        if ( !$categoryid )
-           $categoryid = $this->ID;
+           $categoryid = 0; //$this->ID;
 
        $db =& eZDB::globalDatabase();
 

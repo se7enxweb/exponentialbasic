@@ -7,7 +7,7 @@
 <!-- BEGIN article_item_tpl -->
 <tr>
 	<td colspan="2">
-	<a class="path" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_name}</a>
+	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a>
 	<div class="small">
         (&nbsp;{article_published}&nbsp;)</div>
 	</td>
@@ -20,7 +20,7 @@
 <!-- BEGIN read_more_tpl -->
 <tr>
 	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
-	<td width="99%"><a class="menu" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_link_text}</a></td>
+	<td width="99%"><a class="menu" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a></td>
 </tr>
 <!-- END read_more_tpl -->
 <!-- END article_item_tpl -->

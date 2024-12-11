@@ -23,6 +23,7 @@ if ( isset( $MetaRedirectLocation ) && isset( $MetaRedirectTimer ) )
 
 ?>
 <link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/style.css" />
+<link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/responsive.css" />
 
 <script language="JavaScript1.2">
 <!--//
@@ -114,11 +115,11 @@ else
    </td>
 </tr>
    <tr>
-     <td class="tdmini" width="99%" colspan="2" style="top: -1.5px; position: relative;">
+     <td class="tdmini" width="99%" colspan="2" style="top: -2.5px; position: relative;">
        <?php /*
      <!--     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif" height="20" width="290" border="0" alt="" /></a><br />
    </td>
-   <td class="tdmini" width="1%" align="right" style="top: -1.5px; position: relative;">
+   <td class="tdmini" width="1%" align="right" style="top: -2.5px; position: relative;">
      -->
 */ ?>
 
@@ -150,7 +151,7 @@ else
 </tr>
 </table>
 
-<table class="main-body" width="100%" border="0" cellspacing="0" cellpadding="4" style="top: -1.5px; position: relative;">
+<table class="main-body" width="100%" border="0" cellspacing="0" cellpadding="4" style="top: -2.5px; position: relative;">
 <tr valign="top">
     <td class="menu-left" width="1%" bgcolor="#f0f0f0">
    <!-- Left menu start -->

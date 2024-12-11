@@ -28,14 +28,14 @@
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
 	<td valign="top" width="100%">
-	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_name}</a></div>
+	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a></div>
 	<div class="small">( {article_published} )</div>
 
 	<!-- BEGIN one_column_article_image_tpl -->
 	    <table width="1%" cellpadding="2" cellspacing="0" align="right">
 	        <tr>
 			<td>
-			<a href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
+			<a href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
             </td>
                 </tr>
                 <tr>
@@ -51,7 +51,7 @@
 
         <!-- BEGIN one_column_read_more_tpl -->
 	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-	<a class="path" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_link_text}</a>
+	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
 	<br /><img src="{www_dir}/design/base/images/design/1x1.gif" height="8" width="4" border="0" alt="" /><br />
     <!-- END one_column_read_more_tpl -->
@@ -66,14 +66,14 @@
 <tr>
 	<td valign="top" width="48%">
 	<!-- BEGIN left_article_tpl -->
-	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_name}</a></div>
+	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a></div>
 	<div class="small">( {article_published} )</div>
 
 	<!-- BEGIN left_article_image_tpl -->
 	    <table width="1%" cellpadding="2" cellspacing="0" align="left">
 	        <tr>
 			<td>
-			<a href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
+			<a href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
             </td>
                 </tr>
                 <tr>
@@ -89,7 +89,7 @@
 
         <!-- BEGIN left_read_more_tpl -->
 	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-	<a class="path" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_link_text}</a>
+	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
 	<br /><img src="{www_dir}/design/base/images/design/1x1.gif" height="8" width="4" border="0" alt="" /><br />
         <!-- END left_read_more_tpl -->
@@ -101,14 +101,14 @@
 	
 	<td valign="top" width="48%">
 	<!-- BEGIN right_article_tpl -->
-	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_name}</a></div>
+	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a></div>
 	<div class="small">( {article_published} )</div>
 
 	<!-- BEGIN right_article_image_tpl -->
 	    <table width="1%" cellpadding="2" cellspacing="0" align="right">
 	        <tr>
 			<td>
-			<a href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
+			<a href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
             </td>
                 </tr>
                 <tr>
@@ -123,7 +123,7 @@
 
         <!-- BEGIN right_read_more_tpl -->
 	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-	<a class="path" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_link_text}</a>
+	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
 	<br /><img src="{www_dir}/design/base/images/design/1x1.gif" height="8" width="4" border="0" alt="" /><br />
         <!-- END right_read_more_tpl -->
@@ -270,7 +270,7 @@
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
 	<td width="70%">
-	<a class="path" href="{www_dir}{index}/article/static/{article_id}/1/{category_id}/">{article_name}</a></div>
+	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a></div>
 	</td>
 	<td align="right" width="30%">
 	<div class="small">( {article_published} )</div>

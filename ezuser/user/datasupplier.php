@@ -171,6 +171,21 @@ switch ( $url_array[2] )
     }
     break;
 
+    case "passwordchange" :
+    {
+        $ini =& INIFile::globalINI();
+        $DemoSite = $ini->read_var( "site", "DemoSite" );
+
+        if ( $DemoSite == "enabled" ) {
+            print("<div align='center'>This is a demosite only. You are not allowed to change the admin password!</div>\n");
+        }else{
+            $Action = $url_array[3];
+            include( "ezuser/admin/passwordchange.php" );
+        }
+
+    }
+    break;
+
     default :
     {
         include( "ezuser/user/login.php" );

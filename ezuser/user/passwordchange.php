@@ -47,15 +47,15 @@ if ( isSet( $Cancel ) )
 
 // Template
 $t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
-                     $DOC_ROOT . "/admin/" . "/intl", $Language, "passwordchange.php" );
+    $DOC_ROOT . "/admin/" . "/intl", $Language, "passwordchange.php" );
 $t->setAllStrings();
 
 $t->set_file( array(
     "change" => "passwordchange.tpl"
-    ) );
+) );
 
 $user =& eZUser::currentUser();
-if ( !$user ) 
+if ( !$user )
 {
     eZHTTPTool::header( "Location: /user/login/" );
     exit();
@@ -64,7 +64,7 @@ if ( !$user )
 if ( isset( $Action ) && $Action == "update" )
 {
     $checkuser = $user->validateUser( $user->login(), $OldPassword );
-    
+
     if ( !$checkuser )
     {
         $error_msg = $errorIni->read_var( "strings", "error_wrong" );

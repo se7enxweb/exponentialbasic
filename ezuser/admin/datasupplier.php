@@ -196,7 +196,7 @@ if ( is_a( $user, "eZUser" )  and eZPermission::checkPermission( $user, "eZUser"
 	    print("<div align='center'>This is a demosite only. You are not allowed to change the admin password!</div>\n");
 	  }else{
 	    $Action = $url_array[3];
-            // include( "ezuser/admin/passwordchange.php" );
+            include( "ezuser/admin/passwordchange.php" );
 	  }
 
         }

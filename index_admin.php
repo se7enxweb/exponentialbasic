@@ -218,13 +218,16 @@ if ( $user )
             }
 
 	        $moved_module = false;
-            if (isset($_REQUEST["MoveUp"])) {
+
+            if ( isset( $_REQUEST["MoveUp"] ) ) {
 	            eZModuleHandler::moveUp( $modules, $_REQUEST["MoveUp"], $moved_module );
-	            if ( !$moved_module && isset($_REQUEST["MoveDown"]))
-	            {
-	                eZModuleHandler::moveDown( $modules, $_REQUEST["MoveDown"], $moved_module );
-	            }
+
             }
+            elseif( !$moved_module && isset($_REQUEST["MoveDown"]))
+            {
+                eZModuleHandler::moveDown( $modules, $_REQUEST["MoveDown"], $moved_module );
+            }
+
             $uri = eZHTTPTool::removeVariable( $uri, "MoveUp" );
             $uri = eZHTTPTool::removeVariable( $uri, "MoveDown" );
 
@@ -234,6 +237,9 @@ if ( $user )
                 eZHTTPTool::header( "Location: $uri" );
                 exit;
             }
+
+            if( $singleModule == 'enabled' )
+                $modules = array( $modules[0] );
 
             // draw modules
             foreach ( $modules as $module )

@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="no" lang="en">
-
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{intl-header}: {site_url}</title>
   <link rel="stylesheet" type="text/css" href="{www_dir}/design/admin/templates/{site_style}/style.css" />
   <meta http-equiv="Content-Type" content="text/html; charset={charset}"/>

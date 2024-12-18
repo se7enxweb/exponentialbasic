@@ -44,6 +44,7 @@ $site_modules = eZModuleHandler::all();
 include_once( "ezmodule/classes/ezmodulehandler.php" );
 
 $ModuleTab = eZModuleHandler::activeTab();
+$singleModule = eZPreferences::variable( 'SingleModule' );
 
 include_once( "ezsession/classes/ezpreferences.php" );
 

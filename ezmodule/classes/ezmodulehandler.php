@@ -237,7 +237,7 @@ class eZModuleHandler
         reset( $modules );
         $i = 0;
         $moved_module = false;
-        while( list( $key, $module_name ) = each( $modules ) )
+        foreach( $modules as $key => $module_name )
         {
             $module_low =& strtolower( $module_name );
             if ( !empty( $module_name ) and $module == $module_low )
@@ -276,7 +276,7 @@ class eZModuleHandler
         reset( $modules );
         $i = 0;
         $moved_module = false;
-        while( list( $key, $module_name ) = each( $modules ) )
+        foreach( $modules as $key => $module_name )
         {
             $module_low =& strtolower( $module_name );
             if ( !empty( $module_name ) and $module == $module_low )

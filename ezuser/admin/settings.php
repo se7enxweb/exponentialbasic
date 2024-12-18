@@ -50,6 +50,8 @@ require( "ezuser/admin/admincheck.php" );
 $url = $GLOBALS["RefURL"];
 if ( $url == "/user/settings" )
     $url = "/";
+if( $url == '' )
+    $url == '/';
 
 if ( isSet( $Cancel ) )
 {
@@ -75,7 +77,7 @@ if ( !$user )
     exit();
 }
 
-if ( $Action == "update" )
+if ( isset( $Action ) && $Action == "update" )
 {
     $preferences->setVariable( "SingleModule", $SingleModule != "" ? "enabled" : "disabled" );
     $preferences->setVariable( "ModuleTab", $ModuleTabBar != "" ? "enabled" : "disabled" );

@@ -1,9 +1,10 @@
 <!-- Main view: End -->
-
+              </div>
+      	  </div>
 	</td>
 </tr>
 </table>
-	
+
 	</td>
     <td class="repeaty" width="1" background="{www_dir}/design/admin/images/{site_style}/box-r04.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
 </tr>
@@ -15,14 +16,11 @@
 </table>
 
 
-<div align="right" style="padding-top: 6px;"><a href="http://ezcommunity.net" target="_vblank" style="font-weight: bold; text-decoration: none;">eZ Community</a></div>
+<div align="right" style="padding-top: 6px;"><a href="https://basic.ezpublish.one" target="_vblank" style="font-weight: bold; text-decoration: none;">7x</a></div>
 
 <!--
 <img src="{www_dir}/design/admin/images/{site_style}/ezsystems-minilogo.gif" width="100" height="25" border="0" align="right" alt="" />
 -->
-	</td>
-</tr>
-</table>
-
+</div>
 </body>
 </html>

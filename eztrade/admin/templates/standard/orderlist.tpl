@@ -33,7 +33,7 @@
 <!-- BEGIN order_item_tpl -->
 <tr>
 	<td class="{td_class}">
-	{order_id}
+	<b><a href="/trade/orderview/{order_id}">{order_id}</a></b>
 	</td>
 	<td class="{td_class}">
 	<span class="small">{order_date}</span>

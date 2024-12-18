@@ -2,15 +2,12 @@
 
 	<!-- Menues: End -->
 
-	</td>
+	</div>
 
-    
-	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="6" height="6" border="0" alt="" /></td>
 <!-- END left_spacer_tpl -->
 
 <!-- BEGIN top_field_tpl -->
-	<td width="99%" valign="top">
-
+<div class="mainBody">
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
     <td class="repeaty" rowspan="2" width="0%" background="{www_dir}/design/admin/images/{site_style}/box-l02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-l01.gif" width="10" height="10" border="0" alt="" /><br /></td>

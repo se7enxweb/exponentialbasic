@@ -76,49 +76,62 @@
 <tr>
     <td class="repeaty" width="1" background="{www_dir}/design/admin/images/{site_style}/top-l02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
     <td class="repeatx" colspan="2" width="98%" valign="absmiddle" bgcolor="#ffffff" align="left">
-	<div class="header">
-		<div class="logo">
-			<a href="{admin_site_protocol}://{admin_site_host}" target=""><img src="{www_dir}/design/base/images/logo/ezpublish-logo-200x40.png" width="200" height="40" border="0" alt="" /></a><br />
-		</div>
-		<div class="infos">
-		<!-- BEGIN charset_switch_tpl -->
-		<div class="charset">
-			<form action="{charset_submit_url}" method="post" name="CharsetSwitch">
-				<select name="page_charset" onchange="SwitchCharset()">
-					<!-- BEGIN charset_switch_item_tpl -->
-					<option value="{charset_code}" {charset_selected}>{charset_description}</option>
-					<!-- END charset_switch_item_tpl -->
-				</select>
-				<input type="submit" class="stdbutton" value="Set" />
-			</form>
-		</div>
-		<!-- END charset_switch_tpl -->
-		<div class="version">
-			<span class="top">{intl-ezpublish_version}:</span><br />
-			<span class="topusername">{ezpublish_version}</span>.<span class="topusername">{ezpublish_installation_version}</span>
-		</div>
-		<div class="site">
-			<span class="top">{intl-site_url}:</span><br />
-			<span class="topusername">{site_url}</span>
-		</div>
-		<div class="userinfo">
-			<span class="top">{intl-user_name}:</span><br />
-			<span class="topusername">{first_name}&nbsp;{last_name}</span>
-		</div>
-		<div class="clientinfo">
-			<span class="top">{intl-ip_address}:</span><br />
-			<span class="topusername">{ip_address}</span>
-		</div>
-		<div class="usersettings">
-			<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/passwordchange/">{intl-change_user_info}</a><br />
-			<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/settings?RefURL={ref_url}">{intl-user_settings}</a><br />
-		</div>
-		<div class="logout">
-			<a  href="{www_dir}{index}/user/login/logout/"><img src="{www_dir}/design/admin/images/{site_style}/top-logout.gif" width="35" height="40" border="0" alt="logout" title="logout" /></a>
-		</div>
-		
-		</div>
-	</div>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+	<td width="1%" class="tdmini">
+
+        <a href="{admin_site_protocol}://{admin_site_host}" target=""><img src="{www_dir}/design/base/images/logo/ezpublish-logo-200x40.png" width="200" height="40" border="0" alt="" /></a><br />
+	</td>
+	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="10" height="10" border="0" alt="" /></td>
+	<td width="91%" valign="top">
+	<form action="{charset_submit_url}" method="post" name="CharsetSwitch">
+	<!-- BEGIN charset_switch_tpl -->
+	<select name="page_charset" onchange="SwitchCharset()">
+            <!-- BEGIN charset_switch_item_tpl --> 
+	    <option value="{charset_code}" {charset_selected}>{charset_description}</option>
+	    <!-- END charset_switch_item_tpl -->
+        </select>
+        <input type="submit" class="stdbutton" value="Set" />
+        <!-- END charset_switch_tpl -->
+	</form>
+	</td>
+	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="10" height="10" border="0" alt="" /></td>						
+	<td width="1%">
+	<span class="top">{intl-ezpublish_version}:</span><br />
+	<span class="topusername">{ezpublish_version}</span>.<span class="topusername">{ezpublish_installation_version}</span><br />
+	<img src="{www_dir}/design/admin/images/1x1.gif" width="80" height="10" border="0" alt="" /><br />
+	</td>	
+	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="10" height="10" border="0" alt="" /></td>
+	<td width="1%">
+	<span class="top">{intl-site_url}:</span><br />
+	<span class="topusername">{site_url}</span><br />
+	<img src="{www_dir}/design/admin/images/1x1.gif" width="100" height="10" border="0" alt="" /><br />
+	</td>
+	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="10" height="10" border="0" alt="" /></td>
+	<td width="1%">
+	<span class="top">{intl-user_name}:</span><br />
+	<span class="topusername">{first_name}&nbsp;{last_name}</span><br />
+	<img src="{www_dir}/design/admin/images/1x1.gif" width="80" height="10" border="0" alt="" /><br />
+	</td>
+	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="10" height="10" border="0" alt="" /></td>
+	<td width="1%">
+	<span class="top">{intl-ip_address}:</span><br />
+	<span class="topusername">{ip_address}</span><br />
+	<img src="{www_dir}/design/admin/images/1x1.gif" width="80" height="10" border="0" alt="" /><br />
+	</td>
+	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="10" height="10" border="0" alt="" /></td>
+	<td width="1%" valign="top">
+	<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/passwordchange/">{intl-change_user_info}</a><br />
+	<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/settings?RefURL={ref_url}">{intl-user_settings}</a><br />
+	<img src="{www_dir}/design/admin/images/1x1.gif" width="100" height="1" border="0" alt="" /><br />
+	</td>
+	<td width="1%"><img src="{www_dir}/design/admin/images/1x1.gif" width="10" height="10" border="0" alt="" /></td>
+	<td width="1%" align="right">
+	<a  href="{www_dir}{index}/user/login/logout/"><img src="{www_dir}/design/admin/images/{site_style}/top-logout.gif" width="35" height="40" border="0" alt="" /></a>
+	</td>
+</tr>
+</table>
 
 <!-- BEGIN module_list_tpl -->
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -154,13 +167,12 @@
 </table>
 
 
-<div>
-
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
 <!-- BEGIN menu_tpl -->
 
-<div class="container">
+	<td width="1%" valign="top">
 
 <!-- END menu_tpl -->
 
-<div class="menuBox">
 <!-- Menues: Start -->

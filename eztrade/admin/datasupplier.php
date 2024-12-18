@@ -56,7 +56,14 @@ switch ( $url_array[2] )
         $OrderID = $url_array[3];
         $Action = $url_array[4];
         include( "eztrade/admin/orderedit.php" );
-        break;
+    break;
+
+    case "orderview" :
+    {
+        $OrderID = $url_array[3];
+        include( "eztrade/admin/orderview.php" );
+    }
+    break;
 
     case "customerlist" :
     {

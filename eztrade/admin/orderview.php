@@ -53,7 +53,7 @@ include_once( "eztrade/classes/ezpricegroup.php" );
 
 include_once( "eztrade/classes/ezorderstatustype.php" );
 
-$t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "eztrade/admin/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
                      "eztrade/user/intl/", $Language, "orderview.php" );
 
 $t->setAllStrings();
@@ -83,12 +83,15 @@ if ( !$user )
     
 
 // get the customer
+/*
 if ( !$order->isOwner( eZUser::currentUser() ) )
 {
     eZHTTPTool::header( "Location: /error/403" );
     exit();
 }
 else
+*/
+
 $localUser = $order->user();
 
 if ( $localUser )

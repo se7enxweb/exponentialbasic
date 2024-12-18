@@ -150,6 +150,7 @@ if ( isset($_REQUEST['SearchText']) )
     }
 
     $t->set_var( "search_text", $tmpSearchText );
+
     $article = new eZArticle();
     $totalCount = 0;
     $articleList = $article->search( $_REQUEST['SearchText'], "time", false, $Offset, $Limit, $paramsArray, $totalCount );
@@ -159,7 +160,7 @@ if ( isset($_REQUEST['SearchText']) )
 
 // if ( ( $MaxSearchForArticles != 0 ) && ( $MaxSearchForArticles < $totalCount ) )
 
-if ( count ( $articleList ) > 0 )
+if ( isset( $articleList ) && count ( $articleList ) > 0 )
 {
     $locale = new eZLocale( $Language );
     $i=0;
@@ -193,15 +194,16 @@ if ( count ( $articleList ) > 0 )
 eZList::drawNavigator( $t, $totalCount, $Limit, $Offset, "article_list_page_tpl" );
 
 
-if ( count( $articleList ) > 0 )    
+if ( isset( $articleList ) && count( $articleList ) > 0 )    
     $t->parse( "article_list", "article_list_tpl" );
 else
-$t->set_var( "article_list", "" );
+    $t->set_var( "article_list", "" );
 
 if ( $totalCount == 0 )
     $t->set_var( "article_start", 0 );
 else
     $t->set_var( "article_start", $Offset + 1 );
+
 $t->set_var( "article_end", min( $Offset + $Limit, $totalCount ) );
 $t->set_var( "article_total", $totalCount );
 

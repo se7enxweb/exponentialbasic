@@ -71,7 +71,7 @@ foreach ( $lines as $line )
 }
 $t->set_var( "file_contents", htmlspecialchars( $contents ) );
 
-$t->set_var( "file_name", $fileName );
+$t->set_var( "file_name", isset( $fileName ) ? $fileName : false );
 
 
 $t->pparse( "output", "site_config_tpl" );

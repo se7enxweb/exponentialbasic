@@ -52,7 +52,7 @@ class eZPageViewQuery
     /*!
       Returns the total number of pageviews.
     */
-    function totalPageViews()
+    static public function totalPageViews()
     {
         $db =& eZDB::globalDatabase();
 
@@ -69,7 +69,7 @@ class eZPageViewQuery
 
       returns 0 if the argument is not a eZDate object.
     */
-    function totalPageViewsDay( $dayObject )
+    static public function totalPageViewsDay( $dayObject )
     {
         $db =& eZDB::globalDatabase();
         $ret = 0;
@@ -115,7 +115,7 @@ class eZPageViewQuery
 
       returns 0 if the argument is not a eZDate object.
     */
-    function totalPageViewsMonth( $dayObject )
+    static public function totalPageViewsMonth( $dayObject )
     {
         $db =& eZDB::globalDatabase();
         $ret = 0;
@@ -157,7 +157,7 @@ class eZPageViewQuery
       \static
       Return the sum of Count BrowserType
     */
-    function &sumBrowserTypeCount()
+    static public function &sumBrowserTypeCount()
     {
         $db =& eZDB::globalDatabase();
         $db->array_query( $pageview_array,
@@ -178,7 +178,7 @@ class eZPageViewQuery
 
       The files are returned as an array of eZPageView objects.
     */
-    function &latest( $limit = 20, $offset = 0 )
+    static public function &latest( $limit = 20, $offset = 0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -201,7 +201,7 @@ class eZPageViewQuery
       \static
       Returns the latest pageview count.
     */
-    function &latestCount()
+    static public function &latestCount()
     {
         $db =& eZDB::globalDatabase();
 
@@ -222,7 +222,7 @@ class eZPageViewQuery
       The files are returned as an assiciative array of
       array( ID => $id, IP => $ip, HostName => $hostName, Count => $count ).
     */
-    function &topVisitors( $limit = 20, $offset = 0 )
+    static public function &topVisitors( $limit = 20, $offset = 0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -269,7 +269,7 @@ class eZPageViewQuery
     /*!
       Returns the number of visitors which has viewed most pages.
     */
-    function &topVisitorsCount()
+    static public function &topVisitorsCount()
     {
         $db =& eZDB::globalDatabase();
 
@@ -286,7 +286,7 @@ class eZPageViewQuery
       The files are returned as an assiciative array of
       array( Domain => $domain, URI => $uri, Count => $count ).
     */
-    function &topReferers( $limit = 40, $excludeDomain = "", $offset = 0 )
+    static public function &topReferers( $limit = 40, $excludeDomain = "", $offset = 0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -320,7 +320,7 @@ class eZPageViewQuery
     /*!
       Returns the number of referers which are most frequent.
     */
-    function &topReferersCount( $excludeDomain = "")
+    static public function &topReferersCount( $excludeDomain = "")
     {
         $db =& eZDB::globalDatabase();
 
@@ -350,7 +350,7 @@ class eZPageViewQuery
       The files are returned as an assiciative array of
       array( ID => $id, Name => $name, Count => $count ).
     */
-    function &topBrowsers( $limit = 25, $offset = 0 )
+    static public function &topBrowsers( $limit = 25, $offset = 0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -377,7 +377,7 @@ class eZPageViewQuery
     /*!
       Returns the number of browsers which are most frequent.
     */
-    function &topBrowsersCount()
+    static public function &topBrowsersCount()
     {
         $db =& eZDB::globalDatabase();
 
@@ -395,7 +395,7 @@ class eZPageViewQuery
       The files are returned as an assiciative array of
       array( ID => $id, URI => $uri, Count => $count ).
     */
-    function &topRequests( $limit = 20, $offset = 0 )
+    static public function &topRequests( $limit = 20, $offset = 0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -420,7 +420,7 @@ class eZPageViewQuery
     /*!
       Returns the number of requests which are most frequent.
     */
-    function &topRequestsCount()
+    static public function &topRequestsCount()
     {
         $db =& eZDB::globalDatabase();
 
@@ -435,7 +435,7 @@ class eZPageViewQuery
     /*!
       Returns the most frequent viewed products.
     */
-    function &topProductRequests( $limit=20 )
+    static public function &topProductRequests( $limit=20 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -465,7 +465,7 @@ class eZPageViewQuery
     /*!
       Returns the most frequent products added to the cart.
     */
-    function &topProductAddToCart( $limit=20 )
+    static public function &topProductAddToCart( $limit=20 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -494,7 +494,7 @@ class eZPageViewQuery
     /*!
       Returns the most frequent products added to the wishlist.
     */
-    function &topProductAddToWishlist( $limit=20 )
+    static public function &topProductAddToWishlist( $limit=20 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -527,7 +527,7 @@ class eZPageViewQuery
       Returns an array of months with the statistics as an associative array:
       array( "Months" => array( "Count" => $count )
     */
-    function &yearStats( $year )
+    static public function &yearStats( $year )
     {
         $db =& eZDB::globalDatabase();
 
@@ -566,7 +566,7 @@ class eZPageViewQuery
       Returns an array of days with the statistics as an associative array:
       array( "Days" => array( "Count" => $count )
     */
-    function &monthStats( $year, $month )
+    static public function &monthStats( $year, $month )
     {
         $db =& eZDB::globalDatabase();
 
@@ -616,7 +616,7 @@ class eZPageViewQuery
       Returns an array of hours with the statistics as an associative array:
       array( "Hours" => array( "Count" => $count )
     */
-    function &dayStats( $year, $month, $day )
+    static public function &dayStats( $year, $month, $day )
     {
         $db =& eZDB::globalDatabase();
 
@@ -649,7 +649,7 @@ class eZPageViewQuery
     /*!
       Returns the top exit pages.
     */
-    function &topExitPage( )
+    static public function &topExitPage( )
     {
         $db =& eZDB::globalDatabase();
 
@@ -677,7 +677,7 @@ class eZPageViewQuery
     /*!
       Returns the top entry pages.
     */
-    function &topEntryPage( )
+    static public function &topEntryPage( )
     {
         $db =& eZDB::globalDatabase();
 

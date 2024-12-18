@@ -65,7 +65,7 @@ if ( $QueryPref )
 {
     $QueryText2 = "<select name=\"QueryText2\">";
 
-    while ( list( $key, $val ) = each ( $QueryPref ) )
+    foreach ( $QueryPref as $key => $val )
     {
 	$QueryText2 .= "<option>$val</option>";
     }
@@ -109,10 +109,15 @@ else
 
         // print the column names
         reset( $return_array[0] );
-        while ( list( $key, $val ) = each ( $return_array[0] ) )
+        foreach ( $return_array[0] as $key => $val )
         {
-            $res = each ( $return_array[0] );
-            $QueryRes .= "<th>" . $res[0] . "</th>";
+            foreach ( $return_array[0] as $key => $res )
+            {
+                if( !is_integer( $key ) )
+                {
+                    $QueryRes .= "<th>" . $key . "</th>";
+                }
+            }
         }    
         
         $QueryRes .= "</tr>";
@@ -124,6 +129,7 @@ else
 	    
             for ( $j = 0; $j <  count( $return_array[$i]) / 2 ; $j++ )
             {
+                if( !is_null( $return_array[$i][$j] ) )
                 $QueryRes .= "<td>" . htmlspecialchars( $return_array[$i][$j] ) . "</td>";
             }
             $QueryRes .= "</tr>";

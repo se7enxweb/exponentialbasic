@@ -443,3 +443,13 @@ Note: Printable admin view features currently has fatal errors and distracting w
 
 - ezurltranslator
     - urledit - Tests as 100% Functional.
+
+
+## User Module Menu View URIs
+
+Module: ezarticle
+Views:
+/article/frontpage/1
+/article/frontpage/2
+/article/frontpage/3
+/article/frontpage/4

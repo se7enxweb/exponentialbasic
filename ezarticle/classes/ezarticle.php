@@ -2106,7 +2106,7 @@ class eZArticle
 
                 $db->query_single( $WordFreq, $queryString, array( "LIMIT" => 1 ) );
 
-                if ( $WordFreq["Frequency"] <= $StopWordFrequency )
+                if ( is_array( $WordFreq ) && $WordFreq["Frequency"] <= $StopWordFrequency )
                     $count += 1;
             }
             $count -= 1;

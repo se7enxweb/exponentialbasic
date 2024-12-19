@@ -94,15 +94,19 @@ if ( isset( $URLQueryString ) )
     $Query = $URLQueryString;
 }
 
-if ( $Query )
+if ( isset( $Query ) && $Query )
 {
     $productList =& $product->activeProductSearch( $Query, $Offset, $Limit );
     $total_count = $product->activeProductSearchCount( $Query );
 }
+else
+{
+    $total_count = 0;
+}
 
 $t->set_var( "url_text", urlencode( $Query ) );
 
-if ( ( $MaxSearchForProducts != 0 ) && ( $MaxSearchForProducts < $total_count ) )
+if ( isset( $total_count ) && ( $MaxSearchForProducts != 0 ) && ( $MaxSearchForProducts < $total_count ) )
 {
     $t->parse( "error_max_search_for_products", "error_max_search_for_products_tpl" );
     $t->set_var( "product_search_list", "" );
@@ -113,7 +117,7 @@ if ( ( $MaxSearchForProducts != 0 ) && ( $MaxSearchForProducts < $total_count ) 
 $locale = new eZLocale( $Language );
 $i=0;
 $t->set_var( "product", "" );
-if ( isSet( $Query ) && ( count ( $productList ) > 0 ) )
+if ( isset( $productList ) && isset( $Query ) && ( count ( $productList ) > 0 ) )
 {
     foreach ( $productList as $product )
     {
@@ -217,4 +221,3 @@ $t->set_var( "product_total", $total_count );
 
 $t->pparse( "output", "product_search_tpl" );
 ?>
-

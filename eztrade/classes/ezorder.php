@@ -60,6 +60,7 @@ class eZOrder
         $this->IsExported = 0;
         $this->PersonID = 0;
         $this->CompanyID = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -1115,7 +1116,7 @@ class eZOrder
         return $return_array;
     }
 
-    function soldProducts( $product )
+    static public function soldProducts( $product )
     {
         if ( is_a( $product, "eZProduct" ) )
             $product = $product->ID();

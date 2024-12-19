@@ -1,5 +1,5 @@
 <?php
-// 
+//
 // $Id: search.php 9824 2003-06-02 08:00:43Z jhe $
 //
 // Created on: <08-Jun-2001 13:10:36 bf>
@@ -38,7 +38,7 @@ $moduleArray = explode( ";", $SearchModules );
 if ( isset ($SectionIDOverride) )
 {
     include_once( "ezsitemanager/classes/ezsection.php" );
-    
+
     $sectionObject =& eZSection::globalSectionObject( $SectionIDOverride );
     $sectionObject->setOverrideVariables();
 }
@@ -61,6 +61,8 @@ $Offset = 0;
 $tmpSearchText = str_replace( "<", "&lt;", $SearchText );
 $tmpSearchText = str_replace( ">", "&gt;", $tmpSearchText );
 $t->set_var( "search_text", $tmpSearchText );
+$t->set_var( "search_type", '' );
+
 foreach ( $moduleArray as $module )
 {
     $module = strtolower( $module );
@@ -68,57 +70,51 @@ foreach ( $moduleArray as $module )
     if ( eZFile::file_exists( "$module/user/searchsupplier.php" ) )
     {
         include( "$module/user/searchsupplier.php" );
-        
-        $t->set_var( "search_item", "" );
+
         $t->set_var( "module_name", $ModuleName );
         $i = 0;
-        if ( isset( $SearchResult ) && isset( $SearchResult[0] ) && !is_array( $SearchResult[0] ) )
-        {
-            $SearchResult = array( $SearchResult );
-        }
-        
-        $t->set_var( "search_sub_module", "" );
+
         foreach ( $SearchResult as $Result )
         {
-            if ( is_array( $Result ) && isset( $Result["Result"] ) && count( $Result ) > 0 && count( $Result["Result"] ) > 0 )
+            if( isset( $Result["Result"] ) )
             {
+                $ResultArrayDetailViewPath = $Result["DetailViewPath"];
                 $ResultArray = $Result["Result"];
-                foreach ( $ResultArray as $res )
-                {
-                    if ( ( $i % 2 ) == 0 )
-                        $t->set_var( "td_class", "bglight" );
+
+                foreach ($ResultArray as $res) {
+                    if (($i % 2) == 0)
+                        $t->set_var("td_class", "bglight");
                     else
-                        $t->set_var( "td_class", "bgdark" );
-                    
-                    $t->set_var( "search_link", $Result["DetailViewPath"] . $res->id() . "/" );
-                    $t->set_var( "search_name", $res->name() );
-                    $t->set_var( "icon_src", $Result["IconPath"] );            
-                    $t->parse( "search_item", "search_item_tpl", true );
+                        $t->set_var("td_class", "bgdark");
+
+                    $t->set_var("search_link", $ResultArrayDetailViewPath . $res->id() . "/");
+                    $t->set_var("search_name", $res->name());
+                    $t->set_var("icon_src", $Result["IconPath"]);
+                    $t->parse("search_item", "search_item_tpl", true);
                     $i++;
                 }
-            }
 
-            if( isset( $Result["DetailedSearchPath"] ) )
-            $t->set_var( "search_more_link", $Result["DetailedSearchPath"] . "?" .
-                         $Result["DetailedSearchVariable"] . "=". urlencode( $SearchText ) );
+                if (isset($Result["DetailedSearchPath"]))
+                    $t->set_var("search_more_link", $Result["DetailedSearchPath"] . "?" .
+                        $Result["DetailedSearchVariable"] . "=" . urlencode($SearchText));
 
-            if( isset( $Result["SearchCount"] ) )
-            $t->set_var( "search_count", $Result["SearchCount"] ? $Result["SearchCount"] : isset( $Result["Result"] ) && count( $Result["Result"] ) );
-            if ( isSet( $Result["SubModuleName"] ) )
-            {
-                $t->set_var( "sub_module_name", $Result["SubModuleName"] );
-                $t->parse( "search_sub_module_name", "search_sub_module_name_tpl" );
+                if (isset($Result["SearchCount"])) {
+                    $t->set_var("search_count", isset($Result["SearchCount"]) ? $Result["SearchCount"] : isset($Result["Result"]) && count($Result["Result"]));
+                }
+
+                if (isset($Result["SubModuleName"]) && $Result["SearchCount"] > 0) {
+                    $t->set_var("sub_module_name", $Result["SubModuleName"]);
+                    $t->parse("search_sub_module_name", "search_sub_module_name_tpl");
+                } else {
+                    $t->set_var("search_sub_module_name", "");
+                }
             }
-            else
-            {
-                $t->set_var( "search_sub_module_name", "" );
-            }
-                     
-            $t->parse( "search_sub_module", "search_sub_module_tpl", true );
-            $t->set_var( "search_item", "" );
         }
+        $t->parse("search_sub_module", "search_sub_module_tpl", true);
+        $t->set_var("search_item", "");
         $t->parse( "search_type", "search_type_tpl", true );
     }
+    $t->set_var("search_sub_module", "");
 }
 
 $t->pparse( "output", "search_tpl" );

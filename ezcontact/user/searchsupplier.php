@@ -27,7 +27,7 @@ $ModuleName = "eZ contact";
 $SearchResult[0]["DetailedSearchPath"] = "/contact/search/company/";
 $SearchResult[0]["DetailedSearchVariable"] = "SearchText";
 $SearchResult[0]["DetailViewPath"] = "/contact/company/view/";
-$SearchResult[0]["IconPath"] = "/images/document.gif";
+$SearchResult[0]["IconPath"] = "/design/base/images/icons/document.gif";
 
 include_once( "ezcontact/classes/ezcompany.php" );
 
@@ -38,7 +38,7 @@ $SearchResult[0]["SubModuleName"] = "Company";
 $SearchResult[1]["DetailedSearchPath"] = "/contact/search/person/";
 $SearchResult[1]["DetailedSearchVariable"] = "SearchText";
 $SearchResult[1]["DetailViewPath"] = "/contact/person/view/";
-$SearchResult[1]["IconPath"] = "/images/document.gif";
+$SearchResult[1]["IconPath"] = "/design/base/images/icons/document.gif";
 
 include_once( "ezcontact/classes/ezperson.php" );
 

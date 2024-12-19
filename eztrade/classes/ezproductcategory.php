@@ -382,8 +382,11 @@ class eZProductCategory
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZTrade_Category WHERE ID='$categoryID'");
 
-        $sectionID = $res[$db->fieldName("SectionID")];
-
+        if ( is_array( $res ) )
+            $sectionID = $res[$db->fieldName("SectionID")];
+        else
+            $sectionID = 0;
+        
         if ( $sectionID > 0 )
             return $sectionID;
         else

@@ -23,19 +23,18 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-
 $ModuleName = "eZ article";
-$SearchResult["DetailedSearchPath"] = "/article/search/";
-$SearchResult["DetailedSearchVariable"] = "SearchText";
-$SearchResult["DetailViewPath"] = "/article/view/";
-$SearchResult["IconPath"] = "/images/document.gif";
+$SearchResult[0]["DetailedSearchPath"] = "/article/search/";
+$SearchResult[0]["DetailedSearchVariable"] = "SearchText";
+$SearchResult[0]["DetailViewPath"] = "/article/view/";
+$SearchResult[0]["IconPath"] = "/design/base/images/icons/document.gif";
 
 include_once( "ezarticle/classes/ezarticle.php" );
 
 $article = new eZArticle();
-$SearchResult["Result"] = $article->search( $SearchText, "time", false, 0, $Limit, array(), $SearchResult["SearchCount"] );
+$articleSearchResult = $article->search( $SearchText, "time", false, 0, $Limit, array(), $SearchResult["SearchCount"] );
+$SearchResult[0]["Result"] = $articleSearchResult;
+$SearchResult[0]["SearchCount"] = is_array( $articleSearchResult ) ? count( $articleSearchResult ) : 0;
 // $SearchResult["SearchCount"] = $article->searchCount( $SearchText, "time", false );
-
-
 
 ?>

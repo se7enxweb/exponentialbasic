@@ -25,16 +25,16 @@
 
 
 $ModuleName = "eZ trade";
-$SearchResult["DetailedSearchPath"] = "/trade/search/";
-$SearchResult["DetailedSearchVariable"] = "Query";
-$SearchResult["DetailViewPath"] = "/trade/productview/";
-$SearchResult["IconPath"] = "/images/document.gif";
+$SearchResult[0]["DetailedSearchPath"] = "/trade/search/";
+$SearchResult[0]["DetailedSearchVariable"] = "Query";
+$SearchResult[0]["DetailViewPath"] = "/trade/productview/";
+$SearchResult[0]["IconPath"] = "/design/base/images/icons/document.gif";
 
 include_once( "eztrade/classes/ezproduct.php" );
 
 $product = new eZProduct();
 
-$SearchResult["Result"] =& $product->activeProductSearch( $SearchText, $Offset, $Limit );
-$SearchResult["SearchCount"] = $product->activeProductSearchCount( $SearchText );
+$SearchResult[0]["Result"] =& $product->activeProductSearch( $SearchText, $Offset, $Limit );
+$SearchResult[0]["SearchCount"] = $product->activeProductSearchCount( $SearchText );
 
 ?>

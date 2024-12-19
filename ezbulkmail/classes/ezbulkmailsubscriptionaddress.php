@@ -338,7 +338,7 @@ class eZBulkMailSubscriptionAddress
     /*!
       Checks if the email and passwords have a match. Returns true if yes, and false if not.
     */
-    function validate( $email, $password )
+    static public function validate( $email, $password )
     {
         $db =& eZDB::globalDatabase();
         $ret = false;

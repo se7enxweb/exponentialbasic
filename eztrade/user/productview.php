@@ -56,14 +56,14 @@ $PurchaseProduct = $ini->read_var( "eZTradeMain", "PurchaseProduct" ) == "true";
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 $locale = new eZLocale( $Language );
 
-if ( is_Numeric( $CategoryID ) )
+if ( isset( $CategoryID ) )
     $categoryID = $CategoryID;
 else
     $categoryID = 0;
 
 $product = new eZProduct( );
 
-if ( !$product->get( $ProductID, $categoryID ) )
+if ( isset( $ProductID ) && !$product->get( $ProductID, $categoryID ) )
 {
     if ( $product->get( $ProductID ) )
     {
@@ -76,7 +76,7 @@ if ( !$product->get( $ProductID, $categoryID ) )
     exit();
 }
 
-if ( $CategoryID == "" )
+if ( !isset( $CategoryID ) )
 {
     $category = $product->categoryDefinition();
 }
@@ -206,6 +206,7 @@ $t->set_var( "module", $ModuleName );
 $t->set_var( "module_list", $ModuleList );
 $t->set_var( "module_view", $ModuleView );
 $t->set_var( "module_print", $ModulePrint );
+$t->set_var( "product_category_id", $categoryID );
 $t->set_var( "attribute_header", "" );
 $t->set_var( "attribute_value", "" );
 $t->set_var( "price_range", "" );
@@ -248,6 +249,8 @@ foreach ( $pathArray as $path )
 }
 
 $mainImage = $product->mainImage();
+$mainImageID = false;
+
 if ( $mainImage )
 {
     $variation = $mainImage->requestImageVariation( $MainImageWidth, $MainImageHeight );

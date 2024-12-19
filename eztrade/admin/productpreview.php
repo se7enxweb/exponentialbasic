@@ -139,7 +139,7 @@ $t->set_var( "module_print", $ModulePrint );
 
 $product = new eZProduct( $ProductID );
 
-if ( $CategoryID == "" )
+if ( !isset( $CategoryID ) )
 {
     $category = $product->categoryDefinition();
 }
@@ -150,7 +150,7 @@ else
 }
 
 $pathArray =& $category->path();
-
+$mainImageID = false;
 $t->set_var( "path", "" );
 foreach ( $pathArray as $path )
 {
@@ -440,7 +440,7 @@ if ( $type )
     }
 }
 
-if ( count( $attributes ) > 0 )
+if ( isset( $attributes ) && count( $attributes ) > 0 )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }
@@ -549,7 +549,7 @@ if (
 if ( $can_checkout or !$RequireQuantity or ( $RequireQuantity and $Quantity > 0 ) )
     $t->parse( "add_to_cart", "add_to_cart_tpl" );
 
-if ( $PrintableVersion == "enabled" )
+if ( isset( $PrintableVersion ) && $PrintableVersion == "enabled" )
 {
     $t->parse( "numbered_page_link", "numbered_page_link_tpl" );
     $t->set_var( "print_page_link", "" );

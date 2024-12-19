@@ -45,6 +45,10 @@ if ( isset ($SectionIDOverride) )
     $sectionObject =& eZSection::globalSectionObject( $SectionIDOverride );
     $sectionObject->setOverrideVariables();
 }
+else
+{
+    $SectionIDOverride = false;
+}
 
 $t = new eZTemplate( "ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
                      "ezarticle/user/intl/", $Language, "search.php" );
@@ -81,9 +85,9 @@ if ( isset($_REQUEST['StopMonth']) && isset($_REQUEST['StopDay']) && isset($_REQ
 
 $t->set_var( "search_text", "" );
 
-if (!empty($_REQUEST['CategoryID'])) 
+if ( isset( $CategoryID ) )
 {
-	$category = new eZArticleCategory( $_REQUEST['CategoryID'] );
+	$category = new eZArticleCategory( $CategoryID );
 } 
 else 
 {
@@ -171,7 +175,7 @@ if ( isset( $articleList ) && count ( $articleList ) > 0 )
 
         $t->set_var( "article_id", $article->id() );
 	
-        $t->set_var( "category_id", $article->GetCategory( $_REQUEST['SectionIDOverride'] ) );
+        $t->set_var( "category_id", $article->GetCategory( $SectionIDOverride ) );
 
         if ( ( $i % 2 ) == 0 )
         {

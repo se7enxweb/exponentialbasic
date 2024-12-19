@@ -25,17 +25,17 @@
 
 
 $ModuleName = "eZ forum";
-$SearchResult["DetailedSearchPath"] = "/forum/search/";
-$SearchResult["DetailedSearchVariable"] = "QueryString";
-$SearchResult["DetailViewPath"] = "/forum/message/";
-$SearchResult["IconPath"] = "/images/message.gif";
+$SearchResult[0]["DetailedSearchPath"] = "/forum/search/";
+$SearchResult[0]["DetailedSearchVariable"] = "QueryString";
+$SearchResult[0]["DetailViewPath"] = "/forum/message/";
+$SearchResult[0]["IconPath"] = "/images/message.gif";
 
 include_once( "ezforum/classes/ezforum.php" );
 
 $forum = new eZForum();
 
-$SearchResult["Result"] = $forum->search( $SearchText, 0, $Limit, $SearchResult["SearchCount"] );
-
+$SearchResult[0]["Result"] = $forum->search( $SearchText, 0, $Limit, $SearchResult["SearchCount"] );
+$SearchResult[0]["SearchCount"] = count( $SearchResult[0]["Result"] );
 // $SearchResult["SearchCount"] = $forum->getQueryCount( $SearchText );
 
 

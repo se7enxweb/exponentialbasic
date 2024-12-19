@@ -95,7 +95,7 @@
 		<!-- END charset_switch_tpl -->
 		<div class="version">
 			<span class="top">{intl-ezpublish_version}:</span><br />
-			<span class="topusername">{ezpublish_version}</span>.<span class="topusername">{ezpublish_installation_version}</span>
+			<span class="topusername">{ezpublish_version}.</span><span class="topusername">{ezpublish_installation_version}</span>
 		</div>
 		<div class="site">
 			<span class="top">{intl-site_url}:</span><br />

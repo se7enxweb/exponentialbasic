@@ -1,0 +1,78 @@
+
+/* Header */
+
+.header {
+    display: block;
+}
+.header .infos {
+    padding-bottom: 1rem;
+}
+.header .logo {
+    float: left;
+    padding-right: 12px;
+}
+.header .version {
+    float: left;
+    padding-right: 12px;
+}
+.header .site {
+    float: left;
+    padding-right: 12px;
+}
+.header .userinfo {
+    float: left;
+    padding-right: 12px;
+}
+.header .clientinfo {
+    float: left;
+    padding-right: 12px;
+}
+.header .usersettings {
+    float: right;
+    padding-right: 12px;
+}
+.header .logout {
+    float: right;
+    padding-right: 12px;
+}
+
+/* Layout */
+.mainBody {
+  width: 87%;
+  float: left;
+  padding-left: 20px;
+  min-width: 25%;
+}
+
+.menuBox {
+  width: 11.5%;
+  float: left;
+}
+
+/* 
+ * 7x - Responsive redesign of eZ Publish 2 Admin
+ * Date: 2024/11/17
+ */
+@media screen and (max-width: 575.98px) {
+    .header .infos {
+        padding-bottom: 5rem;
+    }
+    .header .logout {
+        float: unset;
+        padding-right: 12px;
+    }
+    .mainBody {
+	width: 100%;
+	float: left;
+	padding-left: 0px;
+    }
+
+    .menuBox {
+	width: 100%;
+	float: left;
+    }
+    
+    html body div div.container div.mainBody table tbody tr td table tbody tr td form table inputz[type=text]{
+        width: 120px;
+    }
+}

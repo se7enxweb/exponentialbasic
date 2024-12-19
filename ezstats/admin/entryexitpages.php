@@ -45,13 +45,16 @@ $t->set_file( array(
 $t->set_block( "entry_exit_report_tpl", "exit_page_tpl", "exit_page" );
 $t->set_block( "entry_exit_report_tpl", "entry_page_tpl", "entry_page" );
 
+$t->set_var( "exit_page", "" );
+$t->set_var( "entry_page", "" );
+
 $t->set_block( "entry_exit_report_tpl", "month_tpl", "month" );
 $t->set_block( "month_tpl", "month_previous_tpl", "month_previous" );
 $t->set_block( "month_tpl", "month_previous_inactive_tpl", "month_previous_inactive" );
 $t->set_block( "month_tpl", "month_next_tpl", "month_next" );
 $t->set_block( "month_tpl", "month_next_inactive_tpl", "month_next_inactive" );
 
-if ( !is_numeric( $Year ) || !is_numeric( $Month ) )
+if ( isset( $Year ) && !is_numeric( $Year ) || isset( $Month ) && !is_numeric( $Month ) )
 {
     $cur_date = new eZDate();
     $Year = $cur_date->year();
@@ -61,14 +64,21 @@ if ( !is_numeric( $Year ) || !is_numeric( $Month ) )
 $query = new eZPageViewQuery();
 
 // exit pages
-$exitPages =& $query->topExitPage();
-
+$exitPages =& $query->topExitPage( $Month, $Year );
 $exitPageArray = array();
 
-foreach ( $exitPages as $page )
+foreach ( $exitPages as $index => $page )
 {
-    $exitPageArray[$page]["Count"] += 1;
-    $exitPageArray[$page]["PageID"] = $page;
+    $exitPageArray[$index] = array();
+    if( isset( $exitPageArray[$index]["Count"] ) )
+    {
+        $exitPageArray[$index]["Count"] += 1;
+    }
+    else
+    {
+        $exitPageArray[$index]["Count"] = 1;
+    }
+    $exitPageArray[$index]["PageID"] = $page["PageID"];
 }
 
 arsort( $exitPageArray );
@@ -95,14 +105,22 @@ foreach ( $exitPageArray as $exitPage )
 }
 
 // entry pages
-$entryPages =& $query->topEntryPage();
+$entryPages =& $query->topEntryPage( $Month, $Year );
 
 $entryPageArray = array();
 
-foreach ( $entryPages as $page )
+foreach ( $entryPages as $index => $page )
 {
-    $entryPageArray[$page]["Count"] += 1;
-    $entryPageArray[$page]["PageID"] = $page;
+    $entryPageArray[$index] = array();
+    if( isset( $entryPageArray[$index]["Count"] ) )
+    {
+        $entryPageArray[$index]["Count"] += 1;
+    }
+    else
+    {
+        $entryPageArray[$index]["Count"] = 1;
+    }
+    $entryPageArray[$index]["PageID"] = $page;
 }
 
 arsort( $entryPageArray );
@@ -118,7 +136,7 @@ foreach ( $entryPageArray as $entryPage )
         $t->set_var( "bg_color", "bgdark" );
 
     $t->set_var( "page_uri", $pageView->requestPageByID( $entryPage["PageID"] ) );
-    $t->set_var( "entry_count", $entryPage["Count"] );
+    $t->set_var( "entry_count", isset( $entryPage["Count"] ) ? $entryPage["Count"] : 0 );
 
     $t->parse( "entry_page", "entry_page_tpl", true );
     
@@ -126,6 +144,7 @@ foreach ( $entryPageArray as $entryPage )
     if ( $i>=$EntryPageLimit )
         break;
 }
+
 
 $next_month = new eZDate( $Year, $Month, 1, 0, 1, 0 );
 $prev_month = new eZDate( $Year, $Month, 1, 0, -1, 0 );

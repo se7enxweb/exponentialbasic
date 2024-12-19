@@ -59,6 +59,8 @@ class eZCompany
     */
     function __construct( $id= -1 )
     {
+        $this->CreatorID = 0;
+
         if ( is_numeric( $id ) and $id > -1 )
         {
             $this->ID = $id;
@@ -235,7 +237,7 @@ class eZCompany
       \static
       Returns true if the company exists.
     */
-    function exists( $id )
+    static public function exists( $id )
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -1261,4 +1263,5 @@ class eZCompany
     var $ContactID;
     var $PersonContactID;
     var $CompanyNo;
+    var $ContactType;
 }

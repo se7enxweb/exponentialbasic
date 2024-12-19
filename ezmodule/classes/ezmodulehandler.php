@@ -212,7 +212,7 @@ class eZModuleHandler
     */
     static public function append( $modules, $module )
     {
-        return array_unique( array_merge( $modules, $module ) );
+        return array_unique( array_merge( $modules, array( $module ) ) );
     }
 
     /*!
@@ -255,7 +255,7 @@ class eZModuleHandler
                 else
                 {
                     $module_item = array_shift( $modules );
-                    $modules = array_merge( $modules, $module_item );
+                    $modules = array_merge( $modules, array( $module_item ) );
                     $moved_module = true;
                     break;
                 }
@@ -294,7 +294,7 @@ class eZModuleHandler
                 else
                 {
                     $module_item = array_pop( $modules );
-                    $modules = array_merge( $module_item, $modules );
+                    $modules = array_merge( $modules, array( $module_item ) );
                     $moved_module = true;
                     break;
                 }

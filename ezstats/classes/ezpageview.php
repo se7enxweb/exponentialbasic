@@ -69,7 +69,7 @@ class eZPageView
         if ( !isset( $this->ID ) )
         {
             // parse information which is not relevant reported by browsers like konqueror
-            $userAgent = preg_replace( "#(.*)\);.*#", "\\1)", $GLOBALS["HTTP_USER_AGENT"] );
+            $userAgent = preg_replace( "#(.*)\);.*#", "\\1)", $_SERVER["HTTP_USER_AGENT"] );
 
             // check if the browser type is already stored in the database, if it it just
             // create a reference to it.
@@ -106,7 +106,7 @@ class eZPageView
             // check if the remote host is already stored in the database, if it it just
             // create a reference to it.
             
-            $remoteIP = $GLOBALS["REMOTE_ADDR"];
+            $remoteIP = $_SERVER["REMOTE_ADDR"];
 
             $db->begin();
             $db->lock( "eZStats_RemoteHost" );
@@ -146,7 +146,7 @@ class eZPageView
             $refererDomain = "";
             $refererURI = "";
             
-            if ( isset( $GLOBALS["HTTP_REFERER"] ) and preg_match( "#(htt.*?://)(.*?)(/.*)#", $GLOBALS["HTTP_REFERER"], $valueArray ) )
+            if ( isset( $_SERVER["HTTP_REFERER"] ) and preg_match( "#(htt.*?://)(.*?)(/.*)#", $_SERVER["HTTP_REFERER"], $valueArray ) )
             {
                 // we don't need to store the http:// or the https://
                 // $valueArray[1];
@@ -189,11 +189,14 @@ class eZPageView
 
             // check if the requested page is already stored. If so store
             // the id.
-            $requestURI = $GLOBALS["REQUEST_URI"];
-
+            $requestURI = $_SERVER["REQUEST_URI"];
+            $requestURI = preg_replace( "#/stats/store(.*?)1x1.gif$#", "\\1", $requestURI );
+            $requestURI = preg_replace( "#/rx.*?-(.*)$#", "\\1", $requestURI );
             // Remove url parameters
-            preg_match( "([^?]+)", $requestURI, $regs);
-            $requestURI =& $regs[1];
+            // preg_match( "([^?]+)", $requestURI, $regs);
+            // $requestURI =& $regs[1];
+            $requestURI = explode( '/stats/store', $requestURI  );
+            $requestURI = $requestURI[1];
 
             $db->begin();
             $db->lock( "eZStats_RequestPage" );
@@ -420,7 +423,7 @@ class eZPageView
     /*!
       Returns the hostname of the requested ip address.
     */
-    function getHostByAddr( $remoteIP )
+    static public function getHostByAddr( $remoteIP )
     {
         $remoteHostName =& gethostbyaddr( $remoteIP );
         return $remoteHostName;
@@ -443,6 +446,7 @@ class eZPageView
     var $RefererURL;
     var $RefererDomain;
     var $RequestPage;
+    var $RefererURLID;
 }
 
 ?>

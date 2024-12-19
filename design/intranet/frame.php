@@ -92,7 +92,7 @@ else
 
 </head>
 
-<body bgcolor="#669966" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"  onload="MM_preloadImages('<?php print $GlobalSiteIni->WWWDir; ?>/images/redigerminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/images/slettminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/images/downloadminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/images/addminimrk.gif')">
+<body bgcolor="#669966" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"  onload="MM_preloadImages('<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/redigerminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/slettminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/downloadminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/addminimrk.gif')">
 
 <table class="body" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -267,7 +267,7 @@ if ( $StoreStats == "enabled" )
     // create a random string to prevent browser caching.
     $seed = md5( microtime() );
     // callback for storing the stats
-    $imgSrc = $GlobalSiteIni->WWWDir . "/stats/store/rx$seed-" . $_SERVER['REQUEST_URI'] . "1x1.gif";
+    $imgSrc = $GlobalSiteIni->WWWDir . "/stats/store/rx$seed-" . $_SERVER['REQUEST_URI']; ///. "1x1.gif";
     print( "<img src=\"$imgSrc\" height=\"1\" width=\"1\" border=\"0\" alt=\"\" />" );
 }
 

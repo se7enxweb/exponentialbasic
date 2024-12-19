@@ -50,7 +50,7 @@ if ( $user == false )
 else
     $userID = $user->id();
 
-if ( isSet( $GetByUser ) )
+if ( isset( $GetByUser ) )
     $userID = $GetByUserID;
 
 if ( ( $session->variable( "ShowOtherCalendarUsers" ) == false ) || ( isSet( $GetByUser ) ) )
@@ -65,7 +65,7 @@ else
 $tmpUser = new eZUser( $userID );
 $date = new eZDate();
 
-if ( $Year != "" && $Month != "" && $Day != "" )
+if ( isset( $Year ) && $Year != "" && isset( $Month ) && $Month != "" && isset( $Day ) && $Day != "" )
 {
     $date->setYear( $Year );
     $date->setMonth( $Month );

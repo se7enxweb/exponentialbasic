@@ -60,7 +60,7 @@ if ( isset( $Action ) && $Action == "edit" )
         $user->addTrustee( $add );
     }
     include_once( "classes/ezhttptool.php" );
-    eZHTTPTool::header( "Location: /" );
+    eZHTTPTool::header( "Location: " . $_SERVER["HTTP_REFERER"] );
     exit();
 }
 

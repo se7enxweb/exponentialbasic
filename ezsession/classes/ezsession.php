@@ -458,9 +458,12 @@ class eZSession
                                          FROM eZSession_Session
                                          HAVING Idle>(60*60*$maxIdle) ORDER BY ID DESC" );
 
-        $sid = $value_array[0]["ID"];
-        $db->query( "DELETE FROM eZSession_SessionVariable WHERE SessionID<='$sid'" );
-        $db->query( "DELETE FROM eZSession_Session WHERE ID<='$sid'" );
+        if( isset( $value_array ) && count( $value_array ) > 0 )
+        {
+            $sid = $value_array[0]["ID"];
+
+            $db->query( "DELETE FROM eZSession_SessionVariable WHERE SessionID<='$sid'" );
+            $db->query( "DELETE FROM eZSession_Session WHERE ID<='$sid'" );        }
     }
 
     /*!

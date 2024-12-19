@@ -101,6 +101,25 @@ switch ( $ListType )
     }
     break;
 
+    case "search":
+    {
+        $SearchType = $url_array[3];
+        switch ( $SearchType )
+        {
+            case "company":
+            {
+                include( "ezcontact/user/companysearch.php" );
+                break;
+            }
+            case "person":
+            {
+                include( "ezcontact/user/personsearch.php" );
+                break;
+            }
+        }
+        break;
+    }
+
     case "company":
     {
         $CompanyID = $url_array[4];

@@ -51,6 +51,8 @@ class eZCompanyType
     */
     function __construct( $id = -1 )
     {
+        $this->ImageID = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;

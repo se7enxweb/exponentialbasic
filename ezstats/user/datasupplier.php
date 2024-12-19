@@ -26,7 +26,11 @@
 
 switch ( $url_array[2] )
 {
-
+    case "store" :
+    {
+        include( "ezstats/user/storestats.php" );
+    }
+    break;
 }
 
 ?>

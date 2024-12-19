@@ -25,13 +25,20 @@
 
 $ini =& $GlobalSiteIni;
 $Language = $ini->read_var( "eZContactMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
+$DOC_ROOT = 'ezcontact';
 
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ), $DOC_ROOT . "admin/intl", $Language, "error.php" );
+$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ), $DOC_ROOT . "/admin/intl", $Language, "error.php" );
 $t->setAllStrings();
 
 $page_path = "/contact/error";
 $item_error = true;
+
+$t->set_file( array(
+    "error_page" =>  "error.tpl",
+    ) );
+$t->set_block( "error_page", "uri_item_tpl", "uri_item" );
+
+$t->set_var( "uri_item", "" );
 
 if ( empty( $BackUrl ) )
 {
@@ -42,18 +49,11 @@ else
     $back_command = $BackUrl;
 }
 
-header( "Error $Type: " );
-
-$t->set_file( array(
-    "error_page" =>  "error.tpl",
-    ) );
-$t->set_block( "error_page", "uri_item_tpl", "uri_item" );
-
-$t->set_var( "uri_item", "" );    
+// header( "Error $Type: " );
 
 if ( !empty( $Uri ) )
 {
-    $t->set_var( "uri_data", "http://" . $HOSTNAME . $Uri );
+    $t->set_var( "uri_data", "http://" . $_SERVER["HTTP_HOST"] . $Uri );
     $t->parse( "uri_item","uri_item_tpl" );
 }
 

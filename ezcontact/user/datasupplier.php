@@ -99,6 +99,7 @@ switch ( $url_array[2] )
 
     case "search":
     {
+        die('hitter2');
         $SearchType = $url_array[3];
         switch ( $SearchType )
         {
@@ -269,7 +270,6 @@ switch ( $url_array[2] )
         }
         break;
     }
-    break;
 
     case "companycategory" :
     {

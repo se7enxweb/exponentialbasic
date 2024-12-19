@@ -88,9 +88,9 @@ class eZMySQLDB
       Execute a query on the global MySQL database link.  If it returns an error,
       the script is halted and the attempted SQL query and MySQL error message are printed.
     */
-    function &query( $sql, $print=false )
+    function &query( $sql, $print=false, $debug=true )
     {
-        if ( $GLOBALS["DEBUG"] == true )
+        if ( $debug )
         {
             include_once( "classes/ezbenchmark.php" );
 
@@ -118,7 +118,7 @@ class eZMySQLDB
 
         if ( $print )
         {
-            if ( $GLOBALS["DEBUG"] == true )
+            if ( $debug )
             {
                 print( $sql . "<br>");
             }
@@ -132,7 +132,7 @@ class eZMySQLDB
         {
             $this->unlock();
             $this->Error = "<code>" . htmlentities( $sql ) . "</code><br>\n<b>" . htmlentities(mysqli_error( $this->Database)) . "</b>\n" ;
-            if ( $GLOBALS["DEBUG"] == true )
+            if ( $debug )
             {
                 print( "<b>MySQL Query Error</b>: " . htmlentities( $sql ) . "<br><b> Error number:</b>" . $errorNum . "<br><b> Error message:</b> ". $errorMsg ."<br>" );
             }

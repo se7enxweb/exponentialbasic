@@ -55,7 +55,7 @@ $t->set_var( "item_start", $Offset + 1 );
 $t->set_var( "item_end", $Offset + $ViewLimit );
 $t->set_var( "item_count", $ItemCount );
 $t->set_var( "item_limit", $ViewLimit );
-$t->set_var( "exclude_domain", $ExcludeDomain );
+$t->set_var( "exclude_domain", isset( $ExcludeDomain ) ? $ExcludeDomain : false );
 
 $headers = getallheaders();
 $request_domain = $headers["Host"];

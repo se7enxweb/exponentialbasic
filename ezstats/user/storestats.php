@@ -26,7 +26,7 @@
 ob_start( );
 
 // get right path 
-chdir( "../../" );
+//chdir( "../../" );
 
 $REQUEST_URI = preg_replace( "#/stats/store(.*?)1x1.gif$#", "\\1", $REQUEST_URI );
 //$REQUEST_URI = preg_replace( "#/stats/store(.*?)1x1.png$#", "\\1", $REQUEST_URI );

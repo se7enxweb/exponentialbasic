@@ -167,7 +167,7 @@ class eZTodo
       Gets all the todo informasjon from the database.
       Returns the array in $todo_array ordered by name.
     */
-    function getAll()
+    static public function getAll()
     {
         $db =& eZDB::globalDatabase();
 
@@ -189,7 +189,7 @@ class eZTodo
       Return the array in $todo_array ordered by name.
 
     */
-    function getByUserID( $id, $statusID = 0, $categoryID = 0 )
+    static public function getByUserID( $id, $statusID = 0, $categoryID = 0 )
     {
         $db =& eZDB::globalDatabase();
         $todo_array = 0;
@@ -285,7 +285,7 @@ class eZTodo
       \static
       Gets all todos for one spesific date
     */
-    function &getByDate( $user, $date )
+    static public function &getByDate( $user, $date )
     {
         if ( is_a( $date, "eZDate" ) )
         {

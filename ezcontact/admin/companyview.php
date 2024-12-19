@@ -382,7 +382,7 @@ else
     if ( !isSet( $PersonOffset ) or !is_numeric( $PersonOffset ) )
         $PersonOffset = 0;
     $t->set_var( "person_table_item", "" );
-    $persons = $company->persons( false, true, $PersonLimit, $PersonOffset );
+    $persons = $company->persons( $CompanyID, true, $PersonLimit, $PersonOffset );
     if ( count( $persons ) > 0 )
     {
         $person_count = $company->personCount();

@@ -86,7 +86,7 @@ switch ( $url_array[2] )
             case "insert" :
             {
                 $Action = "Insert";
-                $AppointmentID = $url_array[4];
+                $AppointmentID = 0;
             }
             break;
 

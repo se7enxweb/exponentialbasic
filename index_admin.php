@@ -244,8 +244,8 @@ if ( $user )
                 exit;
             }
 
-            if( $singleModule == 'enabled' )
-                $modules = array( $modules[0] );
+            //if( $singleModule == 'enabled' )
+            //    $modules = array( $modules[0] );
 
             // draw modules
             foreach ( $modules as $module )

@@ -117,7 +117,7 @@ else
 
 if ( $userID == false )
     $app = false;
-else if ( $Action == "New" )
+elseif ( $Action == "New" || $Action == "Insert" )
     $app = new eZAppointment();
 else
     $app = new eZAppointment( $AppointmentID );

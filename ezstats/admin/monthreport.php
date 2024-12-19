@@ -59,7 +59,9 @@ $t->set_block( "month_tpl", "month_previous_inactive_tpl", "month_previous_inact
 $t->set_block( "month_tpl", "month_next_tpl", "month_next" );
 $t->set_block( "month_tpl", "month_next_inactive_tpl", "month_next_inactive" );
 
-if ( !is_numeric( $Year ) || !is_numeric( $Month ) )
+$t->set_var( "day", "" );
+
+if ( isset( $Year ) && !is_numeric( $Year ) || isset( $Month ) && !is_numeric( $Month ) )
 {
     $cur_date = new eZDate();
     $Year = $cur_date->year();
@@ -67,7 +69,6 @@ if ( !is_numeric( $Year ) || !is_numeric( $Month ) )
 }
 
 $query = new eZPageViewQuery();
-
 $monthReport =& $query->monthStats( $Year, $Month );
 
 if ( count( $monthReport ) > 0 )

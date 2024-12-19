@@ -64,17 +64,18 @@ else
         }
     }
 }
+
 eZModuleHandler::setActive( $modules );
 
 $uri =& $_REQUEST["RefURL"];
 
-// set the first menu item active
-unset( $menuItems );
-include( strtolower($ModuleName) ."/admin/menubox.php" );
-$uri = $menuItems[0][0];
-unset( $menuItems );
-
+if( strtolower( $ModuleName ) != 'all' && strtolower( $ModuleName ) != 'none' )
+{
+    // set the first menu item active
+    unset( $menuItems );
+    include( strtolower($ModuleName) ."/admin/menubox.php" );
+    $uri = $menuItems[0][0];
+    unset( $menuItems );
+}
 eZHTTPTool::header( "Location: $uri" );
 exit();
-
-

@@ -23,17 +23,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-// Find out, where our files are.
-
-
 set_time_limit( 0 );
 
-if ( ereg( "(.*/)([^\/]+\.php)$", $SCRIPT_FILENAME, $regs ) )
+// Find out, where our files are.
+if ( preg_match("/(.+\/)([^\/]+\.php)$/", $_SERVER["SCRIPT_FILENAME"], $regs) )
     $siteDir = $regs[1];
-elseif ( ereg( "(.*/)([^\/]+\.php)/?", $PHP_SELF, $regs ) )
-    $siteDir = $DOCUMENT_ROOT . $regs[1];
+elseif ( preg_match( "(.*/)([^\/]+\.php)/?", $_SERVER["PHP_SELF"], $regs ) )
+    $siteDir = $_SERVER["DOCUMENT_ROOT"] . $regs[1];
 else
-	$siteDir = "./";
+    $siteDir = "./";
 
 if ( substr( php_uname(), 0, 7) == "Windows" )
     $separator = ";";
@@ -46,6 +44,7 @@ if ( trim( $includePath ) != "" )
 else
     $includePath = $siteDir;
 ini_set( "include_path", $includePath );
+
 
 // site information
 include_once( "classes/INIFile.php" );
@@ -87,7 +86,7 @@ foreach ( $messages as $message )
 */
 
 // do session cleanup
-include( "ezsession/admin/cron.php" );
+// include( "ezsession/admin/cron.php" );
 
 // Time publishing
 include( "ezarticle/admin/cron.php" );

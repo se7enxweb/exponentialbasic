@@ -183,7 +183,7 @@ if ( ( $userCheck ) && ( $Action == "update" ) || ( $Action == "updateStatus" ) 
 }
 
 
-if ( $Action == "insert" || $Action == "update" )
+if ( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "update" )
 {
     if ( $nameCheck )
     {
@@ -225,7 +225,7 @@ if ( $error )
 }
 
 // Save a todo in the database.
-if ( $Action == "insert" && $error == false )
+if ( isset( $Action ) && $Action == "insert" && $error == false )
 {
     $todo = new eZTodo();
     $todo->setName( $Name );
@@ -299,7 +299,7 @@ if ( $Action == "insert" && $error == false )
 
 
 // Update a todo in the database.
-if ( $Action == "update" && $error == false )
+if ( isset( $Action ) && $Action == "update" && $error == false )
 {
     $userID = $user->ID();
     $todo = new eZTodo();
@@ -394,7 +394,7 @@ if ( $Action == "update" && $error == false )
 }
 
 // Delete a todo in the database.
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     $todo = new eZTodo();
     $todo->get( $TodoID );
@@ -404,7 +404,7 @@ if ( $Action == "delete" )
     exit();
 }
 
-if ( $Action == "new" )
+if ( isset( $Action ) && $Action == "new" )
 {
     $Deadline = new eZDateTime();
     $DeadlineDay = $Deadline->day();
@@ -418,6 +418,9 @@ if ( $Action == "new" )
     $day = "";
     $hour = "";
     $min = "";
+    $Comment = "";
+    $categoryID = false;
+    $priorityID = false;
     $t->set_var( "text", "" );
     $t->parse( "send_mail", "send_mail_tpl" );
 }
@@ -435,7 +438,7 @@ $OwnerID = $user->id();
 
 $datetime = new eZDateTime();
 
-if ( $Action == "new" || $error )
+if ( isset( $Action ) && $Action == "new" || $error )
 {
     $t->set_var( "current_date", $locale->format( $datetime ) );
     $t->set_var( "first_name", $user->firstName() );

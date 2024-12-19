@@ -64,7 +64,7 @@ function unlinkWild( $dir, $rege )
 
 $user =& eZUser::currentUser();
 
-if ( $CompanyEdit )
+if ( isset( $CompanyEdit ) && $CompanyEdit )
 {
     $item_type = "company";
     $item_id = $CompanyID;
@@ -911,21 +911,21 @@ if ( !$confirm )
 
             // Company type selector
             $companyTypeList = eZCompanyType::getTree();
+            $categoryList = array();
 
             if ( $Action != "new" )
             {
-                if ( !isSet( $CompanyCategoryID ) )
+                if ( !isset( $CompanyCategoryID ) )
                     $categoryList =& eZCompany::categories( $CompanyID, false );
                 else
-                    $categoryList =& $CompanyCategoryID;
+                    $categoryList = array( $CompanyCategoryID );
             }
-
             if ( isSet( $NewCompanyCategory ) and !is_numeric( $NewCompanyCategory ) )
                 $NewCompanyCategory = 0;
             if ( isSet( $NewCompanyCategory ) and is_numeric( $NewCompanyCategory ) )
-                $categoryList =& array_unique( array_merge( $NewCompanyCategory, $categoryList ) );
+                $categoryList =& array_unique( array_merge( array( $NewCompanyCategory ), $categoryList ) );
             if ( isSet( $CompanyCategoryID ) )
-                $categoryList =& array_unique( array_merge( $CompanyCategoryID, $categoryList ) );
+                $categoryList =& array_unique( array_merge( array( $CompanyCategoryID ), $categoryList ) );
             if ( isset( $categoryList ) && count( $categoryList ) > 0 )
                 $category_values = array_values( $categoryList );
             else

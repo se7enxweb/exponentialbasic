@@ -48,7 +48,9 @@ class eZAppointment
     */
     function __construct( $id = -1 )
     {
-        $this->AllDay = false;
+        $this->AllDay = 0;
+        $this->EMailNotice = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -68,7 +70,7 @@ class eZAppointment
         {
             $db->lock( "eZCalendar_Appointment" );
             $this->ID = $db->nextID( "eZCalendar_Appointment", "ID" );
-            $res[] = $db->query( "INSERT INTO eZCalendar_Appointment
+            $query = "INSERT INTO eZCalendar_Appointment
   		                          (ID,
                                    UserID,
                                    Name,
@@ -91,7 +93,9 @@ class eZAppointment
                                    '$this->IsPrivate',
                                    '$this->Priority',
                                    '$this->AppointmentTypeID',
-                                   '$this->AllDay')" );
+                                   '$this->AllDay')";
+            echo $query;
+            $res[] = $db->query( $query );
             $db->unlock();
         }
         else
@@ -394,6 +398,12 @@ class eZAppointment
     */
     function setAllDay( $value )
     {
+        if ( is_bool( $value ) && $value == true )
+            $value = 1;
+
+        if ( is_bool( $value ) && $value == false )
+            $value = 0;
+
         $this->AllDay = $value;
     }
 

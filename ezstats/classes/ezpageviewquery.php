@@ -292,6 +292,7 @@ class eZPageViewQuery
 
         $return_array = array();
         $visitor_array = array();
+        $search_text = "";
         $excludeTableName = "";
 
         if ( $excludeDomain != "" )
@@ -357,7 +358,7 @@ class eZPageViewQuery
         $return_array = array();
 
         $db->array_query( $visitor_array,
-        "SELECT Count, Browser
+        "SELECT ID, Count, Browser
          FROM eZStats_Archive_BrowserType
          GROUP BY Browser, Count
          ORDER BY Count DESC",
@@ -401,7 +402,7 @@ class eZPageViewQuery
 
         $return_array = array();
         $db->array_query( $visitor_array,
-        "SELECT Count, URI, Month
+        "SELECT ID, Count, URI, Month
          FROM eZStats_Archive_RequestedPage
          ORDER BY Count DESC",
         array( "Limit" => $limit,
@@ -435,7 +436,7 @@ class eZPageViewQuery
     /*!
       Returns the most frequent viewed products.
     */
-    static public function &topProductRequests( $limit=20 )
+    static public function &topProductRequests( $limit=20, $offset=0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -465,7 +466,7 @@ class eZPageViewQuery
     /*!
       Returns the most frequent products added to the cart.
     */
-    static public function &topProductAddToCart( $limit=20 )
+    static public function &topProductAddToCart( $limit=20, $offset=0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -494,7 +495,7 @@ class eZPageViewQuery
     /*!
       Returns the most frequent products added to the wishlist.
     */
-    static public function &topProductAddToWishlist( $limit=20 )
+    static public function &topProductAddToWishlist( $limit=20, $offset=0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -540,7 +541,7 @@ class eZPageViewQuery
         for ( $month = 1; $month <= 12; $month++ )
         {
             $stamp = new eZDateTime( $year, $month, 1, 0, 0, 0 );
-            if ( $smonth == 12 )
+            if ( $month == 12 )
                 $end = new eZDateTime( $year + 1, 1, 1, 0, 0, 0 );
             else
                 $end = new eZDateTime( $year, $month + 1, 1, 0, 0, 0 );
@@ -599,8 +600,15 @@ class eZPageViewQuery
              WHERE Hour > '" . $stamp->timeStamp() . "' AND Hour < '" .
             $end->timeStamp() . "'" );
 
-            $TotalPages += $visitor_array[0][$db->fieldName( "Count" )];
-            $day_array[] = array( "Count" => $visitor_array[0][$db->fieldName( "Count" )] );
+            if( count( $visitor_array ) > 0 )
+            {
+                $TotalPages += $visitor_array[0][$db->fieldName( "Count" )];
+                $day_array[] = array( "Count" => $visitor_array[0][$db->fieldName( "Count" )] );
+            }
+            else
+            {
+                $day_array[] = array( "Count" => 0 );
+            }
         }
         $now = getdate();
         $return_array = array( "TotalPages" => $TotalPages,
@@ -635,8 +643,15 @@ class eZPageViewQuery
                                Hour>='" . $stampStart->timeStamp() . "' AND
                                Hour<='" . $stampEnd->timeStamp()  . "'" );
 
-            $TotalPages += $visitor_array[0][$db->fieldName( "Count" )];
-            $hour_array[] = array( "Count" => $visitor_array[0][$db->fieldName( "Count" )] );
+            if( count( $visitor_array ) > 0 )
+            {
+                $TotalPages += $visitor_array[0][$db->fieldName( "Count" )];
+                $hour_array[] = array( "Count" => $visitor_array[0][$db->fieldName( "Count" )] );
+            }
+            else
+            {
+                $hour_array[] = array( "Count" => 0 );
+            }
         }
         $now = getdate();
         $return_array = array( "TotalPages" => $TotalPages,
@@ -649,24 +664,24 @@ class eZPageViewQuery
     /*!
       Returns the top exit pages.
     */
-    static public function &topExitPage( )
+    static public function &topExitPage( $month, $year )
     {
         $db =& eZDB::globalDatabase();
 
         $return_array = array();
         $visitor_array = array();
-
-        $db->array_query( $visitor_array,
-        "SELECT Hit.ID, Page.URI, Page.ID AS PageID, Hit.RemoteHostID, Concat( Year(Hit.Date), DayOfYear(Hit.Date)) AS Date
+        $query = "SELECT Hit.ID, Page.URI, Page.ID AS PageID, Hit.RemoteHostID, Concat( Year(Hit.Date), DayOfYear(Hit.Date)) AS Date
          FROM eZStats_PageView AS Hit, eZStats_RequestPage AS Page
-         WHERE Hit.RequestPageID=Page.ID
-         ORDER BY Hit.RemoteHostID, Hit.Date ASC" );
+         WHERE Hit.RequestPageID=Page.ID AND Year(FROM_UNIXTIME(Hit.Date)) = " . $year . " AND MONTH(FROM_UNIXTIME(Hit.Date)) = " . $month ."
+         ORDER BY Hit.RemoteHostID, Hit.Date ASC";
+
+        $db->array_query( $visitor_array, $query);
 
         foreach ( $visitor_array as $visit )
         {
             $idx = $visit["Date"] . $visit["RemoteHostID"];
-
-            $return_array[$idx] = $visit["PageID"];
+            //$return_array[$idx] = $visit["PageID"];
+            $return_array[$idx] = $visit;
 
         }
 
@@ -677,7 +692,7 @@ class eZPageViewQuery
     /*!
       Returns the top entry pages.
     */
-    static public function &topEntryPage( )
+    static public function &topEntryPage( $month, $year )
     {
         $db =& eZDB::globalDatabase();
 
@@ -687,7 +702,7 @@ class eZPageViewQuery
         $db->array_query( $visitor_array,
         "SELECT Hit.ID, Page.URI, Page.ID AS PageID, Hit.RemoteHostID, Concat( Year(Hit.Date), DayOfYear(Hit.Date)) AS Date
          FROM eZStats_PageView AS Hit, eZStats_RequestPage AS Page
-         WHERE Hit.RequestPageID=Page.ID
+         WHERE Hit.RequestPageID=Page.ID AND Year(FROM_UNIXTIME(Hit.Date)) = " . $year . " AND MONTH(FROM_UNIXTIME(Hit.Date)) = " . $month ."
          ORDER BY Hit.RemoteHostID, Hit.Date DESC" );
 
         foreach ( $visitor_array as $visit )

@@ -64,7 +64,7 @@ if ( $user == false )
 else
     $userID = $user->id();
 
-if ( $GetByUserID == false )
+if ( isset( $GetByUserID ) && $GetByUserID == false )
 {
     $GetByUserID = $userID;
 }
@@ -91,7 +91,7 @@ $foundAppointment = false;
 if ( $appointment->id() > 0 )
 {
     $ownerUser = new eZUser( $appointment->userID() );
-    $trusteeList = array_merge( $ownerUser->trustees(), $ownerUser->id() );
+    $trusteeList = array_merge( $ownerUser->trustees(), array( $ownerUser->id() ) );
     if ( in_array( $user->id(), $trusteeList ) )
         $foundAppointment = true;
 }

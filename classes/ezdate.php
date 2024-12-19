@@ -196,7 +196,7 @@ class eZDate
     {
         $lastday = mktime( 2, 0, 0, $this->Month + 1, 0, $this->Year );
 
-        return date( "%d", $lastday );
+        return date( "d", $lastday );
     }
 
     /*!

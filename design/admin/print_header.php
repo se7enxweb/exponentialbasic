@@ -60,7 +60,7 @@ $t->set_var( "site_style", $SiteDesign );
 
 $t->set_var( "module_name", $moduleName );
 
-$t->set_var( "current_url", eZHTTPTool::removeVariable( $REQUEST_URI, "PrintableVersion" ) );
+$t->set_var( "current_url", eZHTTPTool::removeVariable( $_SERVER['REQUEST_URI'], "PrintableVersion" ) );
 
 $t->set_var( "charset", $iso );
 

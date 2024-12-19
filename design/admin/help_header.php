@@ -33,8 +33,8 @@ $Locale = new eZLocale( $Language );
 $iso = $Locale->languageISO();
 
 
-$t = new eZTemplate( "admin/templates/" . $SiteDesign,
-                     "admin/intl/", $Language, "help_header.php" );
+$t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
+                     "design/admin/intl/", $Language, "help_header.php" );
 
 
 $t->set_file( array(

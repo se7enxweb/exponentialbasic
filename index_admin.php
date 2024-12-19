@@ -163,6 +163,12 @@ for( $i = $url_array_count; $i <= 25; $i++ )
     $url_array[$i] = false;
 }
 
+// set the module logo
+$moduleName =& $url_array[1];
+
+if ( $moduleName == "" )
+    $moduleName = "user";
+
 $HelpMode  = "disabled";
 
 $user =& eZUser::currentUser();

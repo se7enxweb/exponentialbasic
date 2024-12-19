@@ -40,7 +40,7 @@ class eZPublish
     */
     static public function version()
     {
-        return "2.4.0.1";
+        return "2.4.0.0";
     }
 
     /*!
@@ -52,7 +52,19 @@ class eZPublish
     static public function svnVersion()
     {
 	//        return "2.2.9";
-	return "trunk-1";
+	return "trunk";
+    }
+
+    /*!
+      \static
+      Returns the eZ publish git version number.
+      This static public function is currently static, it will need to become dynamic 
+      to check an external source and return the actual dynamic git number
+    */
+    static public function gitVersion()
+    {
+	//        return "2.2.9";
+	return "master";
     }
 
     /*!
@@ -61,8 +73,8 @@ class eZPublish
     */
     static public function installationVersion()
     {
-        //        return "2.2.9";
-        return "0.0.5";
+        //        return "2.9";
+        return "0.1";
     }
 
 }

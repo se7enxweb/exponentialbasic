@@ -19,7 +19,7 @@
 	<a href="{www_dir}{index}{first_news_url}" target="_vblank"><h1>{first_news_name}</h1></a>
 	<span class="small">( {first_news_origin} - {first_news_date} )</span>
 	<div class="spacer"><div class="p">{first_news_intro}</div></div>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />&nbsp;<a class="path" href="{www_dir}{index}{first_news_url}">{intl-read_more}</a>
+	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />&nbsp;<a class="path" href="{www_dir}{index}{first_news_url}">{intl-read_more}</a>
 	</td>
 </tr>
 </table>
@@ -31,7 +31,7 @@
 	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}{news_url}" target="_vblank">{news_name}</a></div>
 	<span class="small">( {news_origin} - {news_date} )</span>
 	<div class="spacer"><div class="p">{news_intro}</div></div>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />&nbsp;<a class="path" href="{www_dir}{index}{news_url}">{intl-read_more}</a>
+	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />&nbsp;<a class="path" href="{www_dir}{index}{news_url}">{intl-read_more}</a>
 	</td>
 {endtr}
 <!-- END news_item_tpl -->

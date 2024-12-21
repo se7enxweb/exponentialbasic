@@ -106,8 +106,8 @@
 */
 
 
-include_once( "classes/ezlog.php" );
-include_once( "classes/INIFile.php" );
+include_once( "kernel/classes/ezlog.php" );
+include_once( "kernel/classes/INIFile.php" );
 
 class eZDB
 {
@@ -155,7 +155,7 @@ class eZDB
             {
                 case "mysql" :
                 {
-                    include_once( "classes/ezmysqldb.php" );
+                    include_once( "kernel/classes/ezmysqldb.php" );
 
                     $impl = new eZMySQLDB( $server, $db, $user, $password );
                 }
@@ -163,7 +163,7 @@ class eZDB
 
                 case "postgresql" :
                 {
-                    include_once( "classes/ezpostgresqldb.php" );
+                    include_once( "kernel/classes/ezpostgresqldb.php" );
 
                     $impl = new eZPostgreSQLDB( $server, $db, $user, $password );
                 }
@@ -171,7 +171,7 @@ class eZDB
 
                 case "informix" :
                 {
-                    include_once( "classes/ezinformixdb.php" );
+                    include_once( "kernel/classes/ezinformixdb.php" );
                     $impl = new eZInformixDB( $server, $db, $user, $password );
                 }
                 break;

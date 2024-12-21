@@ -36,7 +36,7 @@
   \sa eZModuleLink
 */
 
-include_once( "classes/ezlinkitem.php" );
+include_once( "kernel/classes/ezlinkitem.php" );
 
 class eZLinkSection
 {

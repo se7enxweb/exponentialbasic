@@ -33,8 +33,8 @@
 //  $Offset = The offset being shown (when browsing)
 //  $LinkID = The id of the link being edited
 
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/ezcachefile.php" );
+include_once( "kernel/classes/ezhttptool.php" );
+include_once( "kernel/classes/ezcachefile.php" );
 
 if ( !isset( $ClientIntlDir ) )
 {
@@ -50,7 +50,7 @@ if ( isset( $Back ) )
     eZHTTPTool::header( sprintf( "Location: " . $URLS["back"], $ItemID ) );
     exit();
 }
-include_once( "classes/INIFile.php" );
+include_once( "kernel/classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( $INIGroup, "Language" );
@@ -60,12 +60,12 @@ $DefaultSections = $ini->read_array( $INIGroup, $DefaultSectionsName );
 
 if ( isset( $ModuleType ) )
 {
-    include_once( "ezsession/classes/ezpreferences.php" );
+    include_once( "kernel/ezsession/classes/ezpreferences.php" );
     $preferences = new eZPreferences();
     $preferences->setVariable( $PreferencesSetting, $ModuleType );
 }
 
-include_once( "classes/ezlinksection.php" );
+include_once( "kernel/classes/ezlinksection.php" );
 if ( is_array( $SectionIDList ) )
 {
     foreach( $SectionIDList as $id )
@@ -85,9 +85,9 @@ if ( isset( $SubmitInfo ) )
 
 if ( isset( $DeleteLink ) )
 {
-    include_once( "classes/ezlinkitem.php" );
-    include_once( "classes/ezlinksection.php" );
-    include_once( "classes/ezmodulelink.php" );
+    include_once( "kernel/classes/ezlinkitem.php" );
+    include_once( "kernel/classes/ezlinksection.php" );
+    include_once( "kernel/classes/ezmodulelink.php" );
     $deleted = false;
     if ( is_array( $DeleteLinkID ) )
     {
@@ -115,14 +115,14 @@ if ( isset( $DeleteLink ) )
     exit();
 }
 
-include_once( "classes/ezmodulelink.php" );
+include_once( "kernel/classes/ezmodulelink.php" );
 
 $module_link = new eZModuleLink( $ClientModuleName, $ClientModuleType, $ItemID );
 $sections =& $module_link->sections();
 
 if ( isset( $NewSection ) or count( $sections ) == 0 )
 {
-    include_once( "classes/ezlinksection.php" );
+    include_once( "kernel/classes/ezlinksection.php" );
     $section = new eZLinkSection( false, $ClientModuleName );
     $module = new eZModuleLink( $ClientModuleName, $ClientModuleType, $ItemID );
     $section_count = $module->sectionCount();
@@ -160,9 +160,9 @@ if ( !isset( $ModuleName ) or !isset( $Type ) )
     exit();
 }
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezlist.php" );
+include_once( "kernel/classes/eztemplate.php" );
+include_once( "kernel/classes/ezlocale.php" );
+include_once( "kernel/classes/ezlist.php" );
 
 $intl_dirs = array( $ClientIntlDir );
 $php_files = array( "linkselect.php" );
@@ -234,7 +234,7 @@ $t->set_var( "url_select", "" );
 $t->set_var( "client_name", $ClientModuleName );
 $t->set_var( "client_type", $ClientModuleType );
 
-include_once( "ezsession/classes/ezpreferences.php" );
+include_once( "kernel/ezsession/classes/ezpreferences.php" );
 $preferences = new eZPreferences();
 $LinkType = $preferences->variable( $PreferencesSetting );
 

@@ -47,8 +47,8 @@
 /*!TODO
 */
 
-include_once( "classes/ezdate.php" );
-include_once( "classes/eztime.php" );
+include_once( "kernel/classes/ezdate.php" );
+include_once( "kernel/classes/eztime.php" );
 
 class eZDateTime
 {

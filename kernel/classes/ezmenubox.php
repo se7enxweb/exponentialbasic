@@ -38,8 +38,8 @@
 
 */
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+include_once( "kernel/classes/INIFile.php" );
+include_once( "kernel/classes/eztemplate.php" );
 
 class eZMenuBox
 {
@@ -61,7 +61,7 @@ class eZMenuBox
                         &$menuItems, $print = true, $templatefile = false,
                         $phpfile = false, $ignore_status = false, $allow_module_template = false )
     {
-        include_once( "ezsession/classes/ezpreferences.php" );
+        include_once( "kernel/ezsession/classes/ezpreferences.php" );
         $preferences = new eZPreferences();
         
         $ini =& INIFile::globalINI();

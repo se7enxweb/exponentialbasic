@@ -53,11 +53,11 @@
 //  $ClientRoot = The root of the module, default is "classes/", eg. "kernel/eztrade/admin/"
 //  $ClientIntlDir = The intl dir of the module, default is "classes/admin/intl/", eg. "kernel/eztrade/admin/intl/"
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcachefile.php" );
-include_once( "classes/ezhttptool.php" );
+include_once( "kernel/classes/INIFile.php" );
+include_once( "kernel/classes/eztemplate.php" );
+include_once( "kernel/classes/ezlocale.php" );
+include_once( "kernel/classes/ezcachefile.php" );
+include_once( "kernel/classes/ezhttptool.php" );
 
 
 $ini =& INIFile::globalINI();
@@ -86,9 +86,9 @@ foreach( $Modules as $module )
     }
 }
 
-include_once( "classes/ezmodulelink.php" );
-include_once( "classes/ezlinksection.php" );
-include_once( "classes/ezlinkitem.php" );
+include_once( "kernel/classes/ezmodulelink.php" );
+include_once( "kernel/classes/ezlinksection.php" );
+include_once( "kernel/classes/ezlinkitem.php" );
 
 if ( isset( $ItemInsert ) )
 {
@@ -181,7 +181,7 @@ $t->set_var( "value", "" );
 $t->set_var( "client_name", $ClientModuleName );
 $t->set_var( "client_type", $ClientModuleType );
 
-include_once( "ezsession/classes/ezpreferences.php" );
+include_once( "kernel/ezsession/classes/ezpreferences.php" );
 $preferences = new eZPreferences();
 $LinkType = $preferences->variable( $PreferencesSetting );
 if ( is_bool( $LinkType ) )

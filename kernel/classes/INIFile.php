@@ -37,7 +37,7 @@
   which has an extra carriage return to signal an end of line.
 
   \code
-  include_once( "classes/INIFile.php" );
+  include_once( "kernel/classes/INIFile.php" );
   $ini = new INIFile( "site.ini" );
 
   $PageCaching = $ini->read_var( "eZArticleMain", "PageCaching" );
@@ -59,7 +59,7 @@ class INIFile
     */
     function __construct( $inifilename = "", $write = false )
     {
-        //include_once( "classes/ezfile.php" );
+        //include_once( "kernel/classes/ezfile.php" );
 
         $cachedFile = "kernel/classes/cache/" . md5( eZFile::realpath( $inifilename ) ) . ".php";
 
@@ -394,7 +394,7 @@ class INIFile
 //	{
 //	    global $Language;
 //
-//	    include_once( "ezsession/classes/ezsession.php" );
+//	    include_once( "kernel/ezsession/classes/ezsession.php" );
 //            $session =& eZSession::globalSession();
 //            $session->fetch();
 //

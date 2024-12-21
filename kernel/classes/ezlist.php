@@ -44,8 +44,8 @@
   Document drawList() properly.
 */
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztexttool.php" );
+//include_once( "kernel/classes/INIFile.php" );
+//include_once( "kernel/classes/eztexttool.php" );
 
 class eZList
 {
@@ -100,7 +100,7 @@ class eZList
         $Language = $ini->read_var( $module_main, "Language" );
         $DOC_ROOT = $ini->read_var( $module_main, "DocumentRoot" );
 
-        include_once( "classes/eztemplate.php" );
+        include_once( "kernel/classes/eztemplate.php" );
 
         if ( !isset( $params["template"] ) or !is_a( $params["template"], "eZTemplate" ) )
             $t = new eZTemplate( $template_dir,

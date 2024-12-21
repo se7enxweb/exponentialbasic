@@ -99,8 +99,8 @@
 
 */
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezlog.php" );
+include_once( "kernel/classes/INIFile.php" );
+include_once( "kernel/classes/ezlog.php" );
 
 class eZTemplate
 {

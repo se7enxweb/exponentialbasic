@@ -74,10 +74,10 @@ Z - timezone offset in seconds (i.e. "-43200" to "43200")
 Example:
 
 \code
-include_once( "classes/ezdate.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/eztime.php" );
+include_once( "kernel/classes/ezdate.php" );
+include_once( "kernel/classes/ezcurrency.php" );
+include_once( "kernel/classes/ezlocale.php" );
+include_once( "kernel/classes/eztime.php" );
 
 $locale = new eZLocale( "no_NO" );
 
@@ -112,7 +112,7 @@ print( "Localized currency: " . $locale->format( $currency ) . "<br>" );
 \sa eZDate eZDateTime eZTime eZCurrency eZNumber
 */
 
-include_once( "classes/INIFile.php" );
+//include_once( "kernel/classes/INIFile.php" );
 
 class eZLocale
 {
@@ -125,13 +125,13 @@ class eZLocale
     {
         $ini =& INIFile::globalINI();
 
-        if ( eZFile::file_exists( "classes/locale/" . $iso . ".ini" ) )
+        if ( eZFile::file_exists( "kernel/classes/locale/" . $iso . ".ini" ) )
         {
-             $this->LocaleIni = new INIFile( "classes/locale/" . $iso . ".ini", false );
+             $this->LocaleIni = new INIFile( "kernel/classes/locale/" . $iso . ".ini", false );
         }
         else
         {
-             $this->LocaleIni = new INIFile( "classes/locale/en_GB.ini", false );
+             $this->LocaleIni = new INIFile( "kernel/classes/locale/en_GB.ini", false );
         }
 
         $this->LanguageISO =& $this->LocaleIni->read_var( "RegionalSettings", "LanguageISO" );

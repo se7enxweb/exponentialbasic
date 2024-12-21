@@ -42,7 +42,7 @@
   \endcode
 
 */
-//include_once( "classes/INIFile.php" );
+//include_once( "kernel/classes/INIFile.php" );
 
 class eZFile
 {
@@ -385,7 +385,7 @@ class eZFile
     {
         if (file_exists( "sitedir.ini" ) &&  $filename != "" )
         {
-            include( "sitedir.ini" );
+            include( "kernelsitedir.ini" );
             $filename = $siteDir . $filename;
         }
         return file( $filename );

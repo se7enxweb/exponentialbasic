@@ -30,7 +30,7 @@
 /*!
 
   \code
-  include_once( "classes/ezbenchmark.php" );
+  include_once( "kernel/classes/ezbenchmark.php" );
 
   $bench = new eZBenchmark();
   $bench->start();

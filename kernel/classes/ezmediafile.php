@@ -60,7 +60,7 @@
   \endcode
 */
 
-include_once( "classes/ezfile.php" );
+include_once( "kernel/classes/ezfile.php" );
     
 
 class eZMediaFile extends eZFile

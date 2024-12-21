@@ -37,7 +37,7 @@
 // include_once( "ezad/classes/ezadcategory.php" );
 // include_once( "ezad/classes/ezad.php" );
 
-//$CategoryID = $url_array[3];
+// $CategoryID = $url_array[3];
 global $CategoryID;
 
 $ini =& INIFile::globalINI();

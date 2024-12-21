@@ -59,9 +59,9 @@ class INIFile
     */
     function __construct( $inifilename = "", $write = false )
     {
-        include_once( "classes/ezfile.php" );
+        //include_once( "classes/ezfile.php" );
 
-        $cachedFile = "classes/cache/" . md5( eZFile::realpath( $inifilename ) ) . ".php";
+        $cachedFile = "kernel/classes/cache/" . md5( eZFile::realpath( $inifilename ) ) . ".php";
 
         // check for modifications
         $cacheTime = eZFile::filemtime( $cachedFile );

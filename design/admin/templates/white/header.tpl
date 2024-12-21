@@ -125,7 +125,7 @@
 <tr>
         <td align="center">
 <!-- BEGIN module_item_tpl -->
-	<a href="{www_dir}{index}/module/{module_action}/{ez_module_name}?RefURL={ref_url}" onmouseover="window.status='{module_name}'; return true"><img src="{www_dir}/{ez_dir_name}/admin/images/module_icon.png" width="64" height="64" border="0" alt="{module_name}" title="{module_name}" /></a>
+	<a href="{www_dir}{index}/module/{module_action}/{ez_module_name}?RefURL={ref_url}" onmouseover="window.status='{module_name}'; return true"><img src="{www_dir}/kernel/{ez_dir_name}/admin/images/module_icon.png" width="64" height="64" border="0" alt="{module_name}" title="{module_name}" /></a>
 <!-- END module_item_tpl -->
 	</td>
 <!-- BEGIN module_control_tpl -->

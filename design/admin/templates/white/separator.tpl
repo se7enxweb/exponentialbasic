@@ -22,7 +22,7 @@
 		<td width="1%">
 
 		<!-- Icon: Start -->
-		<img src="{www_dir}/ez{module_name}/admin/images/module_icon.gif" width="32" height="32" border="0" align="absmiddle" alt="{module_name}" />
+		<img src="{www_dir}/kernel/ez{module_name}/admin/images/module_icon.gif" width="32" height="32" border="0" align="absmiddle" alt="{module_name}" />
 		<!-- Icon: End -->
 
 		

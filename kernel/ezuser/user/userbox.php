@@ -30,7 +30,6 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/eztexttool.php" );
 
-
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
 $UserWithAddress = $ini->read_var( "eZUserMain", "UserWithAddress" );
@@ -56,7 +55,7 @@ if ( !$user )
 
     $t = new eZTemplate( "kernel/ezuser/user/" .  $ini->read_var( "eZUserMain", "TemplateDir" ),
                          "kernel/ezuser/user/intl/", $Language, "/userbox.php" );
-echo "HIt";
+
     $t->setAllStrings();
 
     if ( isset( $template_array ) and isset( $block_array ) )
@@ -165,7 +164,22 @@ else
     {
         $t->set_var( "user_edit_url", "/user/user/edit/" );
     }
+
+    $adminSiteAccessHostNameURL = $ini->read_var( "site", "AdminSiteURL" );
+    $isAdminShowLinkMarkup = "<tr><td width='1%' valign='top'><img src='/design/intranet/images/dot.gif' width='10' height='12' border='0' alt=''><br></td>
+        <td width='99%'><a target='_blank' class='menu' href='https://$adminSiteAccessHostNameURL'>Administrator</a></td></tr>
+    ";
+
+    if ( eZPermission::checkPermission( $user, "eZUser", "AdminLogin" ) )
+    {
+        $t->set_var( "is_admin_show_link", $isAdminShowLinkMarkup );
+    }
+    else
+    {
+        $t->set_var( "is_admin_show_link", '' );
+    }
     
+    $t->set_var( "user_password_edit_url", '/user/passwordchange/' );
 
     $t->set_var( "sitedesign", $GlobalSiteDesign );
     

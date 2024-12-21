@@ -29,7 +29,6 @@
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
 $errorIni = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/passwordchange.php.ini", false );
 
 // include_once( "ezuser/classes/ezuser.php" );
@@ -46,8 +45,8 @@ if ( isSet( $Cancel ) )
 }
 
 // Template
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
-                     $DOC_ROOT . "/admin/" . "/intl", $Language, "passwordchange.php" );
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+                     "kernel/ezuser/admin/" . "/intl", $Language, "passwordchange.php" );
 $t->setAllStrings();
 
 $t->set_file( array(

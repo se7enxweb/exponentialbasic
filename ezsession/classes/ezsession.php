@@ -122,8 +122,8 @@ class eZSession
         if ( !isSet( $this->ID ) )
         {
             $nextID = $db->nextID( "eZSession_Session", "ID" );
-
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timestampObject = new eZDateTime();
+            $timeStamp =& $timestampObject->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZSession_Session
                                     ( ID, Created, LastAccessed, Hash )
@@ -281,7 +281,8 @@ class eZSession
             $db =& eZDB::globalDatabase();
             $db->begin();
 
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timestampObject = new eZDateTime();
+            $timeStamp =& $timestampObject->timeStamp( true );
             // update session
             $ret = $db->query( "UPDATE eZSession_Session SET
                                   LastAccessed='$timeStamp'
@@ -426,7 +427,8 @@ class eZSession
 
         $value_array = array();
 
-        $timeStamp = eZDateTime::timeStamp( true );
+        $timestampObject = new eZDateTime();
+        $timeStamp =& $timestampObject->timeStamp( true );
         $db->array_query( $value_array, "SELECT ( $timeStamp - LastAccessed ) AS Idle
                                                     FROM eZSession_Session WHERE ID='$this->ID'" );
         $ret = false;

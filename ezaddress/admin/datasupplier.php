@@ -247,6 +247,53 @@ switch ( $ListType )
         break;
     }
 
+    case "region":
+    {
+        $RegionID = $url_array[4];
+        $Action = $url_array[3];
+        switch ( $Action )
+        {
+            // intentional fall through
+            case "new":
+            case "edit":
+            case "update":
+            case "insert":
+            case "up":
+            case "down":
+            {
+                include( "ezaddress/admin/regionedit.php" );
+                break;
+            }
+            case "list":
+            {
+                if ( is_numeric( $url_array[4] ) )
+                    $Index = $url_array[4];
+                include( "ezaddress/admin/regionlist.php" );
+                break;
+            }
+            case "search":
+            {
+                if ( is_numeric( $url_array[4] ) )
+                    $Index = $url_array[4];
+                if ( count( $url_array ) >= 5 && !isset( $SearchText ) )
+                {
+                    $SearchText = $url_array[5];
+                    $SearchText = eZURITool::decode( $SearchText );
+                }
+                include( "ezaddress/admin/regionlist.php" );
+                break;
+            }
+
+            default:
+            {
+                include_once( "classes/ezhttptool.php" );
+                eZHTTPTool::header( "Location: /address/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
+                break;
+            }
+        }
+        break;
+    }
+
     case "error":
     {
         include( "ezaddress/admin/error.php" );

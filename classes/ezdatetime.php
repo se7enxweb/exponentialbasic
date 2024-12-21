@@ -324,15 +324,14 @@ class eZDateTime
 
       If returnNow is set to true a timestamp of the current time is returned.
     */
-    static public function timeStamp( $returnNow=false )
+    public function timeStamp( $returnNow=false )
     {
         if ( $returnNow == true )
             return time();
         else
         {
-            /* return mktime( $this->hour(), $this->minute(), $this->second(),
-        $this->month(), $this->day(), $this->year() ); */
-            return time();
+            return mktime( $this->hour(), $this->minute(), $this->second(),
+                            $this->month(), $this->day(), $this->year() );
         }
 
     }

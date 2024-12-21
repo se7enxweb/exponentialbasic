@@ -50,8 +50,8 @@ CREATE TABLE eZTodo_TodoLogLink (
 
 INSERT INTO eZTodo_Category VALUES (1,'','Work');    
 
-INSERT INTO eZTodo_Status (Description, ID, Name) VALUES (NULL,1,'Not done');
-INSERT INTO eZTodo_Status (Description, ID, Name) VALUES (NULL,2,'Done');
+INSERT INTO eZTodo_Status (Description, ID, Name) VALUES (NULL,1,'Done');
+INSERT INTO eZTodo_Status (Description, ID, Name) VALUES (NULL,2,'Not Done');
 
 INSERT INTO eZTodo_Priority (ID, Name) VALUES (1,'Low');
 INSERT INTO eZTodo_Priority (ID, Name) VALUES (2,'Medium');

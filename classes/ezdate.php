@@ -178,14 +178,13 @@ class eZDate
 
       If returnNow is set to true a timestamp of the current time is returned.
     */
-    static public function timeStamp( $returnNow=false )
+    function timeStamp( $returnNow=false )
     {
         if ( $returnNow == true )
             return time();
         else
-            return time();
-            // return mktime( 0, 0, 0,
-            //               $this->month(), $this->day(), $this->year() );
+            return mktime( 0, 0, 0,
+                          $this->month(), $this->day(), $this->year() );
     }
 
 

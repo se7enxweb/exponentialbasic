@@ -22,7 +22,6 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
-
 include_once( "classes/ezhttptool.php" );
 
 if ( isSet( $DeleteAppointments ) )
@@ -100,6 +99,11 @@ $StopTimeStr = $ini->read_var( "eZCalendarMain", "DayStopTime" );
 
 $Locale = new eZLocale( $Language );
 
+$TitleError = false;
+$StartTimeError = false;
+$StopTimeError = false;
+$DateError = false;
+
 if ( isSet( $TrusteeUser ) )
 {
     $trusteelist = array();
@@ -147,15 +151,16 @@ $t->set_block( "no_error_tpl", "value_tpl", "value" );
 $t->set_block( "no_error_tpl", "month_tpl", "month" );
 $t->set_block( "no_error_tpl", "day_tpl", "day" );
 
-if ( isSet( $ChangeView ) || isset( $ViewType ) && $ViewType == "multiple" )
+if ( isset( $ChangeView ) || isset( $ViewType ) && $ViewType == "multiple" )
 {
-    $typeID = $TypeID;
+    //$typeID = $TypeID;
     $t->set_var( "select_multiple", "multiple" );
     $t->set_var( "multiple_view", "" );
     $t->set_var( "view_type", "multiple" );
 }
 else
 {
+    //$typeID = $TypeID;
     $t->set_var( "select_multiple", "" );
     if ( is_a( $user, "eZUser" ) && count( $user->trustees() ) > 0 )
         $t->parse( "multiple_view", "multiple_view_tpl" );
@@ -175,10 +180,16 @@ if ( !is_a( $app, "eZAppointment" ) )
     $UserError = true;
 }
 
+if ( $Action == "Edit" && $app != false )
+{
+    $trusteesAlt = new eZUser();
+    $trusteesAlt = $trusteesAlt->trustees( $app->userID() );
+}
+
 // only the appointment owner or a trustee is allowed to edit or delete an appointment
-if ( $Action == "Edit" &&
-     ( !in_array( $userID, eZUser::trustees( $app->userID() ) ) &&
-       $app->userID() != $userID ) )
+if ( $Action == "Edit" && $app != false &&
+     ( !in_array( $userID, $trusteesAlt ) &&
+         $app->userID() != $userID ) )
 {
     $t->set_var( "no_error", "" );
     $t->set_var( "no_user_error", "" );
@@ -292,19 +303,19 @@ if ( $Action == "Insert" || $Action == "Update" )
             $appointment->setOwner( $trusteduser );
             $appointment->setPriority( $Priority );
 
-            if ( $IsPrivate == "on" )
+            if ( isset( $IsPrivate ) && $IsPrivate == "on" )
                 $appointment->setIsPrivate( true );
             else
                 $appointment->setIsPrivate( false );
 
-            if ( $Name != "" )
+            if ( isset( $Name ) && $Name != "" )
                 $appointment->setName( $Name );
             else
                 $TitleError = true;
 
             // start/stop time for the day
-            $dayStartTime = new eZDateTime( $year, $month, $day );
-            $dayStopTime = new eZDateTime( $year, $month, $day );
+            $dayStartTime = new eZDateTime( $Year, $Month, $Day );
+            $dayStopTime = new eZDateTime( $Year, $Month, $Day );
 
             if ( preg_match( "#(^([0-9]{1,2})[^0-9]{0,1}([0-9]{0,2})$)#", $StartTimeStr, $dayStartArray ) )
             {
@@ -329,49 +340,40 @@ if ( $Action == "Insert" || $Action == "Update" )
             }
 
             // start/stop time for the appointment
-            $startTime = new eZDateTime( $year, $month, $day );
-            $stopTime = new eZDateTime( $year, $month, $day );
+            $startTimestamp = strtotime( $Start );
+            $stopTimestamp = strtotime( $Stop );
+
+            $startTime = new eZDateTime( $Year, $Month, $Day, date('H', $startTimestamp), date('i', $startTimestamp) );
+            $stopTime = new eZDateTime( $Year, $Month, $Day, date('H', $stopTimestamp), date('i', $stopTimestamp) );
 
             $startTime->setSecond( 0 );
             $stopTime->setSecond( 0 );
 
-            if ( $AllDay == "on" )
-            {
-                $appointment->setAllDay( true );
-            }
-            else if ( preg_match( "#(^([0-9]{1,2})[^0-9]{0,1}([0-9]{0,2})$)#", $Start, $startArray ) )
-            {
+            if ( preg_match( "#(^([0-9]{1,2})[^0-9]{0,1}([0-9]{0,2})$)#", $Start, $startArray ) ) {
                 $hour = $startArray[2];
-                settype( $hour, "integer" );
-                $startTime->setHour( $hour );
+                settype($hour, "integer");
+                $startTime->setHour($hour);
                 $min = $startArray[3];
-                settype( $min, "integer" );
+                settype($min, "integer");
 
-                $startTime->setMinute( $min );
-                $appointment->setAllDay( false );
+                $startTime->setMinute($min);
+                if (isset($AllDay) && $AllDay == "on") {
+                    $appointment->setAllDay(true);
+                } else {
+                    $appointment->setAllDay(false);
+                }
             }
             else
             {
                 $StartTimeError = true;
             }
 
-            if ( $AllDay == "on" )
-            {
-                $appointment->setAllDay( true );
-            }
-            else if ( preg_match( "#(^([0-9]{1,2})[^0-9]{0,1}([0-9]{0,2})$)#", $Stop, $stopArray ) )
-            {
-                $hour = $stopArray[2];
-                settype( $hour, "integer" );
-
-                $stopTime->setHour( $hour );
-
-                $min = $stopArray[3];
-                settype( $min, "integer" );
-
-                $stopTime->setMinute( $min );
-            }
-            else
+//            if ( isset( $AllDay ) && $AllDay == "on" )
+//            {
+//                $appointment->setAllDay( true );
+//            }
+//            else
+            if ( !preg_match( "#(^([0-9]{1,2})[^0-9]{0,1}([0-9]{0,2})$)#", $Stop, $stopArray ) )
             {
                 $StopTimeError = true;
             }
@@ -379,6 +381,18 @@ if ( $Action == "Insert" || $Action == "Update" )
             $datetime->setSecondsElapsedHMS( $startTime->hour(), $startTime->minute(), 0 );
 
             $appointment->setDateTime( $datetime );
+            //$datetime = new eZDateTime( $Year, $Month, $Day, $startTime->hour(), $startTime->minute() );
+//            echo "<hr>";
+//            echo $startTime->hour();
+//            echo "<hr>";
+//            echo $datetime->day();
+//            echo "<hr>";
+//            $appointment->setDateTime( $datetime );
+//            echo "<hr>";
+//            echo $datetime->Time->hour() ;
+//            echo "<hr>";
+//            echo $appointment->Date;
+
 
             if ( $stopTime->isGreater( $startTime, true ) && $AllDay != "on" )
             {
@@ -386,14 +400,19 @@ if ( $Action == "Insert" || $Action == "Update" )
             }
             else
             {
-                $duration = new eZDateTime();
-                $duration->setTimeStamp( $stopTime->timeStamp() - $startTime->timeStamp() );
-                $appointment->setDuration( $AllDay == "on" ? 0 : $duration->timeStamp() );
+                // $duration = new eZDateTime();
+                // $duration->setTimeStamp( $stopTime->timeStamp() - $startTime->timeStamp() );
+                // $duration->setTimeStamp( $stopTime->timestamp() );
+                // $appointment->setDuration( $AllDay == "on" ? 0 : $duration->timeStamp() );
+
+                $appointment->setDuration( isset( $AllDay ) && $AllDay == "on" ? 0 : $stopTimestamp - $startTimestamp );
             }
 
-            if ( $TitleError == false && $StartTimeError == false && $StopTimeError == false && $DateError == false )
+            if ( isset( $TitleError ) && $TitleError == false && isset( $StartTimeError ) && $StartTimeError == false &&
+                isset( $StopTimeError ) && $StopTimeError == false && isset( $DateError ) && $DateError == false )
             {
                 $appointment->store();
+                // die('Stored! All is saved but, simply not always as expected.');
 
                 $year = addZero( $datetime->year() );
                 $month = addZero( $datetime->month() );
@@ -433,16 +452,27 @@ if ( $Action == "Insert" || $Action == "Update" )
 
         $appStartTime =& $appointment->startTime();
         $appStopTime =& $appointment->stopTime();
-        if ( $appStartTime && !$appointment->allDay() )
+
+
+        if ( $appStartTime )
         {
             $t->set_var( "start_value", addZero( $appStartTime->hour() ) . addZero( $appStartTime->minute() ) );
-            $t->set_var( "all_day_selected", "" );
         }
         else
         {
             $t->set_var( "start_value", "" );
+        }
+
+        if ( $appStartTime && !$appointment->allDay() )
+        {
+            $t->set_var( "all_day_selected", "" );
+        }
+        else
+        {
+            //$t->set_var( "start_value", "" );
             $t->set_var( "all_day_selected", "checked" );
         }
+
         if ( $appStopTime )
             $t->set_var( "stop_value", addZero( $appStopTime->hour() ) . addZero( $appStopTime->minute() ) );
         else
@@ -478,25 +508,18 @@ $t->set_var( "user_error", "" );
 
 if ( $Action == "Edit" )
 {
-    $t->set_var( "name_value", $Name );
-    $t->set_var( "description_value", $Description );
-    $t->set_var( "start_value", $Start );
-    $t->set_var( "stop_value", $Stop );
-    $t->set_var( "all_day_selected", $AllDay == "on" ? "selected" : "" );
-    $typeID = $TypeID;
-
     $t->set_var( "0_selected", "" );
     $t->set_var( "1_selected", "" );
     $t->set_var( "2_selected", "" );
 
-    if ( $Priority == 0 )
+    if ( isset( $Priority ) && $Priority == 0 )
         $t->set_var( "0_selected", "selected" );
-    else if ( $Priority == 1 )
+    else if ( isset( $Priority ) && $Priority == 1 )
         $t->set_var( "1_selected", "selected" );
-    else if ( $Priority == 2 )
+    else if ( isset( $Priority ) && $Priority == 2 )
         $t->set_var( "2_selected", "selected" );
 
-    if ( $IsPrivate == "on" )
+    if ( isset( $IsPrivate ) && $IsPrivate == "on" )
         $t->set_var( "is_private", "checked" );
     else
         $t->set_var( "is_private", "" );
@@ -504,30 +527,32 @@ if ( $Action == "Edit" )
     $t->set_var( "action_value", $Action );
     $t->set_var( "appointment_id", $AppointmentID );
 
-
-    if ( $userID == $app->userID() )
+    if ( $app != false && $userID == $app->userID() )
         $t->set_var( "own_selected", "selected" );
     else
         $t->set_var( "own_selected", "" );
 
     $t->set_var( "own_user_id", $userID );
+    if( $user != false )
     $t->set_var( "own_user_name", $user->name() );
     $t->set_var( "user_name", "" );
 
-    $trusteeArray = $user->getByTrustee( -1, true );
-    foreach ( $trusteeArray as $trustee )
+    if( $user != false )
     {
-        $t->set_var( "user_id", $trustee->ID() );
-        $t->set_var( "user_name", $trustee->name() );
+        $trusteeArray = $user->getByTrustee( -1, true );
+        foreach ( $trusteeArray as $trustee )
+        {
+            $t->set_var( "user_id", $trustee->ID() );
+            $t->set_var( "user_name", $trustee->name() );
 
-        if ( $app->userID() == $trustee->ID() )
-            $t->set_var( "selected", "selected" );
-        else
-            $t->set_var( "selected", "" );
-        $t->parse( "trustee_user_name", "trustee_user_name_tpl", true );
+            if ( $app->userID() == $trustee->ID() )
+                $t->set_var( "selected", "selected" );
+            else
+                $t->set_var( "selected", "" );
+            $t->parse( "trustee_user_name", "trustee_user_name_tpl", true );
+        }
     }
 }
-
 
 if ( $Action == "Edit" )
 {
@@ -536,36 +561,27 @@ if ( $Action == "Edit" )
     $t->set_var( "appointment_id", $appointment->id() );
     $t->set_var( "description_value", $appointment->description() );
 
-    $type =& $appointment->type();
+    $type = $appointment->type();
     $typeID = $type->id();
-
     $startTime =& $appointment->startTime();
     $startHour = addZero( $startTime->hour() );
     $startMinute = addZero( $startTime->minute() );
+
+    $stopTime =& $appointment->stopTime();
+    $stopHour = addZero( $stopTime->hour() );
+    $stopMinute = addZero( $stopTime->minute() );
+
     if ( $appointment->allDay() )
     {
+        $t->set_var( "start_value", $startHour . $startMinute );
+        $t->set_var( "stop_value", $stopHour . $stopMinute );
         $t->set_var( "all_day_selected", "checked" );
-        $t->set_var( "start_value", "" );
-        $t->set_var( "stop_value", "" );
     }
     else
     {
         $t->set_var( "all_day_selected", "" );
         $t->set_var( "start_value", $startHour . $startMinute );
-
-        $stopTime =& $appointment->stopTime();
-        if ( is_object( $stopTime ) )
-        {
-            $stopHour = addZero( $stopTime->hour() );
-            $stopMinute = addZero( $stopTime->minute() );
-        }
-        else
-        {
-            $stopHour = "";
-            $stopMinute = "";
-        }
         $t->set_var( "stop_value", $stopHour . $stopMinute );
-
     }
 
     $t->set_var( "0_selected", "" );
@@ -632,12 +648,29 @@ else
 }
 
 $today = new eZDate();
-$tmpdate = new eZDate( $Year, $Month, $Day );
+if ( isset( $Year ) && $Year != 0 )
+    $year = $Year;
+else
+    $year = $today->year();
+
+if ( isset( $Month ) && $Month != 0 )
+    $month = $Month;
+else
+    $month = $today->month();
+
+if ( isset( $day ) && $Day != 0 )
+    $day = $Day;
+else
+    $day = $today->day();
+
+$tmpdate = new eZDate( $year, $month, $day );
+// $tmpdate = new eZDate( $Year, $Month, $Day );
 
 if ( $Action == "New" )
 {
     $t->set_var( "action_value", "insert" );
     $t->set_var( "appointment_id", "new" );
+    
 
     if ( isSet( $ChangeView ) )
     {
@@ -743,6 +776,7 @@ $typeList =& $type->getTree();
 
 foreach ( $typeList as $type )
 {
+    $typeID = $type[0]->id();
     if ( $type[1] > 1 )
         $t->set_var( "option_level", str_repeat( "&nbsp;&nbsp;", $type[1] - 1 ) );
     else
@@ -850,12 +884,13 @@ if ( $Action != "Edit" )
         $t->set_var( "year_value", $tmpdate->year() );
 }
 
-if ( !isset( $DateError ) )
-{
-    $t->parse( "no_error", "no_error_tpl" );
-    $t->pparse( "output", "appointment_edit_tpl" );
-}
+//if ( !isset( $DateError ) )
+//{
 
+$t->parse("no_error", "no_error_tpl");
+$t->pparse("output", "appointment_edit_tpl");
+
+//}
 
 // deletes the dayview cache file for a given day
 function deleteCache( $SiteDesign, $language, $year, $month, $day, $userID )

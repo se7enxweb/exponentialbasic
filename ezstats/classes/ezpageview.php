@@ -242,7 +242,8 @@ class eZPageView
             $nextID = $db->nextID( "eZStats_PageView", "ID" );
             $result = false;
             $now = eZDateTime::timeStamp( true );
-            $date = eZDate::timeStamp( true );
+            $date = new eZDate();
+            $date = $date->timestamp( true );
             $time = eZTime::timeStamp( true );
 
             $result = $db->query( "INSERT INTO eZStats_PageView

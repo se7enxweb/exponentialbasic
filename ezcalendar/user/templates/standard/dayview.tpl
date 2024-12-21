@@ -68,14 +68,14 @@
 	</td>
 
 	<!-- BEGIN public_appointment_tpl -->
-	<td class="{td_class}" valign="top" rowspan="{rowspan_value}" >
+	<td class="{td_class}" valign="top" {rowspan_markup_value}>
 	<table width="100%" cellspacing="0" cellpadding="4" border="0" >
 	<tr>
 		<td width="98%" valign="top">
 		<a href="{www_dir}{index}/calendar/appointmentview/{appointment_id}/"><b>{appointment_name}</b></a><br />
 		</td>
 		<td width="1%" valign="top" align="right">
-		<a href="{www_dir}{index}/calendar/appointmentedit/edit/{appointment_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezcal{appointment_id}-red','','/images/redigerminimrk.gif',1)"><img name="ezcal{appointment_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
+		<a href="{www_dir}{index}/calendar/appointmentedit/edit/{appointment_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezcal{appointment_id}-red','','/design/base/images/icons/redigerminimrk.gif',1)"><img name="ezcal{appointment_id}-red" border="0" src="{www_dir}/design/base/images/icons/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 		</td>
 		<td width="1%" valign="top" align="right">
 			<!-- BEGIN delete_check_tpl -->
@@ -122,4 +122,3 @@
 <input class="stdbutton" type="submit" name="GoYear" value="{intl-year}">
 <input class="stdbutton" type="submit" name="GoToday" value="{intl-today}">
 </form>
-

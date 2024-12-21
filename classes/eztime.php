@@ -327,15 +327,15 @@ class eZTime
 
       If returnNow is set to true a timestamp of the current time is returned.
     */
-    static public function timeStamp( $returnNow = false )
+    public function timeStamp( $returnNow = false )
     {
         if ( $returnNow == true )
             return time();
         else
-            return time();
-        //return $this->hour() * 3600 + $this->minute() * 60 + $this->second();
+            return $this->hour() * 3600 + $this->minute() * 60 + $this->second();
     }
 
     /// Store the number of seconds since 00:00:00
     var $SecondsElapsed;
+    var $Time;
 }

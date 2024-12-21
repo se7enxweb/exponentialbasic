@@ -103,7 +103,7 @@ $t = new eZTemplate( "ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "Tem
 
 $t->set_file( "day_view_page_tpl", "dayview.tpl" );
 
-if ( $t->hasCache() )
+if ( $StoreSiteCache && $t->hasCache() )
 {
     print( $t->cache() );
 }
@@ -132,7 +132,7 @@ else
     $tmpAppointment = new eZAppointment();
 
     // fetch the appointments for the selected day
-    $appointments =& $tmpAppointment->getByDate( $tmpDate, $tmpUser, true );
+    $appointments =& $tmpAppointment->getByDate( $tmpDate, $tmpUser, false );
 
     // set start/stop and interval times
     $startTime = new eZTime();
@@ -184,17 +184,45 @@ else
         {
             $appStartTime =& $appointment->startTime();
             $appStopTime =& $appointment->stopTime();
+
             if ( $appStartTime->isGreater( $firstInterval ) )
                 $startTime = $midNight;
-            
+
             while ( $appStartTime->isGreater( $startTime ) )
             {
                 $startTime = $startTime->subtract( $interval );
             }
-            
+
             if ( $lastInterval->isGreater( $appStopTime ) )
-                $stopTime = new eZTime( 23, 59 );
-            
+            {
+                $stopTime = new eZDateTime( $date->year(), $date->month(), $date->day(), 23, 59 );
+                $stopTime->setTimeStamp( $stopTime->timestamp() );
+             }
+
+            while ( $stopTime->isGreater( $appStopTime ) )
+            {
+                $stopTime = $stopTime->add( $interval );
+            }
+        }
+        else
+        {
+            $appStartTime =& $appointment->startTime();
+            $appStopTime =& $appointment->stopTime();
+
+            if ( $appStartTime->isGreater( $firstInterval ) )
+                $startTime = $midNight;
+
+            while ( $appStartTime->isGreater( $startTime ) )
+            {
+                $startTime = $startTime->subtract( $interval );
+            }
+
+            if ( $lastInterval->isGreater( $appStopTime ) )
+            {
+                $stopTime = new eZDateTime( $date->year(), $date->month(), $date->day(), 23, 59 );
+                $stopTime->setTimeStamp( $stopTime->timestamp() );
+            }
+
             while ( $stopTime->isGreater( $appStopTime ) )
             {
                 $stopTime = $stopTime->add( $interval );
@@ -204,14 +232,17 @@ else
 
     for ( $i = 0; $i < count( $appointments ); $i++ )
     {
+        $eZDateTimeObject = new eZDateTime();
+        $eZDateTimeObject->setTimeStamp( $appointments[$i]->Date );
+
         if ( $appointments[$i]->allDay() )
         {
             $dateTime = new eZDateTime( $date->year(), $date->month(), $date->day() );
             $dateTime->setSecondsElapsed( $startTime->secondsElapsed() );
-            $appointments[$i]->setDateTime( $dateTime );
+            // $appointments[$i]->setDateTime( $dateTime );
 
-            $appointments[$i]->setDuration( $stopTime->secondsElapsed() - $startTime->secondsElapsed() );
-            $appointments[$i]->store();
+            // $appointments[$i]->setDuration( $stopTime->Time->timestamp() - $startTime->secondsElapsed() );
+            // $appointments[$i]->store();
         }
     }
 
@@ -229,13 +260,13 @@ else
     while ( $tmpTime->isGreater( $stopTime ) )
     {
         $numRows++;
-        $tableCellsId[$numRows - 1] = array();
-        $tableCellsRowSpan[$numRows - 1] = array();
-
+        //$tableCellsId[$numRows - 1] = array();
+        //$tableCellsRowSpan[$numRows - 1] = array();
+        //$colTaken[$numCols] = 0;
         // marks cells as taken, -1
         for ( $col = 0; $col < $numCols; $col++ )
         {
-            if ( $colTaken[$col] > 0 )
+            if ( isset( $colTaken[$col] ) && $colTaken[$col] > 0 )
             {
                 $tableCellsId[$numRows - 1][$col] = -1;
             }
@@ -243,21 +274,24 @@ else
 
         foreach ( $appointments as $appointment )
         {
+            $appointmentDone[ $appointment->id() ] = false;
             // avoid wrapping around midnight
             $nextInterval = $tmpTime->add( $interval );
             if ( $nextInterval->isGreater( $tmpTime ) )
                 $nextInterval = new eZTime( 23, 59 );
 
             // if this appointment should be inserted into the table now
-            if ( $appointmentDone[$appointment->id()] == false &&
+            if ( isset( $appointmentDone[$appointment->id()] ) && $appointmentDone[$appointment->id()] == false &&
                  intersects( $appointment, $tmpTime, $nextInterval ) == true )
             {
                 $foundFreeColumn = false;
                 $col = 0;
                 while ( $foundFreeColumn == false )
                 {
+                    //$tableCellsId[$numRows-1][$col] = 0;
+
                     // the column is free, insert appointment here
-                    if ( $tableCellsId[$numRows-1][$col] == 0 )
+                    if ( $foundFreeColumn == false && !isset( $tableCellsId[$numRows-1][$col] ) ) //&& $tableCellsId[$numRows-1][$col] == 0 )
                     {
                         $tableCellsId[$numRows-1][$col] = $appointment->id();
                         $tableCellsRowSpan[$numRows-1][$col] = appointmentRowSpan( $appointment, $tmpTime, $interval );
@@ -266,15 +300,45 @@ else
                         $foundFreeColumn = true;
 
                         // if we created a new column, mark leading empty spaces
-                        if ( $col >= $numCols )
+                        // this was determined not to be needed at this point, so it's left here in case we messed up.
+
+                        /* if ( $col >= $numCols )
                             $emptyRows[$col] = $numRows - 1;
 
-                        if ( $emptyRows[$col] > 0 )
+                        if ( isset( $emptyRows[ $col ] ) && $emptyRows[ $col ] > 0 )
                         {
                             $tableCellsId[$numRows - 1 - $emptyRows[$col]][$col] = -2;
                             $tableCellsRowSpan[$numRows - 1 - $emptyRows[$col]][$col] = $emptyRows[$col];
                             $emptyRows[$col] = 0;
+                        } */
+
+                    }
+                    elseif( $appointment->AllDay() && isset( $appointmentDone[$appointment->id() ] )
+                                                    && $appointmentDone[ $appointment->id() ] == false
+                    )
+                    {
+                        if ( !isset( $tableCellsId[$numRows-1][$col] ) ) //&& $tableCellsId[$numRows-1][$col] == 0 )
+                        {
+                            $tableCellsId[$numRows - 1][$col] = $appointment->id();
+                            $tableCellsRowSpan[$numRows - 1][$col] = appointmentRowSpan($appointment, $tmpTime, $interval);
+                            $colTaken[$col] = $tableCellsRowSpan[$numRows - 1][$col];
+                            $appointmentDone[$appointment->id()] = true;
+                            $foundFreeColumn = true;
+
+                            // if we created a new column, mark leading empty spaces
+                            if ($col >= $numCols)
+                                $emptyRows[$col] = $numRows - 1;
+
+                            if (isset($emptyRows[$col]) && $emptyRows[$col] > 0) {
+                                $tableCellsId[$numRows - 1 - $emptyRows[$col]][$col] = -2;
+                                $tableCellsRowSpan[$numRows - 1 - $emptyRows[$col]][$col] = $emptyRows[$col];
+                                $emptyRows[$col] = 0;
+                            }
                         }
+                    }
+                    else
+                    {
+                        $foundFreeColumn = true;
                     }
 
                     // the column was not free, try the next one
@@ -288,12 +352,12 @@ else
         // decrease/increase counts as we move down
         for ( $col = 0; $col < $numCols; $col++ )
         {
-            if ( $colTaken[$col] > 0 )
+            if ( isset( $colTaken[$col] ) && $colTaken[$col] > 0 )
             {
                 $colTaken[$col]--;
             }
 
-            if ( $tableCellsId[$numRows - 1][$col] == 0 )
+            if ( isset( $tableCellsId[ $numRows - 1 ][$col] ) && $tableCellsId[$numRows - 1][$col] == 0 )
             {
                 $emptyRows[$col]++;
             }
@@ -308,7 +372,7 @@ else
     // mark remaining empty spaces as empty, -2
     for ( $col = 0; $col < $numCols; $col++ )
     {
-        if ( $emptyRows[$col] > 0 )
+        if ( isset( $emptyRows[$col] ) && $emptyRows[$col] > 0 )
         {
             $tableCellsId[$numRows - $emptyRows[$col]][$col] = -2;
             $tableCellsRowSpan[$numRows - $emptyRows[$col]][$col] = $emptyRows[$col];
@@ -316,21 +380,20 @@ else
     }
 
 
-
-// debug contents table
-//  print( "Rows: " . $numRows . "   Cols: " . $numCols . "<br />" );
-//  print( "<table border=\"1\">" );
-//  for ( $row=0; $row<$numRows; $row++ )
-//  {
-//      print( "<tr>" );
-//      for ( $col=0; $col<$numCols; $col++ )
-//      {
-//          print( "<td>" . $tableCellsId[$row][$col] . " / " . $tableCellsRowSpan[$row][$col] . "</td>" );
-//      }
-//      print( "</tr>" );
-//  }
-//  print( "</table>" );
-
+//debug contents table
+// print( "Rows: " . $numRows . "   Cols: " . $numCols . "<br />" );
+// print( "<table border=\"1\">" );
+// for ( $row=0; $row<$numRows; $row++ )
+// {
+//     print( "<tr>" );
+//     for ( $col=0; $col<$numCols; $col++ )
+//     {
+//         if( isset( $tableCellsId[$row][$col] ) && isset( $tableCellsRowSpan[$row][$col] ) )
+//         print( "<td>" . $tableCellsId[$row][$col] . " / " . $tableCellsRowSpan[$row][$col] . "</td>" );
+//     }
+//     print( "</tr>" );
+// }
+// print( "</table>" );
 
     // prints out the time table
     $emptyDone = false;
@@ -352,9 +415,15 @@ else
         $t->set_var( "no_appointment", "" );
         $t->set_var( "delete_check", "" );
 
+        // rarely needed now but helpful in data processing review
+        // print_r( $tableCellsId );
+
         for ( $col = 0; $col < $numCols; $col++ )
         {
-            $appointmentId = $tableCellsId[$row][$col];
+            if( isset( $tableCellsId[$row][$col] ) )
+                $appointmentId = $tableCellsId[$row][$col];
+            else
+                $appointmentId = -2;
 
             // an appointment
             if ( $appointmentId > 0 )
@@ -371,8 +440,12 @@ else
                 } 
                 else // a public appointment
                 {
+
                     $t->set_var( "td_class", "bglight" );
                     $t->set_var( "rowspan_value", $tableCellsRowSpan[$row][$col] );
+                    $t->set_var( "rowspan_markup_value", 'rowspan="'. $tableCellsRowSpan[$row][$col] . '"' );
+                    // $t->set_var( "rowspan_markup_value", '' );
+
                     $t->set_var( "appointment_id", $appointment->id() );
                     $t->set_var( "appointment_name", $appointment->name() );
                     $t->set_var( "appointment_description", $appointment->description() );
@@ -384,9 +457,15 @@ else
             }
             else if ( $appointmentId == -2 ) // an empty space
             {
-                $t->set_var( "td_class", "bgdark" );
-                $t->set_var( "rowspan_value", $tableCellsRowSpan[$row][$col] );
-
+                $t->set_var("td_class", "bgdark");
+                if ( isset( $tableCellsRowSpan[$row][$col] ) )
+                {
+                    $t->set_var("rowspan_value", $tableCellsRowSpan[$row][$col]);
+                    $t->set_var("rowspan_markup_value", '');
+                } else {
+                    $t->set_var("rowspan_value", '');
+                    $t->set_var("rowspan_markup_value", '');
+                }
                 $t->parse( "no_appointment", "no_appointment_tpl", true );
             }
         }
@@ -558,18 +637,22 @@ else
 // returns the number of rows an appointment covers.
 function appointmentRowSpan( &$appointment, &$startTime, &$interval )
 {
-    $ret = 0;
+    $ret = 1;
     $tmpTime = new eZTime();
     $tmpTime->setSecondsElapsed( $startTime->secondsElapsed() );
     $aStop =& $appointment->stopTime();
 
+
     while ( $tmpTime->isGreater( $aStop ) )
     {
         if ( $tmpTime > $tmpTime->add( $interval ) )
+        {
             $tmpTime = new eZTime( 23, 59 );
+        }
         else
-            $tmpTime = $tmpTime->add( $interval );
-
+        {
+            $tmpTime = $tmpTime->add( $interval->timestamp() );
+        }
         $ret++;
     }
 

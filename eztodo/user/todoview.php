@@ -90,7 +90,7 @@ $t->set_var( "todo_id", $todo->id() );
 
 $logs = $todo->logs();
 
-if ( count( $logs ) > 0 )
+if ( is_array( $logs ) && count( $logs ) > 0 )
 {
     foreach ( $logs as $log )
     {

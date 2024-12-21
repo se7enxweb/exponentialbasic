@@ -42,7 +42,9 @@ $locale = new eZLocale();
 
 if ( $expireTime > -1 )
 {
-    $orders = eZOrder::expiringOrders( eZDate::timeStamp( true ) + ( $expireTime * 86400 ) );
+    $date = new eZDate();
+    $dateTimestampe = $date->timestamp( true );
+    $orders = eZOrder::expiringOrders( $dateTimestampe + ( $expireTime * 86400 ) );
     foreach ( $orders as $orderID )
     {
         $orderItem = new eZOrderItem( $orderID );

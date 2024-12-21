@@ -94,7 +94,6 @@ class eZAppointment
                                    '$this->Priority',
                                    '$this->AppointmentTypeID',
                                    '$this->AllDay')";
-            echo $query;
             $res[] = $db->query( $query );
             $db->unlock();
         }
@@ -226,23 +225,25 @@ class eZAppointment
             $return_array = array();
             $appointment_array = array();
 
-            $enddate = new eZDateTime();
-            $enddate->setTimeStamp( $date->timeStamp() + 24 * 60 * 60 );
-            if ( $showPrivate == false )
+            $endDate = new eZDateTime();
+            $endDate->setTimeStamp( strtotime('+1 day', $date->timeStamp() ) );
+
+            if ( $showPrivate == true )
             {
-                $db->array_query( $appointment_array,
-                "SELECT ID FROM eZCalendar_Appointment
+                $query = "SELECT ID FROM eZCalendar_Appointment
                  WHERE Date>='" . $date->timeStamp() . "'
-                 AND Date<'" . $enddate->timeStamp() . "'
-                 AND IsPrivate='0' AND UserID='$userID' ORDER BY Date ASC", true );
+                 AND Date<'" . $endDate->timeStamp() . "'
+                 AND IsPrivate='0' AND UserID='$userID' ORDER BY Date ASC";
+                $db->array_query( $appointment_array, $query, true );
             }
             else
             {
-                $db->array_query( $appointment_array,
-                "SELECT ID FROM eZCalendar_Appointment
+                $query = "SELECT ID FROM eZCalendar_Appointment
                  WHERE Date>='" . $date->timeStamp() . "'
-                 AND Date<'" . $enddate->timeStamp() . "'
-                 AND UserID='$userID' ORDER BY Date ASC" );
+                 AND Date<'" . $endDate->timeStamp() . "'
+                 AND UserID='$userID' ORDER BY Date ASC";
+
+                $db->array_query( $appointment_array, $query );
             }
 
             for ( $i = 0; $i < count( $appointment_array ); $i++ )
@@ -252,6 +253,7 @@ class eZAppointment
 
             $ret =& $return_array;
         }
+
         return $ret;
     }
 
@@ -360,15 +362,15 @@ class eZAppointment
     */
     function &startTime()
     {
-       $date = new eZDateTime();
-       $date->setTimeStamp( $this->Date );
+        $date = new eZDateTime();
+        $date->setTimeStamp( $this->Date );
 
-       $time = new eZTime();
-       $time->setHour( $date->hour() );
-       $time->setMinute( $date->minute() );
-       $time->setSecond( 0 );
+        $time = new eZTime();
+        $time->setHour( $date->hour() );
+        $time->setMinute( $date->minute() );
+        $time->setSecond( 0 );
 
-       return $time;
+        return $time;
     }
 
     /*!
@@ -471,6 +473,10 @@ class eZAppointment
        if ( is_a( $dateTime, "eZDateTime" ) )
        {
            $this->Date = $dateTime->timeStamp();
+       }
+       else
+       {
+           echo "Error: The Parameter Passed is not of eZDateTime type!";
        }
     }
 

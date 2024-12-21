@@ -46,7 +46,7 @@
 <td class="{td_class}" valign="top" >
 <a class="boxtext" href="{www_dir}{index}/calendar/dayview/{year_number}/{month_number}/{day_number}">{day_number}</a>
 <br />
-<img src="{www_dir}/images/1x1.gif" height="4" width="2" border="0" alt="" /><br />
+<img src="{www_dir}/design/base/images/design/1x1.gif" height="4" width="2" border="0" alt="" /><br />
 
 <!-- BEGIN private_appointment_tpl -->
 {start_time} - {stop_time}<br />
@@ -54,13 +54,13 @@
 
 <!-- BEGIN public_appointment_tpl -->
 <a class="small" href="{www_dir}{index}/calendar/appointmentview/{appointment_id}/">{start_time} - {stop_time}</a><br />
-<img src="{www_dir}/images/1x1.gif" height="4" width="2" border="0" alt="" /><br />
+<img src="{www_dir}/design/base/images/design/1x1.gif" height="4" width="2" border="0" alt="" /><br />
 
 <!-- END public_appointment_tpl -->
 
 <!-- BEGIN public_todo_tpl -->
 <a class="small" href="{www_dir}{index}/todo/todoview/{todo_id}">{todo_desc}</a><br />
-<img src="{www_dir}/images/1x1.gif" height="4" width="2" border="0" alt="" /><br />
+<img src="{www_dir}/design/base/images/design/1x1.gif" height="4" width="2" border="0" alt="" /><br />
 <!-- END public_todo_tpl -->
 
 <br />
@@ -85,4 +85,3 @@
 <input class="stdbutton" type="submit" name="GoYear" value="{intl-year}">
 <input class="stdbutton" type="submit" name="GoToday" value="{intl-today}">
 </form>
-

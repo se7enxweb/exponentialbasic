@@ -467,7 +467,8 @@ class eZAd
 
         $db->begin();
 
-        $date = eZDate::timeStamp( true );
+        $date = new eZDate();
+        $date = $date->timestamp( true );
         $db->lock( "eZAd_View" );
 
         $db->array_query( $view_result, "SELECT * FROM

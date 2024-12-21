@@ -38,6 +38,12 @@ if ( is_a( $user, "eZUser" )  and eZPermission::checkPermission( $user, "eZUser"
     // These should only be available if the user has permissions...
     switch ( $url_array[2] )
     {
+        case "" :
+        {
+            include( "ezuser/admin/welcome.php" );
+        }
+        break;
+
         case "welcome" :
         {
             include( "ezuser/admin/welcome.php" );
@@ -189,15 +195,15 @@ if ( is_a( $user, "eZUser" )  and eZPermission::checkPermission( $user, "eZUser"
 
         case "passwordchange" :
         {
-	  $ini =& INIFile::globalINI();
-	  $DemoSite = $ini->read_var( "site", "DemoSite" );
+            $ini =& INIFile::globalINI();
+            $DemoSite = $ini->read_var( "site", "DemoSite" );
 
-	  if ( $DemoSite == "enabled" ) {
-	    print("<div align='center'>This is a demosite only. You are not allowed to change the admin password!</div>\n");
-	  }else{
-	    $Action = $url_array[3];
-            include( "ezuser/admin/passwordchange.php" );
-	  }
+            if ( $DemoSite == "enabled" ) {
+                print("<div align='center'>This is a demosite only. You are not allowed to change the admin password!</div>\n");
+            }else{
+                $Action = $url_array[3];
+                include( "ezuser/admin/passwordchange.php" );
+            }
 
         }
         break;

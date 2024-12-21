@@ -521,6 +521,7 @@ class eZTodo
     function logs()
     {
         $db =& eZDB::globalDatabase();
+        $returnArray = array();
 
         $db->array_query( $logsArray, "SELECT LogID from eZTodo_TodoLogLink where TodoID='$this->ID'" );
 
@@ -574,6 +575,8 @@ class eZTodo
     var $PriorityID;
     var $ID;
     var $Status;
+    var $Category;
+    var $Priority;
 }
 
 ?>

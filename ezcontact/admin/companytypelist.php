@@ -27,20 +27,20 @@
   Viser firma typer.
 */
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 $MaxCompanyList = $ini->read_var( "eZContactMain", "MaxCompanyList" );
 $CompanyOrder = $ini->read_var( "eZContactMain", "CompanyOrder" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlist.php" );
-include_once( "ezcontact/classes/ezcompanytype.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlist.php" );
+// include_once( "ezcontact/classes/ezcompanytype.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 if ( empty( $TypeID ) )
 {
@@ -55,14 +55,14 @@ $company = new eZCompany();
 $user =& eZUser::currentUser();
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/login" );
     exit();
 }
 
 if ( !eZPermission::checkPermission( $user, "eZContact", "CompanyList" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/company/list" );
     exit();
 }
@@ -70,7 +70,7 @@ if ( !eZPermission::checkPermission( $user, "eZContact", "CompanyList" ) )
 if ( !$type->id() && $TypeID != 0 )
 {
     header( "HTTP/1.0 404 Not Found" );
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/company/list/" );
     exit();
 }

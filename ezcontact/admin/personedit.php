@@ -27,22 +27,22 @@
   Edit a person
 */
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "classes/eztexttool.php" );
 
-include_once( "ezaddress/classes/ezcountry.php" );
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
-include_once( "ezcontact/classes/ezprojecttype.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezaddress/classes/ezcountry.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezcontact/classes/ezprojecttype.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 // deletes the dayview cache file for a given day
 function deleteCache( $SiteDesign )
@@ -77,7 +77,7 @@ else
 
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/login" );
     exit();
 }
@@ -95,7 +95,7 @@ if ( isSet( $OK ) )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "CompanyModify" ) )
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/nopermission/company/edit" );
                 exit();
             }
@@ -104,7 +104,7 @@ if ( isSet( $OK ) )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "CompanyAdd" ) )
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/nopermission/company/new" );
                 exit();
             }
@@ -116,7 +116,7 @@ if ( isSet( $OK ) )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "PersonModify" ) )
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/nopermission/person/edit" );
                 exit();
             }
@@ -125,7 +125,7 @@ if ( isSet( $OK ) )
         {
             if ( !eZPermission::checkPermission( $user, "eZContact", "PersonAdd" ) )
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/nopermission/person/new" );
                 exit();
             }
@@ -135,14 +135,14 @@ if ( isSet( $OK ) )
 
 if ( isSet( $ListConsultation ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/consultation/$item_type/list/$item_id" );
     exit;
 }
 
 if ( isSet( $NewConsultation ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/consultation/$item_type/new/$item_id" );
     exit;
 }
@@ -160,7 +160,7 @@ if ( isSet( $Back ) )
         $categories = $company->categories( false, false );
         $id = $categories[0];
     }
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/$item_type/list/$id" );
     exit;
 }
@@ -176,7 +176,7 @@ if ( isset( $Action ) && $Action == "delete" )
     {
         if ( !eZPermission::checkPermission( $user, "eZContact", "CompanyDelete" ) )
         {
-            include_once( "classes/ezhttptool.php" );
+            // include_once( "classes/ezhttptool.php" );
             eZHTTPTool::header( "Location: /contact/nopermission/company/delete" );
             exit();
         }
@@ -185,7 +185,7 @@ if ( isset( $Action ) && $Action == "delete" )
     {
         if ( !eZPermission::checkPermission( $user, "eZContact", "PersonDelete" ) )
         {
-            include_once( "classes/ezhttptool.php" );
+            // include_once( "classes/ezhttptool.php" );
             eZHTTPTool::header( "Location: /contact/nopermission/person/delete" );
             exit();
         }
@@ -211,7 +211,7 @@ if ( isset( $Action ) && $Action == "delete" )
     }
 
     deleteCache( "default" );
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/$item_type/list/$id" );
     exit;
 }
@@ -764,7 +764,7 @@ if ( !$confirm )
         $t->set_var( "person_id", $PersonID );
         $t->set_var( "company_id", $CompanyID );
 
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/$item_type/view/$item_cat_id" );
     }
 

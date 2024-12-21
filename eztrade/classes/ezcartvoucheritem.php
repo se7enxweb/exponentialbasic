@@ -43,10 +43,10 @@
   \sa eZCart
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezcartitem.php" );
-include_once( "ezaddress/classes/ezonline.php" );
-include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezcartitem.php" );
+// include_once( "ezaddress/classes/ezonline.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
 
 
 class eZCartVoucherItem

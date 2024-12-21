@@ -23,24 +23,24 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztexttool.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZBugMain", "Language" );
 
-include_once( "ezbug/classes/ezbug.php" );
-include_once( "ezbug/classes/ezbugcategory.php" );
-include_once( "ezbug/classes/ezbugmodule.php" );
+// include_once( "ezbug/classes/ezbug.php" );
+// include_once( "ezbug/classes/ezbugcategory.php" );
+// include_once( "ezbug/classes/ezbugmodule.php" );
 
 $t = new eZTemplate( "ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
                      "ezbug/user/intl", $Language, "bugreport.php" );

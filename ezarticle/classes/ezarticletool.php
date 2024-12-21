@@ -31,16 +31,16 @@
 
 */
 
-include_once( "classes/ezcachefile.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezcachefile.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztexttool.php" );
 
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "ezbulkmail/classes/ezbulkmail.php" );
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "ezbulkmail/classes/ezbulkmail.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
 class eZArticleTool
 {
@@ -134,7 +134,7 @@ class eZArticleTool
 
     static public function notificationMessage( &$article )
     {
-        include_once( "classes/eztexttool.php" );
+        // include_once( "classes/eztexttool.php" );
         $ini =& INIFile::globalINI();
 
         $PublishNoticeReceiver = $ini->read_var( "eZArticleMain", "PublishNoticeReceiver" );
@@ -146,7 +146,7 @@ class eZArticleTool
 	//EP - different charsets for the MIME mail ----------------------------
 	global $GlobalSectionID;
 	        
-	include_once("ezsitemanager/classes/ezsection.php");
+	// include_once("ezsitemanager/classes/ezsection.php");
 	
 	$category = $article->categoryDefinition();
 	$GlobalSectionID = $category->sectionID();

@@ -24,8 +24,8 @@
 //
 
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezimagecatalogue/classes/ezimagevariation.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimagevariation.php" );
 
 
 $image = new eZImage( );

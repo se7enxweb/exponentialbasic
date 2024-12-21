@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
 $ini =& $GlobalSiteIni;
 $Language = $ini->read_var( "eZContactMain", "Language" );

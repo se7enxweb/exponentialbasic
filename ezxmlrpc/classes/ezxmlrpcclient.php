@@ -30,10 +30,10 @@
 //! eZXMLRPCClient is a class which creates and handles an XML-RPC client.
 /*!
   \code
-    include_once( "ezxmlrpc/classes/ezxmlrpcclient.php" );
-    include_once( "ezxmlrpc/classes/ezxmlrpccall.php" );
+    // include_once( "ezxmlrpc/classes/ezxmlrpcclient.php" );
+    // include_once( "ezxmlrpc/classes/ezxmlrpccall.php" );
 
-    include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+    // include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
 
     // create a new client
     $client = new eZXMLRPCClient( "php.ez.no", "/ezxmlrpc/server.php" );
@@ -51,7 +51,7 @@
   \sa eZXMLRPCServer
 */
 
-include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
 
 class eZXMLRPCClient
 {

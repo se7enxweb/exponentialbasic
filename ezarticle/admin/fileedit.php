@@ -23,19 +23,19 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "classes/ezfile.php" );
+// include_once( "classes/ezfile.php" );
 
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
 
 if ( isset( $DeleteSelected ) )
     $Action = "Delete";
@@ -65,7 +65,7 @@ if ( $Action == "Insert" )
         print( $file->name() . " not uploaded successfully" );
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/filelist/" . $ArticleID . "/" );
     exit();
 }
@@ -99,7 +99,7 @@ if ( $Action == "Update" )
         $uploadedFile->store();
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/filelist/" . $ArticleID . "/" );
     exit();
 }
@@ -118,7 +118,7 @@ if ( $Action == "Delete" )
         }
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/filelist/" . $ArticleID . "/" );
     exit();    
 }

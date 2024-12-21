@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezsitemanager/classes/ezsection.php" );
-include_once( "ezsitemanager/classes/ezsectionfrontpage.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezsitemanager/classes/ezsectionfrontpage.php" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
 
-include_once( "ezad/classes/ezadcategory.php" );
+// include_once( "ezad/classes/ezadcategory.php" );
 
 $Action = "";
 
@@ -110,7 +110,7 @@ if ( $Action == "up" )
     $row = new eZSectionFrontPage( $RowID );
     $row->moveUp();
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /sitemanager/section/edit/$SectionID" );
     exit();
 }
@@ -119,7 +119,7 @@ if ( $Action == "down" )
 {
     $row = new eZSectionFrontPage( $RowID );
     $row->moveDown();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /sitemanager/section/edit/$SectionID" );
     exit();
 }

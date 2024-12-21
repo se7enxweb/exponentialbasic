@@ -28,15 +28,15 @@
 /*!
 */
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 
 $DOC_ROOT = $ini->read_var( "eZForumMain", "DocumentRoot" );
 
-include_once( "classes/template.inc" );
-//include_once( "$DOC_ROOT/classes/ezdb.php" );
-include_once( "$DOC_ROOT/classes/ezforummessage.php" );
-include_once( "../classes/ezuser.php" );
+// include_once( "classes/template.inc" );
+//// include_once( "$DOC_ROOT/classes/ezdb.php" );
+// include_once( "$DOC_ROOT/classes/ezforummessage.php" );
+// include_once( "../classes/ezuser.php" );
 
 $t = new Template( "." );
 $t->set_file(Array( "edit" => "$DOC_ROOT/admin/templates/editmessage.tpl",

@@ -23,21 +23,21 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezcontact/classes/ezprojecttype.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezcontact/classes/ezprojecttype.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/login" );
     exit();
 }
 
 if ( !eZPermission::checkPermission( $user, "eZContact", "TypeAdmin" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/type/admin" );
     exit();
 }

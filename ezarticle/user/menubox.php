@@ -25,12 +25,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezcachefile.php" );
 
 $ini =& INIFile::globalINI();
 
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
@@ -48,10 +48,10 @@ if ( !(function_exists('createArticleMenu') ) )
             global $CategoryID;
 			global $url_array;
 
-            include_once( "classes/eztemplate.php" );
+            // include_once( "classes/eztemplate.php" );
 
-            include_once( "ezarticle/classes/ezarticlecategory.php" );
-            include_once( "ezarticle/classes/ezarticle.php" );
+            // include_once( "ezarticle/classes/ezarticlecategory.php" );
+            // include_once( "ezarticle/classes/ezarticle.php" );
 
             $t = new eZTemplate( "ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
                                  "ezarticle/user/intl", $Language, "menubox.php" );
@@ -116,7 +116,7 @@ if ( !(function_exists('createArticleMenu') ) )
 
 
             // user-submitted articles
-            include_once( "ezuser/classes/ezuser.php" );
+            // include_once( "ezuser/classes/ezuser.php" );
 
             if ( eZUser::currentUser() != false &&
                  $ini->read_var( "eZArticleMain", "UserSubmitArticles" ) == "enabled" )

@@ -39,8 +39,8 @@
 /*!TODO
  */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 class eZPageView
 {
@@ -365,7 +365,7 @@ class eZPageView
         $ret = false;
         if ( $this->UserID != 0 )
         {
-            include_once( "ezuser/classes/ezuser.php" );
+            // include_once( "ezuser/classes/ezuser.php" );
             $ret = new eZUser( $this->UserID );
         }
         return $ret;

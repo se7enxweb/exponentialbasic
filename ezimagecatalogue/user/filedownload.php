@@ -26,9 +26,9 @@
 // clear what might be in the output buffer
 ob_end_clean();
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 $file = new eZImage( $ImageID );
 $fileName = $file->name();

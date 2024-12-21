@@ -24,8 +24,8 @@
 //
 
 
-include_once( "classes/ezmenubox.php" );
-include_once( "classes/INIFile.php" );
+// include_once( "classes/ezmenubox.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& $GlobalSiteIni;
 $SiteDesign =& $ini->read_var( "site", "SiteStyle" );

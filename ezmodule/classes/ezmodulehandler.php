@@ -51,8 +51,8 @@
   \endcode
 */
 
-include_once( "ezsession/classes/ezpreferences.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezsession/classes/ezpreferences.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 class eZModuleHandler
 {

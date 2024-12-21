@@ -34,8 +34,8 @@
 /*!TODO
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/INIFile.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/INIFile.php" );
 
 
 class eZImageCategory

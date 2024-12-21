@@ -26,15 +26,15 @@
 /*
   Viser liste over prioriteringer
 */
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini = INIFile::globalINI();
 $Language = $ini->read_var( "eZBugMain", "Language" );
 $LanguageIni = new INIFIle( "ezbug/admin/intl/" . $Language . "/categorylist.php.ini", false );
 
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezbug/classes/ezbugcategory.php" );
+// include_once( "ezbug/classes/ezbugcategory.php" );
 
 $t = new eZTemplate( "ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
                      "ezbug/admin/intl", $Language, "categorylist.php" );

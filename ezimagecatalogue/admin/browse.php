@@ -24,17 +24,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 

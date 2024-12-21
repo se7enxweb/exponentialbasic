@@ -35,7 +35,7 @@
 
 */
 
-include_once( "ezform/classes/ezformelement.php" );
+// include_once( "ezform/classes/ezformelement.php" );
 
 class eZForm
 {

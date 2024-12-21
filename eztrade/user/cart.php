@@ -24,13 +24,13 @@
 //
 
 // common includes
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
 // specific includes
-include_once( "classes/ezcurrency.php" );
-include_once( "eztrade/classes/ezcart.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "eztrade/classes/ezcart.php" );
 
 // Load settings
 $ini =& INIFile::globalINI();

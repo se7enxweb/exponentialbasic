@@ -56,9 +56,9 @@
   \sa eZLinkCategory eZHit eZQuery
 */
 
-include_once( "classes/ezquery.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezquery.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
 
 class eZLink
 {

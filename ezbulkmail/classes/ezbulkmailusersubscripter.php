@@ -35,7 +35,7 @@
 
 */
 
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 class eZBulkMailUserSubscripter
 {

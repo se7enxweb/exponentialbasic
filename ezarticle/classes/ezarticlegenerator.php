@@ -33,7 +33,7 @@
   the default generator to use.
 */
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 class eZArticleGenerator
 {
@@ -92,7 +92,7 @@ class eZArticleGenerator
     */
     function &generateXML( &$contents )
     {
-        include_once( "ezarticle/classes/" . $this->GeneratorFile );
+        // include_once( "ezarticle/classes/" . $this->GeneratorFile );
 
         $generator = new $this->GeneratorClass( $contents );
 
@@ -165,7 +165,7 @@ class eZArticleGenerator
             print( "<b>Error: eZArticleGenerator::decodeXML()  could not find generator in XML chunk.</b>" );
         }
 
-        include_once( "ezarticle/classes/" . $this->GeneratorFile );
+        // include_once( "ezarticle/classes/" . $this->GeneratorFile );
 
         $generator = new $this->GeneratorClass( $contents );
 

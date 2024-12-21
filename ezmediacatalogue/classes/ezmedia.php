@@ -55,10 +55,10 @@
     $t in the example just pops out of nowhere, giving us no indication
     of where it was created or what connection it has with this class
  */
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
 
-include_once( "ezmediacatalogue/classes/ezmediatype.php" );
+// include_once( "ezmediacatalogue/classes/ezmediatype.php" );
 
 class eZMedia
 {

@@ -34,8 +34,8 @@
 /*!TODO
  */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezfile.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezfile.php" );
 
 class eZVirtualfile
 {

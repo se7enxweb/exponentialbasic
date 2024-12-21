@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezlocale.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "ezforum/classes/ezforum.php" );
-include_once( "ezforum/classes/ezforummessage.php" );
-include_once( "ezforum/classes/ezforumcategory.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "ezforum/classes/ezforum.php" );
+// include_once( "ezforum/classes/ezforummessage.php" );
+// include_once( "ezforum/classes/ezforumcategory.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZForumMain", "Language" );
@@ -125,7 +125,7 @@ switch ( $Action )
 
         include( "ezforum/user/messagepermissions.php" );
 
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         if ( $MessageDelete == false )
         {
             die('bath');// eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
@@ -149,7 +149,7 @@ switch ( $Action )
         $CheckForumID = $msg->forumID();
         include( "ezforum/user/messagepermissions.php" );
 
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         if ( !$MessageDelete )
         {
             eZHTTPTool::header( "Location: /forum/messageedit/forbidden/?Tried=$Action&TriedMessage=$CheckMessageID&TriedForum=$CheckForumID" );
@@ -158,10 +158,10 @@ switch ( $Action )
         $doParse = true;
         $ShowPath = true;
         $isPreview = false;
-        include_once( "ezforum/user/messagepath.php" );
+        // include_once( "ezforum/user/messagepath.php" );
 
         $ShowMessage = true;
-        include_once( "ezforum/user/messagebody.php" );
+        // include_once( "ezforum/user/messagebody.php" );
     }
     break;
 
@@ -173,7 +173,7 @@ switch ( $Action )
         $CheckForumID = $msg->forumID();
         include( "ezforum/user/messagepermissions.php" );
 
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         if ( isset( $MessageEdit ) && $MessageEdit == false )
         {
             die('mondays'); //eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
@@ -185,10 +185,10 @@ switch ( $Action )
         $doParse = true;
         $ShowPath = true;
         $isPreview = false;
-        include_once( "ezforum/user/messagepath.php" );
+        // include_once( "ezforum/user/messagepath.php" );
 
         $ShowMessage = true;
-        include_once( "ezforum/user/messagebody.php" );
+        // include_once( "ezforum/user/messagebody.php" );
     }
     break;
 
@@ -201,7 +201,7 @@ switch ( $Action )
         $msg = new eZForumMessage( $PreviewID );
         $msg->delete();
 
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         if ( empty( $RedirectURL ) )
         {
             if ( empty( $ForumID ) )
@@ -231,7 +231,7 @@ switch ( $Action )
 
         include( "ezforum/user/messagepermissions.php" );
 
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
 
         if ( isset( $ForumPost ) && !$ForumPost )
         {
@@ -242,7 +242,7 @@ switch ( $Action )
 
         if ( $StartAction == "reply" )
         {
-            include_once( "ezforum/user/messagereply.php" );
+            // include_once( "ezforum/user/messagereply.php" );
         }
         else
         {
@@ -262,7 +262,7 @@ switch ( $Action )
                 {
                     foreach ( $moderators as $moderatorItem )
                     {
-                        include_once( "ezmail/classes/ezmail.php" );
+                        // include_once( "ezmail/classes/ezmail.php" );
                         $mail = new eZMail();
 
                         $locale = new eZLocale( $Language );
@@ -356,7 +356,7 @@ switch ( $Action )
         $CheckForumID = $msg->forumID();
         include( "ezforum/user/messagepermissions.php" );
 
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         if ( isset( $MessageEdit ) && $MessageEdit == false )
         {
             die('pink');//eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
@@ -386,7 +386,7 @@ switch ( $Action )
         $NewMessagePostedAt = htmlspecialchars( $ini->read_var( "eZForumMain", "FutureDate" ) );
 
         $ShowMessage = false;
-        include_once( "ezforum/user/messagebody.php" );
+        // include_once( "ezforum/user/messagebody.php" );
 
         $msg = new eZForumMessage();
         $msg->setIsTemporary( true );
@@ -398,14 +398,14 @@ switch ( $Action )
 
         if ( !$ForumPost )
         {
-            include_once( "classes/ezhttptool.php" );
+            // include_once( "classes/ezhttptool.php" );
             die('green');// eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
         $doParse = true;
         $ShowPath = true;
         $isPreview = true;
-        include_once( "ezforum/user/messagepath.php" );
+        // include_once( "ezforum/user/messagepath.php" );
 
         $ShowMessageForm = true;
         $ShowEmptyMessageForm = true;
@@ -413,7 +413,7 @@ switch ( $Action )
         $ShowHiddenMessageForm = true;
         $ShowReplyInfo = true;
         $ShowBodyInfo = true;
-        include_once( "ezforum/user/messageform.php" );
+        // include_once( "ezforum/user/messageform.php" );
     }
     break;
 
@@ -447,7 +447,7 @@ switch ( $Action )
 
         if ( isset( $MessageEdit ) && !$MessageEdit && !$Error )
         {
-            include_once( "classes/ezhttptool.php" );
+            // include_once( "classes/ezhttptool.php" );
             die('blueboy');//eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
@@ -455,7 +455,7 @@ switch ( $Action )
         $doParse = true;
         $ShowPath = true;
         $isPreview = false;
-        include_once( "ezforum/user/messagepath.php" );
+        // include_once( "ezforum/user/messagepath.php" );
 
         $ShowMessageForm = true;
         $ShowEmptyMessageForm = false;
@@ -463,7 +463,7 @@ switch ( $Action )
         $ShowHiddenMessageForm = true;
         $ShowReplyInfo = true;
         $ShowBodyInfo = true;
-        include_once( "ezforum/user/messageform.php" );
+        // include_once( "ezforum/user/messageform.php" );
 
         $doPrint = true;
     }
@@ -490,7 +490,7 @@ switch ( $Action )
 
         if ( !$MessageReply )
         {
-            //#include_once( "classes/ezhttptool.php" );
+            //#// include_once( "classes/ezhttptool.php" );
             //#eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
@@ -501,7 +501,7 @@ switch ( $Action )
         }
         else
         {
-            include_once( "classes/eztexttool.php" );
+            // include_once( "classes/eztexttool.php" );
             $NewMessageBody = eZTextTool::addPre( $msg->body() );
         }
 
@@ -519,11 +519,11 @@ switch ( $Action )
 
         $doParse = true;
         $ShowMessage = true;
-        include_once( "ezforum/user/messagebody.php" );
+        // include_once( "ezforum/user/messagebody.php" );
 
         $ShowPath = true;
         $isPreview = false;
-        include_once( "ezforum/user/messagepath.php" );
+        // include_once( "ezforum/user/messagepath.php" );
 
         $ShowMessageForm = true;
         $ShowEmptyMessageForm = false;
@@ -532,7 +532,7 @@ switch ( $Action )
         $ShowReplyInfo = true;
         $ShowBodyInfo = true;
         $NewMessageAuthor = true;
-        include_once( "ezforum/user/messageform.php" );
+        // include_once( "ezforum/user/messageform.php" );
 
         $doPrint = true;
     }
@@ -651,16 +651,16 @@ switch ( $Action )
 
             if ( isset( $MessageEdit ) && $MessageEdit == false )
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 die('purplemonster');//eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
             }
 
             $ShowPath = true;
             $isPreview = false;
-            include_once( "ezforum/user/messagepath.php" );
+            // include_once( "ezforum/user/messagepath.php" );
 
             $ShowMessage = true;
-            include_once( "ezforum/user/messagebody.php" );
+            // include_once( "ezforum/user/messagebody.php" );
 
             $ShowMessageForm = true;
             $ShowEmptyMessageForm = false;
@@ -668,7 +668,7 @@ switch ( $Action )
             $ShowHiddenMessageForm = true;
             $ShowReplyInfo = true;
             $ShowBodyInfo = true;
-            include_once( "ezforum/user/messageform.php" );
+            // include_once( "ezforum/user/messageform.php" );
         }
 
         $doPrint = true;
@@ -677,7 +677,7 @@ switch ( $Action )
 
     default:
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         die('aqua'); //eZHTTPTool::header( "Location: /error/404?Info=" . errorPage( "forum_main", "/forum/categorylist/", 404 ) );
     }
     break;

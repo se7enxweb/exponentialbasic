@@ -24,10 +24,10 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -39,13 +39,13 @@ $SmallImageWidth = $ini->read_var( "eZTradeMain", "SmallImageWidth" );
 $SmallImageHeight = $ini->read_var( "eZTradeMain", "SmallImageHeight" );
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezcartoptionvalue.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezcartoptionvalue.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "classes/ezlist.php" );
 
 $user =& eZUser::currentUser();
 

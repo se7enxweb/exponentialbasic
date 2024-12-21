@@ -27,37 +27,37 @@ ob_end_clean();
 ob_start();
 
 // site information
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 $GlobalSiteIni =& $ini;
 
 
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezlocale.php" );
 
 
 // eZ user
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 // eZ article classes
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlegenerator.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlegenerator.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
 
 // include the server
-include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
 
 // include the datatype(s) we need
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
 
 // for payment information
-include_once( "eztrade/classes/ezcheckout.php" );
+// include_once( "eztrade/classes/ezcheckout.php" );
 
 $server = new eZXMLRPCServer( );
 

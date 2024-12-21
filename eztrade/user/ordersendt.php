@@ -23,17 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/eztemplate.php" ); 
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" ); 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" ); 
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" ); 
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
 
-include_once( "eztrade/classes/ezorder.php" ); 
-include_once( "eztrade/classes/ezproduct.php" ); 
-include_once( "eztrade/classes/ezcheckout.php" );
+// include_once( "eztrade/classes/ezorder.php" ); 
+// include_once( "eztrade/classes/ezproduct.php" ); 
+// include_once( "eztrade/classes/ezcheckout.php" );
 
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );

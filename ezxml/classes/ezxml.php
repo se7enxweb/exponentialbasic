@@ -37,8 +37,8 @@
   
 */
 
-include_once( "ezxml/classes/ezdomnode.php" );
-include_once( "ezxml/classes/ezdomdocument.php" );
+// include_once( "ezxml/classes/ezdomnode.php" );
+// include_once( "ezxml/classes/ezdomdocument.php" );
 
 class eZXML
 {

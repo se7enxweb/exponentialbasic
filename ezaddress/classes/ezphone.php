@@ -31,8 +31,8 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezaddress/classes/ezphonetype.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezaddress/classes/ezphonetype.php" );
 
 class eZPhone
 {

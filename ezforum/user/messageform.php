@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezlocale.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/eztexttool.php" );
 
 $AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
 $language = $ini->read_var( "eZForumMain", "Language" );
@@ -218,7 +218,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
     if( !is_null( $MessageBody ) )
     $MessageBody = preg_replace( $quote, "&#034;", $MessageBody );
 
-    include_once( "classes/eztexttool.php" );
+    // include_once( "classes/eztexttool.php" );
 
     $t->set_var( "message_topic", $MessageTopic );
     $t->set_var( "new_message_topic", $NewMessageTopic );

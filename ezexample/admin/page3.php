@@ -25,7 +25,7 @@
 
 // include the class files.
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZExampleMain", "Language" );

@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezlink/classes/ezlink.php" );
-include_once( "ezlink/classes/ezlinkcategory.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezlink/classes/ezlink.php" );
+// include_once( "ezlink/classes/ezlinkcategory.php" );
 
 require( "ezuser/admin/admincheck.php" );
 

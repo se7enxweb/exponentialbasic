@@ -19,10 +19,10 @@
   \endcode
 
 */
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezmysqldb.php" );
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezmysqldb.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
 
 class eZFreeTradeImport
 {

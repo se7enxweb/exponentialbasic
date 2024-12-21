@@ -42,12 +42,12 @@
 
 //require "ezphputils.php";
 
-include_once( "ezaddress/classes/ezaddress.php" );
-include_once( "ezcontact/classes/ezcompanytype.php" );
-include_once( "ezaddress/classes/ezphone.php" );
-include_once( "classes/ezimagefile.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "classes/ezdate.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "ezcontact/classes/ezcompanytype.php" );
+// include_once( "ezaddress/classes/ezphone.php" );
+// include_once( "classes/ezimagefile.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "classes/ezdate.php" );
 
 class eZCompany
 {
@@ -188,7 +188,7 @@ class eZCompany
             $res[] = $db->query( "DELETE FROM eZContact_CompanyPersonDict WHERE CompanyID='$id'" );
             $res[] = $db->query( "DELETE FROM eZContact_CompanyIndex WHERE CompanyID='$id'" );
             $db->array_query( $res_array, "SELECT ID FROM eZTrade_Order WHERE CompanyID='$id'" );
-            include_once( "eztrade/classes/ezorder.php" );
+            // include_once( "eztrade/classes/ezorder.php" );
             foreach ( $res_array as $order )
             {
                 $orderObject = new eZOrder( $order[$db->fieldName( "ID" )] );

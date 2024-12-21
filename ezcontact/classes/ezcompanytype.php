@@ -41,8 +41,8 @@
   area, business area, etc.
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
 
 class eZCompanyType
 {

@@ -22,15 +22,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezdate.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/ezdb.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdate.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/eztemplate.php" );
 include_oncE( "eztrade/classes/ezorder.php" );
 
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
 $ini =& INIFile::globalINI();
 

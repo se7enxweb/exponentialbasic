@@ -23,21 +23,21 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "classes/ezmediafile.php" );
+// include_once( "classes/ezmediafile.php" );
 
-include_once( "ezmediacatalogue/classes/ezmedia.php" );
-include_once( "ezmediacatalogue/classes/ezmediatype.php" );
-include_once( "ezuser/classes/ezauthor.php" );
+// include_once( "ezmediacatalogue/classes/ezmedia.php" );
+// include_once( "ezmediacatalogue/classes/ezmediatype.php" );
+// include_once( "ezuser/classes/ezauthor.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
 
 if ( isset ( $OK ) )
 {
@@ -101,7 +101,7 @@ if ( isset ( $OK ) )
     if ( !is_numeric( $MediaID ) )
         $article->addMedia( $media );
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/medialist/" . $ArticleID . "/" );
     exit();
 }
@@ -119,7 +119,7 @@ if ( isSet ( $DeleteSelected ) )
         }
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     if ( !isset( $Update ) )
     {
         eZHTTPTool::header( "Location: /article/articleedit/medialist/" . $ArticleID . "/" );

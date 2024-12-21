@@ -24,16 +24,16 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
-include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
+// include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
 
 if ( isset( $Action ) && $Action == "New" )
 {

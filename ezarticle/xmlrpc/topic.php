@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezarticle/classes/eztopic.php" );
+// include_once( "ezarticle/classes/eztopic.php" );
 
 if( $Command == "data" ) // return all the data in the category
 {

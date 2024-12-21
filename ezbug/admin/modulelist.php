@@ -26,13 +26,13 @@
 /*
   Viser liste over prioriteringer
 */
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini = INIFile::globalINI();
 $Language = $ini->read_var( "eZBugMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezbug/classes/ezbugmodule.php" );
+// include_once( "ezbug/classes/ezbugmodule.php" );
 
 $t = new eZTemplate( "ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
                      "ezbug/admin/intl", $Language, "modulelist.php" );

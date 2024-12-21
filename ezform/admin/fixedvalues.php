@@ -23,15 +23,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezlist.php" );
 
-include_once( "ezform/classes/ezform.php" );
-include_once( "ezform/classes/ezformelement.php" );
-include_once( "ezform/classes/ezformelementtype.php" );
-include_once( "ezform/classes/ezformelementfixedvalue.php" );
+// include_once( "ezform/classes/ezform.php" );
+// include_once( "ezform/classes/ezformelement.php" );
+// include_once( "ezform/classes/ezformelementtype.php" );
+// include_once( "ezform/classes/ezformelementfixedvalue.php" );
 
 $ActionValue = "list";
 $ini =& INIFile::globalINI();

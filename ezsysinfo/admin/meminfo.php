@@ -24,11 +24,11 @@
 //
 
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezsysinfo/classes/ezsysinfo.php" );
+// include_once( "ezsysinfo/classes/ezsysinfo.php" );
 
 $ini =& INIFile::globalINI();
 $Language =& $ini->read_var( "eZSysinfoMain", "Language" );

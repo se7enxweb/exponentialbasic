@@ -35,7 +35,7 @@
 
 */
 
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdatetime.php" );
 
 class eZTodoLog
 {

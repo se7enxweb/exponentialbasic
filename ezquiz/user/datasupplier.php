@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -89,9 +89,9 @@ switch ( $url_array[2] )
                 }
                 else
                 {
-                    include_once( "classes/ezlocale.php" );
-                    include_once( "classes/ezdate.php" );
-                    include_once( "ezquiz/classes/ezquizgame.php" );
+                    // include_once( "classes/ezlocale.php" );
+                    // include_once( "classes/ezdate.php" );
+                    // include_once( "ezquiz/classes/ezquizgame.php" );
 
                     $game = new eZQuizGame( $GameID );
                     $gameStop = $game->stopDate();

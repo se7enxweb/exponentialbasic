@@ -37,9 +37,9 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 class eZNewsImporter
 {
@@ -83,7 +83,7 @@ class eZNewsImporter
           {
             case "nyheter.no" :
             {
-                include_once( "eznewsfeed/classes/eznyheternoimporter.php" );
+                // include_once( "eznewsfeed/classes/eznyheternoimporter.php" );
 
                 $importer = new eZNyheterNOImporter( $this->Site, $this->Login, $this->Password );
 
@@ -94,7 +94,7 @@ class eZNewsImporter
 
             case "rdf" :
             {
-                include_once( "eznewsfeed/classes/ezrdfimporter.php" );
+                // include_once( "eznewsfeed/classes/ezrdfimporter.php" );
 
                 $importer = new eZRDFImporter( $this->Site, $this->Login, $this->Password );
                 $newsList =& $importer->news();
@@ -103,7 +103,7 @@ class eZNewsImporter
 
             case "rss" :
             {
-                include_once( "eznewsfeed/classes/ezrssimporter.php" );
+                // include_once( "eznewsfeed/classes/ezrssimporter.php" );
 
                 $importer = new eZRSSImporter( $this->Site, $this->Login, $this->Password );
                 $newsList =& $importer->news();
@@ -112,7 +112,7 @@ class eZNewsImporter
 
             case "backslash" :
             {
-                include_once( "eznewsfeed/classes/ezbackslashimporter.php" );
+                // include_once( "eznewsfeed/classes/ezbackslashimporter.php" );
 
                 $importer = new eZBackslashImporter( $this->Site, $this->Login, $this->Password );
                 $newsList =& $importer->news();

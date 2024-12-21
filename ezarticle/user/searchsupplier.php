@@ -29,7 +29,7 @@ $SearchResult[0]["DetailedSearchVariable"] = "SearchText";
 $SearchResult[0]["DetailViewPath"] = "/article/view/";
 $SearchResult[0]["IconPath"] = "/design/base/images/icons/document.gif";
 
-include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
 
 $article = new eZArticle();
 $articleSearchResult = $article->search( $SearchText, "time", false, 0, $Limit, array(), $SearchResult["SearchCount"] );

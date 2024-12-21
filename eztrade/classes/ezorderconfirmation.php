@@ -31,37 +31,37 @@
 
 */
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
 
-include_once( "classes/ezlog.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "classes/ezcachefile.php" );
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezoption.php" );
-include_once( "eztrade/classes/ezoptionvalue.php" );
-include_once( "eztrade/classes/ezcart.php" );
-include_once( "eztrade/classes/ezcartitem.php" );
-include_once( "eztrade/classes/ezcartoptionvalue.php" );
-include_once( "eztrade/classes/ezpreorder.php" );
-include_once( "eztrade/classes/ezorder.php" );
-include_once( "eztrade/classes/ezorderitem.php" );
-include_once( "eztrade/classes/ezorderoptionvalue.php" );
-include_once( "eztrade/classes/ezwishlist.php" );
-include_once( "eztrade/classes/ezcheckout.php" );
-include_once( "eztrade/classes/ezvoucher.php" );
-include_once( "eztrade/classes/ezvoucherused.php" );
-include_once( "eztrade/classes/ezvoucheremail.php" );
-include_once( "eztrade/classes/ezvouchersmail.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezoption.php" );
+// include_once( "eztrade/classes/ezoptionvalue.php" );
+// include_once( "eztrade/classes/ezcart.php" );
+// include_once( "eztrade/classes/ezcartitem.php" );
+// include_once( "eztrade/classes/ezcartoptionvalue.php" );
+// include_once( "eztrade/classes/ezpreorder.php" );
+// include_once( "eztrade/classes/ezorder.php" );
+// include_once( "eztrade/classes/ezorderitem.php" );
+// include_once( "eztrade/classes/ezorderoptionvalue.php" );
+// include_once( "eztrade/classes/ezwishlist.php" );
+// include_once( "eztrade/classes/ezcheckout.php" );
+// include_once( "eztrade/classes/ezvoucher.php" );
+// include_once( "eztrade/classes/ezvoucherused.php" );
+// include_once( "eztrade/classes/ezvoucheremail.php" );
+// include_once( "eztrade/classes/ezvouchersmail.php" );
 
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
 
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "classes/ezgpg.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/ezgpg.php" );
 
 class eZOrderConfirmation
 {

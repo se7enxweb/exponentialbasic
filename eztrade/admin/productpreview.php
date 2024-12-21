@@ -23,23 +23,23 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "classes/eztexttool.php" );
-include_once( "classes/ezmodulelink.php" );
-include_once( "classes/ezlinksection.php" );
-include_once( "classes/ezlinkitem.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezmodulelink.php" );
+// include_once( "classes/ezlinksection.php" );
+// include_once( "classes/ezlinkitem.php" );
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezoption.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
-include_once( "eztrade/classes/ezproductcurrency.php" );
-include_once( "eztrade/classes/ezorder.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezoption.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "eztrade/classes/ezproductcurrency.php" );
+// include_once( "eztrade/classes/ezorder.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -183,7 +183,7 @@ else
 
 if ( $CapitalizeHeadlines == "enabled" )
 {
-    include_once( "classes/eztexttool.php" );
+    // include_once( "classes/eztexttool.php" );
     $t->set_var( "title_text", eZTextTool::capitalize( $product->name() ) );
 }
 else

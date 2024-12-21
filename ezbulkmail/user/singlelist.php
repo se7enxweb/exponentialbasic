@@ -23,10 +23,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
-include_once( "ezbulkmail/classes/ezbulkmailforgot.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailforgot.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 $Language = $ini->read_var( "eZBulkMailMain", "Language" );

@@ -26,15 +26,15 @@
 // First check if this game is open
 // Check if there are other open games
 
-include_once( "classes/ezlocale.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezlist.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "ezquiz/classes/ezquizquestion.php" );
-include_once( "ezquiz/classes/ezquizgame.php" );
-include_once( "ezquiz/classes/ezquizanswer.php" );
-include_once( "ezquiz/classes/ezquizscore.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezlist.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "ezquiz/classes/ezquizquestion.php" );
+// include_once( "ezquiz/classes/ezquizgame.php" );
+// include_once( "ezquiz/classes/ezquizanswer.php" );
+// include_once( "ezquiz/classes/ezquizscore.php" );
 
 $ini =& INIFile::globalINI();
 

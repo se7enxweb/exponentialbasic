@@ -26,32 +26,32 @@
 ob_end_clean();
 ob_start();
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezlocale.php" );
 
 // eZ trade classes
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezorder.php" );
-include_once( "eztrade/classes/ezpreorder.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezorder.php" );
+// include_once( "eztrade/classes/ezpreorder.php" );
 
 // eZ user
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 
 // include the server
-include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
 
 // include the datatype(s) we need
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
 
 // for payment information
-include_once( "eztrade/classes/ezcheckout.php" );
+// include_once( "eztrade/classes/ezcheckout.php" );
 
 
 $VersionNumber = "Pre release 1.0";

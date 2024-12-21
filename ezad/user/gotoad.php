@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "ezad/classes/ezad.php" );
-include_once( "ezad/classes/ezadclick.php" );
-include_once( "ezstats/classes/ezpageview.php" );
+// include_once( "ezad/classes/ezad.php" );
+// include_once( "ezad/classes/ezadclick.php" );
+// include_once( "ezstats/classes/ezpageview.php" );
 
 
 if ( !is_a( $GlobalPageView, "eZPageView" ) )

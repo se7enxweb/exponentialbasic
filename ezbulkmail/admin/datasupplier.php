@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if( eZPermission::checkPermission( $user, "eZBulkMail", "ModuleEdit" ) == false )
@@ -41,7 +41,7 @@ switch ( $url_array[2] )
         $Offset = $url_array[4];
         if( $Offset == "" )
             $Offset = 0;
-        include_once( "ezbulkmail/admin/categorylist.php" );
+        // include_once( "ezbulkmail/admin/categorylist.php" );
     }
     break;
 
@@ -50,13 +50,13 @@ switch ( $url_array[2] )
         $CategoryID = $url_array[3];
         if( !is_numeric( $CategoryID ) )
             $CategoryID = 0;
-        include_once( "ezbulkmail/admin/categoryedit.php" );
+        // include_once( "ezbulkmail/admin/categoryedit.php" );
     }
     break;
 
     case "templatelist" :
     {
-        include_once( "ezbulkmail/admin/templatelist.php" );
+        // include_once( "ezbulkmail/admin/templatelist.php" );
     }
     break;
 
@@ -65,7 +65,7 @@ switch ( $url_array[2] )
         $TemplateID = $url_array[3];
         if( !is_numeric( $TemplateID ) )
             $TemplateID = 0;
-        include_once( "ezbulkmail/admin/templateedit.php" );
+        // include_once( "ezbulkmail/admin/templateedit.php" );
     }
     break;
 
@@ -74,13 +74,13 @@ switch ( $url_array[2] )
         $MailID = $url_array[3];
         if( !is_numeric( $MailID ) )
             $MailID = 0;
-        include_once( "ezbulkmail/admin/mailedit.php" );
+        // include_once( "ezbulkmail/admin/mailedit.php" );
     }
     break;
 
     case "drafts" :
     {
-        include_once( "ezbulkmail/admin/maillist.php" );
+        // include_once( "ezbulkmail/admin/maillist.php" );
     }
     break;
 
@@ -96,7 +96,7 @@ switch ( $url_array[2] )
             eZHTTPTool::header( "Location: /error/404" );
             exit();
         }
-        include_once( "ezbulkmail/admin/mailview.php" );
+        // include_once( "ezbulkmail/admin/mailview.php" );
     }
     break;
 
@@ -108,7 +108,7 @@ switch ( $url_array[2] )
             eZHTTPTool::header( "Location: /error/404" );
             exit();
         }
-        include_once( "ezbulkmail/admin/masssubscribe.php" );
+        // include_once( "ezbulkmail/admin/masssubscribe.php" );
     }
     break;
 
@@ -117,7 +117,7 @@ switch ( $url_array[2] )
         $CategoryID = $url_array[3];
         if( !is_numeric( $CategoryID ) )
             $CategoryID = 0;
-        include_once( "ezbulkmail/admin/userlist.php" );
+        // include_once( "ezbulkmail/admin/userlist.php" );
     }
     break;
 

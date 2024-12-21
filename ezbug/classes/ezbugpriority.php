@@ -31,7 +31,7 @@
   Example code:
   \code
   // include the class
-  include_once( "ezbug/classes/ezbugpriority.php" );
+  // include_once( "ezbug/classes/ezbugpriority.php" );
 
   // create a new class object
   $priority = new eZBugPriority();
@@ -46,7 +46,7 @@
 /*!TODO
 */
 
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdb.php" );
 
 
 class eZBugPriority

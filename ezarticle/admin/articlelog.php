@@ -23,10 +23,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/INIFile.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
 
 
 $t = new eZTemplate( "ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),

@@ -36,9 +36,9 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "eznewsfeed/classes/eznews.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "eznewsfeed/classes/eznews.php" );
 
 class eZNyheterNOImporter
 {
@@ -73,7 +73,7 @@ class eZNyheterNOImporter
 	// kracker: untested attempt at adding error protection to import process (original line above)
 
         if (!($fp = @fopen($site, "r"))) {
-          include_once( "classes/ezlog.php" );
+          // include_once( "classes/ezlog.php" );
 	  eZLog::writeWarning( "RSS read failure: ".$this->Site."\n" );
           return false;
         }

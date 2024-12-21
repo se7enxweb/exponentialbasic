@@ -23,23 +23,23 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 if ( isSet( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /calendar/typelist/" );
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZCalendarMain", "Language" );
 $LanguageIni = new INIFile( "ezcalendar/admin/intl/" . $Language . "/typeedit.php.ini", false );
 
-include_once( "ezcalendar/classes/ezappointment.php" );
-include_once( "ezcalendar/classes/ezappointmenttype.php" );
+// include_once( "ezcalendar/classes/ezappointment.php" );
+// include_once( "ezcalendar/classes/ezappointmenttype.php" );
 
 if ( isset( $Action ) && $Action == "Insert" )
 {

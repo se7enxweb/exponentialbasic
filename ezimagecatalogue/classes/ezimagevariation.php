@@ -31,10 +31,10 @@
   \sa eZImage eZImageVariationGroup
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezimagefile.php" );
-//  include_once( "classes/ezimage.php" );
-//  include_once( "classes/ezimagevariationgroup.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezimagefile.php" );
+//  // include_once( "classes/ezimage.php" );
+//  // include_once( "classes/ezimagevariationgroup.php" );
 
 class eZImageVariation
 {

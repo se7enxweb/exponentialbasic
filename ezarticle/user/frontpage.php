@@ -23,19 +23,19 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezlist.php" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
-include_once( "ezad/classes/ezadcategory.php" );
-include_once( "ezad/classes/ezad.php" );
+// include_once( "ezad/classes/ezadcategory.php" );
+// include_once( "ezad/classes/ezad.php" );
 
 //$CategoryID = $url_array[3];
 global $CategoryID;
@@ -206,8 +206,8 @@ $user =& eZUser::currentUser();
 
 if ( $adCount > 0 )
 {
-    include_once( "ezad/classes/ezadcategory.php" );
-    include_once( "ezad/classes/ezad.php" );
+    // include_once( "ezad/classes/ezadcategory.php" );
+    // include_once( "ezad/classes/ezad.php" );
 
     $adCategory = new eZAdCategory( $FrontPageAdCategory );
 

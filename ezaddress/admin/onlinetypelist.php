@@ -24,7 +24,7 @@
 //
 
 
-include_once( "ezaddress/classes/ezonlinetype.php" );
+// include_once( "ezaddress/classes/ezonlinetype.php" );
 
 $language_file = "onlinetype.php";
 $page_path = "/address/onlinetype";
@@ -37,12 +37,12 @@ $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZAddressMain", "Language" );
 $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 require( "ezuser/admin/admincheck.php" );
 

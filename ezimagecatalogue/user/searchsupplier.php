@@ -38,7 +38,7 @@ $SearchResult["DetailedSearchVariable"] = "SearchText";
 $SearchResult["DetailViewPath"] = "/imagecatalogue/imageview/";
 $SearchResult["IconPath"] = "/images/document.gif";
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 $image = new eZImage();
 $SearchResult["Result"] = $image->search( $SearchText, 0, $Limit );

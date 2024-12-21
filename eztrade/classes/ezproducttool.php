@@ -31,8 +31,8 @@
 
 */
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "classes/ezcachefile.php" );
 
 class eZProductTool
 {

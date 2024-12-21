@@ -24,7 +24,7 @@
 //
 
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 switch ( $url_array[2] )
 {

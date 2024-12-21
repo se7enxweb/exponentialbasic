@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "classes/ezfile.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/ezfile.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
 /* This file contains a list of functions that are used by the various classes.
  They are put here because they are generall and to keep the classes from beeing

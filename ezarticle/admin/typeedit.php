@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 if ( isset( $Cancel ) )
 {
@@ -31,16 +31,16 @@ if ( isset( $Cancel ) )
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 $move_item = true;
 
-include_once( "ezarticle/classes/ezarticletype.php" );
-include_once( "ezarticle/classes/ezarticleattribute.php" );
+// include_once( "ezarticle/classes/ezarticletype.php" );
+// include_once( "ezarticle/classes/ezarticleattribute.php" );
 
 if( isset( $Ok ) || isset( $NewAttribute ) )
 {
@@ -93,7 +93,7 @@ if( $Action == "up" )
 {
     $attribute = new eZArticleAttribute( $AttributeID );
     $attribute->moveUp();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/type/edit/$TypeID/?$Action=update" );
     exit();
 }
@@ -102,7 +102,7 @@ if( $Action == "down" )
 {
     $attribute = new eZArticleAttribute( $AttributeID );
     $attribute->moveDown();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/type/edit/$TypeID/?$Action=update" );
     exit();
 }

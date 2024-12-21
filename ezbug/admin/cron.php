@@ -22,12 +22,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezmail/classes/ezmailaccount.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezbug/classes/ezbug.php" );
-include_once( "ezbug/classes/ezbuglog.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/INIFile.php" );
+// include_once( "ezmail/classes/ezmailaccount.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezbug/classes/ezbug.php" );
+// include_once( "ezbug/classes/ezbuglog.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini = new INIFile( "site.ini", false );
 

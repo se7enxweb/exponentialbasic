@@ -34,11 +34,11 @@
 /*!TODO
  */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezquery.php" );
-include_once( "classes/ezdate.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezstats/classes/ezpageview.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezquery.php" );
+// include_once( "classes/ezdate.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezstats/classes/ezpageview.php" );
 
 class eZPageViewQuery
 {

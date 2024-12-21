@@ -29,7 +29,7 @@ $SearchResult[0]["DetailedSearchVariable"] = "SearchText";
 $SearchResult[0]["DetailViewPath"] = "/contact/company/view/";
 $SearchResult[0]["IconPath"] = "/design/base/images/icons/document.gif";
 
-include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
 
 $SearchResult[0]["Result"] =& eZCompany::search( $SearchText );
 $SearchResult[0]["SearchCount"] = count( $SearchResult[0]["Result"] );
@@ -40,7 +40,7 @@ $SearchResult[1]["DetailedSearchVariable"] = "SearchText";
 $SearchResult[1]["DetailViewPath"] = "/contact/person/view/";
 $SearchResult[1]["IconPath"] = "/design/base/images/icons/document.gif";
 
-include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
 
 $SearchResult[1]["Result"] =& eZPerson::search( $SearchText );
 $SearchResult[1]["SearchCount"] = count( $SearchResult[1]["Result"] );

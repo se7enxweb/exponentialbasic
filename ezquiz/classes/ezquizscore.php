@@ -35,8 +35,8 @@
 
 */
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezquiz/classes/ezquizgame.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezquiz/classes/ezquizgame.php" );
 
 class eZQuizScore
 {

@@ -24,13 +24,13 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
 $ini =& INIFile::globalINI();
 

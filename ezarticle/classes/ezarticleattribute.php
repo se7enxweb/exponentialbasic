@@ -41,8 +41,8 @@
   \sa eZArticle
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezarticle/classes/ezarticletype.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezarticle/classes/ezarticletype.php" );
 
 class eZArticleAttribute
 {

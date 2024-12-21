@@ -23,20 +23,20 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZForumMain", "Language" );
 $NewMessageLimit = $ini->read_var( "eZForumMain", "NewMessageLimit" );
 $AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
 
-include_once( "classes/ezlocale.php" );
-include_once( "classes/eztexttool.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezforum/classes/ezforummessage.php" );
-include_once( "ezforum/classes/ezforumcategory.php" );
-include_once( "ezforum/classes/ezforum.php" );
+// include_once( "ezforum/classes/ezforummessage.php" );
+// include_once( "ezforum/classes/ezforumcategory.php" );
+// include_once( "ezforum/classes/ezforum.php" );
 
 $locale = new eZLocale( $Language );
 
@@ -98,7 +98,7 @@ if ( count( $categories ) > 0 )
     $t->parse( "header_list", "header_list_tpl" );
 
     // sections
-    include_once( "ezsitemanager/classes/ezsection.php" );
+    // include_once( "ezsitemanager/classes/ezsection.php" );
 
     $GlobalSectionID = eZForumCategory::sectionIDStatic( $category->id( )  );
 

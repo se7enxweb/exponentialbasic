@@ -23,12 +23,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "eznewsfeed/classes/eznews.php" );
-include_once( "eznewsfeed/classes/eznewscategory.php" );
-include_once( "eznewsfeed/classes/eznewsimporter.php" );
+// include_once( "eznewsfeed/classes/eznews.php" );
+// include_once( "eznewsfeed/classes/eznewscategory.php" );
+// include_once( "eznewsfeed/classes/eznewsimporter.php" );
 
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezlocale.php" );
 
 $ini = INIFile::globalINI();
 

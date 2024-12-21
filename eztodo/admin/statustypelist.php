@@ -24,16 +24,16 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
-include_once( "eztodo/classes/eztodo.php" );
-include_once( "eztodo/classes/ezstatus.php" );
+// include_once( "eztodo/classes/eztodo.php" );
+// include_once( "eztodo/classes/ezstatus.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 $Language = $ini->read_var( "eZTodoMain", "Language" );

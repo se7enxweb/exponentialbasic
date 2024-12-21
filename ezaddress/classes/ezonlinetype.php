@@ -40,8 +40,8 @@
   \sa eZOnlineType eZCompany eZPerson eZOnline eZPhone eZOnline
 */
 
-//  include_once( "ezaddress/classes/ezperson.php" );
-//  include_once( "ezaddress/classes/ezcompany.php" );
+//  // include_once( "ezaddress/classes/ezperson.php" );
+//  // include_once( "ezaddress/classes/ezcompany.php" );
 
 class eZOnlineType
 {

@@ -26,20 +26,20 @@
 //require( "ezuser/user/usercheck.php" );
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztexttool.php" );
 
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
 $UserWithAddress = $ini->read_var( "eZUserMain", "UserWithAddress" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "ezsession/classes/ezsession.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezsession/classes/ezsession.php" );
 
 $user =& eZUser::currentUser();
 

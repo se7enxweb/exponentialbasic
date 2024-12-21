@@ -32,7 +32,7 @@
   \sa eZSimpleGenerator  
 */
 
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/eztexttool.php" );
 
 class eZSimpleRenderer
 {

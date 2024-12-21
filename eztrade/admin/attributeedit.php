@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 if ( isset( $Cancel ) )
 {
@@ -31,19 +31,19 @@ if ( isset( $Cancel ) )
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
 
-include_once( "eztrade/classes/ezproducttype.php" );
-include_once( "eztrade/classes/ezproductattribute.php" );
+// include_once( "eztrade/classes/ezproducttype.php" );
+// include_once( "eztrade/classes/ezproductattribute.php" );
 
 
 if ( $Action == "Update" )

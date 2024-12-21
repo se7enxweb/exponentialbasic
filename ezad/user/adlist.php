@@ -27,10 +27,10 @@
 // NOTE: this page does not use templates due to speed 
 // and because we cannot cache the contents of this page.
 
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "ezad/classes/ezad.php" );
-include_once( "ezad/classes/ezadcategory.php" );
+// include_once( "ezad/classes/ezad.php" );
+// include_once( "ezad/classes/ezadcategory.php" );
 
 $category = new eZAdCategory( $CategoryID );
 

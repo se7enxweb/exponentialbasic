@@ -22,7 +22,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 if ( isSet( $DeleteAppointments ) )
 {
@@ -31,7 +31,7 @@ if ( isSet( $DeleteAppointments ) )
 
 if ( isSet( $GoDay ) )
 {
-    include_once( "classes/ezdate.php" );
+    // include_once( "classes/ezdate.php" );
 
     $session =& eZSession::globalSession();
     $session->fetch();
@@ -80,16 +80,16 @@ else if ( isSet( $GoToday ) )
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/ezdate.php" );
-include_once( "classes/eztime.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdate.php" );
+// include_once( "classes/eztime.php" );
 
-include_once( "ezcalendar/classes/ezappointment.php" );
-include_once( "ezcalendar/classes/ezappointmenttype.php" );
+// include_once( "ezcalendar/classes/ezappointment.php" );
+// include_once( "ezcalendar/classes/ezappointmenttype.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 

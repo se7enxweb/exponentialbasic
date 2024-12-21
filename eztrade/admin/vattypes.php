@@ -24,15 +24,15 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-include_once( "eztrade/classes/ezvattype.php" );
+// include_once( "eztrade/classes/ezvattype.php" );
 
 
 if ( isset( $Action ) && $Action == "Store" )

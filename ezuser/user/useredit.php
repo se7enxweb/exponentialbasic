@@ -25,20 +25,20 @@
 
 require( "ezuser/user/usercheck.php" );
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "classes/ezlog.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztexttool.php" );
 
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
 $AnonymousUserGroup = $ini->read_var( "eZUserMain", "AnonymousUserGroup" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
 $user =& eZUser::currentUser();
 

@@ -24,28 +24,28 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcachefile.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezuser/classes/ezauthor.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezauthor.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/eztopic.php" );
-include_once( "ezarticle/classes/ezarticlegenerator.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/eztopic.php" );
+// include_once( "ezarticle/classes/ezarticlegenerator.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-include_once( "ezbulkmail/classes/ezbulkmail.php" );
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "ezbulkmail/classes/ezbulkmail.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
-include_once( "ezarticle/classes/ezarticletool.php" );
+// include_once( "ezarticle/classes/ezarticletool.php" );
 
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -215,7 +215,7 @@ if ( isset( $Action ) && $Action == "Update" || ( isset( $Action ) && $Action ==
                 $tmpCategory = $article->categoryDefinition();
                 $url1 = "/article/articleview/" . $article->id() . "/1/" . $tmpCategory->id();
 
-                include_once( "ezurltranslator/classes/ezurltranslator.php" );
+                // include_once( "ezurltranslator/classes/ezurltranslator.php" );
                 $urltranslator = new eZURLTranslator();
                 $urltranslator->getbydest ( $url1 );
 
@@ -664,7 +664,7 @@ if ( isset( $Action ) && $Action == "Edit" || $Action == "Insert" )
         $t->set_var( "article_url", $url1 );
         $t->set_var( "intl-article_nourl", "" );
 
-        include_once( "ezurltranslator/classes/ezurltranslator.php" );
+        // include_once( "ezurltranslator/classes/ezurltranslator.php" );
         $urltranslator = new eZURLTranslator();
         $urltranslator->getbydest ( $url1 );
         $t->set_var( "article_urltranslator", $urltranslator->source() );

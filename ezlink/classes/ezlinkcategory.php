@@ -29,8 +29,8 @@
 //! The eZLinkCategory class handles URL links.
 
 
-include_once( "classes/ezdb.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 class eZLinkCategory
 {

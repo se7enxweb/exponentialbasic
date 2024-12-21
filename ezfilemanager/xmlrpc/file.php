@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
 
 if ( $Command == "data" ) // return all the data in the category
 {

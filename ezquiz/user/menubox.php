@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezcachefile.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezcachefile.php" );
+// include_once( "classes/ezlocale.php" );
 
 $Language = $ini->read_var( "eZQuizMain", "Language" );
 $PageCaching = $ini->read_var( "eZQuizMain", "PageCaching" );
@@ -40,9 +40,9 @@ function createQuizMenu()
     global $GenerateStaticPage;
 	global $GlobalSiteDesign;
 
-    include_once( "classes/eztemplate.php" );
-    include_once( "ezquiz/classes/ezquizgame.php" );
-    include_once( "ezquiz/classes/ezquizscore.php" );
+    // include_once( "classes/eztemplate.php" );
+    // include_once( "ezquiz/classes/ezquizgame.php" );
+    // include_once( "ezquiz/classes/ezquizscore.php" );
 
     $t = new eZTemplate( "ezquiz/user/" . $ini->read_var( "eZQuizMain", "TemplateDir" ),
                          "ezquiz/user/intl", $Language, "menubox.php" );

@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
 $eZFormOperation = $url_array[2];
 $eZFormName = $url_array[3];

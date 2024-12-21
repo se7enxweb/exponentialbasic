@@ -32,7 +32,7 @@
 
   \code
   // include the code
-  include_once( "ezsession/classes/ezpreferences.php" );
+  // include_once( "ezsession/classes/ezpreferences.php" );
 
   // set the preferences
   $preferences = new eZPreferences();
@@ -54,8 +54,8 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
 
 class eZPreferences
 {

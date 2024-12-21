@@ -23,27 +23,27 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezhttptool.php" );
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/login" );
     exit();
 }
 
 if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/consultation" );
     exit();
 }
@@ -62,8 +62,8 @@ else
 $t = new eZTemplate( "ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),  "ezcontact/admin/intl", $Language, $languagefile );
 $t->setAllStrings();
 
-include_once( "ezcontact/classes/ezconsultation.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "ezcontact/classes/ezconsultation.php" );
+// include_once( "classes/ezlocale.php" );
 
 $t->set_file( "consultation_page", $templatefile );
 

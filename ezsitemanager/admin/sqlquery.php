@@ -37,7 +37,7 @@
 //- show errors in a friendly way ( both mysql and postgresql ) not a high pri.
 //
 
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdb.php" );
 
 $Language = $ini->read_var( "eZSiteManagerMain", "Language" );
 
@@ -50,7 +50,7 @@ $t->setAllStrings();
 
 
 // include the code
-include_once( "ezsession/classes/ezpreferences.php" );
+// include_once( "ezsession/classes/ezpreferences.php" );
 $preferences = new eZPreferences();
     	  
 // get the preferences

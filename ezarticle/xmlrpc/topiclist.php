@@ -24,7 +24,7 @@
 //
 
 // eZ article classes
-include_once( "ezarticle/classes/eztopic.php" );
+// include_once( "ezarticle/classes/eztopic.php" );
 
 $topics = array();
 

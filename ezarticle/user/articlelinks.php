@@ -32,7 +32,7 @@ unset( $GenerateStaticPage );
 
 if ( $PageCaching == "enabled" )
 {
-    include_once( "classes/ezcachefile.php" );
+    // include_once( "classes/ezcachefile.php" );
     $CacheFile = new eZCacheFile( "ezarticle/cache/",
                                   array( "articlelinklist", $CategoryID, $url_array[3], $GlobalSiteDesign ),
                                   "cache", "," );
@@ -49,13 +49,13 @@ if ( $PageCaching == "enabled" )
 
 if ( $PureStatic != "true" )
 {
-    include_once( "classes/INIFile.php" );
-    include_once( "classes/eztemplate.php" );
-    include_once( "classes/ezlocale.php" );
+    // include_once( "classes/INIFile.php" );
+    // include_once( "classes/eztemplate.php" );
+    // include_once( "classes/ezlocale.php" );
 
-    include_once( "ezarticle/classes/ezarticlecategory.php" );
-    include_once( "ezarticle/classes/ezarticle.php" );
-    include_once( "ezarticle/classes/ezarticlerenderer.php" );
+    // include_once( "ezarticle/classes/ezarticlecategory.php" );
+    // include_once( "ezarticle/classes/ezarticle.php" );
+    // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
     $ini =& INIFile::globalINI();
     $Language = $ini->read_var( "eZArticleMain", "Language" );

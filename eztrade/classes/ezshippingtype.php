@@ -35,10 +35,10 @@
   \sa eZProduct
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "eztrade/classes/ezvattype.php" );
-include_once( "eztrade/classes/ezshippinggroup.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "eztrade/classes/ezvattype.php" );
+// include_once( "eztrade/classes/ezshippinggroup.php" );
 
 class eZShippingType
 {

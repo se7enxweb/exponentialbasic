@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezaddress/classes/ezphonetype.php" );
+// include_once( "ezaddress/classes/ezphonetype.php" );
 include( "ezaddress/admin/typelist_pre.php" );
 
 $language_file = "phonetype.php";

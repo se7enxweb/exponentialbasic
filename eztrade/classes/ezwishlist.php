@@ -55,8 +55,8 @@
   \sa eZWishlistItem eZProductCategory eZOption
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezwishlistitem.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezwishlistitem.php" );
 
 class eZWishList
 {

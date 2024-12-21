@@ -26,11 +26,11 @@
 
 require( "ezuser/user/usercheck.php" );
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "classes/eztexttool.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
@@ -41,11 +41,11 @@ $AutoCookieLogin = eZHTTPTool::getVar( "AutoCookieLogin" );
 
 $session =& eZSession::globalSession();
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezaddress/classes/ezaddress.php" );
-include_once( "ezaddress/classes/ezcountry.php" );
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "ezaddress/classes/ezcountry.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
 $t = new eZTemplate( "ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
                      "ezuser/user/intl/", $Language, "userwithaddress.php" );

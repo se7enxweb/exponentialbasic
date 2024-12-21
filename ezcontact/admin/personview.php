@@ -27,46 +27,46 @@
     View a person
  */
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 $SiteURL = $ini->read_var( "Site", "SiteURL" );
 $AdminSiteURL = $ini->read_var( "Site", "AdminSiteURL" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezdate.php" );
-include_once( "classes/eztexttool.php" );
-include_once( "classes/ezcurrency.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezdate.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezcurrency.php" );
 
-include_once( "ezaddress/classes/ezaddress.php" );
-include_once( "ezaddress/classes/ezaddresstype.php" );
-include_once( "ezaddress/classes/ezphone.php" );
-include_once( "ezaddress/classes/ezphonetype.php" );
-include_once( "ezaddress/classes/ezonline.php" );
-include_once( "ezaddress/classes/ezonlinetype.php" );
-include_once( "ezcontact/classes/ezprojecttype.php" );
-include_once( "ezcontact/classes/ezconsultation.php" );
-include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "ezaddress/classes/ezaddresstype.php" );
+// include_once( "ezaddress/classes/ezphone.php" );
+// include_once( "ezaddress/classes/ezphonetype.php" );
+// include_once( "ezaddress/classes/ezonline.php" );
+// include_once( "ezaddress/classes/ezonlinetype.php" );
+// include_once( "ezcontact/classes/ezprojecttype.php" );
+// include_once( "ezcontact/classes/ezconsultation.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
 
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "eztrade/classes/ezorder.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "eztrade/classes/ezorder.php" );
 
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/login" );
     exit();
 }
 
 if ( !eZPermission::checkPermission( $user, "eZContact", "PersonView" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/person/view" );
     exit();
 }

@@ -27,20 +27,20 @@
     View a consultation
  */
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztexttool.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/login" );
     exit();
 }
@@ -48,17 +48,17 @@ if ( !is_a( $user, "eZUser" ) )
 if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) &&
      $ini->read_var( "eZContactMain", "ShowAllConsultations" ) != "enabled" )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/consultation" );
     exit();
 }
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "ezcontact/classes/ezconsultation.php" );
-include_once( "ezcontact/classes/ezconsultationtype.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "ezcontact/classes/ezconsultation.php" );
+// include_once( "ezcontact/classes/ezconsultationtype.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
 $t = new eZTemplate( "ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
                      "ezcontact/admin/intl", $Language, "consultationedit.php" );

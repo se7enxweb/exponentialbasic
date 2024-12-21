@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 if ( isset( $Cancel ) )
 {
@@ -36,14 +36,14 @@ if ( isset ( $DeleteCategories ) )
 {
     $Action = "DeleteCategories";
 }
-include_once( "ezsitemanager/classes/ezsection.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
 
 if ( isset( $Action ) && $Action == "New" )
 {
@@ -131,7 +131,7 @@ if ( isset( $Action ) && $Action == "Insert" )
         eZObjectPermission::removePermissions( $categoryID, "trade_category", 'r' );
     }
 
-    include_once( "classes/ezcachefile.php" );
+    // include_once( "classes/ezcachefile.php" );
     $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
                                                           array( $ParentID, $category->id() ),
                                                           NULL, NULL ),
@@ -230,7 +230,7 @@ if ( isset( $Action ) && $Action == "Update" )
     }
 
 
-    include_once( "classes/ezcachefile.php" );
+    // include_once( "classes/ezcachefile.php" );
     $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
                                                           array( $ParentID, $CategoryID ), NULL, NULL ),
                                  "cache", "," );
@@ -262,7 +262,7 @@ if ( isset( $Action ) && $Action == "Delete" )
     if ( eZFile::file_exists( "ezarticle/cache/menubox.cache" ) )
         eZFile::unlink( "ezarticle/cache/menubox.cache" );
 
-    include_once( "classes/ezcachefile.php" );
+    // include_once( "classes/ezcachefile.php" );
 
     $parent = $category->parent();
     if ( is_a( $parent, "eZProductCategory" ) )
@@ -290,7 +290,7 @@ if ( isset( $Action ) && $Action == "DeleteCategories" )
         if ( eZFile::file_exists( "ezarticle/cache/menubox.cache" ) )
             eZFile::unlink( "ezarticle/cache/menubox.cache" );
 
-        include_once( "classes/ezcachefile.php" );
+        // include_once( "classes/ezcachefile.php" );
         foreach( $CategoryArrayID as $ID )
         {
             $category = new eZProductCategory();

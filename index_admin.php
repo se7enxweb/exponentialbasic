@@ -114,22 +114,27 @@ ini_alter("session.entropy_length", "512");
 
 ini_alter("session.cache_expire", "172800");
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/template.inc" );
-include_once( "classes/ezmenubox.php" );
+// Include composer based autoloads (new in 2.4.0.0)
+require __DIR__ . '/vendor/autoload.php';
 
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "ezmodule/classes/ezmodulehandler.php" );
+/*
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/template.inc" );
+// include_once( "classes/ezmenubox.php" );
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezmodule/classes/ezmodulehandler.php" );
+
+// include_once( "classes/ezhttptool.php" );
 
 // File functions
-include_once( "classes/ezfile.php" );
+// include_once( "classes/ezfile.php" );
+*/
 
 $ini =& INIFile::globalINI();
 $GlobalSiteIni =& $ini;
@@ -149,7 +154,7 @@ $siteDesign = & $ini->read_var( "site", "SiteStyle" );
 $GlobalSiteDesign = $siteDesign;
 
 // do the statistics
-include_once( "ezstats/classes/ezpageview.php" );
+// // include_once( "ezstats/classes/ezpageview.php" );
 
 $SiteDesign =& $ini->read_var( "site", "SiteStyle" );
 
@@ -198,7 +203,7 @@ if ( $user )
     
     if ( $HelpMode != "enabled" ) 
     {
-        include_once( "ezsession/classes/ezpreferences.php" );
+        // // include_once( "ezsession/classes/ezpreferences.php" );
         $preferences = new eZPreferences();
 
         $site_modules = $ini->read_array( "site", "EnabledModules" );

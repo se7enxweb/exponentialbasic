@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZBulkmailMain", "DefaultSection" );
@@ -110,7 +110,7 @@ switch ( $url_array[2] )
             eZHTTPTool::header( "Location: /error/404" );
             exit();
         }
-        include_once( "ezbulkmail/user/mailview.php" );
+        // include_once( "ezbulkmail/user/mailview.php" );
     }
     break;
 

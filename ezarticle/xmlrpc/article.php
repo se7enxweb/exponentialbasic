@@ -23,17 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticleattribute.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticletool.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "ezsitemanager/classes/ezsection.php" );
-include_once( "ezform/classes/ezform.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticleattribute.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticletool.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezform/classes/ezform.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
 
 if( $Command == "info" )
 {

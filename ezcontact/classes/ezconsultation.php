@@ -47,13 +47,13 @@
   \sa eZPerson eZCompany eZUser
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
-include_once( "classes/ezlog.php" );
+// include_once( "classes/ezlog.php" );
 
 class eZConsultation
 {

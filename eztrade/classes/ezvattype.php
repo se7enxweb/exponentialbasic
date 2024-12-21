@@ -32,9 +32,9 @@
   \sa eZProduct
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "eztrade/classes/ezproducttype.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "eztrade/classes/ezproducttype.php" );
 
 class eZVATType
 {

@@ -41,12 +41,12 @@ $ini =& $GlobalSiteIni;
 $Language = $ini->read_var( "eZContactMain", "Language" );
 $DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 require( "ezuser/admin/admincheck.php" );
 

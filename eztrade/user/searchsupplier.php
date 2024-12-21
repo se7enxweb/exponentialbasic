@@ -30,7 +30,7 @@ $SearchResult[0]["DetailedSearchVariable"] = "Query";
 $SearchResult[0]["DetailViewPath"] = "/trade/productview/";
 $SearchResult[0]["IconPath"] = "/design/base/images/icons/document.gif";
 
-include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
 
 $product = new eZProduct();
 

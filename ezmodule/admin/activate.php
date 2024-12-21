@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "ezsession/classes/ezpreferences.php" );
-include_once( "ezmodule/classes/ezmodulehandler.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "ezsession/classes/ezpreferences.php" );
+// include_once( "ezmodule/classes/ezmodulehandler.php" );
 
 $ini =& INIFile::globalINI();
 $preferences = new eZPreferences();

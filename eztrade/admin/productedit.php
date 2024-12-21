@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezcachefile.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
-include_once( "eztrade/classes/ezproductpermission.php" );
-include_once( "eztrade/classes/ezproductpricerange.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezcachefile.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "eztrade/classes/ezproductpermission.php" );
+// include_once( "eztrade/classes/ezproductpricerange.php" );
 
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
 function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
 {
@@ -87,13 +87,13 @@ $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "tru
 $ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
 $ShowModuleLinker = $ini->read_var( "eZTradeMain", "ShowModuleLinker" ) == "true";
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezvattype.php" );
-include_once( "eztrade/classes/ezshippinggroup.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezvattype.php" );
+// include_once( "eztrade/classes/ezshippinggroup.php" );
 
 // must have to generate XML
-include_once( "ezarticle/classes/ezarticlegenerator.php" );
+// include_once( "ezarticle/classes/ezarticlegenerator.php" );
 
 if ( isSet( $SubmitPrice ) )
 {

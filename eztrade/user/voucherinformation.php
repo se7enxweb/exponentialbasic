@@ -23,25 +23,25 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 $locale = new eZLocale( $Language );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezvoucherinformation.php" );
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductpricerange.php" );
-include_once( "ezsession/classes/ezsession.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezvoucherinformation.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductpricerange.php" );
+// include_once( "ezsession/classes/ezsession.php" );
 
 $t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
                      "eztrade/user/intl/", $Language, "voucherinformation.php" );

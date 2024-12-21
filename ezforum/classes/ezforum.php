@@ -33,11 +33,11 @@
 /*!TODO
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezquery.php" );
-include_once( "ezforum/classes/ezforummessage.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezquery.php" );
+// include_once( "ezforum/classes/ezforummessage.php" );
 
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
 class eZForum
 {

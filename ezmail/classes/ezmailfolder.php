@@ -34,8 +34,8 @@
   \endcode
 
 */
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/INIFile.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/INIFile.php" );
 
 /* DEFINES */
 define( "USER", 0 );

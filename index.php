@@ -107,6 +107,9 @@ if ( $UsePHPSessions == true )
     session_start();
 }
 
+// Include composer based autoloads (new in 2.4.0.0)
+require __DIR__ . '/vendor/autoload.php';
+
 // settings for sessions
 // max timeout is set to 48 hours
 ini_alter( "session.gc_maxlifetime", "172800" );
@@ -116,9 +119,11 @@ ini_alter( "session.entropy_length", "512" );
 // kracker: changed from 2.2 to run on firebright vhost w/out index.php in auto generated urls
 $index = "";
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezhttptool.php" );
+/*
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezhttptool.php" );
+*/
 $ini =& INIFile::globalINI();
 $GlobalSiteIni =& $ini;
 
@@ -131,11 +136,11 @@ unset( $index );
 unset( $wwwDir );
 
 // Design
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// // include_once( "ezsession/classes/ezsession.php" );
+// // include_once( "ezuser/classes/ezuser.php" );
 
 // File functions
-include_once( "classes/ezfile.php" );
+// // include_once( "classes/ezfile.php" );
 
 $session =& eZSession::globalSession();
 
@@ -153,7 +158,7 @@ $StoreStats = $ini->read_var( "eZStatsMain", "StoreStats" );
 if ( $StoreStats == "enabled" and $GlobalSiteIni->Index != "" )
 {
     // do the statistics
-    include_once( "ezstats/classes/ezpageview.php" );
+    // // include_once( "ezstats/classes/ezpageview.php" );
 
     // if we are using nVH setup, we need to store our stats here
     if ( isSet( $GlobalSiteIni->SiteDir ) and $GlobalSiteIni->SiteDir != "" )
@@ -202,7 +207,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
 
     if ( in_array( $url_array[1], $urlTranslatorArray ) )
     {
-        include_once( "ezurltranslator/classes/ezurltranslator.php" );
+        // // include_once( "ezurltranslator/classes/ezurltranslator.php" );
         $translatedURL = eZURLTranslator::translate( $_SERVER['REQUEST_URI'] );
         if ( $translatedURL )
         {
@@ -360,7 +365,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
         }
 
         // set character set
-        include_once( "classes/ezlocale.php" );
+        // // include_once( "classes/ezlocale.php" );
         if ( isset( $GLOBALS["eZLanguageOverride"] ) and $GLOBALS["eZLanguageOverride"] != "" )
         {
             $Language = $GLOBALS["eZLanguageOverride"];
@@ -394,7 +399,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
                 $GlobalSectionID = $ini->read_var( "site", "DefaultSection" );
             }
 
-            include_once( "ezsitemanager/classes/ezsection.php" );
+            // // include_once( "ezsitemanager/classes/ezsection.php" );
 
             if ( isset($_REQUEST['SectionIDOverride']) && is_numeric( $_REQUEST['SectionIDOverride'] ) )
             {

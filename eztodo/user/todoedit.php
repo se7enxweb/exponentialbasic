@@ -25,7 +25,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 // deletes the dayview cache file for a given day
 function deleteCache( $SiteDesign, $language, $year, $month, $day, $userID )
@@ -68,7 +68,7 @@ if ( isSet( $Cancel ) )
     exit();
 }
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -77,21 +77,21 @@ $NotDoneID = $ini->read_var( "eZTodoMain", "NotDoneID" );
 
 $iniLanguage = new INIFile( "eztodo/user/intl/" . $Language . "/todoedit.php.ini", false );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezdate.php" );
-include_once( "classes/eztime.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "eztodo/classes/eztodo.php" );
-include_once( "eztodo/classes/ezcategory.php" );
-include_once( "eztodo/classes/ezpriority.php" );
-include_once( "eztodo/classes/ezstatus.php" );
-include_once( "eztodo/classes/eztodolog.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezdate.php" );
+// include_once( "classes/eztime.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "eztodo/classes/eztodo.php" );
+// include_once( "eztodo/classes/ezcategory.php" );
+// include_once( "eztodo/classes/ezpriority.php" );
+// include_once( "eztodo/classes/ezstatus.php" );
+// include_once( "eztodo/classes/eztodolog.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
 $locale = new eZLocale( $Language );
 

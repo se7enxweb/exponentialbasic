@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 if ( isset( $Cancel ) )
 {
@@ -31,16 +31,16 @@ if ( isset( $Cancel ) )
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 $move_item = true;
 
-include_once( "eztrade/classes/ezproducttype.php" );
-include_once( "eztrade/classes/ezproductattribute.php" );
+// include_once( "eztrade/classes/ezproducttype.php" );
+// include_once( "eztrade/classes/ezproductattribute.php" );
 
 if ( $Action == "Insert" )
 {
@@ -86,7 +86,7 @@ if( $Action == "up" )
 {
     $attribute = new eZProductAttribute( $AttributeID );
     $attribute->moveUp();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/typeedit/edit/$TypeID" );
     exit();
 }
@@ -95,7 +95,7 @@ if( $Action == "down" )
 {
     $attribute = new eZProductAttribute( $AttributeID );
     $attribute->moveDown();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/typeedit/edit/$TypeID" );
     exit();
 }

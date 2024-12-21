@@ -24,13 +24,13 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "classes/ezlist.php" );
 
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 $Limit = $ini->read_var( "eZArticleMain", "SearchListLimit" );
@@ -40,7 +40,7 @@ $SearchWithinSections = $ini->read_var( "eZArticleMain", "SearchWithinSections" 
 if ( isset ($SectionIDOverride) )
 {
     $GlobalSectionID = $SectionIDOverride;
-    include_once( "ezsitemanager/classes/ezsection.php" );
+    // include_once( "ezsitemanager/classes/ezsection.php" );
 
     $sectionObject =& eZSection::globalSectionObject( $SectionIDOverride );
     $sectionObject->setOverrideVariables();

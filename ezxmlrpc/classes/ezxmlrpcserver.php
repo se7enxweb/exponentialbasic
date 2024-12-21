@@ -34,10 +34,10 @@
   ob_start();
 
   // include the server
-  include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
+  // include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
 
   // include the datatype(s) we need
-  include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+  // include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
 
   $server = new eZXMLRPCServer( );
 
@@ -65,17 +65,17 @@
 // eZXMLRPC error messages
 define( "EZXMLRPC_NO_DOM_PARSER", -1 );
 
-include_once( "ezxmlrpc/classes/ezxmlrpcfunction.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpccall.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcfunction.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpccall.php" );
 
 // datatypes
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbase64.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcdatetime.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbase64.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdatetime.php" );
 
 class eZXMLRPCServer
 {

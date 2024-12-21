@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezuritool.php" );
+// include_once( "classes/ezuritool.php" );
 
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZContactMain", "DefaultSection" );
@@ -89,7 +89,7 @@ switch ( $url_array[2] )
             }
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -184,7 +184,7 @@ switch ( $url_array[2] )
             }
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -218,7 +218,7 @@ switch ( $url_array[2] )
                 {
                     if ( isSet( $NewCompany ) )
                     {
-                        include_once( "classes/ezhttptool.php" );
+                        // include_once( "classes/ezhttptool.php" );
                         eZHTTPTool::header( "Location: /contact/company/new/$CompanyID" );
                         exit;
                     }
@@ -236,7 +236,7 @@ switch ( $url_array[2] )
                 if ( !isSet( $CompanyID ) and isSet( $url_array[4] ) and is_numeric( $url_array[4] ) )
                     $CompanyID = $url_array[4];
                 $PersonOffset = $url_array[5];
-                include_once( "ezcontact/classes/ezcompany.php" );
+                // include_once( "ezcontact/classes/ezcompany.php" );
                 eZCompany::addViewHit( $CompanyID );
                 include( "ezcontact/admin/companyview.php" );
                 break;
@@ -263,7 +263,7 @@ switch ( $url_array[2] )
             }
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -295,7 +295,7 @@ switch ( $url_array[2] )
             }
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -309,7 +309,7 @@ switch ( $url_array[2] )
             $ConsultationID = $url_array[4];
         if ( isSet( $new_consultation ) )
         {
-            include_once( "classes/ezhttptool.php" );
+            // include_once( "classes/ezhttptool.php" );
             eZHTTPTool::header( "Location: /contact/consultation/new" );
             exit();
         }
@@ -409,7 +409,7 @@ switch ( $url_array[2] )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }

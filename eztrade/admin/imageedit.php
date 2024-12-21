@@ -23,19 +23,19 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "classes/ezimagefile.php" );
+// include_once( "classes/ezimagefile.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
 
 if ( $Action == "Insert" )
 {
@@ -67,7 +67,7 @@ if ( $Action == "Insert" )
         print( $file->name() . " not uploaded successfully" );
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/productedit/imagelist/" . $ProductID . "/" );
     exit();
 }
@@ -101,7 +101,7 @@ if ( $Action == "Update" )
         $image->store();
     }
     
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/productedit/imagelist/" . $ProductID . "/" );
     exit();
 }
@@ -120,7 +120,7 @@ if ( $Action == "Delete" )
         }
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/productedit/imagelist/" . $ProductID . "/" );
     exit();    
 }
@@ -134,7 +134,7 @@ if ( $Action == "StoreDef" )
     if ( isset( $NoMainImage ) )
     {
         $product->setMainImage( false );
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /trade/productedit/imagelist/" . $ProductID . "/" );
         exit();
     }
@@ -143,7 +143,7 @@ if ( $Action == "StoreDef" )
     if ( isset( $NoMiniImage ) )
     {
         $product->setThumbnailImage( false );
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /trade/productedit/imagelist/" . $ProductID . "/" );
         exit();
     }
@@ -163,12 +163,12 @@ if ( $Action == "StoreDef" )
     if ( isset( $NewImage ) )
     {
         print( "new image" );
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /trade/productedit/imageedit/new/$ProductID/" );
         exit();
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/productedit/edit/" . $ProductID . "/" );
     exit();
 }

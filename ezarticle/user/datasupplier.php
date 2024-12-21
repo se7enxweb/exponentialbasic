@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 $PageCaching = $ini->read_var( "eZArticleMain", "PageCaching" );
 $UserComments = $ini->read_var( "eZArticleMain", "UserComments" );
@@ -85,7 +85,7 @@ switch ( $url_array[2] )
 
         if ( $PageCaching == "enabled" )
         {
-            include_once( "classes/ezcachefile.php" );
+            // include_once( "classes/ezcachefile.php" );
             $file = new eZCacheFile( "ezarticle/cache/", array( "articlefrontpage", $GlobalSectionID, $groupstr ),
                                      "cache", "," );
 
@@ -174,7 +174,7 @@ switch ( $url_array[2] )
         {
             //$CategoryID = $url_array[3];
 
-            include_once( "classes/ezcachefile.php" );
+            // include_once( "classes/ezcachefile.php" );
             $file = new eZCacheFile( "ezarticle/cache/", array( "articlelist", $CategoryID, $Offset, $groupstr ),
                                      "cache", "," );
 
@@ -261,7 +261,7 @@ switch ( $url_array[2] )
                 $first = false;
             }
         }
-        include_once( "classes/ezcachefile.php" );
+        // include_once( "classes/ezcachefile.php" );
         $file = new eZCacheFile( "ezarticle/cache/", array( "articleindex", $groupstr, $CurrentIndex ),
                                  "cache", "," );
 
@@ -692,7 +692,7 @@ switch ( $url_array[2] )
         }
         else
         {
-            include_once( "classes/ezhttptool.php" );
+            // include_once( "classes/ezhttptool.php" );
             eZHTTPTool::header( "Location: /article/archive/" );
             exit();
         }

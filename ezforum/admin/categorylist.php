@@ -24,13 +24,13 @@
 
 //include( "ezforum/dbsettings.php" );
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "ezforum/classes/ezforumcategory.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "ezforum/classes/ezforumcategory.php" );
 
 require( "ezuser/admin/admincheck.php" );
   

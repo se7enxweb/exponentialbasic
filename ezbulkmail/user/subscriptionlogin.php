@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
-include_once( "ezbulkmail/classes/ezbulkmailforgot.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailforgot.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/eztemplate.php" );
 
 // check hash from mail, validate the correct email address...
 $Language = $ini->read_var( "eZBulkMailMain", "Language" ); 

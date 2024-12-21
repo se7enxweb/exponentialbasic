@@ -23,18 +23,18 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $UserLimit = $ini->read_var( "eZLinkMain", "UserSearchLimit" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezlink/classes/ezlink.php"  );
-include_once( "ezlink/classes/ezhit.php" );
-include_once( "classes/ezlist.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezlink/classes/ezlink.php"  );
+// include_once( "ezlink/classes/ezhit.php" );
+// include_once( "classes/ezlist.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $t = new eZTemplate( "ezlink/user/" . $ini->read_var( "eZLinkMain", "TemplateDir" ),
                      "ezlink/user/intl", $Language, "search.php" );

@@ -36,8 +36,8 @@
 
  */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezad/classes/ezad.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezad/classes/ezad.php" );
 
 class eZAdCategory
 {

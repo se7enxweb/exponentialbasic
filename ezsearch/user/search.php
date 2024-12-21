@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -37,7 +37,7 @@ $moduleArray = explode( ";", $SearchModules );
 // init the section
 if ( isset ($SectionIDOverride) )
 {
-    include_once( "ezsitemanager/classes/ezsection.php" );
+    // include_once( "ezsitemanager/classes/ezsection.php" );
 
     $sectionObject =& eZSection::globalSectionObject( $SectionIDOverride );
     $sectionObject->setOverrideVariables();

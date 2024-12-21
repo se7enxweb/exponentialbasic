@@ -32,8 +32,8 @@
 
 */
 
-include_once( "ezxmlrpc/classes/ezxmlrpcdatatypedecoder.php" );
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdatatypedecoder.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
 class eZXMLRPCCall
 {
@@ -129,7 +129,7 @@ class eZXMLRPCCall
             {
                 if ( $value != "Object" )
                 {
-                    include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+                    // include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
 
                     $string = new eZXMLRPCString( $value );
                     $this->ParameterList[] =& $string;

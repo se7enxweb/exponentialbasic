@@ -31,12 +31,12 @@
  This class handles persons in the eZ contact database.
 */
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezquery.php" );
-include_once( "ezaddress/classes/ezaddress.php" );
-include_once( "ezaddress/classes/ezphone.php" );
-include_once( "ezaddress/classes/ezonline.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezquery.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "ezaddress/classes/ezphone.php" );
+// include_once( "ezaddress/classes/ezonline.php" );
 
 class eZPerson
 {
@@ -188,7 +188,7 @@ class eZPerson
             $res[] = $db->query( "DELETE FROM eZContact_Person WHERE ID='$id'" );
             $res[] = $db->query( "DELETE FROM eZContact_PersonIndex WHERE PersonID='$id'" );
             $db->array_query( $res_array, "SELECT ID FROM eZTrade_Order WHERE PersonID='$id'" );
-            include_once( "eztrade/classes/ezorder.php" );
+            // include_once( "eztrade/classes/ezorder.php" );
             foreach ( $res_array as $order )
             {
                 $orderObject = new eZOrder( $order[$db->fieldName( "ID" )] );

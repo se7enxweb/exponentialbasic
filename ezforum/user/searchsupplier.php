@@ -30,7 +30,7 @@ $SearchResult[0]["DetailedSearchVariable"] = "QueryString";
 $SearchResult[0]["DetailViewPath"] = "/forum/message/";
 $SearchResult[0]["IconPath"] = "/images/message.gif";
 
-include_once( "ezforum/classes/ezforum.php" );
+// include_once( "ezforum/classes/ezforum.php" );
 
 $forum = new eZForum();
 

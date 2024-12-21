@@ -24,13 +24,13 @@
 //
 
 // eZ article classes
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 if ( $Command == "list" )
 {

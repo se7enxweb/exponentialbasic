@@ -37,8 +37,8 @@
 
 */
 
-include_once( "ezmail/classes/ezmailfolder.php" );
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezmail/classes/ezmailfolder.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
 /* DEFINES */
 define( "FILTER_MESSAGE", 0 );

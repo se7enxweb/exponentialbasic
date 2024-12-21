@@ -23,14 +23,14 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "classes/ezfile.php" );
+// include_once( "classes/ezfile.php" );
 
-include_once( "ezbug/classes/ezbug.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezbug/classes/ezbug.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
 $ini = INIFile::globalINI();
 
@@ -65,7 +65,7 @@ if ( $Action == "Insert" )
         print( $file->name() . " not uploaded successfully" );
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/report/edit/" . $BugID . "/" );
     exit();
 }
@@ -99,7 +99,7 @@ if ( $Action == "Update" )
 //          $filer->store();
 //      }
     
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/edit/edit/" . $BugID . "/" );
     exit();
 }
@@ -112,7 +112,7 @@ if ( $Action == "Delete" )
         
     $bug->deleteFile( $file );
     
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/edit/" . $BugID . "/" );
     exit();    
 }

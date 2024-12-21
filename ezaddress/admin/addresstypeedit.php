@@ -24,7 +24,7 @@
 //
 
 
-include_once( "ezaddress/classes/ezaddresstype.php" );
+// include_once( "ezaddress/classes/ezaddresstype.php" );
 
 $language_file = "addresstype.php";
 $item_type = new eZAddressType( $AddressTypeID );

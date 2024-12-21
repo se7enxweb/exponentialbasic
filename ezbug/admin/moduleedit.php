@@ -27,16 +27,16 @@
   Edit a module type.
 */
 
-include_once( "classes/INIFile.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 $ini = INIFile::globalINI();
 $Language = $ini->read_var( "eZBugMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezbug/classes/ezbugmodule.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezbug/classes/ezbugmodule.php" );
 
 if( !isset( $ModuleID ) )
     $ModuleID = 0;
@@ -56,7 +56,7 @@ if ( isset( $Action ) && $Action == "insert" )
         eZObjectPermission::setPermission( $moduleOwner, $ModuleID, "bug_module", 'w' );
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/module/list/" );
     exit();
 }
@@ -102,7 +102,7 @@ if ( isset( $Action ) &&  $Action == "update" )
         $module->store();
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/module/list/" );
     exit();
 }
@@ -113,7 +113,7 @@ if ( isset( $Action ) && $Action == "delete" )
     $module = new eZBugModule( $ModuleID );
     $module->delete();
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/module/list/" );
     exit();
 }

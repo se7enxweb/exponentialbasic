@@ -51,10 +51,10 @@
     found here: ftp://ftp.cac.washington.edu/imap
  */
 
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezmail/classes/ezmailfunctions.php" );
-include_once( "ezmail/classes/ezmailfilterrule.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezmail/classes/ezmailfunctions.php" );
+// include_once( "ezmail/classes/ezmailfilterrule.php" );
+// include_once( "classes/ezhttptool.php" );
 
 class eZMailAccount
 {

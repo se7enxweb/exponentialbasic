@@ -44,10 +44,10 @@
   \sa eZVoucherUsed eZVoucherEMail eZVoucherSMail
 */
 
-include_once( "classes/ezdate.php" );
+// include_once( "classes/ezdate.php" );
 
-include_once( "eztrade/classes/ezvoucherinformation.php" );
-include_once( "eztrade/classes/ezvoucherused.php" );
+// include_once( "eztrade/classes/ezvoucherinformation.php" );
+// include_once( "eztrade/classes/ezvoucherused.php" );
 
 class eZVoucher
 {

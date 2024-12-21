@@ -35,7 +35,7 @@
 
 */
 
-include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
 
 class eZProductForm
 {

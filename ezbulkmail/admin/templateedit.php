@@ -23,12 +23,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezbulkmail/classes/ezbulkmailtemplate.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailtemplate.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/INIFile.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
 
 if ( isset( $Cancel ) ) // cancel pressed, redirect to templatelist page...
 {

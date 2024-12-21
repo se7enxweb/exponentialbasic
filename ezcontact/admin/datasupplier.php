@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezuritool.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/ezuritool.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( !eZPermission::checkPermission( $user, "eZContact", "ModuleEdit" ) )
@@ -87,7 +87,7 @@ switch ( $ListType )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
             }
             break;
@@ -203,7 +203,7 @@ switch ( $ListType )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
             }
             break;
@@ -237,7 +237,7 @@ switch ( $ListType )
                 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
             }
             break;
@@ -318,7 +318,7 @@ switch ( $ListType )
                 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
             }
             break;
@@ -434,7 +434,7 @@ switch ( $ListType )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
             }
             break;
@@ -487,7 +487,7 @@ switch ( $ListType )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
             }
             break;
@@ -541,7 +541,7 @@ switch ( $ListType )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
             }
             break;
@@ -557,7 +557,7 @@ switch ( $ListType )
 
     default :
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
     }
     break;

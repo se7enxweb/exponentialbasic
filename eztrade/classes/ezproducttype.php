@@ -38,8 +38,8 @@
   \sa eZProduct
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezproductattribute.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezproductattribute.php" );
 
 class eZProductType
 {

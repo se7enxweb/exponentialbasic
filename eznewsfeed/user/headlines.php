@@ -30,14 +30,14 @@ if( !function_exists( 'printNewsHeaderList' ) )
 {
     function printNewsHeaderList( $CategoryID, $GenerateStaticPage, $cachedFile )
         {
-            include_once( "classes/INIFile.php" );
-            include_once( "classes/eztemplate.php" );
-            include_once( "classes/ezlocale.php" );
+            // include_once( "classes/INIFile.php" );
+            // include_once( "classes/eztemplate.php" );
+            // include_once( "classes/ezlocale.php" );
     
-            include_once( "eznewsfeed/classes/eznews.php" );
-            include_once( "eznewsfeed/classes/eznewscategory.php" );
+            // include_once( "eznewsfeed/classes/eznews.php" );
+            // include_once( "eznewsfeed/classes/eznewscategory.php" );
     
-            include_once( "classes/ezdatetime.php" );
+            // include_once( "classes/ezdatetime.php" );
     
             $news = new eZNews( );
     

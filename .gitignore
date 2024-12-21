@@ -1,5 +1,6 @@
 bin/logs
 error_log
+var/cache
 classes/cache
 ezimagecatalogue/catalogue
 ezmediacatalogue/catalogue

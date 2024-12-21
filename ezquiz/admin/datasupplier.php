@@ -24,8 +24,8 @@
 //
 
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if( eZPermission::checkPermission( $user, "eZSiteManager", "ModuleEdit" ) == false )

@@ -22,7 +22,7 @@
 //
 
 
-include_once( "ezaddress/classes/ezregion.php" );
+// include_once( "ezaddress/classes/ezregion.php" );
 
 $ini =& INIFile::globalINI();
 $Max = $ini->read_var( "eZAddressMain", "MaxRegionList" );

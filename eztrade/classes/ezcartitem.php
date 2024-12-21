@@ -43,13 +43,13 @@
   \sa eZCart
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezcartoptionvalue.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezcartoptionvalue.php" );
 
-include_once( "eztrade/classes/ezwishlistitem.php" );
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
-include_once( "eztrade/classes/ezvoucherinformation.php" );
+// include_once( "eztrade/classes/ezwishlistitem.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "eztrade/classes/ezvoucherinformation.php" );
 
 class eZCartItem
 {

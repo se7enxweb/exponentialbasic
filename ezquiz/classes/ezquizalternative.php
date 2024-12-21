@@ -35,7 +35,7 @@
 
 */
 
-include_once( "classes/ezdate.php" );
+// include_once( "classes/ezdate.php" );
 
 class eZQuizAlternative
 {

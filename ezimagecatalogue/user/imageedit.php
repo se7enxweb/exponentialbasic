@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezuser/classes/ezauthor.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezauthor.php" );
 
 $user =& eZUser::currentUser();
 
@@ -62,15 +62,15 @@ if ( isSet( $DeleteCategories ) )
     $Action = "DeleteCategories";
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-// include_once( "classes/ezfile.php" );
-include_once( "classes/ezimagefile.php" );
+// // include_once( "classes/ezfile.php" );
+// include_once( "classes/ezimagefile.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
@@ -333,7 +333,7 @@ if ( $Action == "Update" && $error == false )
 
     $image->store();
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" . $CurrentCategoryID . "/" );
     exit();
 }
@@ -352,7 +352,7 @@ if ( $Action == "DeleteImages" )
         }
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" . $CurrentCategoryID . "/" );
     exit();
 }
@@ -369,7 +369,7 @@ if ( $Action == "DeleteCategories" )
         }
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" . $CurrentCategoryID . "/" );
     exit();
 }

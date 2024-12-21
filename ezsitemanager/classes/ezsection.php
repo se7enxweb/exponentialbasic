@@ -35,10 +35,10 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
 
-include_once( "ezsitemanager/classes/ezsectionfrontpage.php" );
+// include_once( "ezsitemanager/classes/ezsectionfrontpage.php" );
 
 class eZSection
 {

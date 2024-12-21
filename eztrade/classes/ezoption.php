@@ -74,8 +74,8 @@
   \sa eZProductCategory eZOptionValue
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezoptionvalue.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezoptionvalue.php" );
 
 class eZOption
 {

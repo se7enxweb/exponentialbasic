@@ -23,20 +23,20 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/ezlist.php" );
-include_once( "ezsession/classes/ezpreferences.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezlist.php" );
+// include_once( "ezsession/classes/ezpreferences.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "ezforum/classes/ezforummessage.php" );
-include_once( "ezforum/classes/ezforumcategory.php" );
-include_once( "ezforum/classes/ezforum.php" );
+// include_once( "ezforum/classes/ezforummessage.php" );
+// include_once( "ezforum/classes/ezforumcategory.php" );
+// include_once( "ezforum/classes/ezforum.php" );
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 $NewMessageLimit = $ini->read_var( "eZForumMain", "NewMessageLimit" );
@@ -161,7 +161,7 @@ if ( count( $categories ) > 0 )
     $t->parse( "header_list", "header_list_tpl" );
 
     // sections
-    include_once( "ezsitemanager/classes/ezsection.php" );
+    // include_once( "ezsitemanager/classes/ezsection.php" );
 
     $GlobalSectionID = eZForumCategory::sectionIDStatic( $category->id() );
 

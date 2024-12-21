@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 $Max = $ini->read_var( "eZContactMain", "MaxPersonList" );
@@ -33,31 +33,31 @@ if ( !is_numeric( $Max ) )
     $Max = 10;
 }
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezuritool.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezuritool.php" );
+// include_once( "classes/ezlist.php" );
 
 $t = new eZTemplate( "ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
                      "ezcontact/admin/intl", $Language, "personedit.php" );
 $t->setAllStrings();
 
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezprojecttype.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezprojecttype.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/login" );
     exit();
 }
 
 if ( !eZPermission::checkPermission( $user, "eZContact", "PersonList" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/person/list" );
     exit();
 }

@@ -23,17 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 
-include_once( "ezlink/classes/ezlinkcategory.php" );
-include_once( "ezlink/classes/ezlink.php" );
-include_once( "ezlink/classes/ezlinktype.php" );
+// include_once( "ezlink/classes/ezlinkcategory.php" );
+// include_once( "ezlink/classes/ezlink.php" );
+// include_once( "ezlink/classes/ezlinktype.php" );
 
 if( isset( $Delete ) )
 {

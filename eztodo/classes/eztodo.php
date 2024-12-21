@@ -31,8 +31,8 @@
   Handles the todo informasjon stored in the database.
 */
 
-include_once( "eztodo/classes/eztodolog.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "eztodo/classes/eztodolog.php" );
+// include_once( "classes/ezdatetime.php" );
 
 class eZTodo
 {

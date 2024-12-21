@@ -23,15 +23,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlist.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZSiteManagerMain", "Language" );
 $Limit = $ini->read_var( "eZSiteManagerMain", "AdminListLimit" );
 
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 $t = new eZTemplate( "ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "ezsitemanager/admin/" . "/intl", $Language, "sectionlist.php" );

@@ -58,7 +58,7 @@ if ( $ShowSearch == true )
     }
     else
     {
-        include_once( "ezarticle/classes/ezarticle.php" );
+        // include_once( "ezarticle/classes/ezarticle.php" );
 
         $ArticleID = eZArticle::articleIDFromForum( $ForumID );
 

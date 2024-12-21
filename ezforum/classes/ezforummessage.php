@@ -34,8 +34,8 @@
 /*!TODO
 */
 
-include_once( "classes/ezdatetime.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 class eZForumMessage
 {

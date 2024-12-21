@@ -23,25 +23,25 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/eztexttool.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFile( "ezlink/user/intl/" . $Language . "/suggestlink.php.ini", false );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
 include( "ezlink/classes/ezlinkcategory.php" );
 include( "ezlink/classes/ezlink.php" );
 include( "ezlink/classes/ezhit.php" );
 
-include_once( "ezlink/classes/ezlinktype.php" );
-include_once( "ezlink/classes/ezlinkattribute.php" );
-include_once( "ezlink/classes/ezmeta.php" );
+// include_once( "ezlink/classes/ezlinktype.php" );
+// include_once( "ezlink/classes/ezlinkattribute.php" );
+// include_once( "ezlink/classes/ezmeta.php" );
 
 //require( "ezuser/admin/admincheck.php" );
 

@@ -136,12 +136,12 @@
 
 */
 
-include_once( "classes/eztexttool.php" );
-include_once( "classes/ezlog.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
-class eZQDomrenderer
+class eZQDomRenderer
 {
     /*!
       Creates a new eZQDomGenerator object.
@@ -636,7 +636,7 @@ class eZQDomrenderer
             {
                 print( "object image<br>" );
                 $hasMap = true;
-                include_once( "ezarticle/classes/ezimagemap.php" );
+                // include_once( "ezarticle/classes/ezimagemap.php" );
                 $map = new eZImageMap( $image->id() );
 
                 $elements =& $map->elements();
@@ -1152,7 +1152,7 @@ class eZQDomrenderer
                     break;
                     case "form" :
                     {
-                        include_once( "ezform/classes/ezformrenderer.php" );
+                        // include_once( "ezform/classes/ezformrenderer.php" );
 
                         $forms = $this->Article->forms();
                         if ( count ($forms) == 1 )

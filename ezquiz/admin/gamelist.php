@@ -23,15 +23,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlist.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZQuizMain", "Language" );
 $Limit = $ini->read_var( "eZQuizMain", "AdminListLimit" );
 
-include_once( "ezquiz/classes/ezquizgame.php" );
+// include_once( "ezquiz/classes/ezquizgame.php" );
 
 $t = new eZTemplate( "ezquiz/admin/" . $ini->read_var( "eZQuizMain", "AdminTemplateDir" ),
                      "ezquiz/admin/" . "/intl", $Language, "gamelist.php" );

@@ -57,11 +57,11 @@ class eZCheckout
         // check for local checkout code
         if ( eZFile::file_exists( "checkout/classes/ezcheckoutsupplier.php" ) )
         {
-            include_once( "checkout/classes/ezcheckoutsupplier.php" );
+            // include_once( "checkout/classes/ezcheckoutsupplier.php" );
         }
         else
         {
-            include_once( "eztrade/classes/ezcheckoutsupplier.php" );
+            // include_once( "eztrade/classes/ezcheckoutsupplier.php" );
         }
         
         $this->CheckoutObject = new eZCheckoutSupplier( );

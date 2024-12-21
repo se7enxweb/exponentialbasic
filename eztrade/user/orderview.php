@@ -29,13 +29,13 @@ if ( isSet( $Cancel ) )
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 
 $ini =& INIFile::globalINI();
@@ -45,13 +45,13 @@ $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "tru
 $languageINI = new INIFIle( "eztrade/user/intl/" . $Language . "/orderview.php.ini", false );
 
 
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezorder.php" );
-include_once( "eztrade/classes/ezcheckout.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezorder.php" );
+// include_once( "eztrade/classes/ezcheckout.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
 
-include_once( "eztrade/classes/ezorderstatustype.php" );
+// include_once( "eztrade/classes/ezorderstatustype.php" );
 
 $t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
                      "eztrade/user/intl/", $Language, "orderview.php" );

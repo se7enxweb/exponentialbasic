@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZBugMain", "Language" );
 
     
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezdb.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 $t = new eZTemplate( "ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
                      "ezbug/user/intl", $Language, "menubox.php" );

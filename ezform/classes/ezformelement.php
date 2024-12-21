@@ -35,9 +35,9 @@
 
 */
 
-include_once( "ezform/classes/ezform.php" );
-include_once( "ezform/classes/ezformelementtype.php" );
-include_once( "ezform/classes/ezformelementfixedvalue.php" );
+// include_once( "ezform/classes/ezform.php" );
+// include_once( "ezform/classes/ezformelementtype.php" );
+// include_once( "ezform/classes/ezformelementfixedvalue.php" );
 
 class eZFormElement
 {

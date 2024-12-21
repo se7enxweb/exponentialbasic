@@ -35,10 +35,10 @@
 
 */
 
-include_once( "eztrade/classes/ezvoucher.php" );
-include_once( "eztrade/classes/ezpreorder.php" );
+// include_once( "eztrade/classes/ezvoucher.php" );
+// include_once( "eztrade/classes/ezpreorder.php" );
 
-include_once( "ezaddress/classes/ezonline.php" );
+// include_once( "ezaddress/classes/ezonline.php" );
 
 class eZMenu
 {

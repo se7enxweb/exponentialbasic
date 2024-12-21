@@ -22,7 +22,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "eztrade/classes/ezcart.php" );
+// include_once( "eztrade/classes/ezcart.php" );
 $cart = new eZCart();
 $session =& eZSession::globalSession();
 $cart->setSession( $session );
@@ -30,7 +30,7 @@ $cart->setCompanyID( $CompanyID );
 $cart->setPersonID( $PersonID );
 
 $cart->store();
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 eZHTTPTool::header( "Location: /trade/productlist/0/" );
 exit();
 

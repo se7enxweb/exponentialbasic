@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( is_a( $user, "eZUser" ) and
@@ -33,11 +33,11 @@ if ( is_a( $user, "eZUser" ) and
        eZPermission::checkPermission( $user, "eZContact", "PersonList" ) or
        eZPermission::checkPermission( $user, "eZContact", "Consultation" ) ) )
 {
-    include_once( "classes/INIFile.php" );
+    // include_once( "classes/INIFile.php" );
 
     $Language = $ini->read_var( "eZContactMain", "Language" );
 
-    include_once( "classes/eztemplate.php" );
+    // include_once( "classes/eztemplate.php" );
 
     $t = new eZTemplate( "ezcontact/user/" . $ini->read_var( "eZContactMain", "TemplateDir" ),
                          "ezcontact/user/intl", $Language, "menubox.php" );

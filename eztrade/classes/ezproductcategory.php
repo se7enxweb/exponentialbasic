@@ -82,8 +82,8 @@
   \sa eZProduct eZOption eZOptionValue
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
 
 class eZProductCategory
 {

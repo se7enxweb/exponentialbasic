@@ -25,7 +25,7 @@
 
 // include the class file.
 
-include_once( "classes/template.inc" );
+// include_once( "classes/template.inc" );
 
 $tpl = new Template( "ezexample/admin/templates/standard" );
 

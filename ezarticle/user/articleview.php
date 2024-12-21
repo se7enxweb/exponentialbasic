@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -253,7 +253,7 @@ if ( $article->get( $ArticleID ) )
 
         if ( $CapitalizeHeadlines == "enabled" )
         {
-            include_once( "classes/eztexttool.php" );
+            // include_once( "classes/eztexttool.php" );
             $t->set_var( "category_name", eZTextTool::capitalize(  $path[1] ) );
         }
         else
@@ -269,7 +269,7 @@ if ( $article->get( $ArticleID ) )
 
     if ( $CapitalizeHeadlines == "enabled" )
     {
-        include_once( "classes/eztexttool.php" );
+        // include_once( "classes/eztexttool.php" );
         $t->set_var( "article_name", eZTextTool::capitalize(  $article->name() ) );
     }
     else

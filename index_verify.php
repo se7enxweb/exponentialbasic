@@ -51,7 +51,7 @@ ob_end_clean();
 // this script will return 42 if the server is alive
 // it will return 13 if not
 
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdb.php" );
 
 $db =& eZDB::globalDatabase();
 $db->query_single( $session_array, "SELECT COUNT( ID ) AS Count FROM eZSession_Session" );

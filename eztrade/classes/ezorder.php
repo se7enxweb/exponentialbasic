@@ -32,19 +32,19 @@
   \sa eZOrderItem eZOrderOptionValue eZDateTime
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
 
-include_once( "eztrade/classes/ezpreorder.php" );
-include_once( "eztrade/classes/ezorderstatustype.php" );
-include_once( "eztrade/classes/ezorderstatus.php" );
-include_once( "eztrade/classes/ezorderitem.php" );
-include_once( "eztrade/classes/ezshippingtype.php" );
-include_once( "eztrade/classes/ezvoucherused.php" );
+// include_once( "eztrade/classes/ezpreorder.php" );
+// include_once( "eztrade/classes/ezorderstatustype.php" );
+// include_once( "eztrade/classes/ezorderstatus.php" );
+// include_once( "eztrade/classes/ezorderitem.php" );
+// include_once( "eztrade/classes/ezshippingtype.php" );
+// include_once( "eztrade/classes/ezvoucherused.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
 
 
 class eZOrder

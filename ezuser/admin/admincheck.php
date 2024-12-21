@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezhttptool.php" );
 
 //  $user = new eZUser();
 //  $user = $user->currentUser();

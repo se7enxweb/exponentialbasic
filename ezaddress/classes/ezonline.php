@@ -40,8 +40,8 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezaddress/classes/ezonlinetype.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezaddress/classes/ezonlinetype.php" );
 
 class eZOnline
 {

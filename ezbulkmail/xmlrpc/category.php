@@ -23,10 +23,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
 if( $Command == "list" ) // Return a list of all bulkmail categories..
 {
     $categoryList = eZBulkMailCategory::getAll( );

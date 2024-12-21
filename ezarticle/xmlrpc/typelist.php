@@ -24,7 +24,7 @@
 //
 
 // eZ article classes
-include_once( "ezarticle/classes/ezarticletype.php" );
+// include_once( "ezarticle/classes/ezarticletype.php" );
 
 $types = array();
 

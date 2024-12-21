@@ -64,8 +64,8 @@ class eZArticleSupplier
         {
             case "article":
             {
-                include_once( "ezarticle/classes/ezarticle.php" );
-                include_once( "ezarticle/classes/ezarticlecategory.php" );
+                // include_once( "ezarticle/classes/ezarticle.php" );
+                // include_once( "ezarticle/classes/ezarticlecategory.php" );
                 $limit = $ini->read_var( "eZArticleMain", "AdminListLimit" );
                 $cat = new eZArticleCategory( $category );
                 $categories = $cat->getByParent( $cat, false, "name" );
@@ -121,7 +121,7 @@ class eZArticleSupplier
             {
                 if ( $is_category )
                 {
-                    include_once( "ezarticle/classes/ezarticlecategory.php" );
+                    // include_once( "ezarticle/classes/ezarticlecategory.php" );
                     $category = new eZArticleCategory( $id );
                     $category_url = "/article/archive";
                     $url = "$category_url/$id";
@@ -131,7 +131,7 @@ class eZArticleSupplier
                 }
                 else
                 {
-                    include_once( "ezarticle/classes/ezarticle.php" );
+                    // include_once( "ezarticle/classes/ezarticle.php" );
                     $article = new eZArticle( $id );
                     $article_url = "/article/view";
                     $cat = $article->categoryDefinition();

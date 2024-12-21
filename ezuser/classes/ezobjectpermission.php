@@ -45,10 +45,10 @@
   \sa eZUser eZUserGroup eZModule eZForgot
 */
 
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "classes/ezdb.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "classes/ezdb.php" );
 
 class eZObjectPermission
 {

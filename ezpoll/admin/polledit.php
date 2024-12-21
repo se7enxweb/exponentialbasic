@@ -24,18 +24,18 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZPollMain", "Language" );
 $errorIni = new INIFIle( "ezpoll/admin/intl/" . $Language . "/polledit.php.ini", false );
 
-include_once( "ezpoll/classes/ezpoll.php" );
-include_once( "ezpoll/classes/ezpollchoice.php" );
-include_once( "ezpoll/classes/ezvote.php" );
+// include_once( "ezpoll/classes/ezpoll.php" );
+// include_once( "ezpoll/classes/ezpollchoice.php" );
+// include_once( "ezpoll/classes/ezvote.php" );
  
 require( "ezuser/admin/admincheck.php" );
 

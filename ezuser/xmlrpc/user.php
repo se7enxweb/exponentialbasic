@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
 if( $Command == "list" ) // Return a list of users and their ID's 
 {
     $userList = eZUser::getAll( "Login", true );

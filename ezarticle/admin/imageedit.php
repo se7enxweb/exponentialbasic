@@ -23,20 +23,20 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "classes/ezimagefile.php" );
+// include_once( "classes/ezimagefile.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezuser/classes/ezauthor.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezuser/classes/ezauthor.php" );
 
 if ( $Action == "Insert" )
 {
@@ -81,7 +81,7 @@ if ( $Action == "Insert" )
         print( $file->name() . " not uploaded successfully" );
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/imagelist/" . $ArticleID . "/" );
     exit();
 }
@@ -139,7 +139,7 @@ if ( $Action == "Update" )
         $image->store();
     }
     
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/imagelist/" . $ArticleID . "/" );
     exit();
 }
@@ -158,7 +158,7 @@ if ( $Action == "Delete" )
         }
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/imagelist/" . $ArticleID . "/" );
     exit();
 }
@@ -172,7 +172,7 @@ if ( $Action == "StoreDef" )
     if ( isset( $NoFrontImage ) )
     {
         $article->setThumbnailImage( false );
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /article/articleedit/imagelist/" . $ArticleID . "/" );
         exit();
     }
@@ -185,12 +185,12 @@ if ( $Action == "StoreDef" )
 
     if ( isset( $NewImage ) )
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /article/articleedit/imageedit/new/$ArticleID/" );
         exit();
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /article/articleedit/edit/" . $ArticleID . "/" );
     exit();
 }

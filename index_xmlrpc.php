@@ -85,7 +85,7 @@ ob_end_clean();
 ob_start();
 
 // server information
-include_once( "classes/ezpublish.php" );
+// include_once( "classes/ezpublish.php" );
 $version_string = eZPublish::version();
 if ( ereg( "([0-9]+.[0-9]+).([0-9]+)", $version_string, $regs ) )
 {
@@ -112,17 +112,17 @@ define( "EZERROR_NO_PERMISSION", 9 );
 define( "EZERROR_WRONG_VERSION", 10 );
 
 // include the server
-include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
 
 // include the datatype(s) we need
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcresponse.php" );
 
 // site information
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 $GlobalSiteIni =& $ini;
 
@@ -146,19 +146,19 @@ unset($index);
 unset($wwwDir);
 
 // File functions
-include_once( "classes/ezfile.php" );
+// include_once( "classes/ezfile.php" );
 
-include_once( "classes/ezlog.php" );
+// include_once( "classes/ezlog.php" );
 error_reporting(0);
 $old_error_handler = set_error_handler("xmlrpcErrorHandler");
 
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezlocale.php" );
 
 
 // eZ user
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 
 // eZLog::writeNotice( "XML-RPC connect." );
@@ -270,7 +270,7 @@ function Call( $args )
         $hash = $session->hash();
 
     // Charset and language
-        include_once( "classes/ezlocale.php" );
+        // include_once( "classes/ezlocale.php" );
         $ini =& INIFile::globalINI();
         if ( $ini->has_var( "site", "Language" ) )
         {

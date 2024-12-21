@@ -36,10 +36,10 @@
 
  */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 class eZAd
 {

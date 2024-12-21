@@ -32,10 +32,10 @@
   set.
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezaddress/classes/ezcountry.php" );
-include_once( "ezaddress/classes/ezregion.php" );
-include_once( "ezaddress/classes/ezaddresstype.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezaddress/classes/ezcountry.php" );
+// include_once( "ezaddress/classes/ezregion.php" );
+// include_once( "ezaddress/classes/ezaddresstype.php" );
 
 class eZAddress
 {

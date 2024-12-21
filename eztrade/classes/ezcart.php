@@ -55,9 +55,9 @@
   \sa eZCartItem eZProductCategory eZOption
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezcartitem.php" );
-include_once( "eztrade/classes/ezshippingtype.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezcartitem.php" );
+// include_once( "eztrade/classes/ezshippingtype.php" );
 
 class eZCart
 {

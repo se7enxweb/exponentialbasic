@@ -42,12 +42,12 @@
   \sa eZWishlist
 */
 
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdb.php" );
 
-include_once( "eztrade/classes/ezwishlistoptionvalue.php" );
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezcartitem.php" );
-include_once( "eztrade/classes/ezcart.php" );
+// include_once( "eztrade/classes/ezwishlistoptionvalue.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezcartitem.php" );
+// include_once( "eztrade/classes/ezcart.php" );
 
 
 class eZWishListItem

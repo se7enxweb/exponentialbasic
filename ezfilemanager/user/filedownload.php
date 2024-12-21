@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -48,7 +48,7 @@ else
 
 $filePath = $file->filePath( true );
 
-include_once( "ezstats/classes/ezpageview.php" );
+// include_once( "ezstats/classes/ezpageview.php" );
 
 if ( !is_a( $GlobalPageView, "eZPageView" ) )
 {

@@ -23,18 +23,18 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "ezforum/classes/ezforum.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "ezforum/classes/ezforum.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezlist.php" );
 
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 $Limit = $ini->read_var( "eZForumMain", "SearchAdminLimit" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
 $t = new eZTemplate( "ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
                      "ezforum/admin/intl", $Language, "search.php" );

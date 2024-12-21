@@ -23,27 +23,27 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/eztexttool.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZBugMain", "Language" );
 
-include_once( "ezbug/classes/ezbug.php" );
-include_once( "ezbug/classes/ezbugcategory.php" );
-include_once( "ezbug/classes/ezbugmodule.php" );
-include_once( "ezbug/classes/ezbugpriority.php" );
-include_once( "ezbug/classes/ezbugstatus.php" );
-include_once( "ezbug/classes/ezbuglog.php" );
+// include_once( "ezbug/classes/ezbug.php" );
+// include_once( "ezbug/classes/ezbugcategory.php" );
+// include_once( "ezbug/classes/ezbugmodule.php" );
+// include_once( "ezbug/classes/ezbugpriority.php" );
+// include_once( "ezbug/classes/ezbugstatus.php" );
+// include_once( "ezbug/classes/ezbuglog.php" );
 
 $session = new eZSession();
 

@@ -26,11 +26,11 @@
 /*
     Searches for companies.
 */
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
-include_once( "ezcontact/classes/ezcompanytype.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezcontact/classes/ezcompanytype.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $ini =& INIFIle::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );

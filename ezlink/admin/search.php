@@ -27,20 +27,20 @@
   listlink.php viser alle kategorier
 */
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini = INIFile::globalINI();
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $AdminLimit = $ini->read_var( "eZLinkMain", "AdminSearchLimit" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlist.php" );
 
-include_once( "ezlink/classes/ezlinkcategory.php" );
-include_once( "ezlink/classes/ezlink.php"  );
-include_once( "ezlink/classes/ezhit.php" );
+// include_once( "ezlink/classes/ezlinkcategory.php" );
+// include_once( "ezlink/classes/ezlink.php"  );
+// include_once( "ezlink/classes/ezhit.php" );
 
-//  include_once( "classes/ezquery.php" );
+//  // include_once( "classes/ezquery.php" );
 
 // setter template filer
 $t = new eZTemplate( "ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),

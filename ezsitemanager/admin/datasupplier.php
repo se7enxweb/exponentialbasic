@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $user =& eZUser::currentUser();
 if ( eZPermission::checkPermission( $user, "eZSiteManager", "ModuleEdit" ) == false )

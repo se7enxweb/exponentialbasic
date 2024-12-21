@@ -23,15 +23,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezimagecatalogue/classes/ezimagevariation.php" );
-include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimagevariation.php" );
+// include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 if( $Command == "info" )
 {

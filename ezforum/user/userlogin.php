@@ -23,17 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztexttool.php" );
 
 
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 if ( eZUser::currentUser() )
 {
@@ -93,8 +93,8 @@ else
     {
         case "new":
         {
-            include_once( "ezforum/classes/ezforum.php" );
-            include_once( "ezforum/classes/ezforummessage.php" );
+            // include_once( "ezforum/classes/ezforum.php" );
+            // include_once( "ezforum/classes/ezforummessage.php" );
 
             $CheckForumID = $ForumID;
            
@@ -108,8 +108,8 @@ else
         
         case "reply":
         {
-            include_once( "ezforum/classes/ezforum.php" );
-            include_once( "ezforum/classes/ezforummessage.php" );
+            // include_once( "ezforum/classes/ezforum.php" );
+            // include_once( "ezforum/classes/ezforummessage.php" );
             
             $msg = new eZForumMessage( $ReplyToID );
             

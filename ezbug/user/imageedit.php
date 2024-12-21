@@ -23,15 +23,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-// include_once( "classes/ezfile.php" );
-include_once( "classes/ezimagefile.php" );
-include_once( "ezbug/classes/ezbug.php" );
+// // include_once( "classes/ezfile.php" );
+// include_once( "classes/ezimagefile.php" );
+// include_once( "ezbug/classes/ezbug.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 $ini = INIFile::globalINI();
 
@@ -65,7 +65,7 @@ if ( $Action == "Insert" )
         print( $file->name() . " not uploaded successfully" );
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/report/edit/" . $BugID . "/" );
     exit();
 }
@@ -98,7 +98,7 @@ if ( $Action == "Update" )
         $image->store();
     }
     
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/report/edit/" . $BugID . "/" );
     exit();
 }
@@ -111,7 +111,7 @@ if ( $Action == "Delete" )
         
     $bug->deleteImage( $image );
     
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /bug/report/edit/" . $BugID . "/" );
     exit();    
 }
@@ -130,12 +130,12 @@ if ( $Action == "StoreDef" )
 //    if ( isset( $NewImage ) )
 //    {
 //        print( "new image" );
-//        include_once( "classes/ezhttptool.php" );
+//        // include_once( "classes/ezhttptool.php" );
 //        eZHTTPTool::header( "Location: /article/articleedit/imageedit/new/$ArticleID/" );
 //        exit();
 //    }
 //
-//    include_once( "classes/ezhttptool.php" );
+//    // include_once( "classes/ezhttptool.php" );
 //    eZHTTPTool::header( "Location: /article/articleedit/edit/" . $ArticleID . "/" );
 //    exit();
 }

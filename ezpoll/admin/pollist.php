@@ -23,15 +23,15 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezcachefile.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 $Language = $ini->read_var( "eZPollMain", "Language" );
 $errorIni = new INIFIle( "ezpoll/admin/intl/" . $Language . "/pollist.php.ini", false );
 
-include_once( "ezpoll/classes/ezpoll.php" );
+// include_once( "ezpoll/classes/ezpoll.php" );
 
 require( "ezuser/admin/admincheck.php" );
 

@@ -31,11 +31,11 @@
 
 */
 
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdb.php" );
 
-include_once( "eztrade/classes/ezcartitem.php" );
-include_once( "eztrade/classes/ezoption.php" );
-include_once( "eztrade/classes/ezoptionvalue.php" );
+// include_once( "eztrade/classes/ezcartitem.php" );
+// include_once( "eztrade/classes/ezoption.php" );
+// include_once( "eztrade/classes/ezoptionvalue.php" );
 
 
 class eZCartOptionValue

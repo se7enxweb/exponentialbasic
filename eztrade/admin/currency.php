@@ -24,12 +24,12 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezcachefile.php" );
 
-include_once( "eztrade/classes/ezproductcurrency.php" );
+// include_once( "eztrade/classes/ezproductcurrency.php" );
 
 $ini =& INIFile::globalINI();
 

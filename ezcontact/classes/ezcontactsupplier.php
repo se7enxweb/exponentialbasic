@@ -64,8 +64,8 @@ class eZContactSupplier
         {
             case "company":
             {
-                include_once( "ezcontact/classes/ezcompany.php" );
-                include_once( "ezcontact/classes/ezcompanytype.php" );
+                // include_once( "ezcontact/classes/ezcompany.php" );
+                // include_once( "ezcontact/classes/ezcompanytype.php" );
                 $limit = $ini->read_var( "eZContactMain", "MaxCompanyList" );
                 $categories = eZCompanyType::getByParentID( $category, "name" );
                 $companies = eZCompany::getByCategory( $category, $offset, $limit );
@@ -123,7 +123,7 @@ class eZContactSupplier
             {
                 if ( $is_category )
                 {
-                    include_once( "ezcontact/classes/ezcompanytype.php" );
+                    // include_once( "ezcontact/classes/ezcompanytype.php" );
                     $category = new eZCompanyType( $id );
                     $category_url = "/contact/company/list";
                     $url = "$category_url/$id";
@@ -133,7 +133,7 @@ class eZContactSupplier
                 }
                 else
                 {
-                    include_once( "ezcontact/classes/ezcompany.php" );
+                    // include_once( "ezcontact/classes/ezcompany.php" );
                     $company = new eZCompany( $id );
                     $company_url = "/contact/company/view";
                     $url = "$company_url/$id";

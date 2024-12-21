@@ -25,17 +25,17 @@
 
 if ( isSet( $Cancel ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/orderlist/" );
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
 
 
 $ini =& INIFile::globalINI();
@@ -52,14 +52,14 @@ $ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled"
 $ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
 
 
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezorder.php" );
-include_once( "eztrade/classes/ezpreorder.php" );
-include_once( "eztrade/classes/ezcheckout.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezorder.php" );
+// include_once( "eztrade/classes/ezpreorder.php" );
+// include_once( "eztrade/classes/ezcheckout.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
 
-include_once( "eztrade/classes/ezorderstatustype.php" );
+// include_once( "eztrade/classes/ezorderstatustype.php" );
 
 if ( $Action == "newstatus" )
 {
@@ -78,7 +78,7 @@ if ( $Action == "newstatus" )
     $status->setAdmin( $user );
     $status->store();            
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/orderlist/" );
     exit();
 }
@@ -88,7 +88,7 @@ if ( $Action == "delete" )
     $order = new eZOrder( $OrderID );
     $order->delete();
     
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/orderlist/" );
     exit();
 }

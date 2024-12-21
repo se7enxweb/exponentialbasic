@@ -78,16 +78,16 @@
     $t in the example just pops out of nowhere, giving us no indication
     of where it was created or what connection it has with this class
  */
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/eztexttool.php" );
 
-include_once( "ezimagecatalogue/classes/ezimagevariation.php" );
-include_once( "ezimagecatalogue/classes/ezimagevariationgroup.php" );
-include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
+// include_once( "ezimagecatalogue/classes/ezimagevariation.php" );
+// include_once( "ezimagecatalogue/classes/ezimagevariationgroup.php" );
+// include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
 
 class eZImage
 {

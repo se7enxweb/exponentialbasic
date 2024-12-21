@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
@@ -34,7 +34,7 @@ $errorIni = new INIFIle( "ezpoll/user/intl/" . $Language . "/pollist.php.ini", f
 
 $noItem = $errorIni->read_var( "strings", "noitem" );
 
-include_once( $DOC_ROOT . "/classes/ezpoll.php" );
+// include_once( $DOC_ROOT . "/classes/ezpoll.php" );
 
 
 $t = new eZTemplate( "ezpoll/user/" . $ini->read_var( "eZPollMain", "TemplateDir" ),

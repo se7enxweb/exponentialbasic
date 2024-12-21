@@ -34,7 +34,7 @@ unset( $CacheFile );
 $GenerateStaticPage = "false";
 if ( $PageCaching == "enabled" )
 {
-    include_once( "classes/ezcachefile.php" );
+    // include_once( "classes/ezcachefile.php" );
     $CacheFile = new eZCacheFile( "eztrade/cache/",
                                   array( "cateorylist", $CategoryID, $GlobalSiteDesign ), 
                                   "cache", "," );
@@ -52,20 +52,20 @@ if ( $PageCaching == "enabled" )
 
 if ( $PureStatic == "false" )
 {
-    include_once( "classes/INIFile.php" );
-    include_once( "classes/eztemplate.php" );
-    include_once( "classes/ezlocale.php" );
-    include_once( "classes/ezcurrency.php" );
+    // include_once( "classes/INIFile.php" );
+    // include_once( "classes/eztemplate.php" );
+    // include_once( "classes/ezlocale.php" );
+    // include_once( "classes/ezcurrency.php" );
 
-    include_once( "ezuser/classes/ezuser.php" );
-    include_once( "ezuser/classes/ezpermission.php" );
-    include_once( "ezuser/classes/ezobjectpermission.php" );
+    // include_once( "ezuser/classes/ezuser.php" );
+    // include_once( "ezuser/classes/ezpermission.php" );
+    // include_once( "ezuser/classes/ezobjectpermission.php" );
     
     $ini =& INIFile::globalINI();
     $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-    include_once( "eztrade/classes/ezproduct.php" );
-    include_once( "eztrade/classes/ezproductcategory.php" );
+    // include_once( "eztrade/classes/ezproduct.php" );
+    // include_once( "eztrade/classes/ezproductcategory.php" );
 
     $t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
                          "eztrade/user/intl/", $Language, "categorylist.php" );

@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 if ( isset( $Cancel ) )
 {
@@ -31,16 +31,16 @@ if ( isset( $Cancel ) )
     exit();
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
 $move_item = true;
 
-include_once( "ezmediacatalogue/classes/ezmediatype.php" );
-include_once( "ezmediacatalogue/classes/ezmediaattribute.php" );
+// include_once( "ezmediacatalogue/classes/ezmediatype.php" );
+// include_once( "ezmediacatalogue/classes/ezmediaattribute.php" );
 
 if ( isset( $Action ) && $Action == "Insert" )
 {

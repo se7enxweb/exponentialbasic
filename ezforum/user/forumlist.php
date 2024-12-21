@@ -23,18 +23,18 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezforum/classes/ezforum.php" );
-include_once( "ezforum/classes/ezforummessage.php" );
-include_once( "ezforum/classes/ezforumcategory.php" );
+// include_once( "ezforum/classes/ezforum.php" );
+// include_once( "ezforum/classes/ezforummessage.php" );
+// include_once( "ezforum/classes/ezforumcategory.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 
@@ -51,7 +51,7 @@ $t->set_block( "view_forums_tpl", "forum_item_tpl", "forum_item" );
 $category = new eZForumCategory( $CategoryID );
 
 // sections
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 $GlobalSectionID = eZForumCategory::sectionIDStatic( $CategoryID );
 

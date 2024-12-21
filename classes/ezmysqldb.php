@@ -92,7 +92,7 @@ class eZMySQLDB
     {
         if ( $debug )
         {
-            include_once( "classes/ezbenchmark.php" );
+            // include_once( "classes/ezbenchmark.php" );
 
             $bench = new eZBenchmark();
             $bench->start();

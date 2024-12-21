@@ -24,15 +24,15 @@
 //
 
 // eZ article complete data
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticletool.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticletool.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 if( $Command == "info" )
 {

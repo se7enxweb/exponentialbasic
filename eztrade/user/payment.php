@@ -24,13 +24,13 @@
 //
 
 unset( $PaymentSuccess );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "eztrade/classes/ezcart.php" );
-include_once( "eztrade/classes/ezcheckout.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "eztrade/classes/ezcart.php" );
+// include_once( "eztrade/classes/ezcheckout.php" );
 
 $ini =& INIFile::globalINI();
 $indexFile = $ini->Index;

@@ -23,11 +23,11 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "eztrade/classes/ezproducttool.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "eztrade/classes/ezproducttool.php" );
 
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 
 $user =& eZUser::currentUser();
@@ -276,8 +276,8 @@ switch ( $url_array[2] )
             case "link" :
             {
                 $ItemID = $url_array[5];
-                include_once( "eztrade/classes/ezproduct.php" );
-                include_once( "eztrade/classes/ezproducttool.php" );
+                // include_once( "eztrade/classes/ezproduct.php" );
+                // include_once( "eztrade/classes/ezproducttool.php" );
 
                 $INIGroup = "eZTradeMain";
                 $DefaultSectionsName = "ProductLinkSections";

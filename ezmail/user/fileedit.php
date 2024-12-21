@@ -23,13 +23,13 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "classes/ezfile.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "classes/ezfile.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
 if( isset( $Ok ) )
 {
@@ -56,14 +56,14 @@ if( isset( $Ok ) )
         print( $file->name() . " not uploaded successfully" );
     }
 
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /mail/mailedit/" . $MailID . "/" );
     exit();
 }
 
 if( isset( $Cancel ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /mail/mailedit/" . $MailID . "/" );
     exit();
 }

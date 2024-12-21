@@ -24,7 +24,7 @@
 //
 
 
-include_once( "ezform/classes/ezform.php" );
+// include_once( "ezform/classes/ezform.php" );
 
 $forms = array();
 

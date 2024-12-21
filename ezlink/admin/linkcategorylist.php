@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlist.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
@@ -34,16 +34,16 @@ $AdminLimit = $ini->read_var( "eZLinkMain", "AdminLinkLimit" );
 $DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
 $languageIni = new INIFile( "ezlink/admin/intl/" . $Language . "/linkcategorylist.php.ini", false );
 
-include_once( "ezlink/classes/ezlinkcategory.php" );
-include_once( "ezlink/classes/ezlink.php" );
-include_once( "ezlink/classes/ezhit.php" );
+// include_once( "ezlink/classes/ezlinkcategory.php" );
+// include_once( "ezlink/classes/ezlink.php" );
+// include_once( "ezlink/classes/ezhit.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 require( "ezuser/admin/admincheck.php" );
 

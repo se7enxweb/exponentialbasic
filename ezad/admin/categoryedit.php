@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 if ( isset( $Cancel ) )
 {
@@ -36,14 +36,14 @@ if ( isset ( $DeleteCategories ) )
     $Action = "DeleteCategories";
 }
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZAdMain", "Language" );
 
-include_once( "ezad/classes/ezad.php" );
-include_once( "ezad/classes/ezadcategory.php" );
+// include_once( "ezad/classes/ezad.php" );
+// include_once( "ezad/classes/ezadcategory.php" );
 
 
 // Direct actions

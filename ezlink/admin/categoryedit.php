@@ -24,24 +24,24 @@
 //
 
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFIle( "ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezcachefile.php" );
 
-include_once( "ezlink/classes/ezlinkcategory.php" );
-include_once( "ezlink/classes/ezlink.php" );
-include_once( "ezlink/classes/ezhit.php" );
+// include_once( "ezlink/classes/ezlinkcategory.php" );
+// include_once( "ezlink/classes/ezlink.php" );
+// include_once( "ezlink/classes/ezhit.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 
 require( "ezuser/admin/admincheck.php" );

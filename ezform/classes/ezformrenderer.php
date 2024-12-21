@@ -34,15 +34,15 @@
   \endcode
 
 */
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezform/classes/ezform.php" );
-include_once( "ezform/classes/ezformelement.php" );
-include_once( "ezform/classes/ezformelementtype.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezform/classes/ezform.php" );
+// include_once( "ezform/classes/ezformelement.php" );
+// include_once( "ezform/classes/ezformelementtype.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
 
 class eZFormRenderer

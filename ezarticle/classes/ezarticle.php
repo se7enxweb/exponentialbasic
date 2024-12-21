@@ -57,25 +57,25 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/eztexttool.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezauthor.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezauthor.php" );
 
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
-include_once( "ezmediacatalogue/classes/ezmedia.php" );
+// include_once( "ezmediacatalogue/classes/ezmedia.php" );
 
-include_once( "ezforum/classes/ezforum.php" );
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticleattribute.php" );
-include_once( "ezarticle/classes/ezarticletype.php" );
+// include_once( "ezforum/classes/ezforum.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticleattribute.php" );
+// include_once( "ezarticle/classes/ezarticletype.php" );
 
 class eZArticle
 {
@@ -1143,7 +1143,7 @@ class eZArticle
     */
     function topic( $as_object = true )
     {
-        include_once( "ezarticle/classes/eztopic.php" );
+        // include_once( "ezarticle/classes/eztopic.php" );
         return $as_object ? new eZTopic( $this->TopicID ) : $this->TopicID;
     }
 
@@ -2935,7 +2935,7 @@ eZUser_Author as Author
     {
         $db =& eZDB::globalDatabase();
 
-        include_once( "ezform/classes/ezform.php" );
+        // include_once( "ezform/classes/ezform.php" );
 
         $ArticleID = $this->ID;
 

@@ -26,9 +26,9 @@
 
 $Language = $ini->read_var( "eZBugMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezbug/classes/ezbugmodule.php" );
+// include_once( "ezbug/classes/ezbugmodule.php" );
 
 $t = new eZTemplate( "ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
                      "ezbug/user/intl", $Language, "menumodulelist.php" );

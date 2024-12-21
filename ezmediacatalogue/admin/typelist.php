@@ -23,17 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
 
-include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
-include_once( "ezmediacatalogue/classes/ezmedia.php" );
-include_once( "ezmediacatalogue/classes/ezmediatype.php" );
+// include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
+// include_once( "ezmediacatalogue/classes/ezmedia.php" );
+// include_once( "ezmediacatalogue/classes/ezmediatype.php" );
 
 if( isset( $Delete ) )
 {

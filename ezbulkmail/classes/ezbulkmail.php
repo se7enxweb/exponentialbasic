@@ -34,12 +34,12 @@
   \endcode
 
 */
-include_once( "classes/ezdatetime.php" );
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
-include_once( "ezbulkmail/classes/ezbulkmailtemplate.php" );
-include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailtemplate.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 class eZBulkMail
 {

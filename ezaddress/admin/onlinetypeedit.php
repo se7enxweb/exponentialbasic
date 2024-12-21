@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezaddress/classes/ezonlinetype.php" );
+// include_once( "ezaddress/classes/ezonlinetype.php" );
 
 $language_file = "onlinetype.php";
 $item_type = new eZOnlineType( $OnlineTypeID );
@@ -42,12 +42,12 @@ $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZAddressMain", "Language" );
 $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 require( "ezuser/admin/admincheck.php" );
 
@@ -79,7 +79,7 @@ if ( isset( $Delete ) and isset( $ItemArrayID ) and isset( $item_types ) )
     {
         $item_type->delete( false );
     }
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
     exit();
 }
@@ -87,7 +87,7 @@ if ( isset( $Delete ) and isset( $ItemArrayID ) and isset( $item_types ) )
 if( isset( $Action ) && $Action == "up" )
 {
     $item_type->moveUp();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
     exit();
 }
@@ -95,7 +95,7 @@ if( isset( $Action ) && $Action == "up" )
 if( isset( $Action ) && $Action == "down" )
 {
     $item_type->moveDown();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
     exit();
 }
@@ -109,7 +109,7 @@ if( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "u
     $item_type->setPrefixLink( $PrefixLink );
     $item_type->setPrefixVisual( $PrefixVisual );
     $item_type->store();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
 }
 

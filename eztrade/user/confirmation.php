@@ -24,10 +24,10 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "eztrade/classes/ezorderconfirmation.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "eztrade/classes/ezorderconfirmation.php" );
 
 $session =& eZSession::globalSession();
 $orderID = $session->variable( "OrderID" );

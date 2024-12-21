@@ -34,9 +34,9 @@
 /*!TODO
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
 
 class eZVirtualFolder
 {

@@ -23,19 +23,19 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 $Sender = $ini->read_var( "ezArticleMain", "MailToFriendSender" );
 
 // sections
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 $CategoryID = $url_array[5];
 

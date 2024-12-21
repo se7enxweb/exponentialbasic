@@ -23,13 +23,13 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/ezdate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezdate.php" );
 
-include_once( "ezquiz/classes/ezquizgame.php" );
-include_once( "ezquiz/classes/ezquiztool.php" );
+// include_once( "ezquiz/classes/ezquizgame.php" );
+// include_once( "ezquiz/classes/ezquiztool.php" );
 
 if ( isSet( $OK ) )
 {

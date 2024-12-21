@@ -46,12 +46,12 @@
   \sa eZUser eZUserGroup eZPermission eZForgot
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezaddress/classes/ezaddress.php" );
-include_once( "ezsession/classes/ezsession.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "ezsession/classes/ezsession.php" );
 
 class eZForgot
 {

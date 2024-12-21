@@ -19,12 +19,12 @@
 // GNU General Public License for more details.
 
 //require( "ezuser/user/usercheck.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezuser/classes/ezforgot.php" );
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezuser/classes/ezforgot.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );

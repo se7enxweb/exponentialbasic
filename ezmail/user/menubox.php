@@ -23,17 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZMailMain", "Language" );
 
     
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezdb.php" );
-include_once( "ezmail/classes/ezmailfolder.php" );
-include_once( "ezsession/classes/ezpreferences.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezmail/classes/ezmailfolder.php" );
+// include_once( "ezsession/classes/ezpreferences.php" );
 
 $user =& eZUser::currentUser();
 if( $user )
@@ -54,7 +54,7 @@ if( $user )
     // auto check mail if enabled.
     if( eZPreferences::variable( "eZMail_AutoCheckMail" ) == "true" )
     {
-        include_once( "ezmail/classes/ezmailaccount.php" );
+        // include_once( "ezmail/classes/ezmailaccount.php" );
         $accounts = eZMailAccount::getByUser( $user->id() );
         foreach( $accounts as $account )
         {
@@ -68,22 +68,31 @@ if( $user )
     }
 
     $showUnread = eZPreferences::variable( "eZMail_ShowUnread" ) == "true" ? true : false;
-    foreach( array( INBOX, SENT, DRAFTS, TRASH ) as $specialfolder )
+    foreach( array( 'INBOX', 'SENT', 'DRAFTS', 'TRASH' ) as $specialfolder )
     {
         $folderItem = eZMailFolder::getSpecialFolder( $specialfolder );
-        $t->set_var( "folder_id", $folderItem->id() );
-        $t->set_var( "folder_name", htmlspecialchars( $folderItem->name() ) );
-        $t->set_var( "indent", "");
-        $t->set_var( "unread", "" );
-        if( $showUnread )
-        {
-            $num = $folderItem->count( true );
-            if( $num > 0 )
-                $t->set_var( "unread", "($num)" );
-        }
-        $t->parse( "mail_folder", "mail_folder_tpl", true );
-    }
 
+	if( $folderItem )
+	{
+	    $t->set_var( "folder_id", $folderItem->id() );
+            $t->set_var( "folder_name", htmlspecialchars( $folderItem->name() ) );
+            $t->set_var( "indent", "");
+      	    $t->set_var( "unread", "" );
+	    
+            if( $showUnread )
+            {
+		$num = $folderItem->count( true );
+                if( $num > 0 )
+                    $t->set_var( "unread", "($num)" );
+            }
+            $t->parse( "mail_folder", "mail_folder_tpl", true );
+	}
+	else
+	{
+	    $t->set_var('mail_folder','');
+	}
+    }
+    
     $userFolders = eZMailFolder::getTree( 0, -1);
     foreach( $userFolders as $folderItem )
     {

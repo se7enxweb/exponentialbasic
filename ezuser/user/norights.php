@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztexttool.php" );
 
 $ini =& INIFile::globalINI();
 $DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
 $Language = $ini->read_var( "eZUserMain", "Language" );
 $errorIni = new INIFIle( "ezuser/user/intl/" . $Language . "/norights.php.ini", false );
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/eztemplate.php" );
 
 $t = new eZTemplate( "ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
 "ezuser/user/" . "/intl", $Language, "norights.php" );

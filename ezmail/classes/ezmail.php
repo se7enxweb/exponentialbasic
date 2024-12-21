@@ -41,9 +41,9 @@
   \endcode
 */
 
-include_once( "ezmail/classes/ezmailfolder.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezmail/classes/ezmailfolder.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 /* DEFINES */
 define( "UNREAD", 0 );
@@ -1103,7 +1103,7 @@ class eZMail
 	//EP - different charsets for the MIME mail ---------------
 //        global $GlobalSectionID;
 //
-//        include_once("ezsitemanager/classes/ezsection.php");
+//        // include_once("ezsitemanager/classes/ezsection.php");
 //        $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 //        $Locale = new eZLocale( $sectionObject->language() );
 //        $iso =& $Locale->languageISO();

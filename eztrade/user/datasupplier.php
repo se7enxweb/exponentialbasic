@@ -27,9 +27,9 @@
 $PageCaching = $ini->read_var( "eZTradeMain", "PageCaching");
 
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $user =& eZUser::currentUser();
 $SiteDesign = $ini->read_var( "site", "SiteDesign" );
@@ -66,7 +66,7 @@ switch ( $url_array[2] )
             $Offset = 0;
         if ( $PageCaching == "enabled" )
         {
-            include_once( "classes/ezcachefile.php" );
+            // include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "eztrade/cache/",
                                           array_merge( "productlist", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                           "cache", "," );
@@ -93,7 +93,7 @@ switch ( $url_array[2] )
             $ProductID = $url_array[3];
             $CategoryID = $url_array[4];
 
-            include_once( "classes/ezcachefile.php" );
+            // include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "eztrade/cache/",
                                           array_merge( "productview", $ProductID, $groupIDArray, $PriceGroup ),
                                           "cache", "," );
@@ -124,7 +124,7 @@ switch ( $url_array[2] )
             $ProductID = $url_array[3];
             $CategoryID = $url_array[4];
 
-            include_once( "classes/ezcachefile.php" );
+            // include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "eztrade/cache/",
                                           array_merge( "productprint", $ProductID, $groupIDArray, $PriceGroup ),
                                           "cache", "," );

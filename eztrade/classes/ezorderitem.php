@@ -39,9 +39,9 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "eztrade/classes/ezorderoptionvalue.php" );
-include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "eztrade/classes/ezorderoptionvalue.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
 
 class eZOrderItem
 {

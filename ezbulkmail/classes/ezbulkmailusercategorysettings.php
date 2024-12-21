@@ -35,9 +35,9 @@
 /*!TODO
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezbulkmail/classes/ezbulkmail.php" );
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezbulkmail/classes/ezbulkmail.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
 class eZBulkMailUserCategorySettings
 {

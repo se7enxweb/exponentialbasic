@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
@@ -35,10 +35,10 @@ if ( $ini->read_var( "eZPollMain", "AllowDoubleVotes" ) == "enabled" )
    $AllowDoubleVotes = true;
 
 
-include_once( "ezpoll/classes/ezpoll.php" );
-include_once( "ezpoll/classes/ezvote.php" );
-include_once( "ezpoll/classes/ezpollchoice.php" );
-include_once( "ezsession/classes/ezsession.php" );
+// include_once( "ezpoll/classes/ezpoll.php" );
+// include_once( "ezpoll/classes/ezvote.php" );
+// include_once( "ezpoll/classes/ezpollchoice.php" );
+// include_once( "ezsession/classes/ezsession.php" );
 
 $session =& eZSession::globalSession();
 

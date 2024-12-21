@@ -35,9 +35,9 @@
 
 */
 
-include_once( "classes/ezdate.php" );
-include_once( "ezquiz/classes/ezquizalternative.php" );
-include_once( "ezquiz/classes/ezquizgame.php" );
+// include_once( "classes/ezdate.php" );
+// include_once( "ezquiz/classes/ezquizalternative.php" );
+// include_once( "ezquiz/classes/ezquizgame.php" );
 
 class eZQuizQuestion
 {

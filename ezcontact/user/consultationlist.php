@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -33,11 +33,11 @@ $user =& eZUser::currentUser();
 if ( is_a( $user, "eZUser" ) &&
      eZPermission::checkPermission( $user, "eZContact", "Consultation" ) )
 {
-    include_once( "ezcontact/classes/ezconsultation.php" );
-    include_once( "ezcontact/classes/ezcompany.php" );
-    include_once( "ezcontact/classes/ezperson.php" );
+    // include_once( "ezcontact/classes/ezconsultation.php" );
+    // include_once( "ezcontact/classes/ezcompany.php" );
+    // include_once( "ezcontact/classes/ezperson.php" );
 
-    include_once( "classes/INIFile.php" );
+    // include_once( "classes/INIFile.php" );
     $max = $ini->read_var( "eZContactMain", "LastConsultations" );
     if ( !is_numeric( $max ) )
     {
@@ -47,11 +47,11 @@ if ( is_a( $user, "eZUser" ) &&
     $view_company = eZPermission::checkPermission( $user, "eZContact", "CompanyView" );
     $view_person = eZPermission::checkPermission( $user, "eZContact", "PersonView" );
 
-    include_once( "classes/INIFile.php" );
+    // include_once( "classes/INIFile.php" );
 
     $Language = $ini->read_var( "eZContactMain", "Language" );
 
-    include_once( "classes/eztemplate.php" );
+    // include_once( "classes/eztemplate.php" );
 
     $t = new eZTemplate( "ezcontact/user/" . $ini->read_var( "eZContactMain", "TemplateDir" ),
                          "ezcontact/user/intl", $Language, "menubox.php" );

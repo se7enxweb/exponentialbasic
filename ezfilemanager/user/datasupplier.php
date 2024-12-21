@@ -24,10 +24,10 @@
 //
 
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/eztime.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/eztime.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZFileManagerMain", "DefaultSection" );

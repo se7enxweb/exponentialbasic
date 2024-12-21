@@ -39,12 +39,12 @@ $ini =& $GlobalSiteIni;
 $Language = $ini->read_var( "eZContactMain", "Language" );
 $DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 require( "ezuser/admin/admincheck.php" );
 
@@ -89,7 +89,7 @@ if ( $Action == "delete" )
         // The counts are the same as when confirming so we can delete
 
         $item_type->delete( true );
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: $page_path/list" );
         exit();
     }
@@ -98,7 +98,7 @@ if ( $Action == "delete" )
 if ( $Action == "up" )
 {
     $item_type->moveUp();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
     exit();
 }
@@ -106,7 +106,7 @@ if ( $Action == "up" )
 if ( $Action == "down" )
 {
     $item_type->moveDown();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
     exit();
 }
@@ -129,7 +129,7 @@ if ( $Action == "insert" or $Action == "update" )
         $item_type->setName( $ItemName );
     }
     $item_type->store();
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: $page_path/list" );
 }
 

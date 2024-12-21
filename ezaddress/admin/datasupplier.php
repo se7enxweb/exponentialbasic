@@ -25,7 +25,7 @@
 
 //print $REQUEST_URI;
 
-include_once( "classes/ezuritool.php" );
+// include_once( "classes/ezuritool.php" );
 
 $ListType = $url_array[2];
 
@@ -81,7 +81,7 @@ switch ( $ListType )
             }
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /address/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -134,7 +134,7 @@ switch ( $ListType )
             }
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /address/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -186,7 +186,7 @@ switch ( $ListType )
             }
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /address/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -239,7 +239,7 @@ switch ( $ListType )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /address/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -286,7 +286,7 @@ switch ( $ListType )
 
             default:
             {
-                include_once( "classes/ezhttptool.php" );
+                // include_once( "classes/ezhttptool.php" );
                 eZHTTPTool::header( "Location: /address/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
                 break;
             }
@@ -301,7 +301,7 @@ switch ( $ListType )
     }
 
     default :
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /address/error?Type=404&Uri=$REQUEST_URI&Query=$QUERY_STRING&BackUrl=$HTTP_REFERER" );
         break;
 }

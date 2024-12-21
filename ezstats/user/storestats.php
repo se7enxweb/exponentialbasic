@@ -35,7 +35,7 @@ $REQUEST_URI = preg_replace( "#/rx.*?-(.*)$#", "\\1", $REQUEST_URI );
 //$REQUEST_URI = preg_replace( "#/rx.*?-(.*)$#", "\\1", $REQUEST_URI );
 
 // do the statistics
-include_once( "ezstats/classes/ezpageview.php" );
+// include_once( "ezstats/classes/ezpageview.php" );
 
 // create a global page view object for statistics
 // and store the stats

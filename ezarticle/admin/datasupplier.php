@@ -23,13 +23,13 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezuser/classes/ezpermission.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "classes/ezdatetime.php" );
 
 #echo " " . $url_array[2] . " " . $url_array[3] . " " . $url_array[4] . " " . $url_array[5];
 #exit();

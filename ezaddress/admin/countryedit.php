@@ -24,7 +24,7 @@
 //
 
 
-include_once( "ezaddress/classes/ezcountry.php" );
+// include_once( "ezaddress/classes/ezcountry.php" );
 
 $language_file = "country.php";
 $item_type = new eZCountry( $CountryID );

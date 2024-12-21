@@ -26,22 +26,22 @@
 /*
   Viser liste over person typer.
 */
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& $GlobalSiteIni;
 $Language = $ini->read_var( "eZContactMain", "Language" );
 $DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "common/ezphputils.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "common/ezphputils.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezmodule.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezmodule.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezpersontype.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezpersontype.php" );
 
 require( "ezuser/admin/admincheck.php" );
 

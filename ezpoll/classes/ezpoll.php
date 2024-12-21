@@ -56,8 +56,8 @@
   \sa eZPollChoice eZVote
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezforum/classes/ezforum.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezforum/classes/ezforum.php" );
 
 class eZPoll
 {

@@ -22,9 +22,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
-include_once( "ezcontact/classes/ezperson.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
+// include_once( "ezcontact/classes/ezperson.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
 
 $top = eZVirtualFolder::getIDByParent( "Contact" );
 if ( !$top )
@@ -75,7 +75,7 @@ if ( !$id )
     $id = $newFolder->ID();
 }
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 eZHTTPTool::header( "Location: /filemanager/list/$id/" );
 exit;
 

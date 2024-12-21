@@ -35,7 +35,7 @@
 
 */
 
-include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
 
 class eZArticleForm
 {

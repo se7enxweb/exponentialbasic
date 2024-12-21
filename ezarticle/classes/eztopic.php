@@ -32,8 +32,8 @@
   \sa eZArticle eZArticeCategory
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
 
 
 class eZTopic

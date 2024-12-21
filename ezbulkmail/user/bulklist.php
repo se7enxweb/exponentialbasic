@@ -23,14 +23,14 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
-include_once( "ezbulkmail/classes/ezbulkmail.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "ezbulkmail/classes/ezbulkmail.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezlist.php" );
 
 if( isset( $Ok ) || isset( $New ) )
 {

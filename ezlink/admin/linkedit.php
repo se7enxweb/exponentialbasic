@@ -27,23 +27,23 @@
   linkedit.php - edit a link.
 */
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezhttptool.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFile( "ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "classes/eztemplate.php" );
 
-include_once( "ezlink/classes/ezlinkcategory.php" );
-include_once( "ezlink/classes/ezlink.php" );
-include_once( "ezlink/classes/ezhit.php" );
+// include_once( "ezlink/classes/ezlinkcategory.php" );
+// include_once( "ezlink/classes/ezlink.php" );
+// include_once( "ezlink/classes/ezhit.php" );
 
-include_once( "ezlink/classes/ezlinktype.php" );
-include_once( "ezlink/classes/ezlinkattribute.php" );
+// include_once( "ezlink/classes/ezlinktype.php" );
+// include_once( "ezlink/classes/ezlinkattribute.php" );
 
-include_once( "ezlink/classes/ezmeta.php" );
+// include_once( "ezlink/classes/ezmeta.php" );
 require( "ezuser/admin/admincheck.php" );
 
 

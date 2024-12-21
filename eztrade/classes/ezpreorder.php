@@ -36,7 +36,7 @@
   \sa eZOrderItem
 */
 
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdb.php" );
 
 
 class eZPreOrder

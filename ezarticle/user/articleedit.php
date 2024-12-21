@@ -23,25 +23,25 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcachefile.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcachefile.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "classes/ezhttptool.php" );
 
-include_once( "ezarticle/classes/ezarticletool.php" );
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlegenerator.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezuser/classes/ezauthor.php" );
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "ezarticle/classes/ezarticletool.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlegenerator.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezuser/classes/ezauthor.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
-include_once( "ezbulkmail/classes/ezbulkmail.php" );
-include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
+// include_once( "ezbulkmail/classes/ezbulkmail.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -196,7 +196,7 @@ $Language = $ini->read_var( "eZArticleMain", "Language" );
 // init the section
 if ( isset ($SectionIDOverride) )
 {
-    include_once( "ezsitemanager/classes/ezsection.php" );
+    // include_once( "ezsitemanager/classes/ezsection.php" );
     
     $sectionObject =& eZSection::globalSectionObject( $SectionIDOverride );
     $sectionObject->setOverrideVariables();

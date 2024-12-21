@@ -220,7 +220,7 @@ if ( $CheckMessageDelete && $MessageEdit )
 
 // if ( true )
 // {
-//     include_once( "classes/eztexttool.php" );
+//     // include_once( "classes/eztexttool.php" );
 //     echo "UserID = " . $UserID . "<br />\n";
 //     echo "MessageOwner = " . eZTextTool::boolText( $MessageOwner ) . "<br />\n";
 //     echo "ForumRead = " . eZTextTool::boolText( $ForumRead ) . "<br />\n";

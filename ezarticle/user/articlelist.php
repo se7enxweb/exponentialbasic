@@ -24,17 +24,17 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezlist.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezlist.php" );
+// include_once( "classes/eztexttool.php" );
 
-include_once( "ezarticle/classes/ezarticlecategory.php" );
-include_once( "ezarticle/classes/ezarticle.php" );
-include_once( "ezarticle/classes/ezarticlerenderer.php" );
-include_once( "ezuser/classes/ezobjectpermission.php" );
-include_once( "ezsitemanager/classes/ezsection.php" );
+// include_once( "ezarticle/classes/ezarticlecategory.php" );
+// include_once( "ezarticle/classes/ezarticle.php" );
+// include_once( "ezarticle/classes/ezarticlerenderer.php" );
+// include_once( "ezuser/classes/ezobjectpermission.php" );
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -171,7 +171,7 @@ if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
 {
     if ($CategoryID)
     {
-	include_once( "ezarticle/classes/ezarticlerenderer.php" );
+	// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
         $article = new eZArticle ();
 	$article->setContents ($category->description(false));
@@ -212,7 +212,7 @@ foreach ( $pathArray as $path )
 
     if ( $CapitalizeHeadlines == "enabled" )
     {
-        include_once( "classes/eztexttool.php" );
+        // include_once( "classes/eztexttool.php" );
         $t->set_var( "category_name", eZTextTool::capitalize(  $path[1] ) );
     }
     else
@@ -316,7 +316,7 @@ foreach ( $categoryList as $categoryItem )
     //EP: CategoryDescriptionXML=enabled, description go in XML -------------------
     if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
     {
-	include_once( "ezarticle/classes/ezarticlerenderer.php" );
+	// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
         $article = new eZArticle ();
 	$article->setContents ($categoryItem->description(false));

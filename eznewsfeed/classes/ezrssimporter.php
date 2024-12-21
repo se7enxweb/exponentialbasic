@@ -36,10 +36,10 @@
 
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "eznewsfeed/classes/eznews.php" );
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "eznewsfeed/classes/eznews.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
 class eZRSSImporter
 {
@@ -63,7 +63,7 @@ class eZRSSImporter
         $return_array = array();
 
 	if (!($fp = @fopen($this->Site, "r"))) {
-          include_once( "classes/ezlog.php" );
+          // include_once( "classes/ezlog.php" );
 	  eZLog::writeWarning( "RSS read failure: ".$this->Site."\n" );
           return false;
         }

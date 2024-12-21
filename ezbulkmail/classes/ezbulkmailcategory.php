@@ -35,12 +35,12 @@
 /*!TODO
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
-include_once( "ezbulkmail/classes/ezbulkmailusersubscripter.php" );
-include_once( "ezbulkmail/classes/ezbulkmail.php" );
-include_once( "ezbulkmail/classes/ezbulkmailcategorysettings.php" );
-include_once( "ezbulkmail/classes/ezbulkmailusercategorysettings.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailusersubscripter.php" );
+// include_once( "ezbulkmail/classes/ezbulkmail.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailcategorysettings.php" );
+// include_once( "ezbulkmail/classes/ezbulkmailusercategorysettings.php" );
 
 class eZBulkMailCategory
 {

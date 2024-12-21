@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezlocale.php" );
 $locale = new eZLocale( $Language );
 
-include_once( "classes/eztemplate.php" );
-include_once( "ezcontact/classes/ezcompany.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "ezcontact/classes/ezcompany.php" );
 
 $t = new eZTemplate( "ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
                      "ezcontact/admin/intl/", $Language, "companystats.php" );

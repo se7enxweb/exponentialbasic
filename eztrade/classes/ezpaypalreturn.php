@@ -3,8 +3,8 @@
 //! Base class 
 
 // Include the "abstract" ezPublish classes */
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
 
 class eZPaypalReturn {
     // CREATOR  Bob Sims <bob.sims@gmail.com>

@@ -50,21 +50,21 @@
   Add query builder to search. Use same as in eZLink.
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "classes/ezlocale.php" );
 
-include_once( "eztrade/classes/ezoption.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "eztrade/classes/ezproducttype.php" );
-include_once( "eztrade/classes/ezvattype.php" );
-include_once( "eztrade/classes/ezvoucher.php" );
-include_once( "eztrade/classes/ezvoucherinformation.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezshippinggroup.php" );
-include_once( "eztrade/classes/ezproductpricerange.php" );
+// include_once( "eztrade/classes/ezoption.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "eztrade/classes/ezproducttype.php" );
+// include_once( "eztrade/classes/ezvattype.php" );
+// include_once( "eztrade/classes/ezvoucher.php" );
+// include_once( "eztrade/classes/ezvoucherinformation.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezshippinggroup.php" );
+// include_once( "eztrade/classes/ezproductpricerange.php" );
 
 
 class eZProduct
@@ -991,7 +991,7 @@ class eZProduct
     */
     function &brief( )
     {
-        include_once( "ezarticle/classes/ezarticlerenderer.php" );
+        // include_once( "ezarticle/classes/ezarticlerenderer.php" );
         $renderer = new eZArticleRenderer( $this );
         $articleContents = $renderer->renderPage( 0 );
 
@@ -1003,7 +1003,7 @@ class eZProduct
     */
     function &description( )
     {
-        include_once( "ezarticle/classes/ezarticlerenderer.php" );
+        // include_once( "ezarticle/classes/ezarticlerenderer.php" );
         $renderer = new eZArticleRenderer( $this );
         $articleContents = $renderer->renderPage( 0 );
 
@@ -2238,7 +2238,7 @@ class eZProduct
     {
         $db =& eZDB::globalDatabase();
 
-        include_once( "ezform/classes/ezform.php" );
+        // include_once( "ezform/classes/ezform.php" );
 
         $ProductID = $this->ID;
 

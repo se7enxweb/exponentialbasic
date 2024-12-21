@@ -33,7 +33,7 @@
    \sa eZLink eZLinkgroup eZQuery
 */
 
-include_once( "classes/ezdb.php" );
+// include_once( "classes/ezdb.php" );
 
 class eZHit
 {

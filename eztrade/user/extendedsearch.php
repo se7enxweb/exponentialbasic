@@ -24,12 +24,12 @@
 //
 
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezlist.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -42,13 +42,13 @@ $MaxSearchForProducts = $ini->read_var( "eZTradeMain", "MaxSearchForProducts" );
 $SmallImageWidth = $ini->read_var( "eZTradeMain", "SmallImageWidth" );
 $SmallImageHeight = $ini->read_var( "eZTradeMain", "SmallImageHeight" );
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezcartoptionvalue.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezcartoptionvalue.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "classes/ezlist.php" );
 
 if ( isSet ( $SearchButton ) )
 {

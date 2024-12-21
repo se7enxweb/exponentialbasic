@@ -27,13 +27,13 @@
     Edit a consultation
  */
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZContactMain", "Language" );
 
-include_once( "ezuser/classes/ezusergroup.php" );
-include_once( "ezuser/classes/ezpermission.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezuser/classes/ezpermission.php" );
 
 // deletes the dayview cache file for a given day
 function deleteCache( $SiteDesign, $language, $year, $month, $day, $userID )
@@ -59,7 +59,7 @@ function addZero( $value )
 if ( isSet( $new_consultation ) )
 {
     unset( $new_consultation );
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: contact/consultation/person/new" );
     exit();
 }
@@ -67,22 +67,22 @@ if ( isSet( $new_consultation ) )
 $user =& eZUser::currentUser();
 if ( !is_a( $user, "eZUser" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: contact/nopermission/login" );
     exit();
 }
 
 if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: contact/nopermission/consultation" );
     exit();
 }
 
-include_once( "ezmail/classes/ezmail.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezdatetime.php" );
-include_once( "ezcontact/classes/ezconsultation.php" );
+// include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdatetime.php" );
+// include_once( "ezcontact/classes/ezconsultation.php" );
 
 if ( $Action == "delete" or isSet( $Delete ) )
 {
@@ -126,20 +126,20 @@ if ( $Action == "delete" or isSet( $Delete ) )
 
     if ( isSet( $contact_type ) && isSet( $contact_id ) )
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/consultation/$contact_type/list/$contact_id" );
     }
     else
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/consultation/list" );
     }
     exit;
 }
 
-include_once( "ezcontact/classes/ezconsultationtype.php" );
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "ezcontact/classes/ezconsultationtype.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
 $error = false;
 
@@ -288,7 +288,7 @@ $user =& eZUser::currentUser();
 
 if ( !$user )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /user/login" );
     exit();
 }
@@ -401,12 +401,12 @@ if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
 
     if ( isSet( $contact_type ) && isSet( $contact_id ) )
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/consultation/$contact_type/list/$contact_id" );
     }
     else
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/consultation/list" );
     }
     exit();
@@ -421,7 +421,7 @@ if ( $Action == "new" )
 {
     if ( $ConsultationID != 0 ) // 1
     {
-        include_once( "classes/ezhttptool.php" );
+        // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/consultation/edit/$ConsultationID" );
         exit();
     }

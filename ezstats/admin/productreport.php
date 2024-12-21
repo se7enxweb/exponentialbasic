@@ -23,18 +23,18 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZStatsMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezdate.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezdate.php" );
 
-include_once( "ezstats/classes/ezpageview.php" );
-include_once( "ezstats/classes/ezpageviewquery.php" );
+// include_once( "ezstats/classes/ezpageview.php" );
+// include_once( "ezstats/classes/ezpageviewquery.php" );
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezorder.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezorder.php" );
 
 $t = new eZTemplate( "ezstats/admin/" . $ini->read_var( "eZStatsMain", "AdminTemplateDir" ),
                      "ezstats/admin/intl", $Language, "productreport.php" );

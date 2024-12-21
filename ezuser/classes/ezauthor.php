@@ -31,8 +31,8 @@
   \sa eZUser eZUserGroup eZPermission eZModule eZForgot
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/eztexttool.php" );
 
 
 class eZAuthor

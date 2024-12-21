@@ -140,7 +140,7 @@ class eZArticleRenderer
     {
         if (  isset( $this->RendererFile ) && $this->Generator == false )
         {
-            include_once( "ezarticle/classes/" . $this->RendererFile );
+            // include_once( "ezarticle/classes/" . $this->RendererFile );
             $this->Generator = new $this->RendererClass( $this->Article, $this->Template );
         }
 

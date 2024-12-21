@@ -119,8 +119,8 @@
 
 */
 
-include_once( "classes/eztexttool.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezlog.php" );
 
 class eZTechRenderer
 {

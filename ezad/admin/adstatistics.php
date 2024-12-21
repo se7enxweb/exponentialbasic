@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezimagefile.php" );
-include_once( "classes/ezlog.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezimagefile.php" );
+// include_once( "classes/ezlog.php" );
 
-include_once( "classes/ezdatetime.php" );
+// include_once( "classes/ezdatetime.php" );
 
-include_once( "ezad/classes/ezad.php" );
-include_once( "ezad/classes/ezadcategory.php" );
+// include_once( "ezad/classes/ezad.php" );
+// include_once( "ezad/classes/ezadcategory.php" );
 
 
 $ini =& INIFile::globalINI();

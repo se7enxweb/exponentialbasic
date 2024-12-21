@@ -47,7 +47,7 @@
   Example:
   \code
   // include the class
-  include_once( "ezbug/classes/ezbug.php" );
+  // include_once( "ezbug/classes/ezbug.php" );
 
   // create a new eZBug object.
   $bug = new eZBug();
@@ -65,15 +65,15 @@
 /*!TODO
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
+// include_once( "ezuser/classes/ezuser.php" );
 
-include_once( "ezbug/classes/ezbugpriority.php" );
-include_once( "ezbug/classes/ezbugstatus.php" );
-include_once( "ezimagecatalogue/classes/ezimage.php" );
-include_once( "ezfilemanager/classes/ezvirtualfile.php" );
+// include_once( "ezbug/classes/ezbugpriority.php" );
+// include_once( "ezbug/classes/ezbugstatus.php" );
+// include_once( "ezimagecatalogue/classes/ezimage.php" );
+// include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
 class eZBug
 {

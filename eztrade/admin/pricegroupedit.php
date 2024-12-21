@@ -23,23 +23,23 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/eztexttool.php" );
-include_once( "ezuser/classes/ezusergroup.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "ezuser/classes/ezusergroup.php" );
 
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
 
 $price = new eZPriceGroup( $PriceID );
 
 if ( isset( $Cancel ) )
 {
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/pricegroups/list" );
     exit();
 }
@@ -55,7 +55,7 @@ if ( isset( $OK ) )
     {
         $price->addUserGroup( $group );
     }
-    include_once( "classes/ezhttptool.php" );
+    // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/pricegroups/list" );
     exit();
 }

@@ -31,8 +31,8 @@
   
 */
 
-include_once( "classes/ezdb.php" );
-include_once( "classes/ezquery.php" );
+// include_once( "classes/ezdb.php" );
+// include_once( "classes/ezquery.php" );
 
 class eZCountry
 {

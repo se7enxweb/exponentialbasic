@@ -38,7 +38,7 @@
   
 */
 
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
 class eZTechGenerator
 {

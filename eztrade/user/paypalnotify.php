@@ -25,13 +25,13 @@
 #    Copyright © EliteWeaver UK All rights reserved.    #
 #########################################################
 
-include_once( "classes/ezlog.php" );
-include_once( "eztrade/classes/ezorderconfirmation.php" );
-include_once( "eztrade/classes/ezpaypalreturn.php" );
-include_once( "eztrade/classes/ezorder.php" );
-include_once( "ezsession/classes/ezsession.php" );
-include_once( "classes/INIFile.php" );
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "classes/ezlog.php" );
+// include_once( "eztrade/classes/ezorderconfirmation.php" );
+// include_once( "eztrade/classes/ezpaypalreturn.php" );
+// include_once( "eztrade/classes/ezorder.php" );
+// include_once( "ezsession/classes/ezsession.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
 $PaypalEmail = $ini->read_var( "Checkout", "PaypalEmail" );
 $PaypalMode = $ini->read_var( "Checkout", "PaypalMode" );

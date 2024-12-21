@@ -32,17 +32,17 @@
 */
 
 // datatypes
-include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcbase64.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcdatetime.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
-include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcserver.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstring.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcint.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdouble.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbool.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcbase64.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcdatetime.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcarray.php" );
+// include_once( "ezxmlrpc/classes/ezxmlrpcstruct.php" );
 
-include_once( "ezxml/classes/ezxml.php" );
+// include_once( "ezxml/classes/ezxml.php" );
 
 
 class eZXMLRPCResponse

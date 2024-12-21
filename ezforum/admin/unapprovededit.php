@@ -23,18 +23,18 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/ezhttptool.php" );
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
 
-include_once( "ezforum/classes/ezforum.php" );
-include_once( "ezforum/classes/ezforummessage.php" );
-include_once( "ezmail/classes/ezmail.php" );
+// include_once( "ezforum/classes/ezforum.php" );
+// include_once( "ezforum/classes/ezforummessage.php" );
+// include_once( "ezmail/classes/ezmail.php" );
 
 $locale = new eZLocale( $Language );
 

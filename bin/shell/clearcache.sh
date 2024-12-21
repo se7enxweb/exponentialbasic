@@ -20,7 +20,7 @@ ezfilemanager
 ezimagecatalogue
 ezsitemanager
 ezquiz
-classes
+kernel/classes
 ezurltranslator
 ezbulkmail
 ezform

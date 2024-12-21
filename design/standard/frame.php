@@ -155,25 +155,24 @@ else
 <tr valign="top">
     <td class="menu-left" width="1%" bgcolor="#f0f0f0">
    <!-- Left menu start -->
-
    <?php
     $CategoryID = 0;
-   include( "ezarticle/user/menubox.php" );
+   include( "kernel/ezarticle/user/menubox.php" );
    ?>
 
     <?php
     $CategoryID = 1;
-   include( "ezarticle/user/headlines.php" );
+   include( "kernel/ezarticle/user/headlines.php" );
     ?>
 
    <?php
-   include( "ezlink/user/menubox.php" );
+   include( "kernel/ezlink/user/menubox.php" );
    ?>
 
    <?php
     // include the static pages for category 2
     $CategoryID = 1;
-    include( "ezarticle/user/articlelinks.php" );
+    include( "kernel/ezarticle/user/articlelinks.php" );
    ?>
 
    <!-- Left menu end -->
@@ -187,7 +186,7 @@ else
     <?php
 //    $CategoryID = 1;
 //    $Limit = 1;
-//   include( "ezad/user/adlist.php" );
+//   include( "kernelkernelezad/user/adlist.php" );
     ?>
 -->
 
@@ -214,7 +213,7 @@ else
 
     <?php
     $NoAddress = true;
-   include( "ezuser/user/userbox.php" );
+   include( "kernel/ezuser/user/userbox.php" );
     ?>
 
     <?php
@@ -223,14 +222,14 @@ else
     $CategoryID=1;
     $Offset=1;
     $Limit=1;
-    include( "ezarticle/user/smallarticlelist.php" );
+    include( "kernel/ezarticle/user/smallarticlelist.php" );
     ?>
 
     <?php
-    include( "ezpoll/user/votebox.php" );
+    include( "kernel/ezpoll/user/votebox.php" );
     ?>
     <?php
-    include( "ezsearch/user/menubox.php" );
+    include( "kernel/ezsearch/user/menubox.php" );
     ?>
 
 <!-- Right menu end -->

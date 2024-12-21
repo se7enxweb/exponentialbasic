@@ -287,10 +287,10 @@ if ( ( $requireUserLogin == "disabled" ) ||
     }
 
     // Load the main contents and store in a variable
-    $content_page = "ez" . $url_array[1] . "/user/datasupplier.php";
+    $content_page = "kernel/ez" . $url_array[1] . "/user/datasupplier.php";
 
     // site cache check
-    $SiteCacheFile = "classes/cache/" . md5( $_SERVER['REQUEST_URI'] ) . ".php";
+    $SiteCacheFile = "kernel/classes/cache/" . md5( $_SERVER['REQUEST_URI'] ) . ".php";
     $SiteCache = $ini->read_var( "site", "SiteCache" );
 
     //This is horrible!!
@@ -359,7 +359,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
             {
                 $_SERVER['REQUEST_URI'] = $ini->read_var( "site", "DefaultPage" );
                 $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
-                $content_page = "ez" . $url_array[1] . "/user/datasupplier.php";
+                $content_page = "kernel/ez" . $url_array[1] . "/user/datasupplier.php";
                 include( $content_page );
             }
         }
@@ -468,7 +468,7 @@ else
     $page = "";
 
     // send the URI to the right decoder
-    $page = "ezuser/user/datasupplier.php";
+    $page = "kernel/ezuser/user/datasupplier.php";
     if ( eZFile::file_exists( $page ) )
     {
         include( $page );

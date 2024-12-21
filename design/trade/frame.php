@@ -159,16 +159,16 @@ else
 
 	<?php
     $CategoryID=0;
-	include( "ezarticle/user/menubox.php" );
+	include( "kernel/ezarticle/user/menubox.php" );
 	?>
 
 	<?php
     $CategoryID = 0;
-    include( "eztrade/user/categorylist.php" );
+    include( "kernel/eztrade/user/categorylist.php" );
 	?>
 
     <?php
-	include( "eztrade/user/hotdealslist.php" );
+	include( "kernel/eztrade/user/hotdealslist.php" );
 	?>
 
    	<!-- Left menu end -->
@@ -186,7 +186,7 @@ else
 
 //        $CategoryID = $ini->read_var( "eZAdMain", "DefaultCategory" );
 //        $Limit = 1;
-//        include( "ezad/user/adlist.php" );
+//        include( "kernel/ezad/user/adlist.php" );
 
         ?>
     </div><br />
@@ -211,19 +211,19 @@ else
 
    	<!-- Right menu start -->
     <?php 
-	include( "ezuser/user/userbox.php" );
+	include( "kernel/ezuser/user/userbox.php" );
 	?>
 
 	<?php 
-	include( "eztrade/user/menubox.php" );
+	include( "kernel/eztrade/user/menubox.php" );
 	?>
 
     <?php 
-	include( "eztrade/user/smallcart.php" );
+	include( "kernel/eztrade/user/smallcart.php" );
 	?>
 
     <?php 
-    include( "ezsearch/user/menubox.php" );
+    include( "kernel/ezsearch/user/menubox.php" );
     ?>
 
    	<!-- Right menu end -->

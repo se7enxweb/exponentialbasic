@@ -144,15 +144,15 @@ else
 
 	<?php
     $CategoryID=0;
-	include( "ezarticle/user/menubox.php" );
+	include( "kernel/ezarticle/user/menubox.php" );
 	?>
 
 	<?php
-	include( "eznewsfeed/user/menubox.php" );
+	include( "kernel/eznewsfeed/user/menubox.php" );
 	?>
 
     <?php
-    include( "ezbulkmail/user/menubox.php" );
+    include( "kernel/ezbulkmail/user/menubox.php" );
     ?>
 
 	<!-- Left menu end -->
@@ -169,7 +169,7 @@ else
         <?php
 //        $CategoryID = 4;
 //        $Limit = 1;
-//        include( "ezad/user/adlist.php" );
+//        include( "kernel/ezad/user/adlist.php" );
         ?>
     </div><br />
 -->
@@ -192,15 +192,15 @@ else
    	<!-- Right menu start -->
 
     <?php
-    include( "ezuser/user/userbox.php" );
+    include( "kernel/ezuser/user/userbox.php" );
 	?>
 
 	<?php
 	$CategoryID = 1;
-	include( "eznewsfeed/user/headlines.php" );
+	include( "kernel/eznewsfeed/user/headlines.php" );
 	?>
     <?php
-    include( "ezsearch/user/menubox.php" );
+    include( "kernel/ezsearch/user/menubox.php" );
     ?>
 
 	<!-- Right menu end -->

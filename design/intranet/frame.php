@@ -149,28 +149,28 @@ else
 
 	<?php
     $CategoryID=0;
-	include( "ezarticle/user/menubox.php" );
+	include( "kernel/ezarticle/user/menubox.php" );
 	?>
 
     <?php
-    include( "ezbug/user/menubox.php" );
+    include( "kernel/ezbug/user/menubox.php" );
     ?>
 
 	<?php
-	include( "ezcontact/user/menubox.php" );
+	include( "kernel/ezcontact/user/menubox.php" );
 	?>
 
    <?php
-   include( "ezforum/user/menubox.php" );
-   include( "ezforum/user/latestmessages.php" );
+   include( "kernel/ezforum/user/menubox.php" );
+   include( "kernel/ezforum/user/latestmessages.php" );
    ?>
 
     <?php
-   include( "ezfilemanager/user/menubox.php" );
+   include( "kernel/ezfilemanager/user/menubox.php" );
    ?>
 
     <?php
-   include( "ezimagecatalogue/user/menubox.php" );
+   include( "kernel/ezimagecatalogue/user/menubox.php" );
    ?>
 
    	<!-- Left menu end -->
@@ -188,7 +188,7 @@ else
 
 //        $CategoryID = $ini->read_var( "eZAdMain", "DefaultCategory" );
 //        $Limit = 1;
-//        include( "ezad/user/adlist.php" );
+//        include( "kernel/ezad/user/adlist.php" );
 
         ?>
     </div><br />
@@ -210,30 +210,30 @@ else
    	<!-- Right menu start -->
 
     <?php
-    include( "ezuser/user/userbox.php" );
+    include( "kernel/ezuser/user/userbox.php" );
     ?>
 
     <?php
-    include( "ezmail/user/menubox.php" );
+    include( "kernel/ezmail/user/menubox.php" );
     ?>
 
     <?php
-    include( "eztodo/user/menubox.php" );
+    include( "kernel/eztodo/user/menubox.php" );
     ?>
 
     <?php
-    include( "eztodo/user/todomenulist.php" );
+    include( "kernel/eztodo/user/todomenulist.php" );
     ?>
 
     <?php
-    include( "ezcalendar/user/menubox.php" );
+    include( "kernel/ezcalendar/user/menubox.php" );
     ?>
 
 	<?php
-	include( "ezcontact/user/consultationlist.php" );
+	include( "kernel/ezcontact/user/consultationlist.php" );
 	?>
     <?php
-    include( "ezsearch/user/menubox.php" );
+    include( "kernel/ezsearch/user/menubox.php" );
     ?>
 
    	<!-- Right menu end -->

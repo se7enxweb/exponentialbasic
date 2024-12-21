@@ -2,30 +2,30 @@
 echo "Clearing the eZ publish cache . . ."
 
 dirs="
-ezad
-ezaddress
-ezarticle
-ezbug
-ezcalendar
-ezcontact
-ezforum
-ezlink
-eznewsfeed
-ezpoll
-ezstats
-eztodo
-eztrade
-ezuser
-ezfilemanager
-ezimagecatalogue
-ezsitemanager
-ezquiz
+kernel/ezad
+kernel/ezaddress
+kernel/ezarticle
+kernel/ezbug
+kernel/ezcalendar
+kernel/ezcontact
+kernel/ezforum
+kernel/ezlink
+kernel/eznewsfeed
+kernel/ezpoll
+kernel/ezstats
+kernel/eztodo
+kernel/eztrade
+kernel/ezuser
+kernel/ezfilemanager
+kernel/ezimagecatalogue
+kernel/ezsitemanager
+kernel/ezquiz
 kernel/classes
-ezurltranslator
-ezbulkmail
-ezform
-ezmediacatalogue
-ezsysinfo
+kernel/ezurltranslator
+kernel/ezbulkmail
+kernel/ezform
+kernel/ezmediacatalogue
+kernel/ezsysinfo
 "
 
 for dir in $dirs

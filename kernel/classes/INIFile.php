@@ -109,7 +109,7 @@ class INIFile
             }
             $buffer = "<?php\n" . $buffer . "\n?>";
 
-            $fp = eZFile::fopen( $cachedFile, "w+" );
+	    $fp = eZFile::fopen( $cachedFile, "w+" );
             fwrite ( $fp, $buffer );
             fclose( $fp );
         }

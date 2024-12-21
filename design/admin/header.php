@@ -24,11 +24,11 @@
 //
 
 
-include_once( "ezmodule/classes/ezmodulehandler.php" );
+//include_once( "kernel/ezmodule/classes/ezmodulehandler.php" );
 
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezpublish.php" );
+//include_once( "kernel/classes/eztemplate.php" );
+//include_once( "kernel/classes/ezlocale.php" );
+//include_once( "kernel/classes/ezpublish.php" );
 
 $ini =& INIFile::globalINI();
 $Language =& $ini->read_var( "eZUserMain", "Language" );
@@ -41,12 +41,12 @@ $AdminSiteProtocol =& $ini->read_var( "site", "AdminSiteProtocol" );
 
 //$site_modules = $ini->read_array( "site", "EnabledModules" );
 $site_modules = eZModuleHandler::all();
-include_once( "ezmodule/classes/ezmodulehandler.php" );
+//include_once( "kernel/ezmodule/classes/ezmodulehandler.php" );
 
 $ModuleTab = eZModuleHandler::activeTab();
 $singleModule = eZPreferences::variable( 'SingleModule' );
 
-include_once( "ezsession/classes/ezpreferences.php" );
+//include_once( "kernel/ezsession/classes/ezpreferences.php" );
 
 $session =& eZSession::globalSession();
 
@@ -72,12 +72,12 @@ if ( isset($url_array[2]) && ($url_array[2] == "archive" || $url_array[2] == "ar
     $CategoryID = isset($url_array[4])?$url_array[4]:'';
     if ( $url_array[2] == "articleedit" )
     {
-        include_once( "ezarticle/classes/ezarticle.php" );
+        // include_once( "kernel/ezarticle/classes/ezarticle.php" );
         $CategoryID = eZArticle::categoryDefinitionStatic( $CategoryID );
     }
 
-    include_once( "ezarticle/classes/ezarticlecategory.php" );
-    include_once( "ezsitemanager/classes/ezsection.php" );
+    // include_once( "kernel/ezarticle/classes/ezarticlecategory.php" );
+    // include_once( "kernel/ezsitemanager/classes/ezsection.php" );
 
     $GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
 
@@ -90,7 +90,7 @@ else if ( isset($url_array[2]) && ($url_array[2] == "image" && ( $url_array[3] =
     $CategoryID = $url_array[4];
     if ( $url_array[3] == "edit" )
     {
-        include_once( "ezimagecatalogue/classes/ezimage.php" );
+        // include_once( "kernel/ezimagecatalogue/classes/ezimage.php" );
         $img = new eZImage( $CategoryID );
         $Category = $img->categoryDefinition();
         if ( is_a( $Category, "eZImageCategory" ))
@@ -99,8 +99,8 @@ else if ( isset($url_array[2]) && ($url_array[2] == "image" && ( $url_array[3] =
         }
     }
 
-    include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
-    include_once( "ezsitemanager/classes/ezsection.php" );
+    // include_once( "kernel/ezimagecatalogue/classes/ezimagecategory.php" );
+    // include_once( "kernel/ezsitemanager/classes/ezsection.php" );
 
     $GlobalSectionID = eZImageCategory::sectionIDStatic( $CategoryID );
 
@@ -210,7 +210,7 @@ if ( $ModuleTab == true )
     foreach( $site_modules as $site_module )
     {
         $module = strtolower( $site_module );
-        if ( eZFile::file_exists( $module ) )
+        if ( eZFile::file_exists( "kernel/" . $module ) )
         {
             if ( $single_module )
             {
@@ -226,7 +226,7 @@ if ( $ModuleTab == true )
             $moduleLanguage = $ini->read_var( $moduleSettingName, "Language" );
             if ( !$moduleLanguage )
                 $moduleLanguage = $Language;
-            $lang_file = new INIFile( "$module/admin/intl/$moduleLanguage/menubox.php.ini" );
+            $lang_file = new INIFile( "kernel/$module/admin/intl/$moduleLanguage/menubox.php.ini" );
             $mod_name = $lang_file->read_var( "strings", "module_name" );
             $t->set_var( "module_name", $mod_name );
             $t->parse( "module_item", "module_item_tpl", true );

@@ -62,7 +62,7 @@ if ( !class_exists( 'ezpAutoloader', false ) )
         {
             if ( self::$ezpClasses === null )
             {
-                $ezpKernelClasses = require __DIR__ . '/autoload/ezp_kernel.php';
+                $ezpKernelClasses = require __DIR__ . '/var/autoload/ezp_kernel.php';
                 $ezpExtensionClasses = false;
                 $ezpTestClasses = false;
 

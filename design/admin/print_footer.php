@@ -23,13 +23,13 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
 //kracker: is this resource template.inc still required / used?
-include_once( "classes/template.inc" );
+// include_once( "classes/template.inc" );
 
 $t = new Template( "design/admin/templates/" . $SiteDesign );
 

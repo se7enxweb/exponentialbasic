@@ -199,11 +199,11 @@ if ( $user )
     }
               
     
-//    require( "ezuser/admin/admincheck.php" );
+//    require( "kernel/ezuser/admin/admincheck.php" );
     
     if ( $HelpMode != "enabled" ) 
     {
-        // // include_once( "ezsession/classes/ezpreferences.php" );
+        // // include_once( "kernel/ezsession/classes/ezpreferences.php" );
         $preferences = new eZPreferences();
 
         $site_modules = $ini->read_array( "site", "EnabledModules" );
@@ -257,13 +257,13 @@ if ( $user )
             {
                 if ( !empty( $module ) )
                 {
-                    $module_dir =& strtolower( $module );
+                    $module_dir = "kernel/" . strtolower( $module );
                     unset( $menuItems );
                     include( "$module_dir/admin/menubox.php" );
                     if ( isset( $menuItems ) )
                         eZMenuBox::createBox( $module, $module_dir, "admin",
                         $SiteDesign, $menuItems, true, false,
-                        "$module_dir/admin/menubox.php", false, true );
+                        "kernel/$module_dir/admin/menubox.php", false, true );
                 }
             }
         }
@@ -320,7 +320,7 @@ if ( $user )
     
     
         // send the URI to the right decoder
-        $page = "ez" . $url_array[1] . "/admin/datasupplier.php";
+        $page = "kernel/ez" . $url_array[1] . "/admin/datasupplier.php";
         // set the module logo
         $moduleName =& $url_array[1];
 
@@ -340,14 +340,14 @@ if ( $user )
         }
         else
         {
-            include( "ezuser/admin/welcome.php" );
+            include( "kernel/ezuser/admin/welcome.php" );
         }
     }
     else
     {
         // show the help page
 
-        $helpFile = "ez" . $url_array[2] . "/admin/help/". $Language . "/" . $url_array[3] . "_" . $url_array[4] . ".hlp";
+        $helpFile = "kernel/ez" . $url_array[2] . "/admin/help/". $Language . "/" . $url_array[3] . "_" . $url_array[4] . ".hlp";
 
         if ( eZFile::file_exists( $helpFile ) )
         {
@@ -395,7 +395,7 @@ else
     $page = "";
 
     // send the URI to the right decoder
-    $page = "ezuser/admin/datasupplier.php";
+    $page = "kernel/ezuser/admin/datasupplier.php";
 
     if ( eZFile::file_exists( $page ) )
     {

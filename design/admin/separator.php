@@ -23,20 +23,20 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "ezsession/classes/ezpreferences.php" );
+// include_once( "kernel/ezsession/classes/ezpreferences.php" );
 $single_module = $preferences->variable( "SingleModule" ) == "enabled";
 
-include_once( "ezmodule/classes/ezmodulehandler.php" );
+// include_once( "kernel/ezmodule/classes/ezmodulehandler.php" );
 
-include_once( "classes/INIFile.php" );
+// include_once( "kernel/classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZ" . ucfirst( $moduleName ) . "Main", "Language" );
 
-include_once( "classes/eztemplate.php" );
+// include_once( "kernel/classes/eztemplate.php" );
 
 $t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
-                     "ez" . $moduleName . "/admin/intl/", $Language, "menubox.php" );
+                     "kernel/ez" . $moduleName . "/admin/intl/", $Language, "menubox.php" );
 
 
 $t->set_file( array(
@@ -56,11 +56,11 @@ $t->set_var( "current_url", $_SERVER['REQUEST_URI'] );
 if( isset( $url_array[2] ) )
 {
     // check for help file
-    $helpFile = "ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . "_" . $url_array[2] . ".hlp";
+    $helpFile = "kernel/ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . "_" . $url_array[2] . ".hlp";
 }
 else {
     // check for help file
-    $helpFile = "ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . ".hlp";
+    $helpFile = "kernel/ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . ".hlp";
 }
 $t->set_var( "help", "" );
 

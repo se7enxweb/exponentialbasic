@@ -23,17 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+//include_once( "kernel/classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
-// include_once( "classes/template.inc" );
+// include_once( "kernel/classes/template.inc" );
 // $t = new Template( $siteDir . "design/admin/templates/" . $SiteDesign );
 // $t->set_var( "www_dir", $GlobalSiteIni->WWWDir );
 // $t->set_var( "index", $GlobalSiteIni->Index );
 
-include_once( "classes/eztemplate.php" );
+//include_once( "kernel/classes/eztemplate.php" );
 $t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
                      "design/admin/intl/", $Language, "footer.php" );
 

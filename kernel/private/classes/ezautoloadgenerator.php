@@ -167,7 +167,7 @@ class eZAutoloadGenerator
         // Set up arrays for existing autoloads, used to check for class name
         // collisions.
         $this->existingAutoloadArrays = array();
-        $this->existingAutoloadArrays[self::MODE_KERNEL] = @include 'autoload/ezp_kernel.php';
+        $this->existingAutoloadArrays[self::MODE_KERNEL] = @include 'var/autoload/ezp_kernel.php';
         $this->existingAutoloadArrays[self::MODE_EXTENSION] = @include 'var/autoload/ezp_extension.php';
         $this->existingAutoloadArrays[self::MODE_TESTS] = @include 'var/autoload/ezp_tests.php';
 
@@ -892,7 +892,7 @@ class eZAutoloadGenerator
         $targets = array(
                             self::MODE_EXTENSION => "var/autoload",
                             self::MODE_TESTS     => "var/autoload",
-                            self::MODE_KERNEL    => "autoload",
+                            self::MODE_KERNEL    => "var/autoload",
                             self::MODE_SINGLE_EXTENSION => $this->options->basePath . DIRECTORY_SEPARATOR . 'autoload',
                             self::MODE_KERNEL_OVERRIDE => "var/autoload",
                         );

@@ -38,8 +38,8 @@
 
 */
 
-include_once( "kernel/classes/INIFile.php" );
-include_once( "kernel/classes/eztemplate.php" );
+// include_once( "kernel/classes/INIFile.php" );
+// include_once( "kernel/classes/eztemplate.php" );
 
 class eZMenuBox
 {
@@ -96,7 +96,7 @@ class eZMenuBox
         if ( $allow_module_template )
         {
             $mod_dir = $ini->read_var( $ModuleName . "Main", "AdminTemplateDir" );
-            $mod_dir = "$module_dir/admin/$mod_dir";
+            $mod_dir = "kernel/$module_dir/admin/$mod_dir";
             if ( eZFile::file_exists( "$mod_dir/menubox.tpl" ) and
                  eZFile::file_exists( "$mod_dir/menubox_closed.tpl" ) )
             {

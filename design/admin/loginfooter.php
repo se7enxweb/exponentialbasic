@@ -23,16 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZArticleMain", "Language" );
 
-include_once( "classes/template.inc" );
+// include_once( "classes/template.inc" );
 
 // $t = new Template( $siteDir . "design/admin/templates/" . $SiteDesign );
 $t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
-                     "ezuser/admin/intl/", $Language, "menubox.php" );
+                     "kernel/ezuser/admin/intl/", $Language, "menubox.php" );
 
 $t->set_file( array(
     "footer_tpl" => "loginfooter.tpl"

@@ -31,7 +31,7 @@
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
+// $DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -41,8 +41,8 @@ $DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
 
 
 // Template
-$t = new eZTemplate( $DOC_ROOT . $ini->read_var( "eZUserMain", "TemplateDir" ). "/login/",
-                     $DOC_ROOT . "/intl", $Language, "success.php" );
+$t = new eZTemplate( "kernel/ezuser" . $ini->read_var( "eZUserMain", "TemplateDir" ). "/login/",
+                     "kernel/ezuser/admin". "/intl", $Language, "success.php" );
 $t->setAllStrings();
 
 $t->set_file( array(

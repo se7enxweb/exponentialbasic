@@ -26,7 +26,7 @@
 // include_once( "classes/INIFile.php" );
 
 $ini = INIFile::globalINI();
-$DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
+// $DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 
 // include_once( "classes/ezdb.php" );

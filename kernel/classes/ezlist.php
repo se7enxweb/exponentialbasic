@@ -92,19 +92,20 @@ class eZList
             $template_dir = "AdminTemplateDir";
         $language_file = $params["language_file"];
 
-        if ( !isset( $params["typelist"] ) )
-            $template_dir = "classes/" . $ini->read_var( "classes", $template_dir );
-        else
-            $template_dir = "$DOC_ROOT/$place/" . $ini->read_var( $module_main, $template_dir );
-
         $Language = $ini->read_var( $module_main, "Language" );
-        $DOC_ROOT = $ini->read_var( $module_main, "DocumentRoot" );
+        // $DOC_ROOT = $ini->read_var( $module_main, "DocumentRoot" );
 
-        include_once( "kernel/classes/eztemplate.php" );
+        // include_once( "kernel/classes/eztemplate.php" );
+
+	if ( !isset( $params["typelist"] ) )
+            $template_dir = "kernel/classes/" . $ini->read_var( "classes", $template_dir );
+        else
+            $template_dir = "kernel/$module/$place/" . $ini->read_var( $module_main, $template_dir );
+
 
         if ( !isset( $params["template"] ) or !is_a( $params["template"], "eZTemplate" ) )
             $t = new eZTemplate( $template_dir,
-                                 "$DOC_ROOT/$place/intl", $Language, $language_file );
+                                 "kernel/$module/$place/intl", $Language, $language_file );
         else
             $t =& $params["template"];
 

@@ -29,7 +29,7 @@
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
+// $DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
 
 // include_once( "ezsession/classes/ezpreferences.php" );
 $preferences = new eZPreferences();
@@ -60,8 +60,8 @@ if ( isSet( $Cancel ) )
 }
 
 // Template
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
-                     $DOC_ROOT . "/admin/" . "/intl", $Language, "settings.php" );
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+                     "kernel/ezuser/admin/" . "/intl", $Language, "settings.php" );
 $t->setAllStrings();
 
 $t->set_file( "settings", "settings.tpl" );

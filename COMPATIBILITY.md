@@ -444,6 +444,15 @@ Note: Printable admin view features currently has fatal errors and distracting w
 - ezurltranslator
     - urledit - Tests as 100% Functional.
 
+## Default Module Menu Views That Need Further Development
+
+The following modules need work to be considered complete, tested and working correctly. Currently we rate these as only 75% complete.
+
+- ezcontact
+- ezcalendar
+- ezbulkmail
+- ezmail
+- ezstats
 
 ## User Module Menu View URIs
 
@@ -453,3 +462,162 @@ Views:
 /article/frontpage/2
 /article/frontpage/3
 /article/frontpage/4
+
+## Addendum
+
+
+- /article/archive/0
+- /article/archive/1
+- /article/archive/6
+- /article/author/list
+- /article/author/view/1
+- /article/static/23/1/1
+- /article/view/23/1/1
+- /article/sitemap
+- /article/index
+- /article/articleedit/new
+- /article/search
+- /article/articleprint/21/-1/1
+- /article/mailtofriend/21/1/1
+-
+
+
+- /forum/categorylist
+- /forum/forumlist/1
+- /forum/message/23
+- /forum/search/
+-
+
+- /trade/orderlist
+- /trade/orderview/7
+- /trade/voucherview
+- /trade/findwishlist
+- /trade/sendwishlist
+- /trade/wishlist
+- /trade/cart
+- /trade/productlist/1
+- /trade/productlist/0
+- /trade/productview/3
+- /trade/search/
+
+- /imagecatalogue/image/list/0
+- /imagecatalogue/image/list/1
+- /imagecatalogue/image/new
+- /imagecatalogue/category/new
+
+- /link/category/0
+- /link/category/1
+- /link/category/2
+- /link/gotolink/addhit/2/?Url=slashdot.org
+- /link/suggestlink
+
+- /poll/polls
+- /poll/votepage/1
+- /poll/result/1?
+
+- /user/login
+- /user/logout
+- /user/userwithaddress/edit//1/
+
+- /bulkmail/login/
+
+- /newsfeed/allcategories/
+- /newsfeed/latest/1
+
+- /search/?SectionIDOverride=1&SearchText=ez&Search=Search
+
+- /calendar/monthview
+- /calendar/yearview/2024
+- /calendar/monthview/2024/12
+- /calendar/dayview/2024/12
+- /calendar/dayview/2024/12/18
+- /calendar/appointmentedit/new
+- /calendar/trustees
+
+- /todo
+- /todo/todoedit/new
+
+- /mail/folderlist
+- /mail/folder/1
+- /mail/folder/4
+- /mail/config
+- /mail/folderedit
+
+- /filemanager/list
+- /filemanager/list/1
+- /filemanager/fileview/1/
+
+- /contact/company/list
+- /contact/person/list
+- /contact/company/new
+- /contact/person/new
+- /contact/consultation/list
+
+- /bug/archive
+- /bug/archive/0
+- /bug/archive/1
+- /bug/bugview/1/
+- /bug/edit/edit/1
+- /bug/unhandled
+- /bug/report/create
+
+- /todo
+- /todo/todolist
+- /todo/todoedit/new
+
+- /calendar/monthview
+- /calendar/monthview/2024/12
+- /calendar/yearview/2024
+- /calendar/dayview/2024/12/19
+
+## Admin Module Menu View URIs
+
+- /article/archive
+- /article/archive/0
+- /article/archive/1
+- /article/articlepreview/3
+
+
+- /trade/orderlist
+- /trade/orderedit/1
+- /trade/customerlist
+- /trade/customerview/2
+- /trade/productedit/edit/1
+- /trade/voucher/edit/3
+- /trade/categorylist
+- /trade/categorylist/parent/1
+- /trade/productedit/productpreview/3
+- /trade/typelist
+- /trade/vattypes
+- /trade/shippingtypes
+- /trade/currency
+- /trade/pricegroups/list
+- /trade/categoryedit
+- /trade/typeedit
+- /trade/productedit
+- /trade/voucher
+- /trade/voucherlist
+
+-
+-
+
+- /forum/unapprovedlist
+- /forum/categorylist
+- /forum/forumlist/1
+- /forum/messagelist/2
+- /forum/message/27
+- /forum/messageedit/edit/27
+- /forum/categoryedit/new/
+- /forum/forumedit/new/
+
+- /ad/archive
+- /ad/archive/1
+- /ad/statistics/1
+- /ad/category/new/
+- /ad/ad/new/
+
+
+- /form/form/list/
+- /form/form/new/
+- /form/form/edit/2/
+- /form/form/preview/2/

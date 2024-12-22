@@ -84,7 +84,7 @@ if ( ( isset( $AddImages ) ) and ( is_numeric( $CategoryID ) ) and ( is_numeric(
 if ( $Action == "insert" && !$error )
 {
     // clear the menu cache
-    $files = eZCacheFile::files( "ezarticle/cache/",
+    $files = eZCacheFile::files( "kernel/ezarticle/cache/",
                                  array( "menubox", NULL, NULL, NULL ),
                                  "cache", "," );
     foreach ( $files as $file )
@@ -119,10 +119,12 @@ if ( $Action == "insert" && !$error )
 
     $category->setSectionID( $SectionID );
     $category->setEditorGroup( $EditorGroupID );
+
+    if( isset( $ListLimit ) && $ListLimit != '' )
     $category->setListLimit( $ListLimit );
     $category->setSortMode( $SortMode );
 
-    if ( $ExcludeFromSearch == "on" )
+    if ( isset( $ExcludeFromSearch ) && $ExcludeFromSearch == "on" )
     {
         $category->setExcludeFromSearch( true );
     }
@@ -197,7 +199,7 @@ if ( $Action == "insert" && !$error )
         eZObjectPermission::removePermissions( $categoryID, "article_category", 'r' );
     }
 
-    $files =& eZCacheFile::files( "ezarticle/cache/",
+    $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                   array( "articlelist", $ParentID, NULL ),
                                   "cache", "," );
     foreach ( $files as $file )
@@ -222,7 +224,7 @@ if ( $Action == "insert" && !$error )
 if ( isset( $Action ) && $Action == "update" && !$error )
 {
     // clear the menu cache
-    $files = eZCacheFile::files( "ezarticle/cache/",
+    $files = eZCacheFile::files( "kernel/ezarticle/cache/",
                                  array( NULL, NULL, NULL, NULL ),
                                  "cache", "," );
     foreach ( $files as $file )
@@ -265,6 +267,8 @@ if ( isset( $Action ) && $Action == "update" && !$error )
 
     $category->setSectionID( $SectionID );
     $category->setEditorGroup( $EditorGroupID );
+
+    if( isset( $ListLimit ) && $ListLimit != '' )
     $category->setListLimit( $ListLimit );
 
     $category->setSortMode( $SortMode );
@@ -280,10 +284,10 @@ if ( isset( $Action ) && $Action == "update" && !$error )
         $category->setImage( $image );
     }
 
-    if ( $DeleteImage == "on" )
+    if ( isset( $DeleteImage ) && $DeleteImage == "on" )
         $category->setImage( 0 );
 
-    if ( $ExcludeFromSearch == "on" )
+    if ( isset( $ExcludeFromSearch ) && $ExcludeFromSearch == "on" )
     {
         $category->setExcludeFromSearch( true );
     }
@@ -351,7 +355,7 @@ if ( isset( $Action ) && $Action == "update" && !$error )
 
 
     $categoryID = $category->id();
-    $files =& eZCacheFile::files( "ezarticle/cache/",
+    $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                   array( "articlelist", array( $CategoryID, $ParentID ), NULL ),
                                   "cache", "," );
     foreach ( $files as $file )
@@ -375,7 +379,7 @@ if ( isset( $Action ) && $Action == "update" && !$error )
 if ( $Action == "delete" )
 {
     // clear the menu cache
-    $files = eZCacheFile::files( "ezarticle/cache/",
+    $files = eZCacheFile::files( "kernel/ezarticle/cache/",
                                  array( "menubox", NULL, NULL, NULL ),
                                  "cache", "," );
     foreach ( $files as $file )
@@ -386,7 +390,7 @@ if ( $Action == "delete" )
     $category = new eZArticleCategory();
     $category->get( $CategoryID );
 
-    $files =& eZCacheFile::files( "ezarticle/cache/",
+    $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                   array( "articlelist",
                                          array( $CategoryID, $category->parent( false ) ), NULL ),
                                   "cache", "," );

@@ -59,7 +59,7 @@ if ( !function_exists( "createHeadlinesMenu" )  )
                               ) );
 
 
-// product
+            // product
             $t->set_block( "article_list_page_tpl", "article_list_tpl", "article_list" );
             $t->set_block( "article_list_tpl", "article_item_tpl", "article_item" );
             $t->set_block( "article_item_tpl", "current_image_item_tpl", "current_image_item" );

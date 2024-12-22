@@ -54,6 +54,8 @@ class eZArticleCategory
         $this->ImageID = 0;
         $this->ParentID = 0;
         $this->ExcludeFromSearch = "0";
+        $this->ListLimit = 0;
+
         if ( is_array( $id ) )
         {
             $this->fill( $id );
@@ -104,7 +106,7 @@ class eZArticleCategory
         }
         else
         {
-            $res = $db->query( "UPDATE eZArticle_Category SET
+            $query = "UPDATE eZArticle_Category SET
 		                         Name='$name',
                                  Description='$description',
                                  ExcludeFromSearch='$this->ExcludeFromSearch',
@@ -116,7 +118,9 @@ class eZArticleCategory
                                  EditorGroupID='$this->EditorGroupID',
                                  ParentID='$this->ParentID',
                                  ListLimit='$this->ListLimit'
-                                 WHERE ID='$this->ID'" );
+                                 WHERE ID='$this->ID'";
+            echo $query . "<hr>";
+            $res = $db->query( $query );
         }
 
         if ( $res == false )
@@ -1135,7 +1139,7 @@ class eZArticleCategory
 
       If $check_write is true then the result will only contain articles which has read AND write permissions.
     */
-    static public function &articles( $sortMode="time",
+    public function &articles( $sortMode="time",
                         $fetchAll=true,
                         $fetchPublished=true,
                         $offset=0,
@@ -1147,7 +1151,7 @@ class eZArticleCategory
         if ( $categoryID != 0 )
             $catID = $categoryID;
         else
-            $catID = false; //$this->ID;
+            $catID = $this->ID;
 
         $db =& eZDB::globalDatabase();
 

@@ -52,7 +52,7 @@ class eZArticleTool
     {
         $user =& eZUser::currentUser();
 
-        $files = eZCacheFile::files( "ezarticle/cache/",
+        $files = eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( array( "articleprint", "articleview", "articlestatic", "static", "view", "print"  ),
                                              $ArticleID, NULL, NULL ), "cache", "," );
         foreach ( $files as $file )
@@ -60,7 +60,7 @@ class eZArticleTool
             $file->delete();
         }
 
-        $files = eZCacheFile::files( "ezarticle/cache/",
+        $files = eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( array( "articlelist", "list" ),
                                              array_merge( $CategoryArray, array( $CategoryID ), array( 0 ) ),
                                              NULL, array( "", NULL ) ),
@@ -71,7 +71,7 @@ class eZArticleTool
         }
 
 
-        $files = eZCacheFile::files( "ezarticle/cache/",
+        $files = eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "articlelinklist",
                                              array_merge( $CategoryArray, array( $CategoryID ), array( 0 ) ),
                                              $ArticleID,
@@ -82,7 +82,7 @@ class eZArticleTool
             $file->delete();
         }
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "articleindex",
                                              NULL ),
                                       "cache", "," );
@@ -91,7 +91,7 @@ class eZArticleTool
             $file->delete();
         }
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "menubox",
                                              NULL,
                                              NULL,
@@ -102,7 +102,7 @@ class eZArticleTool
             $file->delete();
         }
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "menubox_headlines",
                                              NULL,
                                              NULL ),
@@ -112,7 +112,7 @@ class eZArticleTool
             $file->delete();
         }
         
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "smallarticlelist",
                                              NULL ),
                                       "cache", "," );
@@ -121,7 +121,7 @@ class eZArticleTool
             $file->delete();
         }
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "articlefrontpage",
                                              NULL,
                                              NULL),
@@ -186,7 +186,7 @@ class eZArticleTool
            $index = "/index.php";
         }
     
-        $mailTemplate->set_var( "link", "http://" . $SiteURL . $wwwDir . $index . "/article/articleview/" . $article->id() );
+        $mailTemplate->set_var( "link", "https://" . $SiteURL . $wwwDir . $index . "/article/articleview/" . $article->id() );
         
         $bodyText = $mailTemplate->parse( "dummy", "mailtemplate" );
     
@@ -217,7 +217,6 @@ class eZArticleTool
                 $bulkMailCategories[] = $bulkMailCategory;
         }
 
-        
         if ( count( $bulkMailCategories ) > 0 ) // send a mail to this group
         {
             $bulkmail = new eZBulkMail();

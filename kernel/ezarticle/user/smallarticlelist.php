@@ -43,7 +43,7 @@ unset( $menuCachedFile );
 // do the caching
 if ( $PageCaching == "enabled" )
 {
-    $menuCachedFile = "ezarticle/cache/smallarticlelist,". $GlobalSiteDesign .".cache";
+    $menuCachedFile = "kernel/ezarticle/cache/smallarticlelist,". $GlobalSiteDesign .".cache";
 
     if ( eZFile::file_exists( $menuCachedFile ) )
     {

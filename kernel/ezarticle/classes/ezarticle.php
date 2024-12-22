@@ -139,7 +139,7 @@ class eZArticle
 
             $nextID = $db->nextID( "eZArticle_Article", "ID" );
 
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
             if ( $this->PublishedOverride != 0 )
                 $published = $this->PublishedOverride;
@@ -233,7 +233,7 @@ class eZArticle
 
             $db->array_query( $res, "SELECT ID FROM eZArticle_Article WHERE IsPublished='0' AND ID='$this->ID'" );
 
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
             if ( $this->PublishedOverride != 0 )
                 $published = $this->PublishedOverride;
@@ -1004,7 +1004,7 @@ class eZArticle
             {
                 $this->StartDate = $date;
 
-                $now = eZDateTime::timeStamp( true );
+                $now = (new eZDateTime())->timeStamp( true );
                 $startDate = $date->timeStamp();
 
                 if ( ( $startDate < $now ) and ( $date->year() != "1970" )  )
@@ -1360,7 +1360,7 @@ class eZArticle
             }
 
             $nextID = $db->nextID( "eZArticle_ArticleImageLink", "ID" );
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZArticle_ArticleImageLink
                          ( ID, ArticleID, ImageID, Created, Placement )
@@ -1611,7 +1611,7 @@ class eZArticle
             $db->lock( "eZArticle_ArticleMediaLink" );
 
             $nextID = $db->nextID( "eZArticle_ArticleMediaLink", "ID" );
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZArticle_ArticleMediaLink
                          ( ID, ArticleID, MediaID, Created )
@@ -1690,7 +1690,7 @@ class eZArticle
 
         $nextID = $db->nextID( "eZArticle_ArticleFileLink", "ID" );
 
-        $timeStamp = eZDateTime::timeStamp( true );
+        $timeStamp = (new eZDateTime())->timeStamp( true );
 
         $res = $db->query( "INSERT INTO eZArticle_ArticleFileLink
                          ( ID, ArticleID, FileID, Created ) VALUES ( '$nextID', '$this->ID', '$fileID', '$timeStamp' )" );
@@ -2857,7 +2857,7 @@ eZUser_Author as Author
 
         $nextID = $db->nextID( "eZArticle_Log", "ID" );
 
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp =& (new eZDateTime())->timeStamp( true );
 
         $query = "INSERT INTO eZArticle_Log
                   ( ID,  ArticleID, Created, Message, UserID )
@@ -3018,7 +3018,7 @@ eZUser_Author as Author
         else
             $published = "  IsPublished='1' ";
 
-        $now =& eZDateTime::timeStamp( true );
+        $now =& (new eZDateTime())->timeStamp( true );
 
         $db->array_query( $articleArray, "SELECT *
                                           FROM eZArticle_Article
@@ -3100,7 +3100,7 @@ eZUser_Author as Author
         else
             $published = "  IsPublished='1' ";
 
-        $now =& eZDateTime::timeStamp( true );
+        $now =& (new eZDateTime())->timeStamp( true );
 
         $db->array_query( $articleArray, "SELECT *
                                           FROM eZArticle_Article

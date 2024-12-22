@@ -149,7 +149,7 @@ if ( is_array ( $rows ) and count ( $rows ) > 0 )
             }
             else
             {
-                $articleList = @array_merge( $articleList, eZArticleCategory::articles( $category->sortMode(), false, true, $offsetArticleArray[$row->categoryID()], 2, $row->categoryID() ) );
+                $articleList = @array_merge( $articleList, (new eZArticleCategory())->articles( $category->sortMode(), false, true, $offsetArticleArray[$row->categoryID()], 2, $row->categoryID() ) );
             }
 
             $offsetArticleArray[$row->categoryID()] = $offsetArticleArray[$row->categoryID()] + 2;
@@ -163,7 +163,7 @@ if ( is_array ( $rows ) and count ( $rows ) > 0 )
             }
             else
             {
-                $articleList = @array_merge( $articleList, eZArticleCategory::articles( $category->sortMode(), false, true, $offsetArticleArray[$row->categoryID()], 1, $row->categoryID() ) );
+                $articleList = @array_merge( $articleList, (new eZArticleCategory())->articles( $category->sortMode(), false, true, $offsetArticleArray[$row->categoryID()], 1, $row->categoryID() ) );
             }
             $offsetArticleArray[$row->categoryID()] = $offsetArticleArray[$row->categoryID()] + 1;
         }
@@ -969,4 +969,3 @@ if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 }
 
 ?>
-

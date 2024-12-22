@@ -1,5 +1,7 @@
 # eZ Publish Basic
 
+![20BD8EBA-3B49-4ACB-8252-4165196D87B9_1_102_o](https://github.com/user-attachments/assets/9651c6e1-c110-4344-a151-de1b58a473e8)
+
 eZ Publish Basic is an open-source project to modernize the classic eZ Publish 2.x CMS, bringing its functionality up-to-date with PHP 8 standards while retaining its simplicity and community-focused design.
 
 This project is led by [7x](https://se7enx.com) and aims to ensure the long-term viability of eZ Publish 2.x for community portal solutions and their future portability (export to another cms).

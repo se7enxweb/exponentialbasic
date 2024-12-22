@@ -4,7 +4,7 @@
 //
 // Definition of eZCheckoutSupplier class
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <02-Feb-2001 15:22:14 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -36,7 +36,7 @@ class eZCheckoutSupplier
     /*!
       
     */
-    function eZCheckoutSupplier()
+    function __construct()
     {
         $this->PaymentMethods = array( array( "ID" => 1, "Text" => "VISA" ),
                                        array( "ID" => 2, "Text" => "Invoice" )
@@ -93,7 +93,9 @@ class eZCheckoutSupplier
             }break;
         }
         return $ret;
-    }    
+    }
+
+    var $PaymentMethods;
 }
 
 ?>

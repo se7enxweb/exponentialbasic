@@ -48,7 +48,7 @@ if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) )
     exit();
 }
 
-if ( isSet( $ConsultationList ) )
+if ( isset( $ConsultationList ) )
 {
     $templatefile = "consultationdetaillist.tpl";
     $languagefile = "consultationdetaillist.php";
@@ -67,7 +67,7 @@ $t->setAllStrings();
 
 $t->set_file( "consultation_page", $templatefile );
 
-if ( isSet( $ConsultationList ) )
+if ( isset( $ConsultationList ) )
 {
     $t->set_block( "consultation_page", "no_consultations_item_tpl", "no_consultations_item" );
     $t->set_block( "consultation_page", "consultation_table_item_tpl", "consultation_table_item" );
@@ -109,11 +109,11 @@ if ( !$user )
     exit();
 }
 
-if ( isSet( $ConsultationList ) )
+if ( isset( $ConsultationList ) )
 {
     // List specific consultations
 
-    if ( !isSet( $CompanyID ) && !isSet( $PersonID ) )
+    if ( !isset( $CompanyID ) && !isset( $PersonID ) )
     {
         die( "Neither CompanyID or PersonID is set" );
     }
@@ -123,7 +123,7 @@ if ( isSet( $ConsultationList ) )
         $OrderBy = "Date";
     }
 
-    if ( isSet( $CompanyID ) )
+    if ( isset( $CompanyID ) )
     {
         if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         {
@@ -145,7 +145,7 @@ if ( isSet( $ConsultationList ) )
         $company = new eZCompany( $CompanyID );
         $t->set_var( "contact_name", $company->name() );
     }
-    else if ( isSet( $PersonID ) )
+    else if ( isset( $PersonID ) )
     {
         if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         {
@@ -199,12 +199,12 @@ if ( isSet( $ConsultationList ) )
         $t->parse( "no_consultations_item", "no_consultations_item_tpl", true );
     }
 
-    if ( isSet( $CompanyID ) )
+    if ( isset( $CompanyID ) )
     {
         $t->set_var( "new_person_consultation_item", "" );
         $t->parse( "new_company_consultation_item", "new_company_consultation_item_tpl"  );
     }
-    else if ( isSet( $PersonID ) )
+    else if ( isset( $PersonID ) )
     {
         $t->parse( "new_person_consultation_item", "new_person_consultation_item_tpl"  );
         $t->set_var( "new_company_consultation_item", "" );

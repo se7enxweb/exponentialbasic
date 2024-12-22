@@ -45,7 +45,7 @@ $notClosed = $LangaugeIni->read_var( "strings", "not_closed" );
 if ( isset( $Action ) && $Action == "StoreMainPoll" )
 {
     // clear the menu cache
-    $files =& eZCacheFile::files( "ezpoll/cache/",
+    $files =& eZCacheFile::files( "kernel/ezpoll/cache/",
                                   array( "menubox",
                                          NULL ),
                                   "cache", "," );
@@ -91,8 +91,8 @@ if ( isset( $Action ) && $Action == "Delete" )
         }
     }
     // clear the menu cache
-    if ( eZFile::file_exists("ezpoll/cache/menubox.cache" )  )
-        eZFile::unlink( "ezpoll/cache/menubox.cache" );
+    if ( eZFile::file_exists("kernel/ezpoll/cache/menubox.cache" )  )
+        eZFile::unlink( "kernel/ezpoll/cache/menubox.cache" );
 }
 
 $t = new eZTemplate( "kernel/ezpoll/admin/" . $ini->read_var( "eZPollMain", "AdminTemplateDir" ),

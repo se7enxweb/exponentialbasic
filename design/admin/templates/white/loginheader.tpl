@@ -95,7 +95,7 @@
 
 		<a href="{www_dir}{index}/">
 		<!-- Icon: Start -->
-		<img src="{www_dir}/ez{module_name}/admin/images/module_icon.png" width="32" height="32" border="0" align="absmiddle" alt="{intl-module_name}" />
+		<img src="{www_dir}/kernel/ez{module_name}/admin/images/module_icon.png" width="32" height="32" border="0" align="absmiddle" alt="{intl-module_name}" />
 		<!-- Icon: End -->
 		</a>
 
@@ -131,6 +131,3 @@
 		<td>
 	
     <!-- Main view: Start -->
-
-
- 

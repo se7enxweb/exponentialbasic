@@ -27,7 +27,7 @@
 
 $toArray = array();
 
-if ( isSet( $ContactArrayID ) )
+if ( isset( $ContactArrayID ) )
 {
     foreach ( $ContactArrayID as $contact )
     {

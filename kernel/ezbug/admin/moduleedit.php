@@ -77,7 +77,7 @@ if ( isset( $Action ) &&  $Action == "update" )
             eZObjectPermission::setPermission( $moduleOwner, $ModuleID, "bug_module", 'w' );
         }
 
-        if ( isSet( $Recursive ) )
+        if ( isset( $Recursive ) )
         {
             $recursiveList = $module->getByParent( $module, "name", array() );
 

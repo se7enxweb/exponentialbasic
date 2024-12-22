@@ -66,7 +66,7 @@ class eZWishListOptionValue
         $db =& eZDB::globalDatabase();
         $db->begin();
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTrade_WishListOptionValue" );
             $nextID = $db->nextID( "eZTrade_WishListOptionValue", "ID" );

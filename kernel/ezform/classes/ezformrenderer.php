@@ -132,17 +132,27 @@ class eZFormRenderer
 
             $type =& $element->elementType();
 
-            $name = $type->name();
+            if( !is_null( $type ) )
+                $name = $type->name();
+            else
+                $name = false;
 
             $elementType = $element->elementType();
-            $type = $elementType->name();
-            $type = str_replace( " ", "_", $type );
+            if( !is_null( $elementType ) )
+            {
+                $type = $elementType->name();
+                $type = str_replace( " ", "_", $type );
+            }
+            else
+            {
+                $type = '';
+            }
 
             $elementName = "eZFormElement_" . $element->id();
 
             $elementValue = '';
             global $$elementName;
-            if ( isSet( $$elementName ) )
+            if ( isset( $$elementName ) )
                 $elementValue = $$elementName;
 
             $this->Template->set_var( "field_name", $elementName );
@@ -235,7 +245,7 @@ class eZFormRenderer
             {
                 $eType = $element->elementType();
 
-                if ( $element->isBreaking() or ( $eType->name() != "text_field_item" ) )
+                if ( $element->isBreaking() or ( !is_null( $eType ) && $eType->name() != "text_field_item" ) )
                 {
                     $lastBreaked = true;
                     $breakCount = 1;
@@ -264,13 +274,13 @@ class eZFormRenderer
                 $this->Template->set_var( "element_name", $element->name() );
 
 
-                if ( $eType->name() != "text_field_item" )
+                if ( !is_null( $eType ) && $eType->name() != "text_field_item" )
                     $this->Template->set_var( "colspan", " colspan=\"$maxBreakCount\"" );
                 else
                     $this->Template->set_var( "colspan", " colspan=\"1\"" );
 
 
-                if ( ( $eType->name() != "text_field_item" ) or $element->isBreaking() )
+                if ( ( !is_null( $eType ) && $eType->name() != "text_field_item" ) or $element->isBreaking() )
                 {
                     $this->Template->parse( "break", "break_tpl" );
                 }

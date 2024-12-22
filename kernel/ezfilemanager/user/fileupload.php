@@ -34,7 +34,7 @@
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 // include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
 
-if ( isSet( $NewFile ) )
+if ( isset( $NewFile ) )
 {
     $Action = "New";
     $Description = false;
@@ -44,34 +44,34 @@ if ( isSet( $NewFile ) )
     $uploadGroupArrayID = array();
     $sectionID = false;
 }
-if ( isSet( $NewFolder ) )
+if ( isset( $NewFolder ) )
 {
     eZHTTPTool::header( "Location: /filemanager/folder/new/$FolderID" );
     exit();
 }
 
-if ( isSet( $DeleteFiles ) )
+if ( isset( $DeleteFiles ) )
 {
     $Action = "DeleteFiles";
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     $Action = "Delete";
 }
 
-if ( isSet( $DeleteFolders ) )
+if ( isset( $DeleteFolders ) )
 {
     $Action = "DeleteFolders";
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /filemanager/list/" . $parentID );
     exit();
 }
 
-if ( isSet( $Download ) )
+if ( isset( $Download ) )
 {
     $file = new eZVirtualFile( $FileID );
 

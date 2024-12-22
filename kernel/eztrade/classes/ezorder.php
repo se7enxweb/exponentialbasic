@@ -79,7 +79,7 @@ class eZOrder
         $this->TextPaymentMethod = $db->escapeString( $this->PaymentMethod );
         $comment = $db->escapeString( $this->Comment );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $timeStamp =& eZDateTime::timeStamp( true );
             $db->lock( "eZTrade_Order" );

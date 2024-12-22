@@ -47,7 +47,7 @@ $session->fetch();
 if ( isset( $Action ) && $Action == "edit" )
 {
     $trustees = $user->trustees();
-    if ( !isSet( $TrusteesList ) )
+    if ( !isset( $TrusteesList ) )
         $TrusteesList = array();
     $remove_trustees = array_diff( $trustees, $TrusteesList );
     $add_trustees = array_diff( $TrusteesList, $trustees );

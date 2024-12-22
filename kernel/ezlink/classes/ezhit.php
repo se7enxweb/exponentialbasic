@@ -42,6 +42,7 @@ class eZHit
     */
     function __construct( $id=-1 )
     {
+        $this->Time = 0;
         if ( $id != -1 )
         {
             $this->ID = $id;

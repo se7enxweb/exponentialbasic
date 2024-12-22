@@ -39,7 +39,7 @@
 
 $user =& eZUser::currentUser();
 
-if ( isSet( $NewFolder ) )
+if ( isset( $NewFolder ) )
 {
     $Description = false;
     $Name = false;
@@ -49,7 +49,7 @@ if ( isSet( $NewFolder ) )
     $sectionID = false;
 }
 // check if user has rights to edit the current folder.
-if ( isSet( $FolderID ) && $FolderID != 0 &&
+if ( isset( $FolderID ) && $FolderID != 0 &&
      !eZObjectPermission::hasPermission( $FolderID, "filemanager_folder", 'w' ) &&
      !eZVirtualFolder::isOwner( $user, $FolderID ) ) 
 {
@@ -57,13 +57,13 @@ if ( isSet( $FolderID ) && $FolderID != 0 &&
     exit();
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     $folder = new eZVirtualFolder( $FolderID );
 
     $parent = $folder->parent();
 
-    if ( !isSet( $parentID ) )
+    if ( !isset( $parentID ) )
         $parentID = "0";
     
     if ( $parent )
@@ -205,7 +205,7 @@ if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
         $folder = new eZVirtualFolder( $FolderID );
     }
     $folder->setName( $Name );
-    if ( isSet( $Description ) )
+    if ( isset( $Description ) )
         $folder->setDescription( $Description );
 
     $folder->setSectionID( $SectionID );

@@ -246,7 +246,7 @@ foreach ( $messages as $threadmessage )
     $i++;
 }
 
-if ( !isSet( $RedirectURL ) )
+if ( !isset( $RedirectURL ) )
     $RedirectURL = "";
 
 $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );

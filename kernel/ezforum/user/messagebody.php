@@ -49,7 +49,7 @@ if ( isset( $ShowMessage ) && $ShowMessage )
     $author = new eZUser( $msg->userID() );
     $MessageNotice = $msg->emailNotice();
 
-    if ( isSet( $NewMessageAuthor ) )
+    if ( isset( $NewMessageAuthor ) )
     {
         if ( $msg->userName() && $Action != "reply" )
             $MessageAuthor = $msg->userName();
@@ -76,7 +76,7 @@ if ( isset( $ShowMessage ) && $ShowMessage )
         }
     }
 
-    if ( isSet( $NewMessagePostedAt ) )
+    if ( isset( $NewMessagePostedAt ) )
     {
         $MessagePostedAt = $NewMessagePostedAt;
     }
@@ -85,7 +85,7 @@ if ( isset( $ShowMessage ) && $ShowMessage )
         $MessagePostedAt = $Locale->format( $msg->postingTime() );
     }
 
-    if ( isSet( $NewMessageNotice ) )
+    if ( isset( $NewMessageNotice ) )
     {
         $MessageNotice = $NewMessageNotice;
     }

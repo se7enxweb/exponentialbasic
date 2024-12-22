@@ -76,7 +76,7 @@ $user =& eZUser::currentUser();
 
 $product = new eZProduct( $ProductID );
 
-if ( $product && isSet( $OK ) )
+if ( $product && isset( $OK ) )
 {
     $voucherInfo = new eZVoucherInformation();
             

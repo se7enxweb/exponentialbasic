@@ -87,7 +87,7 @@ class eZMailFolder
 
         $name = $db->escapeString( $this->Name );
         $db->begin();
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZMail_Folder" );
             $nextID = $db->nextID( "eZMail_Folder", "ID" );

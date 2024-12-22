@@ -83,10 +83,10 @@ switch ( $url_array[2] )
     case "list" :
     {
         $FolderID = $url_array[3];
-        if ( !isSet( $FolderID ) || $FolderID == "" )
+        if ( !isset( $FolderID ) || $FolderID == "" )
             $FolderID = 0;
         $Offset = $url_array[4];
-        if ( !isSet( $Offset ) || $Offset == "" )
+        if ( !isset( $Offset ) || $Offset == "" )
             $Offset = 0;
         include( "kernel/ezfilemanager/user/filelist.php" );
     }

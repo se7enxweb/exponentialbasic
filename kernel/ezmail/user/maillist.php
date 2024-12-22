@@ -44,13 +44,13 @@ if ( !eZMailFolder::isOwner( eZUser::currentUser(), $FolderID ) )
 }
 
 
-if ( isSet( $NewFolder ) )
+if ( isset( $NewFolder ) )
 {
     eZHTTPTool::header( "Location: /mail/folderedit/" );
     exit();
 }
 
-if ( isSet( $Move ) && $FolderSelectID != -1 && count( $MailArrayID ) > 0 ) // really move to other folder
+if ( isset( $Move ) && $FolderSelectID != -1 && count( $MailArrayID ) > 0 ) // really move to other folder
 {
     $folder = new eZMailFolder( $FolderSelectID );
     foreach ( $MailArrayID as $mailitemID )
@@ -130,7 +130,7 @@ if ( $folder->folderType() == DRAFTS )
 
 // check if the sort mode is changed...
 $preferences = new eZPreferences();
-if ( isSet( $SortMethod ) ) // the sorting method has changed..
+if ( isset( $SortMethod ) ) // the sorting method has changed..
 {
     $currentMethod = $preferences->variable( "MailSortMethod" );
     $newMethod = "";

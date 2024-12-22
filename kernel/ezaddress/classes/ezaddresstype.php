@@ -72,7 +72,7 @@ class eZAddressType
         $name = $db->escapeString( $this->Name );
         $db->begin( );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZAddress_AddressType" );
             $nextID = $db->nextID( "eZAddress_AddressType", "ID" );

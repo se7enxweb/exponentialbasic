@@ -80,7 +80,7 @@ class eZCompany
         $comment = $db->escapeString( $this->Comment );
         $type = $this->ContactType == "ezperson" ? 2 : 1;
 
-        if ( !isSet( $this->ID ) or !is_numeric( $this->ID ) )
+        if ( !isset( $this->ID ) or !is_numeric( $this->ID ) )
         {
             $db->lock( "eZContact_Company" );
             $this->ID = $db->nextID( "eZContact_Company", "ID" );
@@ -138,7 +138,7 @@ class eZCompany
             $id = $this->ID;
 
         $db->begin();
-        if ( isSet( $id ) && is_numeric( $id ) )
+        if ( isset( $id ) && is_numeric( $id ) )
         {
             // Delete real world addresses
 

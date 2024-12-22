@@ -31,28 +31,28 @@
 // include_once( "ezquiz/classes/ezquizgame.php" );
 // include_once( "ezquiz/classes/ezquiztool.php" );
 
-if ( isSet( $OK ) )
+if ( isset( $OK ) )
 {
     $Action = "Insert";
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     $Action = "Delete";
 }
 
-if ( isSet( $NewQuestion ) )
+if ( isset( $NewQuestion ) )
 {
     $Action = "Insert";
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /quiz/game/list/" );
     exit();
 }
 
-if ( isSet( $DeleteQuestions ) )
+if ( isset( $DeleteQuestions ) )
 {
     if ( count( $DeleteQuestionArray ) > 0 )
     {
@@ -143,7 +143,7 @@ $error = false;
 $checkDate = true;
 if ( isset( $Action ) && $Action == "Insert" )
 {
-    if ( $GameID > 0 && !isSet( $NewQuestion ) )
+    if ( $GameID > 0 && !isset( $NewQuestion ) )
     {
         $game = new  eZQuizGame( $GameID );
 
@@ -154,7 +154,7 @@ if ( isset( $Action ) && $Action == "Insert" )
         }
         unset( $game );
     }
-    elseif ( isSet( $OK ) )
+    elseif ( isset( $OK ) )
     {
         $t->parse( "error_question", "error_question_tpl" );
         $error = true;
@@ -304,7 +304,7 @@ if ( ( isset( $Action ) && $Action == "Insert" ) && ( $error == false ) )
         unset( $question );
     }
 
-    if ( isSet( $NewQuestion ) )
+    if ( isset( $NewQuestion ) )
     {
         $question = new eZQuizQuestion();
         $question->setGame( $game );
@@ -314,7 +314,7 @@ if ( ( isset( $Action ) && $Action == "Insert" ) && ( $error == false ) )
         exit();
     }
 
-    if ( isSet( $OK ) )
+    if ( isset( $OK ) )
     {
         eZHTTPTool::header( "Location: /quiz/game/list/" );
         exit();

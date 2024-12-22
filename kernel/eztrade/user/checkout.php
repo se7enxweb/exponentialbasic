@@ -186,7 +186,7 @@ if ( isSet ( $RemoveVoucher ) )
     }
 }
 
-if ( isSet( $SendOrder ) )
+if ( isset( $SendOrder ) )
 {
 
     // set the variables as session variables and make sure that it is not read by

@@ -30,13 +30,13 @@
 
 // include_once( "ezuser/classes/ezauthor.php" );
 
-if ( isSet( $NewAuthor ) )
+if ( isset( $NewAuthor ) )
 {
     $author = new eZAuthor();
     $author->store();    
 }
 
-if ( isSet( $DeleteAuthor ) )
+if ( isset( $DeleteAuthor ) )
 {
     if ( count( $DeleteIDArray ) > 0 )
     {
@@ -48,7 +48,7 @@ if ( isSet( $DeleteAuthor ) )
 }
 
 
-if ( ( isSet( $Store ) ) || ( isSet( $NewAuthor ) ) ||( isSet( $DeleteAuthor ) ) )
+if ( ( isset( $Store ) ) || ( isset( $NewAuthor ) ) ||( isset( $DeleteAuthor ) ) )
 {
     $i = 0;
 

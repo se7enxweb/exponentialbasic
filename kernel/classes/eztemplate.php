@@ -191,6 +191,7 @@ class eZTemplate
             {
                 if ( $GLOBALS["DEBUG"] == true )
                 {
+                    debug_print_backtrace();
                     print( "<br><b>Error: language file, $this->languageFile, could not be found.</b><br>" );
                 }
             }

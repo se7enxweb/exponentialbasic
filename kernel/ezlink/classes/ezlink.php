@@ -88,9 +88,10 @@ class eZLink
         $name = $db->escapeString( $this->Name );
         $url = $db->escapeString( $this->Url );
         $keywords = $db->escapeString( $this->KeyWords );
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp = new eZDateTime();
+        $timeStamp = $timeStamp->timeStamp( true );
 
-        if ( !isSet( $this->ID) )
+        if ( !isset( $this->ID) )
         {
             $db->lock( "eZLink_Link" );
             $nextID = $db->nextID( "eZLink_Link", "ID" );
@@ -232,7 +233,9 @@ class eZLink
         $url = $db->escapeString( $this->Url );
         $keywords = $db->escapeString( $this->KeyWords );
 
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp = new eZDateTime();
+        $timeStamp = $timeStamp->timeStamp( true );
+
 
         $res = $db->query( "UPDATE eZLink_Link SET
                 Name='$name',

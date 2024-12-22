@@ -83,7 +83,7 @@ class eZConsultation
         $shortdesc = $db->escapeString( $this->ShortDesc );
         $description = $db->escapeString( $this->Description );
         $emailnotice = $db->escapeString( $this->EmailNotice );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZContact_Consultation" );
             $this->ID = $db->nextID( "eZContact_Consultation", "ID" );
@@ -119,7 +119,7 @@ class eZConsultation
     {
         if ( !$id )
             $id = $this->ID;
-        if ( isSet( $id ) && is_numeric( $id ) )
+        if ( isset( $id ) && is_numeric( $id ) )
         {
             $db =& eZDB::globalDatabase();
             $db->begin();

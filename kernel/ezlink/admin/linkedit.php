@@ -33,7 +33,7 @@
 $ini =& $GLOBALS["GlobalSiteIni"];
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
-
+$error_msg = false;
 // include_once( "classes/eztemplate.php" );
 
 // include_once( "ezlink/classes/ezlinkcategory.php" );
@@ -43,11 +43,11 @@ $error = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.i
 // include_once( "ezlink/classes/ezlinktype.php" );
 // include_once( "ezlink/classes/ezlinkattribute.php" );
 
-// include_once( "ezlink/classes/ezmeta.php" );
+include_once( "kernel/ezlink/classes/ezmeta.php" );
 require( "kernel/ezuser/admin/admincheck.php" );
 
 
-if ( isset( $Accepted ) && $Accepted == "1" || !isSet( $Accepted ) )
+if ( isset( $Accepted ) && $Accepted == "1" || !isset( $Accepted ) )
 {
     $yes_selected = "selected";
     $no_selected = "";
@@ -58,17 +58,17 @@ else
     $no_selected = "selected";
 }
 
-if ( isSet( $DeleteLinks ) )
+if ( isset( $DeleteLinks ) )
 {
     $Action = "DeleteLinks";
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     $Action = "delete";
 }
 
-if( isSet( $Update ) )
+if( isset( $Update ) )
 {
     $tname = $Name;
     $turl = $Url;
@@ -76,7 +76,7 @@ if( isSet( $Update ) )
     $tdescription = $Description;
 }
 
-if ( isSet( $Back ) )
+if ( isset( $Back ) )
 {
     if ( $LinkID != "" )
     {
@@ -93,7 +93,7 @@ if ( isSet( $Back ) )
     exit();
 }
 
-if ( isSet( $CategoryArray ) )
+if ( isset( $CategoryArray ) )
     $LinkCategoryIDArray = $CategoryArray;
 else
     $LinkCategoryIDArray = array();
@@ -114,9 +114,9 @@ if ( $Action == "new" )
     $tname = false;
     $turl = false;
     $linkType = false;
-    $LinkCategoryID = false;
+    $tLinkCategoryID = false;
 
-    if ( isSet( $OK ) || isSet( $Browse ) )
+    if ( isset( $OK ) || isset( $Browse ) )
     {
         $Action = "insert";
     }
@@ -125,14 +125,14 @@ if ( $Action == "new" )
 if ( $Action == "edit" )
 {
     $action_value = "edit";
-    if( isSet( $OK ) )
+    if( isset( $OK ) )
     {
         $Action = "update";
     }
 }
 
 // Get images from the image browse function.
-if ( ( isSet( $AddImages ) ) and ( is_numeric( $LinkID ) ) and ( is_numeric( $LinkID ) ) )
+if ( ( isset( $AddImages ) ) and ( is_numeric( $LinkID ) ) and ( is_numeric( $LinkID ) ) )
 {
     $image = new eZImage( $ImageID );
     $link = new eZLink( $LinkID );
@@ -156,17 +156,17 @@ if ( isset( $GetSite ) && $GetSite )
             // Change this to use an external message
             $error_msg = "The site does not exists";
         }
-        else if( count( $metaList ) == 0 )
+        /* else if( count( $metaList ) == 0 )
         {
             $inierror = new INIFile( "kernel/ezlink/user/" . "/intl/" . $Language . "/suggestlink.php.ini", false );
             $terror_msg = $inierror->read_var( "strings", "nometa" );
-        }
+        } */
         if ( $metaList["description"] )
             $tdescription = $metaList["description"];
         else
             $tdescription = "";
 
-        if ( $metaList["keywords"] )
+        if ( isset( $metaList["keywords"] ) && $metaList["keywords"] )
             $tkeywords = $metaList["keywords"];
         else
             $tkeywords = "";
@@ -211,12 +211,14 @@ if ( $Action == "update" )
             $link->setKeyWords( $Keywords );
             $link->setUrl( $Url );
 
+            if( !isset( $_REQUEST[ 'CategoryArray']) )
+                $CategoryArray = array();
             // Calculate new and unused categories
 
             $old_maincategory = $link->categoryDefinition();
-            $old_categories =& array_unique( array_merge( $old_maincategory->id(),
+            $old_categories =& array_unique( array_merge( array( $old_maincategory->id() ),
                                                           $link->categories( false ) ) );
-            $new_categories = array_unique( array_merge( $LinkCategoryID, $CategoryArray ) );
+            $new_categories = array_unique( array_merge( array( $LinkCategoryID ), $CategoryArray ) );
             $remove_categories = array_diff( $old_categories, $new_categories );
             $add_categories = array_diff( $new_categories, $old_categories );
 
@@ -294,7 +296,7 @@ if ( $Action == "update" )
                 exit();
             }
 
-            if ( isSet( $Attributes ) )
+            if ( isset( $Attributes ) )
             {
                 $linkID = $link->id();
                 eZHTTPTool::header( "Location: /link/linkedit/attributeedit/$linkID/" );
@@ -373,10 +375,11 @@ if ( $Action == "insert" )
 
     if ( eZPermission::checkPermission( $user, "eZLink", "LinkAdd") )
     {
-        if ( $Name != "" &&
-        $LinkCategoryID != "" &&
-        $Accepted != "" &&
-        $Url != "" )
+    var_dump( $LinkCategoryID);
+        if ( isset( $Name ) && $Name != "" &&
+        isset( $LinkCategoryID ) && $LinkCategoryID != "" &&
+        isset( $Accepted ) && $Accepted != "" &&
+        isset( $Url ) && $Url != "" )
         {
             $link = new eZLink();
 
@@ -392,7 +395,7 @@ if ( $Action == "insert" )
 
             $tname = $Name;
             $turl = $Url;
-            if ( !$GetSite )
+            if ( isset( $GetSite) && !$GetSite )
             {
                 $tkeywords = $Keywords;
                 $tdescription = $Description;
@@ -448,7 +451,7 @@ if ( $Action == "insert" )
             }
             $linkID = $link->id();
 
-            if ( isSet( $Browse ) )
+            if ( isset( $Browse ) )
             {
                 $linkID = $link->id();
                 $session = eZSession::globalSession();
@@ -459,7 +462,7 @@ if ( $Action == "insert" )
                 exit();
             }
 
-            if ( isSet( $Attributes ) )
+            if ( isset( $Attributes ) )
             {
                 $linkID = $link->id();
                 eZHTTPTool::header( "Location: /link/linkedit/attributeedit/$linkID/" );
@@ -469,7 +472,7 @@ if ( $Action == "insert" )
             eZHTTPTool::header( "Location: /link/category/$LinkCategoryID" );
             exit();
         }
-        else if ( !isSet( $Update ) && !isSet( $GetSite ) )
+        else if ( !isset( $Update ) && !isset( $GetSite ) )
         {
             $error_msg = $error->read_var( "strings", "error_missingdata" );
             $action_value = "new";
@@ -539,7 +542,7 @@ if ( $Action == "edit" )
     }
     else
     {
-        if ( !isSet( $editLink ) )
+        if ( !isset( $editLink ) )
         {
             $editLink = new eZLink();
             $editLink->get( $LinkID );
@@ -559,7 +562,7 @@ if ( $Action == "edit" )
 
         $action_value = "edit";
 
-        if ( !isSet( $Update ) )
+        if ( !isset( $Update ) )
         {
             $tname = $editLink->name();
             $tdescription = $editLink->description();
@@ -610,7 +613,7 @@ if ( $Action == "edit" )
             $no_selected = "selected";
         }
 
-        if ( isSet( $Browse ) )
+        if ( isset( $Browse ) )
         {
             $linkID = $editLink->id();
             $session = eZSession::globalSession();
@@ -742,7 +745,7 @@ if ( is_a( $linkType, "eZLinkType") )
         $t->set_var( "attribute_id", $attribute->id( ) );
         $t->set_var( "attribute_name", $attribute->name( ) );
 
-        if ( isSet( $AttributeValue[$i] ) && $attribute->id() == $AttributeID[$i] )
+        if ( isset( $AttributeValue[$i] ) && $attribute->id() == $AttributeID[$i] )
             $t->set_var( "attribute_value", $AttributeValue[$i] );
         else
             $t->set_var( "attribute_value", $attribute->value( $editLink ) );
@@ -752,7 +755,7 @@ if ( is_a( $linkType, "eZLinkType") )
     }
 }
 
-if ( isset( $attributes ) && count( $attributes ) > 0 || !isSet( $type ) )
+if ( isset( $attributes ) && count( $attributes ) > 0 || !isset( $type ) )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }

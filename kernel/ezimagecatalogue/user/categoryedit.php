@@ -38,7 +38,7 @@
 
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" );
     exit();
@@ -427,4 +427,3 @@ function getImagesAndCategores( &$folderArray, &$fileArray, $fromFolder )
 }
 
 ?>
-

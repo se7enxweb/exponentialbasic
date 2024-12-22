@@ -69,7 +69,7 @@ class eZMediaAttribute
         $db->begin();
         $db->lock( "eZMediaCatalogue_Attribute" );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->array_query( $attribute_array, "SELECT Placement FROM eZMediaCatalogue_Attribute" );
 

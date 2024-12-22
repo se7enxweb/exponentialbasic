@@ -133,24 +133,24 @@ switch ( $ListType )
             case "insert":
             {
                 $CompanyEdit = true;
-                if ( isSet( $SendMail ) )
+                if ( isset( $SendMail ) )
                 {
                     include( "kernel/ezcontact/admin/sendmail.php" );
                 }
-                else if ( isSet( $MailButton ) )
+                else if ( isset( $MailButton ) )
                 {
                     $ContactArrayID = array( $PersonID );
                     include( "kernel/ezcontact/admin/sendmail.php" );
                 }
                 else
                 {
-                    if ( isSet( $NewCompany ) )
+                    if ( isset( $NewCompany ) )
                         $Action = "new";
                     if ( $Action == "new" )
-                        if ( isSet( $url_array[4] ) and is_numeric( $url_array[4] ) )
+                        if ( isset( $url_array[4] ) and is_numeric( $url_array[4] ) )
                             $NewCompanyCategory = $url_array[4];
                         else
-                            if ( !isSet( $CompanyID ) and isSet( $url_array[4] ) and is_numeric( $url_array[4] ) )
+                            if ( !isset( $CompanyID ) and isset( $url_array[4] ) and is_numeric( $url_array[4] ) )
                                 $CompanyID = $url_array[4];
                     include( "kernel/ezcontact/admin/companyedit.php" );
                 }
@@ -159,7 +159,7 @@ switch ( $ListType )
 
             case "view":
             {
-                if ( !isSet( $CompanyID ) and isSet( $url_array[4] ) and is_numeric( $url_array[4] ) )
+                if ( !isset( $CompanyID ) and isset( $url_array[4] ) and is_numeric( $url_array[4] ) )
                     $CompanyID = $url_array[4];
                 $PersonOffset = $url_array[5];
                 include( "kernel/ezcontact/admin/companyview.php" );
@@ -172,7 +172,7 @@ switch ( $ListType )
                 $Month = $url_array[7];
                 $Day = $url_array[8];
                 $DateType = $url_array[4];
-                if ( !isSet( $CompanyID ) and isSet( $url_array[5] ) and is_numeric( $url_array[5] ) )
+                if ( !isset( $CompanyID ) and isset( $url_array[5] ) and is_numeric( $url_array[5] ) )
                     $CompanyID = $url_array[5];
                 include( "kernel/ezcontact/admin/companystats.php" );
             }
@@ -259,11 +259,11 @@ switch ( $ListType )
             case "insert":
             {
                 $CompanyEdit = false;
-                if ( isSet( $SendMail ) )
+                if ( isset( $SendMail ) )
                 {
                     include( "kernel/ezcontact/admin/sendmail.php" );
                 }
-                else if ( isSet( $MailButton ) )
+                else if ( isset( $MailButton ) )
                 {
                     $ContactArrayID = array( $PersonID );
                     include( "kernel/ezcontact/admin/sendmail.php" );
@@ -288,7 +288,7 @@ switch ( $ListType )
             {
                 if ( is_numeric( $url_array[4] ) )
                     $Offset = $url_array[4];
-                if ( count( $url_array ) >= 5 && !isSet( $SearchText ) )
+                if ( count( $url_array ) >= 5 && !isset( $SearchText ) )
                 {
                     $SearchText = $url_array[5];
                     $SearchText = eZURITool::decode( $SearchText );
@@ -328,7 +328,7 @@ switch ( $ListType )
 
     case "consultation":
     {
-        if ( !isSet( $ConsultationID ) or !is_numeric( $ConsultationID ) )
+        if ( !isset( $ConsultationID ) or !is_numeric( $ConsultationID ) )
             $ConsultationID = $url_array[4];
         $Action = $url_array[3];
         switch ( $Action )
@@ -360,7 +360,7 @@ switch ( $ListType )
             {
                 $SubAction = $url_array[3];
                 $Action = $url_array[4];
-                if ( !isSet( $CompanyID ) or !is_numeric( $CompanyID ) )
+                if ( !isset( $CompanyID ) or !is_numeric( $CompanyID ) )
                     $CompanyID = $url_array[5];
                 switch ( $Action )
                 {
@@ -398,7 +398,7 @@ switch ( $ListType )
             {
                 $SubAction = $url_array[3];
                 $Action = $url_array[4];
-                if ( !isSet( $PersonID ) )
+                if ( !isset( $PersonID ) )
                     $PersonID = $url_array[5];
                 switch ( $Action )
                 {
@@ -476,7 +476,7 @@ switch ( $ListType )
             {
                 if ( is_numeric( $url_array[4] ) )
                     $Offset = $url_array[4];
-                if ( count( $url_array ) >= 5 && !isSet( $SearchText ) )
+                if ( count( $url_array ) >= 5 && !isset( $SearchText ) )
                 {
                     $SearchText = $url_array[5];
                     $SearchText = eZURITool::decode( $SearchText );
@@ -530,7 +530,7 @@ switch ( $ListType )
             {
                 if ( is_numeric( $url_array[4] ) )
                     $Offset = $url_array[4];
-                if ( count( $url_array ) >= 5 && !isSet( $SearchText ) )
+                if ( count( $url_array ) >= 5 && !isset( $SearchText ) )
                 {
                     $SearchText = $url_array[5];
                     $SearchText = eZURITool::decode( $SearchText );

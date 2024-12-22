@@ -45,17 +45,17 @@ include( "ezlink/classes/ezhit.php" );
 
 //require( "kernel/ezuser/admin/admincheck.php" );
 
-if ( isSet( $DeleteLinks ) )
+if ( isset( $DeleteLinks ) )
 {
     $Action = "DeleteLinks";
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     $Action = "delete";
 }
 
-if ( isSet( $Back ) )
+if ( isset( $Back ) )
 {
     if ( $LinkID != "" )
     {
@@ -77,7 +77,7 @@ if ( isSet( $Back ) )
 $Accepted = $ini->read_var( "eZLinkMain", "AcceptSuggestedLinks" );
 
 // Get images from the image browse function.
-if ( ( isSet( $AddImages ) ) and ( is_numeric( $LinkID ) ) and ( is_numeric( $LinkID ) ) )
+if ( ( isset( $AddImages ) ) and ( is_numeric( $LinkID ) ) and ( is_numeric( $LinkID ) ) )
 {
     $image = new eZImage( $ImageID );
     $link = new eZLink( $LinkID );
@@ -324,7 +324,7 @@ if ( isset( $Action ) && $Action == "insert" )
         eZHTTPTool::header( "Location: /link/category/$LinkCategoryID" );
         exit();
     }
-    else if ( !isSet( $Update ) )
+    else if ( !isset( $Update ) )
     {
         $error_msg = $error->read_var( "strings", "error_missingdata" );
     }
@@ -472,7 +472,7 @@ foreach ( $linkCategoryList as $linkCategoryItem )
 $type = new eZLinkType();
 $types = $type->getAll();
 
-if ( isSet( $TypeID ) )
+if ( isset( $TypeID ) )
     $linkType = new eZLinkType( $TypeID );
 
 foreach ( $types as $typeItem )
@@ -515,7 +515,7 @@ if ( is_a( $linkType, "eZLinkType" ) )
     }
 }
 
-if ( isset( $attributes ) && count( $attributes ) > 0 || !isSet( $type ) )
+if ( isset( $attributes ) && count( $attributes ) > 0 || !isset( $type ) )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }

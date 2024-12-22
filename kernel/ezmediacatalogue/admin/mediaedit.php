@@ -44,24 +44,24 @@ if ( !$user )
     exit();
 }
 
-if ( isSet( $NewCategory ) )
+if ( isset( $NewCategory ) )
 {
     eZHTTPTool::header( "Location: /mediacatalogue/category/new/$CurrentCategoryID/" );
     exit();
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /mediacatalogue/media/list/" . $CurrentCategoryID . "/" );
     exit();
 }
 
-if ( isSet( $DeleteMedia ) )
+if ( isset( $DeleteMedia ) )
 {
     $Action = "DeleteMedia";
 }
 
-if ( isSet( $DeleteCategories ) )
+if ( isset( $DeleteCategories ) )
 {
     $Action = "DeleteCategories";
 }
@@ -607,7 +607,7 @@ if ( is_a( $mediaType, "eZMediaType") )
     }
 }
 
-if ( isset( $attributes ) && count( $attributes ) > 0 || !isSet( $type ) )
+if ( isset( $attributes ) && count( $attributes ) > 0 || !isset( $type ) )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }

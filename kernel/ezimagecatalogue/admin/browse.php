@@ -157,7 +157,7 @@ foreach ( $categoryList as $categoryItem )
     $i++;
 }
 
-if ( ( count( $categoryList ) > 0 ) &&  !isSet( $SearchText ) )
+if ( ( count( $categoryList ) > 0 ) &&  !isset( $SearchText ) )
 {
     $t->parse( "category_list", "category_list_tpl" );
 }
@@ -167,7 +167,7 @@ else
 }
 
 // Print out all the images
-if ( isSet( $SearchText )  )
+if ( isset( $SearchText )  )
 {
     $imageList =& eZImage::search( $SearchText );
 }
@@ -298,4 +298,3 @@ else
 
 
 ?>
-

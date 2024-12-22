@@ -37,7 +37,7 @@ switch ( $url_array[2] )
     case "vote" :
     {
         $PollID = $url_array[3];
-        if ( isSet( $url_array[4] ) )
+        if ( isset( $url_array[4] ) )
              $ChoiceID = $url_array[4];
         include( "kernel/ezpoll/user/vote.php" );
     }
@@ -46,7 +46,7 @@ switch ( $url_array[2] )
     case "result" :
     {
         $PollID = $url_array[3];
-        if ( isSet( $url_array[4] ) ) 
+        if ( isset( $url_array[4] ) )
         {
              $Show = $url_array[4];
         }

@@ -124,7 +124,7 @@ switch ( $url_array[2] )
             case "insert" :
             {
                 $LinkID = $url_array[4];
-                if ( isSet( $Update ) )
+                if ( isset( $Update ) )
                 {
                     $Action = "AttributeList";
                 }
@@ -147,7 +147,7 @@ switch ( $url_array[2] )
             case "update" :
             {
                 $LinkID = $url_array[4];
-                if ( isSet( $Update ) )
+                if ( isset( $Update ) )
                 {
                     $Action = "AttributeList";
                 }

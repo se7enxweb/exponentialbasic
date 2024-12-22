@@ -48,21 +48,21 @@ function addZero( $value )
     return $ret;
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     $Action = "delete";
 }
-if ( isSet( $List ) )
+if ( isset( $List ) )
 {
     eZHTTPTool::header( "Location: /todo" );
     exit();
 }
-if ( isSet( $Edit ) )
+if ( isset( $Edit ) )
 {
     $Action = "edit";
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /todo" );
     exit();
@@ -98,7 +98,7 @@ $locale = new eZLocale( $Language );
 $user =& eZUser::currentUser();
 $redirect = true;
 
-if ( isSet( $AddLog ) )
+if ( isset( $AddLog ) )
 {
     $log = new eZTodoLog();
     $log->setLog( $Log );

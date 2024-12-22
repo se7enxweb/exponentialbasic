@@ -95,7 +95,7 @@ switch ( $url_array[2] )
                 $Action = $url_array[3];
             }
         }
-        if ( isSet( $ChangeView ) )
+        if ( isset( $ChangeView ) )
             $Action = "New";
         include( "kernel/ezcalendar/user/appointmentedit.php" );
     }

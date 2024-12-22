@@ -53,7 +53,7 @@ if ( $url == "/user/settings" )
 if( $url == '' )
     $url == '/';
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: $url" );
     exit();

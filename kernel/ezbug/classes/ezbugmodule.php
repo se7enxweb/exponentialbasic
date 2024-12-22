@@ -79,7 +79,7 @@ class eZBugModule
         $description = $db->escapeString( $this->Description );
         $db->begin();
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZBug_Module", "ID" );
 			$this->ID = $db->nextID( "eZBug_Module", "ID" );
@@ -119,7 +119,7 @@ class eZBugModule
     {
         $db =& eZDB::globalDatabase();
         $db->begin();
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             // delete all bugs!
             $bugs = array();

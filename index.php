@@ -161,7 +161,7 @@ if ( $StoreStats == "enabled" and $GlobalSiteIni->Index != "" )
     // // include_once( "ezstats/classes/ezpageview.php" );
 
     // if we are using nVH setup, we need to store our stats here
-    if ( isSet( $GlobalSiteIni->SiteDir ) and $GlobalSiteIni->SiteDir != "" )
+    if ( isset( $GlobalSiteIni->SiteDir ) and $GlobalSiteIni->SiteDir != "" )
     {
         // create a global page view object for statistics
         // and store the stats
@@ -180,7 +180,7 @@ $user =& eZUser::currentUser();
 $requireUserLogin =& $ini->read_var( "eZUserMain", "RequireUserLogin" );
 
 // Cookie auto login.
-if ( isSet( $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] ) and $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] != false )
+if ( isset( $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] ) and $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] != false )
 {
     if ( ( !$user ) && ( $ini->read_var( "eZUserMain", "AutoCookieLogin" ) == "enabled" ) )
     {
@@ -435,7 +435,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
         // print( $MainContents );
 
         // include framework
-        if ( isSet( $PrintableVersion ) and $PrintableVersion == "enabled" )
+        if ( isset( $PrintableVersion ) and $PrintableVersion == "enabled" )
         {
             include( "design/$siteDesign/simpleframe.php" );
         }

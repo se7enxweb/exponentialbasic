@@ -272,7 +272,7 @@ if ( is_a( $mediaType, "eZMediaType") )
     }
 }
 
-if ( count( $attributes ) > 0 || !isSet( $type ) )
+if ( count( $attributes ) > 0 || !isset( $type ) )
 {
     $t->parse( "attribute_list", "attribute_list_tpl" );
 }

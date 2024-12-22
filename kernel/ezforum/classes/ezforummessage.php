@@ -62,7 +62,7 @@ class eZForumMessage
     {
         $db =& eZDB::globalDatabase();
         $db->begin( );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             if ( $this->ParentID == 0 )
             { // new node
@@ -70,7 +70,8 @@ class eZForumMessage
                 $db->lock( "eZForum_Message" );
                 $nextID = $db->nextID( "eZForum_Message", "ID" );
 
-                $timeStamp =& eZDateTime::timeStamp( true );
+                $timeStamp = new eZDateTime();
+                $timeStamp = $timeStamp->timeStamp( true );
 
                 // find the biggest treeID
                 $db->array_query( $result, "SELECT TreeID FROM eZForum_Message ORDER BY TreeID DESC", array( "Limit" => 1 ) );
@@ -148,7 +149,8 @@ class eZForumMessage
                     $db->lock( "eZForum_Message" );
                     $nextID = $db->nextID( "eZForum_Message", "ID" );
 
-                    $timeStamp =& eZDateTime::timeStamp( true );
+                    $timeStamp = new eZDateTime();
+                    $timeStamp = $timeStamp->timeStamp( true );
 
                     $parentID = $result[0][$db->fieldName( "TreeID" )];
                     $this->TreeID =  $parentID;
@@ -270,7 +272,8 @@ class eZForumMessage
         $ret = false;
         if ( $id != "" )
         {
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp = new eZDateTime();
+            $timeStamp = $timeStamp->timeStamp( true );
 
             $db->array_query( $message_array, "SELECT *,
                              ( $timeStamp  - PostingTime ) AS Age
@@ -616,7 +619,7 @@ class eZForumMessage
     function userName()
     {
 
-        if ( isSet( $this->UserName ) )
+        if ( isset( $this->UserName ) )
             return $this->UserName;
         else
             return false;

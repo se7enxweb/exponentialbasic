@@ -24,7 +24,7 @@
 //
 
 // include_once( "classes/ezhttptool.php" );
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /calendar/typelist/" );
     exit();

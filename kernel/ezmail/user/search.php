@@ -59,7 +59,7 @@ $t->set_var( "mail_edit_item", "" );
 $t->set_var( "site_style", $SiteDesign );
 $t->set_var( "search_string", htmlspecialchars( $SearchText ) );
 
-if ( isSet( $Move ) )
+if ( isset( $Move ) )
 {
     $folder = new eZMailFolder( $FolderSelectID );
     foreach ( $MailArrayID as $mailitemID )

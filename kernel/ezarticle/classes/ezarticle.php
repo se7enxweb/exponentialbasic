@@ -133,7 +133,7 @@ class eZArticle
         else
             $stopDate = $this->StopDate;
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZArticle_Article" );
 
@@ -421,7 +421,7 @@ class eZArticle
     {
         $db =& eZDB::globalDatabase();
 
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $imageList =& $this->images();
             $fileList =& $this->files();
@@ -1977,21 +1977,21 @@ class eZArticle
         $photoSQL = "";
         $photoTables = "";
 
-        if ( isSet( $params["FromDate"] ) )
+        if ( isset( $params["FromDate"] ) )
         {
             $fromdate = $params["FromDate"];
             if( is_a( $fromdate, "eZDateTime" ) )
                 $fromdate = $fromdate->timeStamp();
             $dateSQL .= "AND eZArticle_Article.Published >= '$fromdate'";
         }
-        if ( isSet( $params["ToDate"] ) )
+        if ( isset( $params["ToDate"] ) )
         {
             $todate = $params["ToDate"];
             if( is_a( $todate, "eZDateTime" ) )
                 $todate = $todate->timeStamp();
             $dateSQL .= "AND eZArticle_Article.Published <= '$todate'";
         }
-        if ( isSet( $params["Categories"] ) )
+        if ( isset( $params["Categories"] ) )
         {
             $cats = $params["Categories"];
             $sql = "";
@@ -2009,7 +2009,7 @@ class eZArticle
                             AND eZArticle_Article.ID=eZArticle_ArticleCategoryLink.ArticleID";
             }
         }
-        if ( isSet( $params["Type"] ) )
+        if ( isset( $params["Type"] ) )
         {
             $type = $params["Type"];
             $typeSQL = "AND eZArticle_Attribute.TypeID='$type'
@@ -2017,12 +2017,12 @@ class eZArticle
                         AND eZArticle_AttributeValue.ArticleID=eZArticle_Article.ID";
             $typeTables = "eZArticle_Attribute, eZArticle_AttributeValue, ";
         }
-        if ( isSet( $params["AuthorID"] ) )
+        if ( isset( $params["AuthorID"] ) )
         {
             $author = $params["AuthorID"];
             $authorSQL = "AND eZArticle_Article.ContentsWriterID='$author'";
         }
-	if ( isSet( $params["SectionsList"] ) )
+	if ( isset( $params["SectionsList"] ) )
 	{
 	    $sectionsList = $params["SectionsList"];
 	    $sectionsArray = explode( ",", $sectionsList );
@@ -2036,7 +2036,7 @@ class eZArticle
 		$sectionsSQL .= " ) ";
             }
         }
-        if ( isSet( $params["PhotographerID"] ) )
+        if ( isset( $params["PhotographerID"] ) )
         {
             $photo = $params["PhotographerID"];
             $photoSQL = "AND eZImageCatalogue_Image.PhotographerID='$photo'

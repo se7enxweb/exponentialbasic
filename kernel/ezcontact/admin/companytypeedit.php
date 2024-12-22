@@ -221,7 +221,7 @@ if ( $Action == "edit" || $Action == "new" )
     $name = $type->name();
     $desc = $type->description();
     $parentid = $type->parentID();
-    if ( isSet( $NewParentID ) )
+    if ( isset( $NewParentID ) )
         $parentid = $NewParentID;
 
     $t->set_var( "current_id", $id );

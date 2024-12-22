@@ -48,7 +48,7 @@ $iniLanguage = new INIFile( "kernel/eztodo/user/intl/$Language/todolist.php.ini"
 // include_once( "eztodo/classes/ezstatus.php" );
 
 
-if ( isSet( $New ) )
+if ( isset( $New ) )
 {
     eZHTTPTool::header( "Location: /todo/todoedit/new" );
     exit();
@@ -62,7 +62,7 @@ if ( $user == false )
     exit();
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     if ( count( $DeleteArrayID ) > 0 )
     {
@@ -87,7 +87,7 @@ $CategoryID = eZHTTPTool::getVar( "CategoryTodoID" );
 $ShowButton = eZHTTPTool::getVar( "ShowButton" );
 $StatusID = eZHTTPTool::getVar( "StatusTodoID" );
 
-if ( isSet( $Show ) )
+if ( isset( $Show ) )
 {
     $GetByUserID = eZHTTPTool::getVar( "GetByUserID" );
     $session->setVariable( "TodoUser", $GetByUserID );
@@ -112,7 +112,7 @@ $t->set_block( "todo_item_tpl", "todo_is_public_tpl", "todo_is_public" );
 $t->set_block( "todo_item_tpl", "todo_is_not_public_tpl", "todo_is_not_public" );
 
 
-if ( isSet( $ShowButton ) )
+if ( isset( $ShowButton ) )
 {
     $session->setVariable( "TodoCategory", $CategoryID );
     $session->setVariable( "TodoStatus", $StatusID );
@@ -155,7 +155,7 @@ $userList = $user->getAll();
 
 foreach ( $userList as $userItem )
 {
-    if ( !isSet( $GetByUserID ) )
+    if ( !isset( $GetByUserID ) )
     {
         $GetByUserID = $currentUserID;
     }

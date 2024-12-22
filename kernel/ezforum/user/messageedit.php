@@ -32,7 +32,7 @@
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZForumMain", "Language" );
 
-if ( isSet( $EditButton ) )
+if ( isset( $EditButton ) )
 {
     $Action = "edit";
 }
@@ -419,7 +419,7 @@ switch ( $Action )
 
     case "edit":
     {
-        if ( !isSet( $StartAction ) )
+        if ( !isset( $StartAction ) )
         {
             $StartAction = "edit";
             $EndAction = "update";

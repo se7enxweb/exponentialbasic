@@ -82,7 +82,7 @@ else
         }
 }
 
-$t->set_var( "docroot", $DOCROOT );
+$t->set_var( "docroot", $_SERVER['DOCUMENT_ROOT'] );
 $t->set_var( "category_id", $CategoryID );
 
 $t->pparse( "output", "forum_page");

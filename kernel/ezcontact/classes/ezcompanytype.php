@@ -71,7 +71,7 @@ class eZCompanyType
         $ret = false;
         $name = $db->escapeString( $this->Name );
         $description = $db->escapeString( $this->Description );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZContact_CompanyType" );
 			$this->ID = $db->nextID( "eZContact_CompanyType", "ID" );

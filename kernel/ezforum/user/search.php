@@ -54,7 +54,7 @@ $t->set_block( "message_tpl", "new_icon_tpl", "new_icon" );
 $t->set_block( "message_tpl", "old_icon_tpl", "old_icon" );
 
 
-if ( !isSet( $Offset ) )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 $t->set_var( "url_text", "" );

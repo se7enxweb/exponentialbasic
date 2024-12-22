@@ -81,7 +81,7 @@ if ( !is_numeric( $Max ) )
 if ( !is_numeric( $Index ) )
     $Index = 0;
 
-if ( isSet( $Search ) && $SearchText != "" )
+if ( isset( $Search ) && $SearchText != "" )
 {
     $userList = $user->search( $SearchText, $OrderBy );
     $TotalTypes =  count( $userList );

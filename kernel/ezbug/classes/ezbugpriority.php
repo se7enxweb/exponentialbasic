@@ -74,7 +74,7 @@ class eZBugPriority
         $db =& eZDB::globalDatabase();
         $db->begin();
         $name = $db->escapeString( $this->Name );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZBug_Priority", "ID" );
             $this->ID = $db->nextID( "eZBug_Priority", "ID" );
@@ -103,7 +103,7 @@ class eZBugPriority
     {
         $db =& eZDB::globalDatabase();
         $db->begin();
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             // remove all bugs from the database that have this priority.
             $res[] = $db->query( "DELETE FROM eZBug_Bug WHERE PriorityID='$this->ID'" );

@@ -83,9 +83,9 @@ $t->set_var( "error_max_search_for_products", "" );
 // products
 $product = new eZProduct();
 
-if ( !isSet( $Limit ) )
+if ( !isset( $Limit ) )
     $Limit = 10;
-if ( !isSet( $Offset ) )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 

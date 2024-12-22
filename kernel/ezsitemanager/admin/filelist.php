@@ -32,17 +32,17 @@ if ( isset( $Delete ) )
 {
     foreach ( $FileDeleteArray as $file )
     {
-        if ( eZFile::file_exists( "ezsitemanager/staticfiles/$file" ) )
+        if ( eZFile::file_exists( "kernel/ezsitemanager/staticfiles/$file" ) )
         {
-            eZFile::unlink( "ezsitemanager/staticfiles/$file" );
+            eZFile::unlink( "kernel/ezsitemanager/staticfiles/$file" );
         }
     }
 
     foreach ( $ImageDeleteArray as $file )
     {
-        if ( eZFile::file_exists( "ezsitemanager/staticfiles/images/$file" ) )
+        if ( eZFile::file_exists( "kernel/ezsitemanager/staticfiles/images/$file" ) )
         {
-            eZFile::unlink( "ezsitemanager/staticfiles/images/$file" );
+            eZFile::unlink( "kernel/ezsitemanager/staticfiles/images/$file" );
         }
     }
 }
@@ -53,7 +53,7 @@ if ( isset( $Upload ) )
     $file = new eZFile();
     if ( $file->getUploadedFile( "userfile" ) == true )
     {
-        $file->copy( "ezsitemanager/staticfiles/" . $file->name() );
+        $file->copy( "kernel/ezsitemanager/staticfiles/" . $file->name() );
     }
 
     // upload image, if supplied
@@ -61,7 +61,7 @@ if ( isset( $Upload ) )
     
     if ( $image->getUploadedFile( "userimage" ) == true )
     {
-        $image->copy( "ezsitemanager/staticfiles/images/" . $image->name() );
+        $image->copy( "kernel/ezsitemanager/staticfiles/images/" . $image->name() );
     }
 }
 
@@ -83,7 +83,7 @@ $t->set_var( "image", "" );
 
 $t->set_var( "site_style", $SiteDesign );
 
-$dir = eZFile::dir( "ezsitemanager/staticfiles/" );
+$dir = eZFile::dir( "kernel/ezsitemanager/staticfiles/" );
 $ret = array();
 $i=0;
 
@@ -102,7 +102,7 @@ while ( $entry = $dir->read() )
     }
 }
 
-$dir = eZFile::dir( "ezsitemanager/staticfiles/images" );
+$dir = eZFile::dir( "kernel/ezsitemanager/staticfiles/images" );
 $ret = array();
 while ( $entry = $dir->read() )
 {

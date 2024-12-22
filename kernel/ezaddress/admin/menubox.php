@@ -30,6 +30,7 @@ $menuItems = array(
     array( "/address/addresstype/list/", "{intl-addresstypelist}" ),
     array( "/address/onlinetype/list/", "{intl-onlinetypelist}" ),
     array( "/address/country/list/", "{intl-countrylist}" ),
+    array( "/address/region/list/", "{intl-regionlist}" )
     );
 
 ?>

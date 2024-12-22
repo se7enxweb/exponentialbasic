@@ -53,7 +53,7 @@ else
 if ( isset( $GetByUser ) )
     $userID = $GetByUserID;
 
-if ( ( $session->variable( "ShowOtherCalendarUsers" ) == false ) || ( isSet( $GetByUser ) ) )
+if ( ( $session->variable( "ShowOtherCalendarUsers" ) == false ) || ( isset( $GetByUser ) ) )
 {
     $session->setVariable( "ShowOtherCalendarUsers", $userID );
 }

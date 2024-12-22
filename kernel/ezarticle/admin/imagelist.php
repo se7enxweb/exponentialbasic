@@ -61,7 +61,7 @@ $t->set_var( "article_name", $article->name() );
 
 $t->set_var( "site_style", $SiteDesign );
 
-if ( isSet( $AddImages ) )
+if ( isset( $AddImages ) )
 {
     if ( count( $ImageArrayID ) > 0 )
     {

@@ -39,7 +39,7 @@ $errorIni = new INIFIle( "kernel/ezpoll/admin/intl/" . $Language . "/polledit.ph
  
 require( "kernel/ezuser/admin/admincheck.php" );
 
-if ( isSet( $Back ) )
+if ( isset( $Back ) )
 {
     eZHTTPTool::header( "Location: /poll/pollist/" );
     exit();

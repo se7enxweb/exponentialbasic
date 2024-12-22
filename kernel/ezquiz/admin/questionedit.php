@@ -30,7 +30,7 @@
 // include_once( "ezquiz/classes/ezquizquestion.php" );
 
 $errorMessages = array();
-if ( isSet( $NewAlternative ) )
+if ( isset( $NewAlternative ) )
 {
     $question = new eZQuizQuestion( $QuestionID );
     $alternative = new eZQuizAlternative();
@@ -44,7 +44,7 @@ else
 }
 
 
-if ( isSet( $OK ) )
+if ( isset( $OK ) )
 {
     $question = new eZQuizQuestion( $QuestionID );
 
@@ -60,7 +60,7 @@ if ( isSet( $OK ) )
     $Action = "Update";
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     $question = new eZQuizQuestion( $QuestionID);
     $game =& $question->game();
@@ -69,7 +69,7 @@ if ( isSet( $Cancel ) )
     exit();
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     if ( count( $AlternativeDeleteArray ) > 0 )
     {
@@ -153,7 +153,7 @@ if ( isset( $Action ) && $Action == "Update" )
     }
 
 
-    if ( isSet( $OK ) )
+    if ( isset( $OK ) )
     {
         $game =& $question->game();
         $gameID = $game->id();

@@ -81,7 +81,7 @@ if ( isset( $DeleteSelected ) )
     exit();
 }
 
-if ( ( isset( $Action ) && $Action == "Refresh" ) || isSet( $DoCheckOut ) )
+if ( ( isset( $Action ) && $Action == "Refresh" ) || isset( $DoCheckOut ) )
 {
     $i = 0;
     $delete = false;
@@ -171,7 +171,7 @@ if ( ( isset( $Action ) && $Action == "Refresh" ) || isSet( $DoCheckOut ) )
 }
 
 // checkout
-if ( isSet( $DoCheckOut ) )
+if ( isset( $DoCheckOut ) )
 {
     eZHTTPTool::header( "Location: /trade/customerlogin/" );
     exit();

@@ -63,7 +63,7 @@ class eZBugLog
 
         $db->begin();
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZBug_Log" );
             $timestamp = eZDateTime::timeStamp( true );
@@ -99,7 +99,7 @@ class eZBugLog
         $db =& eZDB::globalDatabase();
         $db->begin();
 
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $res[] = $db->query( "DELETE FROM eZBug_Log WHERE ID='$this->ID'" );
         }

@@ -140,7 +140,7 @@ if ( $Action == "Update" )
                 $user->store();
 
 
-            if ( isSet( $RedirectURL )  && ( $RedirectURL != "" ) )
+            if ( isset( $RedirectURL )  && ( $RedirectURL != "" ) )
             {
                 eZHTTPTool::header( "Location: $RedirectURL" );
                 exit();
@@ -298,7 +298,3 @@ $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
 $t->pparse( "output", "user_edit_tpl" );
 
 ?>
-
-
-
-

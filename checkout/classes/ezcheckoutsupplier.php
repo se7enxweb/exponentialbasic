@@ -30,7 +30,7 @@
 /*!
   
 */
-include_once( "classes/INIFile.php" );
+// include_once( "classes/INIFile.php" );
 class eZCheckoutSupplier
 {
     /*!

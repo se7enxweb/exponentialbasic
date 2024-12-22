@@ -40,7 +40,7 @@ require( "kernel/ezuser/admin/admincheck.php" );
 
 $user =& eZUser::currentUser();
 
-if ( isSet( $DeleteGroups ) and isSet( $GroupArrayID ) )
+if ( isset( $DeleteGroups ) and isset( $GroupArrayID ) )
 {
     $hasRoot = $user->hasRootAccess();
     foreach ( $GroupArrayID as $groupid )
@@ -60,7 +60,7 @@ if ( isSet( $DeleteGroups ) and isSet( $GroupArrayID ) )
     exit();
 }
 
-if ( isSet( $Back ) )
+if ( isset( $Back ) )
 {
     eZHTTPTool::header( "Location: /user/grouplist/" );
     exit();
@@ -97,7 +97,7 @@ if ( $Action == "insert" )
 	    $group->setSessionTimeout( $SessionTimeout );
 	    $group->setGroupURL( $GroupURL );
 
-	    if ( isSet( $IsRoot ) && $user->hasRootAccess() )
+	    if ( isset( $IsRoot ) && $user->hasRootAccess() )
 		$group->setIsRoot( true );
 	    else
 		$group->setIsRoot( false );
@@ -165,7 +165,7 @@ if ( $Action == "update" )
 	$group->setDescription( $Description );
 	$group->setSessionTimeout( $SessionTimeout );
 
-	if ( isSet( $IsRoot ) && $user->hasRootAccess() )
+	if ( isset( $IsRoot ) && $user->hasRootAccess() )
 	    $group->setIsRoot( true );
 	else
 	    $group->setIsRoot( false );

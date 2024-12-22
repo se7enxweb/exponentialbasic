@@ -37,7 +37,7 @@ $Language = $ini->read_var( "eZArticleMain", "Language" );
 // include_once( "ezarticle/classes/ezarticlecategory.php" );
 // include_once( "ezarticle/classes/ezarticle.php" );
 
-if ( isSet( $DeleteSelected ) )
+if ( isset( $DeleteSelected ) )
     $Action = "Delete";
 
 if ( $Action == "Insert" )

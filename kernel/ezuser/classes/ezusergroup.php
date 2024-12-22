@@ -99,7 +99,7 @@ class eZUserGroup
         $name = $db->escapeString( $this->Name );
         $description = $db->escapeString( $this->Description );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZUser_Group" );
 
@@ -144,7 +144,7 @@ class eZUserGroup
         if ( !$id )
             $id = $this->ID;
 
-        if ( isSet( $id ) )
+        if ( isset( $id ) )
         {
             $db->query( "DELETE FROM eZUser_UserGroupLink WHERE GroupID='$id'" );
             $db->query( "DELETE FROM eZUser_GroupPermissionLink WHERE GroupID='$id'" );

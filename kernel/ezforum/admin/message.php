@@ -146,7 +146,7 @@ foreach ( $messages as $message )
 }
 
 $t->set_var( "message_id", $MessageID );
-if ( $GenerateStaticPage == "true" )
+if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
     $fp = eZFile::fopen( $cachedFile, "w+");
 

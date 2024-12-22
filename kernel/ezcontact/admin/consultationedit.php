@@ -56,7 +56,7 @@ function addZero( $value )
     return $ret;
 }
 
-if ( isSet( $new_consultation ) )
+if ( isset( $new_consultation ) )
 {
     unset( $new_consultation );
     // include_once( "classes/ezhttptool.php" );
@@ -84,16 +84,16 @@ if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) )
 // include_once( "classes/ezdatetime.php" );
 // include_once( "ezcontact/classes/ezconsultation.php" );
 
-if ( $Action == "delete" or isSet( $Delete ) )
+if ( $Action == "delete" or isset( $Delete ) )
 {
     unset( $person );
     unset( $company );
-    if ( isSet( $ConsultationList ) )
+    if ( isset( $ConsultationList ) )
     {
         foreach ( $ConsultationList as $consultation_id )
         {
             $consultation = new eZConsultation( $consultation_id );
-            if ( !isSet( $person ) and !isSet( $company ) )
+            if ( !isset( $person ) and !isset( $company ) )
             {
                 $person = $consultation->person( $user );
                 $company = $consultation->company( $user );
@@ -124,7 +124,7 @@ if ( $Action == "delete" or isSet( $Delete ) )
         }
     }
 
-    if ( isSet( $contact_type ) && isSet( $contact_id ) )
+    if ( isset( $contact_type ) && isset( $contact_id ) )
     {
         // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/consultation/$contact_type/list/$contact_id" );
@@ -195,18 +195,18 @@ $t->set_var( "consultant_type", "" );
 $t->set_var( "person_id_item", "" );
 $t->set_var( "company_id_item", "" );
 
-if ( isSet( $PersonID ) and !isSet( $PersonContact ) )
+if ( isset( $PersonID ) and !isset( $PersonContact ) )
     $PersonContact = $PersonID;
-if ( isSet( $CompanyID ) and !isSet( $CompanyContact ) )
+if ( isset( $CompanyID ) and !isset( $CompanyContact ) )
     $CompanyContact = $CompanyID;
 
-if ( isSet( $PersonID ) )
+if ( isset( $PersonID ) )
 {
     $t->set_var( "consultant_type", "person/" );
     $t->set_var( "person_id", $PersonID );
     $t->parse( "person_id_item", "person_id_item_tpl" );
 }
-else if ( isSet( $CompanyID ) )
+else if ( isset( $CompanyID ) )
 {
     $t->set_var( "consultant_type", "company/" );
     $t->set_var( "company_id", $CompanyID );
@@ -227,13 +227,13 @@ if ( $Action == "insert" || $Action == "update" )
     $t->set_var( "error_description_item", "" );
     $t->set_var( "error_email_notice_item", "" );
 
-    if ( isSet( $PersonContact ) && isSet( $CompanyContact ) )
+    if ( isset( $PersonContact ) && isset( $CompanyContact ) )
     {
         $t->parse( "error_company_person_item", "error_company_person_item_tpl" );
         $error = true;
     }
 
-    if ( !isSet( $PersonContact ) && !isSet( $CompanyContact ) )
+    if ( !isset( $PersonContact ) && !isset( $CompanyContact ) )
     {
         $t->parse( "error_no_company_person_item", "error_no_company_person_item_tpl" );
         $error = true;
@@ -315,14 +315,14 @@ if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
     $consultation->setEmail( $EmailNotice );
     $consultation->store();
 
-    if ( isSet( $CompanyContact ) )
+    if ( isset( $CompanyContact ) )
     {
         $contact_type = "company";
         $contact_id = $CompanyContact;
         $consultation->removeConsultationFromCompany( $CompanyContact, $user->id() );
         $consultation->addConsultationToCompany( $CompanyContact, $user->id() );
     }
-    else if ( isSet( $PersonContact ) )
+    else if ( isset( $PersonContact ) )
     {
         $contact_type = "person";
         $contact_id = $PersonContact;
@@ -341,13 +341,13 @@ if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
     $t->set_var( "consultation_id", $ConsultationID );
 
     $consult_id = $ConsultationID . "-" . $user->id();
-    if ( isSet( $CompanyContact ) )
+    if ( isset( $CompanyContact ) )
     {
         $company = new eZCompany( $CompanyContact );
         $consult_name = $company->name();
         $consult_id .= "-" . $CompanyContact;
     }
-    else if ( isSet( $PersonContact ) )
+    else if ( isset( $PersonContact ) )
     {
         $person = new eZPerson( $PersonContact );
         $consult_name = $person->name();
@@ -399,7 +399,7 @@ if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
         }
     }
 
-    if ( isSet( $contact_type ) && isSet( $contact_id ) )
+    if ( isset( $contact_type ) && isset( $contact_id ) )
     {
         // include_once( "classes/ezhttptool.php" );
         eZHTTPTool::header( "Location: /contact/consultation/$contact_type/list/$contact_id" );
@@ -426,13 +426,13 @@ if ( $Action == "new" )
         exit();
     }
 
-    if ( isSet( $CompanyID ) )
+    if ( isset( $CompanyID ) )
     {
         $t->set_var( "company_contact", $CompanyID );
         $t->parse( "hidden_company_contact_item", "hidden_company_contact_item_tpl" );
         $t->set_var( "hidden_person_contact_item", "" );
     }
-    else if ( isSet( $PersonID ) )
+    else if ( isset( $PersonID ) )
     {
         $t->set_var( "person_contact", $PersonID );
         $t->parse( "hidden_person_contact_item", "hidden_person_contact_item_tpl" );
@@ -727,7 +727,7 @@ if ( $Action == "formdata" )
 
     $status_id = $StatusID;
     $groups = $GroupNotice;
-    if ( !isSet( $groups ) )
+    if ( !isset( $groups ) )
         $groups = array();
 
     // Group list here
@@ -735,7 +735,7 @@ if ( $Action == "formdata" )
     $t->parse( "consultation_item", "consultation_item_tpl" );
 }
 
-if ( !( isSet( $CompanyID ) || isSet( $PersonID ) ) )
+if ( !( isset( $CompanyID ) || isset( $PersonID ) ) )
 {
     $company = new eZCompany();
     $companies = $company->getAll();
@@ -776,14 +776,14 @@ if ( !( isSet( $CompanyID ) || isSet( $PersonID ) ) )
 else
 {
     $t->set_var( "contact_item" );
-    if ( isSet( $CompanyID ) )
+    if ( isset( $CompanyID ) )
     {
         $t->parse( "company_contact_item", "company_contact_item_tpl" );
         $t->set_var( "person_contact_item", "" );
         $company = new eZCompany( $CompanyID );
         $t->set_var( "company_name", $company->name() );
     }
-    else if ( isSet( $PersonID ) )
+    else if ( isset( $PersonID ) )
     {
         $t->parse( "person_contact_item", "person_contact_item_tpl" );
         $t->set_var( "company_contact_item", "" );

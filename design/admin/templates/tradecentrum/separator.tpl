@@ -22,7 +22,7 @@
 
 		<a href="{www_dir}{index}/">
 		<!-- Ikon: Start -->
-		<img src="{www_dir}/ez{module_name}/admin/images/module_icon.gif" width="32" height="32" border="0" align="absmiddle" />
+		<img src="{www_dir}/kernel/ez{module_name}/admin/images/module_icon.gif" width="32" height="32" border="0" align="absmiddle" />
 		<!-- Ikon: Slutt -->
 		</a>
 
@@ -56,7 +56,3 @@
 	<table width="100%" cellpadding="4" cellspacing="0" border="0">
 	<tr>
 		<td>
-	
-
-
- 

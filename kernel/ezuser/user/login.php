@@ -39,13 +39,13 @@ $UserWithAddress = $ini->read_var( "eZUserMain", "UserWithAddress" );
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezsession/classes/ezsession.php" );
 
-if ( isSet( $Forgot ) )
+if ( isset( $Forgot ) )
 {
     eZHTTPTool::header( "Location: /user/forgot/" );
     exit();
 }
 
-if ( isSet( $Register ) )
+if ( isset( $Register ) )
 {
     if ( $UserWidthAddress == "enabled" )
     {
@@ -114,7 +114,7 @@ if ( $Action == "login" )
                     eZHTTPTool::header( "Location: " . $mainGroup->groupURL() );
                     exit();
                 }
-                else if ( isSet( $_REQUEST['RedirectURL'] ) )
+                else if ( isset( $_REQUEST['RedirectURL'] ) )
                 {
                     $stringTmp = preg_split( "/", $_REQUEST['RedirectURL'] );
                     

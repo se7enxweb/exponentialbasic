@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /trade/orderlist/" );
@@ -258,8 +258,16 @@ if ( $user )
     }
 }
 
-// fetch the order items
-$items = $order->items( $OrderType );
+if ( $Action == "edit" )
+{
+    // fetch the order items
+    $items = $order->items( $OrderType );
+}
+else
+{
+    $items =  $order->items();
+}
+
 $locale = new eZLocale( $Language );
 $currency = new eZCurrency();
 

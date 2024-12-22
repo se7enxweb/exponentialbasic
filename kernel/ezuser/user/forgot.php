@@ -39,7 +39,7 @@ if ( isset( $Login ) && $Login )
     $user = $getUser->getUser( $Login );
 }
 
-if ( isSet( $ChangeButton ) && ( $user == false ) )
+if ( isset( $ChangeButton ) && ( $user == false ) )
 {
     eZHTTPTool::header( "Location: /user/unsuccessfull/" );
     exit();

@@ -95,7 +95,7 @@ $ShowModuleLinker = $ini->read_var( "eZTradeMain", "ShowModuleLinker" ) == "true
 // must have to generate XML
 // include_once( "ezarticle/classes/ezarticlegenerator.php" );
 
-if ( isSet( $SubmitPrice ) )
+if ( isset( $SubmitPrice ) )
 {
     for ( $i = 0; $i < count( $ProductEditArrayID ); $i++ )
     {
@@ -107,7 +107,7 @@ if ( isSet( $SubmitPrice ) )
             deleteCache( $product, false, false, false );
         }
     }
-    if ( isSet( $Query ) )
+    if ( isset( $Query ) )
         eZHTTPTool::header( "Location: /trade/search/$Offset/$Query" );
     else
         eZHTTPTool::header( "Location: /trade/categorylist/parent/$CategoryID/$Offset" );
@@ -115,7 +115,7 @@ if ( isSet( $SubmitPrice ) )
     exit();
 }
 
-if ( isSet( $DeleteProducts ) )
+if ( isset( $DeleteProducts ) )
 {
     $Action = "DeleteProducts";
 }
@@ -331,13 +331,13 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         deleteCache( $ProductID, $CategoryID, $old_categories, $was_hotdeal or $product->isHotDeal() );
 
         // preview
-        if ( isSet( $Preview ) )
+        if ( isset( $Preview ) )
         {
             eZHTTPTool::header( "Location: /trade/productedit/productpreview/$productID/" );
             exit();
         }
 
-        if( isSet( $AddItem ) )
+        if( isset( $AddItem ) )
         {
             switch ( $ItemToAdd )
             {
@@ -451,7 +451,7 @@ if ( isset( $Action ) && $Action == "DeleteProducts" )
         }
     }
 
-    if ( isSet( $Query ) )
+    if ( isset( $Query ) )
         eZHTTPTool::header( "Location: /trade/search/$Offset/$Query" );
     else
         eZHTTPTool::header( "Location: /trade/categorylist/parent/$categoryID/$Offset" );

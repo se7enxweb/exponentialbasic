@@ -65,7 +65,7 @@ class eZVirtualFolder
         $db->begin();
         $name = $db->escapeString( $this->Name );
         $description = $db->escapeString( $this->Description );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZFileManager_Folder" );
             $nextID = $db->nextID( "eZFileManager_Folder", "ID" );

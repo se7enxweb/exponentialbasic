@@ -108,7 +108,7 @@ class eZBug
 
         $timeStamp = eZDateTime::timeStamp( true );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZBug_Bug" );
 			$this->ID = $db->nextID( "eZBug_Bug", "ID" );
@@ -176,7 +176,7 @@ class eZBug
     {
         $db =& eZDB::globalDatabase();
 
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db->begin();
             $res[] = $db->query( "DELETE FROM eZBug_BugModuleLink WHERE BugID='$this->ID'" );

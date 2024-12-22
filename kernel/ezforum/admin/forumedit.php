@@ -41,7 +41,7 @@ $error = new INIFIle( "kernel/ezforum/admin/intl/" . $Language . "/forumedit.php
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-if ( isSet( $DeleteForums ) )
+if ( isset( $DeleteForums ) )
 {
     $Action = "DeleteForums";
 }

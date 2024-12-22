@@ -72,7 +72,7 @@ if ( !( $Limit > 0 ) )
     $Limit = $ini->read_var( "eZImageCatalogueMain", "ListImagesPerPage" );
 
 
-if ( isSet( $Update ) )
+if ( isset( $Update ) )
 {
     for ( $i = 0; $i < count( $ImageArrayID ); $i++ )
     {

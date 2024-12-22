@@ -24,12 +24,12 @@
 //
 // include_once( "classes/ezhttptool.php" );
 
-if ( isSet( $DeleteAppointments ) )
+if ( isset( $DeleteAppointments ) )
 {
     $Action = "DeleteAppointment";
 }
 
-if ( isSet( $GoDay ) )
+if ( isset( $GoDay ) )
 {
     // include_once( "classes/ezdate.php" );
 
@@ -47,7 +47,7 @@ if ( isSet( $GoDay ) )
     eZHTTPTool::header( "Location: /calendar/dayview/$year/$month/$day" );
     exit();
 }
-else if ( isSet( $GoMonth ) )
+else if ( isset( $GoMonth ) )
 {
     $session =& eZSession::globalSession();
     $session->fetch();
@@ -58,7 +58,7 @@ else if ( isSet( $GoMonth ) )
     eZHTTPTool::header( "Location: /calendar/monthview/$year/$month" );
     exit();
 }
-else if ( isSet( $GoYear ) )
+else if ( isset( $GoYear ) )
 {
     $session =& eZSession::globalSession();
     $session->fetch();
@@ -68,7 +68,7 @@ else if ( isSet( $GoYear ) )
     eZHTTPTool::header( "Location: /calendar/yearview/$year" );
     exit();
 }
-else if ( isSet( $GoToday ) )
+else if ( isset( $GoToday ) )
 {
     $today = new eZDate();
 
@@ -104,7 +104,7 @@ $StartTimeError = false;
 $StopTimeError = false;
 $DateError = false;
 
-if ( isSet( $TrusteeUser ) )
+if ( isset( $TrusteeUser ) )
 {
     $trusteelist = array();
     foreach ( $TrusteeUser as $trusted )
@@ -126,7 +126,7 @@ elseif ( $Action == "New" || $Action == "Insert" )
 else
     $app = new eZAppointment( $AppointmentID );
 
-if ( isSet( $TrusteeUser ) && count( $TrusteeUser ) > 0 )
+if ( isset( $TrusteeUser ) && count( $TrusteeUser ) > 0 )
     $session->setVariable( "ShowOtherCalendarUsers", $TrusteeUser[0] );
 
 $t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
@@ -243,7 +243,7 @@ if ( $Action == "DeleteAppointment" )
 // the : can be replaced with any non number character
 if ( $Action == "Insert" || $Action == "Update" )
 {
-    if ( isSet( $Cancel ) )
+    if ( isset( $Cancel ) )
     {
         if ( is_numeric( $AppointmentID ) )
         {
@@ -269,7 +269,7 @@ if ( $Action == "Insert" || $Action == "Update" )
         $DateError = true;
     }
 
-    if ( !isSet( $trusteelist ) )
+    if ( !isset( $trusteelist ) )
     {
         $trusteelist = array();
         foreach ( $TrusteeUser as $trusted )
@@ -277,7 +277,7 @@ if ( $Action == "Insert" || $Action == "Update" )
             $trusteelist[] = new eZUser( $trusted );
         }
     }
-    if ( !isSet( $user ) )
+    if ( !isset( $user ) )
         $user =& eZUser::currentUser();
 
     foreach ( $trusteelist as $trusteduser )
@@ -672,7 +672,7 @@ if ( $Action == "New" )
     $t->set_var( "appointment_id", "new" );
     
 
-    if ( isSet( $ChangeView ) )
+    if ( isset( $ChangeView ) )
     {
         $t->set_var( "name_value", $Name );
         $t->set_var( "description_value", $Description );

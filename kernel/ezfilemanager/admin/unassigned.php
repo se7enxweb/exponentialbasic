@@ -55,7 +55,7 @@ $t->set_block( "unassigned_page_tpl", "file_list_tpl", "file_list" );
 $t->set_block( "file_list_tpl", "file_tpl", "file" );
 $t->set_var( "read", "" );
 
-if ( isSet( $Update ) )
+if ( isset( $Update ) )
 {
     for ( $i = 0; $i < count( $FileArrayID ); $i++ )
     {

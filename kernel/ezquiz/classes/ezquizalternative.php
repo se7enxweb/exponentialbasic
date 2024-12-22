@@ -76,7 +76,7 @@ class eZQuizAlternative
         $questionID = $this->Question->id();
 
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZQuiz_Alternative" );
             $this->ID = $db->nextID( "eZQuiz_Alternative", "ID" );

@@ -75,7 +75,7 @@ class eZAddress
         $street2 = $db->escapeString( $this->Street2 );
         $name = $db->escapeString( $this->Name );
         $place = $db->escapeString( $this->Place );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZAddress_Address" );
 			$this->ID = $db->nextID( "eZAddress_Address", "ID" );

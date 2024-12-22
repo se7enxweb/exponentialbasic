@@ -136,7 +136,7 @@ if ( $Action == "Update" )
 
 
 /* bug is now allways saved... lets check what the user really wanted to do..*/
-if ( isSet( $Ok ) ) // here check for errors. and display them if nescacary
+if ( isset( $Ok ) ) // here check for errors. and display them if nescacary
 {
     $user =& eZUser::currentUser();
     if ( ( $Name != "" ) && ( $Description != "" ) )
@@ -172,21 +172,21 @@ else{
     $BugID = 0;
 }
 
-if ( isSet( $InsertFile ) )
+if ( isset( $InsertFile ) )
 {
     $session->setVariable( "CurrentBugEdit", $BugID );
     eZHTTPTool::header( "Location: /bug/report/fileedit/new/" . $BugID . "/" );
     exit();
 }
 
-if ( isSet( $InsertImage ) )
+if ( isset( $InsertImage ) )
 {
     $session->setVariable( "CurrentBugEdit", $BugID );
     eZHTTPTool::header( "Location: /bug/report/imageedit/new/" . $BugID . "/" );
     exit();
 }
 
-if ( isSet( $DeleteSelected ) )
+if ( isset( $DeleteSelected ) )
 {
     if ( count( $ImageArrayID ) > 0 )
     {

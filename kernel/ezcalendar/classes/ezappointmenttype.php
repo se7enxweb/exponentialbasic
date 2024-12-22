@@ -64,7 +64,7 @@ class eZAppointmentType
         $db =& eZDB::globalDatabase();
         $db->begin();
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZCalendar_AppointmentType" );
             $this->ID = $db->nextID( "eZCalendar_AppointmentType", "ID" );
@@ -95,7 +95,7 @@ class eZAppointmentType
     {
         $db =& eZDB::globalDatabase();
         $db->begin();
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $res[] = $db->query( "DELETE FROM eZCalendar_AppointmentType WHERE ID='$this->ID'" );
         }

@@ -53,7 +53,7 @@ class eZLinkAttribute
         $db->begin();
         $db->lock( "eZLink_Attribute" );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->array_query( $attribute_array, "SELECT Placement FROM eZLink_Attribute" );
 
@@ -348,4 +348,3 @@ class eZLinkAttribute
 }
 
 ?>
-

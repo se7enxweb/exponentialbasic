@@ -72,16 +72,16 @@ else
     $back_command = $HTTP_REFERER;
 }
 
-if ( !isSet( $typelist ) )
+if ( !isset( $typelist ) )
     $typelist = "typelist.tpl";
 
-if ( isSet( $template_array ) and isSet( $variable_array ) and
+if ( isset( $template_array ) and isset( $variable_array ) and
      is_array( $template_array ) and is_array( $variable_array ) )
 {
     $standard_array = array( "list_page" => $typelist );
     $t->set_file( array_merge( $standard_array, $template_array ) );
     $t->set_file_block( $template_array );
-    if ( isSet( $block_array ) and is_array( $block_array ) )
+    if ( isset( $block_array ) and is_array( $block_array ) )
         $t->set_block( $block_array );
     $t->parse( $variable_array );
 }
@@ -136,7 +136,7 @@ $t->set_var( "type", $ListType );
 $t->set_var( "search_form_text", isset( $SearchText ) ? $SearchText : false );
 $t->set_var( "search_text", isset( $search_encoded ) ? $search_encoded : false );
 
-if ( isSet( $Searchable ) )
+if ( isset( $Searchable ) )
     $t->parse( "search_item", "search_item_tpl" );    
 
 $count = count( $item_type_array );
@@ -159,7 +159,7 @@ foreach ( $item_type_array as $item )
     else
         $t->set_var( "bg_color", "bgdark" );
 
-    if ( isSet( $func_call ) and is_array( $func_call ) )
+    if ( isset( $func_call ) and is_array( $func_call ) )
     {
         reset( $func_call );
         while( list( $key,$val ) = each( $func_call ) )
@@ -173,7 +173,7 @@ foreach ( $item_type_array as $item )
         $t->set_var( "item_name", $item->name() );
     }
 
-    if ( isSet( $SortPage ) )
+    if ( isset( $SortPage ) )
     {
         $t->set_var( "item_sort_command", $SortPage );
         $t->parse( "item_linked", "item_linked_tpl" );
@@ -183,7 +183,7 @@ foreach ( $item_type_array as $item )
         $t->parse( "item_plain", "item_plain_tpl" );
     }
 
-    if ( $i > 0 && isSet( $move_item ) )
+    if ( $i > 0 && isset( $move_item ) )
     {
         $t->parse( "item_move_up", "item_move_up_tpl" );
     }
@@ -192,7 +192,7 @@ foreach ( $item_type_array as $item )
         $t->parse( "no_item_move_up", "no_item_move_up_tpl" );
     }
 
-    if ( $i > 0 && $i < $count - 1 && isSet( $move_item ) )
+    if ( $i > 0 && $i < $count - 1 && isset( $move_item ) )
     {
         $t->parse( "item_separator", "item_separator_tpl" );
     }
@@ -201,7 +201,7 @@ foreach ( $item_type_array as $item )
         $t->parse( "no_item_separator", "no_item_separator_tpl" );
     }
 
-    if ( $i < $count - 1 && isSet( $move_item ) )
+    if ( $i < $count - 1 && isset( $move_item ) )
     {
         $t->parse( "item_move_down", "item_move_down_tpl" );
     }

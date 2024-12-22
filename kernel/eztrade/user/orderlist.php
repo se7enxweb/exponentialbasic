@@ -58,9 +58,9 @@ $t->set_var( "site_style", $SiteDesign );
 
 $t->set_var( "query_string", isset( $QueryText ) ? $QueryText : '' );
 
-if ( !isSet( $OrderBy ) )
+if ( !isset( $OrderBy ) )
     $OrderBy = "Date";
-if ( !isSet( $Limit ) )
+if ( !isset( $Limit ) )
     $Limit = 20;
 
 $t->set_var( "current_offset", $Offset );

@@ -58,7 +58,7 @@ if ( $Action == "Edit" ) {
         $CurrentCategoryID = $CategoryID;
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /mediacatalogue/media/list/" );
     exit();
@@ -267,7 +267,7 @@ if ( $Action == "Delete" && $error == false )
 }
 
 // Delete the selected categories.
-if ( isSet( $DeleteMedia ) && $error == false )
+if ( isset( $DeleteMedia ) && $error == false )
 {
     if ( count ( $MediaArrayID ) > 0 )
     {

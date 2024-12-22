@@ -37,7 +37,7 @@
 // include_once( "classes/ezdb.php" );
 // include_once( "classes/ezfile.php" );
 
-class eZVirtualfile
+class eZVirtualFile
 {
     /*!
       Constructs a new eZVirtualfile object.
@@ -63,7 +63,7 @@ class eZVirtualfile
         $filename = $db->escapeString( $this->FileName );
         $originalfilename = $db->escapeString( $this->OriginalFileName );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZFileManager_File" );
             $nextID = $db->nextID( "eZFileManager_File", "ID" );
@@ -106,7 +106,7 @@ class eZVirtualfile
         // Delete from the database
         $db =& eZDB::globalDatabase();
 
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db->begin();
 
@@ -393,7 +393,7 @@ class eZVirtualfile
     {
         if ( $relative == true )
         {
-            $path = "ezfilemanager/files/" . $this->FileName;
+            $path = "kernel/ezfilemanager/files/" . $this->FileName;
         }
         else
         {
@@ -494,7 +494,7 @@ class eZVirtualfile
             // the path to the catalogue
 
             // Copy the file since we support it directly
-            $file->copy( "ezfilemanager/files/" . basename( $file->tmpName() ) . $postfix );
+            $file->copy( "kernel/ezfilemanager/files/" . basename( $file->tmpName() ) . $postfix );
 
             $this->FileName = basename( $file->tmpName() ) . $postfix;
 

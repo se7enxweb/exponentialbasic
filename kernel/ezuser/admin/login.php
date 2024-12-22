@@ -81,7 +81,7 @@ if ( $Action == "login" )
                 eZLog::writeNotice( "Admin login: $Username from IP: $remoteAddress" );
 
                 eZUser::loginUser( $user );
-                if ( !isSet( $RefererURL ) )
+                if ( !isset( $RefererURL ) )
                     $RefererURL = "/";
                 
                 // Show password change dialog, if admin is using default login
@@ -152,4 +152,3 @@ else
 
 $t->set_var( "action_value", "login" );
 $t->pparse( "output", "login_tpl" );
-

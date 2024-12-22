@@ -70,7 +70,7 @@ class eZForum
         $name = $db->escapeString( $this->Name );
         $description = $db->escapeString( $this->Description );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZForum_Forum" );
             $nextID = $db->nextID( "eZForum_Forum", "ID" );
@@ -431,7 +431,7 @@ class eZForum
     {
        $db =& eZDB::globalDatabase();
 
-       if ( !isSet( $showUnApproved ) || !$showUnApproved )
+       if ( !isset( $showUnApproved ) || !$showUnApproved )
            $showUnApproved = " AND IsApproved='1' ";
        else
            $showUnApproved = " AND IsApproved='0' ";

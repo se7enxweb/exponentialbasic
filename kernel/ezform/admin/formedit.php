@@ -34,7 +34,7 @@
 
 $ini =& INIFile::globalINI();
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /form/form/list/" );
     exit();
@@ -61,7 +61,7 @@ if ( isset( $Action ) && $Action == "down" )
 }
 
 
-if ( isSet( $DeleteSelected ) )
+if ( isset( $DeleteSelected ) )
 {
     foreach ( $elementDelete as $deleteMe )
     {
@@ -72,18 +72,18 @@ if ( isSet( $DeleteSelected ) )
 
 $errorMessages = array();
 
-if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement ) )
+if ( isset( $OK ) || isset( $Update ) || isset( $Preview ) || isset( $NewElement ) )
 {
     if ( empty( $formSender ) )
     {
-        if ( isSet( $formSendAsUser ) == false )
+        if ( isset( $formSendAsUser ) == false )
         {
             $errorMessages[] = "form_must_have_sender";
         }
     }
     else
     {
-        if ( isSet( $formSendAsUser ) )
+        if ( isset( $formSendAsUser ) )
         {
             $errorMessages[] = "form_cant_have_both";
         }
@@ -126,7 +126,7 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
         }
     }
 
-    if ( count( $errorMessages ) == 0 || isSet( $NewElement ) || isSet( $Update ) )
+    if ( count( $errorMessages ) == 0 || isset( $NewElement ) || isset( $Update ) )
     {
         $form->setName( $formName );
         $form->setReceiver( $formReceiver );
@@ -135,7 +135,7 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
         $form->setInstructionPage( $formInstructionPage );
         $form->setSender( $formSender );
         
-        if ( isSet( $formSendAsUser ) )
+        if ( isset( $formSendAsUser ) )
         {
             $form->setSendAsUser( true );
         }
@@ -150,7 +150,7 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
         $existingElementCount = $form->numberOfElements();
         $existingElementCount++;
         
-        if ( isSet( $NewElement ) )
+        if ( isset( $NewElement ) )
         {
             $newElementName =& $ini->read_var( "eZFormMain", "DefaultElementName" );
             $newElementName = $newElementName . " " . $existingElementCount;
@@ -158,18 +158,19 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
             $element->setName( $newElementName );
             $element->store();
         }
-        
-        if ( isSet( $element ) )
+
+        if ( isset( $element ) )
         {
             $form->addElement( $element );
         }
+
         if( isset( $elementID ) )
             $elementCount = count( $elementID );
         else
             $elementCount = false;
 
         $elementTypeError = false;
-        
+
         for ( $i = 0; $i < $elementCount; $i++ )
         {
             $element = new eZFormElement( $elementID[$i] );
@@ -221,13 +222,15 @@ if ( isSet( $OK ) || isSet( $Update ) || isSet( $Preview ) || isSet( $NewElement
             $element->store();
         }
 
-        if ( isSet( $OK ) && count( $errorMessages ) == 0 )
+        $form->store();
+
+        if ( isset( $OK ) && count( $errorMessages ) == 0 )
         {
             eZHTTPTool::header( "Location: /form/form/list/" );
             exit();
         }
 
-        if ( isSet( $Preview ) && count( $errorMessages ) == 0 )
+        if ( isset( $Preview ) && count( $errorMessages ) == 0 )
         {
             eZHTTPTool::header( "Location: /form/form/preview/$FormID/" );
             exit();
@@ -297,7 +300,7 @@ else
     }
 }
 
-if ( isset( $Action ) && $Action != "new" && $form->numberOfTypes() == 0 && !isSet( $NewElement ) && !isSet( $DeleteSelected ) )
+if ( isset( $Action ) && $Action != "new" && $form->numberOfTypes() == 0 && !isset( $NewElement ) && !isset( $DeleteSelected ) )
 {
     $t->parse( "no_types_item", "no_types_item_tpl" );
 }
@@ -327,7 +330,7 @@ if ( $form->numberOfElements() == 0 )
     }
     else
     {
-        if ( isset( $Action ) && $Action != "new" && !isSet( $NewElement ) && !isSet( $DeleteSelected ) )
+        if ( isset( $Action ) && $Action != "new" && !isset( $NewElement ) && !isset( $DeleteSelected ) )
             $t->parse( "no_elements_item", "no_elements_item_tpl" );
     }
 }
@@ -388,21 +391,22 @@ if ( $count > 0 )
         }
 
         $currentType = $element->elementType();
+
         if( !is_null( $currentType  ) )
             $types = $currentType->getAll();
         else
-            $types = array();
+            $types = eZFormElementType::getAll();
 
         $t->set_var( "fixed_values", "" );
         $t->set_var( "size", "" );
         $t->set_var( "typelist_item", "" );
-                    $t->set_var( "break", "" );
+        $t->set_var( "break", "" );
 
         foreach ( $types as $type )
         {
             $t->set_var( "selected", "" );
 
-            if ( $type->id() == $currentType->id() )
+            if ( !is_null( $currentType ) && $type->id() == $currentType->id() )
             {
                 $name = $currentType->name();
                 if ( $name == "multiple_select_item" ||
@@ -439,17 +443,17 @@ if ( $count > 0 )
         $t->set_var( "item_separator", "" );
         $t->set_var( "no_item_separator", "" );
 
-        if ( isSet( $move_item ) )
+        if ( isset( $move_item ) )
         {
             $t->parse( "item_move_up", "item_move_up_tpl" );
         }
         
-        if ( isSet( $move_item ) )
+        if ( isset( $move_item ) )
         {
             $t->parse( "item_separator", "item_separator_tpl" );
         }
         
-        if ( isSet( $move_item ) )
+        if ( isset( $move_item ) )
         {
             $t->parse( "item_move_down", "item_move_down_tpl" );
         }
@@ -461,7 +465,7 @@ if ( $count > 0 )
     $t->parse( "element_list", "element_list_tpl" );
 }
 
-if ( count( $errorMessages ) > 0 && !isSet( $NewElement ) && !isSet( $DeleteSelected ) )
+if ( count( $errorMessages ) > 0 && !isset( $NewElement ) && !isset( $DeleteSelected ) )
 {
     foreach ( $errorMessages as $errorMessage )
     {
@@ -476,7 +480,7 @@ if ( count( $errorMessages ) > 0 && !isSet( $NewElement ) && !isSet( $DeleteSele
     $t->set_var( "form_completed_page", $formCompletedPage );
     $t->set_var( "form_sender", $formSender );
     
-    if ( isSet( $formSendAsUser ) )
+    if ( isset( $formSendAsUser ) )
     {
         $t->set_var( "checked", "checked" );
     }

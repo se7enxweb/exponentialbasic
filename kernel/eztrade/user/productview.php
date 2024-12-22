@@ -107,9 +107,9 @@ $sectionObject->setOverrideVariables();
 
 $user =& eZUser::currentUser();
 
-if ( !isSet( $IntlDir ) )
+if ( !isset( $IntlDir ) )
     $IntlDir = "kernel/eztrade/user/intl";
-if ( !isSet( $IniFile ) )
+if ( !isset( $IniFile ) )
     $IniFile = "productview.php";
 
 $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
@@ -117,17 +117,17 @@ $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "Te
 
 $t->setAllStrings();
 
-if ( !isSet( $productview ) )
+if ( !isset( $productview ) )
     $productview = "productview.tpl";
 
-if ( isSet( $template_array ) and isSet( $variable_array ) and
+if ( isset( $template_array ) and isset( $variable_array ) and
      is_array( $template_array ) and is_array( $variable_array ) )
 {
     $standard_array = array( "product_view_tpl" => $productview );
     $temp_arr = array_merge( $standard_array, $template_array );
     $t->set_file( $temp_arr );
     $t->set_file_block( $template_array );
-    if ( isSet( $block_array ) and is_array( $block_array ) )
+    if ( isset( $block_array ) and is_array( $block_array ) )
         $t->set_block( $block_array );
     $t->parse( $variable_array );
 }
@@ -193,13 +193,13 @@ $t->set_block( "product_view_tpl", "section_item_tpl", "section_item" );
 
 $t->set_block( "section_item_tpl", "link_item_tpl", "link_item" );
 
-if ( !isSet( $ModuleName ) )
+if ( !isset( $ModuleName ) )
     $ModuleName = "trade";
-if ( !isSet( $ModuleList ) )
+if ( !isset( $ModuleList ) )
     $ModuleList = "productlist";
-if ( !isSet( $ModuleView ) )
+if ( !isset( $ModuleView ) )
     $ModuleView = "productview";
-if ( !isSet( $ModulePrint ) )
+if ( !isset( $ModulePrint ) )
     $ModulePrint = "productprint";
 
 $t->set_var( "module", $ModuleName );
@@ -737,7 +737,7 @@ else
     $t->set_var( "numbered_page_link", "" );
 }
 
-if ( isSet( $func_array ) and is_array( $func_array ) )
+if ( isset( $func_array ) and is_array( $func_array ) )
 {
     foreach ( $func_array as $func )
     {

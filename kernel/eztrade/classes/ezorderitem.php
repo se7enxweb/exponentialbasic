@@ -68,7 +68,7 @@ class eZOrderItem
     {
         $db =& eZDB::globalDatabase();
         $db->begin();
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
 
             $db->lock( "eZTrade_OrderItem" );

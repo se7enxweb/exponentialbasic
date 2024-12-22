@@ -38,7 +38,7 @@ if ( $MailID != 0 && !eZMail::isOwner( eZUser::currentUser(), $MailID ) )
     exit();
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     if ( $MailID != 0 )
     {
@@ -54,20 +54,20 @@ if ( isSet( $Cancel ) )
     exit();
 }
 
-if ( isSet( $ToButton ) )
+if ( isset( $ToButton ) )
 {
     eZHTTPTool::header( "Location: /contact/person/list" );
     exit();
 }
 
-if ( isSet( $AddAttachment ) )
+if ( isset( $AddAttachment ) )
 {
     $MailID = save_mail();
     eZHTTPTool::header( "Location: /mail/fileedit/$MailID" );
     exit();
 }
 
-if ( isSet( $DeleteAttachments ) && count( $AttachmentArrayID ) > 0 )
+if ( isset( $DeleteAttachments ) && count( $AttachmentArrayID ) > 0 )
 {
     foreach ( $AttachmentArrayID as $attachmentID )
     {
@@ -77,10 +77,10 @@ if ( isSet( $DeleteAttachments ) && count( $AttachmentArrayID ) > 0 )
     }
 }
 
-if ( isSet( $Save ) )
+if ( isset( $Save ) )
 {
     $MailID = save_mail();
-    if ( isSet( $IDList ) )
+    if ( isset( $IDList ) )
     {
         $id_array = split( ";", $IDList );
         foreach ( $id_array as $idItem )
@@ -95,17 +95,17 @@ if ( isSet( $Save ) )
     $drafts->addMail( $mail );
 }
 
-if ( isSet( $Preview ) )
+if ( isset( $Preview ) )
 {
     $MailID = save_mail();
     eZHTTPTool::header( "Location: /mail/view/$MailID" );
     exit();
 }
 
-if ( isSet( $Send ) )
+if ( isset( $Send ) )
 {
     $MailID = save_mail();
-    if ( isSet( $IDList ) )
+    if ( isset( $IDList ) )
     {
         $id_array = split( ";", $IDList );
         foreach ( $id_array as $idItem )
@@ -134,9 +134,9 @@ if ( isSet( $Send ) )
     }
 }
 
-if ( isSet( $CcButton ) )
+if ( isset( $CcButton ) )
     $showcc = true;
-if ( isSet( $BccButton ) )
+if ( isset( $BccButton ) )
     $showbcc = true;
 
 $ini =& INIFile::globalINI();
@@ -294,15 +294,15 @@ else if ( $MailID == 0 && ( isset( $showcc ) && $showcc || isset( $showbcc) && $
 }
 
 // check if we have any errors... if yes. show them to the user
-if ( isSet( $error ) )
+if ( isset( $error ) )
 {
     $t->set_var( "mail_error_message", $languageIni->read_var( "strings", "address_error" ) );
     $t->parse( "error_message", "error_message_tpl", true );
 }
 
-if ( isSet( $showcc ) )
+if ( isset( $showcc ) )
         $t->parse( "cc_single", "cc_single_tpl", false );
-if ( isSet( $showbcc ) )
+if ( isset( $showbcc ) )
         $t->parse( "bcc_single", "bcc_single_tpl", false );
 
 $t->pparse( "output", "mail_edit_page_tpl" );

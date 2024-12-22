@@ -70,7 +70,7 @@ class eZPhoneType
         $db =& eZDB::globalDatabase();
         $db->begin();
         $name = $db->escapeString( $this->Name );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->query_single( $qry, "SELECT ListOrder FROM eZAddress_PhoneType ORDER BY ListOrder DESC", array( "Limit" => "1" ) );
             $listorder = $qry[ $db->fieldName( "ListOrder" ) ] + 1;

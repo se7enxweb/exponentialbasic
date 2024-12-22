@@ -121,9 +121,10 @@ class eZRegion
     /*!
       Returns the total number of regions
     */
-    function &getAllCount( $search = "" )
+    static public function &getAllCount( $search = "" )
     {
         $db =& eZDB::globalDatabase();
+        $search_arg = "";
 
         if ( !empty( $search ) )
         {
@@ -141,12 +142,14 @@ class eZRegion
     /*!
       Returns every region as a eZRegion object
     */
-    function &getAll( $as_object = true, $search = "", $offset = 0, $max = -1 )
+    static public function &getAll( $as_object = true, $search = "", $offset = 0, $max = -1 )
     {
         $db =& eZDB::globalDatabase();
 
         $region_array = 0;
         $return_array = array();
+        $limit = "";
+        $search_arg = "";
     
         if ( $max >= 0 && is_numeric( $offset ) && is_numeric( $max ) )
         {
@@ -192,7 +195,7 @@ class eZRegion
     /*!
       Returns every region as an array. This function is faster then the one above.
     */
-    function &getAllArray( )
+    static public function &getAllArray( )
     {
         $db =& eZDB::globalDatabase();
         $region_array = 0;
@@ -231,7 +234,7 @@ class eZRegion
     }    
     
 
-    function &getCountryArray( $RequestedCountry=240 )
+    static public function &getCountryArray( $RequestedCountry=240 )
     {
         $db =& eZDB::globalDatabase();
         $region_array = 0;

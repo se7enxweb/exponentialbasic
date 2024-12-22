@@ -112,7 +112,7 @@ class eZUser
         $signature = $db->escapeString( $this->Signature );
         $login = $db->escapeString( $this->Login );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZUser_User" );
 
@@ -170,7 +170,7 @@ class eZUser
                                  WHERE ID='$this->ID'" );
 
             // update password if set.
-            if ( isSet( $this->Password ) )
+            if ( isset( $this->Password ) )
             {
                 // backwards compatible passwords
                 if ( $db->isA() == "mysql" )
@@ -208,7 +208,7 @@ class eZUser
     {
         $db =& eZDB::globalDatabase();
 
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db->query( "DELETE FROM eZUser_UserGroupLink WHERE UserID='$this->ID'" );
             $db->query( "DELETE FROM eZUser_UserAddressLink WHERE UserID='$this->ID'" );
@@ -456,7 +456,7 @@ class eZUser
     */
     function id()
     {
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
             return $this->ID;
     }
 
@@ -473,7 +473,7 @@ class eZUser
     */
     function login( $html = true )
     {
-        if ( $html )
+        if ( $this->Login != null && $html )
             return htmlspecialchars( $this->Login );
         else
             return $this->Login;
@@ -1205,7 +1205,7 @@ class eZUser
     */
     function timeoutValue()
     {
-        if ( isSet( $this->StoredTimeout ) && is_numeric( $this->StoredTimeout ) )
+        if ( isset( $this->StoredTimeout ) && is_numeric( $this->StoredTimeout ) )
             return $this->StoredTimeout;
 
         $ret = 30;

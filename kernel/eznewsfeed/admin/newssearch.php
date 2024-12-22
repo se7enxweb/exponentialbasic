@@ -53,12 +53,12 @@ $t->set_block( "news_search_page_tpl", "next_tpl", "next" );
 
 $news = new eZNews();
 
-if ( !isSet( $Limit ) )
+if ( !isset( $Limit ) )
     $Limit = 20;
-if ( !isSet( $Offset ) )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
-if ( isSet( $URLQueryString ) )
+if ( isset( $URLQueryString ) )
 {
     $SearchText = urldecode( $URLQueryString );
 }

@@ -147,7 +147,7 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) && ( $user ) )
     $section->setDescription( $Description );
     $section->store();
 
-    if ( isSet ( $Store )  || isSet( $OK ) )
+    if ( isSet ( $Store )  || isset( $OK ) )
     {
         $i=0;
         foreach( $RowArrayID as $RowID )

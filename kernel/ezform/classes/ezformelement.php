@@ -53,7 +53,6 @@ class eZFormElement
         $this->Required = 0;
         $this->Size = 0;
         $this->Break = 0;
-        $this->ID = $id;
 
         if ( is_array( $id ) )
         {
@@ -83,32 +82,35 @@ class eZFormElement
             $elementTypeID = $this->ElementType->id();
         }
         else {
-            $elementTypeID = false;
+            $elementTypeID = 0;
         }
 
         if ( empty( $this->ID ) )
         {
             $db->lock( "eZForm_FormElement" );
             $nextID = $db->nextID( "eZForm_FormElement", "ID" );
-            $res[] = $db->query( "INSERT INTO eZForm_FormElement
+            $query = "INSERT INTO eZForm_FormElement
                          ( ID, Name, Required, Size, Break, ElementTypeID )
                          VALUES
-                         ( '$nextID', '$name', '$required', '$size', '$this->Break', '$elementTypeID' )" );
+                         ( '$nextID', '$name', '$required', '$size', '$this->Break', '$elementTypeID' )";
 
+
+            $res[] = $db->query( $query );
 			$this->ID = $nextID;
-
-
         }
         elseif ( is_numeric( $this->ID ) )
         {
-            $res[] = $db->query( "UPDATE eZForm_FormElement SET
+            $query = "UPDATE eZForm_FormElement SET
                                     Name='$name',
                                     Required='$required',
                                     Size='$size',
                                     Break='$this->Break',
                                     ElementTypeID='$elementTypeID'
-                                  WHERE ID='$this->ID'" );
+                                  WHERE ID='$this->ID'";
+
+            $res[] = $db->query( $query );
         }
+
 
         eZDB::finish( $res, $db );
         return true;
@@ -134,8 +136,11 @@ class eZFormElement
         $db =& eZDB::globalDatabase();
         $db->begin();
 
-        $res[] = $db->query( "DELETE FROM eZForm_FormElementDict WHERE ElementID='$elementID'" );
-        $res[] = $db->query( "DELETE FROM eZForm_FormElement WHERE ID='$elementID'" );
+        $deleteFormElementQuery = "DELETE FROM eZForm_FormElement WHERE ID='$elementID'";
+        $deleteFormElementDictQuery = "DELETE FROM eZForm_FormElementDict WHERE ElementID='$elementID'";
+
+        $res[] = $db->query( $deleteFormElementDictQuery );
+        $res[] = $db->query( $deleteFormElementQuery );
 
         eZDB::finish( $res, $db );
     }

@@ -29,14 +29,14 @@
 // include_once( "ezcontact/classes/ezcompanytype.php" );
 // include_once( "ezmail/classes/ezmail.php" );
 
-if ( isSet( $Back ) )
+if ( isset( $Back ) )
 {
     // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /mail/view/$MailID" );
     exit();
 }
 
-if ( isSet( $OK ) )
+if ( isset( $OK ) )
 {
     eZMail::removeContacts( $MailID );
     foreach ( $CompanyID as $company )

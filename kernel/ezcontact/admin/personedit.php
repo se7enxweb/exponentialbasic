@@ -82,12 +82,12 @@ if ( !is_a( $user, "eZUser" ) )
     exit();
 }
 
-if ( isSet( $BuyButton ) )
+if ( isset( $BuyButton ) )
 {
     include( "kernel/ezcontact/admin/buy.php" );
 }
 
-if ( isSet( $OK ) )
+if ( isset( $OK ) )
 {
     if ( $CompanyEdit )
     {
@@ -133,26 +133,26 @@ if ( isSet( $OK ) )
     }
 }
 
-if ( isSet( $ListConsultation ) )
+if ( isset( $ListConsultation ) )
 {
     // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/consultation/$item_type/list/$item_id" );
     exit;
 }
 
-if ( isSet( $NewConsultation ) )
+if ( isset( $NewConsultation ) )
 {
     // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/consultation/$item_type/new/$item_id" );
     exit;
 }
 
-if ( isSet( $FileButton ) )
+if ( isset( $FileButton ) )
 {
     include( "kernel/ezcontact/admin/folder.php" );
 }
 
-if ( isSet( $Back ) )
+if ( isset( $Back ) )
 {
     if ( $CompanyEdit )
     {
@@ -165,7 +165,7 @@ if ( isSet( $Back ) )
     exit;
 }
 
-if ( isSet( $Delete ) )
+if ( isset( $Delete ) )
 {
     $Action = "delete";
 }
@@ -216,7 +216,7 @@ if ( isset( $Action ) && $Action == "delete" )
     exit;
 }
 
-if ( isSet( $OK ) )
+if ( isset( $OK ) )
 {
     if ( $Action == "new" )
         $Action = "insert";
@@ -320,7 +320,7 @@ if( isset( $Action ) && $Action == "new" )
 
 if ( isset( $Action ) && $Action == "delete" )
 {
-    if ( !isSet( $Confirm ) )
+    if ( !isset( $Confirm ) )
     {
         $confirm = true;
 
@@ -526,27 +526,27 @@ if ( !$confirm )
 
         if ( is_numeric( $CompanyID ) )
         {
-            if ( isSet( $DeleteImage ) )
+            if ( isset( $DeleteImage ) )
             {
                 print( "deleteimage $CompanyID" );
                 eZCompany::deleteImage( $CompanyID );
             }
 
-            if ( isSet( $DeleteLogo ) )
+            if ( isset( $DeleteLogo ) )
             {
                 print( "deletelogo $CompanyID" );
                 eZCompany::deleteLogo( $CompanyID );
             }
         }
 
-        if ( $error && isSet( $OK ) )
+        if ( $error && isset( $OK ) )
         {
             $t->set_var( "action_value", $Action );
             $t->parse( "errors_item", "errors_tpl" );
         }
     }
 
-    if ( $error == false || isSet( $RefreshUsers ) )
+    if ( $error == false || isset( $RefreshUsers ) )
     {
         $t->set_var( "errors_item", "" );
     }
@@ -555,7 +555,7 @@ if ( !$confirm )
         $Action = "formdata";
     }
 
-    if ( ( $Action == "insert" || $Action == "update" ) && !$error && isSet( $OK ) )
+    if ( ( $Action == "insert" || $Action == "update" ) && !$error && isset( $OK ) )
     {
         if ( $CompanyEdit )
         {
@@ -881,9 +881,9 @@ if ( !$confirm )
 
     We present an empty form.
  */
-    if ( ( $Action == "new" || $Action == "formdata" || $Action == "edit" || isSet( $RefreshUsers ) ) )
+    if ( ( $Action == "new" || $Action == "formdata" || $Action == "edit" || isset( $RefreshUsers ) ) )
     {
-        if ( isSet( $OK ) )
+        if ( isset( $OK ) )
         {
             if ( $Action == "edit" )
                 $Action = "update";
@@ -920,11 +920,11 @@ if ( !$confirm )
                 else
                     $categoryList = array( $CompanyCategoryID );
             }
-            if ( isSet( $NewCompanyCategory ) and !is_numeric( $NewCompanyCategory ) )
+            if ( isset( $NewCompanyCategory ) and !is_numeric( $NewCompanyCategory ) )
                 $NewCompanyCategory = 0;
-            if ( isSet( $NewCompanyCategory ) and is_numeric( $NewCompanyCategory ) )
+            if ( isset( $NewCompanyCategory ) and is_numeric( $NewCompanyCategory ) )
                 $categoryList =& array_unique( array_merge( array( $NewCompanyCategory ), $categoryList ) );
-            if ( isSet( $CompanyCategoryID ) )
+            if ( isset( $CompanyCategoryID ) )
                 $categoryList =& array_unique( array_merge( array( $CompanyCategoryID ), $categoryList ) );
             if ( isset( $categoryList ) && count( $categoryList ) > 0 )
                 $category_values = array_values( $categoryList );
@@ -955,9 +955,9 @@ if ( !$confirm )
             $t->set_var( "person_id", $PersonID );
 
             $t->set_var( "user_id", $user->id() );
-            if ( isSet( $FirstName ) )
+            if ( isset( $FirstName ) )
                 $t->set_var( "firstname", eZTextTool::htmlspecialchars( $FirstName ) );
-            if ( isSet( $LastName ) )
+            if ( isset( $LastName ) )
                 $t->set_var( "lastname", eZTextTool::htmlspecialchars( $LastName ) );
 
             $top_name = $t->get_var( "intl-top_category" );
@@ -1035,15 +1035,15 @@ if ( !$confirm )
         $online_types =& eZOnlineType::getAll();
         $address_types =& eZAddressType::getAll();
         $countries =& eZCountry::getAllArray();
-        if ( !isSet( $PhoneDelete ) )
+        if ( !isset( $PhoneDelete ) )
         {
             $PhoneDelete = array();
         }
-        if ( !isSet( $OnlineDelete ) )
+        if ( !isset( $OnlineDelete ) )
         {
             $OnlineDelete = array();
         }
-        if ( !isSet( $AddressDelete ) )
+        if ( !isset( $AddressDelete ) )
         {
             $AddressDelete = array();
         }
@@ -1055,7 +1055,7 @@ if ( !$confirm )
         $PhoneWidth = $ini->read_var( "eZContactMain", "PhoneWidth" );
         $OnlineWidth = $ini->read_var( "eZContactMain", "OnlineWidth" );
 
-        if ( isSet( $NewAddress ) )
+        if ( isset( $NewAddress ) )
         {
             $AddressTypeID[] = "";
             $AddressID[] = count( $AddressID ) > 0 ? $AddressID[count( $AddressID ) - 1] + 1 : 1;
@@ -1084,7 +1084,7 @@ if ( !$confirm )
                 $t->parse( "address_table_item", "address_table_item_tpl", true );
                 $t->set_var( "address_item" );
             }
-            if ( !isSet( $AddressID[$i] ) or !is_numeric( $AddressID[$i] ) )
+            if ( !isset( $AddressID[$i] ) or !is_numeric( $AddressID[$i] ) )
                  $AddressID[$i] = ++$last_id;
             if ( !in_array( $AddressID[$i], $AddressDeleteValues ) )
             {
@@ -1145,7 +1145,7 @@ if ( !$confirm )
 
 //          $t->parse( "address_item", "address_item_tpl" );
 
-        if ( isSet( $NewPhone ) )
+        if ( isset( $NewPhone ) )
         {
             $PhoneTypeID[] = "";
             $PhoneID[] = count( $PhoneID ) > 0 ? $PhoneID[count( $PhoneID ) - 1] + 1 : 1;
@@ -1166,7 +1166,7 @@ if ( !$confirm )
                 $t->parse( "phone_table_item", "phone_table_item_tpl", true );
                 $t->set_var( "phone_item" );
             }
-            if ( !isSet( $PhoneID[$i] ) or !is_numeric( $PhoneID[$i] ) )
+            if ( !isset( $PhoneID[$i] ) or !is_numeric( $PhoneID[$i] ) )
                  $PhoneID[$i] = ++$last_id;
             if ( !in_array( $PhoneID[$i], $PhoneDeleteValues ) )
             {
@@ -1205,7 +1205,7 @@ if ( !$confirm )
         }
         $t->parse( "phone_table_item", "phone_table_item_tpl", true );
 
-        if ( isSet( $NewOnline ) )
+        if ( isset( $NewOnline ) )
         {
             $OnlineTypeID[] = "";
             $OnlineID[] = count( $OnlineID ) > 0 ? $OnlineID[count( $OnlineID ) - 1] + 1 : 1;
@@ -1226,7 +1226,7 @@ if ( !$confirm )
                 $t->parse( "online_table_item", "online_table_item_tpl", true );
                 $t->set_var( "online_item" );
             }
-            if ( !isSet( $OnlineID[$i] ) or !is_numeric( $OnlineID[$i] ) )
+            if ( !isset( $OnlineID[$i] ) or !is_numeric( $OnlineID[$i] ) )
                  $OnlineID[$i] = ++$last_id;
             if ( !in_array( $OnlineID[$i], $OnlineDeleteValues ) )
             {

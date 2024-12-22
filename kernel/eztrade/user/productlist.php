@@ -78,11 +78,11 @@ $t->set_block( "product_tpl", "product_image_tpl", "product_image" );
 $t->set_block( "product_list_page_tpl", "category_list_tpl", "category_list" );
 $t->set_block( "category_list_tpl", "category_tpl", "category" );
 
-if ( !isSet( $ModuleName ) )
+if ( !isset( $ModuleName ) )
     $ModuleName = "trade";
-if ( !isSet( $ModuleList ) )
+if ( !isset( $ModuleList ) )
     $ModuleList = "productlist";
-if ( !isSet( $ModuleView ) )
+if ( !isset( $ModuleView ) )
     $ModuleView = "productview";
 
 // makes the section ID available in articleview template
@@ -155,9 +155,9 @@ else
     $t->parse( "category_list", "category_list_tpl" );
 }
 
-if ( !isSet( $Limit ) or !is_numeric( $Limit ) )
+if ( !isset( $Limit ) or !is_numeric( $Limit ) )
     $Limit = 10;
-if ( !isSet( $Offset ) or !is_numeric( $Offset ) )
+if ( !isset( $Offset ) or !is_numeric( $Offset ) )
     $Offset = 0;
 
 // products

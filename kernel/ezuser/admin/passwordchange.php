@@ -39,7 +39,7 @@ $errorIni = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/passwordcha
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /" );
 }

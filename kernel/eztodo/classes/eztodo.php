@@ -64,7 +64,7 @@ class eZTodo
         else
             $due = "";
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTodo_Todo" );
 			$this->ID = $db->nextID( "eZTodo_Todo", "ID" );

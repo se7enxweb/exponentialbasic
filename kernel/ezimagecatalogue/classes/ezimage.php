@@ -124,7 +124,7 @@ class eZImage
         $originalfilename = $db->fieldName( $this->OriginalFileName );
         $keywords = $db->escapeString( $this->Keywords );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZImageCatalogue_Image" );
 

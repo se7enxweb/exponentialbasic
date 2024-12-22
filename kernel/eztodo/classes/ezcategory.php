@@ -55,7 +55,7 @@ class eZCategory
         $db->begin();
         $name = $db->escapeString( $this->Name );
         $description = $db->escapeString( $this->Description );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTodo_Category" );
 			$this->ID = $db->nextID( "eZTodo_Category" );

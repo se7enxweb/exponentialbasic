@@ -39,12 +39,12 @@ $error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.i
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-if ( isSet( $_POST['DeleteUsers'] ) )
+if ( isset( $_POST['DeleteUsers'] ) )
 {
     $Action = "DeleteUsers";
 }
 
-if ( isSet( $_POST['Back'] ) )
+if ( isset( $_POST['Back'] ) )
 {
     eZHTTPTool::header( "Location: /user/userlist/" );
     exit();

@@ -114,7 +114,7 @@ class eZMail
         $subject = $db->escapeString( $this->Subject );
         $body = $db->escapeString( $this->BodyText );
         $db->begin();
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZMail_Mail" );
             $nextID = $db->nextID( "eZMail_Mail", "ID" );

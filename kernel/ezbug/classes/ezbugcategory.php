@@ -78,7 +78,7 @@ class eZBugCategory
         $description = $db->escapeString( $this->Description );
 
         $db->begin();
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZBug_Category" );
 			$this->ID = $db->nextID( "eZBug_Category", "ID" );
@@ -113,7 +113,7 @@ class eZBugCategory
     {
         $db =& eZDB::globalDatabase();
 
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db->begin();
             // delete from BugCategoryLink

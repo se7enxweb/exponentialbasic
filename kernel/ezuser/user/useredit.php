@@ -102,7 +102,7 @@ if ( $Action == "Insert" )
                     eZLog::writeNotice( "Anonyous user created: $FirstName $LastName ($Login) $Email from IP: $REMOTE_ADDR" );                    
                     eZLog::writeNotice( "User login: $Login from IP: $REMOTE_ADDR" );
 
-                    if ( isSet( $RedirectURL )  && ( $RedirectURL != "" ) )
+                    if ( isset( $RedirectURL )  && ( $RedirectURL != "" ) )
                     {
                         eZHTTPTool::header( "Location: $RedirectURL" );
                         exit();

@@ -74,7 +74,7 @@ class eZConsultationType
         $db =& eZDB::globalDatabase();
         $db->begin();
         $name = $db->fieldName( $this->Name );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->query_single( $qry, "SELECT ListOrder from eZContact_ConsultationType ORDER BY ListOrder DESC", array( "Limit" => 1 ) );
             $listorder = $qry[ $db->fieldName( "ListOrder" ) ] + 1;
@@ -103,7 +103,7 @@ class eZConsultationType
     */
     function delete( $relations = false )
     {
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db =& eZDB::globalDatabase();
             if ( $relations )

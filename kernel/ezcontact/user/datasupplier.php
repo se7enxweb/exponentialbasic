@@ -131,18 +131,18 @@ switch ( $url_array[2] )
             case "insert":
             {
                 $CompanyEdit = false;
-                if ( isSet( $SendMail ) )
+                if ( isset( $SendMail ) )
                 {
                     include( "kernel/ezcontact/admin/sendmail.php" );
                 }
-                else if ( isSet( $MailButton ) )
+                else if ( isset( $MailButton ) )
                 {
                     $ContactArrayID = array( $PersonID );
                     include( "kernel/ezcontact/admin/sendmail.php" );
                 }
                 else
                 {
-                    if ( isSet( $NewPerson ) )
+                    if ( isset( $NewPerson ) )
                         $Action = "new";
                     include( "kernel/ezcontact/admin/personedit.php" );
                 }
@@ -159,7 +159,7 @@ switch ( $url_array[2] )
             {
                 if ( is_numeric( $url_array[4] ) )
                     $Offset = $url_array[4];
-                if ( count( $url_array ) >= 5 && !isSet( $SearchText ) )
+                if ( count( $url_array ) >= 5 && !isset( $SearchText ) )
                 {
                     $SearchText = eZURITool::decode( $url_array[5] );
                 }
@@ -205,27 +205,27 @@ switch ( $url_array[2] )
             case "insert":
             {
                 $CompanyEdit = true;
-                if ( isSet( $SendMail ) )
+                if ( isset( $SendMail ) )
                 {
                     include( "kernel/ezcontact/admin/sendmail.php" );
                 }
-                else if ( isSet( $MailButton ) )
+                else if ( isset( $MailButton ) )
                 {
                     $ContactArrayID = array( $CompanyID );
                     include( "kernel/ezcontact/admin/sendmail.php" );
                 }
                 else
                 {
-                    if ( isSet( $NewCompany ) )
+                    if ( isset( $NewCompany ) )
                     {
                         // include_once( "classes/ezhttptool.php" );
                         eZHTTPTool::header( "Location: /contact/company/new/$CompanyID" );
                         exit;
                     }
                     if ( $Action == "new" )
-                        if ( isSet( $url_array[4] ) and is_numeric( $url_array[4] ) )
+                        if ( isset( $url_array[4] ) and is_numeric( $url_array[4] ) )
                             $NewCompanyCategory = $url_array[4];
-//                        else if ( !isSet( $CompanyID ) and isSet( $url_array[4] ) and is_numeric( $url_array[4] ) )
+//                        else if ( !isset( $CompanyID ) and isset( $url_array[4] ) and is_numeric( $url_array[4] ) )
 //                            $CompanyID = $url_array[4];
                     include( "kernel/ezcontact/admin/companyedit.php" );
                 }
@@ -233,7 +233,7 @@ switch ( $url_array[2] )
             }
             case "view":
             {
-                if ( !isSet( $CompanyID ) and isSet( $url_array[4] ) and is_numeric( $url_array[4] ) )
+                if ( !isset( $CompanyID ) and isset( $url_array[4] ) and is_numeric( $url_array[4] ) )
                     $CompanyID = $url_array[4];
                 $PersonOffset = $url_array[5];
                 // include_once( "ezcontact/classes/ezcompany.php" );
@@ -305,9 +305,9 @@ switch ( $url_array[2] )
 
     case "consultation":
     {
-        if ( isset( $url_array[4] ) && ( !isSet( $ConsultationID ) or !is_numeric( $ConsultationID ) ) )
+        if ( isset( $url_array[4] ) && ( !isset( $ConsultationID ) or !is_numeric( $ConsultationID ) ) )
             $ConsultationID = $url_array[4];
-        if ( isSet( $new_consultation ) )
+        if ( isset( $new_consultation ) )
         {
             // include_once( "classes/ezhttptool.php" );
             eZHTTPTool::header( "Location: /contact/consultation/new" );
@@ -340,7 +340,7 @@ switch ( $url_array[2] )
             {
                 $SubAction = $url_array[3];
                 $Action = $url_array[4];
-                if ( !isSet( $CompanyID ) or !is_numeric( $CompanyID ) )
+                if ( !isset( $CompanyID ) or !is_numeric( $CompanyID ) )
                     $CompanyID = $url_array[5];
                 switch ( $Action )
                 {
@@ -375,7 +375,7 @@ switch ( $url_array[2] )
             {
                 $SubAction = $url_array[3];
                 $Action = $url_array[4];
-                if ( !isSet( $PersonID ) or !is_numeric( $PersonID ) )
+                if ( !isset( $PersonID ) or !is_numeric( $PersonID ) )
                     $PersonID = $url_array[5];
                 switch ( $Action )
                 {

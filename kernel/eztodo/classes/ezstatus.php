@@ -56,7 +56,7 @@ class eZStatus
         $name = $db->escapeString( $this->Name );
         $description = $db->escapeString( $this->Description );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTodo_Status" );
 			$this->ID = $db->nextID( "eZTodo_Status", "ID" );

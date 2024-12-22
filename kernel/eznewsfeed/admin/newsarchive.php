@@ -142,9 +142,9 @@ else
 }
 
 
-if ( !isSet( $Limit ) )
+if ( !isset( $Limit ) )
     $Limit = 20;
-if ( !isSet( $Offset ) )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 // news

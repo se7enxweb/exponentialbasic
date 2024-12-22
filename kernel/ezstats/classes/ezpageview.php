@@ -241,10 +241,12 @@ class eZPageView
             $db->lock( "eZStats_PageView" );
             $nextID = $db->nextID( "eZStats_PageView", "ID" );
             $result = false;
-            $now = eZDateTime::timeStamp( true );
+            $now = new eZDateTime();
+            $now = $now->timeStamp( true );
             $date = new eZDate();
             $date = $date->timestamp( true );
-            $time = eZTime::timeStamp( true );
+            $time = new eZTime();
+            $time = $time->timeStamp( true );
 
             $result = $db->query( "INSERT INTO eZStats_PageView
                                 ( ID, UserID, BrowserTypeID, RemoteHostID, RefererURLID, RequestPageID, Date, DateValue, TimeValue )

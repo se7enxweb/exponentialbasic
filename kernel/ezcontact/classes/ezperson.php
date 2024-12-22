@@ -64,12 +64,12 @@ class eZPerson
         $db =& eZDB::globalDatabase();
         $db->begin();
         $birth = "NULL";
-        if ( isSet( $this->BirthDate ) and $this->BirthDate != "" )
+        if ( isset( $this->BirthDate ) and $this->BirthDate != "" )
             $birth = "$this->BirthDate";
         $firstname = $db->escapeString( $this->FirstName );
         $lastname = $db->escapeString( $this->LastName );
         $comment = $db->escapeString( $this->Comment );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZContact_Person" );
             $this->ID = $db->nextID( "eZContact_Person", "ID" );
@@ -138,7 +138,7 @@ class eZPerson
         if ( !$id )
             $id = $this->ID;
 
-        if ( isSet( $id ) && is_numeric( $id ) )
+        if ( isset( $id ) && is_numeric( $id ) )
         {
             // Delete project state
             eZPerson::setProjectState( false, $id );

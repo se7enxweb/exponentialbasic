@@ -69,7 +69,7 @@ $session->fetch();
 
 $user =& eZUser::currentUser();
 
-if ( isSet( $ForumMessages ) )
+if ( isset( $ForumMessages ) )
 {
     if ( $user )
         eZPreferences::setVariable( "eZForum_ForumMessages", $ForumMessages );
@@ -104,10 +104,10 @@ $categories =& $forum->categories();
 if ( $user )
 {
     $preferences = new eZPreferences();
-    if ( isSet( $HideThreads ) )
+    if ( isset( $HideThreads ) )
         $preferences->setVariable( "eZForum_Threads", "Hide" );
 
-    if ( isSet( $ShowThreads ) )
+    if ( isset( $ShowThreads ) )
         $preferences->setVariable( "eZForum_Threads", "Show" );
 
     $showThreads =& $preferences->variable( "eZForum_Threads" );
@@ -116,10 +116,10 @@ else
 {
     $session =& eZSession::globalSession();
 
-    if ( isSet( $HideThreads ) )
+    if ( isset( $HideThreads ) )
         $session->setVariable( "eZForum_Threads", "Hide" );
 
-    if ( isSet( $ShowThreads ) )
+    if ( isset( $ShowThreads ) )
         $session->setVariable( "eZForum_Threads", "Show" );
 
     $showThreads = $session->variable( "eZForum_Threads" );
@@ -173,7 +173,7 @@ if ( count( $categories ) > 0 )
 
 $locale = new eZLocale( $Language );
 
-if ( !isSet( $Offset ) or !$Offset )
+if ( !isset( $Offset ) or !$Offset )
     $Offset = 0;
 
 $limit_array = array_unique( array( 20, 30, 40, 50, 60, 80, 100, 150, 200, $UserLimit ) );
@@ -304,7 +304,7 @@ $t->set_var( "forum_start", $Offset + 1 );
 $t->set_var( "forum_end", min( $Offset + $UserLimit, $messageCount ) );
 $t->set_var( "forum_total", $messageCount );
 
-if ( !isSet( $newmessage ) )
+if ( !isset( $newmessage ) )
     $newmessage = "";
 $t->set_var( "newmessage", $newmessage );
 

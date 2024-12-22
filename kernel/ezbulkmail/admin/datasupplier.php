@@ -41,7 +41,7 @@ switch ( $url_array[2] )
         $Offset = $url_array[4];
         if( $Offset == "" )
             $Offset = 0;
-        // include_once( "kernel/ezbulkmail/admin/categorylist.php" );
+        include( "kernel/ezbulkmail/admin/categorylist.php" );
     }
     break;
 
@@ -50,13 +50,13 @@ switch ( $url_array[2] )
         $CategoryID = $url_array[3];
         if( !is_numeric( $CategoryID ) )
             $CategoryID = 0;
-        // include_once( "kernel/ezbulkmail/admin/categoryedit.php" );
+        include( "kernel/ezbulkmail/admin/categoryedit.php" );
     }
     break;
 
     case "templatelist" :
     {
-        // include_once( "kernel/ezbulkmail/admin/templatelist.php" );
+        include( "kernel/ezbulkmail/admin/templatelist.php" );
     }
     break;
 
@@ -65,7 +65,7 @@ switch ( $url_array[2] )
         $TemplateID = $url_array[3];
         if( !is_numeric( $TemplateID ) )
             $TemplateID = 0;
-        // include_once( "kernel/ezbulkmail/admin/templateedit.php" );
+        include( "kernel/ezbulkmail/admin/templateedit.php" );
     }
     break;
 
@@ -74,13 +74,13 @@ switch ( $url_array[2] )
         $MailID = $url_array[3];
         if( !is_numeric( $MailID ) )
             $MailID = 0;
-        // include_once( "kernel/ezbulkmail/admin/mailedit.php" );
+        include( "kernel/ezbulkmail/admin/mailedit.php" );
     }
     break;
 
     case "drafts" :
     {
-        // include_once( "kernel/ezbulkmail/admin/maillist.php" );
+        include( "kernel/ezbulkmail/admin/maillist.php" );
     }
     break;
 
@@ -96,7 +96,7 @@ switch ( $url_array[2] )
             eZHTTPTool::header( "Location: /error/404" );
             exit();
         }
-        // include_once( "kernel/ezbulkmail/admin/mailview.php" );
+        include( "kernel/ezbulkmail/admin/mailview.php" );
     }
     break;
 
@@ -108,7 +108,7 @@ switch ( $url_array[2] )
             eZHTTPTool::header( "Location: /error/404" );
             exit();
         }
-        // include_once( "kernel/ezbulkmail/admin/masssubscribe.php" );
+        include( "kernel/ezbulkmail/admin/masssubscribe.php" );
     }
     break;
 
@@ -117,7 +117,7 @@ switch ( $url_array[2] )
         $CategoryID = $url_array[3];
         if( !is_numeric( $CategoryID ) )
             $CategoryID = 0;
-        // include_once( "kernel/ezbulkmail/admin/userlist.php" );
+        include( "kernel/ezbulkmail/admin/userlist.php" );
     }
     break;
 

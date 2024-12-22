@@ -158,7 +158,7 @@ class eZFormElementType
 
       The objects are returned as an array of eZFormElementType objects.
     */
-    function getAll( $offset=0, $limit=20 )
+    static public function getAll( $offset=0, $limit=20 )
     {
         $db =& eZDB::globalDatabase();
         

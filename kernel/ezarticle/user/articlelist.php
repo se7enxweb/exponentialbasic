@@ -191,7 +191,7 @@ else
 }
 //EP ---------------------------------------------------------------------------
 
-if ( isSet( $NoArticleHeader ) and $NoArticleHeader )
+if ( isset( $NoArticleHeader ) and $NoArticleHeader )
 {
     $t->set_var( "header_item", "" );
 }
@@ -343,7 +343,7 @@ else
 
 
 // set the offset/limit
-if ( !isSet( $Offset ) or !is_numeric( $Offset ) )
+if ( !isset( $Offset ) or !is_numeric( $Offset ) )
     $Offset = 0;
 
 if ( ( $category->listLimit() > 0 ) && $Offset == 0 )
@@ -517,7 +517,7 @@ else
     $t->set_var( "article_list", "" );
 
 
-if ( isSet( $GenerateStaticPage ) and $GenerateStaticPage == "true" and $cachedFile != "" )
+if ( isset( $GenerateStaticPage ) and $GenerateStaticPage == "true" and $cachedFile != "" )
 {
     $fp = eZFile::fopen( $cachedFile, "w+");
 

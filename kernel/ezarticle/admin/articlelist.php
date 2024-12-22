@@ -42,13 +42,13 @@ $AdminListLimit = $ini->read_var( "eZArticleMain", "AdminListLimit" );
 
 $session =& eZSession::globalSession();
 
-if ( isSet( $GoTo ) && is_Numeric( $GoToCategoryID ) )
+if ( isset( $GoTo ) && is_Numeric( $GoToCategoryID ) )
 {
     eZHTTPTool::header( "Location: /article/archive/$GoToCategoryID" );
     exit();
 }
 
-if ( isSet( $StoreSelection ) )
+if ( isset( $StoreSelection ) )
 {
     switch ( $ArticleSelection )
     {
@@ -115,7 +115,7 @@ if ( isset( $CopyCategories ) )
 
 
 
-if ( isSet( $DeleteArticles ) )
+if ( isset( $DeleteArticles ) )
 {
     if ( count( $ArticleArrayID ) != 0 )
     {

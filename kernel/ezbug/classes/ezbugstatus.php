@@ -74,7 +74,7 @@ class eZBugStatus
         $db =& eZDB::globalDatabase();
         
         $name = $db->escapeString( $this->Name );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZBug_Status", "ID" );
 			$this->ID = $db->nextID( "eZBug_Status", "ID" );
@@ -104,7 +104,7 @@ class eZBugStatus
     {
         $db =& eZDB::globalDatabase();
         
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db->begin();
             // remove all bugs that have this status

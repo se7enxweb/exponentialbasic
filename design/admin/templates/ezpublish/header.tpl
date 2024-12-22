@@ -132,7 +132,7 @@
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
 <!-- BEGIN module_item_tpl -->
-	<td align="center"><a href="{www_dir}{index}/module/{module_action}/{ez_module_name}?RefURL={ref_url}"><img src="{www_dir}/{ez_dir_name}/admin/images/module_icon.png" width="32" height="32" border="0" alt="{module_name}" title="{module_name}" /></a></td>
+	<td align="center"><a href="{www_dir}{index}/module/{module_action}/{ez_module_name}?RefURL={ref_url}"><img src="{www_dir}/kernel/{ez_dir_name}/admin/images/module_icon.png" width="32" height="32" border="0" alt="{module_name}" title="{module_name}" /></a></td>
 <!-- END module_item_tpl -->
 <!-- BEGIN module_control_tpl -->
 	<td>&nbsp;&nbsp;</td>

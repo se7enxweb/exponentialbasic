@@ -39,7 +39,7 @@ if ( !eZMail::isOwner( eZUser::currentUser(), $MailID ) )
     exit();
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     $mail = new eZMail( $MailID );
     $folderID = $mail->folder( false );
@@ -47,7 +47,7 @@ if ( isSet( $Cancel ) )
     exit();
 }
 
-if ( isSet( $Reply ) )
+if ( isset( $Reply ) )
 {
     $mail = new eZMail( $MailID );
     $mail->setStatus( REPLIED, true );
@@ -62,7 +62,7 @@ if ( isSet( $Reply ) )
     exit();
 }
 
-if ( isSet( $ReplyAll ) )
+if ( isset( $ReplyAll ) )
 {
     $mail = new eZMail( $MailID );
     $mail->setStatus( REPLIED, true );
@@ -77,7 +77,7 @@ if ( isSet( $ReplyAll ) )
     exit();
 }
 
-if ( isSet( $Forward ) )
+if ( isset( $Forward ) )
 {
     $mail = new eZMail( $MailID );
     $mail->setStatus( FORWARDED, true );
@@ -111,7 +111,7 @@ if ( isset( $Delete ) )
     exit();
 }
 
-if ( isSet( $Link ) )
+if ( isset( $Link ) )
 {
     eZHTTPTool::header( "Location: /mail/link/$MailID" );
     exit();

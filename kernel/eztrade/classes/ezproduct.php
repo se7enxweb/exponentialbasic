@@ -115,7 +115,7 @@ class eZProduct
         else
             $discontinued = 0;
 
-        if ( isSet( $this->Price ) and $this->Price != "" and is_numeric( $this->Price ) )
+        if ( isset( $this->Price ) and $this->Price != "" and is_numeric( $this->Price ) )
         {
             $price = "'$this->Price'";
         }
@@ -131,7 +131,7 @@ class eZProduct
         $productNumber = $db->escapeString( $this->ProductNumber );
         $contents = $db->escapeString( $this->Contents );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $timeStamp = eZDateTime::timeStamp( true );
             $db->lock( "eZTrade_Product" );
@@ -283,7 +283,7 @@ class eZProduct
     {
         $db =& eZDB::globalDatabase();
 
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db->begin();
             $res[] = $db->query( "DELETE FROM eZTrade_ProductTypeLink WHERE ProductID='$this->ID'" );
@@ -633,7 +633,7 @@ class eZProduct
     */
     function hasPrice()
     {
-       return isSet( $this->Price );
+       return isset( $this->Price );
     }
 
     /*!

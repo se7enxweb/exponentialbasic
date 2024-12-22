@@ -39,7 +39,7 @@ $Language = $ini->read_var( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezorderstatustype.php" );
 
-if( isSet( $Delete ) && count( $OrderArrayID ) > 0 )
+if( isset( $Delete ) && count( $OrderArrayID ) > 0 )
 {
     foreach( $OrderArrayID as $orderid )
     {
@@ -73,7 +73,7 @@ $t->set_block( "order_list_tpl", "next_tpl", "next" );
 
 $t->set_var( "site_style", $SiteDesign );
 
-if ( isSet( $URLQueryText ) )
+if ( isset( $URLQueryText ) )
 {
     $QueryText = urldecode( $URLQueryText );
 }
@@ -83,13 +83,13 @@ $t->set_var( "query_string",  isset( $QueryText ) ? $QueryText : ''  );
 $t->set_var( "previous", "" );
 $t->set_var( "next", "" );
 
-if ( !isSet( $OrderBy ) )
+if ( !isset( $OrderBy ) )
     $OrderBy = "Date";
 
-if ( !isSet( $Offset ) )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
-if ( !isSet( $Limit ) )
+if ( !isset( $Limit ) )
     $Limit = 15;
 
 $t->set_var( "current_offset", $Offset );
@@ -97,7 +97,7 @@ $t->set_var( "current_offset", $Offset );
 $order = new eZOrder();
 
 // perform search
-if ( isSet( $QueryText ) )
+if ( isset( $QueryText ) )
 {
     $orderArray = $order->search( $QueryText, $Offset, $Limit );
     $total_count = $order->getSearchCount( $QueryText );

@@ -108,7 +108,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
             $msg->setIsTemporary( true );
         }
 
-        if ( isSet( $NewMessageTopic ) )
+        if ( isset( $NewMessageTopic ) )
         {
             $MessageTopic = $NewMessageTopic;
         }
@@ -117,7 +117,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
             $MessageTopic = $msg->topic();
         }
 
-        if ( isSet( $NewMessageBody ) )
+        if ( isset( $NewMessageBody ) )
         {
             $MessageBody = $NewMessageBody;
         }
@@ -138,14 +138,14 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
             $MessagePostedAt = $NewMessagePostedAt;
         }
 
-        if ( isSet( $NewMessageNotice ) )
+        if ( isset( $NewMessageNotice ) )
         {
             $MessageNotice = $NewMessageNotice;
         }
     }
     else
     {
-        if ( isSet( $NewMessageAuthor ) )
+        if ( isset( $NewMessageAuthor ) )
         {
             $MessageAuthor = $NewMessageAuthor;
         }

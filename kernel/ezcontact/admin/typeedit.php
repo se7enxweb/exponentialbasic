@@ -75,7 +75,7 @@ if ( $Action == "delete" )
     $item_id = $item_type->id();
     $reconfirm = "Location: $page_path/confirm/$item_id";
     $count = $item_type->count();
-    if ( !isSet( $TypeCount ) )
+    if ( !isset( $TypeCount ) )
     {
         $Action = "confirm";
         $TypeError = true;
@@ -116,7 +116,7 @@ if ( $Action == "insert" or $Action == "update" )
     if ( $Action == "insert" )
         unset( $item_type->ID );
 
-    if ( isSet( $func_call_set ) and is_array( $func_call_set ) )
+    if ( isset( $func_call_set ) and is_array( $func_call_set ) )
     {
         reset( $func_call_set );
         while( list( $key, $val ) = each( $func_call_set ) )
@@ -133,9 +133,9 @@ if ( $Action == "insert" or $Action == "update" )
     eZHTTPTool::header( "Location: $page_path/list" );
 }
 
-if ( !isSet( $typeedit ) )
+if ( !isset( $typeedit ) )
     $typeedit = "typeedit.tpl";
-if ( isSet( $template_array ) and isSet( $block_array ) and
+if ( isset( $template_array ) and isset( $block_array ) and
      is_array( $template_array ) and is_array( $block_array ) )
 {
     $standard_array = array( "list_page" => $typeedit );
@@ -178,7 +178,7 @@ if ( $Action == "confirm" )
     $t->set_var( "error_count_change_item", "" );
     $t->set_var( "error_no_confirm_item", "" );
 
-    if ( isSet( $TypeCount ) )
+    if ( isset( $TypeCount ) )
     {
         if ( $TypeCount != $item_type->count() )
         {
@@ -186,7 +186,7 @@ if ( $Action == "confirm" )
             $error = true;
         }
     }
-    if ( isSet( $TypeError ) )
+    if ( isset( $TypeError ) )
     {
         $t->parse( "error_no_confirm_item", "error_no_confirm_item_tpl" );
         $error = true;
@@ -203,7 +203,7 @@ if ( $error == false )
     $t->set_var( "errors", "" );
 }
 
-if ( isSet( $func_call ) and is_array( $func_call ) )
+if ( isset( $func_call ) and is_array( $func_call ) )
 {
     reset( $func_call );
     while( list( $key,$val ) = each( $func_call ) )

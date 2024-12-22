@@ -71,7 +71,7 @@ if ( ( isset( $Action ) && $Action == "insert" ) || ( isset( $Action ) && $Actio
 }
 
 // Get images from the image browse function.
-if ( ( isSet( $AddImages ) ) and ( is_numeric( $CategoryID ) ) and ( is_numeric( $ImageID ) ) )
+if ( ( isset( $AddImages ) ) and ( is_numeric( $CategoryID ) ) and ( is_numeric( $ImageID ) ) )
 {
     $image = new eZImage( $ImageID );
     $category = new eZArticleCategory( $CategoryID );
@@ -147,7 +147,7 @@ if ( $Action == "insert" && !$error )
     $category->store();
     $categoryID = $category->id();
 
-    if ( isSet( $BulkMailID ) && $BulkMailID != -1 )
+    if ( isset( $BulkMailID ) && $BulkMailID != -1 )
         $category->setBulkMailCategory( $BulkMailID );
     else
         $category->setBulkMailCategory( false );
@@ -156,7 +156,7 @@ if ( $Action == "insert" && !$error )
         $category->setImage( 0 );
 
     /* write access select */
-    if ( isSet( $WriteGroupArray ) )
+    if ( isset( $WriteGroupArray ) )
     {
         if ( $WriteGroupArray[0] == 0 )
         {
@@ -177,7 +177,7 @@ if ( $Action == "insert" && !$error )
     }
 
     /* read access thingy */
-    if ( isSet( $GroupArray ) )
+    if ( isset( $GroupArray ) )
     {
         if ( $GroupArray[0] == 0 )
         {
@@ -205,7 +205,7 @@ if ( $Action == "insert" && !$error )
         $file->delete();
     }
 
-    if ( isSet( $Browse ) )
+    if ( isset( $Browse ) )
     {
         $session = eZSession::globalSession();
         $session->setVariable( "SelectImages", "single" );
@@ -359,7 +359,7 @@ if ( isset( $Action ) && $Action == "update" && !$error )
         $file->delete();
     }
 
-    if ( isSet( $Browse ) )
+    if ( isset( $Browse ) )
     {
         $session = eZSession::globalSession();
         $session->setVariable( "SelectImages", "single" );

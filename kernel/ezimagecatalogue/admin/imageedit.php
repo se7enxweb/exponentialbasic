@@ -40,24 +40,24 @@ if ( !$user )
     exit();
 }
 
-if ( isSet( $NewCategory ) )
+if ( isset( $NewCategory ) )
 {
     eZHTTPTool::header( "Location: /imagecatalogue/category/new/$CurrentCategoryID/" );
     exit();
 }
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/$CurrentCategoryID/" );
     exit();
 }
 
-if ( isSet( $DeleteImages ) )
+if ( isset( $DeleteImages ) )
 {
     $Action = "DeleteImages";
 }
 
-if ( isSet( $DeleteCategories ) )
+if ( isset( $DeleteCategories ) )
 {
     $Action = "DeleteCategories";
 }

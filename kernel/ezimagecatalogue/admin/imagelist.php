@@ -205,7 +205,7 @@ foreach ( $categoryList as $categoryItem )
     $i++;
 }
 
-if ( count( $categoryList ) > 0  &&  !isSet( $SearchText ))
+if ( count( $categoryList ) > 0  &&  !isset( $SearchText ))
 {
     $t->parse( "category_list", "category_list_tpl" );
 }
@@ -217,7 +217,7 @@ else
 $limit = $ini->read_var( "eZImageCatalogueMain", "ListImagesPerPage" );
 
 // Print out all the images
-if ( isSet( $SearchText )  )
+if ( isset( $SearchText )  )
 {
     $imageList =& eZImage::search( $SearchText );
     $count =& eZImage::searchCount( $SearchText );
@@ -442,4 +442,3 @@ else
 
 
 ?>
-

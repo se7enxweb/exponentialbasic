@@ -47,7 +47,7 @@ $Language = $ini->read_var( "eZBugMain", "Language" );
 
 $session = new eZSession();
 
-if ( isSet( $Cancel ) )
+if ( isset( $Cancel ) )
 {
     $bug = new eZBug( $BugID );
 
@@ -122,7 +122,7 @@ if ( $Action == "Update" )
 
     if ( $user )
     {
-        if ( isSet( $Update ) )
+        if ( isset( $Update ) )
         {
             $category = new eZBugCategory( $CategoryID );
             $module = new eZBugModule( $ModuleID );
@@ -241,7 +241,7 @@ if ( $Action == "Update" )
             }
 
             $Action = "Edit";
-            if ( !isSet( $InsertImage) && !isSet( $InsertFile ) && !isSet( $DeleteSelected ) )
+            if ( !isset( $InsertImage) && !isset( $InsertFile ) && !isset( $DeleteSelected ) )
             {
                 if ( $isHandled )
                 {
@@ -258,7 +258,7 @@ if ( $Action == "Update" )
         }
         else
         {
-            if ( !isSet( $InsertImage) && !isSet( $InsertFile ) && !isSet( $DeleteSelected ) )
+            if ( !isset( $InsertImage) && !isset( $InsertFile ) && !isset( $DeleteSelected ) )
             {
                 eZHTTPTool::header( "Location: /bug/archive/" );
                 exit();
@@ -270,21 +270,21 @@ if ( $Action == "Update" )
 $t->set_var( "bug_date", "" );
 $t->set_var( "action_value", "Insert" );
 
-if ( isSet( $InsertFile ) )
+if ( isset( $InsertFile ) )
 {
     $Action = "";
     eZHTTPTool::header( "Location: /bug/report/fileedit/new/$BugID" );
     exit();
 }
 
-if ( isSet( $InsertImage ) )
+if ( isset( $InsertImage ) )
 {
     $Action = "";
     eZHTTPTool::header( "Location: /bug/report/imageedit/new/$BugID" );
     exit();
 }
 
-if ( isSet( $DeleteSelected ) )
+if ( isset( $DeleteSelected ) )
 {
     $bug = new eZBug( $BugID );
     if ( count( $ImageArrayID ) > 0 )

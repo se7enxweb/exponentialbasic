@@ -50,7 +50,7 @@ $t->set_block( "file_tpl", "read_tpl", "read" );
 
 $t->set_var( "search_text", htmlspecialchars( $SearchText ) );
 
-if ( !isSet( $Offset ) )
+if ( !isset( $Offset ) )
     $Offset = 0;
 
 if ( $SearchText )

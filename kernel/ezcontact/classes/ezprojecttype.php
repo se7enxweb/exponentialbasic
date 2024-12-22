@@ -78,7 +78,7 @@ class eZProjectType
         $db =& eZDB::globalDatabase();
         $db->begin();
         $name = $db->escapeString( $this->Name );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->query_single( $qry, "SELECT ListOrder from eZContact_ProjectType ORDER BY ListOrder DESC",
                                array( "Limit" => 1 ) );
@@ -111,7 +111,7 @@ class eZProjectType
     */
     function delete( $relations = false )
     {
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $db =& eZDB::globalDatabase();
             $db->begin();

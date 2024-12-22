@@ -62,7 +62,7 @@ class eZTodoLog
         $log = $db->escapeString( $this->Log );
 
         $timeStamp =& eZDateTime::timeStamp( true );
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTodo_Log" );
 			$this->ID = $db->nextID( "eZTodo_Log", "ID" );
@@ -91,7 +91,7 @@ class eZTodoLog
         $db =& eZDB::globalDatabase();
         $db->begin();
         
-        if ( isSet( $this->ID ) )
+        if ( isset( $this->ID ) )
         {
             $res[] = $db->query( "DELETE FROM eZTodoLog WHERE UserID='$this->ID'" );
         }

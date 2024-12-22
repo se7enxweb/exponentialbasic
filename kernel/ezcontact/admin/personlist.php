@@ -97,7 +97,7 @@ $session =& eZSession::globalSession();
 
 if ( $session->fetch() != false )
 {
-    if ( !isSet( $LimitType ) )
+    if ( !isset( $LimitType ) )
     {
         if ( $session->variable( "PersonLimitType" ) == false )
             $session->setVariable( "PersonLimitType", "all" );
@@ -134,7 +134,7 @@ switch ( $LimitType )
 
 $person = new eZPerson();
 
-if ( !isSet( $Offset ) )
+if ( !isset( $Offset ) )
 {
     $Offset = 0;
 }
@@ -145,7 +145,7 @@ else if ( !is_numeric( $Offset ) )
 
 $t->set_var( "action", $Action );
 
-if ( !isSet( $SearchText ) )
+if ( !isset( $SearchText ) )
 {
     $total_persons = $person->getAllCount( "", $LimitType );
     $persons = $person->getAll( "", $Offset, $Max, $LimitType );

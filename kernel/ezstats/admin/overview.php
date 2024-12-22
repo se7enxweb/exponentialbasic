@@ -65,8 +65,7 @@ $menuItems = array(
 	   array( "/stats/entryexitreport/", "{intl-entry_exit_report}" )
     );
 
-eZMenuBox::createBox( "eZStats", "ezstats", "admin",
+eZMenuBox::createBox( "eZStats", "kernel/ezstats", "admin",
                       $SiteDesign, $menuItems, true, "menuitems.tpl", "kernel/ezstats/admin/overview.php", true );
-
 
 ?>

@@ -119,7 +119,7 @@ class eZSession
         // escape hash
         $hash = $db->escapeString( $this->Hash );
 
-        if ( !isSet( $this->ID ) )
+        if ( !isset( $this->ID ) )
         {
             $nextID = $db->nextID( "eZSession_Session", "ID" );
             $timestampObject = new eZDateTime();

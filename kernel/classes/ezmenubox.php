@@ -61,7 +61,7 @@ class eZMenuBox
                         &$menuItems, $print = true, $templatefile = false,
                         $phpfile = false, $ignore_status = false, $allow_module_template = false )
     {
-        include_once( "kernel/ezsession/classes/ezpreferences.php" );
+        // include_once( "kernel/ezsession/classes/ezpreferences.php" );
         $preferences = new eZPreferences();
         
         $ini =& INIFile::globalINI();
@@ -78,7 +78,7 @@ class eZMenuBox
         if ( $ignore_status )
             $menuStatus = "open";
 
-	$has_cache = false;
+	    $has_cache = false;
         $uri = $_SERVER["REQUEST_URI"];
         $up_uri = $uri;
         $down_uri = $uri;

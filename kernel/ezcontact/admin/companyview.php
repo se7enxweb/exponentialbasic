@@ -377,9 +377,9 @@ else
         $t->parse( "buy_button", "buy_button_tpl" );
     }
 
-    if ( !isSet( $PersonLimit ) or !is_numeric( $PersonLimit ) )
+    if ( !isset( $PersonLimit ) or !is_numeric( $PersonLimit ) )
         $PersonLimit = 5;
-    if ( !isSet( $PersonOffset ) or !is_numeric( $PersonOffset ) )
+    if ( !isset( $PersonOffset ) or !is_numeric( $PersonOffset ) )
         $PersonOffset = 0;
     $t->set_var( "person_table_item", "" );
     $persons = $company->persons( $CompanyID, true, $PersonLimit, $PersonOffset );
@@ -408,7 +408,7 @@ else
     $user =& eZUser::currentUser();
     if ( is_a( $user, "eZUser" ) && eZPermission::checkPermission( $user, "eZContact", "consultation" ) )
     {
-        if ( !isSet( $OrderBy ) )
+        if ( !isset( $OrderBy ) )
             $OrderBy = "Date";
 
         $max = $ini->read_var( "eZContactMain", "MaxCompanyConsultationList" );

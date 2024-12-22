@@ -220,8 +220,8 @@ else
     // a short list of articles from the given category
     // shows $Limit number starting from offset $Offset
     $CategoryID=1;
-    $Offset=1;
-    $Limit=1;
+    $Offset=0;
+    $Limit=2;
     include( "kernel/ezarticle/user/smallarticlelist.php" );
     ?>
 

@@ -8,7 +8,7 @@ Documentation for this project will in the future be covering importing eZ Publi
 
 ---
 
- * LICENSE: GNU GPLv2 (or later)
+ * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)
  * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
  * Maintainer: [7x](https://se7enx.com)
  * Document Last revised: 2024.11.16
@@ -20,6 +20,8 @@ Documentation for this project will in the future be covering importing eZ Publi
 We are actively working to bring **eZ Publish Basic 2.4.0** to the general public.
 
 eZ Publish 2.4 is the completed work started by 7x years ago to upgrade eZ Publish 2 Kernel Implementation of a easy to use PHP Personal Home Page CMS or Community Website Building Platform to more modern PHP versions. 
+
+## The story
 
 Previously this was developed and released as eZ Community 2.3 the community portal distribution which provided partial incomplete PHP5 Port of the eZ Publish 2 Official Repository (Containing addition code never released to the public).
 
@@ -130,121 +132,25 @@ Note: Your work is now done. Enjoy the free software and a healthy snack. :)
 
 Further documentation can be read from the [documentation](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation) directory [README](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation/README).
 
-# Further Information about eZ Publish Basic Kernel
+## Software Features
 
-## History of Authentication in eZ publish v1 through v2.3
+eZ Publish Basic provides a feature rich cms based website building platform that is ready to use upon it's quick installation setup.
 
-- Since it's creation eZ publish v2 authentication information was stored in the database (MySQL / Postgres) using the database provided functions to convert private password strings into once secure MySQL based MD5 Hashes.
-- Future plans: We plan to change the MD5 user authentication layers to instead support bcrypt hashes for more secure authentication.
+Learn more about eZ Publish Basic features in detail. Study our documentation, [FEATURES.md](FEATURES.md).
 
-# Database Support
+## PHP Compatability
 
-- MySQL
-- PostgreSQL
-- Informix
+For the latest information about the development of php 8 compatibility read our documentation, [COMPATABILITY.md](COMPATABILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x. 
 
-## Sections
+## Module Documentation
 
-Sections in eZ Publish Basic (and eZ publish / eZ community 2) are dynamic and PHP file based.
+For the latest detailed list of views in eZ Publish Basic read our documentation, [MODULES.md](MODULES.md).
 
-The following section URIs are supported by default thanks to mod_rewrite rules in your webserver or .htaccess configuration.
+## Contributions
 
-### Default Sections
+We are currently seeking others with eZ Publish 2 code improvements to share them with our project to grow the default installation feature set even further.
 
-- /section-standard/
-  - Articles MenuBox
-  - Headlines MenuBox
-  - Links MenuBox
-  - User Info MenuBox
-  - Poll MenuBox
-  - SiteSearch MenuBox
-  - Print MenuBox
-- /section-intranet/
-  - Articles MenuBox
-  - Bug MenuBox
-  - Contact MenuBox
-  - Forum MenuBox
-  - Filemanger MenuBox
-  - Image catalogue MenuBox
-  - User Info MenuBox
-  - Mail MenuBox
-  - Todo MenuBox
-  - Calendar MenuBox
-  - SiteSearch MenuBox
-  - Print MenuBox
-- /section-trade/
-  - Articles MenuBox
-  - Products MenuBox
-  - Host Deals MenuBox
-  - User Info MenuBox
-  - Customer Cart MenuBox
-  - SiteSearch MenuBox
-  - Print MenuBox
-- /section-news/
-  - Articles MenuBox
-  - Newsfeed MenuBox
-  - User Info MenuBox
-  - News from Freshmeat MenuBox
-  - SiteSearch MenuBox
-  - Print MenuBox
-
-### Default Section PHP8 Compatability
-
-The eZ Publish Basic Default Provided User Website Modules have all been tested as PHP8 Compatible and 100% working by default without errors or warnings.
-
-eZ Publish Basic default sections detailing each section status.
-
-- /section-standard
-  - 98% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
-- /section-intranet/
-  - 95% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
-- /section-trade/
-  - 95% Complete By Default. Products are not displayed normally without loging in first. Links provided from navigational menus serve module views successfully with some minor warnings and some POST/GET module view Actions (user interaction; submitting forms for creation of content) generate errors and warnings.
-- /section-news/
-  - 98% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
-
-
-## Modules Available
-
-- ezabout
-- ezad
-- ezaddress
-- ezarticle
-- ezbug
-- ezbulkmail
-- ezcalendar
-- ezcontact
-- ezerror
-- ezexample
-- ezfilemanager
-- ezform
-- ezforum
-- ezimagecatalogue
-- ezlink
-- ezmail
-- ezmediacatalogue
-- ezmessage
-- ezmodule
-- eznewsfeed
-- ezpoll
-- ezquiz
-- ezsearch
-- ezsession
-- ezsitemanager
-- ezstats
-- ezsysinfo
-- eztodo
-- eztrade
-- ezurltranslator
-- ezuser
-- ezxml
-- ezxmlrpc
-
-Currently by default there are 34 modules which offer user, admin or combined siteaccess module views for general use.
-
-# Contributions
-
-## Community eZ Publish 2 Modules
+### Community eZ Publish 2 Modules
 
 The worldwide eZ community on the internet likely holds old copies of custom modules. Some community members may be willing to contribute their modules for inclusion in eZ Publish Basic.
 
@@ -270,6 +176,7 @@ Originally released as **eZ Publish Version 2** by eZ Systems (now Ibexa) in 199
 In mid-2001, **7x** began development based on **eZ Community 2.x**, a PHP/MySQL CMS derived from eZ Publish 2.2.x.
 
 ### Notable Milestones:
+
 - Released (as is / example work in progress) **eZ Community 2.3** around 2006.
 - Enhanced stability and refined CMS/e-commerce features for USA-based users. (Basis of USA States Support (eZ Region) code was implemented but not integrated)
 - This repository is a direct descendant of the deprecated `ezcommunity2-contributions` repository, restructured for simpler maintenance and support.

@@ -246,7 +246,7 @@
     - topiclist
     - urlsupplier
 
-## Admin Modules That Need Work
+## Admin Modules
 
 - ezuser
     - userlist -  Tests as 100% Functional.

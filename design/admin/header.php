@@ -38,6 +38,7 @@ $Locale = new eZLocale( $Language );
 $SiteURL =& $ini->read_var( "site", "SiteURL" );
 $AdminSiteURL =& $ini->read_var( "site", "AdminSiteURL" );
 $AdminSiteProtocol =& $ini->read_var( "site", "AdminSiteProtocol" );
+$UserSiteProtocol =& $ini->read_var( "site", "UserSiteProtocol" );
 
 //$site_modules = $ini->read_array( "site", "EnabledModules" );
 $site_modules = eZModuleHandler::all();
@@ -126,7 +127,6 @@ $single_module = eZModuleHandler::useSingleModule();
 $t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
                      "design/admin/intl/", $Language, "header.php" );
 
-
 $t->set_file( "header_tpl", "header.tpl" );
 
 $t->set_block( "header_tpl", "module_list_tpl", "module_list" );
@@ -136,18 +136,19 @@ $t->set_block( "header_tpl", "menu_tpl", "menu_item" );
 $t->set_block( "header_tpl", "charset_switch_tpl", "charset_switch" );
 $t->set_block( "charset_switch_tpl", "charset_switch_item_tpl", "charset_switch_item" );
 
-
 $user =& eZUser::currentUser();
 
 if ( $user )
 {
     $t->set_var( "first_name", $user->firstName() );
     $t->set_var( "last_name", $user->lastName() );
+    $t->set_var( "user_id", $user->id() );
 }
 else
 {
     $t->set_var( "first_name", "" );
     $t->set_var( "last_name", "" );
+    $t->set_var( "user_id", "" );
 }
 
 $uri = $_SERVER["REQUEST_URI"];
@@ -243,10 +244,11 @@ $t->set_var( "module_count", count ( $modules ) );
 $t->set_var( "ezpublish_version", eZPublish::version() );
 $t->set_var( "ezpublish_installation_version", eZPublish::installationVersion() );
 
-$t->set_var( "ip_address", $_SERVER["REMOTE_ADDR"]);
-$t->set_var( "admin_site_protocol", $AdminSiteProtocol);
-$t->set_var( "admin_site_host", $AdminSiteURL);
-$t->set_var( "user_site_host", $SiteURL);
+$t->set_var( "ip_address", $_SERVER["REMOTE_ADDR"] );
+$t->set_var( "admin_site_protocol", $AdminSiteProtocol );
+$t->set_var( "admin_site_host", $AdminSiteURL );
+$t->set_var( "user_site_protocol", $UserSiteProtocol );
+$t->set_var( "user_site_host", $SiteURL );
 
 $t->set_var( "menu_item", "" );
 
@@ -257,5 +259,6 @@ if ( ( $moduletab == "enabled" ) && ( count ( $modules ) != 0 ) )
 	$t->parse( "menu_item", "menu_tpl" );
 }
 
-
 $t->pparse( "output", "header_tpl" );
+
+?>

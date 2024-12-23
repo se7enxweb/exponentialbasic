@@ -784,7 +784,7 @@ class eZImage
 
       False is returned if the original image does not exist.
     */
-    function requestImageVariation( $width, $height, $convertToGray = false, $allow_error = true )
+    function requestImageVariation( $width, $height, $convertToGray = false, $allow_error = false )
     {
        $group = new eZImageVariationGroup();
        $variation = new eZImageVariation();

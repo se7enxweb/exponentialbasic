@@ -318,7 +318,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
             $SiteCacheTime = eZFile::filemtime( $SiteCacheFile );
             if ( ( time() - $SiteCacheTime ) < ( $timeout * 60 ) )
             {
-             // print( "valid cache" );
+                // print( "valid cache" );
             }
             else
             {
@@ -394,7 +394,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
         // set the sitedesign from the section
         if ( $ini->read_var( "site", "Sections" ) == "enabled" )
         {
-            if ( !is_numeric( $GlobalSectionID ) )
+            if ( !isset( $GlobalSectionID ) )
             {
                 $GlobalSectionID = $ini->read_var( "site", "DefaultSection" );
             }

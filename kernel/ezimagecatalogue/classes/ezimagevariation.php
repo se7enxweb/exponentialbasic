@@ -198,21 +198,28 @@ class eZImageVariation
                 $postfix = $info["dot-suffix"];
                 $imageFile->setType( $info["image-type"] );
 
-                $dest = "kernel/ezimagecatalogue/catalogue/variations/" . $image->id() . "-" . $variationGroup->width() . "x". $variationGroup->height() . $modification . $postfix;
-
+                $dest = "kernel/ezimagecatalogue/catalogue/variations/" . $image->id() . "-"
+                      . $variationGroup->width() . "x". $variationGroup->height() . $modification . $postfix;
 
                 $result = $imageFile->scaleCopy( $dest, $variationGroup->width(), $variationGroup->height(), $convertToGray );
+
                 if ( !is_bool( $result ) and $result == "locked" )
                 {
-
                     if ( $variation->getByGroupAndImage( $variationGroup->id(), $image->id(), $modification ) )
                     {
                         $ret =& $variation;
                     }
-                    else
-                    {
-                        return $allow_error ? false : eZImageVariation::createErrorImage();
-                        print( "<br><b>Timeout when retrieveing variation</b><br>" );
+                    else {
+                        if (eZFile::file_exists($dest) or is_file($dest))
+                        {
+                            $variation->setImagePath($dest);
+                            $variation->store();
+                            $ret =& $variation;
+                        }
+                        else {
+                            return $allow_error ? false : eZImageVariation::createErrorImage();
+                            print( "<br><b>Timeout when retrieveing variation</b><br>" );
+                        }
                     }
                 }
                 else if ( $result )

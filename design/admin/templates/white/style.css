@@ -266,7 +266,13 @@ hr
 	font-size: 11px;
 }
 
-.top, .topusersite, .sitelink
+.topusersite, .sitelink
+{
+	color: #000000;
+	font-size: 11px;
+}
+
+.topusername, .usereditlink
 {
 	color: #000000;
 	font-size: 11px;

@@ -228,10 +228,11 @@ class eZFile
 		global $GlobalSiteIni;
     	if ( $filename != "")
         {
-        	if ($GlobalSiteIni)
+        	if ( $GlobalSiteIni )
         	{
     			$filename = $GlobalSiteIni->SiteDir . $filename;
         	}
+            // echo $filename ."<hr>";
             return file_exists( $filename );
         } else
         {

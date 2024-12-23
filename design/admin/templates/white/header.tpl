@@ -112,11 +112,11 @@
 		</div>
 		<div class="site">
 			<span class="top">{intl-site_url}:</span><br />
-			<span class="topusersite"><a class="sitelink" href="{site_url}" target="_blank">{site_url}</a></span>
+			<span class="topusersite"><a class="sitelink" href="{user_site_protocol}://{site_url}" target="_blank">{site_url}</a></span>
 		</div>
 		<div class="userinfo">
 			<span class="top">{intl-user_name}:</span><br />
-			<span class="topusername">{first_name}&nbsp;{last_name}</span>
+			<aspan class="topusername"><a class="usereditlink" href="/user/useredit/edit/{user_id}">{first_name}&nbsp;{last_name}</a></span>
 		</div>
 		<div class="clientinfo">
 			<span class="top">{intl-ip_address}:</span><br />

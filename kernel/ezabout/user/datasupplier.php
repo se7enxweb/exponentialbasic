@@ -28,12 +28,14 @@
 $version = eZPublish::version();
 
 ?>
-<a href="http://ezcommunity.net/ezpublish2"><h1>About eZ publish basic v<? echo $version; ?></h1></a>
- <h2>Content Management System</h2>
- <hr noshade="noshade" size="4" />
+<a href="https://basic.ezpublish.one/"><h1>About eZ Publish Basic</h1></a>
+<h2>Content Management System</h2>
+
+<a href="https://basic.ezpublish.one/"><h2>Version: <? echo $version; ?></h2></a>
+<hr noshade="noshade" size="4" />
 
 <p>
-<a href="https://ezpublish.one">eZ publish</a> is a web based application suite or a <a href="https://ezpublish.one">Content Management System</a>.
+<a href="https://basic.ezpublish.one">eZ publish basic</a> is a web based application suite or a <a href="https://basic.ezpublish.one">Content Management System</a>.
 It delivers functionality ranging from publishing of news, web logs and diaries, through web shop functionality like shopping carts and wishlists and forums to intranet functions like contact handling and bug reporting.
 </p>
 <p>
@@ -46,13 +48,14 @@ It supports statistics for page views, links followed and banner ads, both image
 The package lends itself easily to customization, from changing the look and feel by changing templates, localizing the languages and other internationalization issues to adding new functionality.
 </p>
 <p>
-The target audience for <a href="https://ezpublish.one">eZ publish</a> are <a href="https://ezpublish.one">e-commerce</a>, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
+The target audience for <a href="https://basic.ezpublish.one">eZ publish basic</a> are <a href="https://basic.ezpublish.one">e-commerce</a>, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
 </p>
+
+<p>eZ Publish was created by norwegen commercial company Ibexa (Formerly, eZ Systems) in 1999</p>
+<p>eZ Publish Basic was created by usa commercial company 7x (Formerly, Brookins Consulting) in 2024 from external resources like our php5 port, ezregion features, usa stores, encryption payment solutions via email, and so much more massive improvements to the cms core and unreleased code now being integrated in our basic edition of "eZ Publish Basic 2.4".</p>
 
 <p>
 It is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL license</a> and can be downloaded from <a href="https://github.com/se7enxweb/ezpublishbasic">github.com/se7enxweb/ezpublishbasic</a>.
 
-<? /* 
-You can get commercial support from <a href="http://brookinsconsulting.com/">Brookins Consulting</a> at <a href="http://brookinsconsulting.com/">Brookins Consulting</a>. 
-*/ ?>
+You can get commercial support, upgrades, data imports, maintenance from <a href="https://se7enx.com/">7x</a>.
 </p>

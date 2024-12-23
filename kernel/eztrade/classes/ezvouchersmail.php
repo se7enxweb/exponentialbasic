@@ -85,7 +85,7 @@ class eZVoucherSMail
         {
             $db->lock( "eZTrade_VoucherSMail" );
             $nextID = $db->nextID( "eZTrade_VoucherSMail", "ID" );
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
             $password = md5( $this->Password );
 
             $res = $db->query( "INSERT INTO eZTrade_VoucherSMail

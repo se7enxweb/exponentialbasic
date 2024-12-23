@@ -106,7 +106,7 @@ class eZBug
 
         $db->begin();
 
-        $timeStamp = eZDateTime::timeStamp( true );
+        $timeStamp = (new eZDateTime())->timeStamp( true );
 
         if ( !isset( $this->ID ) )
         {

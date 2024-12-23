@@ -65,6 +65,8 @@ class eZConsultation
     */
     function __construct( $id = -1 )
     {
+        $this->ID = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -145,20 +147,25 @@ class eZConsultation
     function get( $id = -1 )
     {
         $ret = false;
+        $consult_array = array();
 
         if ( $id != -1 )
         {
             $db =& eZDB::globalDatabase();
             $db->query_single( $consult_array, "SELECT * FROM eZContact_Consultation WHERE ID='$id'" );
-            $this->ID = $consult_array[$db->fieldName( "ID" )];
-            $this->ShortDesc = $consult_array[$db->fieldName( "ShortDesc" )];
-            $this->Description = $consult_array[$db->fieldName( "Description" )];
-            $this->State = $consult_array[$db->fieldName( "StateID" )];
-            $this->EmailNotice = $consult_array[$db->fieldName( "EmailNotifications" )];
-            $this->Date = new eZDate();
-            $this->Date->setTimeStamp( $consult_array[$db->fieldName( "Date" )] );
 
-            $ret = true;
+            if( is_array( $consult_array ) && count( $consult_array ) > 0 )
+            {
+                $this->ID = $consult_array[$db->fieldName( "ID" )];
+                $this->ShortDesc = $consult_array[$db->fieldName( "ShortDesc" )];
+                $this->Description = $consult_array[$db->fieldName( "Description" )];
+                $this->State = $consult_array[$db->fieldName( "StateID" )];
+                $this->EmailNotice = $consult_array[$db->fieldName( "EmailNotifications" )];
+                $this->Date = new eZDate();
+                $this->Date->setTimeStamp( $consult_array[$db->fieldName( "Date" )] );
+                $ret = true;
+            }
+
         }
         return $ret;
     }
@@ -675,7 +682,7 @@ class eZConsultation
 
     /*!
      */
-    function companyConsultationCount( $company, $user )
+    static public function companyConsultationCount( $company, $user )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();
@@ -718,6 +725,11 @@ class eZConsultation
             $user = $user->id();
             $userString = " AND UserID='$user'";
         }
+        else
+        {
+            $userString = "";
+        }
+
         $db =& eZDB::globalDatabase();
         $db->array_query( $qry_array, "SELECT CompanyID FROM eZContact_ConsultationCompanyUserDict
                                        WHERE ConsultationID='$this->ID' $userString" );
@@ -744,6 +756,11 @@ class eZConsultation
             $user = $user->id();
             $userString = " AND UserID='$user'";
         }
+        else
+        {
+            $userString = "";
+        }
+
         $db =& eZDB::globalDatabase();
         $db->array_query( $qry_array, "SELECT PersonID FROM eZContact_ConsultationPersonUserDict
                                        WHERE ConsultationID='$this->ID' $userString" );

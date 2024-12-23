@@ -80,7 +80,7 @@ class eZProductAttribute
                 $place = $place[$db->fieldName( "Placement" )];
                 $place++;
             }
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
             $db->lock( "eZTrade_Attribute" );
             $nextID = $db->nextID( "eZTrade_Attribute", "ID" );
             $res[] = $db->query( "INSERT INTO eZTrade_Attribute

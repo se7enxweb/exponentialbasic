@@ -87,7 +87,7 @@ class eZNews
         $db =& eZDB::globalDatabase();
         $db->begin();
 
-        $timeStamp = eZDateTime::timeStamp( true );
+        $timeStamp = (new eZDateTime())->timeStamp( true );
 
         $name = $db->escapeString( $this->Name );
         $intro = $db->escapeString( $this->Intro );

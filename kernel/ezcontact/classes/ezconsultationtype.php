@@ -77,14 +77,17 @@ class eZConsultationType
         if ( !isset( $this->ID ) )
         {
             $db->query_single( $qry, "SELECT ListOrder from eZContact_ConsultationType ORDER BY ListOrder DESC", array( "Limit" => 1 ) );
-            $listorder = $qry[ $db->fieldName( "ListOrder" ) ] + 1;
-            $this->ListOrder = $listorder;
-            $db->lock( "eZContact_ConsultationType" );
-			$this->ID = $db->nextID( "eZContact_ConsultationType", "ID" );
-            $res[] = $db->query( "INSERT INTO eZContact_ConsultationType
-                                  (ID, Name, ListOrder)
-                                  VALUES
-                                  ('$this->ID', '$name', '$listorder')" );
+
+            if( is_array( $qry ) && count( $qry ) > 0 ) {
+                $listorder = $qry[$db->fieldName("ListOrder")] + 1;
+                $this->ListOrder = $listorder;
+                $db->lock("eZContact_ConsultationType");
+                $this->ID = $db->nextID("eZContact_ConsultationType", "ID");
+                $res[] = $db->query("INSERT INTO eZContact_ConsultationType
+                                      (ID, Name, ListOrder)
+                                      VALUES
+                                      ('$this->ID', '$name', '$listorder')");
+            }
             $db->unlock();
         }
         else

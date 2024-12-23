@@ -64,7 +64,20 @@
   <link rel="shortcut icon" href="{admin_site_protocol}://{admin_site_host}/favicon.ico" type="image/x-icon">
 </head>
 
-<body bgcolor="#ffffff" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6" onload="MM_preloadImages('{www_dir}/design/admin/images/{site_style}/redigerminimrk.gif','{www_dir}/design/admin/images/{site_style}/slettminimrk.gif','{www_dir}/design/admin/images/{site_style}/downloadminimrk.gif','{www_dir}/design/admin/images/{site_style}/imagemapminimrk.gif')">
+<body bgcolor="#ffffff" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"
+	  onload="MM_preloadImages('{www_dir}/design/admin/images/{site_style}/redigerminimrk.gif',
+			  '{www_dir}/design/admin/images/{site_style}/slettminimrk.gif',
+			  '{www_dir}/design/admin/images/{site_style}/downloadminimrk.gif',
+			  '{www_dir}/design/admin/images/{site_style}/imagemapminimrk.gif',
+			  '/design/news/images/tab-unmrk-mrk.gif',
+			  'design/news/images/tab-mrk-unmrk.gif',
+			  '/design/trade/images/tab-unmrk-mrk.gif',
+			  '/design/trade/images/tab-mrk-unmrk.gif',
+			  '/design/standard/images/tab-unmrk-mrk.gif',
+			  '/design/standard/images/tab-mrk-unmrk.gif',
+			  '/design/intranet/images/tab-unmrk-mrk.gif',
+			  '/design/intranet/images/tab-mrk-unmrk.gif'
+			  )">
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
@@ -99,7 +112,7 @@
 		</div>
 		<div class="site">
 			<span class="top">{intl-site_url}:</span><br />
-			<span class="topusername">{site_url}</span>
+			<span class="topusersite"><a class="sitelink" href="{site_url}" target="_blank">{site_url}</a></span>
 		</div>
 		<div class="userinfo">
 			<span class="top">{intl-user_name}:</span><br />

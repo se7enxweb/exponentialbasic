@@ -340,10 +340,13 @@ function &renderFrontpageArticle( &$t, &$locale, &$article )
         $variation =& $thumbnailImage->requestImageVariation( $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" ),
         $ini->read_var( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
 
-        $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
-        $t->set_var( "thumbnail_image_width", $variation->width() );
-        $t->set_var( "thumbnail_image_height", $variation->height() );
-        $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
+        if(  is_object( $variation ) )
+        {
+            $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
+            $t->set_var( "thumbnail_image_width", $variation->width() );
+            $t->set_var( "thumbnail_image_height", $variation->height() );
+            $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
+        }
 
         $t->parse( "one_column_article_image", "one_column_article_image_tpl" );
     }
@@ -430,10 +433,12 @@ function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
         $variation =& $thumbnailImage->requestImageVariation( $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" ),
         $ini->read_var( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
 
-        $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
-        $t->set_var( "thumbnail_image_width", $variation->width() );
-        $t->set_var( "thumbnail_image_height", $variation->height() );
-        $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
+        if( is_object( $variation ) ) {
+            $t->set_var("thumbnail_image_uri", "/" . $variation->imagePath());
+            $t->set_var("thumbnail_image_width", $variation->width());
+            $t->set_var("thumbnail_image_height", $variation->height());
+        }
+        $t->set_var("thumbnail_image_caption", $thumbnailImage->caption());
 
         $t->parse( "left_article_image", "left_article_image_tpl" );
     }

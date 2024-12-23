@@ -454,7 +454,7 @@ class eZSession
         $db =& eZDB::globalDatabase();
 
         $value_array = array();
-        $timeStamp = eZDateTime::timeStamp( true );
+        $timeStamp = (new eZDateTime())->timeStamp( true );
 
         $db->array_query( $value_array, "SELECT ID, ( $timeStamp - LastAccessed  ) AS Idle
                                          FROM eZSession_Session

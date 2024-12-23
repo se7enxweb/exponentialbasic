@@ -33,7 +33,7 @@
   your own specific implementation.
 
   To create your own checkout routine simply create a folder named checkout/
-  in the eZ publish root and copy the ezcheckoutsupplier.php to the classes/
+  in the eZ publish root and copy the ezcheckoutsuppliergateway.php to the classes/
   folder of that directory. The reason for the checkout folder for custom checkout
   code is compatibility with upgrades of the software and some CVS issues.
 
@@ -51,20 +51,19 @@ class eZCheckout
     function __construct()
     {
         $ini =& INIFile::globalINI();
-
         $Checkout = $ini->read_var( "eZTradeMain", "Checkout" );
 
         // check for local checkout code
-        if ( eZFile::file_exists( "checkout/classes/ezcheckoutsupplier.php" ) )
+        if ( eZFile::file_exists( "kernel/classes/checkout/ezcheckoutsuppliergateway.php" ) )
         {
-            // include_once( "checkout/classes/ezcheckoutsupplier.php" );
+            include_once( "kernel/classes/checkout/ezcheckoutsuppliergateway.php" );
+            $this->CheckoutObject = new eZCheckoutSupplierGateway();
         }
         else
         {
-            // include_once( "eztrade/classes/ezcheckoutsupplier.php" );
+            include_once( "kernel/eztrade/classes/ezcheckoutsupplier.php" );
+            $this->CheckoutObject = new eZCheckoutSupplier();
         }
-        
-        $this->CheckoutObject = new eZCheckoutSupplier( );
     }
 
     /*!

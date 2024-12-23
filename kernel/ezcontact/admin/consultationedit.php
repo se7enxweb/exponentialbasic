@@ -60,7 +60,7 @@ if ( isset( $new_consultation ) )
 {
     unset( $new_consultation );
     // include_once( "classes/ezhttptool.php" );
-    eZHTTPTool::header( "Location: contact/consultation/person/new" );
+    eZHTTPTool::header( "Location: /contact/consultation/person/new" );
     exit();
 }
 
@@ -195,6 +195,9 @@ $t->set_var( "consultant_type", "" );
 $t->set_var( "person_id_item", "" );
 $t->set_var( "company_id_item", "" );
 
+
+
+
 if ( isset( $PersonID ) and !isset( $PersonContact ) )
     $PersonContact = $PersonID;
 if ( isset( $CompanyID ) and !isset( $CompanyContact ) )
@@ -301,8 +304,11 @@ if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
     {
         $consultation = new eZConsultation( $ConsultationID );
         $oldDate = $consultation->date();
-        deleteCache( "default", $Language, $oldDate->year(), addZero( $oldDate->month() ), addZero( $oldDate->day() ), $userID );
-        deleteCache( "default", $Language, $ConsultationYear, addZero( $ConsultationMonth ), addZero( $ConsultationDay ), $userID );
+        if( !is_null( $oldDate ) )
+        {
+            deleteCache( "default", $Language, $oldDate->year(), addZero( $oldDate->month() ), addZero( $oldDate->day() ), $userID );
+            deleteCache( "default", $Language, $ConsultationYear, addZero( $ConsultationMonth ), addZero( $ConsultationDay ), $userID );
+        }
     }
     else
     {
@@ -341,6 +347,7 @@ if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
     $t->set_var( "consultation_id", $ConsultationID );
 
     $consult_id = $ConsultationID . "-" . $user->id();
+
     if ( isset( $CompanyContact ) )
     {
         $company = new eZCompany( $CompanyContact );
@@ -560,79 +567,82 @@ if ( $Action == "edit" )
     }
 
     $currentDate = $consultation->date();
-    for ( $i = 1; $i <= 31; $i++ )
+    if( $currentDate != null )
     {
-        $t->set_var( "day_id", $i );
-        $t->set_var( "day_value", $i );
-        if ( $currentDate->day() == $i )
-            $t->set_var( "day_selected", "selected" );
+        for ( $i = 1; $i <= 31; $i++ )
+        {
+            $t->set_var( "day_id", $i );
+            $t->set_var( "day_value", $i );
+            if ( $currentDate->day() == $i )
+                $t->set_var( "day_selected", "selected" );
+            else
+                $t->set_var( "day_selected", "" );
+
+            $t->parse( "day_item", "day_item_tpl", true );
+        }
+
+        if ( $currentDate->month() == 1 )
+            $t->set_var( "select_january", "selected" );
         else
-            $t->set_var( "day_selected", "" );
+            $t->set_var( "select_january", "" );
 
-        $t->parse( "day_item", "day_item_tpl", true );
+        if ( $currentDate->month() == 2 )
+            $t->set_var( "select_february", "selected" );
+        else
+            $t->set_var( "select_february", "" );
+
+        if ( $currentDate->month() == 3 )
+            $t->set_var( "select_march", "selected" );
+        else
+            $t->set_var( "select_march", "" );
+
+        if ( $currentDate->month() == 4 )
+            $t->set_var( "select_april", "selected" );
+        else
+            $t->set_var( "select_april", "" );
+
+        if ( $currentDate->month() == 5 )
+            $t->set_var( "select_may", "selected" );
+        else
+            $t->set_var( "select_may", "" );
+
+        if ( $currentDate->month() == 6 )
+            $t->set_var( "select_june", "selected" );
+        else
+            $t->set_var( "select_june", "" );
+
+        if ( $currentDate->month() == 7 )
+            $t->set_var( "select_july", "selected" );
+        else
+            $t->set_var( "select_july", "" );
+
+        if ( $currentDate->month() == 8 )
+            $t->set_var( "select_august", "selected" );
+        else
+            $t->set_var( "select_august", "" );
+
+        if ( $currentDate->month() == 9 )
+            $t->set_var( "select_september", "selected" );
+        else
+            $t->set_var( "select_september", "" );
+
+        if ( $currentDate->month() == 10 )
+            $t->set_var( "select_october", "selected" );
+        else
+            $t->set_var( "select_october", "" );
+
+        if ( $currentDate->month() == 11 )
+            $t->set_var( "select_november", "selected" );
+        else
+            $t->set_var( "select_november", "" );
+
+        if ( $currentDate->month() == 12 )
+            $t->set_var( "select_december", "selected" );
+        else
+            $t->set_var( "select_december", "" );
+
+        $t->set_var( "consultationyear", $currentDate->year() );
     }
-
-    if ( $currentDate->month() == 1 )
-        $t->set_var( "select_january", "selected" );
-    else
-        $t->set_var( "select_january", "" );
-
-    if ( $currentDate->month() == 2 )
-        $t->set_var( "select_february", "selected" );
-    else
-        $t->set_var( "select_february", "" );
-
-    if ( $currentDate->month() == 3 )
-        $t->set_var( "select_march", "selected" );
-    else
-        $t->set_var( "select_march", "" );
-
-    if ( $currentDate->month() == 4 )
-        $t->set_var( "select_april", "selected" );
-    else
-        $t->set_var( "select_april", "" );
-
-    if ( $currentDate->month() == 5 )
-        $t->set_var( "select_may", "selected" );
-    else
-        $t->set_var( "select_may", "" );
-
-    if ( $currentDate->month() == 6 )
-        $t->set_var( "select_june", "selected" );
-    else
-        $t->set_var( "select_june", "" );
-
-    if ( $currentDate->month() == 7 )
-        $t->set_var( "select_july", "selected" );
-    else
-        $t->set_var( "select_july", "" );
-
-    if ( $currentDate->month() == 8 )
-        $t->set_var( "select_august", "selected" );
-    else
-        $t->set_var( "select_august", "" );
-
-    if ( $currentDate->month() == 9 )
-        $t->set_var( "select_september", "selected" );
-    else
-        $t->set_var( "select_september", "" );
-
-    if ( $currentDate->month() == 10 )
-        $t->set_var( "select_october", "selected" );
-    else
-        $t->set_var( "select_october", "" );
-
-    if ( $currentDate->month() == 11 )
-        $t->set_var( "select_november", "selected" );
-    else
-        $t->set_var( "select_november", "" );
-
-    if ( $currentDate->month() == 12 )
-        $t->set_var( "select_december", "selected" );
-    else
-        $t->set_var( "select_december", "" );
-
-    $t->set_var( "consultationyear", $currentDate->year() );
 
     $groups = $consultation->groupIDList();
 
@@ -643,6 +653,8 @@ if ( $Action == "edit" )
 
 if ( $Action == "formdata" )
 {
+    if( !isset( $ConsultationID ) or $ConsultationID == "new" )
+        $ConsultationID = 0;
     $Action_value = "insert";
     $t->set_var( "consultation_id", $ConsultationID );
     $t->set_var( "short_description", $ShortDescription );
@@ -745,7 +757,7 @@ if ( !( isset( $CompanyID ) || isset( $PersonID ) ) )
     {
         $t->set_var( "contact_id", $company->id() );
         $t->set_var( "contact_name", $company->name() );
-        if ( $CompanyContact == $company->id() )
+        if ( isset( $CompanyContact ) && $CompanyContact == $company->id() )
             $t->set_var( "selected", "selected" );
         else
             $t->set_var( "selected", "" );
@@ -762,7 +774,7 @@ if ( !( isset( $CompanyID ) || isset( $PersonID ) ) )
         $t->set_var( "contact_id", $person->id() );
         $t->set_var( "contact_firstname", $person->firstName() );
         $t->set_var( "contact_lastname", $person->lastName() );
-        if ( $PersonContact == $person->id() )
+        if ( isset( $PersonContact ) && $PersonContact == $person->id() )
             $t->set_var( "selected", "selected" );
         else
             $t->set_var( "selected", "" );

@@ -61,7 +61,7 @@ class eZTodoLog
         
         $log = $db->escapeString( $this->Log );
 
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp =& (new eZDateTime())->timeStamp( true );
         if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTodo_Log" );

@@ -101,9 +101,21 @@ else
 
 </head>
 
-<body bgcolor="#666699" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"  onload="MM_preloadImages('/design/base/images/icons/redigerminimrk.gif','/design/base/images/icons/slettminimrk.gif','/design/base/images/icons/downloadminimrk.gif','/design/base/images/icons/addminimrk.gif')">
+<body bgcolor="#666699" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"
+      onload="MM_preloadImages('/design/base/images/icons/redigerminimrk.gif',
+      '/design/base/images/icons/slettminimrk.gif','/design/base/images/icons/downloadminimrk.gif',
+      '/design/base/images/icons/addminimrk.gif',
+      '/design/news/images/tab-unmrk-mrk.gif',
+      '/design/news/images/tab-mrk-unmrk.gif',
+      '/design/trade/images/tab-unmrk-mrk.gif',
+      '/design/trade/images/tab-mrk-unmrk.gif',
+      '/design/standard/images/tab-unmrk-mrk.gif',
+      '/design/standard/images/tab-mrk-unmrk.gif',
+      '/design/intranet/images/tab-unmrk-mrk.gif',
+      '/design/intranet/images/tab-mrk-unmrk.gif'
+      )">
 
-<table class="body" width="100%" border="0" cellspacing="0" cellpadding="0">
+ <table class="body" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
         <td>
 

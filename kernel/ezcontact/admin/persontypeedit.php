@@ -48,7 +48,7 @@ $DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
 require( "kernel/ezuser/admin/admincheck.php" );
 
 // Legge til
-if ( $Action == "insert" )
+if ( isset( $Action ) && $Action == "insert" )
 {
     if ( eZPermission::checkPermission( $user, "eZContact", "AdminAdd" ) )
     {
@@ -66,7 +66,7 @@ if ( $Action == "insert" )
 }
 
 // Oppdatere
-if ( $Action == "update" )
+if ( isset( $Action ) && $Action == "update" )
 {
     if ( eZPermission::checkPermission( $user, "eZContact", "AdminModify" ) )
     {
@@ -87,7 +87,7 @@ if ( $Action == "update" )
 }
 
 // Slette
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     if ( eZPermission::checkPermission( $user, "eZContact", "AdminDelete" ) )
     {
@@ -115,7 +115,7 @@ $t->set_var( "persontype_id", "" );
 $t->set_var( "head_line", "Legg til ny persontype" );
 
 // Editere
-if ( $Action == "edit" )
+if ( isset( $Action ) && $Action == "edit" )
 {
     $type = new eZPersonType();
     $type->get( $PID );

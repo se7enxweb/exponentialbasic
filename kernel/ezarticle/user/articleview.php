@@ -394,10 +394,12 @@ if ( $article->get( $ArticleID ) )
                 $t->set_var( "article_id", $ArticleID );
 
                 $variation =& $image->requestImageVariation( $ListImageWidth, $ListImageHeight );
-
-                $t->set_var( "image_url", "/" .$variation->imagePath() );
-                $t->set_var( "image_width", $variation->width() );
-                $t->set_var( "image_height",$variation->height() );
+                if( is_object( $variation ) )
+                {
+                    $t->set_var( "image_url", "/" .$variation->imagePath() );
+                    $t->set_var( "image_width", $variation->width() );
+                    $t->set_var( "image_height",$variation->height() );
+                }
 
                 $t->parse( "image", "image_tpl", true );
                 $i++;

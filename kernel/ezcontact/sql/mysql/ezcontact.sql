@@ -173,6 +173,8 @@ CREATE TABLE eZContact_ProjectType (
   ID int NOT NULL,
   Name varchar(50) DEFAULT '' NOT NULL,
   ListOrder int DEFAULT '0' NOT NULL,
+  ExpiryTime int DEFAULT '0' NOT NULL,
+  WarningTime int DEFAULT '0' NOT NULL,
   PRIMARY KEY (ID)
 );
 
@@ -207,3 +209,7 @@ CREATE TABLE eZContact_CompanyImageDict (
   ImageID int DEFAULT '0' NOT NULL,
   PRIMARY KEY (CompanyID,ImageID)
 );
+
+INSERT INTO `eZContact_ConsultationType` (`ID`, `Name`, `ListOrder`) VALUES ('1', 'Default Consultation Type #1', '0');
+
+INSERT INTO `eZContact_ProjectType` (`ID`, `Name`, `ListOrder`, `ExpiryTime`, `WarningTime`) VALUES ('1', 'Default Project Type #1', '0', '0', '0')

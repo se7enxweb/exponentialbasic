@@ -368,7 +368,7 @@ class eZPaypalReturn {
         $nextID = $db->nextID( "eZTrade_PaypalReturn", "ID" );
 
         if ( empty( $this->ID ) ) {
-			$timeStamp = eZDateTime::timeStamp( true );
+			$timeStamp = (new eZDateTime())->timeStamp( true );
 				
             $ret = $db->query( "INSERT INTO eZTrade_PaypalReturn SET ".
 				"ID = '$nextID',".

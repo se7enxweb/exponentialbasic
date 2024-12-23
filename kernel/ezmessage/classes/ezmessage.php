@@ -60,7 +60,7 @@ class eZMessage
 
         $subject = $db->escapeString( $this->Subject );
         $description = $db->escapeString( $this->Description );
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp =& (new eZDateTime())->timeStamp( true );
 
         if ( !isset( $this->ID ) )
         {

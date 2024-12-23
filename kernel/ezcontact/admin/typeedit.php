@@ -48,7 +48,8 @@ $DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ), $DOC_ROOT . "admin/intl", $Language, $language_file );
+$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+                     $DOC_ROOT . "admin/intl", $Language, $language_file );
 $t->setAllStrings();
 
 $item_error = true;
@@ -167,8 +168,8 @@ $t->set_var( "item_view_command", "$page_path/view" );
 $t->set_var( "item_list_command", "$page_path/list" );
 $t->set_var( "item_new_command", "$page_path/new" );
 
-$t->set_var( "item_id", $ItemID );
-$t->set_var( "item_name", $ItemName );
+$t->set_var( "item_id", isset( $ItemID ) ? $ItemID : false );
+$t->set_var( "item_name", isset( $ItemName ) ? $ItemName : false );
 
 $t->set_var( "back_url", $back_command );
 $t->set_var( "item_back_command", $back_command );
@@ -198,7 +199,7 @@ if ( $Action == "confirm" )
     }
 }
 
-if ( $error == false )
+if ( !isset( $error ) or $error == false )
 {
     $t->set_var( "errors", "" );
 }
@@ -206,7 +207,7 @@ if ( $error == false )
 if ( isset( $func_call ) and is_array( $func_call ) )
 {
     reset( $func_call );
-    while( list( $key,$val ) = each( $func_call ) )
+    foreach( $func_call as $key => $value )
     {
         $t->set_var( $key, $item_type->$val() );
     }

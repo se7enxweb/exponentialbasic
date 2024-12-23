@@ -66,7 +66,7 @@ class eZShippingType
 
         if ( !isset( $this->ID ) )
         {
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
             $db->lock( "eZTrade_ShippingType" );
             $nextID = $db->nextID( "eZTrade_ShippingType", "ID" );
             $res[] = $db->query( "INSERT INTO eZTrade_ShippingType

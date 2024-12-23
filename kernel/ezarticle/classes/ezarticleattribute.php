@@ -76,7 +76,7 @@ class eZArticleAttribute
             $db->lock( "eZArticle_Attribute" );
 
             $nextID = $db->nextID( "eZArticle_Attribute", "ID" );
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
             $db->array_query( $attribute_array, "SELECT Placement FROM eZArticle_Attribute" );
 

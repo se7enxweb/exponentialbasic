@@ -1,6 +1,6 @@
 <?php
 // 
-// $Id: ezcheckoutsupplier.php 7552 2001-09-28 09:19:50Z ce $
+// $Id: ezcheckoutsuppliergateway.php 7552 2001-09-28 09:19:50Z ce $
 //
 // Definition of eZCheckoutSupplier class
 //

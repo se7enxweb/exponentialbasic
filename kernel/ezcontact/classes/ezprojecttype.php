@@ -59,6 +59,9 @@ class eZProjectType
     */
     function __construct( $id = -1 )
     {
+        $this->ExpiryTime = 0;
+        $this->WarningTime = 0;
+
         if ( is_array( $id ) )
         {
             $this->fill( $id );
@@ -82,15 +85,19 @@ class eZProjectType
         {
             $db->query_single( $qry, "SELECT ListOrder from eZContact_ProjectType ORDER BY ListOrder DESC",
                                array( "Limit" => 1 ) );
-            $listorder = $qry[$db->fieldName( "ListOrder" )] + 1;
-            $this->ListOrder = $listorder;
 
-            $db->lock( "eZContact_ProjectType" );
-            $this->ID = $db->nextID( "eZContact_ProjectType", "ID" );
-            $res[] = $db->query( "INSERT INTO eZContact_ProjectType
+            if( is_array( $qry ) && count( $qry ) > 0 )
+            {
+                $listorder = $qry[$db->fieldName( "ListOrder" )] + 1;
+                $this->ListOrder = $listorder;
+
+                $db->lock( "eZContact_ProjectType" );
+                $this->ID = $db->nextID( "eZContact_ProjectType", "ID" );
+                $res[] = $db->query( "INSERT INTO eZContact_ProjectType
                                   (ID, Name, ListOrder, ExpiryTime, WarningTime)
                                   VALUES
                                   ('$this->ID', '$name', '$listorder', '$this->ExpiryTime', '$this->WarningTime')" );
+            }
             $db->unlock();
         }
         else

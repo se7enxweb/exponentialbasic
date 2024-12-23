@@ -88,7 +88,7 @@ class eZVoucherInformation
         {
             $db->lock( "eZTrade_VoucherInformation" );
             $nextID = $db->nextID( "eZTrade_VoucherInformation", "ID" );
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZTrade_VoucherInformation
                       ( ID, VoucherID, OnlineID, ToAddressID, FromAddressID, Description, PreOrderID, MailMethod, FromName, ToName, FromOnlineID, Price, ProductID )

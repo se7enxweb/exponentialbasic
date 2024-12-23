@@ -303,7 +303,7 @@ if ( isset( $SendOrder ) )
 
         $expiryTime = $product->expiryTime();
         if ( $expiryTime > 0 )
-            $orderItem->setExpiryDate( eZDateTime::timeStamp( true ) + ( $expiryTime * 86400 ) );
+            $orderItem->setExpiryDate( (new eZDateTime())->timeStamp( true ) + ( $expiryTime * 86400 ) );
         else
             $orderItem->setExpiryDate( 0 );
 

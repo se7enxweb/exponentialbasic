@@ -80,7 +80,7 @@ class eZSectionFrontPage
 
             $nextID = $db->nextID( "eZSiteManager_SectionFrontPageRow", "ID" );
             
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZSiteManager_SectionFrontPageRow
                                      ( ID, SettingID, CategoryID, Placement  )

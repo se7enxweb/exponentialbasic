@@ -64,7 +64,7 @@ class eZLinkAttribute
                 $place++;
             }
 
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
 			$this->ID = $db->nextID( "eZLink_Attribute", "ID" );
             $res = $db->query( "INSERT INTO eZLink_Attribute

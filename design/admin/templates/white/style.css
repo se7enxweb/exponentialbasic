@@ -266,6 +266,12 @@ hr
 	font-size: 11px;
 }
 
+.top, .topusersite, .sitelink
+{
+	color: #000000;
+	font-size: 11px;
+}
+
 .top
 {
 	font-weight: bold;
@@ -296,6 +302,4 @@ hr
 	font-size: 1px;
 }
 
-/* Hellstrøm 24.8.2001 */
-
-
+/* Hellstrï¿½m 24.8.2001 */

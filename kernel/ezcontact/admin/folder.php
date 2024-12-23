@@ -26,7 +26,7 @@
 // include_once( "ezcontact/classes/ezperson.php" );
 // include_once( "ezcontact/classes/ezcompany.php" );
 
-$top = eZVirtualFolder::getIDByParent( "Contact" );
+$top = (new eZVirtualFolder())->getIDByParent( "Contact" );
 if ( !$top )
 {
     $contact = new eZVirtualFolder();
@@ -38,7 +38,7 @@ if ( !$top )
 
 if ( $CompanyEdit )
 {
-    $parent = eZVirtualFolder::getIDByParent( "Company", $top );
+    $parent = (new eZVirtualFolder())->getIDByParent( "Company", $top );
     if ( !$parent )
     {
         $companyFolder = new eZVirtualFolder();
@@ -51,7 +51,7 @@ if ( $CompanyEdit )
 }
 else
 {
-    $parent = eZVirtualFolder::getIDByParent( "Person", $top );
+    $parent = (new eZVirtualFolder())->getIDByParent( "Person", $top );
     if ( !$parent )
     {
         $personFolder = new eZVirtualFolder();
@@ -62,17 +62,17 @@ else
     }
     $element = new eZPerson( $item_id );
 }
-$id = eZVirtualFolder::getIDByParent( $element->name(), $parent );
+$id = (new eZVirtualFolder())->getIDByParent( $element->name(), $parent );
 if ( !$id )
 {
     $newFolder = new eZVirtualFolder();
     $newFolder->setName( $element->name() );
     $newFolder->setParent( $parent );
     $newFolder->store();
-    eZObjectPermission::setPermission( -1, $newFolder, "filemanager_folder", "r" );
-    eZObjectPermission::setPermission( -1, $newFolder, "filemanager_folder", "w" );
-    eZObjectPermission::setPermission( -1, $newFolder, "filemanager_folder", "u" );
     $id = $newFolder->ID();
+    eZObjectPermission::setPermission( -1, $id, "filemanager_folder", "r" );
+    eZObjectPermission::setPermission( -1, $id, "filemanager_folder", "w" );
+    eZObjectPermission::setPermission( -1, $id, "filemanager_folder", "u" );
 }
 
 // include_once( "classes/ezhttptool.php" );

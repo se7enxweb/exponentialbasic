@@ -133,7 +133,7 @@ class eZProduct
 
         if ( !isset( $this->ID ) )
         {
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
             $db->lock( "eZTrade_Product" );
             $nextID = $db->nextID( "eZTrade_Product", "ID" );
 
@@ -1276,7 +1276,7 @@ class eZProduct
             }
 
             $nextID = $db->nextID( "eZTrade_ProductImageLink", "ID" );
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZTrade_ProductImageLink
                          ( ID, ProductID, ImageID, Created, Placement )

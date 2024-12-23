@@ -1149,7 +1149,7 @@ class eZCompany
         if ( !$company_id )
             $company_id = $this->ID;
         $db =& eZDB::globalDatabase();
-        $timestamp = eZDateTime::timeStamp( true );
+        $timestamp = (new eZDateTime())->timeStamp( true );
         $db->array_query( $qry_array, "SELECT ID FROM eZContact_CompanyView
                                        WHERE Date='$timestamp' AND
                                              CompanyID='$company_id'", 0, 1 );

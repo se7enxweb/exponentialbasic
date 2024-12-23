@@ -495,7 +495,7 @@ class eZQuizScore
     function getAllSavedByUser( &$user, $offset = 0, $limit = 20, $latestOnly = true )
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
         $returnArray = array();
         $scoreArray = array();
 
@@ -528,7 +528,7 @@ class eZQuizScore
     function countAllSavedByUser( &$user, $latestOnly = true )
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
         $scoreArray = array();
 
         if ( is_a( $user, "eZUser" ) )

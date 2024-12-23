@@ -422,11 +422,12 @@ foreach ( $articleList as $article )
             $convertToGray = false;
 
         $variation =& $thumbnailImage->requestImageVariation( $ThumbnailImageWidth, $ThumbnailImageHeight, $convertToGray );
-
-        $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
-        $t->set_var( "thumbnail_image_width", $variation->width() );
-        $t->set_var( "thumbnail_image_height", $variation->height() );
-        $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
+        if( is_object( $variation ) ) {
+            $t->set_var("thumbnail_image_uri", "/" . $variation->imagePath());
+            $t->set_var("thumbnail_image_width", $variation->width());
+            $t->set_var("thumbnail_image_height", $variation->height());
+            $t->set_var("thumbnail_image_caption", $thumbnailImage->caption());
+        }
 
         $t->parse( "article_image", "article_image_tpl" );
     }

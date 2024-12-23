@@ -726,15 +726,31 @@ class eZQDomRenderer
                 if ( is_a( $variation, "eZImage" ) )
                 {
                     $imageURL = $variation->filePath();
+                    if( is_object( $variation ) )
+                    {
+                        $imageURL = "/" . $variation->imagePath();
+                        $imageWidth = $variation->width();
+                        $imageHeight = $variation->height();
+                    }
+                    else
+                    {
+                        $imageURL = false;
+                        $imageWidth = 0;
+                        $imageHeight = 0;
+                    }
+                }
+                elseif( is_object( $variation ) )
+                {
+                    $imageURL = "/" . $variation->imagePath();
+                    $imageWidth = $variation->width();
+                    $imageHeight = $variation->height();
                 }
                 else
                 {
-                    $imageURL = "/" . $variation->imagePath();
+                    $imageURL = false;
+                    $imageWidth = 0;
+                    $imageHeight = 0;
                 }
-
-                $imageWidth = $variation->width();
-                $imageHeight = $variation->height();
-
 
                 if ( $imageCaptionOverride != "" )
                 {

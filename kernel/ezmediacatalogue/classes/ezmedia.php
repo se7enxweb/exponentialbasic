@@ -95,7 +95,7 @@ class eZMedia
         {
             $db->lock( "eZMediaCatalogue_Media" );
 
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
 
             $this->ID = $db->nextID( "eZMediaCatalogue_Media", "ID" );
             $res = $db->query( "INSERT INTO eZMediaCatalogue_Media

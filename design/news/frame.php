@@ -92,7 +92,20 @@ else
 
 </head>
 
-<body bgcolor="#996666" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"  onload="MM_preloadImages('<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/redigerminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/slettminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/downloadminimrk.gif','<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/addminimrk.gif')">
+<body bgcolor="#996666" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6"
+      onload="MM_preloadImages('<?php //print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/redigerminimrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/slettminimrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/downloadminimrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>/design/base/images/icons/addminimrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/news/images/tab-unmrk-mrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/news/images/tab-mrk-unmrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/trade/images/tab-unmrk-mrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/trade/images/tab-mrk-unmrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/standard/images/tab-unmrk-mrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/standard/images/tab-mrk-unmrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/intranet/images/tab-unmrk-mrk.gif',
+              '<?php //print $GlobalSiteIni->WWWDir; ?>design/intranet/images/tab-mrk-unmrk.gif'
+               )">
 
 <table class="body" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>

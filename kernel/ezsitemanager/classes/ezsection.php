@@ -80,7 +80,7 @@ class eZSection
 
             $nextID = $db->nextID( "eZSiteManager_Section", "ID" );
 
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZSiteManager_Section
                                      ( ID,  Name, Created, Description, TemplateStyle, SiteDesign, Language )
@@ -411,7 +411,7 @@ class eZSection
 
         $nextID = $db->nextID( "eZSiteManager_SectionFrontPageRowLink", "ID" );
 
-        $timeStamp = eZDateTime::timeStamp( true );
+        $timeStamp = (new eZDateTime())->timeStamp( true );
 
         $res[] = $db->query( "INSERT INTO eZSiteManager_SectionFrontPageRowLink
                                      ( ID,  SectionID, FrontPageID )

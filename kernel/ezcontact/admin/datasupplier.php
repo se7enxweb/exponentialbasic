@@ -330,6 +330,7 @@ switch ( $ListType )
     {
         if ( !isset( $ConsultationID ) or !is_numeric( $ConsultationID ) )
             $ConsultationID = $url_array[4];
+
         $Action = $url_array[3];
         switch ( $Action )
         {

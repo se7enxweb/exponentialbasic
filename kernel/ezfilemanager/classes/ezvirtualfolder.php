@@ -49,6 +49,8 @@ class eZVirtualFolder
     function __construct( $id=-1 )
     {
         $this->ExcludeFromSearch = false;
+        $this->UserID = 0;
+        $this->SectionID = 0;
         if ( $id != -1 )
         {
             $this->ID = $id;

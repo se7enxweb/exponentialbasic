@@ -128,7 +128,7 @@ class eZImage
         {
             $db->lock( "eZImageCatalogue_Image" );
 
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
             $this->ID = $db->nextID( "eZImageCatalogue_Image", "ID" );
             $res = $db->query( "INSERT INTO eZImageCatalogue_Image
@@ -784,7 +784,7 @@ class eZImage
 
       False is returned if the original image does not exist.
     */
-    function requestImageVariation( $width, $height, $convertToGray = false, $allow_error = false )
+    function requestImageVariation( $width, $height, $convertToGray = false, $allow_error = true )
     {
        $group = new eZImageVariationGroup();
        $variation = new eZImageVariation();

@@ -457,7 +457,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
     else
     {
         // load site cache
-        $fp = fopen( $SiteCacheFile, r );
+        $fp = fopen( $SiteCacheFile, 'r' );
         fpassthru( $fp );
     }
 

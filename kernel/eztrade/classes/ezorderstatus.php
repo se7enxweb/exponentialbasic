@@ -66,7 +66,7 @@ class eZOrderStatus
         $db->begin();
 
         $this->Comment = $db->escapeString( $this->Comment );
-        $timestamp = eZDateTime::timeStamp( true );
+        $timestamp = (new eZDateTime())->timeStamp( true );
         if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTrade_OrderStatus" );

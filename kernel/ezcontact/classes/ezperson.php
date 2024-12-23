@@ -971,7 +971,7 @@ class eZPerson
     /*!
       Returns the project state of this person.
     */
-    static public function setProjectState( $value, $id = false )
+    public function setProjectState( $value, $id = false )
     {
         if ( !$id )
             $id = $this->ID;

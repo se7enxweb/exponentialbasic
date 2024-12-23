@@ -69,7 +69,7 @@ class eZPreOrder
         {
             $db->lock( "eZTrade_PreOrder" );
             $nextID = $db->nextID( "eZTrade_PreOrder", "ID" );
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
             $ret[] = $db->query( "INSERT INTO eZTrade_PreOrder
                                ( ID,
 		                         OrderID,

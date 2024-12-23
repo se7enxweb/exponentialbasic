@@ -804,9 +804,9 @@ class eZOrderConfirmation
             }
 
             //
-            if ( is_file ( "checkout/user/postpayment.php" ) )
+            if ( is_file ( "kernel/eztrade/user/payment/postpayment.php" ) )
             {
-                include( "checkout/user/postpayment.php" );
+                include( "kernel/eztrade/user/payment/postpayment.php" );
             }
 
 

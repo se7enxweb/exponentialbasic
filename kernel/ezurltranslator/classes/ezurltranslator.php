@@ -86,7 +86,7 @@ class eZURLTranslator
             $db->lock( "eZURLTranslator_URL" );
 
             $nextID = $db->nextID( "eZURLTranslator_URL", "ID" );
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZURLTranslator_URL
                          ( ID, Source, Dest, Created ) VALUES

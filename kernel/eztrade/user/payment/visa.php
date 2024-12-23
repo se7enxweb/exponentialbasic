@@ -23,12 +23,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/ezcctool.php" );
+//include_once( "classes/INIFile.php" );
+//include_once( "classes/eztemplate.php" );
+//include_once( "classes/ezlocale.php" );
+//include_once( "classes/ezcurrency.php" );
+//include_once( "classes/ezhttptool.php" );
+//include_once( "classes/ezcctool.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -38,13 +38,14 @@ $PaymentSuccess = false;
 if ( isset( $Action ) && $Action == "Verify" )
 {
     // Add VISA transaction code here..
+    // Payment Gateway API Call HERE: Paypal, Authorize.net, Stripe, Etc
 
     // set to true if successful
     $PaymentSuccess = "true";    
 }
 
-$t = new eZTemplate( "checkout/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
-                     "checkout/user/intl/", $Language, "visa.php" );
+$t = new eZTemplate( "kernel/eztrade/user/payment/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+                     "kernel/eztrade/user/payment/intl/", $Language, "visa.php" );
 
 $t->set_file( "visa_tpl", "visa.tpl" );
 

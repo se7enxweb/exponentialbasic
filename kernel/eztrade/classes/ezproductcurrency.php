@@ -67,7 +67,7 @@ class eZProductCurrency
         
         if ( !isset( $this->ID ) )
         {
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
             $db->lock( "eZTrade_AlternativeCurrency" );
             $nextID = $db->nextID( "eZTrade_AlternativeCurrency", "ID" );
                         

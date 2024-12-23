@@ -84,8 +84,8 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) )
     }
     
     $article->setLinkText( $LinkText );
-    $article->setStartDate( eZDateTime::timeStamp(true) );
-    $article->setStopDate( eZDateTime::timeStamp(true) );
+    $article->setStartDate( (new eZDateTime())->timeStamp(true) );
+    $article->setStopDate( (new eZDateTime())->timeStamp(true) );
     $article->store(); // to get ID
 
     // remove from category if update

@@ -493,7 +493,7 @@ class eZAd
             else
                 $offs = 1;
 
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZAd_View
                          ( ID,

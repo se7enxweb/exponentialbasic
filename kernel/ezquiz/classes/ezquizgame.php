@@ -297,7 +297,7 @@ class eZQuizGame
     function isClosed()
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
 
         $ret = false;
         $quizArray = array();
@@ -320,7 +320,7 @@ class eZQuizGame
     function isFutureGame()
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
 
         $ret = false;
         $quizArray = array();
@@ -405,7 +405,7 @@ class eZQuizGame
     function &openGames( $offset = 0, $limit = 20 )
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
         $returnArray = array();
         $quizArray = array();
 
@@ -428,7 +428,7 @@ class eZQuizGame
     function &numberOfOpenGames()
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
         $quizArray = array();
 
         $db->array_query( $quizArray, "SELECT count(ID) as Count FROM eZQuiz_Game
@@ -445,7 +445,7 @@ class eZQuizGame
     function &opensNext( $offset = 0, $limit = 20 )
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
 
         $returnArray = array();
         $quizArray = array();
@@ -468,7 +468,7 @@ class eZQuizGame
     function &closedGames( $offset = 0, $limit = 20 )
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
         $returnArray = array();
         $quizArray = array();
 
@@ -491,7 +491,7 @@ class eZQuizGame
     function &numberOfClosedGames()
     {
         $db =& eZDB::globalDatabase();
-        $now = eZDateTime::timeStamp( true );
+        $now = (new eZDateTime())->timeStamp( true );
         $quizArray = array();
 
         $db->array_query( $quizArray, "SELECT count(ID) as Count FROM eZQuiz_Game

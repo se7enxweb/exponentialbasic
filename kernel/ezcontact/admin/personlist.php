@@ -92,6 +92,7 @@ $t->set_block( "person_list_tpl", "person_list_previous_inactive_tpl", "person_l
 $t->set_block( "person_list_tpl", "person_list_next_inactive_tpl", "person_list_next_inactive" );
 
 $t->set_var( "person_item", "" );
+$t->set_var( "image_item", "" );
 
 $session =& eZSession::globalSession();
 

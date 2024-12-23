@@ -59,7 +59,8 @@ else
     $languagefile = "consultationlist.php";
 }
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),  "ezcontact/admin/intl", $Language, $languagefile );
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+                     "kernel/ezcontact/admin/intl", $Language, $languagefile );
 $t->setAllStrings();
 
 // include_once( "ezcontact/classes/ezconsultation.php" );

@@ -394,7 +394,7 @@ class eZForum
             $approvedCode = " AND IsApproved=1 ";
         }
 
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp =& (new eZDateTime())->timeStamp( true );
         if ( $showReplies )
         {
             $db->array_query( $message_array, "SELECT ID, Topic, UserID, PostingTime, Depth, UserName,

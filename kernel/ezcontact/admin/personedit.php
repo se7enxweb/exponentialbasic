@@ -681,7 +681,7 @@ if ( !$confirm )
                 $CompanyID = array();
             for ( $i = 0; $i < count( $CompanyID ); $i++ )
             {
-                eZCompany::addPerson( $person->id(), $CompanyID[$i] );
+                (new eZCompany())->addPerson( $person->id(), $CompanyID[$i] );
             }
 
             $item_id = $person->id();
@@ -689,9 +689,10 @@ if ( !$confirm )
             $item_cat_id = "";
 
             $item =& $person;
+            var_dump($item);
         }
 
-        $item->setProjectState( $ProjectID );
+        $item->setProjectState( $ProjectID, $item->id() );
 
         // address
         $item->removeAddresses();
@@ -1354,7 +1355,7 @@ if ( !$confirm )
             $t->set_var( "type_id", $project_type->id() );
             $t->set_var( "type_name", eZTextTool::htmlspecialchars( $project_type->name() ) );
             $t->set_var( "selected", "" );
-            if ( $ProjectID == $project_type->id() )
+            if ( isset( $ProjectID ) && $ProjectID == $project_type->id() )
                 $t->set_var( "selected", "selected" );
             $t->parse( "project_item_select", "project_item_select_tpl", true );
         }

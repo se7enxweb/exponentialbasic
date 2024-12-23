@@ -67,7 +67,7 @@ class eZTopic
 	    $db->lock( "eZArticle_Topic" );
 	    $nextID = $db->nextID( "eZArticle_Topic", "ID" );
 
-	    $timeStamp =& eZDateTime::timeStamp( true );
+	    $timeStamp =& (new eZDateTime())->timeStamp( true );
 
 	    $res = $db->query( "INSERT INTO eZArticle_Topic
 			 ( ID, Name, Created, Description )

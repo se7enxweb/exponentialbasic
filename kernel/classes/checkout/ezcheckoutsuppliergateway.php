@@ -1,6 +1,6 @@
 <?
 // 
-// $Id: ezcheckoutsupplier.php,v 1.2 2001/02/20 16:12:48 bf Exp $
+// $Id: ezcheckoutsuppliergateway.php,v 1.2 2001/02/20 16:12:48 bf Exp $
 //
 // Definition of eZCheckoutSupplier class
 //
@@ -31,7 +31,7 @@
   
 */
 // include_once( "classes/INIFile.php" );
-class eZCheckoutSupplier
+class eZCheckoutSupplierGateway
 {
     /*!
       
@@ -95,9 +95,9 @@ class eZCheckoutSupplier
 			{
 				$retArray = explode('|',$paymentArrayItem);
 				if ( $id == $i )
-					$ret = "checkout/user/".$retArray[1];
+					$ret = "kernel/eztrade/user/payment/".$retArray[1];
 				elseif ($i == 1 && $id != $i)
-					$ret = "checkout/user/".$retArray[1];		
+					$ret = "kernel/eztrade/user/payment/".$retArray[1];
 				$i++;				
 			}
 

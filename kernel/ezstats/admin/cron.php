@@ -31,7 +31,7 @@ $db =& eZDB::globalDatabase();
 
 $db->begin();
 
-$timestamp = eZDateTime::timeStamp( true );
+$timestamp = (new eZDateTime())->timeStamp( true );
 $debug = false;
 $limit = 10000;
 

@@ -66,7 +66,7 @@ class eZBugLog
         if ( !isset( $this->ID ) )
         {
             $db->lock( "eZBug_Log" );
-            $timestamp = eZDateTime::timeStamp( true );
+            $timestamp = (new eZDateTime())->timeStamp( true );
 			$this->ID = $db->nextID( "eZBug_Log", "ID" );
             $res = $db->query( "INSERT INTO eZBug_Log
                                 (ID, Description, BugID, UserID, Created)

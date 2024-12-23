@@ -80,7 +80,7 @@ class eZMediaAttribute
                 $place++;
             }
 
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
 
 			$this->ID = $db->nextID( "eZMediaCatalogue_Attribute", "ID" );
             $res = $db->query( "INSERT INTO eZMediaCatalogue_Attribute

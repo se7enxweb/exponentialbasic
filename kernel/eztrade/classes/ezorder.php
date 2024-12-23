@@ -81,7 +81,7 @@ class eZOrder
 
         if ( !isset( $this->ID ) )
         {
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
             $db->lock( "eZTrade_Order" );
             $nextID = $db->nextID( "eZTrade_Order", "ID" );
             $ret[] = $db->query( "INSERT INTO eZTrade_Order

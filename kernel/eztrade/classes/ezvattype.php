@@ -63,7 +63,7 @@ class eZVATType
         
         if ( !isset( $this->ID ) )
         {
-            $timeStamp =& eZDateTime::timeStamp( true );
+            $timeStamp =& (new eZDateTime())->timeStamp( true );
             $db->lock( "eZTrade_VATType" );
             $nextID = $db->nextID( "eZTrade_VATType", "ID" );
             $ret[] = $db->query( "INSERT INTO eZTrade_VATType

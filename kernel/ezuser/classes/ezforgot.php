@@ -88,7 +88,7 @@ class eZForgot
 
             $nextID = $db->nextID( "eZUser_Forgot", "ID" );
 
-            $timeStamp = eZDateTime::timeStamp( true );
+            $timeStamp = (new eZDateTime())->timeStamp( true );
 
             $res = $db->query( "INSERT INTO eZUser_Forgot
                                  ( ID, UserID, Hash, Time )

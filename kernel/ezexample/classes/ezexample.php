@@ -97,7 +97,7 @@ class eZExample
 
         
         $text = $db->escapeString( $this->Text );
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp =& (new eZDateTime())->timeStamp( true );
 
         $db->begin();
         $db->lock( "eZExample_Test" );

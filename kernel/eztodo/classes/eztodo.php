@@ -68,7 +68,7 @@ class eZTodo
         {
             $db->lock( "eZTodo_Todo" );
 			$this->ID = $db->nextID( "eZTodo_Todo", "ID" );
-            $timestamp = eZDateTime::timeStamp( true );
+            $timestamp = (new eZDateTime())->timeStamp( true );
             $res[] = $db->query( "INSERT INTO eZTodo_Todo
                                   (ID,
                                    Name,

@@ -127,6 +127,7 @@ if ( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "
     }
 
     $type->store();
+
     $TypeID = $type->id();
 
     // include_once( "classes/ezhttptool.php" );

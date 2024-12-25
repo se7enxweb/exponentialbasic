@@ -954,12 +954,12 @@ class eZImage
            if ( $postfix != "" )
            {
                // Copy the file since we support it directly
-               $file->copy( "ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . $postfix );
+               $file->copy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . $postfix );
            }
            else
            {
                // Convert it to jpg.
-               if ( !$file->convertCopy( "ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . ".jpg" ) )
+               if ( !$file->convertCopy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . ".jpg" ) )
                    return false;
                $postfix = ".jpg";
            }

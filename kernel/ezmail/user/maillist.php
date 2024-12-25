@@ -180,11 +180,11 @@ foreach ( $mail as $mailItem )
 
     switch ( $mailItem->status() )
     {
-        case UNREAD : $t->parse( "mail_status_renderer", "mail_unread_tpl", false ); break;
-        case READ : $t->parse( "mail_status_renderer", "mail_read_tpl", false ); break;
-        case REPLIED : $t->parse( "mail_status_renderer", "mail_replied_tpl", false ); break;
-        case FORWARDED : $t->parse( "mail_status_renderer", "mail_forwarded_tpl", false ); break;
-        case MAIL_SENT : $t->parse( "mail_status_renderer", "mail_read_tpl", false ); break;
+        case 0 : $t->parse( "mail_status_renderer", "mail_unread_tpl", false ); break;
+        case 1 : $t->parse( "mail_status_renderer", "mail_read_tpl", false ); break;
+        case 2 : $t->parse( "mail_status_renderer", "mail_replied_tpl", false ); break;
+        case 3 : $t->parse( "mail_status_renderer", "mail_forwarded_tpl", false ); break;
+        case 4 : $t->parse( "mail_status_renderer", "mail_read_tpl", false ); break;
     }
 
     $siSize = $mailItem->siSize();

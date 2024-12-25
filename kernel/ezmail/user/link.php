@@ -75,8 +75,13 @@ if ( !is_string( $top_name ) )
     $top_name = "";
 $companyTypeList = eZCompanyType::getTree( 0, 0, true, $top_name );
 $categoryList = array();
+
+if ( !isset( $PersonID ) )
+    $PersonID = false;
+
+
 $categoryList = eZPerson::companies( $PersonID, false );
-$category_values = eZMail::getContacts( $MailID );
+$category_values = (new eZMail())->getContacts( $MailID );
 $t->set_var( "is_top_selected", in_array( 0, $category_values ) ? "selected" : "" );
 foreach ( $companyTypeList as $companyTypeItem )
 {
@@ -110,7 +115,7 @@ else
 {
     $t->set_var( "company_list", "" );
 }
-$personList =& eZPerson::getAll();
+$personList =& (new eZPerson())->getAll();
 
 foreach ( $personList as $person )
 {

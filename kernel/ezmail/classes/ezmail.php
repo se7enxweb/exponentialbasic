@@ -492,8 +492,7 @@ class eZMail
         $decimals = 0;
         $size = $this->Size;
         $shortsize = $this->Size;
-
-        while ( list( $unit_key, $val ) = each( $units ) )
+        foreach( $units as $unit_key => $val )
         {
             if ( $size >= $val )
             {

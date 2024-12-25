@@ -387,7 +387,7 @@ switch ( $url_array[2] )
 
             case "mediaedit" :
             {
-                if ( isSet ( $Browse ) )
+                if ( isset ( $Browse ) )
                 {
                     include ( "kernel/ezmediacatalogue/admin/browse.php" );
                     break;

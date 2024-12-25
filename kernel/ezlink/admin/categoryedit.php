@@ -46,13 +46,13 @@ $error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.i
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-if ( isSet ( $DeleteCategories ) )
+if ( isset ( $DeleteCategories ) )
 {
     $Action = "DeleteCategories";
 }
 
 // Get images from the image browse function.
-if ( ( isSet ( $AddImages ) ) and ( is_numeric( $LinkCategoryID ) ) and ( is_numeric ( $LinkCategoryID ) ) )
+if ( ( isset ( $AddImages ) ) and ( is_numeric( $LinkCategoryID ) ) and ( is_numeric ( $LinkCategoryID ) ) )
 {
     $image = new eZImage( $ImageID );
     $category = new eZLinkCategory( $LinkCategoryID );
@@ -106,7 +106,7 @@ if ( isset( $Action ) && $Action == "insert" )
 
             $category->store();
 
-            if ( isSet ( $Browse ) )
+            if ( isset ( $Browse ) )
             {
                 $categoryID = $category->id();
 
@@ -238,7 +238,7 @@ if ( isset( $Action ) && $Action == "update" )
                 $category->deleteImage();
             }
 
-            if ( isSet ( $Browse ) )
+            if ( isset ( $Browse ) )
             {
                 $categoryID = $category->id();
                 $session = eZSession::globalSession();

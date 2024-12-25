@@ -169,7 +169,7 @@ $t->set_var(  "wish_user", "" );
 $t->set_var( "pay_with_voucher", "false" );
 
 
-if ( isSet ( $RemoveVoucher ) )
+if ( isset ( $RemoveVoucher ) )
 {
     if ( count ( $RemoveVoucherArray ) > 0 )
     {

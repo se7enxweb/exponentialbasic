@@ -65,7 +65,7 @@ class eZConsultation
     */
     function __construct( $id = -1 )
     {
-        $this->ID = 0;
+        // $this->ID = 0;
 
         if ( $id != -1 )
         {
@@ -98,6 +98,7 @@ class eZConsultation
                                    '$this->State',
                                    '$emailnotice',
 	                               '$date')" );
+
             $db->unlock();
         }
         else

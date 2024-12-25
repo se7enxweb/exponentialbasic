@@ -115,6 +115,13 @@
 			<span class="topusersite"><a class="sitelink" href="{user_site_protocol}://{site_url}" target="_blank">{site_url}</a></span>
 		</div>
 		<div class="userinfo">
+		<form id="clearCacheForm" name="clearCacheForm" method="POST" action="{admin_site_protocol}://{admin_site_host}/sitemanager/cache/">
+    <!-- 
+		  <button type="submit" name="ClearCache" id="submitBtnClearCachesForm">Clear Caches</button>
+ -->
+		  <button type="submit" name="ClearCache" id="submitBtnClearCachesForm" style="display:none;">Clear Caches</button>
+  </form>
+  <a onclick="event.preventDefault();document.getElementById('submitBtnClearCachesForm').click();" href="javascript:event.preventDefault(); document.getEkementById('submitBtnClearCachesForm').click();" id="submitBtnClearCaches" class="clearcache">Clear Caches</a>				</div>				<div class="userinfo">	
 			<span class="top">{intl-user_name}:</span><br />
 			<aspan class="topusername"><a class="usereditlink" href="/user/useredit/edit/{user_id}">{first_name}&nbsp;{last_name}</a></span>
 		</div>

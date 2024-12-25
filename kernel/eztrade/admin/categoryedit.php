@@ -52,7 +52,7 @@ if ( isset( $Action ) && $Action == "New" )
 }
 
 // Get images from the image browse function.
-if ( ( isSet ( $AddImages ) ) and ( is_numeric( $CategoryID ) ) and ( is_numeric ( $ImageID ) ) )
+if ( ( isset ( $AddImages ) ) and ( is_numeric( $CategoryID ) ) and ( is_numeric ( $ImageID ) ) )
 {
     $image = new eZImage( $ImageID );
     $category = new eZProductCategory( $CategoryID );
@@ -141,7 +141,7 @@ if ( isset( $Action ) && $Action == "Insert" )
         $file->delete();
     }
 
-    if ( isSet ( $Browse ) )
+    if ( isset ( $Browse ) )
     {
         $categoryID = $category->id();
         $session = eZSession::globalSession();
@@ -239,7 +239,7 @@ if ( isset( $Action ) && $Action == "Update" )
         $file->delete();
     }
 
-    if ( isSet ( $Browse ) )
+    if ( isset ( $Browse ) )
     {
         $categoryID = $category->id();
         $session = eZSession::globalSession();

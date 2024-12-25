@@ -283,9 +283,9 @@ else
         $t->set_var( "person_firstname", $persons[$i]->firstName() );
         $t->set_var( "person_lastname", $persons[$i]->lastName() );
         if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
-            $t->set_var( "consultation_count", eZConsultation::personConsultationCount( $persons[$i]->id(), -1 ) );
+            $t->set_var( "consultation_count", (new eZConsultation())->personConsultationCount( $persons[$i]->id(), -1 ) );
         else
-            $t->set_var( "consultation_count", eZConsultation::personConsultationCount( $persons[$i]->id(), $user->id() ) );
+            $t->set_var( "consultation_count", (new eZConsultation())->personConsultationCount( $persons[$i]->id(), $user->id() ) );
         $t->parse( "person_item", "person_item_tpl", true );
     }
 

@@ -42,7 +42,6 @@
 
 class eZMenu
 {
-
     /*!
       Constructs a new eZMenu object.
 
@@ -51,6 +50,7 @@ class eZMenu
     */
     function __construct( $id=-1 )
     {
+        $this->Type = 0;
         if ( is_array( $id ) )
         {
             $this->fill( $id );
@@ -77,8 +77,7 @@ class eZMenu
         {
             $db->lock( "eZSiteManager_Menu" );
             $nextID = $db->nextID( "eZSiteManager_Menu", "ID" );
-
-            $res = $db->query( "INSERT INTO eZSiteManager_Menu
+            $query = "INSERT INTO eZSiteManager_Menu
                       ( ID, Name, Link, Type, ParentID )
                       VALUES
                       ( '$nextID',
@@ -87,7 +86,9 @@ class eZMenu
                         '$this->Type',
                         '$this->ParentID'
                          )
-                     " );
+                     ";
+
+            $res = $db->query( $query );
 
 			$this->ID = $nextID;
         }

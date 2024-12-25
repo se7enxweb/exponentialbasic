@@ -60,7 +60,7 @@ if ( isset( $Action ) && $Action == "Edit" )
         $CurrentCategoryID = $CategoryID;
 }
 
-if ( isSet ( $Cancel ) )
+if ( isset ( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" );
     exit();

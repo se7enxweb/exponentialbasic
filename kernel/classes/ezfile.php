@@ -343,6 +343,7 @@ class eZFile
     public static function dir( $dir, $add_sitedir = true )
     {
 		global $GlobalSiteIni;
+        $ret = false;
     	if ( $add_sitedir )
         {
             if ( $dir != "" && $GlobalSiteIni)
@@ -350,7 +351,8 @@ class eZFile
                 $dir = $GlobalSiteIni->SiteDir . $dir;
             }
         }
-        return dir( $dir );
+        $ret = dir( $dir );
+        return $ret;
     }
 
     /*!
@@ -384,9 +386,9 @@ class eZFile
     */
     public static function file( $filename )
     {
-        if (file_exists( "sitedir.ini" ) &&  $filename != "" )
+        if (file_exists( "kernel/sitedir.ini" ) &&  $filename != "" )
         {
-            include( "kernelsitedir.ini" );
+            include( "kernel/sitedir.ini" );
             $filename = $siteDir . $filename;
         }
         return file( $filename );

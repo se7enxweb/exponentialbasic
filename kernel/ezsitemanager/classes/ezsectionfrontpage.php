@@ -49,6 +49,9 @@ class eZSectionFrontPage
     */
     function __construct( $id=-1 )
     {
+        $this->SettingID = 0;
+        $this->CategoryID = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -95,10 +98,12 @@ class eZSectionFrontPage
         }
         else
         {
-            $res = $db->query( "UPDATE eZSiteManager_SectionFrontPageRow SET
+            $query = "UPDATE eZSiteManager_SectionFrontPageRow SET
 		                             SettingID='$this->SettingID',
 		                             CategoryID='$this->CategoryID'
-                                     WHERE ID='$this->ID'" );
+                                     WHERE ID='$this->ID'";
+
+            $res = $db->query( $query );
         }
 
         $db->unlock();
@@ -208,11 +213,15 @@ class eZSectionFrontPage
     function &settingByID( $id )
     {
         $db =& eZDB::globalDatabase();
+        $ret = false;
                 
         $db->query_single( $setting, "SELECT Name
                                            FROM eZSiteManager_SectionFrontPageSetting WHERE ID='$id'" );
 
-        return $setting[$db->fieldName( "Name" )];
+        if( isset( $setting[ $db->fieldName( "Name" ) ] ) )
+            return $setting[$db->fieldName( "Name" )];
+        else
+            return $ret;
     }
 
     /*!

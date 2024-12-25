@@ -410,7 +410,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
             $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
             $sectionObject->setOverrideVariables();
 
-            if ( $DEBUG == true )
+            if ( $GLOBALS['DEBUG'] == true )
             {
 //                print( "Section Debug $GlobalSectionID: <br>" );
 //                print( "sitedesign: " . $sectionObject->siteDesign() . " <br>" );
@@ -418,7 +418,8 @@ if ( ( $requireUserLogin == "disabled" ) ||
 //                print( "language: " . $sectionObject->language() . " <br>" );
             }
 
-            $sectionSiteDesign = eZSection::siteDesign( $GlobalSectionID );
+            $theSection = new eZSection( $GlobalSectionID );
+            $sectionSiteDesign = $theSection->siteDesign( $GlobalSectionID );
 
             if ( $sectionSiteDesign != "" )
             {

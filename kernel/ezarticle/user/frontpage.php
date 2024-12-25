@@ -169,9 +169,19 @@ if ( is_array ( $rows ) and count ( $rows ) > 0 )
         }
         if ( $value == "ad"  )
         {
+            $adList = array();
+            $offsetAdArray = array();
             $category = new eZAdCategory( $row->categoryID() );
-            $adList =& array_merge( $adList, $category->ads( "count", false, $offsetAdArray[$row->categoryID()], 1 ) );
-            $offsetAdArray[$row->categoryID()] = $offsetAdArray[$row->categoryID()] + 1;
+            if( isset( $offsetAdArray[ $row->categoryID() ] ) )
+            {
+                $offsetAdCategoryID = $offsetAdArray[ $row->categoryID() ];
+            }
+            else
+            {
+                $offsetAdCategoryID = 0;
+            }
+            $adList =& array_merge( $adList, $category->ads( "count", false, $offsetAdCategoryID, 1 ) );
+            $offsetAdArray[$row->categoryID()] = $offsetAdCategoryID + 1;
         }
         if ( $value == "1columnProduct" )
         {
@@ -192,9 +202,19 @@ if ( is_array ( $rows ) and count ( $rows ) > 0 )
         }
         if ( $value == "2columnProduct" )
         {
+            $productList = array();
+            $offsetProductArray = array();
+            if( isset( $offsetProductArray[ $row->categoryID() ] ) )
+            {
+                $offsetProductCategoryID = $offsetProductArray[ $row->categoryID() ];
+            }
+            else
+            {
+                $offsetProductCategoryID = 0;
+            }
             $category = new eZProductCategory( $row->categoryID() );
-            $productList =& array_merge( $productList, eZProductCategory::products( $category->sortMode(), false, $offsetProductArray[$row->categoryID()], 2, false, $row->categoryID() ) );
-            $offsetProductArray[$row->categoryID()] = $offsetProductArray[$row->categoryID()] + 2;
+            $productList =& array_merge( $productList, eZProductCategory::products( $category->sortMode(), false, $offsetProductCategoryID, 2, false, $row->categoryID() ) );
+            $offsetProductArray[$row->categoryID()] = $offsetProductCategoryID + 2;
         }
         $page_elements[] = $value;
     }
@@ -843,7 +863,7 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
     }
 
 
-    if ( ( $i % 2 ) == 0 )
+    if ( isset( $i ) && ( $i % 2 ) == 0 )
     {
         $t->set_var( "td_class", "bglight" );
     }
@@ -933,7 +953,7 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
     }
 
 
-    if ( ( $i % 2 ) == 0 )
+    if ( isset( $i ) && ( $i % 2 ) == 0 )
     {
         $t->set_var( "td_class", "bglight" );
     }

@@ -36,15 +36,15 @@
 
 $Action = "";
 
-if ( isSet ( $OK ) )
+if ( isset ( $OK ) )
 {
     $Action = "Insert";
 }
-if ( isSet ( $Delete ) )
+if ( isset ( $Delete ) )
 {
     $Action = "Delete";
 }
-if ( isSet ( $Cancel ) )
+if ( isset ( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /sitemanager/section/list/" );
     exit();
@@ -85,23 +85,23 @@ $t->set_block( "setting_item_tpl", "no_item_move_down_tpl", "no_item_move_down" 
 
 $warning = true;
 
-if ( isSet ( $AddRow ) )
+if ( isset ( $AddRow ) )
     $Action = "Update";
 
-if ( isSet ( $OK ) )
+if ( isset ( $OK ) )
     $Action = "Update";
 
-if ( isSet ( $Store ) )
+if ( isset ( $Store ) )
     $Action = "Update";
 
-if ( isSet ( $DeleteRows ) )
+if ( isset ( $DeleteRows ) )
 {
     $Action = "Update";
 
-    if ( count ( $RowDeleteArrayID ) > 0 )
+    if ( isset( $RowDeleteArrayID ) && count ( $RowDeleteArrayID ) > 0 )
     {
         foreach( $RowDeleteArrayID as $RowID )
-            eZSectionFrontPage::delete( $RowID );
+            (new eZSectionFrontPage())->delete( $RowID );
     }
 }
 
@@ -128,17 +128,21 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) && ( $user ) )
 {
     if ( $warning )
     {
-        if ( eZFile::is_dir( "sitedesign/" . $Name ) == false );
+        if ( eZFile::is_dir( "design/" . $Name ) == false );
         {
             $session =& eZSession::globalSession();
             $session->setVariable( "DirNotExists", "true" );
         }
     }
 
-    if ( is_numeric( $SectionID ) )
-        $section = new eZSection( $SectionID);
+    if ( isset( $SectionID ) )
+    {
+        $section = new eZSection( $SectionID );
+    }
     else
+    {
         $section = new eZSection();
+    }
 
     $section->setName( $Name );
     $section->setSiteDesign( $SiteDesign );
@@ -147,20 +151,27 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) && ( $user ) )
     $section->setDescription( $Description );
     $section->store();
 
-    if ( isSet ( $Store )  || isset( $OK ) )
+    if ( isset ( $Store ) || isset( $OK ) )
     {
         $i=0;
         foreach( $RowArrayID as $RowID )
         {
             $pageRow = new eZSectionFrontPage( $RowID );
-            $pageRow->setCategoryID( $CategoryID[$i] );
+            if( isset( $CategoryID[$i] ) )
+            {
+                $pageRow->setCategoryID($CategoryID[$i]);
+            }
+            else
+            {
+                $pageRow->setCategoryID( 1 );
+            }
             $pageRow->setSettingID( $SettingID[$i] );
             $pageRow->store();
             $i++;
         }
     }
 
-    if ( isSet ( $AddRow ) )
+    if ( isset ( $AddRow ) )
     {
         $pageRow = new eZSectionFrontPage();
         $pageRow->store();
@@ -169,7 +180,7 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) && ( $user ) )
         eZHTTPTool::header( "Location: /sitemanager/section/edit/" . $section->id() );
         exit();
     }
-    else if ( !$DeleteRows and !$Store )
+    else if ( ( !isset( $DeleteRows ) ) and isset( $OK ) )
     {
         eZHTTPTool::header( "Location: /sitemanager/section/list/" );
         exit();
@@ -191,18 +202,20 @@ if ( $Action == "Delete" )
     exit();
 }
 
-if ( is_numeric( $SectionID ) )
+if ( isset( $SectionID ) )
 {
     $section = new eZSection( $SectionID );
     $t->set_var( "section_id", $section->id() );
     $t->set_var( "section_name", $section->name() );
     $t->set_var( "section_description", $section->description() );
-    $t->set_var( "section_sitedesign", $section->siteDesign() );
+    $t->set_var( "section_sitedesign", $section->siteDesign( $SectionID ) );
     $t->set_var( "section_language", $section->language() );
     $t->set_var( "section_templatestyle", $section->templateStyle() );
+    $t->set_var( "setting_list", "" );
 }
-else
+elseif( isset( $Name ) && isset( $SecLanguage )  )
 {
+
     $t->set_var( "section_name", $Name );
     $t->set_var( "section_sitedesign", $SiteDesign );
     $t->set_var( "section_templatestyle", $TemplateStyle );
@@ -210,13 +223,22 @@ else
     $t->set_var( "section_language", $SecLanguage );
     $t->set_var( "setting_list", "" );
 }
+else
+{
+    $t->set_var( "section_name", '' );
+    $t->set_var( "section_sitedesign", '' );
+    $t->set_var( "section_templatestyle", '' );
+    $t->set_var( "section_description", '' );
+    $t->set_var( "section_language", '' );
+    $t->set_var( "setting_list", "" );
+}
 
-if ( $section )
+if ( isset( $section ) && $section )
     $rows = $section->frontPageRows();
 $settingNames =& eZSectionFrontPage::settingNames();
 
 
-if ( count ( $rows ) > 0 )
+if ( isset( $rows ) && count ( $rows ) > 0 )
 {
     $tree = new eZArticleCategory();
     $articleTreeArray =& $tree->getTree();
@@ -394,4 +416,5 @@ if ( count ( $rows ) > 0 )
 }
 
 $t->pparse( "output", "section_edit_page" );
+
 ?>

@@ -119,7 +119,7 @@ class eZArticleCategory
                                  ParentID='$this->ParentID',
                                  ListLimit='$this->ListLimit'
                                  WHERE ID='$this->ID'";
-            echo $query . "<hr>";
+
             $res = $db->query( $query );
         }
 

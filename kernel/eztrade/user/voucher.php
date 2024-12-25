@@ -31,7 +31,7 @@
 // include_once( "classes/ezcctool.php" );
 // include_once( "eztrade/classes/ezvoucher.php" );
 
-if ( isSet ( $Back ) )
+if ( isset ( $Back ) )
 {
     eZHTTPTool::header( "Location: /trade/checkout/" );
     exit();

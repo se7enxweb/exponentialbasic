@@ -285,7 +285,7 @@ if ( $Action == "update" )
             {
                 $link->deleteImage();
             }
-            if ( isSet ( $Browse ) )
+            if ( isset ( $Browse ) )
             {
                 $linkID = $link->id();
                 $session =& eZSession::globalSession();

@@ -213,7 +213,7 @@ $t->set_var( "price_range", "" );
 $t->set_var( "price_to_high", "" );
 $t->set_var( "price_to_low", "" );
 
-if ( isSet ( $Voucher ) )
+if ( isset ( $Voucher ) )
 {
     $range = $product->priceRange();
     $error = false;

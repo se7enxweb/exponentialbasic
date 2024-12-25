@@ -47,13 +47,13 @@ if ( isset( $DeleteGroups ) and isset( $GroupArrayID ) )
     {
 	if( $hasRoot )
 	{
-	    eZUserGroup::delete( $groupid );
+        (new eZUserGroup())->delete( $groupid );
 	}
 	else
 	{
 	    $group = new eZUserGroup( $groupid );
 	    if( !$group->isRoot() )
-		eZUserGroup::delete( $groupid );
+            (new eZUserGroup())->delete( $groupid );
 	}
     }
     eZHTTPTool::header( "Location: /user/grouplist" );
@@ -98,9 +98,9 @@ if ( $Action == "insert" )
 	    $group->setGroupURL( $GroupURL );
 
 	    if ( isset( $IsRoot ) && $user->hasRootAccess() )
-		$group->setIsRoot( true );
+		$group->setIsRoot( 1 );
 	    else
-		$group->setIsRoot( false );
+		$group->setIsRoot( 0 );
 	    $permission = new eZPermission();
 
 	    $group->store();
@@ -114,7 +114,7 @@ if ( $Action == "insert" )
 		$permissionItem->setEnabled( $group, false );
 	    }
 
-        if ( count ( $PermissionArray ) > 0 )
+        if ( isset( $PermissionArray ) && count ( $PermissionArray ) > 0 )
         {
             foreach ( $PermissionArray as $PermissionID )
             {

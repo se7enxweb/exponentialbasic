@@ -135,7 +135,7 @@ if ( $product && isset( $OK ) )
 
     $session->setVariable( "VoucherInformationID", $voucherInformationID );
 
-    if ( isSet ( $OK ) && $voucherInformationID )
+    if ( isset ( $OK ) && $voucherInformationID )
     {
         eZHTTPTool::header( "Location: /trade/cart/add/$ProductID/" );
         exit();

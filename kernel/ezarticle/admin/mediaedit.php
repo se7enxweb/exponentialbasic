@@ -106,7 +106,7 @@ if ( isset ( $OK ) )
     exit();
 }
 
-if ( isSet ( $DeleteSelected ) )
+if ( isset ( $DeleteSelected ) )
 {
     $article = new eZArticle( $ArticleID );
 

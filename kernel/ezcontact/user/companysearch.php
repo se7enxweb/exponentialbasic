@@ -79,7 +79,7 @@ $t->set_var( "current_id", isset( $SearchCategory ) ? $SearchCategory : false );
 $Action = "new";
 $results = "false";
 
-if ( isset( $SearchObject) && $SearchObject == "company" )
+if ( isset( $SearchObject ) && $SearchObject == "company" )
 {
     $Action = "search";
 }

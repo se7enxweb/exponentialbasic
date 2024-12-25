@@ -58,14 +58,14 @@ elseif ( $ForceSSL == "choose" )
 {
     $session->setVariable( "SSLMode", "choose" );
 
-    if( isSet ( $WithSSL ) )
+    if( isset ( $WithSSL ) )
     {
         eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $index . "/trade/checkout" );
         exit();
 
     }
 
-    if( isSet ( $WithOutSSL ) )
+    if( isset ( $WithOutSSL ) )
     {
         eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $index . "/trade/checkout" );
         exit();

@@ -215,9 +215,9 @@ if ( $Action == "update" )
                         $user->removeGroups();
                         
                         // Add user to groups
-			if( isset( $_POST['GroupArray'] ) && isset( $_POST['MainGroup'] ) )
+			            if( isset( $_POST['GroupArray'] ) && isset( $_POST['MainGroup'] ) )
                         {
-		 	    $GroupArray = array_unique( array_merge( $_POST['GroupArray'], $_POST['MainGroup'] ) );
+		 	                $GroupArray = array_unique( array_merge( $_POST['GroupArray'], array( $_POST['MainGroup'] ) ) );
 			}
 			else {
 		 	    $GroupArray[] = $_POST['MainGroup'];

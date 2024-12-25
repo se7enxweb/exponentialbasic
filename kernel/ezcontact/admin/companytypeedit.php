@@ -47,7 +47,7 @@ if ( !is_a( $user, "eZUser" ) )
     exit();
 }
 
-if ( $Action == "edit" || $Action == "update" )
+if ( isset( $Action ) && $Action == "edit" || isset( $Action ) && $Action == "update" )
 {
     if ( !eZPermission::checkPermission( $user, "eZContact", "CategoryModify" ) )
     {
@@ -56,7 +56,7 @@ if ( $Action == "edit" || $Action == "update" )
         exit();
     }
 }
-else if ( $Action == "new" || $Action ==  "insert" )
+else if ( isset( $Action ) && $Action == "new" || isset( $Action ) && $Action ==  "insert" )
 {
     if ( !eZPermission::checkPermission( $user, "eZContact", "CategoryAdd" ) )
     {
@@ -65,7 +65,7 @@ else if ( $Action == "new" || $Action ==  "insert" )
         exit();
     }
 }
-else if ( $Action == "delete" )
+else if ( isset( $Action ) && $Action == "delete" )
 {
     if ( !eZPermission::checkPermission( $user, "eZContact", "CategoryDelete" ) )
     {
@@ -83,7 +83,7 @@ if ( empty( $TypeID ) )
 $type = new eZCompanyType();
 $type->get( $TypeID );
 
-if ( $Action == "insert" || $Action == "update" )
+if ( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "update" )
 {
     $type = new eZCompanyType();
 
@@ -134,7 +134,7 @@ if ( $Action == "insert" || $Action == "update" )
 
 }
 
-if ( !$type->id() && $Action != "new"  )
+if ( !$type->id() && isset( $Action ) && $Action != "new"  )
 {
     // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /error.php?type=404&reason=missingpage&module=ezcontact&hint=/contact/company/list/0" );
@@ -142,7 +142,7 @@ if ( !$type->id() && $Action != "new"  )
 }
 
 
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     $type = new eZCompanyType();
     $type->get( $TypeID );
@@ -170,7 +170,7 @@ $t->set_block( "current_type_tpl", "image_item_tpl", "image_item" );
 $t->set_block( "current_type_tpl", "no_image_item_tpl", "no_image_item" );
 
 $t->set_var( "command_type", "company" );
-$t->set_var( "page_args", $args );
+$t->set_var( "page_args", isset( $args ) ? $args : false );
 $t->set_var( "no_image_item", "" );
 $t->set_var( "image_item", "" );
 $t->set_var( "path_item", "" );
@@ -183,7 +183,8 @@ if ( empty( $TypeID ) || $TypeID == 0 )
 else
 {
     $paths = $type->path( $TypeID );
-    $countingPaths = count( $path );
+
+    $countingPaths = count( $paths );
 
     $t->set_var( "path_item", "" );
     foreach ( $paths as $path )
@@ -203,7 +204,7 @@ else
     $t->parse( "path", "path_tpl" );
 }
 
-if ( $Action == "edit" || $Action == "new" )
+if ( isset( $Action ) && $Action == "edit" || isset( $Action ) && $Action == "new" )
 {
     if ( $Action == "edit" )
     {
@@ -289,7 +290,7 @@ if ( $Action == "edit" || $Action == "new" )
         $t->set_var( "parent_item", "" );
     }
 
-    if ( $selected == false )
+    if ( isset( $selected ) && $selected == false )
     {
         $t->set_var( "root_selected", "selected" );
     }

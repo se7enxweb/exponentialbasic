@@ -40,7 +40,7 @@ if ( isset ( $DeleteAds ) )
     $Action = "DeleteAds";
 }
 
-if ( isSet ( $Preview ) )
+if ( isset ( $Preview ) )
 {
     if ( is_numeric ( $AdID ) && ( $AdID != 0 ) )
     {
@@ -56,7 +56,7 @@ if( isset( $AdURL ) )
     $adUrl = trim( $AdURL );
 
 // Get images from the image browse function.
-if ( ( isSet ( $AddImages ) ) and ( is_numeric( $AdID ) ) and ( is_numeric ( $AdID ) ) )
+if ( ( isset ( $AddImages ) ) and ( is_numeric( $AdID ) ) and ( is_numeric ( $AdID ) ) )
 {
     $image = new eZImage( $ImageID );
     $ad = new eZAd( $AdID );
@@ -137,7 +137,7 @@ if ( $Action == "Insert" )
 
     $category->addAd( $ad );
 
-    if ( isSet ( $Browse ) )
+    if ( isset ( $Browse ) )
     {
         $adID = $ad->id();
         
@@ -236,7 +236,7 @@ if ( $Action == "Update" )
     $ad->removeFromCategories();
     $category->addAd( $ad );
 
-    if ( isSet ( $Browse ) )
+    if ( isset ( $Browse ) )
     {
         $adID = $ad->id();
         

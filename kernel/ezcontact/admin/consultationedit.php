@@ -84,7 +84,7 @@ if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) )
 // include_once( "classes/ezdatetime.php" );
 // include_once( "ezcontact/classes/ezconsultation.php" );
 
-if ( $Action == "delete" or isset( $Delete ) )
+if ( isset( $Action ) && $Action == "delete" or isset( $Delete ) )
 {
     unset( $person );
     unset( $company );
@@ -298,9 +298,9 @@ if ( !$user )
 
 $userID = $user->ID();
 
-if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
+if ( ( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "update" ) && $error == false )
 {
-    if ( $ConsultationID > 0 )
+    if ( isset( $ConsultationID ) && $ConsultationID != 'new' && $ConsultationID > 0 )
     {
         $consultation = new eZConsultation( $ConsultationID );
         $oldDate = $consultation->date();
@@ -424,7 +424,7 @@ if ( ( $Action == "insert" || $Action == "update" ) && $error == false )
 
     We present an empty form.
  */
-if ( $Action == "new" )
+if ( isset( $Action ) && $Action == "new" )
 {
     if ( $ConsultationID != 0 ) // 1
     {
@@ -539,7 +539,7 @@ $groups = array();
 
     We present a form with the info.
  */
-if ( $Action == "edit" )
+if ( isset( $Action ) && $Action == "edit" )
 {
     $Action_value = "update";
     $consultation = new eZConsultation( $ConsultationID );
@@ -567,6 +567,9 @@ if ( $Action == "edit" )
     }
 
     $currentDate = $consultation->date();
+    if( $currentDate == null )
+        $currentDate = new eZDateTime();
+
     if( $currentDate != null )
     {
         for ( $i = 1; $i <= 31; $i++ )
@@ -651,7 +654,7 @@ if ( $Action == "edit" )
     $t->parse( "consultation_item", "consultation_item_tpl" );
 }
 
-if ( $Action == "formdata" )
+if ( isset( $Action ) && $Action == "formdata" )
 {
     if( !isset( $ConsultationID ) or $ConsultationID == "new" )
         $ConsultationID = 0;
@@ -667,7 +670,7 @@ if ( $Action == "formdata" )
     {
         $t->set_var( "day_id", $i );
         $t->set_var( "day_value", $i );
-        if ( $ConsultationDay == $i )
+        if ( isset( $ConsultationDay ) && $ConsultationDay == $i )
             $t->set_var( "day_selected", "selected" );
         else
             $t->set_var( "day_selected", "" );

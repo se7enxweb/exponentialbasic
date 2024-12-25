@@ -50,7 +50,7 @@ $SmallImageHeight = $ini->read_var( "eZTradeMain", "SmallImageHeight" );
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 // include_once( "classes/ezlist.php" );
 
-if ( isSet ( $SearchButton ) )
+if ( isset ( $SearchButton ) )
 {
     $Action = "SearchButton";
 }
@@ -345,4 +345,3 @@ $t->set_var( "next_offset", $nextOffs );
 
 $t->pparse( "output", "extended_search_tpl" );
 ?>
-

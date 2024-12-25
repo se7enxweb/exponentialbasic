@@ -62,7 +62,7 @@ $main = $product->mainImage();
 
 $t->set_var( "product_name", $product->name() );
 
-if ( isSet ( $AddImages ) )
+if ( isset ( $AddImages ) )
 {
     if ( count ( $ImageArrayID ) > 0 )
     {

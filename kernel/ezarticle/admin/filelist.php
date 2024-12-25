@@ -53,7 +53,7 @@ $session =& eZSession::globalSession();
 $session->setVariable( "FileListReturnTo", $_SERVER['REQUEST_URI'] );
 $session->setVariable( "NameInBrowse", $article->name() );
 
-if ( isSet ( $AddFiles ) )
+if ( isset ( $AddFiles ) )
 {
     if ( count ( $FileArrayID ) > 0 )
     {

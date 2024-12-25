@@ -55,7 +55,7 @@ class eZPriority
         $db =& eZDB::globalDatabase();
         $db->begin();
         $name = $db->escapeString( $this->Name );
-        if ( !isSet ( $this->ID ) )
+        if ( !isset ( $this->ID ) )
         {
             $db->lock( "eZTodo_Priority" );
 			$this->ID = $db->nextID( "eZTodo_Priority", "ID" );

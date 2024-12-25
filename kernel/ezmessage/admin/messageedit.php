@@ -96,7 +96,7 @@ $t->set_var( "description", isset( $Description ) ? $Description : false );
 
 $t->set_var( "error", "" );
 
-if ( isSet ( $Reply ) )
+if ( isset ( $Reply ) )
 {
     $fromUser = new eZUser ( $FromUserID );
     $t->set_var( "description", eZTextTool::addPre( $Message ), ">" );

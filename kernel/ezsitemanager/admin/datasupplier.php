@@ -139,18 +139,18 @@ switch ( $url_array[2] )
             case "update":
             case "insert":
             {
-                if ( $url_array[5] == "up" )
+                if ( isset( $url_array[5] ) && $url_array[5] == "up" )
                 {
                     $RowID = $url_array[6];
                     $Action = "up";
                 }
-                if ( $url_array[5] == "down" )
+                if ( isset( $url_array[6] ) && $url_array[5] == "down" )
                 {
                     $RowID = $url_array[6];
                     $Action = "down";
                 }
                 
-                if ( is_numeric( $url_array[4] ) )
+                if ( isset( $url_array[4] ) && is_numeric( $url_array[4] ) )
                     $SectionID = $url_array[4];
                 include ( "kernel/ezsitemanager/admin/sectionedit.php" );
             }

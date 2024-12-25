@@ -29,15 +29,15 @@
 
 // include_once( "ezsitemanager/classes/ezmenu.php" );
 
-if ( isSet ( $OK ) )
+if ( isset ( $OK ) )
 {
     $Action = "Insert";
 }
-if ( isSet ( $Delete ) )
+if ( isset ( $Delete ) )
 {
     $Action = "Delete";
 }
-if ( isSet ( $Cancel ) )
+if ( isset ( $Cancel ) )
 {
     eZHTTPTool::header( "Location: /sitemanager/menu/list/" );
     exit();
@@ -60,24 +60,26 @@ $t->set_var( "menu_item", "" );
 $t->set_var( "menu_name", "" );
 $t->set_var( "menu_link", "" );
 
-if ( ( $Action == "Insert" ) || ( $Action == "Update" ) && ( $user ) )
+if ( ( isset( $Action ) && $Action == "Insert" ) || ( isset( $Action ) && $Action == "Update" ) && ( $user ) )
 {
     if ( is_numeric( $MenuID ) )
-        $menu = new eZMenu( $MenuID);
+        $menu = new eZMenu( $MenuID );
     else
         $menu = new eZMenu();
 
     $menu->setName( $Name );
     $menu->setLink( $Link );
     $menu->setParent( $ParentID );
+    if( isset( $Type ) )
     $menu->setType( $Type );
+
     $menu->store();
 
     eZHTTPTool::header( "Location: /sitemanager/menu/list/" );
     exit();
 }
 
-if ( $Action == "Delete" )
+if ( isset( $Action ) && $Action == "Delete" )
 {
     if ( count ( $MenuArrayID ) > 0 )
     {
@@ -91,7 +93,7 @@ if ( $Action == "Delete" )
     exit();
 }
 
-if ( is_numeric( $MenuID ) )
+if ( isset( $MenuID ) && is_numeric( $MenuID ) )
 {
     $menu = new eZMenu( $MenuID );
 
@@ -106,6 +108,10 @@ if ( is_numeric( $MenuID ) )
     $parent = $menu->parent();
 
 }
+else
+{
+    $t->set_var( "menu_id", '');
+}
 
 $menuList =& eZMenu::getAll();
 
@@ -115,7 +121,7 @@ foreach( $menuList as $menuItem )
     $t->set_var( "select_name", $menuItem->name() );
     
 
-    if ( $parent )
+    if ( isset( $parent ) && $parent )
     {
         if ( $parent->id() == $menuItem->id() )
         {

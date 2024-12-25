@@ -34,8 +34,8 @@ $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZ" . ucfirst( $moduleName ) . "Main", "Language" );
 
 // include_once( "kernel/classes/eztemplate.php" );
-
-$t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
+//$ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "design/admin/templates/" . $siteDesign,
                      "kernel/ez" . $moduleName . "/admin/intl/", $Language, "menubox.php" );
 
 
@@ -47,7 +47,7 @@ $t->set_block( "separator_tpl", "left_spacer_tpl", "left_spacer_item" );
 $t->set_block( "separator_tpl", "top_field_tpl", "top_field_item" );
 $t->set_block( "top_field_tpl", "help_tpl", "help" );
 
-$t->set_var( "site_style", $SiteDesign );
+$t->set_var( "site_style", $siteDesign );
 
 $t->set_var( "module_name", $moduleName );
 

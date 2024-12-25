@@ -193,7 +193,7 @@ if ( isset( $Action ) && $Action == "delete" )
 
     if ( $CompanyEdit )
     {
-        $categories =& eZCompany::categories( $CompanyID, false, 1 );
+        $categories =& (new eZCompany())->categories( $CompanyID, false, 1 );
         $id =& $categories[0];
         $item_type = "company";
         foreach ( $ContactArrayID as $contactItem )
@@ -917,7 +917,7 @@ if ( !$confirm )
             if ( $Action != "new" )
             {
                 if ( !isset( $CompanyCategoryID ) )
-                    $categoryList =& eZCompany::categories( $CompanyID, false );
+                    $categoryList =& (new eZCompany())->categories( $CompanyID, false );
                 else
                     $categoryList = array( $CompanyCategoryID );
             }

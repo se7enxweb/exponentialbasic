@@ -437,7 +437,7 @@ class eZCompany
         $db->array_query( $categories_array, "SELECT CompanyTypeID
                                               FROM eZContact_CompanyTypeDict
                                               WHERE CompanyID='$companyID'",
-                                              $limit_array );
+                                              $limit );
 
         foreach ( $categories_array as $categoriesItem )
         {

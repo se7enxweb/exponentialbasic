@@ -94,7 +94,7 @@ else
 
 $t->set_var( "error", "" );
 
-if ( isSet ( $Key ) )
+if ( isset ( $Key ) )
 {
     $voucher = eZVoucher::getFromKeyNumber( $Key, false );
     if ( is_a ( $voucher, "eZVoucher" ) )

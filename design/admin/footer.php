@@ -34,14 +34,14 @@ $Language = $ini->read_var( "eZArticleMain", "Language" );
 // $t->set_var( "index", $GlobalSiteIni->Index );
 
 //include_once( "kernel/classes/eztemplate.php" );
-$t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
+$t = new eZTemplate( "design/admin/templates/" . $siteDesign,
                      "design/admin/intl/", $Language, "footer.php" );
 
 $t->set_file( array(
     "footer_tpl" => "footer.tpl"
     ) );
 
-$t->set_var( "site_style", $SiteDesign );
+$t->set_var( "site_style", $siteDesign );
 $t->set_var( "module_dir", $moduleName );
 
 $t->pparse( "output", "footer_tpl" );

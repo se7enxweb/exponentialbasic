@@ -56,7 +56,7 @@ $t->setAllStrings();
 
 $item_error = true;
 
-if ( empty( $HTTP_REFERER ) )
+if ( empty( $_SERVER['HTTP_REFERER'] ) )
 {
     if ( empty( $BackUrl ) )
     {
@@ -69,7 +69,7 @@ if ( empty( $HTTP_REFERER ) )
 }
 else
 {
-    $back_command = $HTTP_REFERER;
+    $back_command = $_SERVER['HTTP_REFERER'];
 }
 
 if ( !isset( $typelist ) )

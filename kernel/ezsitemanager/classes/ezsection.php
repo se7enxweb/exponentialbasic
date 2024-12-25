@@ -64,13 +64,11 @@ class eZSection
     function store()
     {
         $db =& eZDB::globalDatabase();
-
         $db->begin( );
 
         $name = $db->escapeString( $this->Name );
-
         $description = $db->escapeString( $this->Description );
-        $sitedesign = $db->escapeString( $this->SiteDesign );
+        $siteDesign = $db->escapeString( $this->SiteDesign );
         $templateStyle = $db->escapeString( $this->TemplateStyle );
         $secLanguage = $db->escapeString( $this->SecLanguage );
 
@@ -90,20 +88,22 @@ class eZSection
                                        '$timeStamp',
                                        '$description',
                                        '$templateStyle',
-                                       '$sitedesign',
-				       '$secLanguage' )" );
+                                       '$siteDesign',
+				                       '$secLanguage' )" );
 
 			$this->ID = $nextID;
         }
         else
         {
-            $res = $db->query( "UPDATE eZSiteManager_Section SET
+            $query = "UPDATE eZSiteManager_Section SET
 		                             Name='$name',
-		                             SiteDesign='$sitedesign',
+		                             SiteDesign='$siteDesign',
 		                             TemplateStyle='$templateStyle',
                                      Description='$description',
-				     Language='$secLanguage'
-                                     WHERE ID='$this->ID'" );
+				                     Language='$secLanguage'
+                                     WHERE ID='$this->ID'";
+
+            $res = $db->query( $query );
         }
 
         $db->unlock();
@@ -149,8 +149,8 @@ class eZSection
                 $this->ID = $section_array[0][$db->fieldName("ID")];
                 $this->Name = $section_array[0][$db->fieldName("Name")];
                 $this->SiteDesign = $section_array[0][$db->fieldName("SiteDesign")];
-				if ( !isset( $section_array[0][$db->fieldName("TemplateStyle")] ) )
-					$section_array[0][$db->fieldName("TemplateStyle")] = "";
+//				if ( !isset( $section_array[0][$db->fieldName("TemplateStyle")] ) )
+//					$section_array[0][$db->fieldName("TemplateStyle")] = "";
                 $this->TemplateStyle = $section_array[0][$db->fieldName("TemplateStyle")];
 				if ( !isset( $section_array[0][$db->fieldName("Description")] ) )
 					$section_array[0][$db->fieldName("Description")] = "";
@@ -232,19 +232,32 @@ class eZSection
 
       If $sectionID is a number, the function will return the sitedesign for that section ID.
     */
-    static public function siteDesign( $sectionID=false )
+    public function siteDesign( $sectionID=false )
     {
-        if ( is_numeric ( $sectionID ) )
+        if ( $sectionID != false )
         {
             $db =& eZDB::globalDatabase();
             $db->query_single( $siteDesign, "SELECT SiteDesign FROM eZSiteManager_Section WHERE ID='$sectionID'" );
             return $siteDesign[$db->fieldName("SiteDesign")];
         }
-        /*else {
-	    if( isset( $this->SiteDesign ) )
+        else {
+            if( isset( $this->SiteDesign ) )
                 return htmlspecialchars( $this->SiteDesign );
+        }
+
 	    return false;
-	} */
+    }
+
+    static public function siteDesignStatic( $sectionID=false )
+    {
+        if ( $sectionID != false )
+        {
+            $db =& eZDB::globalDatabase();
+            $db->query_single( $siteDesign, "SELECT SiteDesign FROM eZSiteManager_Section WHERE ID='$sectionID'" );
+            return $siteDesign[$db->fieldName("SiteDesign")];
+        }
+
+        return false;
     }
 
 
@@ -254,24 +267,34 @@ class eZSection
     */
     function templateStyle( $sectionID=false )
     {
-        if ( is_numeric ( $sectionID ) )
+        if ( $sectionID != false )
         {
             $db =& eZDB::globalDatabase();
             $db->query_single( $templateStyle, "SELECT TemplateStyle FROM eZSiteManager_Section WHERE ID='$sectionID'" );
             return $templateStyle[$db->fieldName("TemplateStyle")];
         }
         else {
-	    if( isset( $this->SiteDesign ) )
-                return htmlspecialchars( $this->SiteDesign );
-            return false;
-	}
+            if( isset( $this->TemplateStyle ) )
+                return htmlspecialchars( $this->TemplateStyle );
+        }
     }
 
+    static public function templateStyleStatic( $sectionID=false )
+    {
+        if ( $sectionID != false )
+        {
+            $db =& eZDB::globalDatabase();
+            $db->query_single( $templateStyle, "SELECT TemplateStyle FROM eZSiteManager_Section WHERE ID='$sectionID'" );
+            return $templateStyle[$db->fieldName("TemplateStyle")];
+        }
+
+        return false;
+    }
     /*!
      \static
       Returns the language for this section.
     */
-    static public function language( $sectionID=false )
+    public function language( $sectionID=false )
     {
         if ( is_numeric ( $sectionID ) )
         {

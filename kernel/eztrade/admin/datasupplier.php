@@ -213,7 +213,7 @@ switch ( $url_array[2] )
                 break;
 
             case "imageedit" :
-                if ( isSet ( $Browse ) )
+                if ( isset ( $Browse ) )
                 {
                     include ( "kernel/ezimagecatalogue/admin/browse.php" );
                     break;

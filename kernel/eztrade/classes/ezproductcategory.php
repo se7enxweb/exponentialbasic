@@ -747,7 +747,7 @@ class eZProductCategory
                 AND
                 eZTrade_Category.ID='$catID'
                 ORDER BY $OrderBy";
-       //echo $query; die( 'frisky-dingo');
+
        $db->array_query( $product_array, $query, array( "Limit" => $limit, "Offset" => $offset ) );
 
        for ( $i = 0; $i < count( $product_array ); $i++ )

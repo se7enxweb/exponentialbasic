@@ -53,12 +53,12 @@ $t->setAllStrings();
 $user =& eZUser::currentUser();
 
 // Set detail or normal mode
-if ( isSet ( $DetailView ) )
+if ( isset ( $DetailView ) )
 {
     $session =& eZSession::globalSession();
     $session->setVariable( "ImageViewMode", "Detail" );
 }
-if ( isSet ( $NormalView ) )
+if ( isset ( $NormalView ) )
 {
     $session =& eZSession::globalSession();
     $session->setVariable( "ImageViewMode", "Normal" );
@@ -323,7 +323,7 @@ foreach ( $imageList as $image )
             $t->set_var( "end_tr", "</tr>" );
         }
 
-        if ( isSet ( $DetailView ) )
+        if ( isset ( $DetailView ) )
         {
             $t->parse( "detail_read", "detail_read_tpl" );
         }
@@ -340,7 +340,7 @@ foreach ( $imageList as $image )
          ( eZImage::isOwner( $user, $image->id() ) ) )
     {
         $can_write = true;
-        if ( isSet ( $DetailView ) )
+        if ( isset ( $DetailView ) )
         {
             $deleteImage = true;
             $t->parse( "detail_write", "detail_write_tpl" );
@@ -360,7 +360,7 @@ foreach ( $imageList as $image )
     }
 
     // Set the detail or normail view
-    if ( isSet ( $DetailView ) )
+    if ( isset ( $DetailView ) )
     {
         $t->set_var( "image", "" );
 
@@ -385,7 +385,7 @@ $t->set_var( "detail_button", "" );
 $t->set_var( "normal_button", "" );
 $t->set_var( "pos", $Offset );
 
-if ( isSet ( $DetailView ) )
+if ( isset ( $DetailView ) )
 {
     $t->set_var( "is_detail_view", "true" );
     $t->parse( "normal_button", "normal_view_button" );

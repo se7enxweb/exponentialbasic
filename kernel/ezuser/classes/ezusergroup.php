@@ -104,11 +104,12 @@ class eZUserGroup
             $db->lock( "eZUser_Group" );
 
             $nextID = $db->nextID( "eZUser_Group", "ID" );
-
-            $db->query( "INSERT INTO eZUser_Group
+            $query = "INSERT INTO eZUser_Group
                          (ID, Name, Description, SessionTimeout, IsRoot, GroupURL)
                          VALUES
-                         ('$nextID', '$name', '$description', '$this->SessionTimeout', '$this->IsRoot', '$this->GroupURL')" );
+                         ('$nextID', '$name', '$description', '$this->SessionTimeout', '$this->IsRoot', '$this->GroupURL')";
+
+            $db->query( $query );
 
             $this->ID = $nextID;
 

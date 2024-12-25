@@ -60,7 +60,7 @@ $t->set_var( "article_name", $article->name() );
 
 $t->set_var( "site_style", $SiteDesign );
 
-if ( isSet ( $AddMedia ) )
+if ( isset ( $AddMedia ) )
 {
     if ( count ( $MediaArrayID ) > 0 )
     {

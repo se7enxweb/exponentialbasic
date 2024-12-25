@@ -68,7 +68,8 @@ if( $user )
     }
 
     $showUnread = eZPreferences::variable( "eZMail_ShowUnread" ) == "true" ? true : false;
-    foreach( array( 'INBOX', 'SENT', 'DRAFTS', 'TRASH' ) as $specialfolder )
+    $folderNames = array( 'INBOX', 'SENT', 'DRAFTS', 'TRASH' );
+    foreach( array( '1', '2', '3', '4' ) as $specialfolder )
     {
         $folderItem = eZMailFolder::getSpecialFolder( $specialfolder );
 

@@ -495,16 +495,16 @@ class eZMailFolder
         $folderNameIni = new INIFile( "kernel/ezmail/user/intl/" . $Language . "/folderlist.php.ini" );
         switch( $specialType )
         {
-            case INBOX :
+            case 1 :
                 $folderName = $folderNameIni->read_var( "strings", "inbox" );
                 break;
-            case SENT :
+            case 2 :
                 $folderName =  $folderNameIni->read_var( "strings", "sent" );
                 break;
-            case DRAFTS :
+            case 3 :
                 $folderName =  $folderNameIni->read_var( "strings", "drafts" );
                 break;
-            case TRASH :
+            case 4 :
                 $folderName =  $folderNameIni->read_var( "strings", "trash" );
                 break;
             default:

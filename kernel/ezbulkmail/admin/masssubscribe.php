@@ -81,7 +81,7 @@ if ( isset ( $OK ) && ( count ( $CategoryArrayID ) > 0 ) )
             $email = trim( $address );
             if ( eZMail::validate( $email ) )
             {
-                $bulkMail = eZBulkMailSubscriptionAddress::getByEmail( $email );
+                $bulkMail = (new eZBulkMailSubscriptionAddress())->getByEmail( $email );
 
                 $sendPassword = false;
                 if ( $bulkMail->addressExists ( $email ) == false )
@@ -127,7 +127,7 @@ if ( isset ( $OK ) && ( count ( $CategoryArrayID ) > 0 ) )
         }
     }
 
-    if ( count ( $new ) > 0 )
+    if ( isset( $new ) && count ( $new ) > 0 )
     {
         foreach ( $new as $email )
         {
@@ -138,7 +138,7 @@ if ( isset ( $OK ) && ( count ( $CategoryArrayID ) > 0 ) )
         $t->parse( "new_email_list", "new_email_list_tpl", true );
     }
 
-    if ( count ( $exists ) > 0 )
+    if ( isset( $exists ) && count ( $exists ) > 0 )
     {
         foreach ( $exists as $email )
         {
@@ -148,7 +148,7 @@ if ( isset ( $OK ) && ( count ( $CategoryArrayID ) > 0 ) )
         $t->parse( "email_exists_list", "email_exists_list_tpl", true );
     }
     
-    if ( count ( $notValid ) > 0 )
+    if (  isset( $notValid ) && count ( $notValid ) > 0 )
     {
         foreach ( $notValid as $email )
         {

@@ -92,19 +92,19 @@ if( $FilterID != 0 ) // someone set us up the bomb
 }
 
 $localINI = new INIFile( "kernel/ezmail/user/intl/" . $Language . "/filteredit.php.ini" );
-foreach( array( FILTER_MESSAGE, FILTER_BODY, FILTER_ANY, FILTER_TOCC, FILTER_SUBJECT, FILTER_FROM, FILTER_TO, FILTER_CC ) as $headerID )
+foreach( array( 0, 1, 2, 3, 4, 5, 6, 7 ) as $headerID )
 {
     $headerName = "";
     switch( $headerID )
     {
-        case FILTER_MESSAGE: $headerName = $localINI->read_var( "strings", "message"); break;
-        case FILTER_BODY: $headerName = $localINI->read_var( "strings", "body"); break;
-        case FILTER_ANY: $headerName = $localINI->read_var( "strings", "any_header"); break;
-        case FILTER_TOCC: $headerName = $localINI->read_var( "strings", "tocc"); break;
-        case FILTER_SUBJECT: $headerName = $localINI->read_var( "strings", "subject"); break;
-        case FILTER_FROM: $headerName = $localINI->read_var( "strings", "from"); break;
-        case FILTER_TO: $headerName = $localINI->read_var( "strings", "to"); break;
-        case FILTER_CC: $headerName = $localINI->read_var( "strings", "cc"); break;
+        case 0: $headerName = $localINI->read_var( "strings", "message"); break;
+        case 1: $headerName = $localINI->read_var( "strings", "body"); break;
+        case 2: $headerName = $localINI->read_var( "strings", "any_header"); break;
+        case 3: $headerName = $localINI->read_var( "strings", "tocc"); break;
+        case 4: $headerName = $localINI->read_var( "strings", "subject"); break;
+        case 5: $headerName = $localINI->read_var( "strings", "from"); break;
+        case 6: $headerName = $localINI->read_var( "strings", "to"); break;
+        case 7: $headerName = $localINI->read_var( "strings", "cc"); break;
     }
     $t->set_var( "header_id", $headerID );
     $t->set_var( "header_name", $headerName  );
@@ -114,18 +114,18 @@ foreach( array( FILTER_MESSAGE, FILTER_BODY, FILTER_ANY, FILTER_TOCC, FILTER_SUB
         $t->set_var( "is_selected", "" );
 
     $t->parse( "header_item", "header_item_tpl", true );
-} 
+}
 
-foreach( array( FILTER_EQUALS, FILTER_NEQUALS, FILTER_CONTAINS, FILTER_NCONTAINS, FILTER_REGEXP  ) as $checkID )
+foreach( array( 0, 1, 2, 3, 4  ) as $checkID )
 {
     $checkName = "";
     switch( $checkID )
     {
-        case FILTER_EQUALS: $checkName = $localINI->read_var( "strings", "equals"); break;
-        case FILTER_NEQUALS: $checkName = $localINI->read_var( "strings", "nequals"); break;
-        case FILTER_CONTAINS: $checkName = $localINI->read_var( "strings", "contains"); break;
-        case FILTER_NCONTAINS: $checkName = $localINI->read_var( "strings", "ncontains"); break;
-        case FILTER_REGEXP: $checkName = $localINI->read_var( "strings", "regexp"); break;
+        case 0: $checkName = $localINI->read_var( "strings", "equals"); break;
+        case 1: $checkName = $localINI->read_var( "strings", "nequals"); break;
+        case 2: $checkName = $localINI->read_var( "strings", "contains"); break;
+        case 3: $checkName = $localINI->read_var( "strings", "ncontains"); break;
+        case 4: $checkName = $localINI->read_var( "strings", "regexp"); break;
     }
     $t->set_var( "check_id", $checkID );
     $t->set_var( "check_name", $checkName  );

@@ -63,6 +63,8 @@ class eZMailAccount
     */
     function __construct( $id="" )
     {
+        $this->ServerType = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -347,14 +349,15 @@ class eZMailAccount
 
       Returns true if the given account belongs to the given user.
      */
-    function isOwner( $user, $accountID )
+    static public function isOwner( $user, $accountID )
     {
         if ( is_a( $user, "eZUser" ) )
             $user = $user->id();
 
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT UserID from eZMail_Account WHERE ID='$accountID'" );
-        if ( $res[$db->fieldName("UserID")] == $user )
+
+        if ( is_array( $res ) && $res[$db->fieldName("UserID")] == $user )
             return true;
 
         return false;
@@ -392,7 +395,8 @@ class eZMailAccount
     function checkMail()
     {
         $user =& eZUser::currentUser();
-        $server = "{" . $this->Server . "/pop3:" .$this->ServerPort ."}";
+        //$server = "{" . $this->Server . "/pop3:" .$this->ServerPort ."}";
+        $server = "{" . $this->Server . "/imap:" .$this->ServerPort ."}";
         $mbox = imap_open( $server, $this->LoginName, $this->Password, OP_HALFOPEN);
         if ( $mbox == false )
         {

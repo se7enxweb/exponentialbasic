@@ -91,7 +91,7 @@ $t->set_var( "site_style", $SiteDesign );
 
 /** insert the special folders **/
 $i=0;
-foreach( array( INBOX, SENT, DRAFTS, TRASH ) as $specialfolder )
+foreach( array( 1, 2, 3, 4 ) as $specialfolder )
 {
     $folderItem = eZMailFolder::getSpecialFolder( $specialfolder );
     $t->set_var( "folder_id", $folderItem->id() );
@@ -111,8 +111,8 @@ foreach( $userFolders as $folderItem )
 {
     $t->set_var( "folder_id", $folderItem[0] );
     $t->set_var( "folder_name", htmlspecialchars( $folderItem[1] ) );
-    $t->set_var( "folder_unread_mail_total", eZMailFolder::count( true, $folderItem[0] ) );
-    $t->set_var( "folder_mail_total", eZMailFolder::count(false, $folderItem[0] ) );
+    $t->set_var( "folder_unread_mail_total", (new eZMailFolder())->count( true, $folderItem[0] ) );
+    $t->set_var( "folder_mail_total", (new eZMailFolder())->count(false, $folderItem[0] ) );
     $t->set_var( "indent", str_repeat( "&nbsp;", 3 * $folderItem[2] ) );
     $t->set_var( "edit_empty", "" );
 

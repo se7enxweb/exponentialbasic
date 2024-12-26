@@ -124,7 +124,7 @@ class eZPreferences
 
       Returns false if unsuccessful.
     */
-    function setVariable( $name, $value, $group = false )
+    static public function setVariable( $name, $value, $group = false )
     {
         $ret = false;
         $user =& eZUser::currentUser();

@@ -19,7 +19,7 @@
 	{template_description}
 	</td>
 	<td class="{td_class}">
-	<a href="{www_dir}{index}/bulkmail/templateedit/{template_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{template_id}-red','','{www_dir}/admin/images/{site_style}/redigerminimrk.gif',1)"><img name="ezb{template_id}-red" border="0" src="{www_dir}/admin/images/{site_style}/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
+	<a href="{www_dir}{index}/bulkmail/templateedit/{template_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{template_id}-red','','{www_dir}/design/admin/images/redigerminimrk.gif',1)"><img name="ezb{template_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 	</td>
 	<td class="{td_class}"><input type="checkbox" name="TemplateArrayID[]" value="{template_id}" /></td>
 </tr>

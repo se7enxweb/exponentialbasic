@@ -64,8 +64,8 @@
 	<input type="checkbox" name="AccountActiveArrayID[]" value="{account_id}" {account_active_checked} />
 	</td>
 	<td class="{td_class}">
-	  <a href="{www_dir}{index}/mail/accountedit/{account_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{account_id}-red','','/images/{site_style}/redigerminimrk.gif',1)">
-           <img name="ezb{account_id}-red" border="0" src="{www_dir}/images/{site_style}/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
+	  <a href="{www_dir}{index}/mail/accountedit/{account_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{account_id}-red','','/design/admin/images/redigerminimrk.gif',1)">
+           <img name="ezb{account_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
           </a>
 	</td>	
 	<td class="{td_class}">
@@ -91,8 +91,8 @@
 	{filter_name}
 	</td>
 	<td class="{td_class}">
-	  <a href="{www_dir}{index}/mail/filteredit/{filter_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{filter_id}-red','','/images/{site_style}/redigerminimrk.gif',1)">
-           <img name="ezb{filter_id}-red" border="0" src="{www_dir}/images/{site_style}/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
+	  <a href="{www_dir}{index}/mail/filteredit/{filter_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{filter_id}-red','','/design/admin/images/redigerminimrk.gif',1)">
+           <img name="ezb{filter_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
           </a>
 	</td>	
 	<td class="{td_class}">

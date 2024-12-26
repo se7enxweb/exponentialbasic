@@ -67,6 +67,7 @@ if ( isset( $Send ) )
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$templateID = 0;
 
 $t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl/", $Language, "mailedit.php" );
@@ -83,7 +84,7 @@ $t->set_var( "multiple_value", "" );
 $t->set_var( "template_item", "" );
 $t->set_var( "error_message", "" );
 
-$t->set_var( "site_style", $SiteDesign );
+$t->set_var( "site_style", $siteDesign );
 $t->set_var( "from_value", "" );
 $t->set_var( "from_name_value", "" );
 $t->set_var( "subject_value", "" );

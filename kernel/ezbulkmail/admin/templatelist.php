@@ -49,7 +49,7 @@ $t->set_file( array(
     ) );
 
 $t->setAllStrings();
-$t->set_var( "site_style", $SiteDesign );
+$t->set_var( "site_style", $siteDesign );
 
 $t->set_block( "template_list_tpl", "template_tpl", "template" );
 $t->set_block( "template_tpl", "template_item_tpl", "template_item" );

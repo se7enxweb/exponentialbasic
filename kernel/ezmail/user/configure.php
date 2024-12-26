@@ -96,10 +96,10 @@ if( isset( $DeleteAccounts ) && count( $AccountArrayID ) > 0  )
 {
     foreach( $AccountArrayID as $accountID )
     {
-        eZMailAccount::delete( $accountID );
+        (new eZMailAccount())->delete( $accountID );
     }
 }
-if( isset( $DeleteAccounts ) && count( $FilterArrayID ) > 0 ) 
+if( isset( $DeleteAccounts ) && isset( $FilterArrayID ) && count( $FilterArrayID ) > 0 )
 {
     foreach( $FilterArrayID as $filterID )
     {

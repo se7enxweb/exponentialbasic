@@ -242,6 +242,7 @@ class eZBulkMailTemplate
     var $Footer;
     var $Name;
     var $Description;
+    var $ID;
 }
 
 ?>

@@ -54,9 +54,9 @@ if( isset( $Ok ) )
     $account->setServer( $Server );
     $account->setServerPort( $Port );
     if( isset( $DelFromServer ) )
-        $account->setDeleteFromServer( true );
+        $account->setDeleteFromServer( 1 );
     else
-        $account->setDeleteFromServer( false );
+        $account->setDeleteFromServer( 0 );
 
     $account->store();
     eZHTTPTool::header( "Location: /mail/config" );

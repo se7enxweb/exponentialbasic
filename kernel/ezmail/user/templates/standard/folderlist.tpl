@@ -37,7 +37,7 @@
 	<!-- BEGIN folders_item_edit_tpl -->
 	<td class="{td_class}">
 	  <a href="{www_dir}{index}/mail/folderedit/{folder_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{folder_id}-red','','/images/{site_style}/redigerminimrk.gif',1)">
-           <img name="ezb{folder_id}-red" border="0" src="{www_dir}/images/{site_style}/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
+           <img name="ezb{folder_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
           </a>
 	</td>
 	<td class="{td_class}">

@@ -54,8 +54,10 @@ class eZBulkMailSubscriptionAddress
     */
     function store()
     {
+        if( $this->Password != '' )
         $password = md5( $this->Password );
-
+        else
+            $password = '';
         $db =& eZDB::globalDatabase();
         $db->begin();
         if ( !isset( $this->ID ) )
@@ -229,7 +231,8 @@ class eZBulkMailSubscriptionAddress
      */
     function setEMail( $value )
     {
-        $pos = ( ereg('^[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+'.'@'.'[-!#$%&\'*+\\/0-9=?A-Z^_`a-z{|}~]+\.'.'[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+$', $value) );
+        // $pos = ( preg_match('/^[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+'.'@'.'[-!#$%&\'*+\\/0-9=?A-Z^_`a-z{|}~]+\.'.'[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+$', $value) );
+        $pos = ( preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $value) );
         if( $pos == true )
         {
             $this->EMail = $value;

@@ -113,7 +113,6 @@ switch ( $url_array[2] )
 
     case "check" : // check the mail for this user!
     {
-
         $user =& eZUser::currentUser();
         $accounts = eZMailAccount::getByUser( $user->id() );
 

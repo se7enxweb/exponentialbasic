@@ -27,23 +27,23 @@
 <tr> 
 	<td class="{td_class}">
 	<!-- BEGIN mail_unread_tpl -->
-	<img src="{www_dir}/images/mail.gif" />
+	<img src="{www_dir}/design/admin/images/mail.gif" />
 	<!-- END mail_unread_tpl -->
 
 	<!-- BEGIN mail_read_tpl -->
-	<img src="{www_dir}/images/mail_read.gif" />
+	<img src="{www_dir}/design/admin/images/mail_read.gif" />
 	<!-- END mail_read_tpl -->
 
 	<!-- BEGIN mail_forwarded_tpl -->
-	<img src="{www_dir}/images/mail_forwarded.gif" />
+	<img src="{www_dir}/design/admin/images/mail_forwarded.gif" />
 	<!-- END mail_forwarded_tpl -->
 
 	<!-- BEGIN mail_replied_tpl -->
-	<img src="{www_dir}/images/mail_replied.gif" />
+	<img src="{www_dir}/design/admin/images/mail_replied.gif" />
 	<!-- END mail_replied_tpl -->
 
 	<!-- BEGIN mail_repliedall_tpl -->
-	<img src="{www_dir}/images/mail_repliedtoall.gif" />
+	<img src="{www_dir}/design/admin/images/mail_repliedtoall.gif" />
 	<!-- END mail_repliedall_tpl -->
 	
 	</td>
@@ -59,7 +59,7 @@
 	<td class="{td_class}">
 	<!-- BEGIN mail_edit_item_tpl -->
 	  <a href="{www_dir}{index}/mail/mailedit/{mail_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezb{mail_id}-red','','/images/{site_style}/redigerminimrk.gif',1)">
-          <img name="ezb{mail_id}-red" border="0" src="{www_dir}/images/{site_style}/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
+          <img name="ezb{mail_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" />
           </a>
 	<!-- END mail_edit_item_tpl -->
 	</td>
@@ -71,7 +71,7 @@
 <!-- BEGIN mail_item_unread_tpl -->
 <tr>
 	<td class="{td_class}">
-	<img src="{www_dir}/images/mail.gif" />
+	<img src="{www_dir}/design/admin/images/mail.gif" />
 	</td>
 	<td class="{td_class}">
 	<b><a href="{www_dir}{index}/mail/view/{mail_id}">{mail_subject}</a></b>

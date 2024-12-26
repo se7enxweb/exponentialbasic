@@ -36,10 +36,10 @@ $mailCount = false;
 
 if ( isset( $Ok ) || isset( $New ) )
 {
-    eZBulkMailCategory::setSingleList( false );
+    (new eZBulkMailCategory())->setSingleList( false );
     if ( isset( $SingleListID ) && $SingleListID != -1 )
     {
-        eZBulkMailCategory::setSingleList( $SingleListID );
+        (new eZBulkMailCategory())->setSingleList( $SingleListID );
     }
 }
 

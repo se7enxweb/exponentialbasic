@@ -49,7 +49,7 @@ class eZBulkMail
     function __construct( $id = -1 )
     {
         // default values...
-        $this->isDraft = 1;
+        $this->IsDraft = 1;
         $this->UserID = 0;
 
         if ( $id != -1 )
@@ -448,7 +448,7 @@ class eZBulkMail
      */
     function send( $article = false )
     {
-        $this->IsDraft = false;
+        $this->IsDraft = 0;
         $template = $this->template();
         if ( is_object( $template ) )
             $this->BodyText = $template->header( false ) . $this->BodyText . $template->footer( false );
@@ -892,6 +892,7 @@ class eZBulkMail
 
     /// Is true if the object has database connection, false if not.
     var $IsConnected;
+
 
 }
 

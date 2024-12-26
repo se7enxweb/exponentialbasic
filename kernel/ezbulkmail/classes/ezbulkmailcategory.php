@@ -338,10 +338,10 @@ class eZBulkMailCategory
     function mail( $offset = 0, $limit = 50, $getDrafs = true, $id = -1 )
     {
         $db =& eZDB::globalDatabase();
+        $getDraftsSQL = "";
 
         if( $id == -1 )
             $id = $this->ID;
-
         $return_array = array();
         $mail_array = array();
 
@@ -650,7 +650,7 @@ class eZBulkMailCategory
     var $Name;
     var $Description;
     var $IsPublic;
-
+    var $IsSingleCategory;
 }
 
 ?>

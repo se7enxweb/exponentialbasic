@@ -217,7 +217,7 @@ if ( $user )
             {
                 foreach( $modules as $module )
                 {
-                    $module_dir = strtolower( $module );
+                    $module_dir = 'kernel/' . strtolower( $module );
                     if ( $_REQUEST["ToggleMenu"] == $module_dir )
                     {
                         eZModuleHandler::toggle( $module_dir );

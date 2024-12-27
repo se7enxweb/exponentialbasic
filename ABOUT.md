@@ -57,3 +57,21 @@ The remaining work to test, bugfix and document all modules individually as PHP8
 - Next efforts surround going through each admin and user module views per module and fixing all usage / interaction / form submissions / CRUD operations php warnings and errors on normal module view Actions usage (Features usage error free). Most time consuming phase.
 - Follow up efforts surround going through each admin and user module views per module an additional time and making certain the actual output is sane and correct for the given database content and feature interactions (Actions; Feature usage accurate and valid results output to user every time). This will require additional documentation to ensure repeatable results.
 - Final efforts surround going through all module views with various error logging being monitored to capture debug, errors, warnings, any output that creates a log entry will be reviewed and if needed refactored as needed. This should be automated with testing software in the future.
+
+# About (Historical)
+
+Originally released as **eZ Publish Version 2** by eZ Systems (now Ibexa) in 1999, this CMS has a storied history of innovation.
+
+In mid-2001, **7x** began development based on **eZ Community 2.x**, a PHP/MySQL CMS derived from eZ Publish 2.2.x.
+
+# Notable Milestones:
+
+- Release framework update to provide composer based autoloads using a free GPL solution from eZ Publish Legacy a script and classes which creates the required autoloads for composer from all detected classes in the installation.
+
+- Released stable finished work (only small bugs **might** remain) **eZ Publish Basic 2.4.0.0** in 2024/12 as a quite release of a christmas gift from Graham Brookins and 7x to the eZ Community.
+
+- Released (as is / example work in progress) **eZ Community 2.3** around 2006.
+
+- Enhanced stability and refined CMS/e-commerce features for USA-based users. (Basis of USA States Support (eZ Region) code was implemented into eZ Address module)
+
+- This repository is a direct descendant of the deprecated `ezcommunity2-contributions` repository, restructured for simpler maintenance and support.

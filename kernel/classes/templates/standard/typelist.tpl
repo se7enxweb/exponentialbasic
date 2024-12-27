@@ -76,7 +76,7 @@
 <!-- END no_item_move_up_tpl -->
 
 	<td width="1%">
-	<a href="{www_dir}{index}{item_edit_command}/{item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{item_id}-red','','/images/redigerminimrk.gif',1)"><img name="ezc{item_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
+	<a href="{www_dir}{index}{item_edit_command}/{item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{item_id}-red','','/design/admin/images/redigerminimrk.gif',1)"><img name="ezc{item_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 	</td>
 
 <!-- BEGIN delete_box_item_tpl -->

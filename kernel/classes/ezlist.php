@@ -309,7 +309,7 @@ class eZList
                 $t->set_var( "item_plain", "" );
                 $t->set_var( "item_linked", "" );
                 reset( $custom_func_call );
-                while( list($key,$val) = each( $custom_func_call ) )
+                foreach( $custom_func_call as $key => $val )
                 {
                     $t->set_var( "item_name", eZTextTool::htmlspecialchars( $item->$val() ) );
                     $t->parse( "item_plain", "item_plain_tpl" );

@@ -346,10 +346,15 @@ td.menu-right {
 	.path {
 		font-size: 0.75rem;
 	}
-        html body table.body tbody tr td table.all tbody tr td.tdmini a.logo img.logoImage {
-                padding-bottom: 0.1rem;
-        }
-        html body table.body tbody tr td table.all tbody tr td.tdmini table {
-                margin: -1px;
-        }
+
+	html body table.body tbody tr td table.all tbody tr td.tdmini a.logo img.logoImage {
+		padding-bottom: 0.1rem;
+	}
+	html body table.body tbody tr td table.all tbody tr td.tdmini table {
+		margin: -1px;
+	}
+	.imagetable {
+		width: min-content;
+		float: left;
+	}
 }

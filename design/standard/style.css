@@ -255,6 +255,11 @@ hr {
 	width: 120px;
 }
 
+.imagetable {
+	width: min-content;
+	float: left;
+}
+
 .error {
 	font-size: 14;
 	font-weight: bold;
@@ -352,9 +357,5 @@ td.menu-right {
 	}
 	html body table.body tbody tr td table.all tbody tr td.tdmini table {
 		margin: -1px;
-	}
-	.imagetable {
-		width: min-content;
-		float: left;
 	}
 }

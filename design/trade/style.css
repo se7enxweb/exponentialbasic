@@ -254,6 +254,11 @@ hr
 	width: 200px;
 }
 
+.imagetable {
+	width: min-content;
+	float: left;
+}
+
 .error
 {
 	font-size: 14;
@@ -261,4 +266,4 @@ hr
     color: #f08c00;
 }
 
-/* Hellstrøm 24.8.2001 */
+/* Hellstrï¿½m 24.8.2001 */

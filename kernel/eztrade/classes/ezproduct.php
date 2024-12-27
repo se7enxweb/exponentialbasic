@@ -66,9 +66,6 @@
 // include_once( "eztrade/classes/ezshippinggroup.php" );
 // include_once( "eztrade/classes/ezproductpricerange.php" );
 
-
-use eZPublishBasic\kernel\ezarticle\classes\eZArticleRenderer;
-
 class eZProduct
 {
     /*!

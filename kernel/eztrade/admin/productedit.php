@@ -34,8 +34,6 @@
 
 // include_once( "ezxml/classes/ezxml.php" );
 
-use eZPublishBasic\kernel\ezarticle\classes\eZArticleGenerator;
-
 function deleteCache($ProductID, $CategoryID, $CategoryArray, $Hotdeal )
 {
     if ( is_a( $ProductID, "eZProduct" ) )

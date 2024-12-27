@@ -13,13 +13,13 @@ Documentation for this project will in the future be covering importing eZ Publi
  * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)
  * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
  * Maintainer: [7x](https://se7enx.com)
- * Document Last revised: 2024.11.16
+ * Document Last revised: 2024.12.27
 
 ---
 
 # About
 
-Read more [about](ABOUT.md) our project and it's historic value added services it provided early users, developers and businesses in the early 2000s era of web based application development environments and their required systems.
+Read more [about](documentation/ABOUT.md) our project and it's historic value added services it provided early users, developers and businesses in the early 2000s era of web based application development environments and their required systems.
 
 # Installation via Git & GitHub
 
@@ -86,19 +86,19 @@ Further documentation can be read from the [documentation](https://github.com/se
 
 eZ Publish Basic provides a feature rich cms based website building platform that is ready to use upon it's quick installation setup.
 
-Learn more about eZ Publish Basic features in detail. Study our documentation, [FEATURES.md](FEATURES.md).
+Learn more about eZ Publish Basic features in detail. Study our documentation, [FEATURES.md](documentation/FEATURES.md).
 
 ## Software Features Roadmap
 
-Learn more about eZ Publish Basic features roadmap in detail. Study our documentation, [ROADMAP.md](ROADMAP.md).
+Learn more about eZ Publish Basic features roadmap in detail. Study our documentation, [ROADMAP.md](documentation/ROADMAP.md).
 
 ## PHP Compatability
 
-For the latest information about the development of php 8 compatibility read our documentation, [COMPATABILITY.md](COMPATABILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x. 
+For the latest information about the development of php 8 compatibility read our documentation, [COMPATABILITY.md](documentation/COMPATABILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x. 
 
 ## Module Documentation
 
-For the latest detailed list of views in eZ Publish Basic read our documentation, [MODULES.md](MODULES.md).
+For the latest detailed list of views in eZ Publish Basic read our documentation, [MODULES.md](documentation/MODULES.md).
 
 ## Contributions
 

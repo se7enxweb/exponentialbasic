@@ -93,24 +93,32 @@ $t->set_block( "product_item_tpl", "ex_vat_item_tpl", "ex_vat_item" );
 $t->set_block( "product_list_tpl", "absolute_placement_header_tpl", "absolute_placement_header" );
 $t->set_block( "product_item_tpl", "absolute_placement_item_tpl", "absolute_placement_item" );
 
-$t->set_var( "site_style", $SiteDesign );
+$t->set_var( "site_style", $siteDesign );
 
-$category = new eZProductCategory( 1 );
+if( isset( $ParentID ) )
+{
+    $category = new eZProductCategory( $ParentID );
+}
+else
+{
+    $category = new eZProductCategory( 0 );
+}
 // $category->copy( true );
 
 $ParentID = 1;
 
-$category = new eZProductCategory();
+// $category = new eZProductCategory();
 
-if( isset( $ParentID ) )
-{
-    $category->get( $ParentID );
-}
-else
-{
-    $category->get();
-}
+//if( isset( $ParentID ) )
+//{
+//    $category->get( $ParentID );
+//}
+//else
+//{
+//    $category->get( 1 );
+//}
 
+$category->get();
 // move products  up / down
 
 if ( $category->sortMode() == "absolute_placement" )
@@ -144,7 +152,7 @@ $categoryList =& $category->getByParent( $category );
 
 // categories
 $i = 0;
-$t->set_var( "category_list", "" );
+// $t->set_var( "category_list", "" );
 foreach ( $categoryList as $categoryItem )
 {
     $t->set_var( "category_id", $categoryItem->id() );
@@ -179,8 +187,8 @@ if ( !isset( $Offset ) or !is_numeric( $Offset ) )
     $Offset = 0;
 
 // products
-$TotalTypes =& $category->productCount( $category->sortMode(), true );
-$productList =& $category->products( $category->sortMode(), true, $Offset, $Limit, true );
+$TotalTypes =& $category->productCount( $category->sortMode(), true, false, $category->id() );
+$productList =& $category->products( $category->sortMode(), true, $Offset, $Limit, true, $category->id() );
 
 $locale = new eZLocale( $Language );
 $i = 0;

@@ -34,7 +34,9 @@
 
 // include_once( "ezxml/classes/ezxml.php" );
 
-function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
+use eZPublishBasic\kernel\ezarticle\classes\eZArticleGenerator;
+
+function deleteCache($ProductID, $CategoryID, $CategoryArray, $Hotdeal )
 {
     if ( is_a( $ProductID, "eZProduct" ) )
     {
@@ -44,14 +46,14 @@ function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
         $ProductID = $ProductID->id();
     }
 
-    $files = eZCacheFile::files( "eztrade/cache/", array( array( "productview", "productprint" ),
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
                                                           $ProductID, $CategoryID ),
                                  "cache", "," );
     foreach ( $files as $file )
     {
         $file->delete();
     }
-    $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "productlist",
                                                           array_merge( array( $CategoryID ), $CategoryArray ) ),
                                  "cache", "," );
 
@@ -61,14 +63,14 @@ function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
     }
     if ( $Hotdeal )
     {
-        $files = eZCacheFile::files( "eztrade/cache/", array( "hotdealslist", NULL ),
+        $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "hotdealslist", NULL ),
                                      "cache", "," );
         foreach ( $files as $file )
         {
             $file->delete();
         }
     }
-    $files =& eZCacheFile::files( "ezarticle/cache/",
+    $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                   array( "articlefrontpage",
                                          NULL,
                                          NULL),

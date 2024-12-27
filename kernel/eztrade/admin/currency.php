@@ -35,11 +35,10 @@ $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-
 if ( isset( $Action ) && $Action == "Store" )
 {
     $i=0;
-    if ( count( $CurrencyID ) > 0 )
+    if ( isset( $CurrencyID ) && count( $CurrencyID ) > 0 )
     foreach ( $CurrencyID as $id )
     {
         $str = "CurrencyPrefix_" . $id;
@@ -59,7 +58,7 @@ if ( isset( $Action ) && $Action == "Store" )
         $i++;
     }
 
-    $files = eZCacheFile::files( "eztrade/cache/", array( array( "productview", "productprint" ),
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
                                                           NULL, NULL ),
                                  "cache", "," );
     foreach( $files as $file )
@@ -124,8 +123,6 @@ foreach ( $currencies as $currency )
     $t->parse( "currency_item", "currency_item_tpl", true );
     $i++;
 }
-
-
 
 $t->pparse( "output", "currency_tpl" );
 

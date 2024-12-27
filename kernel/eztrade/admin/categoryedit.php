@@ -66,10 +66,11 @@ if ( isset( $Action ) && $Action == "Insert" )
 {
     $parentCategory = new eZProductCategory();
     $parentCategory->get( $ParentID );
+    var_dump( $ParentID );
 
     $category = new eZProductCategory();
     $category->setName( $Name );
-    $category->setParent( $parentCategory );
+    $category->setParent( $ParentID );
     $category->setDescription( $Description );
     $category->setSectionID( $SectionID );
     $category->setSortMode( $SortMode );
@@ -132,7 +133,7 @@ if ( isset( $Action ) && $Action == "Insert" )
     }
 
     // include_once( "classes/ezcachefile.php" );
-    $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "productlist",
                                                           array( $ParentID, $category->id() ),
                                                           NULL, NULL ),
                                  "cache", "," );
@@ -231,7 +232,7 @@ if ( isset( $Action ) && $Action == "Update" )
 
 
     // include_once( "classes/ezcachefile.php" );
-    $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "productlist",
                                                           array( $ParentID, $CategoryID ), NULL, NULL ),
                                  "cache", "," );
     foreach( $files as $file )
@@ -259,15 +260,15 @@ if ( isset( $Action ) && $Action == "Delete" )
     $category = new eZProductCategory();
     $category->get( $CategoryID );
 
-    if ( eZFile::file_exists( "ezarticle/cache/menubox.cache" ) )
-        eZFile::unlink( "ezarticle/cache/menubox.cache" );
+    if ( eZFile::file_exists( "kernel/ezarticle/cache/menubox.cache" ) )
+        eZFile::unlink( "kernel/ezarticle/cache/menubox.cache" );
 
     // include_once( "classes/ezcachefile.php" );
 
     $parent = $category->parent();
     if ( is_a( $parent, "eZProductCategory" ) )
         $parent = $parent->id();
-    $files = eZCacheFile::files( "eztrade/cache/",
+    $files = eZCacheFile::files( "kernel/eztrade/cache/",
                                  array( "productlist",
                                         array( $category->id(), $parent ),
                                         NULL, NULL ),
@@ -287,8 +288,8 @@ if ( isset( $Action ) && $Action == "DeleteCategories" )
 {
     if ( count ( $CategoryArrayID ) != 0 )
     {
-        if ( eZFile::file_exists( "ezarticle/cache/menubox.cache" ) )
-            eZFile::unlink( "ezarticle/cache/menubox.cache" );
+        if ( eZFile::file_exists( "kernel/ezarticle/cache/menubox.cache" ) )
+            eZFile::unlink( "kernel/ezarticle/cache/menubox.cache" );
 
         // include_once( "classes/ezcachefile.php" );
         foreach( $CategoryArrayID as $ID )
@@ -299,7 +300,7 @@ if ( isset( $Action ) && $Action == "DeleteCategories" )
             $parent = $category->parent();
             if ( is_a( $parent, "eZProductCategory" ) )
                 $parent = $parent->id();
-            $files = eZCacheFile::files( "eztrade/cache/",
+            $files = eZCacheFile::files( "kernel/eztrade/cache/",
                                          array( "productlist",
                                                 array( $category->id(), $parent ),
                                                 NULL, NULL ),

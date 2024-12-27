@@ -95,6 +95,8 @@ class eZProductCategory
     */
     function __construct( $id = -1 )
     {
+        $this->ImageID = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -119,8 +121,7 @@ class eZProductCategory
 
             $db->lock( "eZTrade_Category" );
             $nextID = $db->nextID( "eZTrade_Category", "ID" );
-
-            $res = $db->query( "INSERT INTO eZTrade_Category
+            $query = "INSERT INTO eZTrade_Category
                                 ( ID, Name, Description, SortMode, RemoteID, ImageID, SectionID, Parent )
                                 VALUES
                                 ( '$nextID',
@@ -130,8 +131,9 @@ class eZProductCategory
                                   '$remoteID',
                                   '$this->ImageID',
                                   '$this->SectionID',
-                                  '$this->Parent' )
-                                " );
+                                  '$this->Parent' ) ";
+
+            $res = $db->query( $query );
 
             $db->unlock();
 			$this->ID = $nextID;
@@ -145,7 +147,7 @@ class eZProductCategory
                                  RemoteID='$this->RemoteID',
                                  ImageID='$this->ImageID',
                                  SectionID='$this->SectionID',
-                                 Parent='$this->Parent' WHERE ID='$this->ID'" );
+                                 Parent='$this->Parent-I' WHERE ID='$this->ID'" );
         }
 
         if ( $res == false )
@@ -496,15 +498,15 @@ class eZProductCategory
     /*!
       Sets the parent category.
     */
-    function setParent( $value )
+    function setParent( $parent )
     {
         if ( is_a( $parent, "eZProductCategory" ) )
         {
-            $this->Parent = $value->id();
+            $this->Parent = $parent->id();
         }
         else
         {
-            $this->Parent = $value;
+            $this->Parent = $parent;
         }
     }
 
@@ -658,7 +660,7 @@ class eZProductCategory
                 $nonActiveCode
                 $discontinuedCode
                 $permissionSQL
-                eZTrade_ProductCategoryLink.CategoryID='$this->ID'";
+                eZTrade_ProductCategoryLink.CategoryID='$catID'";
 
         $db->query_single( $products, $query );
         return $products[$db->fieldName( "Count" )];
@@ -677,7 +679,7 @@ class eZProductCategory
         if ( $categoryID != 0 )
             $catID = $categoryID;
         else
-            $catID = 1;
+            $catID = 0;
 
        $db =& eZDB::globalDatabase();
 

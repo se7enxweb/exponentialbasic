@@ -47,7 +47,7 @@ if ( isset( $New ) )
 
 if ( isset( $Delete ) )
 {
-    if ( count( $ItemArrayID ) > 0 )
+    if ( isset( $ItemArrayID ) && count( $ItemArrayID ) > 0 )
     {
         foreach( $ItemArrayID as $item )
         {

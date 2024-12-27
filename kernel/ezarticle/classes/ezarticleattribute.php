@@ -330,13 +330,17 @@ class eZArticleAttribute
     function moveUp()
     {
         $db =& eZDB::globalDatabase();
-        $db->query_single( $qry, "SELECT ID, Placement FROM eZArticle_Attribute
-                                  WHERE Placement<'$this->Placement' AND TypeID = '$this->TypeID' ORDER BY Placement DESC LIMIT 1" );
 
-        $listorder = $qry[$db->fieldName("Placement")];
-        $listid = $qry[$db->fieldName("ID")];
+        $query = "SELECT ID, Placement FROM eZArticle_Attribute
+                                  WHERE Placement<'$this->Placement' AND TypeID = '$this->TypeID' ORDER BY Placement DESC LIMIT 1";
 
+        $db->query_single( $qry, $query );
 
+        if ( !is_string( $qry ) )
+        {
+            $listorder = $qry[$db->fieldName("Placement")];
+            $listid = $qry[$db->fieldName("ID")];
+        }
 
         $db->query_single( $qry, "SELECT min( Placement ) as Min FROM eZArticle_Attribute
                                   WHERE TypeID = '$this->TypeID'  ORDER BY Placement" );

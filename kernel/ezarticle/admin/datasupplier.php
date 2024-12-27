@@ -537,7 +537,7 @@ switch ( $url_array[2] )
                     $TypeID = $url_array[4];
                 }
                 
-                if ( !isset( $TypeID ) && !is_array( $AttributeID ) )
+                if ( !isset( $AttributeID ) )
                 {
                     $AttributeID = $url_array[5];
                 }

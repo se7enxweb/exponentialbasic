@@ -60,7 +60,7 @@ if( isset( $Ok ) || isset( $NewAttribute ) )
 
     // update attributes
     $i =0;
-    if ( count( $AttributeName ) > 0 )
+    if ( isset( $AttributeName ) && count( $AttributeName ) > 0 )
     {
 
         foreach ( $AttributeName as $attribute )
@@ -89,7 +89,7 @@ if ( isset( $NewAttribute ) )
 }
 
 
-if( $Action == "up" )
+if( isset( $Action ) && $Action == "up" && isset( $AttributeID ) )
 {
     $attribute = new eZArticleAttribute( $AttributeID );
     $attribute->moveUp();
@@ -98,7 +98,7 @@ if( $Action == "up" )
     exit();
 }
 
-if( $Action == "down" )
+if( isset( $Action ) && $Action == "down" && isset( $AttributeID ) )
 {
     $attribute = new eZArticleAttribute( $AttributeID );
     $attribute->moveDown();

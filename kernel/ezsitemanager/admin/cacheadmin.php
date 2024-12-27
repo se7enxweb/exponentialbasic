@@ -50,7 +50,7 @@ if ( isset( $ClearCache ) )
 
     // fetch the system printout
     ob_start();
-    if ( trim( $GLOBALS["WINDIR"] ) != "" )
+    if ( isset( $GLOBALS["WINDIR"] ) && trim( $GLOBALS["WINDIR"] ) != "" )
         system( $siteDir . "./bin/win32/clearcache.bat" );
     else
         system( $siteDir . "./bin/shell/clearcache.sh" );

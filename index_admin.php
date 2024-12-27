@@ -258,12 +258,14 @@ if ( $user )
                 if ( !empty( $module ) )
                 {
                     $module_dir = "kernel/" . strtolower( $module );
+
                     unset( $menuItems );
                     include( "$module_dir/admin/menubox.php" );
                     if ( isset( $menuItems ) )
-                        eZMenuBox::createBox( $module, $module_dir, "admin",
-                        $SiteDesign, $menuItems, true, false,
+                        eZMenuBox::createBox( strtolower( $module ),  $module_dir, "admin",
+                        $siteDesign, $menuItems, true, false,
                         "kernel/$module_dir/admin/menubox.php", false, true );
+                    unset( $module_dir );
                 }
             }
         }

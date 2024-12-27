@@ -34,10 +34,20 @@
 - ezxml
 - ezxmlrpc
 
+### eZ Publish Basic User Module Views URL Calls Available
+The following user modules views are included in eZ Publish Basic:
+
+- ezabout
+  - about
+    - URI: /about
+
+
 ### eZ Publish Basic Admin Module Views URL Calls Available
 The following admin modules views are included in eZ Publish Basic:
 
 - ezabout
+  - about
+    - URI: /about
 - ezad
   - archive
   - category/new

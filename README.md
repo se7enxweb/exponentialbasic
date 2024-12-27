@@ -109,6 +109,8 @@ Follow these steps to set up eZ Publish Basic via Composer:
 - Database Server
   - You will require a new database and database user and password access configured.
 - Filesystem User and Group Permissions
+- Generate eZ Publish Basics Autoloads
+  - use this command: bin/shell/php/ezpgenerateautoloads.php -k;
 
 2. Set up your database in your database server.
 
@@ -140,6 +142,10 @@ eZ Publish Basic provides a feature rich cms based website building platform tha
 
 Learn more about eZ Publish Basic features in detail. Study our documentation, [FEATURES.md](FEATURES.md).
 
+## Software Features Roadmap
+
+Learn more about eZ Publish Basic features roadmap in detail. Study our documentation, [ROADMAP.md](ROADMAP.md).
+
 ## PHP Compatability
 
 For the latest information about the development of php 8 compatibility read our documentation, [COMPATABILITY.md](COMPATABILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x. 
@@ -166,21 +172,25 @@ We welcome contributions from the community! To get involved:
 
 Check out the Contributing Guidelines for more details.
 
----
-
-Developed with ❤️ by 7x.
-
-
-## About (Original)
+## About (Historical)
 
 Originally released as **eZ Publish Version 2** by eZ Systems (now Ibexa) in 1999, this CMS has a storied history of innovation.
 
 In mid-2001, **7x** began development based on **eZ Community 2.x**, a PHP/MySQL CMS derived from eZ Publish 2.2.x.
 
+
 ### Notable Milestones:
 
+- Release framework update to provide composer based autoloads using a free GPL solution from eZ Publish Legacy a script and classes which creates the required autoloads for composer from all detected classes in the installation.
+
+- Released stable finished work (only small bugs **might** remain) **eZ Publish Basic 2.4.0.0** in 2024/12 as a quite release of a christmas gift from Graham Brookins and 7x to the eZ Community.
+
 - Released (as is / example work in progress) **eZ Community 2.3** around 2006.
-- Enhanced stability and refined CMS/e-commerce features for USA-based users. (Basis of USA States Support (eZ Region) code was implemented but not integrated)
+
+- Enhanced stability and refined CMS/e-commerce features for USA-based users. (Basis of USA States Support (eZ Region) code was implemented into eZ Address module)
+
 - This repository is a direct descendant of the deprecated `ezcommunity2-contributions` repository, restructured for simpler maintenance and support.
 
 ---
+
+Developed with ❤️ by 7x.

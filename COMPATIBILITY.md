@@ -4,247 +4,248 @@
 
 ## User Modules
 
-- ezuser
-    - addressedit
-    - forgot
-    - forgotmessage
-    - login
-    - missingmailmessage
-    - norights
-    - userbox
-    - usercheck
-    - useredit
-    - userwithaddress
-- ezurltranslator
-    - None (Admin Only)
-- ezsitemanager
-    - static - undocumented static content view.
-- ezstats
-    - storestats
-- ezsysinfo
-    - No user module views. Only Admin module views.
-- ezstats
-    - overview
-    - entryexitreport
-    - pageviewlist/last/20
-    - visitorlist/top/20
-    - refererlist/top/20
-    - browserlist/top/25
-    - requestpagelist/top/20
-    - yearreport
-    - monthreport
-    - dayreport
-- ezquiz
-    - menubox
-    - quizlist
-    - quizmyscores
-    - quizopen
-    - quizplay
-    - quizscores
-- ezbulkmail
-    - bulklist
-    - categoryedit
-    - cron
-    - mailview
-    - menubox
-    - singlelist
-    - subscriptionlist
-    - subscriptionlogin
-    - usermessages
-- ezform
-    - formview
-- ezadddress
-    - No user modules views. Admin only.
-- ezmediacatalogue
-    - No user module views. Only Admin module views.
-- ezmessage
-    - No user module views. Only Admin module views.
-- ezmodule
-    - No user module views. Only Admin module views.
-- ezimagecatalogue
-    - categoryedit
-    - customimage
-    - filedownload
-    - imageedit
-    - imagelist
-    - imageview
-    - menubox
-    - menucategorylist
-    - searchsupplier
-    - slideshow
-- ezfilemanager
-    - filedownload
-    - filelist
-    - fileupload
-    - fileview
-    - folderedit
-    - menubox
-    - menufilelist
-    - menufolderlist
-    - search
-    - viewfile
-- ezcalendar
-    - appointmentedit
-    - appointmentview
-    - dayview
-    - monthview
-    - trustees
-    - yearview
-- eztodo
-    - menubox
-    - todoedit
-    - todoinfo
-    - todolist
-    - todomenulist
-    - todoview
-- ezcontact
-    - companysearch
-    - consultationlist
-    - menubox
-    - personsearch
-    - searchsupplier
-    - urlsupplier
-- ezerror
-    - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
-- ezexample
-    - listtable
-    - page
-- ezsearch
-    - menubox
-    - search
-- ezsession
-    - No user module views. Admin only.
-- ezbug
-    - bugslist
-    - bugreport
-    - bugview
-    - fileedit
-    - imageedit
-    - menubox
-    - menumodulelist
-    - reportsuccess
-    - search
-    - unhandledbugs
-- eznewsfeed
-    - allcategories
-    - headlines
-    - menubox
-    - newslist
-    - search
 - ezabout
-    - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
 - ezad
-    - adlist
-    - gotoadd
-    - queuedadlist
-- ezpoll
-    - pollist
-    - result
-    - userlogin
-    - vote
-    - votebox
-    - votepage
-- ezlink
-    - gotolink
-    - latest
-    - linkcategorylist
-    - menubox
-    - onepagelinklist
-    - search
-    - success
-    - suggestlink
-- ezforum
-    - categorylist
-    - forumlist
-    - latestmessages
-    - menubox
-    - menuforumlist
-    - message
-    - messagebody
-    - messageedit
-    - messageform
-    - messagelist
-    - messagelistflat
-    - messagepath
-    - messagepermissions
-    - messagereply
-    - messagesearch
-    - messagesimplelist
-    - search
-    - searchsupplier
-    - userlogin
-- ezmail
-    - accountedit
-    - configure
-    - fileedit
-    - folderlist
-    - link
-    - mailedit
-    - maillist
-    - mailview
-    - menubox
-    - search
-- eztrade
-    - cart - Needs work. Cart Prices are all Zeros.
-    - categorylist
-    - categorytreelist
-    - checkout - Fatal error on page load.
-    - confirmation
-    - customerlogin
-    - extendedsearch
-    - findwishlist
-    - hostdealslist
-    - invoice
-    - mastercard
-    - menubox
-    - metasupplier
-    - orderlist
-    - ordersendt
-    - orderview
-    - payment
-    - paypalnotify
-    - precheckout
-    - productlist
-    - productsearch
-    - productview
-    - searchsupplier
-    - sendwishlist
-    - smallcart
-    - smallproductlist
-    - viewwishlist
-    - visa
-    - voucher
-    - voucherinformation
-    - vouchermain
-    - voucherview
-    - wishlist
+  - adlist
+  - gotoadd
+  - queuedadlist
+- ezadddress
+  - None (Admin Only)
 - ezarticle
-    - articleedit
-    - articleheaderlist
-    - articlelinks
-    - articlelist
-    - articlelistrss
-    - articleview
-    - authorlist
-    - authorview
-    - extendedsearch
-    - fileedit
-    - filelist
-    - frontpage
-    - headlines
-    - imageedit
-    - imagelist
-    - mailtofriend
-    - menuarticleview
-    - menumaker
-    - newsgroup
-    - search
-    - searchform
-    - searchsupplier
-    - sitemap
-    - smallarticlelist
-    - topiclist
-    - urlsupplier
+  - articleedit
+  - articleheaderlist
+  - articlelinks
+  - articlelist
+  - articlelistrss
+  - articleview
+  - authorlist
+  - authorview
+  - extendedsearch
+  - fileedit
+  - filelist
+  - frontpage
+  - headlines
+  - imageedit
+  - imagelist
+  - mailtofriend
+  - menuarticleview
+  - menumaker
+  - newsgroup
+  - search
+  - searchform
+  - searchsupplier
+  - sitemap
+  - smallarticlelist
+  - topiclist
+  - urlsupplier
+- ezbulkmail
+  - bulklist
+  - categoryedit
+  - cron
+  - mailview
+  - menubox
+  - singlelist
+  - subscriptionlist
+  - subscriptionlogin
+  - usermessages
+- ezbug
+  - bugslist
+  - bugreport
+  - bugview
+  - fileedit
+  - imageedit
+  - menubox
+  - menumodulelist
+  - reportsuccess
+  - search
+  - unhandledbugs
+- ezcalendar
+  - appointmentedit
+  - appointmentview
+  - dayview
+  - monthview
+  - trustees
+  - yearview
+- ezcontact
+  - companysearch
+  - consultationlist
+  - menubox
+  - personsearch
+  - searchsupplier
+  - urlsupplier
+- ezerror
+  - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
+- ezexample
+  - listtable
+  - page
+- ezfilemanager
+  - filedownload
+  - filelist
+  - fileupload
+  - fileview
+  - folderedit
+  - menubox
+  - menufilelist
+  - menufolderlist
+  - search
+  - viewfile
+- ezforum
+  - categorylist
+  - forumlist
+  - latestmessages
+  - menubox
+  - menuforumlist
+  - message
+  - messagebody
+  - messageedit
+  - messageform
+  - messagelist
+  - messagelistflat
+  - messagepath
+  - messagepermissions
+  - messagereply
+  - messagesearch
+  - messagesimplelist
+  - search
+  - searchsupplier
+  - userlogin
+- ezform
+  - formview
+- ezimagecatalogue
+  - categoryedit
+  - customimage
+  - filedownload
+  - imageedit
+  - imagelist
+  - imageview
+  - menubox
+  - menucategorylist
+  - searchsupplier
+  - slideshow
+- ezlink
+  - gotolink
+  - latest
+  - linkcategorylist
+  - menubox
+  - onepagelinklist
+  - search
+  - success
+  - suggestlink
+- ezmail
+  - accountedit
+  - configure
+  - fileedit
+  - folderlist
+  - link
+  - mailedit
+  - maillist
+  - mailview
+  - menubox
+  - search
+- ezmediacatalogue
+  - None (Admin Only)
+- ezmessage
+  - None (Admin Only)
+- ezmodule
+  - None (Admin Only)
+- eznewsfeed
+  - allcategories
+  - headlines
+  - menubox
+  - newslist
+  - search
+- ezpoll
+  - pollist
+  - result
+  - userlogin
+  - vote
+  - votebox
+  - votepage
+- ezquiz
+  - menubox
+  - quizlist
+  - quizmyscores
+  - quizopen
+  - quizplay
+  - quizscores
+- ezsearch
+  - menubox
+  - search
+- ezsession
+  - None (Admin Only). One cron script file at, 'kernel/ezsession/admin/cron.php'.
+- ezsitemanager
+  - static - undocumented static content view.
+- ezstats
+  - overview
+  - entryexitreport
+  - pageviewlist/last/20
+  - visitorlist/top/20
+  - refererlist/top/20
+  - browserlist/top/25
+  - requestpagelist/top/20
+  - yearreport
+  - monthreport
+  - dayreport
+  - storestats
+- eztodo
+  - menubox
+  - todoedit
+  - todoinfo
+  - todolist
+  - todomenulist
+  - todoview
+- eztrade
+  - cart - Needs work. Cart Prices are all Zeros.
+  - categorylist
+  - categorytreelist
+  - checkout - Fatal error on page load.
+  - confirmation
+  - customerlogin
+  - extendedsearch
+  - findwishlist
+  - hostdealslist
+  - invoice
+  - mastercard
+  - menubox
+  - metasupplier
+  - orderlist
+  - ordersendt
+  - orderview
+  - payment
+  - paypalnotify
+  - precheckout
+  - productlist
+  - productsearch
+  - productview
+  - searchsupplier
+  - sendwishlist
+  - smallcart
+  - smallproductlist
+  - viewwishlist
+  - visa
+  - voucher
+  - voucherinformation
+  - vouchermain
+  - voucherview
+  - wishlist
+- ezurltranslator
+  - None (Admin Only)
+- ezuser
+  - addressedit
+  - forgot
+  - forgotmessage
+  - login
+  - missingmailmessage
+  - norights
+  - userbox
+  - usercheck
+  - useredit
+  - userwithaddress
+- ezxml
+  - None (Admin Only). Classes Only
+- ezxmlrpc
+  - None (Admin Only). Classes Only
 
 ## Admin Modules
 

@@ -13,13 +13,17 @@ Learn more about what you can do with eZ Publish Basic software installed as a w
 - PostgreSQL
 - Informix
 
-## Sections
+# Cronjobs
+
+The scripts which run eZ Publish Basic Automated Tasks / Scheduled Tasks Features of eZ Publish Basic is Documented, See [CRONJOBS.md](CRONJOBS.md)
+
+# Sections
 
 Sections in eZ Publish Basic (and eZ publish / eZ community 2) are dynamic and PHP file based.
 
 The following section URIs are supported by default thanks to mod_rewrite rules in your webserver or .htaccess configuration.
 
-### Default page display using Default Sections and eZArticle Frontpage
+## Default page display using Default Sections and eZArticle Frontpage
 
 By default all sections are url aliases of the ezarticle/frontpage view with different frontpage section IDs.
 

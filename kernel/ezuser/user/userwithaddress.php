@@ -508,19 +508,6 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
             $address->setRegion( $RegionID );
         }
 
-
-        /* ami sleeping again? is this duplicate? gave an error *shrug*
-        if ($SelectRegion == "enabled" and isset ( $RegionID[$i] ) )
-        (
-            $address->setRegion( $RegionID[$i] );
-        )
-        else
-        (
-            $RegionID = $ini ->read_var( "eZUserMain", "DefaultRegion" );
-            $address->setRegion( $RegionID );
-        )
-        */
-
         $address->store();
 
         // set correct ID

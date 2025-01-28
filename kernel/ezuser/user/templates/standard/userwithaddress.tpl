@@ -74,6 +74,10 @@
     <li>{intl-error_missing_address}</li>
     <!-- END error_missing_address_tpl -->
 
+    <!-- BEGIN error_missing_region_tpl -->
+    <li>{intl-error_missing_region}</li>
+    <!-- END error_missing_region_tpl -->
+
     <!-- BEGIN error_missing_country_tpl -->
     <li>{intl-error_missing_country}</li>
     <!-- END error_missing_country_tpl -->
@@ -153,6 +157,15 @@
 
 <p class="boxtext">{intl-place}:</p>
 <input type="text" size="20" name="Place[]" value="{place_value}"/>
+
+<!-- BEGIN region_tpl -->
+<p class="boxtext">{intl-region}:</p>
+<select name="RegionID[]" size="5">
+<!-- BEGIN region_option_tpl -->
+<option {is_selected} value="{region_id}">{region_name}</option>
+<!-- END region_option_tpl -->
+</select>
+<!-- END region_tpl -->
 
 <!-- BEGIN country_tpl -->
 <p class="boxtext">{intl-country}:</p>

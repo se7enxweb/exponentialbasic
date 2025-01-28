@@ -91,7 +91,7 @@ preg_match( "/([^?]+)/", $_SERVER['REQUEST_URI'], $regs );
 $_SERVER['REQUEST_URI'] = $regs[1];
 
 
-// $GLOBALS["DDD"] = '';
+$GLOBALS["DDD"] = '';
 $GLOBALS["DEBUG"] = false;
 $UsePHPSessions = false;
     

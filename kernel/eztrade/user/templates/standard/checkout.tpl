@@ -245,7 +245,7 @@
 <p class="boxtext">{intl-billing_to}:</p>
 <select name="BillingAddressID">
 <!-- BEGIN billing_option_tpl -->
-<option {is_selected} value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}, {zip} {place} {country}</option>
+<option {is_selected} value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}, {zip} {place} {region} {country}</option>
 <!-- END billing_option_tpl -->
 </select>
 <!-- END billing_address_tpl -->
@@ -253,7 +253,7 @@
 <p class="boxtext">{intl-shipping_to}:</p>
 <select name="ShippingAddressID">
 <!-- BEGIN shipping_address_tpl -->
-<option {is_selected} value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}, {zip} {place} {country}</option>
+<option {is_selected} value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}, {zip} {place} {region} {country}</option>
 <!-- END shipping_address_tpl -->
 <!-- BEGIN wish_user_tpl -->
 <option value="{wish_user_address_id}">{wish_first_name} {wish_last_name}</option>

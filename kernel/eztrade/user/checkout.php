@@ -776,6 +776,22 @@ foreach ( $addressArray as $address )
         $t->set_var( "country", $country );
     else
         $t->set_var( "country", "" );
+   /*!
+        kracker@gci.net: recoded for eZRegion on 7.30.2001-19:09
+        Note: Not tested.
+    */
+
+    $region = $address->region();
+
+    if ( $region )
+    {
+        $region = $region->Name();
+    }
+
+    if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+        $t->set_var( "region", $region );
+    else
+        $t->set_var( "region", "" );
 
     unset( $mainAddress );
     $t->set_var( "is_selected", "" );

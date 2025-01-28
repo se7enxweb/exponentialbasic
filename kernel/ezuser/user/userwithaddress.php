@@ -35,8 +35,9 @@ require( "kernel/ezuser/user/usercheck.php" );
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZUserMain", "Language" );
 $SelectCountry = $ini->read_var( "eZUserMain", "SelectCountry" );
+$SelectRegion = $ini->read_var( "eZUserMain", "SelectRegion" );
 $AnonymousUserGroup = $ini->read_var( "eZUserMain", "AnonymousUserGroup" );
-
+$ForceSSL = $ini->read_var( "eZUserMain", "ForceSSL" );
 $AutoCookieLogin = eZHTTPTool::getVar( "AutoCookieLogin" );
 
 $session =& eZSession::globalSession();
@@ -46,6 +47,31 @@ $session =& eZSession::globalSession();
 // include_once( "ezaddress/classes/ezaddress.php" );
 // include_once( "ezaddress/classes/ezcountry.php" );
 // include_once( "ezmail/classes/ezmail.php" );
+
+$user =& eZUser::currentUser();
+
+// set SSL mode and redirect if not already in SSL mode.
+if ( ( $ForceSSL == "enabled" ) )
+{
+    // force SSL if supposed to
+    if ( $SERVER_PORT != '443' )
+    {
+   		$session->setVariable( "SSLMode", "enabled" );
+        eZHTTPTool::header("Location: https://" . $HTTP_HOST . $REQUEST_URI );
+ //       eZHTTPTool::header("Location: https://" . $HTTP_HOST . "/user/userwithaddress/edit/" . $user->id() );
+//        print( "<font color=\"#333333\">Start: Location: https://" . $HTTP_HOST . $REQUEST_URI . "</font>" );
+        exit();
+    }
+}
+elseif ( $ForceSSL == "disabled" )
+{
+	if ( $SERVER_PORT == '443' )
+    {
+    	$session->setVariable( "SSLMode", "disabled" );
+		eZHTTPTool::header("Location: http://" . $HTTP_HOST . "/user/userwithaddress/edit/" . $user->id() );
+		exit();
+	}
+}
 
 $t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl/", $Language, "userwithaddress.php" );
@@ -66,6 +92,9 @@ $t->set_block( "address_tpl", "delete_address_tpl", "delete_address" );
 $t->set_block( "address_tpl", "country_tpl", "country" );
 $t->set_block( "country_tpl", "country_option_tpl", "country_option" );
 
+$t->set_block( "address_tpl", "region_tpl", "region" );
+$t->set_block( "region_tpl", "region_option_tpl", "region_option" );
+
 $t->set_block( "user_edit_tpl", "errors_item_tpl", "errors_item" );
 $t->set_var( "errors_item", "" );
 
@@ -85,6 +114,7 @@ $t->set_block( "errors_item_tpl", "error_email_tpl", "error_email" );
 $t->set_block( "errors_item_tpl", "error_email_not_valid_tpl", "error_email_not_valid" );
 $t->set_block( "errors_item_tpl", "error_password_match_tpl", "error_password_match" );
 $t->set_block( "errors_item_tpl", "error_password_too_short_tpl", "error_password_too_short" );
+$t->set_block( "errors_item_tpl", "error_password_not_entered_tpl", "error_password_not_entered" );
 
 $t->set_block( "errors_item_tpl", "error_address_street1_tpl", "error_address_street1" );
 $t->set_block( "errors_item_tpl", "error_address_street2_tpl", "error_address_street2" );
@@ -93,6 +123,8 @@ $t->set_block( "errors_item_tpl", "error_address_place_tpl", "error_address_plac
 
 $t->set_block( "errors_item_tpl", "error_missing_address_tpl", "error_missing_address" );
 $t->set_block( "errors_item_tpl", "error_missing_country_tpl", "error_missing_country" );
+
+$t->set_block( "errors_item_tpl", "error_missing_region_tpl", "error_missing_region" );
 
 $t->set_block( "user_edit_tpl", "new_user_tpl", "new_user" );
 $t->set_block( "user_edit_tpl", "edit_user_tpl", "edit_user" );
@@ -109,6 +141,7 @@ $t->set_var( "error_email", "" );
 $t->set_var( "error_email_not_valid", "" );
 $t->set_var( "error_password_match", "" );
 $t->set_var( "error_password_too_short", "" );
+$t->set_var( "error_password_not_entered", "" ); 
 $t->set_var( "error_missing_country", "" );
 
 $t->set_var( "error_address_place", "" );
@@ -116,6 +149,13 @@ $t->set_var( "error_address_zip", "" );
 $t->set_var( "error_address_street1", "" );
 $t->set_var( "error_address_street2", "" );
 
+$t->set_var( "first_name_value", "$FirstName" );
+$t->set_var( "last_name_value", "$LastName" );
+$t->set_var( "login_value", "$Login" );
+$t->set_var( "email_value", "$Email" );
+$t->set_var( "password_value", "$Password" );
+$t->set_var( "verify_password_value", "$VerifyPassword" );
+$t->set_var( "address_actions", "" );
 if ( $AutoCookieLogin == "on" )
 {
     $t->set_var( "is_cookie_selected", "checked" );
@@ -129,8 +169,6 @@ else
 {
     $t->set_var( "no_address", "" );
 }
-
-$user =& eZUser::currentUser();
 
 $t->set_var( "ok_button", "" );
 $t->set_var( "submit_button", "" );
@@ -195,7 +233,20 @@ else
     $t->set_var( "error_missing_country", "" );
     $t->set_var( "action_value", "update" );
 }
+// If the user is trying to buy without having a address
+if ( $MissingRegion == true )
+{
+    $t->parse( "error_missing_region", "error_missing_region_tpl" );
 
+    $t->parse( "errors_item", "errors_item_tpl" );
+
+    $t->set_var( "action_value", "update" );
+}
+else
+{
+    $t->set_var( "error_missing_region", "" );
+    $t->set_var( "action_value", "update" );
+}
 // Check for errors when inserting, updating and inserting a new address
 if ( isset( $OK ) or isset( $OK_x ) )
 {
@@ -258,6 +309,11 @@ if ( isset( $OK ) or isset( $OK_x ) )
             $t->parse( "error_password_too_short", "error_password_too_short_tpl" );
             $error = true;
         }
+		//if ( $Password == "dummy" or $VerifyPassword == "dummy" )
+		//{
+			// $t->parse( "error_password_not_entered", "error_password_not_entered_tpl" );
+         //   $error = true;
+		//}
     }
     if ( $addressCheck )
     {
@@ -346,6 +402,13 @@ if ( isset( $NewAddress ) )
         $CountryID[] = $CountryID[count( $CountryID ) - 1];
     else
         $CountryID[] = $country_id;
+
+    $region_id = $ini->read_var( "eZUserMain", "DefaultRegion" );
+
+    if ( count( $RegionID ) > 0 and is_numeric( $RegionID[count($RegionID)-1] ) )
+        $RegionID[] = $RegionID[count($RegionID)-1];
+    else
+        $RegionID[] = $region_id;
 }
 
 // Insert a user with address
@@ -434,6 +497,30 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
             $CountryID = $ini->read_var( "eZUserMain", "DefaultCountry" );
             $address->setCountry( $CountryID );
         }
+
+        if ( $SelectRegion == "enabled" and isset( $RegionID[$i] ) )
+        {
+            $address->setRegion( $RegionID[$i] );
+        }
+        else
+        {
+            $RegionID = $ini->read_var( "eZUserMain", "DefaultRegion" );
+            $address->setRegion( $RegionID );
+        }
+
+
+        /* ami sleeping again? is this duplicate? gave an error *shrug*
+        if ($SelectRegion == "enabled" and isset ( $RegionID[$i] ) )
+        (
+            $address->setRegion( $RegionID[$i] );
+        )
+        else
+        (
+            $RegionID = $ini ->read_var( "eZUserMain", "DefaultRegion" );
+            $address->setRegion( $RegionID );
+        )
+        */
+
         $address->store();
 
         // set correct ID
@@ -464,6 +551,8 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
     if ( !$new_user )
         $Updated = true;
 
+	// if( $RedirectURL == "" )
+		// $RedirectURL = $REQUEST_URI;
     if( $RedirectURL == "" )
     {
         $RedirectURL = $session->variable( "RedirectURL" );
@@ -542,6 +631,8 @@ if ( is_a( $user, "eZUser" ) )
         if ( !isset( $CountryID ) )
             $CountryID = array();
 
+        if ( !isset( $RegionID ) )
+            $RegionID = array();
         $mainAddress = eZAddress::mainAddress( $user );
 
         $addressArray = $user->addresses();
@@ -572,6 +663,17 @@ if ( is_a( $user, "eZUser" ) )
                 if ( $country )
                 {
                     $CountryID[$i] = $country->id();
+                }
+            }
+
+            if ( !isset( $RegionID[$i] ) )
+            {
+                $region = $address->region();
+                if ( $region )
+                {    // region object does not return region objects just id, feature addition, 
+		     // but only cause i hacked it for testing. badd comment!.
+                     $RegionID[$i] = $region->id();
+		     // $RegionID[$i] = $region;
                 }
             }
             ++$i;
@@ -607,6 +709,8 @@ else
             $Place = array( "" );
         if ( !isset( $CountryID ) )
             $CountryID = array( $ini->read_var( "eZUserMain", "DefaultCountry" ) );
+        if ( !isset( $RegionID ) )
+            $RegionID = array( $ini->read_var( "eZUserMain", "DefaultRegion" ) );
         if ( !isset( $MainAddressID ) )
         {
             $MainAddressID = 1;
@@ -635,9 +739,9 @@ else
 }
 
 if ( is_a( $user, "eZUser" ) and $Password == "" )
-    $Password = "";
+    $Password = "dummy";
 if ( is_a( $user, "eZUser" ) and $VerifyPassword == "" )
-    $VerifyPassword = "";
+    $VerifyPassword = "dummy";
 $t->set_var( "password_value", $Password );
 $t->set_var( "verify_password_value", $VerifyPassword );
 $t->set_var( "email_value", $Email );
@@ -660,6 +764,9 @@ $t->set_var( "address", "" );
 
 if ( $SelectCountry == "enabled" )
     $countryList =& eZCountry::getAllArray();
+
+if ( $SelectRegion == "enabled" )
+    $regionList =& eZRegion::getAllArray();
 
 // Make sure the MainAddressID is set to something sensible
 $deleted = false;
@@ -692,6 +799,17 @@ if ( $deleted )
 
 // Check if we will add delete buttons
 $checkArray = array_diff( $AddressID, $DeleteAddressArrayID );
+if ( count ( $checkArray ) == 1 )
+{
+    $t->set_var( "delete_address", "" );
+	$t->set_var( "main_address", "" );
+}
+else
+{
+    $t->parse( "main_address", "main_address_tpl" );
+    $t->parse( "delete_address", "delete_address_tpl" );
+}
+
 
 if ( count( $DeleteAddressArrayID ) )
 {
@@ -754,6 +872,21 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
                     $t->parse( "country_option", "country_option_tpl", true );
                 }
                 $t->parse( "country", "country_tpl" );
+            }
+
+            $t->set_var( "region", "" );
+            if ( $SelectRegion == "enabled" )
+            {
+                    $t->set_var( "region_option", "" );
+                    $t->set_var( "specialFormId",$i);
+                    foreach ( $regionList as $region )
+                    {
+                        $t->set_var( "is_selected", $region["ID"] == $RegionID[$i] ? "selected" : "" );
+                        $t->set_var( "region_id", $region["ID"] );
+                        $t->set_var( "region_name", $region["Name"] );
+                        $t->parse( "region_option", "region_option_tpl", true );
+                    }
+                    $t->parse( "region", "region_tpl" );
             }
             $t->set_var( "address_number", $i + 1 );
 

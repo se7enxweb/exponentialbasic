@@ -1,7 +1,7 @@
 <?php
 
-ini_set('display_errors','On');
-ini_set('max_execution_time', '300');
+// ini_set('display_errors','On');
+// ini_set('max_execution_time', '300');
 
 //
 // $Id: index.php 9864 2003-07-11 07:27:00Z br $
@@ -31,7 +31,7 @@ header( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" );
 header( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" );
 header( "Cache-Control: no-cache, must-revalidate" );
 header( "Pragma: no-cache" );
-header( "X-Powered-By: eZ publish 2" );
+header( "X-Powered-By: eZ Publish Basic" );
 
 // Find out, where our files are.
 if ( preg_match( "/(.*\/)([^\/]+\.php)$/", $_SERVER['SCRIPT_FILENAME'], $regs ) )
@@ -93,7 +93,7 @@ $_SERVER['REQUEST_URI'] = $regs[1];
 
 
 $GLOBALS["DEBUG"] = false;
-$GLOBALS["DDD"] = '';
+// $GLOBALS["DDD"] = '';
 $UsePHPSessions = false;
 
 ob_start();
@@ -488,3 +488,4 @@ $db =& eZDB::globalDatabase();
 $db->close();
 
 ob_end_flush();
+?>

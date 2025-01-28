@@ -59,6 +59,7 @@ if ( $Action == "Insert" )
             $address->setStreet2( $Street2 );
             $address->setZip( $Zip );
             $address->setPlace( $Place );
+            $address->setRegion( $Region );
             
             if ( isset( $CountryID ) )
             {
@@ -127,7 +128,8 @@ if ( $Action == "Update" )
             $address->setStreet2( $Street2 );
             $address->setZip( $Zip );
             $address->setPlace( $Place );
-
+            // is this right?
+            $address->setRegion( $Region );
             if ( isset( $CountryID ) )
             {
                 $country = new eZCountry( $CountryID );

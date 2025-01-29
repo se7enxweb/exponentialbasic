@@ -180,7 +180,9 @@ class eZCart
         {
             $sid = $session->id();
 
-            $db->array_query( $cart_array, "SELECT * FROM eZTrade_Cart WHERE SessionID='$sid'" );
+            $query = "SELECT * FROM eZTrade_Cart WHERE SessionID='$sid'";
+
+            $db->array_query( $cart_array, $query );
 
             if ( count( $cart_array ) == 1 )
             {
@@ -277,10 +279,11 @@ class eZCart
        $db =& eZDB::globalDatabase();
 
        $ret = array();
-
-       $db->array_query( $cart_array, "SELECT * FROM
+       $query = "SELECT * FROM
                                        eZTrade_CartItem
-                                       WHERE CartID='$this->ID'" );
+                                       WHERE CartID='$this->ID'";
+
+       $db->array_query( $cart_array, $query );
 
        if ( count( $cart_array ) > 0 )
        {

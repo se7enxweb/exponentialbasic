@@ -179,16 +179,15 @@ if ( isset( $DoCheckOut ) )
 
 $cart = new eZCart();
 $cart = $cart->getBySession( $session );
-
 $user =& eZUser::currentUser();
 
-if ( !$cart )
-{
-    $cart = new eZCart();
-    $cart->setSession( $session );
+// if ( !$cart )
+// {
+//     $cart = new eZCart();
+//     $cart->setSession( $session );
     
-    $cart->store();
-}
+//     $cart->store();
+// }
 
 $items = $cart->items( );
 

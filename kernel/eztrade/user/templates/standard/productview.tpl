@@ -158,7 +158,7 @@
 </table>
 <!-- END attribute_list_tpl -->
 
-<form action="{www_dir}{index}/{module}/{action_url}/{product_id}/" method="post">
+<form id="cart" action="{www_dir}{index}/{module}/{action_url}/{product_id}/" method="post">
 
 <!-- BEGIN option_tpl -->
 
@@ -298,7 +298,7 @@
 <div class="p">{product_quantity}</div>
 <!-- END quantity_item_tpl -->
 
-<div class="p">{extra_product_info}</p>
+<div class="p">{extra_product_info}</div>
 
 
 <!-- BEGIN add_to_cart_tpl -->
@@ -314,6 +314,7 @@
 
 <!-- END voucher_buttons_tpl -->
 
+</form>
 <br /><br />
 
 <!-- BEGIN numbered_page_link_tpl -->
@@ -323,5 +324,3 @@
 <!-- BEGIN print_page_link_tpl -->
 <div align="center"> <a class="path" href="{www_dir}{index}/{module}/{module_print}/{product_id}/{product_category_id}/">| {intl-print_page} |</a></div>
 <!-- END print_page_link_tpl -->
-
-</form>

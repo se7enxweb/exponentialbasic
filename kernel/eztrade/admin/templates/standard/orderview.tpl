@@ -16,6 +16,7 @@
 	{billing_street1}<br />
 	{billing_street2}<br />
 	{billing_zip} {billing_place}<br />
+	{billing_region}
 	{billing_country}
 	</div>
 	<br />
@@ -27,6 +28,7 @@
 	{shipping_street1}<br />
 	{shipping_street2}<br />
 	{shipping_zip} {shipping_place}<br />
+	{shipping_region}
 	{shipping_country}
 	</div>
 	<br />

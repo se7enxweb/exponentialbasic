@@ -154,6 +154,16 @@ if ( $localUser )
         }
     }
 
+    $region = $shippingAddress->region();
+    if ( is_object( $region ) )
+    {
+        $t->set_var( "shipping_region", $region->name() );
+    }
+    else
+    {
+        $t->set_var( "shipping_region", "" );
+    }
+
     $country = $shippingAddress->country();
     if ( is_object( $country ) )
     {
@@ -171,6 +181,16 @@ if ( $localUser )
     $t->set_var( "billing_place", $billingAddress->place() );
 
     $PriceGroup = eZPriceGroup::correctPriceGroup( $localUser->groups( false ), true );
+
+    $region = $billingAddress->region();
+    if ( is_object( $region ) )
+    {
+        $t->set_var( "billing_region", $region->name() );
+    }
+    else
+    {
+        $t->set_var( "billing_region", "" );
+    }
 
     $country = $billingAddress->country();
     if ( is_object( $country ) )

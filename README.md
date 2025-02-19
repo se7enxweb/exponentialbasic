@@ -12,8 +12,9 @@ Documentation for this project will in the future be covering importing eZ Publi
 
  * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)
  * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
+ * Website:  [https://basic.ezpublish.one](https://basic.ezpublish.one)
  * Maintainer: [7x](https://se7enx.com)
- * Document Last revised: 2024.12.27
+ * Document Last revised: 2025.02.19
 
 ---
 

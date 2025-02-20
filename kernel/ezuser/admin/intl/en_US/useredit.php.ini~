@@ -1,0 +1,21 @@
+[strings]
+back=Cancel
+email=E-mail
+error_email=Invalid e-mail address. 
+error_missingdata=You need to fill in all the form elements.
+error_norights=You don't have permission to perform this operation.
+error_password=The passwords aren't equal, or the password is shorter than 3 characters.
+error_user_exists=User exists.
+firstname=First name
+groups=Groups
+head_line_edit=Edit user
+head_line_insert=Add user
+infosubscription=Click to get news and updates from this site.
+lastname=Last name
+login=Login
+password=Password
+verifypassword=Repeat password
+signature=Signature
+main_group=Group
+simultaneouslogins=Number of simultaneous logins
+

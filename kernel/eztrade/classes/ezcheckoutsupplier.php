@@ -38,7 +38,8 @@ class eZCheckoutSupplier
         $this->PaymentMethods = array( array( "ID" => 1, "Text" => "VISA" ),
                                        array( "ID" => 2, "Text" => "Mastercard" ),
                                        array( "ID" => 3, "Text" => "Invoice" ),
-                                       array( "ID" => 4, "Text" => "Voucher" )
+                                       array( "ID" => 4, "Text" => "Voucher" ),
+                                       array( "ID" => 5, "Text" => "Corporate Account" ),
                                        );
     }
 
@@ -101,6 +102,11 @@ class eZCheckoutSupplier
             case 4 :
             {
                 $ret = "kernel/eztrade/user/voucher.php";
+            }
+            break;
+            case 5 :
+            {
+                $ret = "eztrade/user/corporate_account.php";
             }
             break;
         }

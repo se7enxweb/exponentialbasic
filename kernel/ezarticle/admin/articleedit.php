@@ -701,6 +701,11 @@ if ( isset( $Action ) && $Action == "Edit" || $Action == "Insert" )
     $writeGroupsID = eZObjectPermission::getGroups( $ArticleID, "article_article", 'w' , false );
     $readGroupsID = eZObjectPermission::getGroups( $ArticleID, "article_article", 'r', false );
 
+
+    if( $writeGroupsID[0] != -1 )
+        $t->set_var( "all_write_selected", "" );
+    if( $readGroupsID[0] != -1 )
+        $t->set_var( "all_selected", "" );
     // dates
     $published =& $article->published();
     $created =& $article->created();

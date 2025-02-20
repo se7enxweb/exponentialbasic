@@ -77,6 +77,11 @@ switch ( $url_array[2] )
 
             $UserID = $url_array[4];
             $Action = "Edit";
+			//$RedirectURL = "/BypassRedirect/Edit/";
+			//$RedirectURL = $RedirectURL;
+			//$RedirectURL = $session->variable( "RedirectURL" );
+			if ( !isset( $RedirectURL ) or !$RedirectURL )
+		        $RedirectURL = $session->variable( "RedirectURL" );
         }
         if ( $url_array[3] == "update" )
         {

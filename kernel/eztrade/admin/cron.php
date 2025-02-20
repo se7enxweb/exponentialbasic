@@ -28,7 +28,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztemplate.php" );
-include_oncE( "eztrade/classes/ezorder.php" );
+// include_once( "eztrade/classes/ezorder.php" );
 
 // include_once( "ezmail/classes/ezmail.php" );
 

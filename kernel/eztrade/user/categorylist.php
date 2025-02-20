@@ -63,6 +63,8 @@ if ( $PureStatic == "false" )
     
     $ini =& INIFile::globalINI();
     $Language = $ini->read_var( "eZTradeMain", "Language" );
+    $CategoryListProductImages = $ini->read_var( "eZTradeMain", "CategoryListProductImages" ) == "enabled" ? true : false;
+ 
 
     // include_once( "eztrade/classes/ezproduct.php" );
     // include_once( "eztrade/classes/ezproductcategory.php" );
@@ -96,6 +98,12 @@ if ( $PureStatic == "false" )
         {
             $t->set_var( "category_id", $categoryItem->id() );
 
+            if ( $CategoryListProductImages == "true" )
+            { 
+                $t_category_name = $categoryItem->id().".gif";
+                $t->set_var( "category_image_name", $t_category_name );
+            }
+
             $t->set_var( "category_name", $categoryItem->name() );
 
             $t->set_var( "category_description", $categoryItem->description() );
@@ -122,11 +130,36 @@ if ( $PureStatic == "false" )
             }
 
 
-            $t->parse( "category", "category_tpl", true );
+			if ( $CategoryListProductImages == "true" ) {
+            	$t->parse( "category_image", "category_image_tpl", true);
+             	$t->set_var( "category", "");
+             	$t->set_var( "category_text_hot_deals", "");
+              	$t->set_var( "category_hot_deals","");
+            }
+			else {
+              	$t->set_var( "category_image", "");
+                	$t->parse( "category", "category_tpl", true );
+            }
+            // $t->parse( "category", "category_tpl", true );
             $i++;
         }
     }
-             
+          
+    if ( $CategoryListProductImages == "true" ) {
+        $t->parse( "category_image_hot_deals", "category_image_hot_deals_tpl", true);
+        $t->parse( "category_image_list", "category_image_list_tpl", true);
+        $t->set_var( "category_text_hot_deals", "");
+        $t->set_var( "category", "");
+        $t->set_var( "category_hot_deals","");
+    }
+    else 
+    {
+        $t->set_var( "category_image_list", "");
+        $t->set_var( "category_image_hot_deals", "");
+            // should be in an en_US ini file
+        $t->set_var( "category_hot_deals","HOT DEALS");
+        $t->parse( "category_text_hot_deals", "category_text_hot_deals_tpl", true);
+    }   
     if ( $i == 0 || is_array( $i) && count( $i ) == 0 )
     {
         $t->set_var( "category_list", "" );

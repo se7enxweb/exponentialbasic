@@ -141,6 +141,25 @@ if ( isset( $productList ) && isset( $Query ) && ( count ( $productList ) > 0 ) 
 
         $t->set_var( "product_name", $product->name() );
 
+        $t->set_var( "description_text", $product->description() );
+		
+        $t->set_var( "product_number", "" );
+    
+        if ( $product->productNumber() != "" )
+        {
+            $t->set_var( "product_number", $product->productNumber() );
+            // $t->parse( "product_number", "product_number_item_tpl" );
+        }
+
+        $t->set_var( "catalog_number", "" );
+
+        if ( $product->catalogNumber() != "" )
+        {
+            $t->set_var( "catalog_number", $product->catalogNumber() );
+            // $t->parse( "product_number", "product_number_item_tpl" );
+        }else {
+            $t->set_var( "catalog_number", "N/A" );
+        }
         if ( $ShowPrice and $product->showPrice() == true and $product->hasPrice() )
         {
             $t->set_var( "product_price", $product->localePrice( $PricesIncludeVAT ) );

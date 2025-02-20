@@ -48,6 +48,15 @@
 <p class="boxtext">{intl-email}:</p>
 <input tabindex="4" type="text" size="20" name="Email" value="{email_value}"/>
 
+<p class="boxtext">{intl-corporateaccountnumber}:</p>
+<!-- BEGIN corporate_account_number_edit_tpl -->
+<input tabindex="5" type="text" size="20" name="AccountNumber" value="{account_number}"/>
+<!-- END corporate_account_number_edit_tpl -->
+
+<!-- BEGIN corporate_account_number_view_tpl -->
+{account_number}
+<input type="hidden" name="AccountNumber" value="{account_number}"/>
+<!-- END corporate_account_number_view_tpl -->
 <br /><br />
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0">

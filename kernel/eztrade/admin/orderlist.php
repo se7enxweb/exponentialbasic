@@ -141,8 +141,13 @@ foreach ( $orderArray as $order )
     if ( $PricesIncludeVAT == true )
         $currency->setValue( $total["inctax"] );
     else
-        $currency->setValue( $total["extax"] );    
+        $currency->setValue( $total["extax"] );
     
+    // if ( $order->isVATInc() == true )
+    //     $currency->setValue( $order->totalPriceIncVAT() + $order->shippingCharge());
+    // else
+    //     $currency->setValue( $order->totalPrice() + $order->shippingCharge() );
+
     $t->set_var( "order_price", $locale->format( $currency ) );
     
     $t->parse( "order_item", "order_item_tpl", true );

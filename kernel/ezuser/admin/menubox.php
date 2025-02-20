@@ -26,7 +26,7 @@
 // Supply $menuItems to get a menubox
 
 $menuItems = array(
-    array( "/user/userlist/", "{intl-userlist}" ),
+    array( "/user/userlist/0/name", "{intl-userlist}" ),
     array( "/user/grouplist/", "{intl-grouplist}" ),
     array( "/user/useredit/new/", "{intl-newuser}" ),
     array( "/user/groupedit/new/", "{intl-newgroup}" ),

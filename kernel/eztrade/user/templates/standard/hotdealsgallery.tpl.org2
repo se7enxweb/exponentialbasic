@@ -1,0 +1,96 @@
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+        <td>
+        <div style="font-size: 25px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">{intl-hot_deals}</div>
+        </td>
+
+</tr>
+</table>
+<br />
+
+<!--
+        <td align="right">
+         <form action="{www_dir}{index}/{module}/search/" method="post">
+               <input type="text" name="Query">
+               <input class="stdbutton" type="submit" name="search" value="{intl-search_button}">
+         </form>
+     </td>
+-->
+
+<!--
+<hr noshade="noshade" size="4"/>
+
+<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+<a class="path" href="{www_dir}{index}/{module}/{module_list}/0/">{intl-top}</a>
+
+<hr noshade="noshade" size="4" />
+-->
+
+<table align="top" width="100%" cellspacing="0" cellpadding="2" border="0">
+<!--
+<tr>
+	<td class="menuhead" colspan="{hotdeal_columns}">{intl-hot_deals}</td>
+</tr>
+-->
+<!-- BEGIN product_list_tpl -->
+
+<!-- BEGIN product_tpl -->
+{begin_tr}
+	<td class="menutext" style="vertical-align: top;">
+	 <div align="left" style="vertical-align: top;"><a class="listproducts" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{product_name}</a></div>
+
+	<table border="0" width="100%">
+	<tr>
+	<td align="left" style="vertical-align: top;">
+<!-- BEGIN price_tpl -->
+	<span class="pris">{product_price}</span>
+<!-- END price_tpl -->
+
+<!-- BEGIN add_to_cart_tpl -->
+<form action="{www_dir}{index}/{module}/{action_url}/{product_id}/" method="post">
+<div calss="spacer"><div class="pris">
+<input type="image" src="/sitedesign/aih_standard/images/addtocart.gif" name="Cart" value="{intl-add_to_cart}" />
+</form>
+
+</td>
+<td>&nbsp;</td>
+<td>
+
+        <!-- BEGIN product_image_tpl -->
+        <table style="vertical-align: top;" align="right" border="0">
+        <tr>
+                <td>
+               <a href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">
+	<!--	<img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_i
+mage_width}" height="{thumbnail_image_height}" /></a> -->
+             <img src="{www_dir}{product_image_path}" border="0" width="{product_image_width}" height="{product_image_height}" alt="{product_image_caption}" style="/></a>
+
+
+        </td>
+        </tr>
+        <!-- END product_image_tpl -->
+        <tr>
+                <td class="pictext">
+                <div><span class="menutext">{product_intro_text}</span></div>
+        </td>
+        </tr>
+        </table>
+
+</td>
+</tr>
+</table>
+
+<!-- END add_to_cart_tpl -->
+	</td>
+
+{end_tr}
+
+<!-- END product_tpl -->
+
+<tr>
+	<td class="menuspacer" colspan="{hotdeal_columns}">&nbsp;</td>
+</tr>
+
+<!-- END product_list_tpl -->
+
+</table>

@@ -199,6 +199,7 @@ if ( $Action == "Edit" )
         $Street2 = $address->street2();
         $Zip = $address->zip();
         $Place = $address->place();
+        $Region = $address->region();
 
        $t->set_var( "address_id", $address->id() );
 
@@ -259,6 +260,8 @@ $t->set_var( "street2_value", $Street2 );
 $t->set_var( "zip_value", $Zip );
 
 $t->set_var( "place_value", $Place );
+
+$t->set_var( "region_value", $Region );
 
 if ( $SelectCountry == "enabled" )
 {

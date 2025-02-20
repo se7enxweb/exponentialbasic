@@ -184,6 +184,7 @@ class eZProduct
                                  Contents='$contents',
                                  Keywords='$keywords',
                                  ProductNumber='$productNumber',
+                                 CatalogNumber='$catalogNumber',
                                  Price=$price,
                                  ShowPrice='$showPrice',
                                  ShowProduct='$showProduct',
@@ -242,6 +243,7 @@ class eZProduct
                 $this->Contents =& $category_array[0][$db->fieldName( "Contents" )];
                 $this->Keywords =& $category_array[0][$db->fieldName( "Keywords" )];
                 $this->ProductNumber =& $category_array[0][$db->fieldName( "ProductNumber" )];
+                $this->CatalogNumber =& $category_array[0][$db->fieldName( "CatalogNumber" )];
                 $this->ExternalLink =& $category_array[0][$db->fieldName( "ExternalLink" )];
                 $this->Price =& $category_array[0][$db->fieldName( "Price" )];
                 $this->IsHotDeal =& $category_array[0][$db->fieldName( "IsHotDeal" )];
@@ -972,7 +974,13 @@ class eZProduct
     {
         return htmlspecialchars( $this->ProductNumber );
     }
-
+    /*!
+      Returns the catalog product number of the product.
+    */
+    function &catalogNumber( )
+    {
+    return htmlspecialchars( $this->CatalogNumber );
+    }
     /*!
       Returns the XML contents of the product.
     */
@@ -1113,6 +1121,14 @@ class eZProduct
     function setProductNumber( $value )
     {
        $this->ProductNumber = $value;
+    }
+
+    /*!
+      Sets the catalog product number.
+    */
+    function setCatalogNumber( $value )
+    {
+        $this->CatalogNumber = $value;
     }
 
     /*!
@@ -1522,17 +1538,98 @@ class eZProduct
       Searches through every product and returns the result as an array
       of eZProduct objects.
     */
-    function activeProductSearch( $query, $offset, $limit )
+    function activeProductSearch( $sortMode="time", $query, $offset, $limit )
     {
         $db =& eZDB::globalDatabase();
         $ret = array();
+        // kracker: 6/12/2002: added sortMode to activeProductSearch, this creates a new paramiter dependancies for productsearch. 
+        // ps does this actualy even check active status ? better add the code to do it hommie!
+        
+        switch( $sortMode )
+        {
+            case 1 :
+            case "time" :
+            {
+                $OrderBy = "eZTrade_Product.Published DESC";
+            }
+            break;
+
+            case 2 :
+            case "alpha" :
+            {
+                $OrderBy = "eZTrade_Product.Name ASC";
+            }
+            break;
+
+
+            case 3 :
+            case "alphadesc" :
+            {
+                $OrderBy = "eZTrade_Product.Name DESC";
+            }
+            break;
+        
+            case 4 :
+            case "absolute_placement" :
+            {
+                $OrderBy = "eZTrade_ProductCategoryLink.Placement ASC";
+            }
+            break;
+            
+            default :
+            {
+                $OrderBy = "eZTrade_Product.Published DESC";
+            }
+        } 
+
+
+        $nonActiveCode = "";
+        $discontinuedCode = "";
+
+        if ( $fetchNonActive == true && $fetchDiscontinued == true )
+        {
+            $nonActiveCode = "";
+            $discontinuedCode = "";
+        }
+        elseif ( $fetchNonActive == false && $fetchDiscontinued == false)
+        {
+            $nonActiveCode = "AND ShowProduct='1'";
+            $discontinuedCode = "AND Discontinued='0'";
+        }
+        elseif ( $fetchNonActive == false && $fetchDiscontinued == true)
+        {
+            $nonActiveCode = "AND ShowProduct='1'";
+            $discontinuedCode = "AND Discontinued='1'";
+        }
+        elseif ( $fetchNonActive == true && $fetchDiscontinued == false)
+        {
+            $nonActiveCode = "";
+            $discontinuedCode = "AND Discontinued='0'";
+        }
+        else
+        {
+            $nonActiveCode = "AND ShowProduct='1'";
+            $discontinuedCode = "";
+        }
 
         $db->array_query( $res_array, "SELECT ID FROM eZTrade_Product
-                                     WHERE
-                                     ( Name LIKE '%$query%' ) OR
-                                     ( Description LIKE '%$query%' ) OR
-                                     ( Keywords LIKE '%$query%' )",
-                                     array( "Limit" => $limit, "Offset" => $offset ) );
+                                        WHERE
+                                        Name LIKE '%$query%' OR
+                                        Description LIKE '%$query%' OR
+                                        ProductNumber LIKE '%$query%' OR
+                                        CatalogNumber LIKE '%$query%' OR
+                                        ( Keywords LIKE '%$query%' )
+                                        $nonActiveCode
+                                        $discontinuedCode 
+                                        ORDER BY $OrderBy",
+                                             array( "Limit" => $limit, "Offset" => $offset ) );
+
+        // $db->array_query( $res_array, "SELECT ID FROM eZTrade_Product
+        //                              WHERE
+        //                              ( Name LIKE '%$query%' ) OR
+        //                              ( Description LIKE '%$query%' ) OR
+        //                              ( Keywords LIKE '%$query%' )",
+        //                              array( "Limit" => $limit, "Offset" => $offset ) );
 
        foreach ( $res_array as $product )
        {
@@ -2413,6 +2510,7 @@ class eZProduct
     var $Description;
     var $Keywords;
     var $ProductNumber;
+    var $CatalogNumber;
     var $ShowPrice;
     var $ShowProduct;
     var $Discontinued;

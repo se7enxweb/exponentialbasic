@@ -260,7 +260,13 @@ if ( $mainImage )
     $t->set_var( "main_image_width", $variation->width() );
     $t->set_var( "main_image_height", $variation->height() );
     $t->set_var( "main_image_caption", $mainImage->caption() );
-
+    
+	if ( $mainImage->caption() != "" )
+	{
+	    $t->set_var( "main_image_caption", $mainImage->caption() );
+	} else {
+			$t->set_var( "main_image_caption", "&nbsp;" );
+	}
     $mainImageID = $mainImage->id();
 
     $t->parse( "main_image", "main_image_tpl" );
@@ -578,6 +584,14 @@ if ( $product->productNumber() != "" )
     $t->parse( "product_number_item", "product_number_item_tpl" );
 }
 
+$t->set_var( "product_catalog_number_item", "" );
+if ( $product->catalogNumber() != "" )
+{
+  $t->set_var( "product_catalog_number", $product->catalogNumber() );
+  $t->parse( "product_catalog_number_item", "product_catalog_number_item_tpl" );
+}
+
+
 $Quantity = $product->totalQuantity();
 if ( is_bool( $Quantity ) and !$Quantity )
     $ShowQuantity = false;
@@ -764,7 +778,7 @@ if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" && !$useVouch
     $output .= "?>\n";
 
 
-    $output = $t->parse($target, $template_var );
+    $output .= $t->parse($target, $template_var );
     // print the output the first time while printing the cache file.
     print( $output );
     $CacheFile->store( $output );

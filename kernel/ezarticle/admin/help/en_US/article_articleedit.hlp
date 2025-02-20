@@ -1,0 +1,375 @@
+<p>
+This is the on-line help document for eZ article: Article edit. 
+It describes the different tags you can use in an article.
+The exact style (font, size and other additional attributes) of each tag can be defined in the articletags template and the site's stylesheet.
+</p>
+
+<p>
+Some tags have attributes, displayed in italic; those also displayed in bold are required, the others are optional or may be asumed to have a default value if not specified.
+</p>
+
+<h2>Basic formatting tags</h2>
+
+<p>
+All the basic formatting tags may have subtags, i.e. other tags inside them, <i>except</i> for the header tag. All these tags must always have the correct end tags. The end tags are always written as the start tag with a / in front of it, and without any attributes (required or otherwise).
+</p>
+
+<p>
+<b>&lt;header </b><i>level</i><b>&gt;</b> text <b>&lt;/header&gt;</b>
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;header </b><i>1</i><b>&gt;</b>Example text<b>&lt;/header&gt;</b>
+	</td>
+	<td width="50%">
+	<h1>Example text</h1>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;header&gt;</b> tag displays a header with level from 1-5. The attribute "level" can be left out and will default to 1 which is ususally largest (depending on the style sheet).
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;bold&gt;</b>Example text<b>&lt;/bold&gt;</b>
+	</td>
+	<td width="50%">
+	<b>Example text</b>
+	</td>
+</tr>
+</table>
+
+<p>
+The <b>&lt;bold&gt;</b> tag displays the text as bold.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;italic&gt;</b>Example text<b>&lt;/italic&gt;</b>
+	</td>
+	<td width="50%">
+	<i>Example text</i>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;italic&gt;</b> tag displays the text as italic.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;underline&gt;</b>Example text<b>&lt;/underline&gt;</b>
+	</td>
+	<td width="50%">
+	<u>Example text</u>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;underline&gt;</b> tag displays the text as underlined.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;strike&gt;</b>Example text<b>&lt;/strike&gt;</b>
+	</td>
+	<td width="50%">
+	<s>Example text</s>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;strike&gt;</b> tag displays the text as overstriked.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;strong&gt;</b>Example text<b>&lt;/strong&gt;</b>
+	</td>
+	<td width="50%">
+	<strong>Example text</strong>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;strong&gt;</b> tag displays the text as "strong". This it an old HTML tag which usually renders the text as bold, but this may be redefined the the article tags template and/or the stylesheet.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;pre&gt;</b>Example text<b>&lt;/pre&gt;</b>
+	</td>
+	<td width="50%">
+	<pre>Example text</pre>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;pre&gt;</b> tag displays the text with a "fixed space" font and without linebreaks other than where it's explicitly defined.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;quote&gt;</b>Example text<b>&lt;/quote&gt;</b>
+	</td>
+	<td width="50%">
+	<blockquote>Example text</blockquote>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;quote&gt;</b> tag displays the text as block quoted, i.e. indented or as otherwise defined in the article tags template and/or the stylesheet.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;factbox&gt;</b>Example text<b>&lt;/factbox&gt;</b>
+	</td>
+	<td width="50%" bgcolor="#f0f0f0">
+	Example text
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;factbox&gt;</b> displays the text in a box which can have different designs depending on the article tags template and/or the stylesheet. As default this box is aligned right on an article page. The <b>&lt;factbox&gt;</b> tags may include other tags inside it.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;bullet&gt;</b><br />
+	Example text<br />
+	Example text<br />
+	Example text<br />
+	<b>&lt;/bullet&gt;</b>
+	</td>
+	<td width="50%">
+	<ul>
+		<li>Example text</li>
+		<li>Example text</li>
+		<li>Example text</li>
+	</ul>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;bullet&gt;</b> tag displays a bulleted (unordered) list.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;list&gt;</b><br />
+	Example text<br />
+	Example text<br />
+	Example text<br />
+	<b>&lt;/list&gt;</b>
+	</td>
+	<td width="50%">
+	<ol>
+		<li>Example text</li>
+		<li>Example text</li>
+		<li>Example text</li>
+	</ol>
+	</td>
+</tr>
+</table>
+<p>
+The <b>&lt;list&gt;</b> tag displays a numbered (ordered) list.
+</p>
+
+<h2>Image tags</h2>
+
+<p>
+Images may be placed at any posistion in an article. Image tags are entered in a 
+simple format and are converted to XML before storage. If you want to use the 
+advanced image tags you must write them in the XML form. 
+Image tags does not use end tags.
+</p>
+
+<b>&lt;image <i>id</i></b> <i>align size link</i><b>&gt;</b>
+
+<p>
+The only required image attribute is "id", which specifies the number of the image from the current article's image list.
+If left out the alignment will be set to <i>center</i> and the size will be set to <i>medium</i>.
+</p>
+
+<ul>
+<li>
+The available alignment attribute values are: <i>left, right, center</i> and <i>float</i>.
+</li>
+
+<li>
+The available sizes are: <i>small, medium, large</i> and <i>original</i>.
+</li>
+</ul>
+
+<p>
+The link attribute lets you specify a hyperlink to go to if the image gets clicked. If not specified a click will display the image in a larger size.
+</p>
+
+<b>&lt;image <i>id="id"</i></b> <i>align="align" size="size" caption="caption" href="URL" target="target"</i><b>&gt;</b>
+<p>
+If you write the image tag in advanced XML form you may also specify a custom caption (instead of the the general caption that may be attached to the image), a href URL, and a target (browser window) for the href address.
+If the caption variable is "_blank" it will not show a caption, even if there is a general caption for that image. All the extra values are optional.
+</p>
+
+<h2>Hyperlink tags</h2>
+
+<p>
+<b>&lt;link <i>URL linktext</i>&gt;</b>
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;link <i>ez.no The creators of eZ publish</i>&gt;</b>
+	</td>
+	<td width="50%">
+	<a href="http://ez.no">The creators of eZ publish</a>
+	</td>
+</tr>
+</table>
+
+<p>
+This tag let's you make a link to another web page. This link opens in the existing browser window.
+</p>
+
+<p>
+The "URL" attribute is the "internett address" of the link, and the "linktext" attribute is the text that may be clicked to activate the link. The "linktext" attribute may contain multiple words.
+</p>
+
+<p>
+<b>&lt;popuplink <i>URL linktext</i>&gt;</b>
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;popuplink <i>developer.ez.no For more technical info...</i>&gt;</b>
+	</td>
+	<td width="50%">
+	<a href="http://developer.ez.no" target="_blank">For more technical info...</a>
+	</td>
+</tr>
+</table>
+
+<p>
+This tag let's you make a link to another web page, and opens this link in a new browser window.
+</p>
+
+<p>
+The "URL" attribute is the "internett address" of the link, and the "linktext" attribute is the text that may be clicked to activate the link. The "linktext" attribute may contain multiple words.
+</p>
+
+<p>
+<b>&lt;mail <i>address subject, linktext</i>&gt;</b>
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;mail <i>info@ez.no Questions, Ask us!</i>&gt;</b>
+	</td>
+	<td width="50%">
+	<a href="mailto:info@ez.no">Ask us!</a>
+	</td>
+</tr>
+</table>
+
+<p>
+This tag let's you make a link which opens a user's e-mail program when clicked and fills in the e-mail address of the desired recipient as defined in the tag. Some browser/e-mail program combinations also lets you specify the e-mail's subject. 
+</p>
+
+<p>
+The "address" attribute is the desired e-mail address for the link. The "subject" attribute may contain multiple words divided by regular spaces, and this makes it neccesary to end the "subject" by using a <b>,</b> (comma), even if there is no defined "subject" (just put a single <b>,</b> in it's place). The "linktext" attribute is the text that may be clicked to activate the link, and this may also contain multiple words.
+</p>
+
+<h2>Table tags</h2>
+
+<p>
+<b>&lt;table </b><i>width border</i><b>&gt;&lt;tr&gt;&lt;td&gt;</b> cell data <b>&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</b>
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;table </b><i>50% 2</i><b>&gt;<br />
+	&lt;tr&gt;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;</b> cell 1 <b>&lt;/td&gt;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;</b> cell 2 <b>&lt;/td&gt;<br />
+	&lt;/tr&gt;<br />
+	&lt;tr&gt;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;</b> cell 3 <b>&lt;/td&gt;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;</b> cell 4 <b>&lt;/td&gt;<br />
+	&lt;/tr&gt;<br />
+	&lt;/table&gt;</b>
+	</td>
+	<td width="50%">
+	
+		<table width="50%" border="2" cellpadding="2" cellspacing="0">
+		<tr>
+			<td>cell 1</td>
+			<td>cell 2</td>
+		</tr>
+		<tr>
+			<td>cell 3</td>
+			<td>cell 4</td>
+		</tr>
+		</table>			
+
+	</td>
+</tr>
+</table>
+
+<p>
+The <b>&lt;table&gt;</b> tags, including <b>&lt;tr&gt;</b> and <b>&lt;td&gt;</b>, creates a table. The "width" attribute in the main <b>&lt;table&gt;</b> tag defines the total width of the table (either in % or absolute pixel width) and the "border" attribute the thickness of a visible border. The <b>&lt;tr&gt;</b> tags creates the table's vertical rows and <b>&lt;td&gt;</b> creates horizontal cells. The different tags needs to be nested properly for the table to appear correctly.
+</p>
+
+<h2>Object tags</h2>
+
+<p>
+All the object tags requires that there's been attatched objects of some sort to the article. The tags themselves do not provide an upload opportunity, the objects must be attached separatly.
+</p>
+
+<b>&lt;file <i>id</i>&gt;</b>
+<p>
+This tag creates a link to an attached file. The "id" attribute is the number of the file from the current article's file list.
+</p>
+
+<b>&lt;media <i>id</i>&gt;</b>
+<p>
+This tag places a media object in the article. The "id" attribute is the number of the media object from the current article's media list.
+</p>
+
+<b>&lt;form&gt;</b>
+<p>
+This tag places a selected form in the article. An article may only contain one single form.
+</p>
+
+<h2>Advanced tags</h2>
+<p>
+<b>&lt;html&gt;</b> any HTML code <b>&lt;/html&gt;</b>
+</p>
+<p>
+The <b>&lt;html&gt;</b> tag makes it possible to put straight HTML code into the article. The allows you to apply some advanced formatting into the article, but you need to know HTML to do this.
+</p>
+<p>
+<b>Note:</b> Be aware that if you use the <b>&lt;html&gt;</b> tag you may limit the possibility to successfully export the article to other document formats. The (ususally) best solution if you need some special formatting in the article is to create a new custom tag (if possible).
+</p>
+
+<h2>Custom tags</h2>
+<p>
+A website may have several custom tags available through the article tags template and/or the stylesheet. These custom tags should (if possible) be documented by the people implementing them in each case. A custom tag may be as advanced as normal HTML allows.
+</p>

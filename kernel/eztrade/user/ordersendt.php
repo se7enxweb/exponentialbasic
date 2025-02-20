@@ -63,7 +63,7 @@ $t->set_file( "order_sendt_tpl", "ordersendt.tpl" );
 $t->set_block( "order_sendt_tpl", "billing_address_tpl", "billing_address" );
 $t->set_block( "order_sendt_tpl", "shipping_address_tpl", "shipping_address" );
 $t->set_block( "order_sendt_tpl", "order_item_list_tpl", "order_item_list" );
-
+$t->set_block( "order_sendt_tpl", "printable_reciept_tpl", "printable_reciept" );
 
 
 $t->set_block( "order_sendt_tpl", "full_cart_tpl", "full_cart" );
@@ -162,7 +162,7 @@ if ( $user )
     $t->set_var( "billing_street2", $billingAddress->street2() );
     $t->set_var( "billing_zip", $billingAddress->zip() );
     $t->set_var( "billing_place", $billingAddress->place() );
-    
+    $t->set_var( "billing_region", $billingAddress->region() );    
     $country = $billingAddress->country();
 
     if ( $country )
@@ -175,6 +175,16 @@ if ( $user )
     else
     {
         $t->set_var( "billing_country", "" );
+    }
+    
+    $region = $billingAddress->region();
+
+    if ( $region )
+    {
+        if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+            $t->set_var( "billing_region", $region->name() );
+        else
+            $t->set_var( "billing_region", "" );
     }
     
     if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
@@ -214,7 +224,7 @@ if ( $user )
     $t->set_var( "shipping_street2", $shippingAddress->street2() );
     $t->set_var( "shipping_zip", $shippingAddress->zip() );
     $t->set_var( "shipping_place", $shippingAddress->place() );
-    
+    $t->set_var( "shipping_region", $shippingAddress->region() );      
     $country = $shippingAddress->country();
 
     if ( $country )
@@ -227,6 +237,16 @@ if ( $user )
     else
     {
         $t->set_var( "shipping_country", "" );
+    }
+
+    $region = $shippingAddress->region();
+
+    if ( $region )
+    {
+        if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+            $t->set_var( "shipping_region", $region->name() );
+        else
+            $t->set_var( "shipping_region", "" );
     }
     
     $t->parse( "shipping_address", "shipping_address_tpl" );
@@ -568,7 +588,10 @@ if ( $ShowCart == true )
         $t->parse( "tax_item", "tax_item_tpl", true );
     }
 
-    $t->parse( "tax_specification", "tax_specification_tpl" );
+    // replace with a tax overview site.ini in eZTrade variable = enabled/dissabled
+    // $t->parse( "tax_specification", "tax_specification_tpl" );
+    $t->set_var( "tax_specification", "" );
+    $t->set_var( "tax_item", "" );
 }
 
 $usedVouchers =& $order->usedVouchers();
@@ -642,6 +665,42 @@ $t->set_var( "order_vat_sum", $locale->format( $currency ) );
 $t->set_var( "order_id", $OrderID );
 
 
+// graham@brookinsconsulting.com - 12-19-2001:11:45
+// idea to turn off feature . . .
+
+// if ( $ini->read_var( "eZTradeMain", "ShowPrintableRecieptLink" ) == "enabled" )
+//     printable_reciept_enabled_tpl   printable_reciept_disabled_tpl
+//    else
+//        $t->set_var( "billing_address", "" );
+
+
+// graham@brookinsconsulting.com - 12-19-2001:11:45
+// dynamic internal printable reciept link
+
+if ( $ini->read_var( "eZTradeMain", "ShowPrintableRecieptLink" ) == "enabled" )
+{
+switch ($PrintableVersion) {
+    case "enabled":
+        $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=disabled";
+        $printable_reciept_text = "{intl-web_reciept}";
+        break;
+    case "disabled":
+        $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=enabled";
+        $printable_reciept_text = "{intl-printable_reciept}";
+        break;
+    case "":
+        $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=enabled";
+        $printable_reciept_text = "{intl-printable_reciept}";
+        break;
+        }
+}
+
+$t->set_var( "printable_reciept_text", $printable_reciept_text );
+$t->set_var( "printable_reciept_link", $printable_reciept_link );
+$t->setAllStrings();
+
+//$t->parse( "printable_reciept" , "printable_reciept_tpl", true);
+$t->parse( "printable_reciept" , "printable_reciept_tpl" );
 $t->pparse( "output", "order_sendt_tpl" );
 
 ?>

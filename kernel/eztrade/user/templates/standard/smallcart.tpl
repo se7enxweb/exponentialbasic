@@ -14,7 +14,7 @@
 <!-- BEGIN cart_item_list_tpl -->
 <table width="100%" cellspacing="0" cellpadding="2" border="0">
 <tr>
-	<td colspan="4" class="menusubhead">{intl-cart}:</td>
+	<td colspan="4" class="menusubhead"><a style="text-decoration: none;" href="{www_dir}{index}/trade/cart/">{intl-cart}</a>:</td>
 </tr>
 
 <!-- BEGIN cart_item_tpl -->
@@ -31,6 +31,13 @@
 	<td class="small" align="right">
 	{shipping_sum}
 	</td>
+</tr>
+<tr>
+        <td class="small" colspan="3">{intl-subtotal}:</td>
+        <td class="small" align="right">
+        <!-- // graham@brookinsconsulting.com - 12-19-2001: -->
+        {subtotal_sum}
+        </td>
 </tr>
 <tr>
 	<td class="small" colspan="3">{intl-vat}:</td>

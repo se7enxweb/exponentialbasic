@@ -617,7 +617,11 @@ if ( $ShowCart == true )
         $t->parse( "tax_item", "tax_item_tpl", true );
     }
 
-    $t->parse( "tax_specification", "tax_specification_tpl" );
+    // add switch if default country does not have tax to dissable tax display
+    // $t->parse( "tax_specification", "tax_specification_tpl" );
+
+    $t->set_var( "tax_specification", "" );
+    $t->set_var( "tax_item", "" );
     $t->parse( "cart_checkout_button", "cart_checkout_button_tpl" );    
     $t->parse( "cart_checkout", "cart_checkout_tpl" );    
 }

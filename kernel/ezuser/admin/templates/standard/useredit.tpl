@@ -35,6 +35,13 @@
 </tr>
 <tr>
 	<td colspan="2">
+	<p class="boxtext">{intl-accountnumber}:</p>
+	<input type="text" class="halfbox" {read_only} size="20" name="AccountNumber" value="{account_number_value}"/>
+	<br /><br />
+	</td>
+</tr>
+<tr>
+<td colspan="2">
 	<p class="boxtext">{intl-signature}:</p>
 	<textarea name="Signature" class="box" cols="40" rows="9" wrap="soft">{signature}</textarea>
 	<br /><br />

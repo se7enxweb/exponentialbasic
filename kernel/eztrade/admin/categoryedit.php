@@ -66,7 +66,6 @@ if ( isset( $Action ) && $Action == "Insert" )
 {
     $parentCategory = new eZProductCategory();
     $parentCategory->get( $ParentID );
-    var_dump( $ParentID );
 
     $category = new eZProductCategory();
     $category->setName( $Name );

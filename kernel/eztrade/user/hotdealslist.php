@@ -76,6 +76,8 @@ $t->set_block( "product_list_tpl", "product_tpl", "product" );
 $t->set_block( "product_tpl", "product_image_tpl", "product_image" );
 $t->set_block( "product_tpl", "price_tpl", "price" );
 
+$t->set_block( "product_gallary_page_tpl", "add_to_cart_tpl", "add_to_cart" );
+
 if ( !isset( $ModuleName ) )
     $ModuleName = "trade";
 if ( !isset( $ModuleView ) )
@@ -83,6 +85,7 @@ if ( !isset( $ModuleView ) )
 
 $t->set_var( "module", $ModuleName );
 $t->set_var( "module_view", $ModuleView );
+$t->set_var( "module_list", $ModuleList );
 
 
 $t->setAllStrings();
@@ -103,24 +106,37 @@ $i=0;
 $trEnded = false;
 foreach ( $productList as $product )
 {
-    if ( $hotDealColumns  == 1 )
-    {
-        $t->set_var( "begin_tr", "<tr>" );
-        $t->set_var( "end_tr", "</tr>" );
-    }
-    else
-    {
-        if ( ( $i % $hotDealColumns ) == 0 )
-        {
+    $gallaryarraysize =  sizeof($productgallary) - 1;
+    $groupi_size = $groupi; // - 1;
+    $groupitemnumber = $hotDealListColumns;
+    $groupitempreceeding = $groupitemnumber - 1;
+
+        if ( $i == 0 )
+	{
             $t->set_var( "begin_tr", "<tr>" );
-            $t->set_var( "end_tr", "" );
+            $t->set_var( "end_tr", "" );        
         }
-        else
+        elseif ( $i == $gallaryarraysize )
         {
             $t->set_var( "begin_tr", "" );
             $t->set_var( "end_tr", "</tr>" );
         }
-    }
+	elseif ( $groupi_size == $groupitempreceeding )
+	{
+            $t->set_var( "begin_tr", "" );
+            $t->set_var( "end_tr", "</tr>" );
+        }
+	elseif ( $groupi_size == $groupitemnumber ) 
+        {
+            $t->set_var( "begin_tr", "<tr>" );
+            $t->set_var( "end_tr", "" );
+            $groupi = 0;
+        }
+	else 
+	{
+            $t->set_var( "begin_tr", "" );
+            $t->set_var( "end_tr", "" );
+	}
 
     $t->set_var( "product_id", $product->id() );
     $t->set_var( "product_name", $product->name() );
@@ -188,6 +204,8 @@ foreach ( $productList as $product )
         $t->set_var( "category_id", $defCat->id() );
     }
 
+    $t->set_var( "action_url", "cart/add" );
+    $t->parse( "add_to_cart", "add_to_cart_tpl" );
 
     $t->parse( "product", "product_tpl", true );
     $i++;

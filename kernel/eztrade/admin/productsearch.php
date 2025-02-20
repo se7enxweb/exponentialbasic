@@ -65,7 +65,8 @@ $t->set_var( "search_text", $Search );
 // products
 $product = new eZProduct();
 $TotalTypes =& $product->activeProductSearchCount( $Search );
-$productList =& $product->activeProductSearch( $Search, $Offset, $Limit );
+$sortMode="time";
+$productList =& $product->activeProductSearch( $sortMode, $Search, $Offset, $Limit );
 
 $locale = new eZLocale( $Language );
 $i=0;

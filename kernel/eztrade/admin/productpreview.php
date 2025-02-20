@@ -89,6 +89,8 @@ else
 }
 
 $t->set_block( "product_view_tpl", "product_number_item_tpl", "product_number_item" );
+$t->set_block( "product_view_tpl", "product_catalog_number_item_tpl", "product_catalog_number_item" );
+
 $t->set_block( "product_view_tpl", "price_tpl", "price" );
 $t->set_block( "price_tpl", "alternative_currency_list_tpl", "alternative_currency_list" );
 $t->set_block( "alternative_currency_list_tpl", "alternative_currency_tpl", "alternative_currency" );
@@ -469,6 +471,21 @@ if ( $product->productNumber() != "" )
     $t->set_var( "product_number", $product->productNumber() );
     $t->parse( "product_number_item", "product_number_item_tpl" );
 }
+
+$t->set_var( "product_catalog_number", "N/A" );
+$t->set_var( "product_catalog_number_item", "" );
+
+if ( $product->catalogNumber() != "" )
+{
+  $t->set_var( "product_catalog_number", $product->catalogNumber() );
+  $t->parse( "product_catalog_number_item", "product_catalog_number_item_tpl" );
+}
+/*
+else {
+  $t->set_var( "product_catalog_number", "N/A" );
+}
+*/
+
 
 $Quantity = $product->totalQuantity();
 if ( is_bool( $Quantity ) and !$Quantity )

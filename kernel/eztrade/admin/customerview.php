@@ -44,6 +44,7 @@ $t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "A
 $languageINI = new INIFile( "kernel/eztrade/admin/intl/" . $Language . "/customerview.php.ini", false );
 
 $t->set_file( "customer_view_tpl", "customerview.tpl" );
+$t->set_block( "customer_view_tpl", "customer_account_number_box_tpl", "customer_account_number_box" );
 
 // address
 $t->set_block( "customer_view_tpl", "address_list_tpl", "address_list" );
@@ -74,6 +75,13 @@ $t->set_var( "customer_first_name", $customer->firstName() );
 $t->set_var( "customer_last_name", $customer->lastName() );
 $t->set_var( "customer_email", $customer->email() );
 
+if ( $customer->accountNumber() != "" )
+{
+  $t->set_var( "customer_account_number", $customer->accountNumber() );
+  $t->parse( "customer_account_number_box", "customer_account_number_box_tpl", true );
+}else {
+  $t->set_var( "customer_account_number", "N/A" );
+}
 $orders =& eZOrder::getByCustomer( $customer );
 
 $locale = new eZLocale( $Language );

@@ -53,7 +53,11 @@
     <!-- BEGIN error_password_match_tpl -->
     <li>{intl-error_passwordmatch_item}</li>
     <!-- END error_password_match_tpl -->
-
+	
+    <!-- BEGIN error_password_not_entered_tpl -->
+    <li>{intl-error_password_not_entered}</li>
+	<!-- END error_password_not_entered_tpl -->
+	
     <!-- BEGIN error_address_street1_tpl -->
     <li>{intl-error_street1}</li>
     <!-- END error_address_street1_tpl -->

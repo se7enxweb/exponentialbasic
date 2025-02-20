@@ -86,6 +86,7 @@ if ( $Action == "insert" )
                     {
                         $user->setPassword( $_POST['Password'] );
                         $user->setEmail( $_POST['Email'] );
+                        $user->setAccountNumber( $_POST['AccountNumber'] );
                         $user->setFirstName( $_POST['FirstName'] );
                         $user->setLastName( $_POST['LastName'] );
                         $user->setSignature( $_POST['Signature'] );
@@ -119,7 +120,7 @@ if ( $Action == "insert" )
                         }
                         
                         $user->setGroupDefinition( $MainGroup );
-			$Action = false;
+			            $Action = false;
                         eZHTTPTool::header( "Location: /user/userlist/" );
                         exit();
                     }
@@ -162,6 +163,9 @@ if ( $Action == "update" )
             $FirstName = $_POST['FirstName'];
         if( isset( $_POST['LastName'] ) )
        	    $LastName = $_POST['LastName'];
+
+        if( isset( $_POST['AccountNumber'] ) )
+       	    $AccountNumber = $_POST['AccountNumber'];
         if( isset( $_POST['Signature'] ) )
        	    $Signature = $_POST['Signature'];
         if( isset( $_POST['SimultaneousLogins'] ) )
@@ -200,7 +204,7 @@ if ( $Action == "update" )
 
                         $user->setFirstName( $FirstName );
                         $user->setLastName( $LastName );
-
+                        $user->setAccountNumber( $AccountNumber );
                         $user->setSimultaneousLogins( $SimultaneousLogins );
                         
                         if ( strlen( $Password ) > 0 )
@@ -277,6 +281,7 @@ if ( $Action == "delete" )
         $lastName = $user->lastName();
         $email = $user->email();
         $login = $user->login();
+        $accountNumber = $user->accountNumber();
         $simultaneousLogins = $user->simultaneousLogins();
         
         $user->delete();
@@ -343,6 +348,7 @@ if ( $Action == "new" )
     $Email = "";
     $Login = "";
     $UserID = eZUser::currentUser()->ID;
+    $AccountNumber = "";
     $SimultaneousLogins = $ini->read_var( "eZUserMain", "DefaultSimultaneousLogins" );
 }
 
@@ -381,6 +387,7 @@ if ( $Action == "edit" )
     $LastName = $user->lastName();
     $Email = $user->email();
     $Login = $user->login();
+    $AccountNumber = $user->accountNumber();
     $Signature = $user->signature();
     $SimultaneousLogins = $user->simultaneousLogins();
     
@@ -422,6 +429,7 @@ else // either new or failed edit... must put htmlspecialchars on stuff we got f
     $FirstName = htmlspecialchars( $FirstName );
     $LastName = htmlspecialchars( $LastName );
     $Login = htmlspecialchars( $Login );
+    $AccountNumber = htmlspecialchars( $AccountNumber );
     $Signature = htmlspecialchars( $Signature );
     $Email = htmlspecialchars( $Email );
 }
@@ -469,6 +477,7 @@ $t->set_var( "first_name_value", $FirstName );
 $t->set_var( "last_name_value", $LastName );
 $t->set_var( "email_value", $Email );
 $t->set_var( "login_value", $Login );
+$t->set_var( "account_number_value", $AccountNumber );
 $t->set_var( "signature", $Signature );
 $t->set_var( "password_value", "" );
 $t->set_var( "verify_password_value", "" );

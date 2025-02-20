@@ -58,6 +58,100 @@ if ( $user )
 
 switch ( $url_array[2] )
 {
+
+    case "hotdealsgallery" :
+    {
+        // $RedirectURL = $RedirectURL;
+        $session->setVariable( "RedirectURL", $REQUEST_URI );
+        $CategoryID = $url_array[3];
+        $Offset = $url_array[4];
+        if ( !is_numeric( $Offset ) )
+            $Offset = 0;
+        if ( $PageCaching == "enabled" )
+        {
+            include_once( "classes/ezcachefile.php" );
+            $CacheFile = new eZCacheFile( "eztrade/cache/",
+                                            array_merge( "hotdealsgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
+                                            "cache", "," );
+            if ( $CacheFile->exists() )
+            {
+                include( $CacheFile->filename( true ) );
+            }
+            else
+            {
+                $GenerateStaticPage = "true";
+                include( "eztrade/user/hotdealsgallery.php" );
+            }
+        }
+        else
+        {
+            include( "eztrade/user/hotdealsgallery.php" );
+        }
+        break;
+    }
+
+    case "hotdealslist" :
+    {
+        // $RedirectURL = $RedirectURL;
+        $session->setVariable( "RedirectURL", $REQUEST_URI );
+        $CategoryID = $url_array[3];
+        $Offset = $url_array[4];
+        if ( !is_numeric( $Offset ) )
+            $Offset = 0;
+        if ( $PageCaching == "enabled" )
+        {
+            include_once( "classes/ezcachefile.php" );
+            $CacheFile = new eZCacheFile( "eztrade/cache/",
+                                            array_merge( "hotdealslist", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
+                                            "cache", "," );
+            if ( $CacheFile->exists() )
+            {
+                include( $CacheFile->filename( true ) );
+            }
+            else
+            {
+                $GenerateStaticPage = "true";
+                include( "eztrade/user/hotdealslist.php" );
+            }
+        }
+        else
+        {
+            include( "eztrade/user/hotdealslist.php" );
+        }
+        break;
+    }
+
+    case "productgallery" :
+    {
+    // $RedirectURL = $RedirectURL;
+    $session->setVariable( "RedirectURL", $REQUEST_URI );
+        $CategoryID = $url_array[3];
+        $Offset = $url_array[4];
+        if ( !is_numeric( $Offset ) )
+            $Offset = 0;
+        if ( $PageCaching == "enabled" )
+        {
+            include_once( "classes/ezcachefile.php" );
+            $CacheFile = new eZCacheFile( "eztrade/cache/",
+                                            array_merge( "productgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
+                                            "cache", "," );
+            if ( $CacheFile->exists() )
+            {
+                include( $CacheFile->filename( true ) );
+            }
+            else
+            {
+                $GenerateStaticPage = "true";
+                include( "eztrade/user/productgallery.php" );
+            }
+        }
+        else
+        {
+            include( "eztrade/user/productgallery.php" );
+        }
+        break;
+    }
+    
     case "productlist" :
     {
         $CategoryID = $url_array[3];

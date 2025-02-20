@@ -9,6 +9,9 @@
 
 <p class="boxtext">{intl-product_number}:</p>
 <input class="box" type="text" size="40" name="ProductNumber" value="{product_nr_value}"/>
+
+<p class="boxtext">{intl-catalog_number}:</p>
+<input class="box" type="text" size="40" name="CatalogNumber" value="{product_cn_value}"/>
 <br /><br />
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0">

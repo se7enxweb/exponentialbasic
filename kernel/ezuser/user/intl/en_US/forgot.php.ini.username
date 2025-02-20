@@ -1,0 +1,13 @@
+[strings]
+headline=Forgot password
+username=Username
+emailaddress=Email Address
+forgot-text=Type your username in the field, you will then receive an email. There it wil be a link which you must follow to get a new password. This link will be valid for 1 day.
+
+subject_text=Forgotten password at
+body_text=Click on the link to get a new password generated. The new password will be sendt in mail.
+
+subject_text_password=New password at
+body_text_password=New password is generated, use this password to login into
+password=Password
+ok=OK

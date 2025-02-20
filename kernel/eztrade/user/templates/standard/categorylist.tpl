@@ -3,6 +3,23 @@
 <tr>
 	<td colspan="2" class="menuhead">{intl-products}</td>
 </tr>
+<tr>
+<td width="100%" valign="top">
+	<!-- BEGIN category_image_hot_deals_tpl -->
+		<a class="menu" href="{www_dir}{index}/trade/hotdealsgallery/"><img src="{www_dir}/sitedesign/{sitedesign}/images/product_categories/hot_deals.gif" width="130" height="23" border="0" />
+	<!-- END category_image_hot_deals_tpl -->
+	
+	<!-- BEGIN category_image_list_tpl -->
+	<!-- BEGIN category_image_tpl -->
+		<a class="menu" href="{www_dir}{index}/trade/productgallery/{category_id}/"><img src="{www_dir}/sitedesign/{sitedesign}/images/product_categories/{category_image_name}" width="130" height="23" border="0" />
+	<!-- END category_image_tpl -->
+	<!-- END category_image_list_tpl -->
+
+	<!-- BEGIN category_text_hot_deals_tpl -->
+	   <a class="menu" href="{www_dir}{index}/trade/hotdealsgallery/">{category_hot_deals}</a><br>
+	<!-- END category_text_hot_deals_tpl -->
+</td>
+</tr>
 
 <!-- BEGIN category_tpl -->
 <tr>

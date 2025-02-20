@@ -1,6 +1,10 @@
 <h1>{intl-confirming-order}</h1>
 
 <hr noshade="noshade" size="4" />
+<!-- BEGIN printable_reciept_tpl -->
+<div class="bodytext"><br />Your <a href="{printable_reciept_link}">{printable_reciept_text}</a></div>
+<!-- END printable_reciept_tpl -->
+
 
 <h2>{intl-thanks_for_shopping}</h2>
 
@@ -291,3 +295,14 @@
 </table>
 <!-- END tax_specification_tpl -->
 <!-- END full_cart_tpl -->
+<br>
+<br>
+<table width="100%" cellspacing="0" cellpadding="3" border="0">
+<tr>
+        <td>
+*Please note ...Do to the diversity of product a standard shipping charge is unfeas
+ible. The total cost of orders, including shipping and applicable taxes, will be em
+ailed for acceptance prior to processing the order.
+        </td>
+</tr>
+</table>

@@ -13,11 +13,22 @@
 	{customer_last_name}
 	</td>	
 </tr>
-</table>
-<br />
 
-<p class="boxtext">{intl-email}:</p>
-<span class="p">{customer_email}</span>
+<tr>
+        <td>
+	<p class="boxtext">{intl-email}:</p>	
+	<span class="p">{customer_email}</span>
+        </td>
+        <td>
+	<!-- BEGIN customer_account_number_box_tpl -->
+        <p class="boxtext">{intl-account_number}:</p>
+        {customer_account_number}
+	<!-- END customer_account_number_box_tpl -->
+        </td>
+</tr>
+</table>
+
+<br />
 
 <h2>{intl-address_list}</h2>
 

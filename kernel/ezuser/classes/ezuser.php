@@ -111,6 +111,7 @@ class eZUser
         $lastname = $db->escapeString( $this->LastName );
         $signature = $db->escapeString( $this->Signature );
         $login = $db->escapeString( $this->Login );
+        $account_number = $db->escapeString( $this->AccountNumber );
 
         if ( !isset( $this->ID ) )
         {
@@ -131,6 +132,7 @@ class eZUser
                                  LastName='$lastname',
                                  Signature='$signature',
                                  CookieLogin='$this->CookieLogin',
+                                 AccountNumber='$account_number',
                                  SimultaneousLogins='$this->SimultaneousLogins'" );
                 $this->ID = $nextID;
             }
@@ -139,7 +141,7 @@ class eZUser
                 $password = md5( $this->Password );
 
                 $db->query( "INSERT INTO eZUser_User
-                ( ID, Login, Password, Email, InfoSubscription, FirstName, LastName, Signature, CookieLogin, SimultaneousLogins )
+                ( ID, Login, Password, Email, InfoSubscription, FirstName, LastName, Signature, CookieLogin, AccountNumber,SimultaneousLogins )
                 VALUES
                 ( '$nextID',
                   '$login',
@@ -150,6 +152,7 @@ class eZUser
                   '$lastname',
                   '$signature',
                   '$this->CookieLogin',
+                  '$account_number',
                   '$this->SimultaneousLogins')" );
 
                 $this->ID = $nextID;
@@ -166,6 +169,7 @@ class eZUser
                                  Signature='$signature',
                                  LastName='$lastname',
                                  CookieLogin='$this->CookieLogin',
+                                 AccountNumber='$account_number',
                                  SimultaneousLogins='$this->SimultaneousLogins'
                                  WHERE ID='$this->ID'" );
 
@@ -262,6 +266,7 @@ class eZUser
         $this->LastName =& $user_array[$db->fieldName("LastName")];
         $this->Signature =& $user_array[$db->fieldName("Signature")];
         $this->CookieLogin =& $user_array[$db->fieldName("CookieLogin")];
+        $this->AccountNumber =& $user_array[$db->fieldName("AccountNumber")];
         $this->SimultaneousLogins =& $user_array[$db->fieldName("SimultaneousLogins")];
     }
 
@@ -390,6 +395,72 @@ class eZUser
         }
         return $ret;
     }
+  /*!
+      Returns the eZUser object where email = $email.
+
+      False (0) is returned if the users isn't validated.
+    */
+    function getUserByEmail( $email )
+      {
+        $db =& eZDB::globalDatabase();
+        $return = false;
+
+        $db->array_query( $user_array, "SELECT * FROM eZUser_User
+                                                    WHERE Email='$email'" );
+
+	// how to limit multiple accounts with same email and different pw / user?
+	// ideas: sql limit, if limit?, 
+
+        if ( count( $user_array ) == 1 )
+	  {
+            $return = new eZUser( $user_array[0][$db->fieldName("ID")] );
+	  }
+        return $return;
+      }
+
+
+    /*!
+      Returns the eZUser object where email = $email.
+
+      False (0) is returned if the users isn't validated.
+    */
+    function getUsersByEmail( $email , $as_object = true )
+      {
+        $db =& eZDB::globalDatabase();
+        $return = false;
+
+        $return_array = array();
+        $user_array = array();
+
+        $db->array_query( $user_array, "SELECT * FROM eZUser_User
+                                                    WHERE Email='$email'" );
+
+        // how to limit multiple accounts with same email and different pw / user?
+        // ideas: sql limit, if limit?,
+
+	if ( $as_object )
+	  {
+            foreach ( $user_array as $user )
+	      {
+                $return_array[] = new eZUser( $user );
+	      }
+	  }
+        else
+	  {
+            foreach ( $user_array as $user )
+	      {
+                $return_array[] = $user[ $db->fieldName( "ID" ) ];
+	      }
+	  }
+        return $return_array;
+
+
+	//        if ( count( $user_array ) == 1 )
+        //  {
+	//     $return = new eZUser( $user_array[0][$db->fieldName("ID")] );
+        //  }
+        //return $return;
+      }
 
     /*!
       Returns the correct eZUser object if the user is validated.
@@ -407,11 +478,11 @@ class eZUser
 
         if ( $db->isA() == "mysql" )
         {
-	    $sqlQuery = "SELECT * FROM eZUser_User
-                                                    WHERE Login='$login'
-                                                    AND Password=CONCAT('*', UPPER(SHA1(UNHEX(SHA1('$password')))));";
+	        $sqlQuery = "SELECT * FROM eZUser_User
+                WHERE Login='$login'
+                AND Password=CONCAT('*', UPPER(SHA1(UNHEX(SHA1('$password')))));";
             $db->array_query( $user_array, $sqlQuery );
-	}
+	    }
         else
         {
             $password = md5( $password );
@@ -511,6 +582,13 @@ class eZUser
         return $this->name() . " <" . $this->email() . ">";
     }
 
+    /*!
+      Returns the users account number.
+    */
+    function accountNumber()
+    {
+        return $this->AccountNumber;
+    }
     /*!
       Returns the users first and last name with a space in between.
     */
@@ -612,6 +690,13 @@ class eZUser
         }
     }
 
+    /*!
+      Sets the users account number.
+    */
+    function setAccountNumber( $value )
+    {
+        $this->AccountNumber = $value;
+    }
     /*!
       Sets the users first name.
     */
@@ -1301,6 +1386,7 @@ class eZUser
     var $SimultaneousLogins;
     var $StoredTimeout;
     var $HasRoot;
+    var $AccountNumber;
 
     /// string with the member groups, used for storing permissions in cache files
     var $GroupString;

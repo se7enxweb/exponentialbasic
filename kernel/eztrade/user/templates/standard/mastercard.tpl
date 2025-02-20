@@ -8,7 +8,8 @@
 <input type="text" name="CCNumber" /> <br />
 
 <p class="boxtext">{intl-expire_date}:</p>
-<span class="small">{intl-month}:</span> <input type="text" size="2" name="ExpierMonth" /> <span class="small">{intl-year}:</span> <input type="text" size="2" name="ExpierYear" /><br />
+<span class="small">{intl-month}:</span> <input type="text" size="2" name="ExpierMonth" /> 
+<span class="small">{intl-year}:</span> <input type="text" size="2" name="ExpierYear" /><br />
 <br />
 
 <hr noshade="noshade" size="4" />

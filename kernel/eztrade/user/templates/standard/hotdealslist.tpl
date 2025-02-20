@@ -16,6 +16,12 @@
 <!-- BEGIN price_tpl -->
 	<span class="pris">{product_price}</span>
 <!-- END price_tpl -->
+<!-- BEGIN add_to_cart_tpl -->
+<form action="{www_dir}{index}/{module}/{action_url}/{product_id}/" method="post">
+<div calss="spacer"><div class="pris">
+<input type="image" src="/design/trade/images/addtocart.gif" name="Cart" value="{intl-add_to_cart}" />
+</form>
+<!-- END add_to_cart_tpl -->
 	</td>
 {end_tr}
 

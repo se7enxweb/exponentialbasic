@@ -396,6 +396,13 @@ else if ( $CountryVATDiscrimination == true )
     }
 }
 
+if ( $vat == false )
+{
+    $ShowExTaxColumn = true;
+    $PricesIncludeVAT = false;
+    $ShowExTaxTotal = true;
+    $ShowIncTaxColumn = false;
+}
 function turnColumnsOnOff( $rowName )
 {
     global $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn;

@@ -21,8 +21,50 @@
 <!-- BEGIN product_tpl -->
 <tr>
 	<td>
-
-	<a href="{www_dir}{index}/{module}/{module_view}/{product_id}/{category_id}/"><h2>{product_name}</h2></a><br>
+	<table width="100%" cellspacing="2" cellpadding="1" border="0">
+	<tr>
+			<td>
+				<span style="font-weight: bold;">{intl-product_number}</span>
+			</td>
+                        <td>
+                                <span style="font-weight: bold;">{intl-catalog_number}</span>
+                        </td>
+			<td>
+				<span style="font-weight: bold;">{intl-product_name}</span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	<!-- BEGIN product_tpl -->
+		<tr>
+			<td width="90">
+			<a href="{www_dir}{index}/{module}/{module_view}/{product_id}/{category_id}/">{product_number}</a>
+			</td>
+                        <td width="80">
+                        {catalog_number}
+                        </td>
+			<td>
+			<a href="{www_dir}{index}/{module}/{module_view}/{product_id}/{category_id}/">
+			<span style="font-weight: bold; font-size: 12;">{product_name}</span></a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			&nbsp;
+			</td>
+			<td>
+                        &nbsp;
+                        </td>
+			<td>
+			<img src="/sitedesign/aih_standard/images/dot.gif" width="10" height="12" border="0" alt="" /> {description_text}
+			</td>
+		</tr>
+		<!-- END product_tpl -->		
+	</table>
+	</td>
+</tr>
+</table>
     <!-- BEGIN image_tpl -->
     <table align="right">
     <tr>

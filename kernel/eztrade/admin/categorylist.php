@@ -321,6 +321,11 @@ $t->set_var( "offset", $Offset );
 
 eZList::drawNavigator( $t, $TotalTypes, $Limit, $Offset, "product_list_tpl" );
 
+if ( $user  )
+{
+	$session->setVariable( "RedirectURL", "/trade/categorylist/parent/$ParentID/$Offset" );
+}
+
 if ( count( $productList ) > 0 )
     $t->parse( "product_list", "product_list_tpl" );
 else

@@ -195,17 +195,53 @@ foreach ( $productList as $product )
     $t->set_var( "product_name", $product->name() );
 
     $t->set_var( "product_intro_text", eZTextTool::nl2br( $product->brief() ) );
-
-    if( $product->showPrice() == false )
-    {
-        $t->set_var( "product_price", "" );
-    }
-
-    if ( $ShowPrice and $product->showPrice() == true )
+   
+    if ( $ShowPrice and $product->showPrice() == true and $product->hasPrice() )
     {
         $t->set_var( "product_price", $product->localePrice( $PricesIncludeVAT ) );
+        $priceRange = $product->correctPriceRange( $PricesIncludeVAT );
+
+        if ( ( empty( $priceRange["min"] ) and empty( $priceRange["max"] ) ) and !($product->correctPrice( $PricesIncludeVAT ) > 0) )
+        {
+            $t->set_var( "product_price", "" );
+        }
+        $t->parse( "price", "price_tpl" );
     }
-    $t->parse( "price", "price_tpl" );
+    elseif( $product->showPrice() == false )
+    {
+        $t->set_var( "product_price", "" );
+        $t->parse( "price", "price_tpl" );
+    }
+    else
+    {
+        $priceArray = "";
+        $options =& $product->options();
+        if ( count( $options ) == 1 )
+        {
+            $option = $options[0];
+            if ( get_class( $option ) == "ezoption" )
+            {
+                $optionValues =& $option->values();
+                if ( count( $optionValues ) > 1 )
+                {
+                    $i=0;
+                    foreach ( $optionValues as $optionValue )
+                    {
+                        $priceArray[$i] = $optionValue->localePrice( $PricesIncludeVAT, $product );
+                        $i++;
+                    }
+                    $high = max( $priceArray );
+                    $low = min( $priceArray );
+                    
+                    $t->set_var( "product_price", $low . " - " . $high );
+                    
+                    $t->parse( "price", "price_tpl" );
+                }
+            }
+        }
+        else
+            $t->set_var( "price", "" );
+    }
     
     $t->set_var( "category_id", $category->id() );
 
@@ -218,6 +254,8 @@ foreach ( $productList as $product )
         $t->set_var( "td_class", "bgdark" );
     }
 
+    $t->set_var( "action_url", "cart/add" );
+    $t->parse( "add_to_cart", "add_to_cart_tpl" );
     $t->parse( "product", "product_tpl", true );
     $i++;
 }

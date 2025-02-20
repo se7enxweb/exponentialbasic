@@ -1,0 +1,252 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title><?
+if ( isset( $Title ) )
+    print( $Title );
+else
+	print( "AIH" );
+    ?></title>
+
+<? 
+/*
+<!--
+	Include "Microsoft Internet Explorer" Favorites Shortcut Icon
+-->
+<!-- 
+<link REL="shortcut icon" HREF="http://www.aihalaska.com/images/aih_fav.ico" TYPE="image/x-icon" />
+-->
+*/ ?>
+<link rel="shortcut icon" href="http://www.aihalaska.com/sitedesign/aih_standard/images/aih_fav.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/aih_standard/style.css" />
+
+<? /* <!-- set the content meta information -->
+*/ ?>
+<meta name="author" content="<?php
+
+    $SiteAuthor = $ini->read_var( "site", "SiteAuthor" );
+    print( $SiteAuthor );
+
+?>" />
+<meta name="copyright" content="<?php
+
+    $SiteCopyright = $ini->read_var( "site", "SiteCopyright" );
+    print( $SiteCopyright );
+
+?>" />
+<meta name="description" content="<?php
+
+if ( isset( $SiteDescriptionOverride ) )
+{
+    print( $SiteDescriptionOverride );
+}
+else
+{
+    $SiteDescription = $ini->read_var( "site", "SiteDescription" );
+    print( $SiteDescription );
+}
+
+?>" />
+<meta name="keywords" content="<?php
+if ( isset( $SiteKeywordsOverride ) )
+{
+    print( $SiteKeywordsOverride );
+}
+else
+{
+    $SiteKeywords = $ini->read_var( "site", "SiteKeywords" );
+    print( $SiteKeywords );
+}
+
+?>" />
+
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+
+<meta name="generator" content="eZ publish" />
+
+</head>
+
+<body bgcolor="#999999" topmargin="6" marginheight="6" leftmargin="0" rightmargin="0" marginwidth="0" background="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/background_diamond.gif">
+<span>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="50%" class="tdmini"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/aihlogo3.gif" height="98" width="182" border="0" alt="" /></a></td>
+<td width="48%" class="tdmini" align="center" valign="bottom"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/aih_ad_logo.gif" height="174" width="480" border="0" alt="" /></a></td>
+</tr>
+<tr align="left">
+	<td width="99%" align="left" colspan="2">
+	<table border="0" cellspacing="0" cellpadding="0" align="left">
+	<tr align="left">
+<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/archive/8"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-special-events.gif" height="21" width="103" border="0" alt="" /></a></td>
+
+<? /*
+<!--
+		<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/articlestatic/15"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-locations.gif" height="21" width="103" border="0" alt="" /></a></td>
+
+-->
+*/ ?>
+	<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/articlestatic/14"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-history.gif" height="21" width="103" border="0" alt="" /></a></td>
+		<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/articlestatic/13"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-affliates.gif" height="21" width="103" border="0" alt="" /></a></td>
+		<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/articlestatic/17"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-linecard.gif" height="21" width="103" border="0" alt="" /></a></td>
+   
+<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/articlestatic/19"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-employment.gif" height="21" width="103" border="0" alt="" /></a></td>
+
+<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/articlestatic/20"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-credit.gif" height="21" width="103" border="0" alt="" /></a></td>
+
+<td width="103" align="left"><a href="<? print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/article/articlestatic/22"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-contact.gif" height="21" width="103" border="0" alt="" /></a></td>
+
+<? /*
+
+<!--
+<td width="103" align="left"><a href="mailto:aih@aihalaska.com"><img src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/btn-contact.gif" height="21" width="103" border="0" alt="" /></a></td>
+-->
+
+*/ ?>
+        </tr>
+	</table></td>
+</tr>
+</table><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr valign="top">
+     <td width="1%" bgcolor="#ffffff">
+    <? 
+     include( "ezsearch/user/menubox.php" );
+    ?>
+    <? /*
+          $CategoryID=0;
+	  include( "ezarticle/user/menubox.php" );
+	*/ ?>
+	<? /*      */
+         $CategoryID = 0;
+         include( "eztrade/user/categorylist.php" ); 
+        ?>
+        <?
+	/*	
+	 //include( "eztrade/user/hotdealslist.php" ); 
+	*/
+	?>     
+	<?
+        /*
+	<!--
+	<img src="<? print $GlobalSiteIni->WWWDir; ?>/images/1x1.gif" width="130" height="8" border="0" alt="" /><br />
+	-->	
+	</td>
+	<!--
+	<td width="1%" bgcolor="#ffffff"><img src="<? print $GlobalSiteIni->WWWDir; ?>/images/1x1.gif" width="2" height="1" border="0" alt="0" /></td>
+	-->
+*/ ?>
+ </td>
+    <td width="96%" bgcolor="#ffffff">
+<? /*
+<!--
+    <div align="center">
+        <?
+        
+        $CategoryID = $ini->read_var( "eZAdMain", "DefaultCategory" );
+        $Limit = 1; 
+        include( "ezad/user/adlist.php" );
+
+        ?>
+    </div><br />
+-->
+*/ ?>
+     <?
+     print( $MainContents );
+     ?>
+    <br />
+    </td>
+   	<td width="1%" bgcolor="#ffffff"><img src="<? print $GlobalSiteIni->WWWDir; ?>/images/1x1.gif" width="2" height="1" border="0" alt="0" /></td>
+
+<? /*
+   <!-- original bg color
+    <td width="1%" bgcolor="#f6f6fa">
+    -->
+*/ ?>
+     <td width="1%" bgcolor="#ffffff">
+
+    <?
+       include_once( "classes/ezdate.php" );
+
+       $bdate = new ezdate();
+        //    $n_date = $bdate->month() . "/" . $bdate->day() . "/" .  $bdate->year();
+        $n_date = ucfirst($bdate->monthName()) . " " . $bdate->day() . ", " .  $bdate->year();
+        $now_date = $n_date;
+        //$t->set_var( "now_date", $n_date );
+
+/*
+
+<!--
+ <div style="font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 8pt; font-weight: normal; color: rgb(128, 0, 0);"> <? print($now_date); ?> </div>
+-->
+*/
+    ?>
+
+ <div style="font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold; color: #0D2154;"> <? print($now_date); ?> </div>
+
+<?
+	include( "ezuser/user/userbox.php" );
+
+	include( "eztrade/user/menubox.php" );
+
+	include( "eztrade/user/smallcart.php" );    
+?>
+
+    <?
+    // graham@brookinsconsulting.com: commented out existing search box placement
+    // include( "ezsearch/user/menubox.php" );
+    ?>
+	<img src="<? print $GlobalSiteIni->WWWDir; ?>/images/1x1.gif" width="130" height="10" border="0" alt="" /><br />
+<? /*
+   <div align="center"><a class="path" href="?PrintableVersion=enabled">Printable page</a></div><br />
+
+	<div align="center">
+	<a target="_blank" href="http://developer.ez.no"><img src="<? print $GlobalSiteIni->WWWDir; ?>/images/powered-by-ezpublish-100x35-trans-lgrey.gif" width="100" height="35" border="0" alt="Powered by eZ publish" /></a>
+	</div>
+	
+	<img src="<? print $GlobalSiteIni->WWWDir; ?>/images/1x1.gif" width="130" height="8" border="0" alt="" /><br />
+*/ ?>
+	</td>
+  </tr>
+</table>
+
+	</td>
+  </tr>
+</table>
+</span>
+
+<div align="center">
+<br />
+<span style="text-align: center; color: #ffffff; font-size: 14px; font-weight: normal; font-family: Arial,Helvetica,sans-serif;">&copy; Copyright 2003</span>
+<span style="text-align: center; color: #ffffff; font-size: 14px; font-weight: normal; font-family: Arial,Helvetica,sans-serif;">
+Alaska Industrial Hardware</span>
+</div>
+
+
+<?
+// Store the statistics with a callback image.
+// It will be no overhead with this method for storing stats
+//
+
+$StoreStats = $ini->read_var( "eZStatsMain", "StoreStats" );
+
+if ( $StoreStats == "enabled" )
+{
+
+print( "<span>" );
+    // create a random string to prevent browser caching.
+    $seed = md5( microtime() );
+    // callback for storing the stats
+    $imgSrc = $GlobalSiteIni->WWWDir . "/stats/store/rx$seed-" . $REQUEST_URI . "1x1.gif";
+    print( "<img src=\"$imgSrc\" height=\"1\" width=\"1\" border=\"0\" alt=\"\" />" );
+print( "</span>" );
+
+}
+
+?>
+
+</body>
+</html>
+    

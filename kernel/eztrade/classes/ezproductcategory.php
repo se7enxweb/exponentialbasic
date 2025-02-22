@@ -140,14 +140,15 @@ class eZProductCategory
         }
         else
         {
-            $res = $db->query( "UPDATE eZTrade_Category SET
+            $query = "UPDATE eZTrade_Category SET
 		                         Name='$name',
                                  Description='$description',
                                  SortMode='$this->SortMode',
                                  RemoteID='$this->RemoteID',
                                  ImageID='$this->ImageID',
                                  SectionID='$this->SectionID',
-                                 Parent='$this->Parent-I' WHERE ID='$this->ID'" );
+                                 Parent='$this->Parent' WHERE ID='$this->ID'";
+            $res = $db->query( $query );
         }
 
         if ( $res == false )
@@ -208,7 +209,7 @@ class eZProductCategory
         $db =& eZDB::globalDatabase();
 
         $ret = false;
-        if ( $id != "" )
+        if ( $id != "" && $id != 0 )
         {
             $db->array_query( $category_array, "SELECT * FROM eZTrade_Category WHERE ID='$id'" );
             if ( count( $category_array ) > 1 )
@@ -268,8 +269,9 @@ class eZProductCategory
             $category_array = array();
 
             $parentID = $parent->id();
+            $query = "SELECT ID, Name FROM eZTrade_Category WHERE Parent='$parentID' ORDER BY Name";
 
-            $db->array_query( $category_array, "SELECT ID, Name FROM eZTrade_Category WHERE Parent='$parentID' ORDER BY Name" );
+            $db->array_query( $category_array, $query );
 
             for ( $i = 0; $i < count( $category_array ); $i++ )
             {
@@ -676,10 +678,8 @@ class eZProductCategory
                         $fetchDiscontinued=false,
                         $categoryID=0 )
     {
-        if ( $categoryID != 0 )
-            $catID = $categoryID;
-        else
-            $catID = 0;
+       
+       $catID = $categoryID;
 
        $db =& eZDB::globalDatabase();
 

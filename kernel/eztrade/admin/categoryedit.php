@@ -164,7 +164,14 @@ if ( isset( $Action ) && $Action == "Update" )
     $category = new eZProductCategory();
     $category->get( $CategoryID );
     $category->setName( $Name );
-    $category->setParent( $parentCategory );
+
+    if( $ParentID == 0 ) {
+        $category->setParent( $ParentID );
+    }
+    else {
+        $category->setParent( $parentCategory );
+    }   
+    
     $category->setDescription( $Description );
     $category->setSectionID( $SectionID );
     $category->setSortMode( $SortMode );

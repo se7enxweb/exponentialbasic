@@ -23,7 +23,6 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-
 $PageCaching = $ini->read_var( "eZTradeMain", "PageCaching");
 
 
@@ -345,7 +344,7 @@ switch ( $url_array[2] )
 
     case "customerlogin" :
         include( "kernel/eztrade/user/customerlogin.php" );
-        break;
+    break;
 
     case "precheckout" :
     {
@@ -419,7 +418,6 @@ switch ( $url_array[2] )
     }
     break;
 
-
     case "extendedsearch" :
     {
         $Limit = 10;
@@ -459,7 +457,7 @@ switch ( $url_array[2] )
         eZHTTPTool::header( "Location: /error/404" );
         exit();
     }
-        break;
+    break;
 }
 
 ?>

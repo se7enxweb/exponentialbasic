@@ -127,7 +127,7 @@ foreach ( $shortNewsList as $news )
     $t->set_var( "news_id", $news->id() );
 
     $t->parse( "short_news_item", "short_news_item_tpl", true );
-//  	$t->set_var( "short_news_item", "" ); // Her også!
+//  	$t->set_var( "short_news_item", "" ); // Her ogsï¿½!
 	$i++;
 }
 
@@ -140,7 +140,7 @@ if ( $GenerateStaticPage == "true" )
 {
     $fp = eZFile::fopen( $cachedFile, "w+");
 
-    $output = $t->parse( $target, "news_archive_page_tpl" );
+    $output = $t->parse( "output", "news_archive_page_tpl" );
     
     // print the output the first time while printing the cache file.
     print( $output );

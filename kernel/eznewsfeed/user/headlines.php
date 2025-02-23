@@ -90,7 +90,7 @@ if( !function_exists( 'printNewsHeaderList' ) )
             {
                 $fp = eZFile::fopen( $cachedFile, "w+");
         
-                $output = $t->parse( $target, "headlines_page_tpl" );
+                $output = $t->parse( "output", "headlines_page_tpl" );
     
                 // print the output the first time while printing the cache file.
                 print( $output );

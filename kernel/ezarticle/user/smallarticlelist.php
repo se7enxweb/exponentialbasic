@@ -144,7 +144,7 @@ function createSmallArticleList( $generateStaticPage = false )
     {
         $fp = eZFile::fopen( $menuCachedFile, "w+");
 
-        $output = $t->parse( $target, "article_list_page_tpl" );
+        $output = $t->parse( "output", "article_list_page_tpl" );
         // print the output the first time while printing the cache file.
     
         print( $output );

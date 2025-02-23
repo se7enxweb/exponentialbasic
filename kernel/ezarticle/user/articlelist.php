@@ -530,7 +530,7 @@ if ( isset( $GenerateStaticPage ) and $GenerateStaticPage == "true" and $cachedF
     $output .= "\$eZLanguageOverride=\"$eZLanguageOverride\";\n";
     $output .= "?>\n";
 
-    $output .= $t->parse( $target, "article_list_page_tpl" );
+    $output .= $t->parse( "output", "article_list_page_tpl" );
 
     // print the output the first time while printing the cache file.
     print( $output );

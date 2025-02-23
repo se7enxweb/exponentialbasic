@@ -355,7 +355,7 @@ if ( $GenerateStaticPage == "true" )
     $output .= "\$SiteDescriptionOverride=\"$SiteDescriptionOverride\";\n";    
     $output .= "?>\n";
     
-    $output = $t->parse( $target, "product_gallery_page_tpl" );
+    $output = $t->parse( "output", "product_gallery_page_tpl" );
     print( $output );
     $CacheFile->store( $output );
 }

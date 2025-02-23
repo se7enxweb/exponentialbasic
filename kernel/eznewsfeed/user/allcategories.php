@@ -108,7 +108,7 @@ if ( $GenerateStaticPage == "true" )
 {
     $fp = eZFile::fopen( $cachedFile, "w+");
 
-    $output = $t->parse( $target, "news_archive_page_tpl" );
+    $output = $t->parse( "output", "news_archive_page_tpl" );
     
     // print the output the first time while printing the cache file.
     print( $output );

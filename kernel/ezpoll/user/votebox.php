@@ -135,7 +135,7 @@ function createPollMenu( $generateStaticPage = false )
     {
         $fp = eZFile::fopen( $menuCachedFile, "w+");
 
-        $output = $t->parse( $target, "vote_box" );
+        $output = $t->parse( "output", "vote_box" );
         // print the output the first time while printing the cache file.
     
         print( $output );

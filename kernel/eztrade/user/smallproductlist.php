@@ -120,7 +120,7 @@ if ( $PureStatic != "true" )
 
     if ( $GenerateStaticPage == "true" )
     {
-        $output = $t->parse( $target, "product_list_page_tpl" );
+        $output = $t->parse( "output", "product_list_page_tpl" );
         // print the output the first time while printing the cache file.
         print( $output );
         $CacheFile->store( $output );

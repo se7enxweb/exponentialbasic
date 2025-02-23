@@ -150,7 +150,7 @@ if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
     $fp = eZFile::fopen( $cachedFile, "w+");
 
-    $output = $t->parse( $target, "message_tpl" );
+    $output = $t->parse( "output", "message_tpl" );
     // print the output the first time while printing the cache file.
     
     print( $output );

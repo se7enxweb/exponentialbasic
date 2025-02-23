@@ -103,7 +103,7 @@ function createPage( $menuCacheFile = false )
 
     if ( is_a( $menuCacheFile, "eZCacheFile" ) )
     {
-        $output = $t->parse( $target, "menu_box_tpl" );
+        $output = $t->parse( "output", "menu_box_tpl" );
         // print the output the first time while printing the cache file.
         $menuCacheFile->store( $output );
         print( $output );

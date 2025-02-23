@@ -488,7 +488,7 @@ class eZFormRenderer
 
         $t->setAllStrings();
 
-        $formatedContent = $t->parse( $target, "form_mail_tpl" );
+        $formatedContent = $t->parse( "output", "form_mail_tpl" );
 
         $mail->setBody( $formatedContent );
 

@@ -73,6 +73,13 @@ elseif ( $ForceSSL == "disabled" )
 	}
 }
 
+$VerifyPassword = eZHTTPTool::getVar( "VerifyPassword" );
+$Password = eZHTTPTool::getVar( "Password" );
+$Email = eZHTTPTool::getVar( "Email" );
+$Login = eZHTTPTool::getVar( "Login" );
+$FirstName = eZHTTPTool::getVar( "FirstName" );
+$LastName = eZHTTPTool::getVar( "LastName" );
+
 $t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl/", $Language, "userwithaddress.php" );
 
@@ -234,7 +241,7 @@ else
     $t->set_var( "action_value", "update" );
 }
 // If the user is trying to buy without having a address
-if ( $MissingRegion == true )
+if ( isset( $MissingRegion ) && $MissingRegion == true )
 {
     $t->parse( "error_missing_region", "error_missing_region_tpl" );
 
@@ -386,8 +393,11 @@ if ( isset( $NewAddress ) )
     if ( !isset( $AddressID ) )
         $AddressID = array();
 
-    if ( !isset( $CountryID ) )
+        if ( !isset( $CountryID ) )
         $CountryID = array();
+
+        if ( !isset( $RegionID ) )
+            $RegionID = array();
 
     if ( count( $AddressID ) > 0 )
         $AddressID[] = $AddressID[count( $AddressID ) - 1] + 1;
@@ -475,7 +485,7 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
     for ( $i = 0; $i < count( $AddressID ); ++$i )
     {
         $address_id = $AddressID[$i];
-        $realAddressID = $RealAddressID[$i];
+        $realAddressID = $_REQUEST["RealAddressID[$i]"];
 
         $address = new eZAddress();
         if ( !$address->get( $realAddressID ) )
@@ -678,10 +688,11 @@ if ( is_a( $user, "eZUser" ) )
 else
 {
     $UserID = false;
-    $LastName = false;
-    $FirstName = false;
-    $Login = false;
-    $Email = false;
+    // $LastName = false;
+    // $FirstName = false;
+    // $Login = false;
+    // $Email = false;
+    
     if ( $ini->read_var( "eZUserMain", "RequireFirstAddress" ) == "enabled" )
     {
         if ( !isset( $AddressID ) )
@@ -729,6 +740,7 @@ if ( is_a( $user, "eZUser" ) and $Password == "" )
     $Password = "dummy";
 if ( is_a( $user, "eZUser" ) and $VerifyPassword == "" )
     $VerifyPassword = "dummy";
+
 $t->set_var( "password_value", $Password );
 $t->set_var( "verify_password_value", $VerifyPassword );
 $t->set_var( "email_value", $Email );
@@ -837,7 +849,7 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
             }
             $t->set_var( "address_id", $AddressID[$i] );
 
-            $t->set_var( "real_address_id", $RealAddressID[$i] );
+            $t->set_var( "real_address_id", isset( $RealAddressID[$i] ) ? $RealAddressID[$i] : false );
 
             $t->set_var( "street1_value", $Street1[$i] );
             $t->set_var( "street2_value", $Street2[$i] );

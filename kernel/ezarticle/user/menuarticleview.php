@@ -463,7 +463,7 @@ if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
     $output .= "\$SiteDescriptionOverride=\"$SiteDescriptionOverride\";\n";    
     $output .= "?>\n";
 
-    $output .= $t->parse( $target, "article_view_page_tpl" );
+    $output .= $t->parse( "output", "article_view_page_tpl" );
     
     // print the output the first time while printing the cache file.
     print( $output );

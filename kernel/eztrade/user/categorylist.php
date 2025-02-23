@@ -177,7 +177,7 @@ if ( $PureStatic == "false" )
 
     if ( $GenerateStaticPage == "true" )
     {
-        $output = $t->parse( $target, "category_list_page_tpl" );
+        $output = $t->parse( "output", "category_list_page_tpl" );
         // print the output the first time while printing the cache file.
         print( $output );
         $CacheFile->store( $output );

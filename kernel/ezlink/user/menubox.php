@@ -111,7 +111,7 @@ function createLinkMenu( $menuCacheFile=false )
 
     if ( is_a( $menuCacheFile, "eZCacheFile" ) )
     {
-        $output = $t->parse( $target, "menu_box_tpl" );
+        $output = $t->parse( "output", "menu_box_tpl" );
         $menuCacheFile->store( $output );
         print( $output );
     }

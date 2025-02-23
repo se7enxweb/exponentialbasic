@@ -37,9 +37,666 @@
 ### eZ Publish Basic User Module Views URL Calls Available
 The following user modules views are included in eZ Publish Basic:
 
-- ezabout
+- ez about
   - about
     - URI: /about
+
+- ez ad
+  - goto
+    - URI: /ad/goto
+  - show
+    - URI: /ad/show
+
+- ez article
+  - mailtofriend
+    - URI: /article/mailtofriend/1
+  - topiclist
+    - URI: /article/topiclist/1
+  - sitemap
+    - URI: /article/sitemap
+    - URI: /article/sitemap/1
+  - frontpage
+    - URI: /article/frontpage/1
+  - newsgroup
+    - URI: /article/newsgroup/1
+  - author list
+    - URI: /article/author/list
+    - URI: /article/author/list/name
+  - author view
+    - URI: /article/author/view/1
+  - archive
+    - URI: /article/archive/1
+  - search
+    - URI: /article/search
+  - index
+    - URI: /article/index/1
+  - extendedsearch
+    - URI: /article/archive/1
+  - articleheaderlist
+    - URI: /article/archive/1
+  - view
+    - URI: /article/view/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - articleuncached
+    - URI: /article/articleuncached/1
+  - print
+    - URI: /article/print/1
+  - static
+    - URI: /article/static/1
+  - rssheadlines
+    - URI: /article/rssheadlines/1
+  - articleedit new
+    - URI: /article/articleedit/new
+  - articleedit edit
+    - URI: /article/articleedit/edit/1
+  - articleedit insert
+    - URI: /article/articleedit/insert/1
+  - articleedit update
+    - URI: /article/articleedit/update/1
+  - articleedit cancel
+    - URI: /article/articleedit/cancel/1
+  - articleedit imagelist
+    - URI: /article/articleedit/imagelist/1
+  - articleedit filelist
+    - URI: /article/articleedit/filelist/1
+  - articleedit imageedit
+    - URI: /article/articleedit/imageedit
+  - articleedit imageedit new
+    - URI: /article/articleedit/imageedit/new
+  - articleedit imageedit edit
+    - URI: /article/articleedit/imageedit/edit/1
+  - articleedit imageedit storedef
+    - URI: /article/articleedit/imageedit/storedef/1
+  - articleedit fileedit new
+    - URI: /article/articleedit/fileedit/new
+  - articleedit fileedit delete
+    - URI: /article/articleedit/fileedit/delete
+  - xmlrpc
+    - URI: /article/xmlrpc
+
+- ez bug
+  - edit
+    - URI: /bug/edit/edit/1
+  - fileedit
+    - URI: /bug/edit/fileedit/
+  - fileedit new
+    - URI: /bug/edit/fileedit/new
+  - fileedit edit
+    - URI: /bug/edit/fileedit/edit/1
+  - fileedit delete
+    - URI: /bug/edit/fileedit/delete/1
+  - imageedit
+    - URI: /bug/edit/imageedit/
+  - imageedit new
+    - URI: /bug/edit/imageedit/new
+  - imageedit edit
+    - URI: /bug/edit/imageedit/edit/1
+  - imageedit delete
+    - URI: /bug/edit/imageedit/delete/1
+  - archive
+    - URI: /bug/archive/1
+  - search
+    - URI: /bug/search/1
+  - view
+    - URI: /bug/view/1
+  - report create
+    - URI: /bug/report/create
+  - report new
+    - URI: /bug/report/new
+  - report edit
+    - URI: /bug/report/edit/1
+  - report update
+    - URI: /bug/report/update/1
+  - report fileedit new
+    - URI: /bug/report/fileedit/new
+  - report fileedit edit
+    - URI: /bug/report/fileedit/edit/1
+  - report fileedit delete
+    - URI: /bug/report/fileedit/delete/1
+  - report imageedit new
+    - URI: /bug/report/imageedit/new
+  - report imageedit edit
+    - URI: /bug/report/imageedit/edit/1
+  - report imageedit delete
+    - URI: /bug/report/imageedit/delete/1
+  - unhandled
+    - URI: /bug/unhandled
+  - reportsuccess
+    - URI: /bug/reportsuccess
+
+- ez bulk mail
+  - subscriptionlist
+    - URI: /bulkmail/subscriptionlist
+  - bulklist
+    - URI: /bulkmail/bulklist
+  - newsubscription
+    - URI: /bulkmail/newsubscription
+  - login
+    - URI: /bulkmail/login
+  - confirmsubscription
+    - URI: /bulkmail/confirmsubscription
+  - singlelist
+    - URI: /bulkmail/bulklsinglelistist
+  - singlelistsubscribe
+    - URI: /bulkmail/singlelistsubscribe
+  - singlelistunsubscribe
+    - URI: /bulkmail/singlelistunsubscribe
+  - successfull
+    - URI: /bulkmail/successfull
+  - view
+    - URI: /bulkmail/view/1
+
+- ez calendar
+  - yearview
+    - URI: /calendar/yearview
+  - monthview
+    - URI: /calendar/monthview
+  - dayview
+    - URI: /calendar/dayview
+  - appointmentedit new
+    - URI: /calendar/appointmentedit/new
+  - appointmentedit edit
+    - URI: /calendar/appointmentedit/edit/1
+  - appointmentedit update
+    - URI: /calendar/appointmentedit/update/1
+  - appointmentedit insert
+    - URI: /calendar/appointmentedit/insert/1
+  - appointmentview
+    - URI: /calendar/appointmentview
+  - trustees
+    - URI: /calendar/trustees
+  - trustees edit
+    - URI: /calendar/trustees/edit
+
+- ez contact
+  - nopermission
+    - URI: /contact/nopermission
+  - nopermission company
+    - URI: /contact/nopermission/company
+  - nopermission category
+    - URI: /contact/nopermission/category
+  - nopermission person
+    - URI: /contact/nopermission/person
+  - nopermission login
+    - URI: /contact/nopermission/login
+  - nopermission consultation
+    - URI: /contact/nopermission/consultation
+  - nopermission type
+    - URI: /contact/nopermission/type
+  - search company
+    - URI: /contact/search/company
+  - search person
+    - URI: /contact/search/person
+  - person new
+    - URI: /contact/person/new
+  - person edit
+    - URI: /contact/person/edit/1
+  - person update
+    - URI: /contact/person/update/1
+  - person delete
+    - URI: /contact/person/delete/1
+  - person insert
+    - URI: /contact/person/insert/1
+  - person list
+    - URI: /contact/person/list
+  - person search
+    - URI: /contact/person/search
+  - person view
+    - URI: /contact/person/view
+  - person folder
+    - URI: /contact/person/folder
+  - person buy
+    - URI: /contact/person/buy
+  - company new
+    - URI: /contact/company/new
+  - company edit
+    - URI: /contact/company/edit/1
+  - company update
+    - URI: /contact/company/update/1
+  - company delete
+    - URI: /contact/company/delete/1
+  - company insert
+    - URI: /contact/company/insert/1
+  - company list
+    - URI: /contact/company/list
+  - company search
+    - URI: /contact/company/search
+  - company view
+    - URI: /contact/company/view
+  - company folder
+    - URI: /contact/company/folder
+  - company buy
+    - URI: /contact/company/buy
+  - companycategory new
+    - URI: /contact/companycategory/new
+  - company edit
+    - URI: /contact/companycategory/edit/1
+  - company update
+    - URI: /contact/companycategory/update/1
+  - company delete
+    - URI: /contact/companycategory/delete/1
+  - company insert
+    - URI: /contact/companycategory/insert/1
+  - consultation
+    - URI: /contact/consultation
+  - consultation new
+    - URI: /contact/consultation/new
+  - consultation edit
+    - URI: /contact/consultation/edit/1
+  - consultation update
+    - URI: /contact/consultation/update/1
+  - consultation delete
+    - URI: /contact/consultation/delete/1
+  - consultation insert
+    - URI: /contact/consultation/insert/1
+  - consultation list
+    - URI: /contact/consultation/list
+  - consultation view
+    - URI: /contact/consultation/view
+  - consultation company
+    - URI: /contact/consultation/company
+  - consultation company new
+    - URI: /contact/consultation/company/new
+  - consultation company edit
+    - URI: /contact/consultation/company/edit/1
+  - consultation company update
+    - URI: /contact/consultation/company/update/1
+  - consultation company delete
+    - URI: /contact/consultation/company/delete/1
+  - consultation company insert
+    - URI: /contact/consultation/company/insert/1
+  - consultation company list
+    - URI: /contact/consultation/company/list
+  - consultation company view
+    - URI: /contact/consultation/company/view/1
+  - consultation person
+    - URI: /contact/consultation/person
+  - consultation person new
+    - URI: /contact/consultation/person/new
+  - consultation person edit
+    - URI: /contact/consultation/person/edit/1
+  - consultation person update
+    - URI: /contact/consultation/person/update/1
+  - consultation person delete
+    - URI: /contact/consultation/person/delete/1
+  - consultation person insert
+    - URI: /contact/consultation/person/insert/1
+  - consultation person list
+    - URI: /contact/consultation/person/list
+  - consultation person view
+    - URI: /contact/consultation/person/view/1
+
+- ez error
+  - 403
+    - URI: /error/403
+  - 404
+    - URI: /error/404
+  - error
+    - URI: /error/error
+
+- ez example
+  - page
+    - URI: /example/page
+  - listtable
+    - URI: /example/listtable
+
+- ez filemanager
+  - new
+    - URI: /filemanager/new
+  - insert
+    - URI: /filemanager/insert
+  - edit
+    - URI: /filemanager/edit/1
+  - update
+    - URI: /filemanager/update/1
+  - fileview
+    - URI: /filemanager/fileview/1
+  - download
+    - URI: /filemanager/download/1
+  - list
+    - URI: /filemanager/list
+  - folder
+    - URI: /filemanager/folder
+  - folder new
+    - URI: /filemanager/folder/new
+  - folder edit
+    - URI: /filemanager/folder/edit/1
+  - folder update
+    - URI: /filemanager/folder/update/1
+  - folder insert
+    - URI: /filemanager/folder/insert/1
+  - folder delete
+    - URI: /filemanager/folder/delete/1
+  - search
+    - URI: /filemanager/search
+
+- ez form
+  - form view
+    - URI: /form/form/view/1
+  - form process
+    - URI: /form/form/process/1
+  - simpleprocess
+    - URI: /form/simpleprocess
+
+- ez forum
+  - userlogin
+    - URI: /forum/userlogin
+  - userlogin edit
+    - URI: /forum/userlogin/edit/1
+  - userlogin delete
+    - URI: /forum/userlogin/delete/1
+  - userlogin new
+    - URI: /forum/userlogin/new
+  - userlogin reply
+    - URI: /forum/userlogin/reply/1
+  - userlogin newsimple
+    - URI: /forum/userlogin/newsimple/1
+  - userlogin replysimple
+    - URI: /forum/userlogin/replysimple/1
+  - categorylist
+    - URI: /forum/categorylist/1
+  - forumlist
+    - URI: /forum/forumlist/1
+  - messagelist
+    - URI: /forum/messagelist/1
+  - messagelistflat
+    - URI: /forum/messagelistflat/1
+  - messagesimpleedit
+    - URI: /forum/messagesimpleedit/1
+  - messagesimplereply
+    - URI: /forum/messagmessagesimplereplyelistflat/1
+  - messageedit
+    - URI: /forum/messagemessageeditlistflat/1
+  - newpost
+    - URI: /forum/newpost/1
+  - mewsimple
+    - URI: /forum/mewsimple/1
+  - reply
+    - URI: /forum/reply/1
+  - reply reply
+    - URI: /forum/reply/reply/1
+  - reply preview
+    - URI: /forum/reply/preview/1
+  - reply new
+    - URI: /forum/reply/new
+  - reply edit
+    - URI: /forum/reply/edit/1
+  - reply completed
+    - URI: /forum/reply/completed/1
+  - reply insert
+    - URI: /forum/reply/insert/1
+  - reply update
+    - URI: /forum/reply/update/1
+  - reply delete
+    - URI: /forum/reply/delete/1
+  - message
+    - URI: /forum/message/1
+  - search
+    - URI: /forum/search
+
+
+- ez image catalogue
+  - customimage
+    - URI: /imagecatalogue/customimage/1
+  - imageview
+    - URI: /imagecatalogue/imageview/1
+  - search
+    - URI: /imagecatalogue/search
+  - image list
+    - URI: /imagecatalogue/image/list/1
+  - image new 
+    - URI: /imagecatalogue/image/new
+  - image imsert
+    - URI: /imagecatalogue/image/insert/1
+  - image edit
+    - URI: /imagecatalogue/image/edit/1
+  - image update
+    - URI: /imagecatalogue/image/update/1
+  - download
+    - URI: /imagecatalogue/download/1
+  - slideshow
+    - URI: /imagecatalogue/slideshow/1
+  - category new
+    - URI: /imagecatalogue/category/new
+  - category insert
+    - URI: /imagecatalogue/category/insert/1
+  - category edit
+    - URI: /imagecatalogue/category/edit/1
+  - category update
+    - URI: /imagecatalogue/category/update/1
+
+- ez link
+  - gotolink
+    - URI: /link/gotolink/1
+  - latest
+    - URI: /link/latest
+  - search
+    - URI: /link/search
+  - success
+    - URI: /link/success
+  - category
+    - URI: /link/category
+  - group
+    - URI: /link/group
+  - linklist
+    - URI: /link/linklist
+  - suggestlink
+    - URI: /link/suggestlink
+  - suggestlink insert
+    - URI: /link/suggestlink/insert
+
+- ez mail
+  - foldersort
+    - URI: /mail/foldersort/1
+  - folder
+    - URI: /mail/folder/1
+  - view
+    - URI: /mail/view/1
+  - folderedit
+    - URI: /mail/folderedit/1
+  - folderlist
+    - URI: /mail/folderlist/1
+  - mailedit
+    - URI: /mail/mailedit/1
+  - fileedit
+    - URI: /mail/fileedit/1
+  - config
+    - URI: /mail/config
+  - accountedit
+    - URI: /mail/accountedit/1
+  - check
+    - URI: /mail/check
+  - filteredit
+    - URI: /mail/filteredit/1
+  - search
+    - URI: /mail/search
+  - link
+    - URI: /mail/link/1
+
+- ez newsfeed
+  - latest
+    - URI: /newsfeed/latest
+  - latest by category id
+    - URI: /newsfeed/latest/1
+  - allcategories
+    - URI: /newsfeed/allcategories
+  - search
+    - URI: /newsfeed/search
+
+- ez poll
+  - polls
+    - URI: /poll/polls
+  - vote
+    - URI: /poll/vote/1
+  - result
+    - URI: /poll/result
+  - votebox
+    - URI: /poll/votebox/1
+  - votepage
+    - URI: /poll/votepage/1
+  - userlogin
+    - URI: /poll/userlogin/1
+  - test
+    - URI: /poll/test
+
+- ez quiz
+  - game
+    - URI: /quiz/game
+  - game future
+    - URI: /quiz/game/future
+  - game past
+    - URI: /quiz/game/past
+  - game list
+    - URI: /quiz/game/list
+  - game score
+    - URI: /quiz/game/score/1
+  - game scores
+    - URI: /quiz/game/scores/1
+  - game view
+    - URI: /quiz/game/view/1
+  - game play
+    - URI: /quiz/game/play/1
+  - game my
+    - URI: /quiz/game/my
+  - game my open
+    - URI: /quiz/game/my/open
+  - game my closed
+    - URI: /quiz/game/my/closed
+  - game my score
+    - URI: /quiz/game/my/score
+  - game my scores
+    - URI: /quiz/game/my/scores
+
+- ez search
+  - search
+    - URI: /search
+
+- ez site manager
+  - static
+    - URI: /sitemanager/static/1
+
+- ez stats
+  - stats
+    - URI: /stats/store
+
+- ez todo
+  - default
+    - URI: /todo
+  - todolist 
+    - URI: /todo/todolist
+  - todoedit new
+    - URI: /todo/todoedit/new
+  - todoedit insert
+    - URI: /todo/todoedit/insert/1
+  - todoedit edit
+    - URI: /todo/todoedit/edit/1
+  - todoedit update
+    - URI: /todo/todoedit/update/1
+  - todoedit delete
+    - URI: /todo/todoedit/delete/1
+  - todoview 
+    - URI: /todo/todoview/1
+  - todoinfo 
+    - URI: /todo/todoinfo
+
+- ez trade
+  - hotdealsgallery
+    - URI: /trade/hotdealsgallery
+  - hotdealsgallery
+    - URI: /trade/hotdealsgallery/1
+  - hotdealslist
+    - URI: /trade/hotdealslist
+  - hotdealslist
+    - URI: /trade/hotdealslist/1
+  - productgallery
+    - URI: /trade/productgallery
+  - productgallery
+    - URI: /trade/productgallery/1
+  - productlist
+    - URI: /trade/productlist
+  - productlist
+    - URI: /trade/productlist/1
+  - productview
+    - URI: /trade/productview/1
+  - productview by category id
+    - URI: /trade/productview/2/1
+  - print
+    - URI: /trade/print/1
+  - cart
+    - URI: /trade/cart
+  - cart add
+    - URI: /trade/cart/add
+  - cart remove
+    - URI: /trade/cart/remove
+  - wishlist
+    - URI: /trade/wishlist
+  - wishlist add 
+    - URI: /trade/wishlist/add/1
+  - wishlist remove
+    - URI: /trade/wishlist/remove/1
+  - wishlist movetocart
+    - URI: /trade/wishlist/movetocart/1
+  - viewwishlist
+    - URI: /trade/viewwishlist
+  - viewwishlist movetocart
+    - URI: /trade/viewwishlist/movetocart/1
+  - sendwishlist
+    - URI: /trade/sendwishlist
+  - voucherview
+    - URI: /trade/voucherview
+  - vouchermain
+    - URI: /trade/vouchermain
+  - voucheremailsample
+    - URI: /trade/voucheremailsample
+  - orderview
+    - URI: /trade/orderview/1
+  - findwishlist
+    - URI: /trade/findwishlist
+  - customerlogin
+    - URI: /trade/customerlogin
+  - precheckout
+    - URI: /trade/precheckout
+  - checkout
+    - URI: /trade/checkout
+  - payment
+    - URI: /trade/payment
+  - paypal
+    - URI: /trade/paypal/1
+  - confirmation
+    - URI: /trade/confirmation
+  - voucherinformation
+    - URI: /trade/voucherinformation
+  - ordersendt
+    - URI: /trade/ordersendt/1
+  - search
+    - URI: /trade/search
+  - search
+    - URI: /trade/search
+  - extendedsearch
+    - URI: /trade/extendedsearch
+  - orderlist
+    - URI: /trade/orderlist
+  - xmlrpc
+    - URI: /trade/xmlrpc
+  - xmlrpcimport
+    - URI: /trade/xmlrpcimport
 
 
 ### eZ Publish Basic Admin Module Views URL Calls Available

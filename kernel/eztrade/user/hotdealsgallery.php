@@ -51,7 +51,7 @@ $GenerateStaticPage = true;
 
 $PriceGroup = 0;
 
-if ( get_class( $user ) == "ezuser" )
+if ( is_object( $user ) && get_class( $user ) == "ezuser" )
 {
     $PriceGroup = eZPriceGroup::correctPriceGroup( $user->groups( false ) );
 }

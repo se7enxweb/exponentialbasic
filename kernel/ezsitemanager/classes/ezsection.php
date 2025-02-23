@@ -294,7 +294,7 @@ class eZSection
      \static
       Returns the language for this section.
     */
-    public function language( $sectionID=false )
+    static public function language( $sectionID=false )
     {
         if ( is_numeric ( $sectionID ) )
         {

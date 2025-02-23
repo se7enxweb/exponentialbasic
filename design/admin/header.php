@@ -83,7 +83,7 @@ if ( isset($url_array[2]) && ($url_array[2] == "archive" || $url_array[2] == "ar
     $GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
 
     if ($GlobalSectionID) {
-        $charsetLanguage = eZSection::language ( $GlobalSectionID );
+        $charsetLanguage = eZSection::language( $GlobalSectionID );
     }
 }
 else if ( isset($url_array[2]) && ($url_array[2] == "image" && ( $url_array[3] == "list" || $url_array[3] == "edit" )) )

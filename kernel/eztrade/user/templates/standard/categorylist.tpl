@@ -4,14 +4,14 @@
 	<td colspan="2" class="menuhead">{intl-products}</td>
 </tr>
 <tr>
-<td width="100%" valign="top">
+<td width="100%" colspan="2" valign="top">
 	<!-- BEGIN category_image_hot_deals_tpl -->
-		<a class="menu" href="{www_dir}{index}/trade/hotdealsgallery/"><img src="{www_dir}/sitedesign/{sitedesign}/images/product_categories/hot_deals.gif" width="130" height="23" border="0" />
+		<a class="menu" href="{www_dir}{index}/trade/hotdealsgallery/"><img src="{www_dir}/design/{sitedesign}/images/product_categories/hot_deals.gif" width="130" height="23" border="0" />
 	<!-- END category_image_hot_deals_tpl -->
 	
 	<!-- BEGIN category_image_list_tpl -->
 	<!-- BEGIN category_image_tpl -->
-		<a class="menu" href="{www_dir}{index}/trade/productgallery/{category_id}/"><img src="{www_dir}/sitedesign/{sitedesign}/images/product_categories/{category_image_name}" width="130" height="23" border="0" />
+		<a class="menu" href="{www_dir}{index}/trade/productgallery/{category_id}/"><img src="{www_dir}/design/{sitedesign}/images/product_categories/{category_image_name}" width="130" height="23" border="0" />
 	<!-- END category_image_tpl -->
 	<!-- END category_image_list_tpl -->
 
@@ -23,8 +23,7 @@
 
 <!-- BEGIN category_tpl -->
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12"><br /></td>
-	<td width="99%"><a class="menu" href="{www_dir}{index}/trade/productlist/{category_id}/">{category_name}</a></td>
+	<td colspan="2"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12">&nbsp;<a class="menu" href="{www_dir}{index}/trade/productlist/{category_id}/">{category_name}</a></td>
 </tr>
 <!-- END category_tpl -->
 <tr>

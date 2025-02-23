@@ -42,8 +42,8 @@ if ( isset( $Action ) && $Action == "Verify" )
     $PaymentSuccess = "true";    
 }
 
-$t = new eZTemplate( "checkout/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
-                     "checkout/user/intl/", $Language, "visa.php" );
+$t = new eZTemplate( "kernel/classes/checkout/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+                     "kernel/classes/checkout/user/intl/", $Language, "visa.php" );
 
 $t->set_file( "visa_tpl", "visa.tpl" );
 

@@ -250,6 +250,7 @@ CREATE TABLE eZTrade_Product (
   ExpiryTime int(11) NOT NULL default '0',
   Published int(11) default NULL,
   IncludesVAT int(1) default '1',
+  CatalogNumber varchar(200) default NULL,
   PRIMARY KEY (ID)
 );
 

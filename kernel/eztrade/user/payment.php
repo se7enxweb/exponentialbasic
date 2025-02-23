@@ -40,6 +40,56 @@ $session =& eZSession::globalSession();
 // fetch the cart
 $cart = new eZCart();
 $cart = $cart->getBySession( $session, "Cart" );
+$RequireUserLogin = true;
+
+$Language =& $ini->read_var( "eZTradeMain", "Language" );
+$locale = new eZLocale( $Language );
+
+function deleteCache($ProductID, $CategoryID, $CategoryArray, $Hotdeal )
+{
+    if ( is_a( $ProductID, "eZProduct" ) )
+    {
+        $CategoryID =& $ProductID->categoryDefinition( false );
+        $CategoryArray =& $ProductID->categories( false );
+        $Hotdeal = $ProductID->isHotDeal();
+        $ProductID = $ProductID->id();
+    }
+
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
+                                                          $ProductID, $CategoryID ),
+                                 "cache", "," );
+    foreach ( $files as $file )
+    {
+        $file->delete();
+    }
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "productlist",
+                                                          array_merge( array( $CategoryID ), $CategoryArray ) ),
+                                 "cache", "," );
+
+    foreach ( $files as $file )
+    {
+        $file->delete();
+    }
+    if ( $Hotdeal )
+    {
+        $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "hotdealslist", NULL ),
+                                     "cache", "," );
+        foreach ( $files as $file )
+        {
+            $file->delete();
+        }
+    }
+    $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
+                                  array( "articlefrontpage",
+                                         NULL,
+                                         NULL),
+                                  "cache", "," );
+    foreach( $files as $file )
+    {
+        $file->delete();
+    }
+
+}
 
 if ( !$cart )
 {
@@ -83,12 +133,14 @@ $Comment = $session->variable( "Comment" ) ;
 
 $PreOrderID = $session->variable( "PreOrderID" );
 
+$currency = new eZCurrency();
 $checkout = new eZCheckout();
 $instance =& $checkout->instance();
 
 $paymentMethod = $session->arrayValue( "PaymentMethod" );
 $paymentMethod = $paymentMethod[0];
 
+var_dump( $instance->paymentFile( $paymentMethod ) );
 
 
 if ( $paymentMethod == true and $paymentMethod != "voucher_done" )
@@ -160,7 +212,6 @@ if ( $PaymentSuccess == true )
 
             // product price
 
-        $priceobj = new eZCurrency();
         
         if ( ( !$RequireUserLogin or get_class( $user ) == "ezuser" ) and
              $ShowPrice and $product->showPrice() == true  )
@@ -215,10 +266,10 @@ if ( $PaymentSuccess == true )
     //
     // Send mail confirmation
     //      
-    $mailTemplate = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
-                                    "eztrade/user/intl", $Language, "/mailorder.php" );
+    $mailTemplate = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+                                    "kernel/eztrade/user/intl", $Language, "/mailorder.php" );
 
-    $mailTemplateIni = new INIFile( "eztrade/user/intl/" . $Language . "/ordersendt.php.ini", false );
+    $mailTemplateIni = new INIFile( "kernel/eztrade/user/intl/" . $Language . "/ordersendt.php.ini", false );
     $mailTemplate->set_file( "order_sendt_tpl", "mailorder.tpl" );
     $mailTemplate->setAllStrings();
 
@@ -487,7 +538,7 @@ if ( $PaymentSuccess == true )
         $len_product_total_inc_tax = strlen( $shipinctax ) > $len_product_total_inc_tax ? strlen( $shipinctax ) : $len_product_total_inc_tax;
     }
 
-    if ( count ( $productOptions ) > 0 )
+    if ( isset( $productOptions ) && count ( $productOptions ) > 0 )
     {
         foreach( $productOptions as $line )
         {
@@ -698,7 +749,7 @@ if ( $PaymentSuccess == true )
 
         $mailTemplate->set_var( "site_url", $SiteURL );
         $mailBody = $mailTemplate->parse( "dummy", "full_cart_tpl" );
-        $subjectINI = new INIFile( "eztrade/user/intl/" . $Language . "/mailorder.php.ini", false );
+        $subjectINI = new INIFile( "kernel/eztrade/user/intl/" . $Language . "/mailorder.php.ini", false );
 
         $mailSubjectUser = $subjectINI->read_var( "strings", "mail_subject_user" ) . " " . $ini->read_var( "site", "SiteURL" );
         $mailSubject = $subjectINI->read_var( "strings", "mail_subject_admin" ) . " " . $ini->read_var( "site", "SiteURL" );
@@ -996,7 +1047,7 @@ if ( $PaymentSuccess == true )
 
     if ( is_array ( $payedWith ) )
     {
-        while( list($voucherID,$price) = each( $payedWith ) )
+        foreach( $payedWith as $voucherID => $price )
         {
             $voucher = new eZVoucher( $voucherID );
             $voucher->setPrice( $voucher->price() - $price );

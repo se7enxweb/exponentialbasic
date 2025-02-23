@@ -973,6 +973,9 @@ $t->pparse( "output", "article_list_page_tpl" );
 
 // set variables for meta information
 // $SiteTitleAppend = $category->name();
+$SiteTitleAppend = '';
+$SiteDescriptionOverride = '';
+$eZLanguageOverride = '';
 
 if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {

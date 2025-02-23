@@ -35,7 +35,7 @@ $GenerateStaticPage = "false";
 if ( $PageCaching == "enabled" )
 {
     // include_once( "classes/ezcachefile.php" );
-    $CacheFile = new eZCacheFile( "eztrade/cache/",
+    $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                   array( "cateorylist", $CategoryID, $GlobalSiteDesign ), 
                                   "cache", "," );
     if ( $CacheFile->exists() )
@@ -77,6 +77,10 @@ if ( $PureStatic == "false" )
     $t->set_block( "category_list_page_tpl", "category_list_tpl", "category_list" );
     $t->set_block( "category_list_tpl", "category_tpl", "category" );
 
+	$t->set_block( "category_list_tpl",'category_image_hot_deals_tpl', "category_image_hot_deals" );
+    $t->set_block( "category_list_tpl", "category_image_list_tpl", "category_image_list" );
+    $t->set_block( "category_image_list_tpl", "category_image_tpl", "category_image" );
+    $t->set_block( "category_list_tpl", "category_text_hot_deals_tpl", "category_text_hot_deals" );
 
     $t->setAllStrings();
 

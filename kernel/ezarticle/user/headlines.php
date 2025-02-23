@@ -174,7 +174,7 @@ if ( !function_exists( "createHeadlinesMenu" )  )
 
             if ( is_a( $menuCacheFile, "eZCacheFile" ) )
             {
-                $output =& $t->parse( $target, "article_list_page_tpl" );
+                $output =& $t->parse( "output", "article_list_page_tpl" );
                 $menuCacheFile->store( $output );
                 print( $output );
             }
@@ -205,7 +205,7 @@ if ( $PageCaching == "enabled" )
     else
         $user = 0;
 
-    $menuCacheFile = new eZCacheFile( "ezarticle/cache",
+    $menuCacheFile = new eZCacheFile( "kernel/ezarticle/cache",
                                       array( "menubox_headlines", $GlobalSiteDesign, $CategoryID, $groupstr ),
                                       "cache", "," );
 

@@ -153,7 +153,7 @@ if ( isset( $DeleteCategories ) )
     if ( count( $CategoryArrayID ) != 0 )
     {
         /** Delete menubox cache **/
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                  array( "menubox", NULL ),
                                  "cache", "," );
         foreach ( $files as $file )
@@ -172,7 +172,7 @@ if ( isset( $DeleteCategories ) )
                 $category->delete();
         }
         $categories = array_unique( $categories );
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "articlelist",
                                              $categories, NULL ),
                                       "cache", "," );
@@ -241,7 +241,7 @@ if ( isset( $MoveCategoryUp ) || isset( $MoveCategoryDown ) )
     }
 
     /** Clear cache when moving stuff arround **/
-    $files =& eZCacheFile::files( "ezarticle/cache/",
+    $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                  array( "menubox", NULL ),
                                  "cache", "," );
     
@@ -249,7 +249,7 @@ if ( isset( $MoveCategoryUp ) || isset( $MoveCategoryDown ) )
     {
         $file->delete();
     }
-    $files =& eZCacheFile::files( "ezarticle/cache/",
+    $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                  array( "articlelist", $CategoryID, NULL, NULL ), "cache", "," );
     foreach ( $files as $file )
     {

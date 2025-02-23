@@ -34,7 +34,7 @@ $GenerateStaticPage = "false";
 if ( $PageCaching == "enabled" )
 {
     // include_once( "classes/ezcachefile.php" );
-    $CacheFile = new eZCacheFile( "eztrade/cache/",
+    $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                   array( "smallproductlist", $CategoryID, $GlobalSiteDesign ), 
                                   "cache", "," );
     if ( $CacheFile->exists() )

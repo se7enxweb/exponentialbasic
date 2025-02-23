@@ -880,14 +880,14 @@ class eZOrderConfirmation
             $ProductID = $ProductID->id();
         }
 
-        $files = eZCacheFile::files( "eztrade/cache/", array( array( "productview", "productprint" ),
+        $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
                                                               $ProductID, $CategoryID ),
                                      "cache", "," );
         foreach ( $files as $file )
         {
             $file->delete();
         }
-        $files = eZCacheFile::files( "eztrade/cache/",
+        $files = eZCacheFile::files( "kernel/eztrade/cache/",
                                      array( "productlist",
                                             array_merge( $CategoryID, $CategoryArray ) ),
                                      "cache", "," );
@@ -898,7 +898,7 @@ class eZOrderConfirmation
 
         if ( $Hotdeal )
         {
-            $files = eZCacheFile::files( "eztrade/cache/", array( "hotdealslist", NULL ),
+            $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "hotdealslist", NULL ),
                                          "cache", "," );
             foreach ( $files as $file )
             {

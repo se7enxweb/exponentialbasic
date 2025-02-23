@@ -979,7 +979,10 @@ class eZProduct
     */
     function &catalogNumber( )
     {
-    return htmlspecialchars( $this->CatalogNumber );
+        if ( is_null( $this->CatalogNumber ) )
+            return false;
+
+    return htmlspecialchars( string: $this->CatalogNumber );
     }
     /*!
       Returns the XML contents of the product.
@@ -1538,7 +1541,7 @@ class eZProduct
       Searches through every product and returns the result as an array
       of eZProduct objects.
     */
-    function activeProductSearch( $sortMode="time", $query, $offset, $limit )
+    function activeProductSearch( $sortMode="time", $query=false, $offset=false, $limit=false )
     {
         $db =& eZDB::globalDatabase();
         $ret = array();

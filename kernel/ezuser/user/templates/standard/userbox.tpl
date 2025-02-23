@@ -5,7 +5,7 @@
 </tr>
 <tr>
 	<td colspan="2" class="menubold">
-	{intl-userlogin}:
+	{intl-userlogin}
 	</td>
 </tr>
 <tr>

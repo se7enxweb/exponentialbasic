@@ -345,7 +345,7 @@ if ( $GenerateStaticPage == "true" )
 {
     if ( $user )
         $CategoryArray =& $user->groups( false );
-    $cache = new eZCacheFile( "eztrade/cache/", array( "productgallery", $CategoryArray, $Offset, $PriceGroup ),
+    $cache = new eZCacheFile( "kernel/eztrade/cache/", array( "productgallery", $CategoryArray, $Offset, $PriceGroup ),
                               "cache", "," );
 
     // add PHP code in the cache file to store variables

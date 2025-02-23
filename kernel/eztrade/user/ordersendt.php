@@ -56,6 +56,8 @@ $ShowSavingsColumn = false;
 $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "ordersendt.php" );
 
+$translation = new INIFile( "kernel/eztrade/user/intl/" . $Language . "/ordersendt.php.ini", false );
+
 $t->setAllStrings();
 
 $t->set_file( "order_sendt_tpl", "ordersendt.tpl" );
@@ -677,30 +679,35 @@ $t->set_var( "order_id", $OrderID );
 // graham@brookinsconsulting.com - 12-19-2001:11:45
 // dynamic internal printable reciept link
 
-if ( $ini->read_var( "eZTradeMain", "ShowPrintableRecieptLink" ) == "enabled" )
+if ( $PrintableVersion = $ini->read_var( "eZTradeMain", "ShowPrintableRecieptLink" ) )
 {
 switch ($PrintableVersion) {
     case "enabled":
         $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=disabled";
-        $printable_reciept_text = "{intl-web_reciept}";
+        $printable_reciept_text = $translation->read_var( "Strings", "web_reciept" );
         break;
     case "disabled":
         $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=enabled";
-        $printable_reciept_text = "{intl-printable_reciept}";
+        $printable_reciept_text = $translation->read_var( "Strings", "printable_reciept" );
         break;
     case "":
         $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=enabled";
-        $printable_reciept_text = "{intl-printable_reciept}";
+        $printable_reciept_text = $translation->read_var( "Strings", "printable_reciept" );
         break;
-        }
+    }
+
+    $t->set_var( "printable_reciept_text", $printable_reciept_text );
+    $t->set_var( "printable_reciept_link", $printable_reciept_link );
+    //$t->parse( "printable_reciept" , "printable_reciept_tpl", true);
+    $t->parse( "printable_reciept" , "printable_reciept_tpl" );
+}
+else
+{
+    $t->set_var( "printable_reciept", "" );
 }
 
-$t->set_var( "printable_reciept_text", $printable_reciept_text );
-$t->set_var( "printable_reciept_link", $printable_reciept_link );
 $t->setAllStrings();
 
-//$t->parse( "printable_reciept" , "printable_reciept_tpl", true);
-$t->parse( "printable_reciept" , "printable_reciept_tpl" );
 $t->pparse( "output", "order_sendt_tpl" );
 
 ?>

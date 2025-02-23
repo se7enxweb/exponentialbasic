@@ -3,19 +3,19 @@
 	<td class="menuhead" colspan="{hotdeal_columns}">{intl-hot_deals}</td>
 </tr>
 
-<!-- BEGIN product_list_tpl -->
+<!-- BEGIN hdl_product_list_tpl -->
 
-<!-- BEGIN product_tpl -->
+<!-- BEGIN hdl_product_tpl -->
 {begin_tr}
 	<td class="menutext">
 	<a class="menutext" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/"><b>{product_name}</b></a><br />
-	<!-- BEGIN product_image_tpl -->
+	<!-- BEGIN hdl_product_image_tpl -->
 	<a href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/"><img src="{www_dir}{product_image_path}" border="0" width="{product_image_width}" height="{product_image_height}" alt="{product_image_caption}"/></a>
-	<!-- END product_image_tpl -->
+	<!-- END hdl_product_image_tpl -->
 	<div><span class="menutext">{product_intro_text}</span></div>
-<!-- BEGIN price_tpl -->
+<!-- BEGIN hdl_price_tpl -->
 	<span class="pris">{product_price}</span>
-<!-- END price_tpl -->
+<!-- END hdl_price_tpl -->
 <!-- BEGIN add_to_cart_tpl -->
 <form action="{www_dir}{index}/{module}/{action_url}/{product_id}/" method="post">
 <div calss="spacer"><div class="pris">
@@ -25,13 +25,13 @@
 	</td>
 {end_tr}
 
-<!-- END product_tpl -->
+<!-- END hdl_product_tpl -->
 
 <tr>
 	<td class="menuspacer" colspan="{hotdeal_columns}">&nbsp;</td>
 </tr>
 
 
-<!-- END product_list_tpl -->
+<!-- END hdl_product_list_tpl -->
 
 </table>

@@ -61,20 +61,20 @@ $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "Te
 
 if ( isset( $HotDealsPage ) )
 {
-    $t->set_file( "product_list_page_tpl", "hotdealspage.tpl" );
+    $t->set_file( "hdl_product_list_page_tpl", "hotdealspage.tpl" );
 }
 else
 {
     if ( !isset( $HotDealsTemplate ) )
         $HotDealsTemplate = "hotdealslist.tpl";
-    $t->set_file( "product_list_page_tpl", $HotDealsTemplate );
+    $t->set_file( "hdl_product_list_page_tpl", $HotDealsTemplate );
 }
 
-$t->set_block( "product_list_page_tpl", "header_tpl", "header" );
-$t->set_block( "product_list_page_tpl", "product_list_tpl", "product_list" );
-$t->set_block( "product_list_tpl", "product_tpl", "product" );
-$t->set_block( "product_tpl", "product_image_tpl", "product_image" );
-$t->set_block( "product_tpl", "price_tpl", "price" );
+$t->set_block( "hdl_product_list_page_tpl", "hdl_header_tpl", "header" );
+$t->set_block( "hdl_product_list_page_tpl", "hdl_product_list_tpl", "hdl_product_list" );
+$t->set_block( "hdl_product_list_tpl", "hdl_product_tpl", "hdl_product" );
+$t->set_block( "hdl_product_tpl", "hdl_product_image_tpl", "hdl_product_image" );
+$t->set_block( "hdl_product_tpl", "hdl_price_tpl", "hdl_price" );
 
 $t->set_block( "product_gallary_page_tpl", "add_to_cart_tpl", "add_to_cart" );
 
@@ -82,6 +82,8 @@ if ( !isset( $ModuleName ) )
     $ModuleName = "trade";
 if ( !isset( $ModuleView ) )
     $ModuleView = "productview";
+
+$ModuleList = "productgallary";
 
 $t->set_var( "module", $ModuleName );
 $t->set_var( "module_view", $ModuleView );
@@ -92,21 +94,27 @@ $t->setAllStrings();
 
 $product = new eZProduct(  );
 
+$HotDealColumns = 2;
+
 if ( !isset( $MaxHotDeals ) )
     $MaxHotDeals = false;
 if ( isset( $HotDealColumns ) )
-    $hotDealColumns = $HotDealColumns;
-$t->set_var( "hotdeal_columns", $hotDealColumns );
+    $hotDealListColumns = $HotDealColumns;
+
+$t->set_var( "hotdeal_columns", $hotDealListColumns );
 
 // products
 $productList =& $product->hotDealProducts( $MaxHotDeals );
 
 $locale = new eZLocale( $Language );
 $i=0;
+$groupi = 0;
+$hotDealListColumns = 1;
 $trEnded = false;
+
 foreach ( $productList as $product )
 {
-    $gallaryarraysize =  sizeof($productgallary) - 1;
+    $gallaryarraysize =  sizeof($productList) - 1;
     $groupi_size = $groupi; // - 1;
     $groupitemnumber = $hotDealListColumns;
     $groupitempreceeding = $groupitemnumber - 1;
@@ -165,7 +173,7 @@ foreach ( $productList as $product )
                 $t->set_var( "thumbnail_image_height", $thumbnail->height() );
                 $t->set_var( "thumbnail_image_caption", $image->caption() );
             }
-            $t->parse( "product_image", "product_image_tpl" );
+            $t->parse( "hdl_product_image", "hdl_product_image_tpl" );
         }
         else
         {
@@ -176,7 +184,7 @@ foreach ( $productList as $product )
     }
     else
     {
-        $t->set_var( "product_image", "" );
+        $t->set_var( "hdl_product_image", "" );
     }
 
     if ( ( !$RequireUser || is_a( $user, "eZUser") ) &&
@@ -191,11 +199,11 @@ foreach ( $productList as $product )
             $t->set_var( "product_price", "" );
         }
 
-        $t->parse( "price", "price_tpl" );
+        $t->parse( "hdl_price", "hdl_price_tpl" );
     }
     else
     {
-        $t->set_var( "price", "" );
+        $t->set_var( "hdl_price", "" );
     }
 
     $defCat = $product->categoryDefinition();
@@ -207,17 +215,17 @@ foreach ( $productList as $product )
     $t->set_var( "action_url", "cart/add" );
     $t->parse( "add_to_cart", "add_to_cart_tpl" );
 
-    $t->parse( "product", "product_tpl", true );
+    $t->parse( "hdl_product", "hdl_product_tpl", true );
     $i++;
 }
 
 if ( count( $productList ) > 0 )
 {
-    $t->parse( "product_list", "product_list_tpl" );
+    $t->parse( "hdl_product_list", "hdl_product_list_tpl" );
 }
 else
 {
-    $t->set_var( "product_list", "" );
+    $t->set_var( "hdl_product_list", "" );
 }
 
 
@@ -225,17 +233,17 @@ else
 if ( $GenerateStaticPage == "true" )
 {
     // include_once( "classes/ezcachefile.php" );
-    $CacheFile = new eZCacheFile( "eztrade/cache/",
+    $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                   array( "hotdealslist", $PriceGroup ),
                                   "cache", "," );
-    $output = $t->parse( $target, "product_list_page_tpl" );
+    $output = $t->parse( "output", "product_list_page_tpl" );
     // print the output the first time while printing the cache file.
     print( $output );
     $CacheFile->store( $output );
 }
 else
 {
-    $t->pparse( "output", "product_list_page_tpl" );
+    $t->pparse( "output", "hdl_product_list_page_tpl" );
 }
 
 

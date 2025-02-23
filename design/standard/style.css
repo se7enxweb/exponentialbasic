@@ -298,9 +298,9 @@ td.menu-right {
  * Date: 2024/11/17
  */
 @media screen and (max-width: 575.98px) {
-	.main-body tr {
+	/* .main-body tr {
 		display: grid;
-	}
+	} */
 
 	td.menu-left {
 		width: auto;

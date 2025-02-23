@@ -33,7 +33,7 @@ unset( $GenerateStaticPage );
 if ( $PageCaching == "enabled" )
 {
     // include_once( "classes/ezcachefile.php" );
-    $CacheFile = new eZCacheFile( "ezarticle/cache/",
+    $CacheFile = new eZCacheFile( "kernel/ezarticle/cache/",
                                   array( "articlelinklist", $CategoryID, $url_array[3], $GlobalSiteDesign ),
                                   "cache", "," );
     if ( $CacheFile->exists() )
@@ -133,7 +133,7 @@ if ( $PureStatic != "true" )
 
     if ( isset( $GenerateStaticPage ) and $GenerateStaticPage == "true" )
     {
-        $output = $t->parse( $target, "article_list_page_tpl" );
+        $output = $t->parse( "output", "article_list_page_tpl" );
         // print the output the first time while printing the cache file.
         print( $output );
         $CacheFile->store( $output );

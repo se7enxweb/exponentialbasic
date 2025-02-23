@@ -186,7 +186,9 @@ $t->set_var( "cart_sum", $locale->format( $currency ) );
 $currency->setValue( $total["tax"] );
 $t->set_var( "cart_vat_sum", $locale->format( $currency ) );
 
-
+// graham@brookinsconsulting.com - 12-19-2001: add sub total to small cart display
+$currency->setValue( $sum );
+$t->set_var( "subtotal_sum", $locale->format( $currency ) );
 
 if ( count( $items ) > 0 and $can_checkout )
 {

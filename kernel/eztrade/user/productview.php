@@ -180,7 +180,7 @@ $t->set_block( "value_tpl", "value_availability_item_tpl", "value_availability_i
 $t->set_block( "value_tpl", "value_price_currency_list_tpl", "value_price_currency_list" );
 
 $t->set_block( "value_price_currency_list_tpl", "value_price_currency_item_tpl", "value_price_currency_item" );
-$t->set_block( "product_view_tpl", "external_link_tpl", "external_link" );
+//$t->set_block( "product_view_tpl", "external_link_tpl", "external_link" );
 $t->set_block( "product_view_tpl", "attribute_list_tpl", "attribute_list" );
 
 $t->set_block( "attribute_list_tpl", "attribute_tpl", "attribute" );
@@ -213,9 +213,17 @@ $t->set_var( "price_range", "" );
 $t->set_var( "price_to_high", "" );
 $t->set_var( "price_to_low", "" );
 
+$MailMethod = 1;
+
 if ( isset ( $Voucher ) )
 {
     $range = $product->priceRange();
+    
+    if ( isset( $_REQUEST['PriceRange'] ) )
+        $PriceRange = $_REQUEST['PriceRange'];
+    else
+        $PriceRange = $range->min();
+
     $error = false;
     if ( ( $range->min() != 0 ) && ( $range->min() > $PriceRange ) )
     {
@@ -575,6 +583,8 @@ if ( trim( $product->externalLink() ) != "" )
 else
 {
     $t->set_var( "external_link", "" );
+    $t->set_var( "external_link_url", "" );
+    $t->parse( "external_link", "external_link_tpl" );
 }
 
 $t->set_var( "product_number_item", "" );

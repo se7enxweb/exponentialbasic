@@ -191,7 +191,6 @@ else
 	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="130" height="8" border="0" alt="" /><br />
 	</td>
 
-	<td width="1%" bgcolor="#ffffff"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="2" height="1" border="0" alt="" /></td>
     <td class="main-body" width="96%" bgcolor="#ffffff">
 
     <!-- Banner start -->
@@ -216,8 +215,6 @@ else
 
 	<br />
     </td>
-   	<td width="1%" bgcolor="#ffffff"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="2" height="1" border="0" alt="" /></td>
-
 	<td class="menu-left" width="1%" bgcolor="#f4fbf4">
 
    	<!-- Right menu start -->

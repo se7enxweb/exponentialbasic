@@ -23,10 +23,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
 
 $ini =& INIFile::globalINI();
 
@@ -37,18 +37,20 @@ $hotDealImageHeight  = $ini->read_var( "eZTradeMain", "HotDealImageHeight" );
 $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
 
-include_once( "ezuser/classes/ezuser.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "ezuser/classes/ezuser.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
 
 $user =& eZUser::currentUser();
 
-$RequireUser = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
+$RequireUserLogin = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
 $ShowPrice = $RequireUser ? get_class( $user ) == "ezuser" : true;
+$GenerateStaticPage = true;
 
 $PriceGroup = 0;
+
 if ( get_class( $user ) == "ezuser" )
 {
     $PriceGroup = eZPriceGroup::correctPriceGroup( $user->groups( false ) );
@@ -56,8 +58,8 @@ if ( get_class( $user ) == "ezuser" )
 if ( !$ShowPrice )
     $PriceGroup = -1;
 
-$t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
-                     "eztrade/user/intl/", $Language, "hotdealsgallery.php" );
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+                     "kernel/eztrade/user/intl/", $Language, "hotdealsgallery.php" );
 
 if ( isset( $HotDealsPage ) )
 {
@@ -112,7 +114,7 @@ $groupi = 0;
 
 foreach ( $productList as $product )
 {
-    $gallaryarraysize =  sizeof($productgallary) - 1;
+    $gallaryarraysize =  sizeof($productList) - 1;
     $groupi_size = $groupi; // - 1;
     $groupitemnumber = 3;
     $groupitempreceeding = $groupitemnumber - 1;
@@ -249,11 +251,11 @@ else
 
 if ( $GenerateStaticPage == "true" )
 {
-    include_once( "classes/ezcachefile.php" );
-    $CacheFile = new eZCacheFile( "eztrade/cache/",
+    // include_once( "classes/ezcachefile.php" );
+    $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                   array( "hotdealsgallery", $PriceGroup ),
                                   "cache", "," );
-    $output = $t->parse( $target, "product_list_page_tpl" );
+    $output = $t->parse( "output", "product_list_page_tpl" );
     // print the output the first time while printing the cache file.
     print( $output );
     $CacheFile->store( $output );

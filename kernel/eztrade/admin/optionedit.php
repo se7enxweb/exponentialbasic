@@ -55,7 +55,7 @@ if ( isset( $DeleteOption ) )
         $option->delete();
     }
 
-    $files = eZCacheFile::files( "eztrade/cache/", array( array( "productview", "productprint" ),
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
                                                           $ProductID, NULL ),
                                  "cache", "," );
     foreach( $files as $file )
@@ -177,7 +177,7 @@ if ( isset( $OK ) )
         $i++;
     }
 
-    $files = eZCacheFile::files( "eztrade/cache/", array( array( "productview", "productprint" ),
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
                                                           $ProductID, NULL ),
                                  "cache", "," );
     foreach( $files as $file )

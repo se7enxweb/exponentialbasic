@@ -79,17 +79,17 @@ class eZCheckoutSupplier
     */
     function &paymentFile( $id )
     {
-        $ret = "checkout/user/visa.php";
+        $ret = "kernel/classes/checkout/user/visa.php";
         switch( $id )
         {
             case 1 :
             {
-                $ret = "checkout/user/visa.php";
+                $ret = "kernel/classes/checkout/user/visa.php";
             }break;
 
             case 2 :
             {
-                $ret = "checkout/user/invoice.php";
+                $ret = "kernel/classes/checkout/user/invoice.php";
             }break;
         }
         return $ret;

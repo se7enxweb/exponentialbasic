@@ -341,7 +341,7 @@ switch ( $url_array[2] )
         $showComments = false;
         if ( $PageCaching == "enabled" )
         {
-            $cachedFile = "kernel/ezarticle/cache/articleview," . $ArticleID . ",". $PageNumber . "," . $CategoryID . "," . ( $PrintableVersion == "enabled" )  . "," . $groupstr  .".cache";
+            $cachedFile = "kernel/ezarticle/cache/articleview," . $ArticleID . ",". $PageNumber . "," . $CategoryID . "," . ( isset( $PrintableVersion ) && $PrintableVersion == "enabled" )  . "," . $groupstr  .".cache";
             if ( eZFile::file_exists( $cachedFile ) )
             {
                 include( $cachedFile );

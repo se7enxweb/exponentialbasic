@@ -49,14 +49,14 @@ class eZProductTool
         $Hotdeal = $product->isHotDeal();
         $ProductID = $product->id();
 
-        $files = eZCacheFile::files( "eztrade/cache/", array( array( "productview", "productprint" ),
+        $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
                                                               $ProductID, $CategoryID ),
                                      "cache", "," );
         foreach( $files as $file )
         {
             $file->delete();
         }
-        $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
+        $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "productlist",
                                                               array_merge( $CategoryID, $CategoryArray ) ),
                                      "cache", "," );
         foreach( $files as $file )
@@ -65,7 +65,7 @@ class eZProductTool
         }
         if ( $Hotdeal )
         {
-            $files = eZCacheFile::files( "eztrade/cache/", array( "hotdealslist", NULL ),
+            $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "hotdealslist", NULL ),
                                          "cache", "," );
             foreach( $files as $file )
             {
@@ -73,7 +73,7 @@ class eZProductTool
             }
         }
 
-        $files =& eZCacheFile::files( "ezarticle/cache/",
+        $files =& eZCacheFile::files( "kernel/ezarticle/cache/",
                                       array( "articlefrontpage",
                                              NULL,
                                              NULL),

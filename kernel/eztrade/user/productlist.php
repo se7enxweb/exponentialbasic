@@ -162,7 +162,7 @@ if ( !isset( $Offset ) or !is_numeric( $Offset ) )
 
 // products
 $TotalTypes =& $category->productCount( $category->sortMode(), false );
-$productList =& $category->activeProducts( $category->sortMode(), $Offset, $Limit );
+$productList =& $category->activeProducts( $category->sortMode(), $Offset, $Limit, $category->id() );
 
 $locale = new eZLocale( $Language );
 $i = 0;
@@ -277,7 +277,7 @@ if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
     if ( $user )
         $CategoryArray =& $user->groups( false );
-    $cache = new eZCacheFile( "eztrade/cache/", array( "productlist", $CategoryArray, $Offset, $PriceGroup ),
+    $cache = new eZCacheFile( "kernel/eztrade/cache/", array( "productlist", $CategoryArray, $Offset, $PriceGroup ),
                               "cache", "," );
 
     // add PHP code in the cache file to store variables
@@ -287,7 +287,7 @@ if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
     $output .= "\$SiteDescriptionOverride=\"$SiteDescriptionOverride\";\n";    
     $output .= "?>\n";
     
-    $output .= $t->parse( $target, "product_list_page_tpl" );
+    $output .= $t->parse( "output", "product_list_page_tpl" );
     print( $output );
     $CacheFile->store( $output );
 }

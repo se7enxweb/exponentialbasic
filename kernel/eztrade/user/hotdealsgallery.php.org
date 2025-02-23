@@ -231,7 +231,7 @@ else
 if ( $GenerateStaticPage == "true" )
 {
     include_once( "classes/ezcachefile.php" );
-    $CacheFile = new eZCacheFile( "eztrade/cache/",
+    $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                   array( "hotdealsgallery", $PriceGroup ),
                                   "cache", "," );
     $output = $t->parse( $target, "product_list_page_tpl" );

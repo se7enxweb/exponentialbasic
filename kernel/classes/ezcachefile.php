@@ -32,7 +32,7 @@ include_once( "kernel/classes/ezdatetime.php" );
 /*!
   Example:
   \code
-  $file = new eZCacheFile( "ezarticle/cache", array( "articleview", 1, 2 ), "cache", "," );
+  $file = new eZCacheFile( "kernel/ezarticle/cache", array( "articleview", 1, 2 ), "cache", "," );
   if ( !$file->isUpToDate() )
   {
       $file->delete();

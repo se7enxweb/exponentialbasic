@@ -71,9 +71,9 @@ if ( $ini->read_var( "site", "CheckDependence" ) == "enabled" )
 
     if ( function_exists( "xmltree" ) == false )
     {
-        $t->set_var( "libxml_location", "http://xmlsoft.org/#Downloads" );
-        $t->parse( "libxml_error", "libxml_error_tpl" );
-        $error = true;
+        // $t->set_var( "libxml_location", "http://xmlsoft.org/#Downloads" );
+        // $t->parse( "libxml_error", "libxml_error_tpl" );
+        // $error = true;
     }
     $image_prog = "convert";    
     if ( $ini->has_var( "classes", "ImageConversionProgram" ) )

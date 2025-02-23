@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="no" lang="en">
-
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,7 +108,7 @@ else
 
 <table class="body" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-	<td>
+   <td>
 
 <table class="all" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -119,7 +118,7 @@ else
    </td>
 </tr>
    <tr>
-   <td class="tdmini" width="99%" colspan="2">
+   <td class="tdmini" width="99%" colspan="2" style="top: -1.5px; position: relative;">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -149,7 +148,7 @@ else
 </tr>
 </table>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="4">
+<table class="main-body" width="100%" border="0" cellspacing="0" cellpadding="4" style="top: -2.5px; position: relative;">
 <tr valign="top">
     <td class="menu-left" width="1%" bgcolor="#fbf7f7">
 
@@ -173,7 +172,6 @@ else
 	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="130" height="8" border="0" alt="" /><br />
 	</td>
 
-	<td width="1%" bgcolor="#ffffff"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="2" height="1" border="0" alt="" /></td>
     <td class="main-body" width="96%" bgcolor="#ffffff">
 
     <!-- Banner start -->

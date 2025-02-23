@@ -39,14 +39,14 @@ function deleteCache( $ProductID, $CategoryID, $CategoryArray )
         $ProductID = $ProductID->id();
     }
 
-    $files = eZCacheFile::files( "eztrade/cache/", array( "productlist",
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "productlist",
                                                           array_merge( $CategoryID, $CategoryArray ) ),
                                  "cache", "," );
     foreach( $files as $file )
     {
         $file->delete();
     }
-    $files = eZCacheFile::files( "eztrade/cache/", array( "hotdealslist" ),
+    $files = eZCacheFile::files( "kernel/eztrade/cache/", array( "hotdealslist" ),
                                  "cache", "," );
     foreach( $files as $file )
     {

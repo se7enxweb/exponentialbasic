@@ -70,7 +70,7 @@ switch ( $url_array[2] )
         if ( $PageCaching == "enabled" )
         {
             include_once( "classes/ezcachefile.php" );
-            $CacheFile = new eZCacheFile( "eztrade/cache/",
+            $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                             array_merge( "hotdealsgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                             "cache", "," );
             if ( $CacheFile->exists() )
@@ -80,12 +80,12 @@ switch ( $url_array[2] )
             else
             {
                 $GenerateStaticPage = "true";
-                include( "eztrade/user/hotdealsgallery.php" );
+                include( "kernel/eztrade/user/hotdealsgallery.php" );
             }
         }
         else
         {
-            include( "eztrade/user/hotdealsgallery.php" );
+            include( "kernel/eztrade/user/hotdealsgallery.php" );
         }
         break;
     }
@@ -100,8 +100,8 @@ switch ( $url_array[2] )
             $Offset = 0;
         if ( $PageCaching == "enabled" )
         {
-            include_once( "classes/ezcachefile.php" );
-            $CacheFile = new eZCacheFile( "eztrade/cache/",
+            //include_once( "classes/ezcachefile.php" );
+            $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                             array_merge( "hotdealslist", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                             "cache", "," );
             if ( $CacheFile->exists() )
@@ -111,12 +111,12 @@ switch ( $url_array[2] )
             else
             {
                 $GenerateStaticPage = "true";
-                include( "eztrade/user/hotdealslist.php" );
+                include( "kernel/eztrade/user/hotdealslist.php" );
             }
         }
         else
         {
-            include( "eztrade/user/hotdealslist.php" );
+            include( "kernel/eztrade/user/hotdealslist.php" );
         }
         break;
     }
@@ -132,7 +132,7 @@ switch ( $url_array[2] )
         if ( $PageCaching == "enabled" )
         {
             include_once( "classes/ezcachefile.php" );
-            $CacheFile = new eZCacheFile( "eztrade/cache/",
+            $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                             array_merge( "productgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                             "cache", "," );
             if ( $CacheFile->exists() )
@@ -142,12 +142,12 @@ switch ( $url_array[2] )
             else
             {
                 $GenerateStaticPage = "true";
-                include( "eztrade/user/productgallery.php" );
+                include( "kernel/eztrade/user/productgallery.php" );
             }
         }
         else
         {
-            include( "eztrade/user/productgallery.php" );
+            include( "kernel/eztrade/user/productgallery.php" );
         }
         break;
     }
@@ -161,7 +161,7 @@ switch ( $url_array[2] )
         if ( $PageCaching == "enabled" )
         {
             // include_once( "classes/ezcachefile.php" );
-            $CacheFile = new eZCacheFile( "eztrade/cache/",
+            $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                           array_merge( "productlist", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                           "cache", "," );
             if ( $CacheFile->exists() )
@@ -188,7 +188,7 @@ switch ( $url_array[2] )
             $CategoryID = $url_array[4];
 
             // include_once( "classes/ezcachefile.php" );
-            $CacheFile = new eZCacheFile( "eztrade/cache/",
+            $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                           array_merge( "productview", $ProductID, $groupIDArray, $PriceGroup ),
                                           "cache", "," );
             if ( $CacheFile->exists() )
@@ -219,7 +219,7 @@ switch ( $url_array[2] )
             $CategoryID = $url_array[4];
 
             // include_once( "classes/ezcachefile.php" );
-            $CacheFile = new eZCacheFile( "eztrade/cache/",
+            $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
                                           array_merge( "productprint", $ProductID, $groupIDArray, $PriceGroup ),
                                           "cache", "," );
             if ( $CacheFile->exists() )

@@ -50,7 +50,7 @@ $t->set_file( array(
 $t->set_block( "login_tpl", "error_message_tpl", "error_message" );
 $t->set_block( "login_tpl", "max_message_tpl", "max_message" );
 
-if ( $Action == "login" )
+if ( isset( $Action ) && $Action == "login" )
 {
     $Username = $_POST['Username'];
     $Password = $_POST['Password'];
@@ -125,7 +125,7 @@ if ( !isset( $RefererURL ) )
 
 $t->set_var( "referer_url", $RefererURL );
 
-if ( $Action == "logout" )
+if ( isset( $Action ) && $Action == "logout" )
 {
     eZUser::logout();
     eZHTTPTool::header( "Location: /" );

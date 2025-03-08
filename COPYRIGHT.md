@@ -1,4 +1,4 @@
-﻿Copyright © 1999 - 2024 7x and eZ Systems AS. All rights reserved.
+﻿Copyright © 1999 - 2025 7x and eZ Systems AS. All rights reserved.
 
 This file is part of eZ Publish Basic.
 

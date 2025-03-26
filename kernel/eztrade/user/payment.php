@@ -140,7 +140,7 @@ $instance =& $checkout->instance();
 $paymentMethod = $session->arrayValue( "PaymentMethod" );
 $paymentMethod = $paymentMethod[0];
 
-var_dump( $instance->paymentFile( $paymentMethod ) );
+// var_dump( $instance->paymentFile( $paymentMethod ) );
 
 
 if ( $paymentMethod == true and $paymentMethod != "voucher_done" )

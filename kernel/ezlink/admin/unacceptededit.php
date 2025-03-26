@@ -29,7 +29,7 @@
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-for( $i = 0; $i < count( $LinkArrayID ); $i++ )
+for( $i = 0; $i < isset( $LinkArrayID ) ? count( $LinkArrayID ) : 0; $i++ )
 {
     unset( $link );
     $link = new eZLink( $LinkArrayID[$i] );

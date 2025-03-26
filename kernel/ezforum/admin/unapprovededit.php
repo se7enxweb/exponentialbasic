@@ -44,6 +44,9 @@ $user =& eZUser::currentUser();
 
 $message = new eZForumMessage();
 
+if( isset( $ActionValueArray ) )
+{
+    
 for ( $i = 0; $i < count( $ActionValueArray ); $i++ )
 {
     $message = new eZForumMessage( $MessageID[$i] );
@@ -97,6 +100,8 @@ for ( $i = 0; $i < count( $ActionValueArray ); $i++ )
         }
         $message->delete();
     }
+}
+
 }
 
 eZHTTPTool::header( "Location: /forum/unapprovedlist/" );

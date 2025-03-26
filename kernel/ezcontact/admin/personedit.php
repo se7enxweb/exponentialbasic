@@ -689,7 +689,7 @@ if ( !$confirm )
             $item_cat_id = "";
 
             $item =& $person;
-            var_dump($item);
+            //var_dump($item);
         }
 
         $item->setProjectState( $ProjectID, $item->id() );

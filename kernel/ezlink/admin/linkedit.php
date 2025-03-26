@@ -375,7 +375,6 @@ if ( $Action == "insert" )
 
     if ( eZPermission::checkPermission( $user, "eZLink", "LinkAdd") )
     {
-    var_dump( $LinkCategoryID);
         if ( isset( $Name ) && $Name != "" &&
         isset( $LinkCategoryID ) && $LinkCategoryID != "" &&
         isset( $Accepted ) && $Accepted != "" &&
@@ -666,7 +665,7 @@ foreach( $linkCategoryList as $linkCategoryItem )
     $t->set_var("link_category_id", $linkCategoryItem[0]->id() );
     $t->set_var("link_category_name", $linkCategoryItem[0]->name() );
 
-    if ( $LinkCategoryID == $linkCategoryItem[0]->id() )
+    if ( isset( $LinkCategoryID ) && (int) $LinkCategoryID == $linkCategoryItem[0]->id() )
     {
         $t->set_var( "is_selected", "selected" );
     }

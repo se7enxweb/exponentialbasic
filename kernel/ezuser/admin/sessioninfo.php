@@ -36,7 +36,7 @@
 require( "kernel/ezuser/admin/admincheck.php" );
 
 
-if ( $Action == "Delete" && count( $SessionArrayID ) > 0 )
+if ( isset( $Action ) && (string) $Action == "Delete" && count( $SessionArrayID ) > 0 )
 {
     foreach( $SessionArrayID as $sessionID )
     {

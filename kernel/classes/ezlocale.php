@@ -520,7 +520,7 @@ class eZLocale
       \private
       Adds a "0" in front of the value if it's below 10.
     */
-    function addZero( $value )
+    public static function addZero( $value )
     {
         $ret = $value;
         if ( $ret < 10 )

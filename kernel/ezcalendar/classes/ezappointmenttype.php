@@ -72,7 +72,7 @@ class eZAppointmentType
                                   (ID, Name, Description, ParentID)
                                   VALUES
                                   ('$this->ID', '$this->Name', '$this->Description', '$this->ParentID')";
-            var_dump( $queryText );
+            //  var_dump( $queryText );
             $res[] = $db->query( $queryText );
             $db->unlock();
         }

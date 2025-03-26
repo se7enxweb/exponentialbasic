@@ -80,61 +80,61 @@ if( isset( $GroupID ) )
     }
 }
 
-if ( $Action == "insert" )
+if ( isset( $Action ) && $Action == "insert" )
 {
     if ( eZPermission::checkPermission( $user, "eZUser", "GroupAdd" ) )
     {
-	if ( $Name == "" || $Description == "" )
-	{
-	    $error = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
-	    $error_msg =  $error->read_var( "strings", "error_msg" );
-	}
-	else
-	{
-	    $group = new eZUserGroup();
-	    $group->setName( $Name );
-	    $group->setDescription( $Description );
-	    $group->setSessionTimeout( $SessionTimeout );
-	    $group->setGroupURL( $GroupURL );
+		if ( $Name == "" || $Description == "" )
+		{
+			$error = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
+			$error_msg =  $error->read_var( "strings", "error_msg" );
+		}
+		else
+		{
+			$group = new eZUserGroup();
+			$group->setName( $Name );
+			$group->setDescription( $Description );
+			$group->setSessionTimeout( $SessionTimeout );
+			$group->setGroupURL( $GroupURL );
 
-	    if ( isset( $IsRoot ) && $user->hasRootAccess() )
-		$group->setIsRoot( 1 );
-	    else
-		$group->setIsRoot( 0 );
-	    $permission = new eZPermission();
+			if ( isset( $IsRoot ) && $user->hasRootAccess() )
+			$group->setIsRoot( 1 );
+			else
+			$group->setIsRoot( 0 );
+			$permission = new eZPermission();
 
-	    $group->store();
+			$group->store();
 
-	    $group->get( $group->id() );
+			$group->get( $group->id() );
 
-	    $permissionList = $permission->getAll();
+			$permissionList = $permission->getAll();
 
-	    foreach ( $permissionList as $permissionItem )
-	    {
-		$permissionItem->setEnabled( $group, false );
-	    }
+			foreach ( $permissionList as $permissionItem )
+			{
+			$permissionItem->setEnabled( $group, false );
+			}
 
-        if ( isset( $PermissionArray ) && count ( $PermissionArray ) > 0 )
-        {
-            foreach ( $PermissionArray as $PermissionID )
-            {
-                $permission->get( $PermissionID );
-                $permission->setEnabled( $group, true );
-            }
-        }
+			if ( isset( $PermissionArray ) && count ( $PermissionArray ) > 0 )
+			{
+				foreach ( $PermissionArray as $PermissionID )
+				{
+					$permission->get( $PermissionID );
+					$permission->setEnabled( $group, true );
+				}
+			}
 
-	    eZHTTPTool::header( "Location: /user/grouplist/" );
-	    exit();
-	}
+			eZHTTPTool::header( "Location: /user/grouplist/" );
+			exit();
+		}
     }
     else
     {
-	eZHTTPTool::header( "Location: /error/403/" );
+		eZHTTPTool::header( "Location: /error/403/" );
 	exit();
     }
 }
 
-if ( $Action == "delete" )
+if ( isset( $Action ) && $Action == "delete" )
 {
     if ( eZPermission::checkPermission( $user, "eZUser", "GroupDelete" ) )
     {
@@ -153,7 +153,7 @@ if ( $Action == "delete" )
     }
 }
 
-if ( $Action == "update" )
+if ( isset( $Action ) && $Action == "update" )
 {
     if ( eZPermission::checkPermission( $user, "eZUser", "GroupModify" ) )
     {
@@ -209,7 +209,7 @@ $t->set_block( "permission_list_tpl", "permission_enabled_tpl", "is_enabled_item
 $headline = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
 $t->set_var( "head_line", $headline->read_var( "strings", "head_line_insert" ) );
 
-if ( $Action == "new" )
+if ( isset( $Action ) && $Action == "new" )
 {
     $Name = "";
     $Description = "";
@@ -218,7 +218,7 @@ if ( $Action == "new" )
 $ActionValue = "insert";
 
 // Edit
-if ( $Action == "edit" )
+if ( isset( $Action ) && $Action == "edit" )
 {
     $group = new eZUserGroup();
     $group->get( $GroupID );
@@ -266,18 +266,21 @@ foreach ( $moduleList as $moduleItem )
     }
 
     if ( count( $permissionList ) > 0 )
-	$t->parse( "module_header", "module_list_header_tpl", true );
+        $t->parse( "module_header", "module_list_header_tpl", true );
+	else
+	    $t->set_var( "module_header", "" );
 }
 
-$t->set_var( "error_msg", $error_msg );
-$t->set_var( "name_value", $Name );
-$t->set_var( "description_value", $Description );
-$t->set_var( "group_url_value", $GroupURL );
-$t->set_var( "session_timeout_value", $SessionTimeout );
-$t->set_var( "action_value", $ActionValue );
-( $IsRoot == true ) ? $t->set_var( "root_checked", "checked" ) : $t->set_var( "root_checked", "" );
+$t->set_var( "error_msg", isset( $error_msg ) ? $error_msg : false );
+$t->set_var( "name_value", isset( $Name ) ? $Name : false );
+$t->set_var( "description_value", isset( $Description ) ? $Description : false );
+$t->set_var( "group_url_value", isset( $GroupURL ) ? $GroupURL : false );
+$t->set_var( "session_timeout_value", isset( $SessionTimeout ) ? $SessionTimeout : false );
+$t->set_var( "action_value", isset( $ActionValue ) ? $ActionValue : false );
 
-$t->set_var( "group_id", $GroupID );
+( isset( $IsRoot ) && $IsRoot == true ) ? $t->set_var( "root_checked", "checked" ) : $t->set_var( "root_checked", "" );
+
+$t->set_var( "group_id", isset( $GroupID ) ? $GroupID : false );
 
 $t->pparse( "output", "group_edit" );
 

@@ -92,7 +92,7 @@ class eZQuizQuestion
                                   (ID, Name, Score, GameID, Placement)
                                   VALUES
                                   ('$this->ID','$name','$this->Score','$gameID','$place')";
-            var_dump( $queryText );
+           // var_dump( $queryText );
             $res[] = $db->query( $queryText );
             $db->unlock();
 

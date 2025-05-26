@@ -95,7 +95,7 @@ Learn more about eZ Publish Basic features roadmap in detail. Study our document
 
 ## PHP Compatability
 
-For the latest information about the development of php 8 compatibility read our documentation, [COMPATABILITY.md](documentation/COMPATABILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x. 
+For the latest information about the development of php 8 compatibility read our documentation, [COMPATIBILITY.md](documentation/COMPATIBILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x. 
 
 ## Module Documentation
 

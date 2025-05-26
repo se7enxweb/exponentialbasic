@@ -81,7 +81,7 @@ eZ Publish Basic default sections detailing each section status.
 - /section-news/
     - 100% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
 
-For more information about our php compatibility please see the [COMPATIBILITY.md](documentation/COMPATIBILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x.  
+For more information about our php compatibility please see the [COMPATIBILITY.md](COMPATIBILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x.  
 
 ## Modules Available
 

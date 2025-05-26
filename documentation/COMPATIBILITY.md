@@ -1,8 +1,10 @@
-# eZ Publish Basic Module Compatibility with PHP8.x
+# eZ Publish Basic Module Compatibility with PHP 8.x
 
-# Note: This document and related code are in active development and testing.
+This document represents months of writing documentation durring development to provide for eZ Publish Basic the ability to boot, function normally and refactor the product to address age and thousands of bug patterns hidden within the original ezpublish2 source code.
 
 ## User Modules
+
+The general status of user module support is 100% Functional for each module and all of it's views.
 
 - ezabout
   - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.

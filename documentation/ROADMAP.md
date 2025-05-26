@@ -1,16 +1,19 @@
-# eZ Publish Basic - Features Roadmap for 2025 Q1
+# eZ Publish Basic - Features Roadmap for 2025 Q3
 
-- In Progress: PHP 4 Bugfixes
-- In Progress: PHP 5 Bugfixes
-- In Progress: PHP 7 Bugfixes
-- In Progress: PHP 8 Bugfixes & Testing
-- Active Development and Testing is in the 'PHP 8 Bugfixes & Testing' task primarily.
+- Completed: PHP 4/5/7/8 Bugfixes and Testing
+- Completed: Feature accuracy bugfixing and testing. Ensuring all features work as expected without negative features.
+- In progress: Release Preparation: General refinements in preparation for first release.
+- Active Development and Testing is in the 'Release Preparation' task primarily.
 
-# Upcoming Roadmap for 2025 Q2
+# Upcoming Roadmap for 2025 Q4
 
-- Refactor framework indexes and all modules to use no longer require our register globals userland features as not secure enough.
+- Remove userland register globals patch: Refactor framework indexes and all modules to use no longer require our register globals userland features as not secure enough.
   - The goal is to replace all local expected to be set variables to use _REQUEST variables to replace usages of these variables with all more specific scopes _SERVER, _REQUEST, _GET, _POST scopes. 
   - This is a insecure programing technique which eZ P ublsih 2 suffered in silence for years. We aim to make eZ Publish Baic work without our user land implementation of register globals for a more specifically scoped set of module view code which means greater request / server / installation security
+
+# Upcoming Roadmap for 2026 Q1
+
+None Scheduled; Please contribute to expanding our simple and easy to develop cms framework e-commerce website development system.
 
 # Suggestions
 

@@ -75,12 +75,13 @@ eZ Publish Basic default sections detailing each section status.
 - /section-standard
     - 100% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
 - /section-intranet/
-    - 93% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
+    - 99% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
 - /section-trade/
-    - 93% Complete By Default. Products are not displayed normally without loging in first. Links provided from navigational menus serve module views successfully with some minor warnings and some POST/GET module view Actions (user interaction; submitting forms for creation of content) generate errors and warnings.
+    - 99% Complete By Default. Products are not displayed normally without loging in first. Links provided from navigational menus serve module views successfully with some minor warnings and some POST/GET module view Actions (user interaction; submitting forms for creation of content) generate errors and warnings.
 - /section-news/
     - 100% Complete By Default. Links provided from navigational menus serve module views successfully with almost no minor warnings and almost all default available POST/GET module view Actions (user interaction; submitting forms for creation of content) no longer generate errors and warnings.
 
+For more information about our php compatibility please see the [COMPATIBILITY.md](documentation/COMPATIBILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x.  
 
 ## Modules Available
 

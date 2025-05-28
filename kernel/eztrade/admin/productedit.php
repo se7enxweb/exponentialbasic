@@ -148,6 +148,7 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
 
         $product->setKeywords( $Keywords  );
         $product->setProductNumber( $ProductNumber );
+        $product->setCatalogNumber( $CatalogNumber );
         $product->setExternalLink( $ExternalLink );
 
         $vattype = new eZVATType( $VATTypeID );
@@ -520,6 +521,7 @@ $t->set_var( "description_value", "" );
 $t->set_var( "name_value", "" );
 $t->set_var( "keywords_value", "" );
 $t->set_var( "product_nr_value", "" );
+$t->set_var( "product_catalog_number", "" );
 $t->set_var( "price_value", "" );
 $t->set_var( "expiry_value", "" );
 
@@ -550,6 +552,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     $t->set_var( "name_value", $product->name() );
     $t->set_var( "keywords_value", $product->keywords() );
     $t->set_var( "product_nr_value", $product->productNumber() );
+    $t->set_var( "product_catalog_number", $product->catalogNumber() );
     $t->set_var( "price_value", $product->price() );
     $t->set_var( "expiry_value", $product->expiryTime() ? $product->expiryTime() : "" );
     $t->set_var( "external_link", $product->externalLink() );
@@ -598,6 +601,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     $Quantity = $product->totalQuantity();
 
     $prices = eZPriceGroup::prices( $ProductID );
+
     $PriceGroup = array();
     $PriceGroupID = array();
 
@@ -607,7 +611,7 @@ if ( isset( $Action ) && $Action == "Edit" )
         $PriceGroupID[] = $price["PriceID"];
     }
 
-    if ( $UseVoucher )
+    if ( isset( $UseVoucher ) && $UseVoucher )
     {
         $priceRange =& $product->priceRange();
     }
@@ -764,18 +768,23 @@ if ( $ShowPriceGroups )
 {
     $price_groups = eZPriceGroup::getAll();
     $count = max( count( $PriceGroup ), count( $PriceGroupID ) );
+
     $NewPriceGroup = array();
     for ( $i = 0; $i < $count; $i++ )
     {
         $NewPriceGroup[$PriceGroupID[$i]] = $PriceGroup[$i];
     }
+
     $prices = array();
     $price_ids = array();
     $price_names = array();
     foreach ( $price_groups as $price_group )
     {
         $price_id = $price_group->id();
-        $prices[] = $NewPriceGroup[$price_id];
+
+	if ( isset( $NewPriceGroup[$price_id] ) )
+            $prices[] = $NewPriceGroup[$price_id];
+
         $price_ids[] = $price_id;
         $price_names[] = $price_group->name();
     }
@@ -783,6 +792,7 @@ if ( $ShowPriceGroups )
     $PriceGroupID = $price_ids;
     $t->set_var( "price_group_header_item", "" );
     $t->set_var( "price_group_item", "" );
+
     for ( $i = 0; $i < count( $PriceGroup ); $i++ )
     {
         $t->set_var( "price_group_name", $price_names[$i] );
@@ -797,8 +807,8 @@ if ( $ShowPriceGroups )
         $t->parse( "price_groups_item", "price_groups_item_tpl" );
         $t->parse( "price_group_list", "price_group_list_tpl" );
     }
-//    else
-//        $t->parse( "price_groups_no_item", "price_groups_no_item_tpl" );
+    else
+        $t->parse( "price_groups_no_item", "price_groups_no_item_tpl" );
 }
 
     if ( isset( $ShippingGroup ) && $ShippingGroup and ( $ShippingGroup->id() == $group->id() ) )

@@ -29,6 +29,7 @@ $ini =& $GLOBALS["GlobalSiteIni"];
 
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
+$error_msg = false;
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
@@ -66,7 +67,7 @@ if ( ( isset ( $AddImages ) ) and ( is_numeric( $LinkCategoryID ) ) and ( is_num
 if ( isset( $Action ) && $Action == "insert" )
 {
     // clear the menu cache
-    $files =& eZCacheFile::files( "ezlink/cache/",
+    $files =& eZCacheFile::files( "kernel/ezlink/cache/",
                                   array( "menubox",
                                          NULL ),
                                   "cache", "," );
@@ -137,7 +138,7 @@ if ( isset( $Action ) && $Action == "insert" )
 if ( isset( $Action ) && $Action == "delete" )
 {
     // clear the menu cache
-    $files =& eZCacheFile::files( "ezlink/cache/",
+    $files =& eZCacheFile::files( "kernel/ezlink/cache/",
                                   array( "menubox",
                                          NULL ),
                                   "cache", "," );
@@ -164,7 +165,7 @@ if ( isset( $Action ) && $Action == "delete" )
 if ( isset( $Action ) && $Action == "DeleteCategories" )
 {
     // clear the menu cache
-    $files =& eZCacheFile::files( "ezlink/cache/",
+    $files =& eZCacheFile::files( "kernel/ezlink/cache/",
                                   array( "menubox",
                                          NULL ),
                                   "cache", "," );
@@ -198,7 +199,7 @@ if ( isset( $Action ) && $Action == "DeleteCategories" )
 if ( isset( $Action ) && $Action == "update" )
 {
     // clear the menu cache
-    $files =& eZCacheFile::files( "ezlink/cache/",
+    $files =& eZCacheFile::files( "kernel/ezlink/cache/",
                                   array( "menubox",
                                          NULL ),
                                   "cache", "," );

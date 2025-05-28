@@ -57,7 +57,7 @@ class eZModule
       If $id is set the object's values are fetched from the
       database.
     */
-    function eZModule( $id=""  )
+    function __construct( $id=""  )
     {
         if ( $id != "" )
         {
@@ -148,7 +148,9 @@ class eZModule
         $ret = false;
         if ( $id != "" )
         {
-            $db->array_query( $module_array, "SELECT * FROM eZUser_Module WHERE ID='$id'" );
+            $query = "SELECT * FROM eZUser_Module WHERE ID='$id'";
+
+            $db->array_query( $module_array, $query );
             if ( count( $module_array ) > 1 )
             {
                 die( "Error: Module's with the same ID was found in the database. This shouldent happen." );
@@ -192,10 +194,9 @@ class eZModule
             $db->array_query( $module_array, "SELECT ID,Name FROM eZUser_Module ORDER By Name" );
 
         } 
-        
         for ( $i=0; $i<count ( $module_array ); $i++ )
         {
-            $return_array[$i] = new eZModule( $module_array[$i][$db->fieldName("ID")], 0 );
+            $return_array[$i] = new eZModule( (int) $module_array[$i][$db->fieldName("ID")], 0 );
         }
 
         return $return_array;

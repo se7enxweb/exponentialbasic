@@ -389,7 +389,12 @@ else if ( $CountryVATDiscrimination == true )
     $mainAddress = $address->mainAddress( $user );
 
     $country =& $mainAddress->country();
-    if ( !$country->hasVAT() )
+    if ( !$country && !$country->hasVAT() )
+    {
+        $vat = false;
+        $totalVAT = 0;
+    }
+    else
     {
         $vat = false;
         $totalVAT = 0;

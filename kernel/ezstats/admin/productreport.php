@@ -76,8 +76,9 @@ foreach ( $productReport as $product )
     if ( preg_match( "#^/trade/productview/(.*?)/#", $product["URI"], $regArray ) )
     {
         $idx = $regArray[1];
-        
-        $count = $productArray[$idx]["Count"];
+	$productArray[$idx] = array();
+	$productArray[$idx]["Count"] = false;
+	$count = $productArray[$idx]["Count"];
         
         $productArray[$idx]["Count"] = $count + $product["Count"];
         $productArray[$idx]["ID"] = $regArray[1];

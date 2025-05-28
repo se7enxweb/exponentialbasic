@@ -485,7 +485,11 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
     for ( $i = 0; $i < count( $AddressID ); ++$i )
     {
         $address_id = $AddressID[$i];
-        $realAddressID = $_REQUEST["RealAddressID[$i]"];
+
+	if( isset( $_REQUEST["RealAddressID[$i]"] ) )
+            $realAddressID = $_REQUEST["RealAddressID[$i]"];
+	else
+	    $realAddressID = false;
 
         $address = new eZAddress();
         if ( !$address->get( $realAddressID ) )
@@ -520,11 +524,11 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
 
         $address->store();
 
-        // set correct ID
+	// set correct ID
         if ( !is_numeric( $realAddressID ) )
             $RealAddressID[$i] = $address->id();
 
-        if ( $MainAddressID == $RealAddressID[$i] )
+        //if ( $MainAddressID == $RealAddressID[$i] )
             $main_id = $MainAddressID;
 
         if ( count ( $AddressID ) == 1 )
@@ -880,8 +884,11 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
                     $t->set_var( "specialFormId",$i);
                     foreach ( $regionList as $region )
                     {
-                        $t->set_var( "is_selected", $region["ID"] == $RegionID[$i] ? "selected" : "" );
-                        $t->set_var( "region_id", $region["ID"] );
+		        if( isset( $RegionID[$i] ) )
+                            $t->set_var( "is_selected", $region["ID"] == $RegionID[$i] ? "selected" : "" );
+			else
+			    $t->set_var( "is_selected", "" );
+			$t->set_var( "region_id", $region["ID"] );
                         $t->set_var( "region_name", $region["Name"] );
                         $t->parse( "region_option", "region_option_tpl", true );
                     }

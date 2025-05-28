@@ -229,9 +229,11 @@ class eZPermission
             $return_array = array();
             $permission_array = array();
 
-            $db->array_query( $permission_array, "SELECT ID,Name FROM eZUser_Permission
-                                                              WHERE ModuleID='$moduleID'
-                                                              ORDER BY Name" );
+	    $query ="SELECT ID,Name FROM eZUser_Permission
+                     WHERE ModuleID='$moduleID'
+                     ORDER BY Name";
+
+	    $db->array_query( $permission_array, $query );
 
 
             for ( $i=0; $i < count( $permission_array ); $i++ )

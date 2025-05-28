@@ -27,8 +27,9 @@
 
 $menuItems = array(
     array( "/trade/orderlist/", "{intl-orderlist}" ),
-    array( "/trade/customerlist/", "{intl-customerlist}" ),
     array( "/trade/categorylist/", "{intl-categorylist}" ),
+    array( "/trade/productedit/", "{intl-newproduct}" ),
+    array( "/trade/customerlist/", "{intl-customerlist}" ),
     array( "/trade/typelist/", "{intl-typelist}" ),
     array( "/trade/vattypes/", "{intl-vattypes}" ),
     array( "/trade/shippingtypes/", "{intl-shippingtypes}" ),
@@ -36,7 +37,6 @@ $menuItems = array(
     array( "/trade/pricegroups/list", "{intl-pricegroups}" ),
     array( "/trade/categoryedit/", "{intl-newcategory}" ),
     array( "/trade/typeedit/", "{intl-newtype}" ),
-    array( "/trade/productedit/", "{intl-newproduct}" ),
     array( "/trade/voucher/", "{intl-newvoucher}" ),
     array( "/trade/voucherlist/", "{intl-voucher_list}" )
     );

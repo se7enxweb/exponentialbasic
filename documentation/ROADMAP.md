@@ -16,6 +16,10 @@
 
 None Scheduled; Please contribute to expanding our simple and easy to develop cms framework e-commerce website development system.
 
+# Upcoming Roadmap for 2026 Q2
+
+Documentation for this project will in the future be covering importing eZ Publish 2.x Database Content, Exporting eZ Publish 2.x Database content for import (As required to start, like say eZ Article or eZ FileManager or eZ ImageCatalog) from eZ Publish 2 into eZ Publish 6 (Latest stable version of eZ Publish 3 Kernel APIs) Open Source Code and Flexible Content Management where importing data is common and accepted part of any website project using a CMS.
+
 # Suggestions
 
 - Add dependency injection to framework and kernel.

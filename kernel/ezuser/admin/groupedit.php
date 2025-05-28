@@ -253,7 +253,7 @@ foreach ( $moduleList as $moduleItem )
 	$t->set_var( "permission_name", $permissionItem->name() );
 	$t->set_var( "permission_id", $permissionItem->id() );
 
-	if ( $permissionItem->isEnabled( $group ) )
+	if ( isset( $group ) && get_class ( $group ) == "eZUserGroup" && $permissionItem->isEnabled( $group ) )
 	{
 	    $t->set_var( "is_enabled", "checked" );
 	}

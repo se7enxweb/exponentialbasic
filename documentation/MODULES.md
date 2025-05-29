@@ -1,4 +1,6 @@
-## Module Views Available
+## Modules Available
+
+The following modules are available with eZ Publish Basic providing a rich feature set that doesn't require investment of effort to develop only your content is needed to get started.
 
 - ezabout
 - ezad
@@ -34,7 +36,551 @@
 - ezxml
 - ezxmlrpc
 
+Currently by default there are 34 modules which offer user, admin or combined siteaccess module views for general use.
+
+### eZ Publish Basic Admin Module Views Available
+
+The following administration / admin modules and views are included in eZ Publish Basic:
+
+- ezabout
+  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+- ezad
+  - adlist
+  - gotoadd
+  - queuedadlist
+- ezbug
+  - bugslist
+  - bugreport
+  - bugview
+  - fileedit
+  - imageedit
+  - menubox
+  - menumodulelist
+  - reportsuccess
+  - search
+  - unhandledbugs
+- eznewsfeed
+  - allcategories
+  - headlines
+  - menubox
+  - newslist
+  - search
+- ezarticle
+  - articleedit
+  - articleheaderlist
+  - articlelinks
+  - articlelist
+  - articlelistrss
+  - articleview
+  - authorlist
+  - authorview
+  - extendedsearch
+  - fileedit
+  - filelist
+  - frontpage
+  - headlines
+  - imageedit
+  - imagelist
+  - mailtofriend
+  - menuarticleview
+  - menumaker
+  - newsgroup
+  - search
+  - searchform
+  - searchsupplier
+  - sitemap
+  - smallarticlelist
+  - topiclist
+  - urlsupplier
+- ezbug
+  - bugedit
+  - buglist
+  - bugpreview
+  - categorylist
+  - cron
+  - menubox
+  - moduleedit
+  - modulelist
+  - prioritylist
+  - search
+  - statuslist
+  - unhandledbugs
+- ezbulkmail
+  - bulklist
+  - categoryedit
+  - cron
+  - mailview
+  - menubox
+  - singlelist
+  - subscriptionlist
+  - subscriptionlogin
+  - usermessages
+- ezcalendar
+  - appointmentedit
+  - appointmentview
+  - dayview
+  - monthview
+  - trustees
+  - yearview
+- ezcontact
+  - companysearch
+  - consultationlist
+  - menubox
+  - personsearch
+  - searchsupplier
+  - urlsupplier
+- ezerror
+  - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
+- ezexample
+  - listtable
+  - page
+- ezfilemanager
+  - filedownload
+  - filelist
+  - fileupload
+  - fileview
+  - folderedit
+  - menubox
+  - menufilelist
+  - menufolderlist
+  - search
+  - viewfile
+- ezform
+  - formview
+- ezforum
+  - categoryedit
+  - categorylist
+  - editmessage
+  - forumedit
+  - forumlist
+  - menubox
+  - message
+  - messageedit
+  - messagelist
+  - norights
+  - search
+  - unapprovededit
+  - unapprovedlist
+- ezimagecatalogue
+  - browse
+  - categoryedit
+  - customimage
+  - filedownload
+  - imageedit
+  - imagelist
+  - imageview
+  - menubox
+  - unassigned
+- ezlink
+  - gotolink
+  - latest
+  - linkcategorylist
+  - menubox
+  - onepagelinklist
+  - search
+  - success
+  - suggestlink
+- ezmail
+  - accountedit
+  - configure
+  - fileedit
+  - folderlist
+  - link
+  - mailedit
+  - maillist
+  - mailview
+  - menubox
+  - search
+- ezimagecatalogue
+  - categoryedit
+  - customimage
+  - filedownload
+  - imageedit
+  - imagelist
+  - imageview
+  - menubox
+  - menucategorylist
+  - searchsupplier
+  - slideshow
+- ezmessage
+  - menubox
+  - messageedit
+  - messagelist
+  - messageview
+- ezmodule
+  - activate
+- eznewsfeed
+  - categoryedit
+  - cron
+  - importnews
+  - menubox
+  - newsarchive
+  - newsedit
+  - newssearch
+  - sourcesiteedit
+  - unpublished
+- ezpoll
+  - pollist
+  - result
+  - userlogin
+  - vote
+  - votebox
+  - votepage
+- ezquiz
+  - menubox
+  - quizlist
+  - quizmyscores
+  - quizopen
+  - quizplay
+  - quizscores
+- ezsearch
+  - menubox
+  - search
+- ezsession
+  - Classes only module. No views. One cron job php command, 'kernel/ezsession/admin/cron.php'.
+- ezsitemanager
+  - cacheadmin
+  - fileedit
+  - filelist
+  - menubox
+  - menuedit
+  - menulist
+  - sectionedit
+  - sectionlist
+  - siteconfig
+  - sqlquery
+  - templateedit
+  - templatelist
+- ezstats
+  - overview
+  - entryexitreport
+  - pageviewlist
+  - visitorlist
+  - refererlist
+  - browserlist
+  - requestpagelist
+  - yearreport
+  - monthreport
+  - dayreport
+  - storestats
+- ezsysinfo
+  - fileinfo
+  - hwinfo
+  - meminfo
+  - menubox
+  - netinfo
+  - sysinfo
+- eztodo
+  - menubox
+  - todoedit
+  - todoinfo
+  - todolist
+  - todomenulist
+  - todoview
+- eztrade
+  - cart
+  - categorylist
+  - categorytreelist
+  - checkout
+  - confirmation
+  - customerlogin
+  - extendedsearch
+  - findwishlist
+  - hostdealslist
+  - invoice
+  - mastercard
+  - menubox
+  - metasupplier
+  - orderlist
+  - ordersendt
+  - orderview
+  - payment
+  - paypalnotify
+  - precheckout
+  - productlist
+  - productsearch
+  - productview
+  - searchsupplier
+  - sendwishlist
+  - smallcart
+  - smallproductlist
+  - viewwishlist
+  - visa
+  - voucher
+  - voucherinformation
+  - vouchermain
+  - voucherview
+  - wishlist
+- ezurltranslator
+  - menubox
+  - urledit
+- ezuser
+  - addressedit
+  - forgot
+  - forgotmessage
+  - login
+  - missingmailmessage
+  - norights
+  - userbox
+  - usercheck
+  - useredit
+  - userwithaddress
+- ezxml
+  - Classes only module. No views.
+- ezxmlrpc
+  - Classes only module. No views.
+
+### eZ Publish Basic User Module Views Available
+
+The following user modules and views are included in eZ Publish Basic:
+
+- ezabout
+  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+- ezad
+  - adlist
+  - gotoadd
+  - queuedadlist
+- ezbug
+  - bugslist
+  - bugreport
+  - bugview
+  - fileedit
+  - imageedit
+  - menubox
+  - menumodulelist
+  - reportsuccess
+  - search
+  - unhandledbugs
+- ezarticle
+  - articleedit
+  - articleheaderlist
+  - articlelinks
+  - articlelist
+  - articlelistrss
+  - articleview
+  - authorlist
+  - authorview
+  - extendedsearch
+  - fileedit
+  - filelist
+  - frontpage
+  - headlines
+  - imageedit
+  - imagelist
+  - mailtofriend
+  - menuarticleview
+  - menumaker
+  - newsgroup
+  - search
+  - searchform
+  - searchsupplier
+  - sitemap
+  - smallarticlelist
+  - topiclist
+  - urlsupplier
+- ezbug
+  - buglist
+  - bugreport
+  - bugview
+  - fileedit
+  - imageedit
+  - menubox
+  - menumodulelist
+  - reportsuccess
+  - search
+  - unhandledbugs
+- ezbulkmail
+  - bulklist
+  - categoryedit
+  - cron
+  - mailview
+  - menubox 
+  - singlelist
+  - subscriptionlist
+  - subscriptionglogin
+  - usermessages
+- ezcalendar
+  - appointmentedit
+  - appointmentview
+  - dayview
+  - monthview
+  - trustees
+  - yearview
+- ezcontact
+  - companysearch
+  - consultationlist
+  - menubox
+  - personsearch
+  - searchsupplier
+  - urlsupplier
+- ezerror
+  - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
+- ezexample
+  - listtable
+  - page
+- ezfilemanager
+  - filedownload
+  - filelist
+  - fileupload
+  - fileview
+  - folderedit
+  - menubox
+  - menufilelist
+  - menufolderlist
+  - search
+  - viewfile
+- ezform
+  - formview
+- ezforum
+  - categorylist
+  - forumlist
+  - latestmessages
+  - menubox
+  - menuforumlist
+  - message
+  - messagebody
+  - messageedit
+  - messageform
+  - messagelist
+  - messagelistflat
+  - messagepath
+  - messagepermissions
+  - messagereply
+  - messagesearch
+  - messagesimplelist
+  - search
+  - searchsupplier
+  - userlogin
+- ezimagecatalogue
+  - categoryedit
+  - customimage
+  - filedownload
+  - imageedit
+  - imagelist
+  - imageview
+  - menubox
+  - menucategorylist
+  - searchsupplier
+  - slideshow
+- ezlink
+  - gotolink
+  - latest
+  - linkcategorylist
+  - menubox
+  - onepagelinklist
+  - search
+  - success
+  - suggestlink
+- ezmail
+  - accountedit
+  - configure
+  - fileedit
+  - folderlist
+  - link
+  - mailedit
+  - maillist
+  - mailview
+  - menubox
+  - search
+- ezmessage
+  - menubox
+  - messageedit
+  - messagelist
+  - messageview
+- ezmodule
+  - activate
+- eznewsfeed
+  - allcategories
+  - headlines
+  - menubox
+  - newslist
+  - search
+- ezpoll
+  - pollist
+  - result
+  - userlogin
+  - vote
+  - votebox
+  - votepage
+- ezquiz
+  - menubox
+  - quizlist
+  - quizmyscores
+  - quizopen
+  - quizplay
+  - quizscores
+- ezsearch
+  - menubox
+  - search
+- ezsession
+  - Classes only module. No views. One cron job php command, 'kernel/ezsession/admin/cron.php'.
+- ezsitemanager
+  - static - Undocumented static content view.
+- ezstats
+  - storestats
+- ezsysinfo
+  - No user module views. Only Admin module views.
+- eztodo
+  - menubox
+  - todoedit
+  - todoinfo
+  - todolist
+  - todomenulist
+  - todoview
+- eztrade
+  - cart
+  - categorylist
+  - categorytreelist
+  - checkout
+  - confirmation
+  - customerlogin
+  - extendedsearch
+  - findwishlist
+  - hostdealslist
+  - invoice
+  - mastercard
+  - menubox
+  - metasupplier
+  - orderlist
+  - ordersendt
+  - orderview
+  - payment
+  - paypalnotify
+  - precheckout
+  - productlist
+  - productsearch
+  - productview
+  - searchsupplier
+  - sendwishlist
+  - smallcart
+  - smallproductlist
+  - viewwishlist
+  - visa
+  - voucher
+  - voucherinformation
+  - vouchermain
+  - voucherview
+  - wishlist
+- ezurltranslator
+  - None (Admin Only Module)
+- ezuser
+  - addressedit
+  - forgot
+  - forgotmessage
+  - login
+  - missingmailmessage
+  - norights
+  - userbox
+  - usercheck
+  - useredit
+  - userwithaddress
+- ezxml
+  - Classes only module. No views.
+- ezxmlrpc
+  - Classes only module. No views.
+
 ### eZ Publish Basic User Module Views URL Calls Available
+
 The following user modules views are included in eZ Publish Basic:
 
 - ez about
@@ -700,6 +1246,7 @@ The following user modules views are included in eZ Publish Basic:
 
 
 ### eZ Publish Basic Admin Module Views URL Calls Available
+
 The following admin modules views are included in eZ Publish Basic:
 
 - ezabout
@@ -863,544 +1410,3 @@ The following admin modules views are included in eZ Publish Basic:
   - passwordchange
 - ezxml
 - ezxmlrpc
-
-### eZ Publish Basic Admin Module Views Available
-
-The following administration / admin modules and views are included in eZ Publish Basic:
-
-- ezabout
-  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
-- ezad
-  - adlist
-  - gotoadd
-  - queuedadlist
-- ezbug
-  - bugslist
-  - bugreport
-  - bugview
-  - fileedit
-  - imageedit
-  - menubox
-  - menumodulelist
-  - reportsuccess
-  - search
-  - unhandledbugs
-- eznewsfeed
-  - allcategories
-  - headlines
-  - menubox
-  - newslist
-  - search
-- ezarticle
-  - articleedit
-  - articleheaderlist
-  - articlelinks
-  - articlelist
-  - articlelistrss
-  - articleview
-  - authorlist
-  - authorview
-  - extendedsearch
-  - fileedit
-  - filelist
-  - frontpage
-  - headlines
-  - imageedit
-  - imagelist
-  - mailtofriend
-  - menuarticleview
-  - menumaker
-  - newsgroup
-  - search
-  - searchform
-  - searchsupplier
-  - sitemap
-  - smallarticlelist
-  - topiclist
-  - urlsupplier
-- ezbug
-  - bugedit
-  - buglist
-  - bugpreview
-  - categorylist
-  - cron
-  - menubox
-  - moduleedit
-  - modulelist
-  - prioritylist
-  - search
-  - statuslist
-  - unhandledbugs
-- ezbulkmail
-  - bulklist
-  - categoryedit
-  - cron
-  - mailview
-  - menubox
-  - singlelist
-  - subscriptionlist
-  - subscriptionlogin
-  - usermessages
-- ezcalendar
-  - appointmentedit
-  - appointmentview
-  - dayview
-  - monthview
-  - trustees
-  - yearview
-- ezcontact
-  - companysearch
-  - consultationlist
-  - menubox
-  - personsearch
-  - searchsupplier
-  - urlsupplier
-- ezerror
-  - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
-- ezexample
-  - listtable
-  - page
-- ezfilemanager
-  - filedownload
-  - filelist
-  - fileupload
-  - fileview
-  - folderedit
-  - menubox
-  - menufilelist
-  - menufolderlist
-  - search
-  - viewfile
-- ezform
-  - formview
-- ezforum
-  - categoryedit
-  - categorylist
-  - editmessage
-  - forumedit
-  - forumlist
-  - menubox
-  - message
-  - messageedit
-  - messagelist
-  - norights
-  - search
-  - unapprovededit
-  - unapprovedlist
-- ezimagecatalogue
-  - browse
-  - categoryedit
-  - customimage
-  - filedownload
-  - imageedit
-  - imagelist
-  - imageview
-  - menubox
-  - unassigned
-- ezlink
-  - gotolink
-  - latest
-  - linkcategorylist
-  - menubox
-  - onepagelinklist
-  - search
-  - success
-  - suggestlink
-- ezmail
-  - accountedit
-  - configure
-  - fileedit
-  - folderlist
-  - link
-  - mailedit
-  - maillist
-  - mailview
-  - menubox
-  - search
-- ezimagecatalogue
-  - categoryedit
-  - customimage
-  - filedownload
-  - imageedit
-  - imagelist
-  - imageview
-  - menubox
-  - menucategorylist
-  - searchsupplier
-  - slideshow
-- ezmessage
-  - menubox
-  - messageedit
-  - messagelist
-  - messageview
-- ezmodule
-  - activate
-- eznewsfeed
-  - categoryedit
-  - cron
-  - importnews
-  - menubox
-  - newsarchive
-  - newsedit
-  - newssearch
-  - sourcesiteedit
-  - unpublished
-- ezpoll
-  - pollist
-  - result
-  - userlogin
-  - vote
-  - votebox
-  - votepage
-- ezquiz
-  - menubox
-  - quizlist
-  - quizmyscores
-  - quizopen
-  - quizplay
-  - quizscores
-- ezsearch
-  - menubox
-  - search
-- ezsession
-  - Classes only module. No views. One cron job php command, 'kernel/ezsession/admin/cron.php'.
-- ezsitemanager
-  - cacheadmin
-  - fileedit
-  - filelist
-  - menubox
-  - menuedit
-  - menulist
-  - sectionedit
-  - sectionlist
-  - siteconfig
-  - sqlquery
-  - templateedit
-  - templatelist
-- ezstats
-  - overview
-  - entryexitreport
-  - pageviewlist
-  - visitorlist
-  - refererlist
-  - browserlist
-  - requestpagelist
-  - yearreport
-  - monthreport
-  - dayreport
-  - storestats
-- ezsysinfo
-  - fileinfo
-  - hwinfo
-  - meminfo
-  - menubox
-  - netinfo
-  - sysinfo
-- eztodo
-  - menubox
-  - todoedit
-  - todoinfo
-  - todolist
-  - todomenulist
-  - todoview
-- eztrade
-  - cart
-  - categorylist
-  - categorytreelist
-  - checkout
-  - confirmation
-  - customerlogin
-  - extendedsearch
-  - findwishlist
-  - hostdealslist
-  - invoice
-  - mastercard
-  - menubox
-  - metasupplier
-  - orderlist
-  - ordersendt
-  - orderview
-  - payment
-  - paypalnotify
-  - precheckout
-  - productlist
-  - productsearch
-  - productview
-  - searchsupplier
-  - sendwishlist
-  - smallcart
-  - smallproductlist
-  - viewwishlist
-  - visa
-  - voucher
-  - voucherinformation
-  - vouchermain
-  - voucherview
-  - wishlist
-- ezurltranslator
-  - menubox
-  - urledit
-- ezuser
-  - addressedit
-  - forgot
-  - forgotmessage
-  - login
-  - missingmailmessage
-  - norights
-  - userbox
-  - usercheck
-  - useredit
-  - userwithaddress
-- ezxml
-  - Classes only module. No views.
-- ezxmlrpc
-  - Classes only module. No views.
-
-### eZ Publish Basic User Module Views Available
-
-The following user modules and views are included in eZ Publish Basic:
-
-- ezabout
-  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
-- ezad
-  - adlist
-  - gotoadd
-  - queuedadlist
-- ezbug
-  - bugslist
-  - bugreport
-  - bugview
-  - fileedit
-  - imageedit
-  - menubox
-  - menumodulelist
-  - reportsuccess
-  - search
-  - unhandledbugs
-- ezarticle
-  - articleedit
-  - articleheaderlist
-  - articlelinks
-  - articlelist
-  - articlelistrss
-  - articleview
-  - authorlist
-  - authorview
-  - extendedsearch
-  - fileedit
-  - filelist
-  - frontpage
-  - headlines
-  - imageedit
-  - imagelist
-  - mailtofriend
-  - menuarticleview
-  - menumaker
-  - newsgroup
-  - search
-  - searchform
-  - searchsupplier
-  - sitemap
-  - smallarticlelist
-  - topiclist
-  - urlsupplier
-- ezbug
-  - buglist
-  - bugreport
-  - bugview
-  - fileedit
-  - imageedit
-  - menubox
-  - menumodulelist
-  - reportsuccess
-  - search
-  - unhandledbugs
-- ezbulkmail
-  - bulklist
-  - categoryedit
-  - cron
-  - mailview
-  - menubox 
-  - singlelist
-  - subscriptionlist
-  - subscriptionglogin
-  - usermessages
-- ezcalendar
-  - appointmentedit
-  - appointmentview
-  - dayview
-  - monthview
-  - trustees
-  - yearview
-- ezcontact
-  - companysearch
-  - consultationlist
-  - menubox
-  - personsearch
-  - searchsupplier
-  - urlsupplier
-- ezerror
-  - Built-In - Kernel Error Handling Default User Datasupplier Based Module View (Dynamically Driven From ezerror/admin/datasupplier.php include instead of implementation).
-- ezexample
-  - listtable
-  - page
-- ezfilemanager
-  - filedownload
-  - filelist
-  - fileupload
-  - fileview
-  - folderedit
-  - menubox
-  - menufilelist
-  - menufolderlist
-  - search
-  - viewfile
-- ezform
-  - formview
-- ezforum
-  - categorylist
-  - forumlist
-  - latestmessages
-  - menubox
-  - menuforumlist
-  - message
-  - messagebody
-  - messageedit
-  - messageform
-  - messagelist
-  - messagelistflat
-  - messagepath
-  - messagepermissions
-  - messagereply
-  - messagesearch
-  - messagesimplelist
-  - search
-  - searchsupplier
-  - userlogin
-- ezimagecatalogue
-  - categoryedit
-  - customimage
-  - filedownload
-  - imageedit
-  - imagelist
-  - imageview
-  - menubox
-  - menucategorylist
-  - searchsupplier
-  - slideshow
-- ezlink
-  - gotolink
-  - latest
-  - linkcategorylist
-  - menubox
-  - onepagelinklist
-  - search
-  - success
-  - suggestlink
-- ezmail
-  - accountedit
-  - configure
-  - fileedit
-  - folderlist
-  - link
-  - mailedit
-  - maillist
-  - mailview
-  - menubox
-  - search
-- ezmessage
-  - menubox
-  - messageedit
-  - messagelist
-  - messageview
-- ezmodule
-  - activate
-- eznewsfeed
-  - allcategories
-  - headlines
-  - menubox
-  - newslist
-  - search
-- ezpoll
-  - pollist
-  - result
-  - userlogin
-  - vote
-  - votebox
-  - votepage
-- ezquiz
-  - menubox
-  - quizlist
-  - quizmyscores
-  - quizopen
-  - quizplay
-  - quizscores
-- ezsearch
-  - menubox
-  - search
-- ezsession
-  - Classes only module. No views. One cron job php command, 'kernel/ezsession/admin/cron.php'.
-- ezsitemanager
-  - static - Undocumented static content view.
-- ezstats
-  - storestats
-- ezsysinfo
-  - No user module views. Only Admin module views.
-- eztodo
-  - menubox
-  - todoedit
-  - todoinfo
-  - todolist
-  - todomenulist
-  - todoview
-- eztrade
-  - cart
-  - categorylist
-  - categorytreelist
-  - checkout
-  - confirmation
-  - customerlogin
-  - extendedsearch
-  - findwishlist
-  - hostdealslist
-  - invoice
-  - mastercard
-  - menubox
-  - metasupplier
-  - orderlist
-  - ordersendt
-  - orderview
-  - payment
-  - paypalnotify
-  - precheckout
-  - productlist
-  - productsearch
-  - productview
-  - searchsupplier
-  - sendwishlist
-  - smallcart
-  - smallproductlist
-  - viewwishlist
-  - visa
-  - voucher
-  - voucherinformation
-  - vouchermain
-  - voucherview
-  - wishlist
-- ezurltranslator
-  - None (Admin Only Module)
-- ezuser
-  - addressedit
-  - forgot
-  - forgotmessage
-  - login
-  - missingmailmessage
-  - norights
-  - userbox
-  - usercheck
-  - useredit
-  - userwithaddress
-- ezxml
-  - Classes only module. No views.
-- ezxmlrpc
-  - Classes only module. No views.

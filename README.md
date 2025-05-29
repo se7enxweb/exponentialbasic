@@ -6,8 +6,6 @@ eZ Publish Basic is an open-source project to modernize the classic eZ Publish 2
 
 This project is led by [7x](https://se7enx.com) and aims to ensure the long-term viability of eZ Publish 2.x for community portal solutions and their future portability (export to another cms).
 
-Documentation for this project will in the future be covering importing eZ Publish 2.x Database Content, Exporting eZ Publish 2.x Database content for import (As required to start, like say eZ Article or eZ FileManager or eZ ImageCatalog) from eZ Publish 2 into eZ Publish 6 (Latest stable version of eZ Publish 3 Kernel APIs) Open Source Code and Flexible Content Management where importing data is common and accepted part of any website project using a CMS.
-
 ---
 
  * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)

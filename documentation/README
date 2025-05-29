@@ -1,4 +1,4 @@
-eZ publish Basic 2.4.0
+eZ publish Basic 2.4.0.0
 ----------------
 
 eZ publish Basic is a content management system for e-commerce, e-publishing and intranets.
@@ -18,17 +18,16 @@ NOTE: There are structural changes in the database that might make your old arti
 L I N K S:
 ----------
 
-For developer information / contribution / internationalisation issues / documentation issues and information contact Graham Brookins (info at brookinsconsulting dot com).
+For developer information / contribution / internationalisation issues / documentation issues and information contact Graham Brookins (info at se7enx dot com).
 
-eZ Community : eZ publish 2 homepage:
-http://ezcommunity.net
+eZ Publish Basic homepage:
+https://basic.ezpublish.one
 
-Latest eZ publish documentation:
-http://ezcommunity.net/filemanager/list/1/
+Latest eZ publish basic software :
+https://github.com/se7enxweb/ezpublishbasic
 
-Latest eZ publish 2 version:
-http://ezcommunity.net/filemanager/list/3/
-
+Latest eZ publish basic releases on sourceforge :
+https://sourceforge.net/projects/ezpublishbasic/
 
 U P G R A D E:
 --------------

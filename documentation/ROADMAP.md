@@ -1,16 +1,24 @@
-# eZ Publish Basic - Features Roadmap for 2025 Q1
+# eZ Publish Basic - Features Roadmap for 2025 Q3
 
-- In Progress: PHP 4 Bugfixes
-- In Progress: PHP 5 Bugfixes
-- In Progress: PHP 7 Bugfixes
-- In Progress: PHP 8 Bugfixes & Testing
-- Active Development and Testing is in the 'PHP 8 Bugfixes & Testing' task primarily.
+- Completed: PHP 4/5/7/8 Bugfixes and Testing
+- Completed: Feature accuracy bugfixing and testing. Ensuring all features work as expected without negative features.
+- In progress: Release Preparation: General refinements in preparation for first release.
+- Active Development and Testing is in the 'Release Preparation' task primarily.
 
-# Upcoming Roadmap for 2025 Q2
+# Upcoming Roadmap for 2025 Q4
 
-- Refactor framework indexes and all modules to use no longer require our register globals userland features as not secure enough.
+- Remove userland register globals patch: Refactor framework indexes and all modules to use no longer require our register globals userland features as not secure enough.
   - The goal is to replace all local expected to be set variables to use _REQUEST variables to replace usages of these variables with all more specific scopes _SERVER, _REQUEST, _GET, _POST scopes. 
-  - This is a insecure programing technique which eZ P ublsih 2 suffered in silence for years. We aim to make eZ Publish Baic work without our user land implementation of register globals for a more specifically scoped set of module view code which means greater request / server / installation security
+  - This is a insecure programing technique which eZ publsih 2 suffered in silence for years. We aim to make eZ Publish Baic work without our user land implementation of register globals for a more specifically scoped set of module view code which means greater request / server / installation security
+  - Our initial goal is to rewrite the software on a per user module; per module view basis to begin to replace the use of global variables with all more specific scopes _SERVER, _REQUEST, _GET, _POST scopes as required. This will take considerable time, attention to details and extensive testing to replace all the variables in code form successfully without negative features being introduced in the 34 modules included by default in eZ Publish Basic. This means we are addressing the user modules views first. We feel as the admin site and it's module views should be protected by an httpd login prompt and not available to the general internet by default thus more securely protected the need to address the code of these is less urgent.
+
+# Upcoming Roadmap for 2026 Q1
+
+None Scheduled; Please contribute to expanding our simple and easy to develop cms framework e-commerce website development system.
+
+# Upcoming Roadmap for 2026 Q2
+
+Documentation for this project will in the future be covering importing eZ Publish 2.x Database Content, Exporting eZ Publish 2.x Database content for import (As required to start, like say eZ Article or eZ FileManager or eZ ImageCatalog) from eZ Publish 2 into eZ Publish 6 (Latest stable version of eZ Publish 3 Kernel APIs) Open Source Code and Flexible Content Management where importing data is common and accepted part of any website project using a CMS.
 
 # Suggestions
 

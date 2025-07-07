@@ -165,4 +165,5 @@ if( isset( $error ) ) // parse the errors
 }
 
 $t->pparse( "output", "subscription_login_tpl" );
+
 ?>

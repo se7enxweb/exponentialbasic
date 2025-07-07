@@ -342,6 +342,7 @@ class eZBulkMailCategory
 
         if( $id == -1 )
             $id = $this->ID;
+        
         $return_array = array();
         $mail_array = array();
 

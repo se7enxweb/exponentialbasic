@@ -141,4 +141,5 @@ if( $CategoryID != 0 )
 }
 
 $t->pparse( "output", "user_list_page_tpl" );
+
 ?>

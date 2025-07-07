@@ -61,4 +61,5 @@ $t->set_file( array(
 $t->setAllStrings();
 
 $t->pparse( "output", "category_edit_tpl" );
+
 ?>

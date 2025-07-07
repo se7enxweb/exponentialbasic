@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini = eZINI::instance();
 $Language = $ini->read_var( "eZBulkMailMain", "Language" );
 
 $t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
@@ -73,4 +73,5 @@ if( isset( $subscriptionerror ) )
 }
 
 $t->pparse( "output", "message" );
+
 ?>

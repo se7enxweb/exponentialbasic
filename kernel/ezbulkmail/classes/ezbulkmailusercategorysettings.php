@@ -74,7 +74,7 @@ class eZBulkMailUserCategorySettings
                                   '$this->UserID',
                                   '$this->Delay'
                                 ) " );
-			$this->ID = $nextID;
+			      $this->ID = $nextID;
         }
         else
         {
@@ -210,6 +210,5 @@ Subscripti
     var $UserID;
     var $Delay;
 }
-
 
 ?>

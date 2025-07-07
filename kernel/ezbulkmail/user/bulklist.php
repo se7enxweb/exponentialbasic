@@ -97,6 +97,8 @@ if( is_numeric( $CategoryID ) && $CategoryID > 0 )
     }
 
 }
+
 eZList::drawNavigator( $t, $mailCount, 20, $Offset, "bulk_list_tpl" );
 $t->pparse( "output", "bulk_list_tpl" );
+
 ?>

@@ -893,7 +893,6 @@ class eZBulkMail
     /// Is true if the object has database connection, false if not.
     var $IsConnected;
 
-
 }
 
 ?>

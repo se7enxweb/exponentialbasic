@@ -147,4 +147,5 @@ else
 }
 
 $t->pparse( "output", "subscription_list_tpl" );
+
 ?>

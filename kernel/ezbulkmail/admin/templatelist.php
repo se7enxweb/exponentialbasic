@@ -73,4 +73,5 @@ if( $i > 0 )
     $t->parse( "template", "template_tpl" );
 
 $t->pparse( "output", "template_list_tpl" );
+
 ?>

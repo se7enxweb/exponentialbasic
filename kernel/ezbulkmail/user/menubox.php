@@ -58,4 +58,5 @@ else
 } 
 
 $t->pparse( "output", "menu_box_tpl" );
+
 ?>

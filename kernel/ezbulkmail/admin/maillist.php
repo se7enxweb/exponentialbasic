@@ -78,4 +78,5 @@ if( $i > 0 )
     $t->parse( "bulkmail", "bulkmail_tpl" );
 
 $t->pparse( "output", "bulkmail_list_tpl" );
+
 ?>

@@ -28,7 +28,10 @@
 // include_once( "ezbulkmail/classes/ezbulkmailforgot.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
+$wwwDir = $ini->WWWDir;
+$indexFile = $ini->Index;
+
 $Language = $ini->read_var( "eZBulkMailMain", "Language" );
 $languageIni = new INIFIle( "kernel/ezbulkmail/user/intl/" . $Language . "/subscriptionlogin.php.ini", false );
 $category = eZBulkMailCategory::singleList();

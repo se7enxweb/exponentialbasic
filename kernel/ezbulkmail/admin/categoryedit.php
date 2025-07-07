@@ -118,4 +118,5 @@ foreach ( $groups as $group )
 }
 
 $t->pparse( "output", "category_edit_tpl" );
+
 ?>

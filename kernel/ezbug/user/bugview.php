@@ -255,4 +255,3 @@ if ( count( $logList  ) == 0 )
 $t->pparse( "output", "bug_edit_tpl" );
 
 ?>
-

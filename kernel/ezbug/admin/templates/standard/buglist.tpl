@@ -139,4 +139,3 @@
 <!-- END bug_delete_button_tpl -->
 
 </form>
-

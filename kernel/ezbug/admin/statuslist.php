@@ -109,4 +109,5 @@ foreach( $statusList as $statusItem )
 } 
 
 $t->pparse( "output", "status_page" );
+
 ?>

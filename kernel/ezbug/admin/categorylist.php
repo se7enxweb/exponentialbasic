@@ -109,4 +109,5 @@ foreach( $categoryList as $categoryItem )
 } 
 
 $t->pparse( "output", "category_page" );
+
 ?>

@@ -143,4 +143,3 @@ else
 $t->pparse( "output", "bug_edit_tpl" );
 
 ?>
-

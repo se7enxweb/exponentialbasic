@@ -106,4 +106,5 @@ else
 } 
 
 $t->pparse( "output", "module_page" );
+
 ?>

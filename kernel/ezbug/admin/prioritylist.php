@@ -113,4 +113,5 @@ foreach( $priorityList as $priorityItem )
 } 
 
 $t->pparse( "output", "priority_page" );
+
 ?>

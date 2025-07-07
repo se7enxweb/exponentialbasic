@@ -230,4 +230,5 @@ else
 }
 
 $t->pparse( "output", "bug_list_page_tpl" );
+
 ?>

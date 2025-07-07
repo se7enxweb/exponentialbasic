@@ -127,4 +127,3 @@ else
 $t->pparse( "output", "ad_edit_page_tpl" );
 
 ?>
-

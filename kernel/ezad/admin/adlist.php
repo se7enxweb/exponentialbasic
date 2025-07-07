@@ -200,9 +200,4 @@ else
 
 $t->pparse( "output", "ad_list_page_tpl" );
 
-
-
-
-
-
 ?>

@@ -105,9 +105,9 @@ class eZAd
 
             $res = $db->query( $queryText );
 
-			$this->ID = $nextID;
+			      $this->ID = $nextID;
 
-            $this->addPageView( );
+            $this->addPageView();
             $db->unlock();
         }
         else
@@ -594,6 +594,7 @@ class eZAd
     var $Name;
     var $Description;
     var $ImageID;
+    var $URL;
     var $ViewStartDate;
     var $ClickPrice;
     var $ViewPrice;

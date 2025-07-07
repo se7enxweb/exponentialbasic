@@ -84,5 +84,4 @@ foreach ( $adList as $ad )
     }
 }
 
-
 ?>

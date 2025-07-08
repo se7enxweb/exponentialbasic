@@ -76,7 +76,8 @@ switch ( $url_array[2] )
     case "download" :
     {
         $FileID = $url_array[3];
-        include( "kernel/ezfilemanager/user/filedownload.php" );
+        $FileNamePassed = $url_array[4];
+        include( "ezfilemanager/user/filedownload.php" );
     }
     break;
     
@@ -88,6 +89,12 @@ switch ( $url_array[2] )
         $Offset = $url_array[4];
         if ( !isset( $Offset ) || $Offset == "" )
             $Offset = 0;
+        include( "kernel/ezfilemanager/user/filelist.php" );
+    }
+    break;
+
+	case "import" :
+    {
         include( "kernel/ezfilemanager/user/filelist.php" );
     }
     break;

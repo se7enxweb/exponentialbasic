@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-$ini = eZINI::instance();
+$ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZErrorMain", "DefaultSection" );
 
 include( "kernel/ezerror/admin/datasupplier.php" );

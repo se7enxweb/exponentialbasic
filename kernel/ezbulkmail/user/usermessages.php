@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
-$ini = eZINI::instance();
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZBulkMailMain", "Language" );
 
 $t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),

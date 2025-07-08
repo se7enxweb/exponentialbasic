@@ -357,6 +357,7 @@ class eZVirtualFolder
     */
     function &name( $html = true )
     {
+       $this->Name = stripslashes($this->Name);
        if ( $html )
            return htmlspecialchars( $this->Name );
        else
@@ -368,6 +369,7 @@ class eZVirtualFolder
     */
     function &description( $html = false )
     {
+       $this->Description = stripslashes($this->Description);
        if ( $html )
            return htmlspecialchars( $this->Description );
        else

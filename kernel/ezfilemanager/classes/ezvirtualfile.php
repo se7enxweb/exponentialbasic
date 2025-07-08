@@ -315,6 +315,7 @@ class eZVirtualFile
     */
     function &name( $html = true )
     {
+		$this->Name = stripslashes($this->Name);
         if ( $html )
             return htmlspecialchars( $this->Name );
         else
@@ -326,6 +327,7 @@ class eZVirtualFile
     */
     function &description( $html = true )
     {
+		$this->Description = stripslashes( $this->Description );
         if ( $html )
             return htmlspecialchars( $this->Description );
         else
@@ -477,6 +479,7 @@ class eZVirtualFile
     {
         if ( is_a( $file, "eZFile" ) )
         {
+			$this->FileName = basename( $file->tmpName() );
             if ( eZFile::file_exists( $this->filePath( true ) ) )
             {
                 eZFile::unlink( $this->filePath( true ) );

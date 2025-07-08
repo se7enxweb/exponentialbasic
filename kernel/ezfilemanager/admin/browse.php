@@ -155,13 +155,15 @@ else
 
 // Print out the files.
 
-$fileList =& $folder->files();
+$count = $folder->countFiles();
+$fileList =& $folder->files( "name", 0, $count );
 
 $deleteFiles = false;
 foreach ( $fileList as $file )
 {
     $t->set_var( "file_id", $file->id() );
-    $t->set_var( "original_file_name", $file->originalFileName() );
+//    $t->set_var( "original_file_name", $file->originalFileName() );
+    $t->set_var( "original_file_name", $file->name() );
     $t->set_var( "file_name", $file->name() );
     $t->set_var( "file_url", $file->name() );
     $t->set_var( "file_description", $file->description() );
@@ -214,4 +216,3 @@ else
 }
 
 ?>
-

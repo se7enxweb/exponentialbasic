@@ -34,7 +34,9 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
+$ini = eZINI::instance();
+$wwwDir = $ini->WWWDir;
+$indexFile = $ini->Index;
 
 $Language = $ini->read_var( "eZFileManagerMain", "Language" );
 $ImageDir = $ini->read_var( "eZFileManagerMain", "ImageDir" );

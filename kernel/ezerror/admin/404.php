@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini = eZINI::instance();
 $Language = $ini->read_var( "eZErrorMain", "Language" );
 
 $t = new eZTemplate( "kernel/ezerror/admin/" . $ini->read_var( "eZErrorMain", "AdminTemplateDir" ),
@@ -43,8 +43,8 @@ if( isset( $Info ) && !empty( $Info ) )
 else
 {
     $t->set_var( "additional_information", "" );
-}
-                 
+}      
 
 $t->pparse( "output", "error_page" );
+
 ?>

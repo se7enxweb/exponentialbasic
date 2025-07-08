@@ -23,6 +23,12 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
+////////////////////////////////////////////
+// Set Redirect (Keep Site Errors Clean by Redirecting Away from It After 7 Seconds
+$MetaRedirectLocation = "http://". $ini->read_var( "site", "UserSiteURL" ) ."/";
+$MetaRedirectTimer = "5";
+
+
 switch( $url_array[2] )
 {
     case "403" :

@@ -63,4 +63,5 @@ else
 $t->set_var( "sitedesign", $GlobalSiteDesign );
 	    
 $t->pparse( "output", "menu_box_tpl" );
+
 ?>

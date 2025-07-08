@@ -34,6 +34,11 @@
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 // include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
 
+if ( isSet( $UpdateFiles ) )
+{
+    $Action = "UpdateFiles";
+}
+
 if ( isset( $NewFile ) )
 {
     $Action = "New";
@@ -144,6 +149,22 @@ $t->set_block( "errors_tpl", "error_write_everybody_permission_tpl", "error_writ
 $t->set_var( "error_write_everybody_permission", "" );
 
 
+if ($Action == "UpdateFiles")
+{
+    $oldFolder = 0;
+    for ( $i = 0; $i < count( $FileUpdateIDArray ); $i++ )
+        {
+			$file = new eZVirtualFile($FileUpdateIDArray[$i]);
+			if ($NewDescriptionArray[$i] != $file->description() )
+			    $file->setDescription( $NewDescriptionArray[$i] );
+	            $oldParent = $file->folder();
+            if ( $oldParent )
+			    $oldFolder = $oldParent->id();
+			$file->store(); 
+		}
+		eZHTTPTool::header( "Location: /filemanager/list/$oldFolder/" );
+	    exit();					
+}
 if ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" )
 {
     if ( $folderPermissionCheck )

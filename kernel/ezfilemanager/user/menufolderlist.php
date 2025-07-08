@@ -77,7 +77,7 @@ else
 {
     $t->set_var( "folder_list", "" );
 }
+
 $t->pparse( "output", "folder_list_page_tpl" );
 
 ?>
-

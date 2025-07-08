@@ -88,6 +88,4 @@ foreach ( $folderList as $folder )
 
 $t->pparse( "output", "file_view" );
 
-
 ?>
-

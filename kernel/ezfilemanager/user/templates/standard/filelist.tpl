@@ -96,8 +96,17 @@
 	<img src="{www_dir}/design/admin/images/file.gif" border="0" alt="" width="16" height="16" border="0" />
 	</td>
 	<td class="{td_class}" width="40%">
-	<a href="{www_dir}{index}/filemanager/fileview/{file_id}/">{original_file_name}</a><br />
-	</td>
+	<span class="small"><a href="{www_dir}{index}/filemanager/fileview/{file_id}/" class="small" title="{file_description}">{original_file_name}</a></span><br />
+	
+			<!-- BEGIN description_edit_tpl -->
+		<span class="small"><input type="text" name="NewDescriptionArray[]" size="70" value="{file_description}" STYLE="font-size:10px"/></span>
+		<input type="hidden" name="FileUpdateIDArray[]" value="{file_id}">
+		<!-- END description_edit_tpl -->
+
+		<!-- BEGIN description_tpl -->
+		<span class="small">{file_description}</span>
+		<!-- END description_tpl -->
+		</td>
 	<td class="{td_class}" width="56%">
 	<span class="small">{file_description}</span>
 	<td class="{td_class}" width="1%">
@@ -153,6 +162,11 @@
     <td>
 	<input class="stdbutton" type="submit" name="DeleteFolders" value="{intl-delete_folders}">
 	</td>
+	<td>&nbsp;</td>
+	<td>
+	<input class="stdbutton" type="submit" name="UpdateFiles" value="{intl-update_files}">
+	</td>
+	
 </tr>
 </table>
 <!-- END delete_menu_tpl -->
@@ -170,8 +184,18 @@
 	<input class="stdbutton" type="submit" name="NewFolder" value="{intl-new_folder}">
 	<input type="hidden" name="FolderID" value="{main_folder_id}">
     </td>
+</tr></table>
+</form>
+
+<hr noshade="noshade" size="4" />
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+    <td>
+<form method="post" action="{www_dir}{index}/filemanager/import/" enctype="multipart/form-data">
+	<input type="text" name="SyncFileDir" size="20" value="{sync_dir}" />	
+	<input class="stdbutton" type="submit" name="FileUpload" value="{intl-file_upload}" />
+</form>
+    </td>
 </tr>
 </table>
 <!-- END write_menu_tpl -->
-
-</form>

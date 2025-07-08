@@ -34,12 +34,15 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini = eZINI::instance();
+$ini =& INIFile::globalINI();
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
 $Language = $ini->read_var( "eZFileManagerMain", "Language" );
 $ImageDir = $ini->read_var( "eZFileManagerMain", "ImageDir" );
+$FileCat = $ini->read_var( "eZFileManagerMain", "FileCat" );
+$SyncDir = $ini->read_var( "eZFileManagerMain", "SyncDir" );
+$SectionID = $ini->read_var( "eZFileManagerMain", "DefaultSection" );
 $Limit = $ini->read_var( "eZFileManagerMain", "Limit" );
 $ShowUpFolder = $ini->read_var( "eZFileManagerMain", "ShowUpFolder" ) == "enabled";
 
@@ -63,6 +66,10 @@ $t->set_block( "file_list_page_tpl", "prev_tpl", "prev" );
 $t->set_block( "file_list_tpl", "file_tpl", "file" );
 
 $t->set_block( "file_tpl", "read_tpl", "read" );
+
+$t->set_block( "read_tpl", "description_edit_tpl", "description_edit" );
+$t->set_block( "read_tpl", "description_tpl", "description" );
+
 $t->set_block( "file_tpl", "write_tpl", "write" );
 $t->set_block( "file_tpl", "no_write_tpl", "no_write" );
 
@@ -74,8 +81,119 @@ $t->set_block( "folder_tpl", "folder_write_tpl", "folder_write" );
 $t->set_block( "folder_tpl", "folder_read_tpl", "folder_read" );
 
 $t->set_var( "read", "" );
-
+$t->set_var( "description_edit", "" );
+$t->set_var( "description", "" );
+$t->set_var( "sync_dir", $SyncDir );
+/*
+echo "<pre>";
+print_r ($t);
+echo "</pre>";
+exit();
+*/
 $user =& eZUser::currentUser();
+
+function syncDir( $root, $category )
+{
+    global $user;
+    $dir = eZFile::dir( $root, false );
+
+    while ( $entry = $dir->read() )
+
+    {
+        if ( $entry != "." && $entry != ".." )
+        {
+            if ( filetype( $root . $entry ) == "dir" )
+            {
+                // check if category exists if not create it:
+                $subCategoryArray =& $category->getByParent( $category );
+
+                $sub = false;
+                foreach ( $subCategoryArray as $subCategory )
+                {
+                    if ( $subCategory->name() == $entry )
+                    {
+                        $sub = $subCategory;
+                    }
+                    print( $subCategory->name() . "\n<br>" );
+                }
+
+                if ( $sub == false )
+                {
+
+					$sub = new eZVirtualFolder();
+					$sub->setUser( $user );
+					$sub->setName( $entry );
+					$sub->setParent( $category );
+					$sub->store();
+
+					//sets permissions
+                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "r" );
+                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "w" );
+                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "u" );
+
+                    $group = new eZUserGroup( -1 );
+                    eZObjectPermission::setPermission( -1, $sub->id(), "filemanager_folder", "r" );
+
+                    eZObjectPermission::setPermission( 1, $sub->id(), "filemanager_folder", "w" );
+                    eZObjectPermission::setPermission( 1, $sub->id(), "filemanager_folder", "u" );
+                }
+                print( "Syncing dir " . $root . $entry . "\n<br>" );
+                syncDir( $root . $entry . "/", $sub );
+            }
+            else if ( filetype( $root . $entry ) == "file" )
+            {
+                $files = $category->files( "time", 0, -1 );
+
+                $fileExists = false;
+
+                foreach ( $files as $file )
+                {
+                    if ( $entry == $file->name() )
+                    {
+                        $fileExists = true;
+                    }
+      }
+
+                if ( $fileExists == false )
+      {
+
+						
+						$uploadedFile = new eZVirtualFile();
+					    $uploadedFile->setUser( $user );
+						$uploadedFile->setName( $entry );
+						
+						$uploadedFile->setDescription( $entry );												
+                        print( "adding file: " . $root . $entry . "\n<br>" );
+                        $getFile = new eZFile();
+                        $getFile->getFile( $root . $entry );
+				
+					    $uploadedFile->store();
+					    $uploadedFile->setFile( &$getFile );
+						
+					    $folder = new eZVirtualFolder( $category->id() );
+					    $folder->addFile( $uploadedFile );
+					    $uploadedFile->setOriginalFileName( $entry );
+						$uploadedFile->store();
+						
+                        eZObjectPermission::removePermissions( $uploadedFile->id(), "filemanager_file", "r" );
+                        eZObjectPermission::removePermissions( $uploadedFile->id(), "filemanager_file", "w" );
+
+                        eZObjectPermission::setPermission( -1, $uploadedFile->id(), "filemanager_file", "r" );
+                        eZObjectPermission::setPermission( 1, $uploadedFile->id(), "filemanager_file", "w" );
+                }
+            }
+        }
+    }
+}
+
+if ( isSet ( $FileUpload ) )
+{
+
+	$category = new eZVirtualFolder( $FileCat );
+	syncDir( $SyncFileDir, $category );
+	eZHTTPTool::header( "Location: /filemanager/list/$FileCat" );
+    exit();
+}
 
 $folder = new eZVirtualFolder( $FolderID );
 
@@ -148,7 +266,7 @@ foreach ( $pathArray as $path )
     $lastPath = $path;
 }
 
-$t->set_var( "top_folder_name", $lastPath );
+$t->set_var( "top_folder_name", $path[1] );
 
 // Print out the folders.
 $folderList =& $folder->getByParent( $folder );
@@ -199,6 +317,17 @@ else
 
 $fileList =& $folder->files( "name", $Offset, $Limit );
 
+  //for debugging
+/*
+if ( count($fileList) > 0 )
+{
+	echo "<pre>";
+	print_r($fileList);
+	echo "<pre>";
+	exit();
+}
+*/
+
 $deleteFiles = false;
 foreach ( $fileList as $file )
 {
@@ -232,6 +361,20 @@ foreach ( $fileList as $file )
     if ( eZObjectPermission::hasPermission( $file->id(), "filemanager_file", "r", $user ) ||
          eZVirtualFile::isOwner( $user ,$file->id() ) )
     {
+	
+				 if ( $user &&
+         	( eZObjectPermission::hasPermission( $file->id(), "filemanager_file", "w", $user ) ||
+           eZVirtualFile::isOwner( $user, $file->id() ) ) )
+			{   
+			$t->parse( "description_edit", "description_edit_tpl" );
+    	    $t->set_var( "description", "" );
+			}
+		else
+			{
+			$t->parse( "description", "description_tpl" );
+    	    $t->set_var( "description_edit", "" );
+			}
+	
         $t->parse( "read", "read_tpl" );
         $i++;
     }

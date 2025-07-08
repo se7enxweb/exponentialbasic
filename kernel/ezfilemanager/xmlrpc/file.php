@@ -125,4 +125,5 @@ else if ( $Command == "delete" )
     else
         $Error = createErrorMessage( EZERROR_NONEXISTING_OBJECT );
 }
+
 ?>

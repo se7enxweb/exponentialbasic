@@ -858,5 +858,4 @@ $t->set_var( "action_value", $Action_value );
 
 $t->pparse( "output", "consultation_edit"  );
 
-
 ?>

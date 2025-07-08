@@ -75,4 +75,5 @@ for ( $i=0; $i<count( $persontype_array ); $i++ )
 
 $t->set_var( "document_root", $DOC_ROOT );
 $t->pparse( "output", "persontype_page" );
+
 ?>

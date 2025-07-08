@@ -221,6 +221,26 @@ else
         $t->set_var( "person_firstname", $persons[$i]->firstName() );
         $t->set_var( "person_lastname", $persons[$i]->lastName() );
 
+        $image =& $persons[$i]->image();
+        if ( get_class( $image ) == "ezimage" && $image->id() != 0 )
+        {
+            $imageWidth =& $ini->read_var( "eZContactMain", "PersonlistImageWidth" );
+            $imageHeight =& $ini->read_var( "eZContactMain", "PersonlistImageHeight" );
+            $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
+            $imageURL = "/" . $variation->imagePath();
+            $imageWidth = $variation->width();
+            $imageHeight = $variation->height();
+            $imageCaption = $image->caption();
+            $t->set_var( "image_width", $imageWidth );
+            $t->set_var( "image_height", $imageHeight );
+            $t->set_var( "image_url", $imageURL );
+            $t->set_var( "image_caption", $imageCaption );         
+            $t->parse( "image_item", "image_item_tpl" );
+        }
+        else
+        {
+            $t->parse( "image_item", "" );     
+        }
         $t->parse( "person_item", "person_item_tpl", true );
     }
 

@@ -327,7 +327,7 @@ if ( $Action == "view" )
         $t->parse( "no_project_status", "no_project_status_tpl" );
     }
 
-/*    $image =& $person->image();
+    $image =& $person->image();
     if ( get_class( $image ) == "ezimage" && $image->id() != 0 )
     {
         $imageWidth =& $ini->read_var( "eZContactMain", "PersonImageWidth" );
@@ -343,7 +343,7 @@ if ( $Action == "view" )
         $t->set_var( "image_caption", $imageCaption );
         $t->parse( "image_item", "image_item_tpl" );
     }
-    else*/
+    else
     {
         $t->set_var( "image_item", "" );
     }

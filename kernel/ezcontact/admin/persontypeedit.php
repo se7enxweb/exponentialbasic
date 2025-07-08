@@ -136,4 +136,5 @@ $t->set_var( "persontype_name", $PersonTypeName );
 $t->set_var( "description", $PersonTypeDescription );
 
 $t->pparse( "output", "persontype_edit_page" );
+
 ?>

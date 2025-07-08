@@ -42,24 +42,28 @@
 <p class="boxtext">{intl-companies}</p>
 
 <!-- BEGIN company_item_tpl -->
+
 <a href="{www_dir}{index}/contact/company/view/{company_id}/">{company_name}</a><br />
+
 <!-- END company_item_tpl -->
+<br />
 
 <p class="boxtext">{intl-description_headline}:</p>
-<span class="p">{description}</span><br />
+<div class="p">{description}</div>
+<br />
 
 <!-- BEGIN address_item_tpl -->
 <p class="boxtext">{intl-addresses_headline}</p>
-
+<br />
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
 <tr>
 <!-- BEGIN address_line_tpl -->
 	<td>
 	<p class="boxtext">{address_type_name}:</p>
-	<span class="p">{street1}</span><br />
-	<span class="p">{street2}</span><br />
-	<span class="p">{zip} {place}</span><br />
-	<span class="p">{country}</span><br />
+	<div class="p">{street1}</div>
+	<div class="p">{street2}</div>
+	<div class="p">{zip} {place} {region}</div>
+	<div class="p">{country}</div>
 	</td>
 <!-- END address_line_tpl -->
 </tr>
@@ -70,8 +74,10 @@
 <p>{intl-error_no_addresses}</p>
 <!-- END no_address_item_tpl -->
 
+
 <p class="boxtext">{intl-telephone_headline}</p>
 <!-- BEGIN phone_item_tpl -->
+<br />
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
 <tr>
 <!-- BEGIN phone_line_tpl -->
@@ -90,6 +96,7 @@
 
 <p class="boxtext">{intl-online_headline}</p>
 <!-- BEGIN online_item_tpl -->
+<br />
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
 <tr>
 <!-- BEGIN online_line_tpl -->

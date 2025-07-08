@@ -79,14 +79,16 @@ class eZPerson
                                    LastName,
                                    Comment,
                                    BirthDate,
-                                   ContactTypeID)
+                                   ContactTypeID,
+				   ImageID)
                                   VALUES
                                   ('$this->ID',
                                    '$firstname',
                                    '$lastname',
                                    '$comment',
                                    '$birth',
-                                   '$this->ContactType')" );
+                                   '$this->ContactType',
+				                   '$this->ImageID')" );
             $db->unlock();
             $firstname = strtolower( $firstname );
             $lastname = strtolower( $lastname );
@@ -106,22 +108,19 @@ class eZPerson
                                           LastName='$lastname',
 	                                      Comment='$comment',
 	                                      BirthDate=$birth,
-                                          ContactTypeID='$this->ContactType'
+					      ContactTypeID='$this->ContactType',
+					      ImageID='$this->ImageID'
                                           WHERE ID='$this->ID'";
-
-            $res[] = $db->query( $queryText );
-            /*
             $firstname = strtolower( $firstname );
             $lastname = strtolower( $lastname );
             $queryText = "UPDATE eZContact_PersonIndex SET
                                           Value='$firstname'
                                           WHERE PersonID='$this->ID' AND Type='0'";
-            var_dump($queryText);
+            // var_dump($queryText);
             $res[] = $db->query( $queryText );
             $res[] = $db->query( "UPDATE eZContact_PersonIndex SET
                                           Value='$lastname'
                                           WHERE PersonID='$this->ID' AND Type='0'" );
-            */
         }
         eZDB::finish( $res, $db );
     }
@@ -221,6 +220,7 @@ class eZPerson
                 $this->ContactType = $person_array[ 0 ][ $db->fieldName( "ContactTypeID" ) ];
                 $this->BirthDate = $person_array[ 0 ][ $db->fieldName( "BirthDate" ) ];
                 $this->Comment = $person_array[ 0 ][ $db->fieldName( "Comment" ) ];
+                $this->ImageID = $person_array[ 0 ][ $db->fieldName( "ImageID" ) ];
             }
             if ( $this->BirthDate == "NULL" )
                 unset( $this->BirthDate );
@@ -1069,6 +1069,7 @@ class eZPerson
             $db->begin();
 
             $imageID =& $image->id();
+            $this->ImageID = $imageID;
 
             $db->array_query( $res_array, "SELECT COUNT(*) AS Number FROM eZContact_PersonImageDefinition
                                            WHERE PersonID='$id'" );
@@ -1095,7 +1096,7 @@ class eZPerson
     /*!
       Returns the logo image of the company as a eZImage object.
     */
-    static public function image( $id = false )
+    static public function &image( $id = false )
     {
         if ( !$id )
             $id = 0;
@@ -1139,6 +1140,7 @@ class eZPerson
     var $BirthDate;
     var $ContactType;
     var $Comment;
+    var $ImageID;
 };
 
 ?>

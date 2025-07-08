@@ -252,7 +252,7 @@ class eZCompany
 
       The companies are returned as an array of eZCompany objects.
     */
-    function getAll( )
+    function &getAll( )
     {
         $db =& eZDB::globalDatabase();
 
@@ -273,7 +273,7 @@ class eZCompany
 
       The companies are returned as an array of eZCompany objects.
     */
-    static public function getByCategory( $categoryID, $offset = 0, $limit = -1, $order = "name" )
+    function &getByCategory( $categoryID, $offset = 0, $limit = -1, $order = "name" )
     {
         $db =& eZDB::globalDatabase();
 
@@ -346,7 +346,7 @@ class eZCompany
     /*!
       Search the company database in a single category, using query as the search string in company name.
     */
-    function searchByCategory( $categoryID, $query )
+    function &searchByCategory( $categoryID, $query )
     {
         $db =& eZDB::globalDatabase();
 
@@ -382,7 +382,7 @@ class eZCompany
     /*!
       Henter ut alle firma i databasen som inneholder s�kestrengen.
     */
-    static public function search( $query )
+    function &search( $query )
     {
         $db =& eZDB::globalDatabase();
 
@@ -453,7 +453,7 @@ class eZCompany
     /*!
       Returns the address that belong to this eZCompany object.
     */
-    function addresses( $companyID = false )
+    function &addresses( $companyID = false )
     {
         if ( !$companyID )
             $companyID = $this->ID;
@@ -521,7 +521,7 @@ class eZCompany
     /*!
       Returns the phones that belong to this eZCompany object.
     */
-    function phones( $companyID = false )
+    function &phones( $companyID = false )
     {
         if ( !$companyID )
             $companyID = $this->ID;
@@ -594,7 +594,7 @@ class eZCompany
     /*!
       Returns the onlines that belong to this eZCompany object.
     */
-    function onlines( $onlineID = false )
+    function &onlines( $onlineID = false )
     {
         if ( !$onlineID )
             $onlineID = $this->ID;
@@ -687,7 +687,7 @@ class eZCompany
     /*!
       Returns every image to a product as a array of eZImage objects.
     */
-    function images()
+    function &images()
     {
         $db =& eZDB::globalDatabase();
 
@@ -1014,7 +1014,7 @@ class eZCompany
     /*!
       Returns the project state of this company.
     */
-    function projectState()
+    function &projectState()
     {
         $ret = "";
 
@@ -1191,7 +1191,7 @@ class eZCompany
       count: The total count for the month
       month: The month number (starting at 1)
     */
-    function yearViewCounts( $year = false )
+    function &yearViewCounts( $year = false )
     {
         $ret = array();
         if ( is_bool( $year ) )
@@ -1265,3 +1265,5 @@ class eZCompany
     var $CompanyNo;
     var $ContactType;
 }
+
+?>

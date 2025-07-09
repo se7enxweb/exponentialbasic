@@ -90,7 +90,8 @@ class eZAddress
                                    '$country_id',
 				                   '$region_id',
                                    '$this->AddressTypeID',
-                                   '$name')" );
+                                   '$name', 
+                                   '$this->Phone')" );
             $db->unlock();
             $ret = true;
         }
@@ -100,6 +101,7 @@ class eZAddress
                                   SET Street1='$street1',
                                   Street2='$street2',
                                   Zip='$this->Zip',
+                                  Phone='$this->Phone',
 	                              Place='$place',
 				                  AddressTypeID='$this->AddressTypeID',
                                   Name='$name',
@@ -133,6 +135,7 @@ class eZAddress
                 $this->Street1 =& $address_array[0][$db->fieldName( "Street1" )];
                 $this->Street2 =& $address_array[0][$db->fieldName( "Street2" )];
                 $this->Zip =& $address_array[0][$db->fieldName( "Zip" )];
+                $this->Phone =& $address_array[0][$db->fieldName( "Phone" )];
                 $this->Place =& $address_array[0][$db->fieldName( "Place" )];
                 $this->CountryID =& $address_array[0][$db->fieldName( "CountryID" )];
                 $this->RegionID =& $address_array[0][$db->fieldName( "RegionID" )];
@@ -225,6 +228,11 @@ class eZAddress
     function setZip( $value )
     {
         $this->Zip = $value;
+    }
+
+    function setPhone( $value )
+    {
+        $this->Phone = $value;
     }
 
     /*!
@@ -363,6 +371,11 @@ class eZAddress
         return $this->Zip;
     }
 
+    function phone( )
+    {
+        return $this->Phone;
+    }
+
     /*!
       Returnerer adressetype id.
     */
@@ -435,12 +448,9 @@ class eZAddress
     function country()
     {
         if ( is_numeric( $this->CountryID ) and $this->CountryID > 0 )
-           {
-
-return new eZCountry( $this->CountryID );
-
-}
-
+        {
+            return new eZCountry( $this->CountryID );
+        }
         else
             return false;
 
@@ -461,13 +471,14 @@ return new eZCountry( $this->CountryID );
     var $Street1;
     var $Street2;
     var $Zip;
+    var $Phone;
     var $Place;
-    var $RegionID = 0;
-    var $CountryID = 0;
+    var $RegionID;
+    var $CountryID;
     var $Name;
 
     /// Relation to an eZAddressTypeID
-    var $AddressTypeID = 0;
+    var $AddressTypeID;
 }
 
 ?>

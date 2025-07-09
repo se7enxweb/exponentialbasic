@@ -54,7 +54,9 @@ $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ), $DOC_ROOT . "admin/intl", $Language, $language_file );
+$t = new eZTemplate( "kernel/ezaddress/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ),
+                     "kernel/ezaddress/admin/" . "/intl", $Language, $language_file );
+
 $t->setAllStrings();
 
 $item_error = true;
@@ -232,4 +234,5 @@ else
 eZList::drawNavigator( $t, $total_types, $Max, $Index, "list_page" );
 
 $t->pparse( "output", "list_page" );
+
 ?>

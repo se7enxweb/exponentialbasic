@@ -47,4 +47,5 @@ else
     $search_encoded = $SearchText;
     $search_encoded = eZURITool::encode( $search_encoded );
 }
+
 ?>

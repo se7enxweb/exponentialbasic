@@ -49,8 +49,8 @@ $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 // include_once( "ezuser/classes/ezpermission.php" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
+$t =new eZTemplate( "kernel/ezaddress/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ), "kernel/ezaddress/admin/" . "/intl", $Language, $language_file );
 
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ), $DOC_ROOT . "admin/intl", $Language, $language_file );
 $t->setAllStrings();
 
 $item_error = true;
@@ -172,9 +172,11 @@ if ( isset( $func_call ) and is_array( $func_call ) )
             if(  $item_type->$val() )
             {
                 $t->set_var( $key, "checked" );
-            } else {
-	        $t->set_var( $key, "" );
-	    }
+            }
+            else
+            {
+	            $t->set_var( $key, "" );
+	        }
         }
         else
             $t->set_var( $key, $item_type->$val() );

@@ -8,6 +8,9 @@
 	</tr>
 	</td>
 	<td>
+	<p class="boxtext">{intl-tax}?</p>
+	<input type="checkbox" name="ItemHasTax" {item_has_vat} /><br />
+
 	<p class="boxtext">{intl-user_added}:</p>
 	<input type="checkbox" name="ItemUserAdded" value="{item_user_added}" /><br>
 	</td>

@@ -275,4 +275,5 @@ class eZAddressType
     var $Name;
     var $ListOrder;
 }
+
 ?>

@@ -256,9 +256,8 @@ class eZOnline
 
     var $ID;
     var $URL;
-
     /// Relation to an eZOnlineType
-    var $OnlineTypeID = 0;
+    var $OnlineTypeID;
 }
 
 ?>

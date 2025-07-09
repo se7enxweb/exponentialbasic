@@ -364,5 +364,4 @@ class eZRegion
     var $Removed;
 }
 
-
 ?>

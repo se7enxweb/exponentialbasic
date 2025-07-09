@@ -153,7 +153,9 @@ class eZCacheFile
             $file = eZFile::fopen( $this->filename( true ), "r" );
             if ( $file )
             {
-                $content =& fread( $file, eZFile::filesize( $this->filename( true ) ) );
+		$fileSize = eZFile::filesize( $this->filename( true ) );
+		if( $fileSize != 0 )
+                    $content =& fread( $file, $fileSize );
                 fclose( $file );
             }
             else

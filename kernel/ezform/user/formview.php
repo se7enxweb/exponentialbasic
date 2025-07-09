@@ -35,7 +35,7 @@
 
 $ini =& INIFile::globalINI();
 
-if( strstr($HTTP_REFERER, $ini->read_var( "eZFormMain", "FromURL" )) || strstr($HTTP_REFERER, $ini->read_var( "eZFormMain", "FromURL2" )) )
+if( strstr( $_SERVER['HTTP_REFERER'], $ini->read_var( "eZFormMain", "FromURL" )) || strstr($_SERVER['HTTP_REFERER, $ini->read_var( "eZFormMain", "FromURL" )) || strstr($HTTP_REFERER, $ini->read_var( "eZFormMain", "FromURL2" )) )
 {
   //pass-through
 } else {

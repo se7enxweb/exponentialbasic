@@ -490,7 +490,7 @@ class eZFormRenderer
 
         $formatedContent = $t->parse( "output", "form_mail_tpl" );
 
-        $mail->setBody( $formatedContent );
+        $mail->setBody( stripslashes($formatedContent) );
 
         if ( $form->isSendAsUser() )
         {

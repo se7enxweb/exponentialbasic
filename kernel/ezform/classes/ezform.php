@@ -143,9 +143,17 @@ class eZForm
                 $element->delete();
             }
         }
+        $res = array();
 
         $res[] = $db->query( "DELETE FROM eZForm_Form WHERE ID=$formID" );
-        eZDB::finish( $res, $db );
+        $res[] = $db->query( "DELETE FROM eZArticle_ArticleFormDict WHERE FormID=$formID" );
+
+        if ( in_array( false, $res ) )
+            $db->rollback( );
+        else
+            $db->commit();
+
+        // eZDB::finish( $res, $db );
     }
 
     /*!
@@ -253,52 +261,52 @@ class eZForm
     /*!
       Returns the name of the object.
     */
-    function name()
+    function &name()
     {
-        if( is_string( $this->Name ) )
-        {
-            return htmlspecialchars( $this->Name );
-        }
-        else
-        {
-            return $this->Name;
-        }
+      if( !is_null( $this->Name ) && $this->Name != "" )   
+      {
+          return htmlspecialchars( $this->Name );
+      }
+      else
+      {
+        return $this->Name;
+      }
     }
 
     /*!
       Returns the receiver of the object.
     */
-    function receiver()
+    function &receiver()
     {
-        if( is_string( $this->Receiver ) )
-        {
+      if( !is_null( $this->Receiver ) && $this->Receiver != "" )   
+      {
             return htmlspecialchars( $this->Receiver );
-        }
-        else
-        {
-            return $this->Receiver;
-        }
+      }
+      else
+      {
+          return $this->Receiver;
+      }
     }
 
     /*!
       Returns the cc of the object.
     */
-    function cc()
+    function &cc()
     {
-        if( is_string( $this->CC ) )
-        {
+      if( !is_null( $this->CC ) && $this->CC != "" )   
+      {
             return htmlspecialchars( $this->CC );
-        }
-        else
-        {
-            return $this->CC;
-        }
+      }
+      else
+      {
+          return $this->CC;
+      }
     }
 
     /*!
       Returns the completed page of the object.
     */
-    function completedPage()
+    function &completedPage()
     {
         return $this->CompletedPage;
     }
@@ -306,7 +314,7 @@ class eZForm
     /*!
       Returns the instruction page of the object.
     */
-    function instructionPage()
+    function &instructionPage()
     {
         return $this->InstructionPage;
     }
@@ -314,7 +322,7 @@ class eZForm
     /*!
       Returns the counter of the object.
     */
-    function counter()
+    function &counter()
     {
         return $this->Counter;
     }
@@ -322,7 +330,7 @@ class eZForm
     /*!
       Returns the sender of the object.
     */
-    function sender()
+    function &sender()
     {
         return $this->Sender;
     }
@@ -330,7 +338,7 @@ class eZForm
      /*!
       Returns true if one should use the user name of the user for the sending.
     */
-    function isSendAsUser()
+    function &isSendAsUser()
     {
         $ret = true;
 
@@ -417,7 +425,7 @@ class eZForm
       Returns every form element of this form.
       The form elements are returned as an array of eZFormElement objects.
     */
-    function formElements()
+    function &formElements()
     {
         $returnArray = array();
         $formArray = array();
@@ -437,7 +445,7 @@ class eZForm
       Returns a specific form element based on the placement (number)
       The element is returned as eZFormElement objects.
     */
-    function formElement( $placement )
+    function &formElement( $placement )
     {
         $db =& eZDB::globalDatabase();
         $db->query_single( $element, "SELECT ElementID FROM eZForm_FormElementDict WHERE
@@ -453,7 +461,7 @@ class eZForm
     /*!
       Returns the number of form elements to this form
     */
-    function numberOfElements()
+    function &numberOfElements()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -467,7 +475,7 @@ class eZForm
     /*!
       Returns the number of types which exists
     */
-    function numberOfTypes()
+    function &numberOfTypes()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -629,3 +637,5 @@ class eZForm
     var $SendAsUser;
     var $Sender;
 }
+
+?>

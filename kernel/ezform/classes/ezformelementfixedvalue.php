@@ -137,7 +137,7 @@ class eZFormElementFixedValue
     /*!
       Fills in information to the object taken from the array.
     */
-    function fill( $formArray )
+    function fill( &$formArray )
     {
         $db =& eZDB::globalDatabase();
         $this->ID = $formArray["ID"];
@@ -149,7 +149,7 @@ class eZFormElementFixedValue
 
       The objects are returned as an array of eZFormElementFixedValues objects.
     */
-    function getAll( )
+    function &getAll( )
     {
         $db =& eZDB::globalDatabase();
         
@@ -194,7 +194,7 @@ class eZFormElementFixedValue
     /*!
       Returns the value of the object.
     */
-    function value()
+    function &value()
     {
         return htmlspecialchars( $this->Value );
     }
@@ -209,3 +209,5 @@ class eZFormElementFixedValue
     var $ID;
     var $Value;
 }
+
+?>

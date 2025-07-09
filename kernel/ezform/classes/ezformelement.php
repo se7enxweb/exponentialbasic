@@ -81,7 +81,8 @@ class eZFormElement
         {
             $elementTypeID = $this->ElementType->id();
         }
-        else {
+        else
+        {
             $elementTypeID = 0;
         }
 
@@ -96,7 +97,7 @@ class eZFormElement
 
 
             $res[] = $db->query( $query );
-			$this->ID = $nextID;
+			      $this->ID = $nextID;
         }
         elseif ( is_numeric( $this->ID ) )
         {
@@ -161,7 +162,7 @@ class eZFormElement
                               0, 1 );
             if ( count( $formArray ) == 1 )
             {
-                $this->fill( $formArray[0] );
+                $this->fill( formArray: $formArray[0] );
                 $ret = true;
             }
             elseif( count( $formArray ) != 1 )
@@ -175,7 +176,7 @@ class eZFormElement
     /*!
       Fills in information to the object taken from the array.
     */
-    function fill( $formArray )
+    function fill( &$formArray )
     {
         $db =& eZDB::globalDatabase();
 
@@ -192,7 +193,7 @@ class eZFormElement
 
       The objects are returned as an array of eZFormElement objects.
     */
-    function getAll( $offset=0, $limit=20 )
+    function &getAll( $offset=0, $limit=20 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -248,7 +249,7 @@ class eZFormElement
     /*!
       Returns the name of the object.
     */
-    function name()
+    function &name()
     {
         if( !is_null( $this->Name ) )
             return htmlspecialchars( $this->Name );
@@ -369,7 +370,7 @@ class eZFormElement
       Returns every form of this form element is associated with.
       The form elements are returned as an array of eZForm objects.
     */
-    function forms()
+    function &forms()
     {
         $returnArray = array();
         $formArray = array();
@@ -388,7 +389,7 @@ class eZFormElement
     /*!
       Returns the number of forms this element belongs to
     */
-    function numberOfForms()
+    function &numberOfForms()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -403,7 +404,7 @@ class eZFormElement
     /*!
       Returns the number of types which exists
     */
-    function numberOfTypes()
+    function &numberOfTypes()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -440,7 +441,7 @@ class eZFormElement
     /*!
       Returns true if this type has fixed values.
     */
-    function fixedValues()
+    function &fixedValues()
     {
         $returnArray = array();
         $formArray = array();

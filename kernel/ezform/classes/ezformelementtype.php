@@ -158,7 +158,7 @@ class eZFormElementType
 
       The objects are returned as an array of eZFormElementType objects.
     */
-    static public function getAll( $offset=0, $limit=20 )
+    function &getAll( $offset=0, $limit=20 )
     {
         $db =& eZDB::globalDatabase();
         
@@ -214,7 +214,7 @@ class eZFormElementType
     /*!
       Returns the name of the object.
     */
-    function name()
+    function &name()
     {
         return htmlspecialchars( $this->Name );
     }
@@ -222,7 +222,7 @@ class eZFormElementType
     /*!
       Returns the description of the object.
     */
-    function description()
+    function &description()
     {
         return htmlspecialchars( $this->Description );
     }
@@ -245,12 +245,11 @@ class eZFormElementType
        $this->Description = $value;
     }
 
-
     /*!
       Returns every element which this form element type is associated with.
       The form elements are returned as an array of eZFormElement objects.
     */
-    function formElements()
+    function &formElements()
     {
         $returnArray = array();
         $formArray = array();
@@ -268,7 +267,7 @@ class eZFormElementType
     /*!
       Returns the number of types which exists
     */
-    function numberOfTypes()
+    function &numberOfTypes()
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
@@ -284,3 +283,5 @@ class eZFormElementType
     var $Name;
     var $Description;
 }
+
+?>

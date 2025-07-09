@@ -46,4 +46,5 @@ $part = new eZXMLRPCStruct( $part_arr );
 $ReturnData = new eZXMLRPCStruct( array( "Catalogues" => array(),
                                          "Elements" => $forms,
                                          "Part" => $part ) ); // array starting with top level catalogue, ending with parent.
+
 ?>

@@ -19,8 +19,9 @@
 <!-- BEGIN form_item_tpl -->
 <tr>
     <td class="{td_class}">
-        <a href="{www_dir}{index}/form/form/preview/{form_id}/">{form_name}</a>
-    </td>
+        <a href="{www_dir}{index}/form/form/edit/{form_id}/">{form_name}</a>
+		<a href="{www_dir}{index}/form/form/preview/{form_id}/">{form_name} (preview)</a>
+	</td>
     <td class="{td_class}">&nbsp;</td>
     <td class="{td_class}">
         {form_receiver}

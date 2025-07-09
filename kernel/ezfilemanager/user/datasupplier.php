@@ -77,7 +77,7 @@ switch ( $url_array[2] )
     {
         $FileID = $url_array[3];
         $FileNamePassed = $url_array[4];
-        include( "ezfilemanager/user/filedownload.php" );
+        include( "kernel/ezfilemanager/user/filedownload.php" );
     }
     break;
     

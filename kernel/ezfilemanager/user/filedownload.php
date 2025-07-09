@@ -94,7 +94,7 @@ if ( !is_a( $GlobalPageView, "eZPageView" ) )
     $GlobalPageView->store();
 }
 
-$originalFileName = str_replace( " ", "%20", $originalFileName );
+$editedFileName = str_replace( " ", "%20", $originalFileName );
 
 // store the statistics
 $file->addPageView( $GlobalPageView );
@@ -160,9 +160,9 @@ if ( ( $userID == '' ) && ($userID == 0 ) )
 //###################################################
 
 // Rewrote to be compatible with virtualhost-less install
-$size = eZFile::filesize( "ezfilemanager/files/$filePath" );
+$size = eZFile::filesize( "kernel/ezfilemanager/files/$filePath" );
 
-$nameParts = explode( ".", $originalFileName );
+$nameParts = explode( ".", $editedFileName );
 $suffix = $nameParts[count( $nameParts ) - 1];
 
 $suffix = strtolower( $suffix );
@@ -245,7 +245,7 @@ if(!$download_style_inline){
 }
 
 // include the file's contents to browser ... 
-$fh = eZFile::fopen( "ezfilemanager/files/$filePath", "rb" );
+$fh = eZFile::fopen( "kernel/ezfilemanager/files/$filePath", "rb" );
 fpassthru( $fh );
 exit();
 

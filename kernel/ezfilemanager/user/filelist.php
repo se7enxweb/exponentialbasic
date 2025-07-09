@@ -168,7 +168,7 @@ function syncDir( $root, $category )
                         $getFile->getFile( $root . $entry );
 				
 					    $uploadedFile->store();
-					    $uploadedFile->setFile( &$getFile );
+					    $uploadedFile->setFile( $getFile );
 						
 					    $folder = new eZVirtualFolder( $category->id() );
 					    $folder->addFile( $uploadedFile );
@@ -256,7 +256,7 @@ else
 $pathArray =& $folder->path();
 
 $t->set_var( "path_item", "" );
-$lastPath = false;
+$lastPath = array();
 foreach ( $pathArray as $path )
 {
     $t->set_var( "folder_id", $path[0] );
@@ -266,7 +266,14 @@ foreach ( $pathArray as $path )
     $lastPath = $path;
 }
 
-$t->set_var( "top_folder_name", $path[1] );
+if ( count( $lastPath ) == 0 )
+{
+    $t->set_var( "top_folder_name", '' );
+}
+else
+{
+    $t->set_var( "top_folder_name", $lastPath[1] );
+}
 
 // Print out the folders.
 $folderList =& $folder->getByParent( $folder );

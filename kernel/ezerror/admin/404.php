@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
-& INIFile::globalINI();
+$ini = & INIFile::globalINI();
 $Language = $ini->read_var( "eZErrorMain", "Language" );
 
 $t = new eZTemplate( "kernel/ezerror/admin/" . $ini->read_var( "eZErrorMain", "AdminTemplateDir" ),

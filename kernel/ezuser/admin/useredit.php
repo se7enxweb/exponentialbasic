@@ -347,6 +347,8 @@ if ( $Action == "new" )
     $Lastname = "";
     $Email = "";
     $Login = "";
+    $Phone = "";
+    $Signature = "";
     $UserID = eZUser::currentUser()->ID;
     $AccountNumber = "";
     $SimultaneousLogins = $ini->read_var( "eZUserMain", "DefaultSimultaneousLogins" );
@@ -378,6 +380,13 @@ $user->get( $UserID );
 
 if ( $Action == "edit" )
 {
+/*
+$messages =& eZForumMessage::lastMessages( 10 , $user, $UserID );
+echo "<pre>";
+print_r($messages);
+echo "</pre>";
+exit;
+*/
     if( $user->infoSubscription() == true )
         $InfoSubscription = "checked";
     else
@@ -417,6 +426,8 @@ else // either new or failed edit... must put htmlspecialchars on stuff we got f
         $FirstName = $_POST['FirstName'];
     if( isset( $_POST['LastName'] ) )
         $LastName = $_POST['LastName'];
+    if( isset( $_POST['Phone'] ) )
+        $Phone = $_POST['Phone'];
     if( isset( $_POST['Signature'] ) )
         $Signature = $_POST['Signature'];
     if( isset( $_POST['SimultaneousLogins'] ) )
@@ -427,6 +438,8 @@ else // either new or failed edit... must put htmlspecialchars on stuff we got f
         $UserID = $_POST['UserID'];
 
     $FirstName = htmlspecialchars( $FirstName );
+    $LastName = htmlspecialchars( $LastName );
+    $Phone = htmlspecialchars( $Phone );
     $LastName = htmlspecialchars( $LastName );
     $Login = htmlspecialchars( $Login );
     $AccountNumber = htmlspecialchars( $AccountNumber );
@@ -476,6 +489,7 @@ $t->set_var( "error", $error_msg );
 $t->set_var( "first_name_value", $FirstName );
 $t->set_var( "last_name_value", $LastName );
 $t->set_var( "email_value", $Email );
+$t->set_var( "phone_value", $Phone );
 $t->set_var( "login_value", $Login );
 $t->set_var( "account_number_value", $AccountNumber );
 $t->set_var( "signature", $Signature );

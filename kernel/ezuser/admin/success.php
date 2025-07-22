@@ -52,7 +52,7 @@ $t->set_file( array(
 $user =& eZUser::currentUser();
 if ( !$user ) 
 {
-    print( "Du må logge inn" );
+    print( "Du mï¿½ logge inn" );
     eZHTTPTool::header( "Location: /user/login/" );
     exit();
 }

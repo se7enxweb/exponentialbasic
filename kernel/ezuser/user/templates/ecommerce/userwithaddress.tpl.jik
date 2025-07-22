@@ -1,12 +1,18 @@
-<form method="post" name="AddressForm" action="{www_dir}{index}/user/userwithaddress/{action_value}/{user_id}/">
+<!-- start #breadcrumbs -->
+<div id="breadcrumbs">
+&nbsp; 
+</div>
+<!-- end #breadcrumbs -->
+<!-- start #contentWrap -->
+<div id="contentWrap">
 <!-- BEGIN new_user_tpl -->
-<h1>{intl-head_line}</h1>
+<h1 class="mainHeading">{intl-head_line}</h1>
 <!-- END new_user_tpl -->
 <!-- BEGIN edit_user_tpl -->
-<h1>{intl-edit_head_line}</h1>
+<h1 class="mainHeading">{intl-edit_head_line}</h1>
 <!-- END edit_user_tpl -->
 
-<hr noshade="noshade" size="4" />
+<form method="post" name="AddressForm" action="{www_dir}{index}/user/userwithaddress/{action_value}/{user_id}/#region">
 
 <!-- BEGIN info_item_tpl -->
 <ul>
@@ -14,8 +20,6 @@
     <li>{intl-info_update_user}</li>
     <!-- END info_updated_tpl -->
 </ul>
-
-<hr noshade size="4"/>
 
 <!-- END info_item_tpl -->
 
@@ -54,10 +58,6 @@
     <li>{intl-error_passwordmatch_item}</li>
     <!-- END error_password_match_tpl -->
 	
-    <!-- BEGIN error_password_not_entered_tpl -->
-    <li>{intl-error_password_not_entered}</li>
-	<!-- END error_password_not_entered_tpl -->
-	
     <!-- BEGIN error_address_street1_tpl -->
     <li>{intl-error_street1}</li>
     <!-- END error_address_street1_tpl -->
@@ -78,16 +78,11 @@
     <li>{intl-error_missing_address}</li>
     <!-- END error_missing_address_tpl -->
 
-    <!-- BEGIN error_missing_region_tpl -->
-    <li>{intl-error_missing_region}</li>
-    <!-- END error_missing_region_tpl -->
-
     <!-- BEGIN error_missing_country_tpl -->
     <li>{intl-error_missing_country}</li>
     <!-- END error_missing_country_tpl -->
 </ul>
 
-<hr noshade size="4"/>
 <!-- END errors_item_tpl -->
 
 <!-- BEGIN edit_user_info_tpl -->
@@ -96,45 +91,23 @@
 
 <br />
 
-<table width="100%" cellspacing="0" cellpadding="0" border="0">
-<tr>
-	<td>
-	<p class="boxtext">{intl-firstname}:</p>
-	<input type="text" size="20" name="FirstName" value="{first_name_value}"/>
-	</td>
-	<td>
-	<p class="boxtext">{intl-lastname}:</p>
-	<input type="text" size="20" name="LastName" value="{last_name_value}"/>
-	</td>
-</tr>
-</table>
+<p class="boxtext">{intl-firstname}:&nbsp;<input type="text" size="20" name="FirstName" value="{first_name_value}"/></p>
+<p class="boxtext">{intl-lastname}:&nbsp;<input type="text" size="20" name="LastName" value="{last_name_value}"/></p>
 
-<p class="boxtext">{intl-login}:</p>
+<p class="boxtext">{intl-login}:&nbsp;
 <!-- BEGIN login_item_tpl -->
-<input type="text" size="20" name="Login" value="{login_value}"/>
+<input type="text" size="20" name="Login" value="{login_value}"/></p>
 <!-- END login_item_tpl -->
 <!-- BEGIN disabled_login_item_tpl -->
-{login_value}<br />
+{login_value}</p>
 <!-- END disabled_login_item_tpl -->
 
-<p class="boxtext">{intl-email}:</p>
-<input type="text" size="20" name="Email" value="{email_value}"/>
+<p class="boxtext">{intl-email}:&nbsp;<input type="text" size="20" name="Email" value="{email_value}"/></p>
 
 <br /><br />
 
-<table width="100%" cellspacing="0" cellpadding="0" border="0">
-<tr>
-	<td>
-	<p class="boxtext">{intl-password}:</p>
-	<input type="password" size="20" name="Password" value="{password_value}"/>
-	</td>
-	<td>
-	<p class="boxtext">{intl-verifypassword}:</p>
-	<input type="password" size="20" name="VerifyPassword" value="{verify_password_value}"/>
-	</td>
-</tr>
-</table>
-
+	<p class="boxtext">{intl-password}:&nbsp;<input type="password" size="20" name="Password" value="{password_value}"/></p>
+	<p class="boxtext">{intl-verifypassword}:&nbsp;<input type="password" size="20" name="VerifyPassword" value="{verify_password_value}"/></p>
 
 <!-- BEGIN address_tpl -->
 
@@ -156,14 +129,11 @@
 <input type="text" size="20" name="Street1[]" value="{street1_value}"/><br />
 <input type="text" size="20" name="Street2[]" value="{street2_value}"/>
 
-<p class="boxtext">{intl-zip}:</p>
-<input type="text" size="20" name="Zip[]" value="{zip_value}"/>
-
 <p class="boxtext">{intl-place}:</p>
 <input type="text" size="20" name="Place[]" value="{place_value}"/>
 
 <!-- BEGIN region_tpl -->
-<p class="boxtext">{intl-region}:</p>
+<p class="boxtext"><a href="#" name="region"></a>{intl-region}:</p>
 <select name="RegionID[]" size="5">
 <!-- BEGIN region_option_tpl -->
 <option {is_selected} value="{region_id}">{region_name}</option>
@@ -171,21 +141,28 @@
 </select>
 <!-- END region_tpl -->
 
+<p class="boxtext">{intl-zip}:</p>
+<input type="text" size="20" name="Zip[]" value="{zip_value}"/>
+
 <!-- BEGIN country_tpl -->
 <p class="boxtext">{intl-country}:</p>
-<select name="CountryID[]" size="5">
+<select name="CountryID[]" size="5" onchange="document.AddressForm.submit()">
 <!-- BEGIN country_option_tpl -->
 <option {is_selected} value="{country_id}">{country_name}</option>
 <!-- END country_option_tpl -->
 </select>
 <!-- END country_tpl -->
 
+<p class="boxtext">Phone:</p>
+<input type="text" size="20" name="Phone[]" value="{phone_value}"/>
+<p>
+
 <!-- END address_tpl -->
 
-
-<br /><br />
+<br />
 
 <div class="boxtext"><input {info_subscription} type="checkbox" name="InfoSubscription" />&nbsp;{intl-infosubscription}</div>
+
 <br />
 
 <hr noshade="noshade" size="4" />
@@ -195,6 +172,9 @@
 <!-- BEGIN submit_button_tpl -->
 <input class="okbutton" type="submit" name="OK" value="{intl-submit}" />
 <!-- END submit_button_tpl -->
+
+<br /><br />
+
 <!-- BEGIN address_actions_tpl -->
 <hr noshade="noshade" size="4" />
 
@@ -202,9 +182,11 @@
 <input class="stdbutton" type="submit" value="{intl-delete_address}" name="DeleteAddress" />
 <!-- END address_actions_tpl -->
 
+<hr noshade="noshade" size="4" />
 
 
-<input type="hidden" name="UserID" value="{user_id}" />
+<input type="hidden" name="userID" value="{user_id}" />
 <input type="hidden" name="GlobalSectionIDOverride" value="{global_section_id}" />
 <input type="hidden" name="RedirectURL" value="{redirect_url}" />
 </form>
+</div>

@@ -128,7 +128,6 @@ if ( $Action == "Update" )
             $address->setStreet2( $Street2 );
             $address->setZip( $Zip );
             $address->setPlace( $Place );
-            // is this right?
             $address->setRegion( $Region );
             if ( isset( $CountryID ) )
             {

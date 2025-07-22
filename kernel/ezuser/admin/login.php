@@ -152,3 +152,5 @@ else
 
 $t->set_var( "action_value", "login" );
 $t->pparse( "output", "login_tpl" );
+
+?>

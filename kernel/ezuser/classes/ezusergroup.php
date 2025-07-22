@@ -334,7 +334,7 @@ class eZUserGroup
         }
         else if ( !is_numeric( $GroupID ) )
         {
-            //$GroupID = $this->ID;
+            $GroupID = $this->ID;
             $userSQL = "UGL.GroupID='$GroupID'";
         }
         else
@@ -410,7 +410,7 @@ class eZUserGroup
     */
     function name( $html = true )
     {
-        if( $html )
+        if( $html && !is_null( $this->Name ) )
             return htmlspecialchars( $this->Name );
         else
             return $this->Name;

@@ -45,5 +45,5 @@ if ( $ini->read_var( "eZUserMain", "RequireUserLogin" ) == "enabled" )
         exit();
     }
 }
-?>
 
+?>

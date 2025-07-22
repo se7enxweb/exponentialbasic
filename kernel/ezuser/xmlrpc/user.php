@@ -69,8 +69,5 @@ else if( $Command == "data" || $Command == "currentuser" )
                                              )
                                       );
 }
+
 ?>
-
-
-
-

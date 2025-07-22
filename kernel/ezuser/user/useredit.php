@@ -62,7 +62,7 @@ if ( $Action == "Insert" )
                     $user->setPassword( $Password );
                     $user->setEmail( $Email );
                     
-                    if ( $InfoSubscription == "on" )
+                    if ( isset( $InfoSubscription ) && (string)$InfoSubscription == "on" )
                         $user->setInfoSubscription( true );
                     else
                         $user->setInfoSubscription( false );
@@ -102,7 +102,9 @@ if ( $Action == "Insert" )
                     eZLog::writeNotice( "Anonyous user created: $FirstName $LastName ($Login) $Email from IP: $REMOTE_ADDR" );                    
                     eZLog::writeNotice( "User login: $Login from IP: $REMOTE_ADDR" );
 
-                    if ( isset( $RedirectURL )  && ( $RedirectURL != "" ) )
+		            $RedirectURL="/user/withaddress/";  
+		    
+                    if ( isSet( $RedirectURL )  && ( $RedirectURL != "" ) )
                     {
                         eZHTTPTool::header( "Location: $RedirectURL" );
                         exit();
@@ -150,12 +152,12 @@ if ( $Action == "Update" )
         $user->setFirstName( $FirstName );
         $user->setLastName( $LastName );
 
-        if ( $InfoSubscription == "on" )
+        if ( isset( $InfoSubscription ) && (string)$InfoSubscription == "on" )
             $user->setInfoSubscription( true );
         else
             $user->setInfoSubscription( false );
         
-        if ( $Password )
+        if ( isset( $Password ) && $Password )
         {
             if ( ( $Password == $VerifyPassword ) && ( strlen( $VerifyPassword ) > 3 ) )
             {
@@ -169,7 +171,7 @@ if ( $Action == "Update" )
                 $PasswordError = true;
             }
         }
-        if ( $PasswordError == false )
+        if ( isset( $PasswordError ) && $PasswordError == false )
         {
             $user->store();
         }
@@ -178,21 +180,42 @@ if ( $Action == "Update" )
     {
         $EmailError = true;
     }
+
     if ( $EmailError == false )
     {
-        eZHTTPTool::header( "Location: /" );
+      if ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" )
+      {
+        if ( isset( $RedirectURL )  && ( $RedirectURL != "" ) )
+        {
+            eZHTTPTool::header( "Location: $RedirectURL" );
+            exit();
+        }
+        else
+        {
+            $redirect = $ini->read_var( "eZUserMain", "DefaultRedirect" );
+            eZHTTPTool::header( "Location: $redirect" );
+            exit();
+        }
+
+        // $RedirectURL="/user/withaddress/";
+        // eZHTTPTool::header( "Location: /" );
         exit();
+      }
     }
-}
-        
+}        
 $t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl/", $Language, "useredit.php" );
 
 $t->setAllStrings();
 
+$t->set_file( "user_edit_tpl", "useredit.tpl" );
+$t->set_block( "user_edit_tpl", "skip_link_tpl", "skip_link" );
+
+/*
 $t->set_file( array(        
     "user_edit_tpl" => "useredit.tpl"
     ) );
+*/
 
 if ( !isset( $ModuleName ) )
     $ModuleName = "user";
@@ -201,12 +224,23 @@ if ( !isset( $ModuleUserNew ) )
 
 $headline = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/useredit.php.ini", false );
 $t->set_var( "head_line", $headline->read_var( "strings", "head_line_insert" ) );
+
+if ($Action == "New") {
+ $t->set_var( "user_alert_message", $headline->read_var( "strings", "user_alert_message" ) );
+ $t->set_var( "user_address_alert_message", "" );
+ $t->set_var( "skip_link", "" );
+} else {
+  $t->set_var( "user_alert_message", "" );
+  $t->set_var( "user_address_alert_message", "" );
+  $t->set_var( "skip_link", "" );
+}
+
 $t->set_var( "module", $ModuleName );
 $t->set_var( "user_new", $ModuleUserNew );
 
 $actionValue = "insert";
 
-if ( $Action == "Edit" )
+if ( isset( $Action ) && $Action == "Edit" )
 {
     $user =& eZUser::currentuser();
     if ( !$user )
@@ -214,7 +248,7 @@ if ( $Action == "Edit" )
         eZHTTPTool::header( "Location: /" );
         exit();
     }
-    if ( !$UserID )
+    if ( !isset( $UserID ) )
     {
         $getUser =& eZUser::currentUser();
         if ( !$getUser )
@@ -228,7 +262,14 @@ if ( $Action == "Edit" )
         }
     }
 
-    if( $user->infoSubscription() == "true" )
+    /*
+    if ( $InfoSubscription == "on" )
+      $user->setInfoSubscription( true );
+    else
+      $user->setInfoSubscription( false );
+    */
+
+    if( $user->infoSubscription() )
         $InfoSubscription = "checked";
     else
         $InfoSubscription = "";
@@ -256,7 +297,7 @@ $t->set_block( "user_edit_tpl", "login_view_tpl", "login_view" );
 $t->set_var( "login_edit", "" );
 $t->set_var( "login_view", "" );
 
-if ( $Action != "Edit" )
+if ( isset( $Action ) && $Action != "Edit" )
 {
     $t->parse( "login_edit", "login_edit_tpl" );
 }
@@ -265,7 +306,7 @@ else
     $t->parse( "login_view", "login_view_tpl" );
 }
 
-if ( $Error == true )
+if ( isset( $Error ) && $Error == true )
 {
     $t->parse( "required_fields_error", "required_fields_error_tpl" );
 }
@@ -274,7 +315,7 @@ else
    $t->set_var( "required_fields_error", "" );
 }
 
-if ( $UserExistsError == true )
+if ( isset( $UserExistsError ) && $UserExistsError == true )
 {
     $t->parse( "user_exists_error", "user_exists_error_tpl" );
 }
@@ -283,7 +324,7 @@ else
    $t->set_var( "user_exists_error", "" );
 }
 
-if ( $PasswordError == true )
+if ( isset( $PasswordError ) && $PasswordError == true )
 {
     $t->parse( "password_error", "password_error_tpl" );
 }
@@ -292,7 +333,7 @@ else
    $t->set_var( "password_error", "" );
 }
 
-if ( $EmailError == true )
+if ( isset( $EmailError ) && $EmailError == true )
 {
     $t->parse( "email_error", "email_error_tpl" );
 }
@@ -313,7 +354,15 @@ $t->set_var( "last_name_value", $LastName );
 
 $t->set_var( "action_value", $actionValue );
 
-$t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
+if ( isset( $RedirectURL ) && ( $RedirectURL != "" ) )
+{
+    $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
+}
+else
+{
+    $RedirectURL = $ini->read_var( "eZUserMain", "DefaultRedirect" );
+    $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
+}   
 
 $t->pparse( "output", "user_edit_tpl" );
 

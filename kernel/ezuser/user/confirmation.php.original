@@ -1,0 +1,20 @@
+<div id="breadcrumbs">
+&nbsp; 
+</div>
+
+<div id="contentWrap">
+<h1 class="mainHeading">Account Registration Complete - Thank You!</h1>
+
+<center><br><br>
+<table border="0" cellspacing="5" cellpadding="5" style="font-size:10;">
+<tr>
+<td><input type="button" value="< Return Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" onClick="window.location='/index.php';"></td>
+<td><input type="button" value="&nbsp;&nbsp;&nbsp;&nbsp;Continue Shopping >" onClick="window.location='/index.php/trade/productlist/0';"></td>
+</tr>
+<tr>
+<td><input type="button" value="<< Edit Registration Info" onClick="window.location='/index.php/user/step1/';"></td>
+<td><input type="button" value="Proceed to Checkout >>" onClick="window.location='/index.php/trade/checkout/';"></td>
+</tr>
+
+</table>
+</center>

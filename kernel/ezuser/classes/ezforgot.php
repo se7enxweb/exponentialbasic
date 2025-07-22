@@ -212,4 +212,5 @@ class eZForgot
     var $ID;
     var $Hash;
 }
+
 ?>

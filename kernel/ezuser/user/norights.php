@@ -68,3 +68,5 @@ $t->set_var( "error_msg", $errorMsg );
 $t->set_file( array( "norights" => "norights.tpl" ) );
 
 $t->pparse( "output", "norights" );
+
+?>

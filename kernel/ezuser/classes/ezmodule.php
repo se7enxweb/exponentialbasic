@@ -149,8 +149,8 @@ class eZModule
         if ( $id != "" )
         {
             $query = "SELECT * FROM eZUser_Module WHERE ID='$id'";
-
             $db->array_query( $module_array, $query );
+
             if ( count( $module_array ) > 1 )
             {
                 die( "Error: Module's with the same ID was found in the database. This shouldent happen." );

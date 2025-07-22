@@ -97,3 +97,4 @@ if ( $ini->read_var( "site", "CheckDependence" ) == "enabled" )
 
 $t->pparse( "output", "welcome_tpl" );
 
+?>

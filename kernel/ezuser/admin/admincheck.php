@@ -44,6 +44,4 @@ if ( !eZPermission::checkPermission( $user, "eZUser", "AdminLogin" ) )
     exit();
 }
 
-
 ?>
-

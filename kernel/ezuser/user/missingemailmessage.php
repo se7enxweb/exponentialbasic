@@ -39,4 +39,5 @@ $t->set_block( "message", "user_not_exists_tpl", "user_not_exists" );
 $t->set_block( "message", "generated_password_tpl", "generated_password" );                 
 
 $t->pparse( "output", "message" );
+
 ?>

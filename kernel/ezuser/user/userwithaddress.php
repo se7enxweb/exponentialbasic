@@ -23,7 +23,6 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-
 require( "kernel/ezuser/user/usercheck.php" );
 
 // include_once( "classes/INIFile.php" );
@@ -163,6 +162,11 @@ $t->set_var( "email_value", "$Email" );
 $t->set_var( "password_value", "$Password" );
 $t->set_var( "verify_password_value", "$VerifyPassword" );
 $t->set_var( "address_actions", "" );
+
+
+$t->set_var( "back_url", "/user/edit" );
+$t->set_var( "skip_url", "/user/account" );
+
 if ( $AutoCookieLogin == "on" )
 {
     $t->set_var( "is_cookie_selected", "checked" );
@@ -176,6 +180,8 @@ else
 {
     $t->set_var( "no_address", "" );
 }
+
+$user =& eZUser::currentUser();
 
 $t->set_var( "ok_button", "" );
 $t->set_var( "submit_button", "" );
@@ -210,6 +216,8 @@ $street2Check = false;
 $zipCheck = true;
 $placeCheck = true;
 $addressCheck = true;
+$realAddressID = array();
+$RealAddressID = array();
 
 // If the user is trying to buy without having a address
 if ( isset( $MissingAddress ) && $MissingAddress == true )
@@ -406,6 +414,7 @@ if ( isset( $NewAddress ) )
     $Street1[] = "";
     $Street2[] = "";
     $Zip[] = "";
+    $Phone[] = "";
     $Place[] = "";
     $country_id = $ini->read_var( "eZUserMain", "DefaultCountry" );
     if ( count( $CountryID ) > 0 and is_numeric( $CountryID[count( $CountryID ) - 1] ) )
@@ -419,6 +428,9 @@ if ( isset( $NewAddress ) )
         $RegionID[] = $RegionID[count($RegionID)-1];
     else
         $RegionID[] = $region_id;
+
+    if ( !isset( $MainAddressID ) && isset( $RealAddressID[0] ) && count( $AddressID ) > 0 )
+        $MainAddressID = $RealAddressID[0];
 }
 
 // Insert a user with address
@@ -446,7 +458,7 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
     $user_insert->setLastName( $LastName );
     $user_insert->setSignature( $Signature );
 
-    if ( $InfoSubscription == "on" )
+    if ( isset( $InfoSubscription ) && (string)$InfoSubscription == "on" )
         $user_insert->setInfoSubscription( true );
     else
         $user_insert->setInfoSubscription( false );
@@ -500,6 +512,7 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
         $address->setStreet1( $Street1[$i] );
         $address->setStreet2( $Street2[$i] );
         $address->setZip( $Zip[$i] );
+        $address->setPhone( $Phone[$i] );
         $address->setPlace( $Place[$i] );
 
         if ( $SelectCountry == "enabled" and isset( $CountryID[$i] ) )
@@ -556,7 +569,8 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
 		// $RedirectURL = $REQUEST_URI;
     if( $RedirectURL == "" )
     {
-        $RedirectURL = $session->variable( "RedirectURL" );
+        // $RedirectURL = $session->variable( "RedirectURL" );
+        $RedirectURL = "/user/account/";
     }
     if ( isset( $RedirectURL )  && ( $RedirectURL != "" ) )
     {
@@ -627,7 +641,9 @@ if ( is_a( $user, "eZUser" ) )
             $Street2 = array();
         if ( !isset( $Zip ) )
             $Zip = array();
-        if ( !isset( $Place ) )
+        if ( !isSet( $Phone ) )
+            $Phone = array();
+        if ( !isSet( $Place ) )
             $Place = array();
         if ( !isset( $CountryID ) )
             $CountryID = array();
@@ -656,7 +672,9 @@ if ( is_a( $user, "eZUser" ) )
                 $Street2[$i] = $address->street2();
             if ( !isset( $Zip[$i] ) )
                 $Zip[$i] = $address->zip();
-            if ( !isset( $Place[$i] ) )
+            if ( !isset( $Phone[$i] ) )
+                $Phone[$i] = $address->phone();
+            if ( !isSet( $Place[$i] ) )
                 $Place[$i] = $address->place();
             if ( !isset( $CountryID[$i] ) )
             {
@@ -836,7 +854,15 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
         {
             if ( isset( $MainAddressID ) && is_numeric( $MainAddressID ) )
             {
-                $t->set_var( "is_checked", $RealAddressID[$i] == $MainAddressID ? "checked" : "" );
+                if( isset( $RealAddressID[$i] ) )
+                {
+                    $t->set_var( "is_checked", $RealAddressID[$i] == $MainAddressID ? "checked" : "" );
+                }
+                else
+                {
+                    $t->set_var( "is_checked", "" );
+                }
+                
             }
 
             if ( count ( $checkArray ) == 1 )
@@ -846,7 +872,14 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
             }
             else
             {
-                $t->set_var( "address_id", $RealAddressID[$i] );
+                if( isset( $RealAddressID[$i] ) )
+                {
+                    $t>set_var( "address_id", $RealAddressID[$i] );
+                }
+                else
+                {
+                    $t->set_var( "address_id", "" );
+                }
                 $t->parse( "main_address", "main_address_tpl" );
                 $t->set_var( "address_id", $AddressID[$i] );
                 $t->parse( "delete_address", "delete_address_tpl" );
@@ -861,6 +894,8 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
 
             $t->set_var( "zip_value", $Zip[$i] );
             $t->set_var( "place_value", $Place[$i] );
+
+	        $t->set_var( "phone_value", $Phone[$i]);
 
             $t->set_var( "country", "" );
             if ( $SelectCountry == "enabled" )

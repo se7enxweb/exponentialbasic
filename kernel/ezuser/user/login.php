@@ -77,7 +77,7 @@ else
 $t->set_var( "buttons", "" );
 
 
-if ( $Action == "login" )
+if ( isset( $Action ) && $Action == "login" )
 {
     $user = new eZUser();
     $user = $user->validateUser( $_REQUEST['Username'], $_REQUEST['Password'] );    
@@ -168,7 +168,7 @@ else
         $RedirectURL = false;
 }
 
-if ( $Action == "logout" )
+if ( isset( $Action ) && $Action == "logout" )
 {
     eZUser::clearAutoCookieLogin();
     eZUser::logout();

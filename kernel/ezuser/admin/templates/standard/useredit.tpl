@@ -21,9 +21,16 @@
 </tr>
 <tr>
 	<td colspan="2">
+	<p class="boxtext">{intl-phone}:</p>
+	<input type="text" class="box" size="40" name="Phone" value="{phone_value}"/>
+	<br /><br />
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
 	<p class="boxtext">{intl-email}:</p>
 	<input type="text" class="box" size="40" name="Email" value="{email_value}"/>
-	<br /><br />
+    <br /><br />
 	</td>
 </tr>
 <tr>

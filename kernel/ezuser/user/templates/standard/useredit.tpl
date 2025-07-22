@@ -1,3 +1,8 @@
+<div id="breadcrumbs">
+&nbsp;
+</div>
+
+<div id="contentWrap">
 <form method="post" action="{www_dir}{index}/{module}/{user_new}/{action_value}/{user_id}/">
 
 <h1>{head_line}</h1>
@@ -94,3 +99,4 @@
 	</td>
 </tr>
 </table>
+</div>

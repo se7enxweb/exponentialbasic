@@ -36,6 +36,30 @@ else
 
 switch ( $url_array[2] )
 {
+   case "step1" :
+    {
+        $Action = $url_array[3];
+        include( "kernel/ezuser/user/step1.php" );
+    }
+    break;
+
+   case "step2" :
+    {
+        $Action = $url_array[3];
+        include( "kernel/ezuser/user/step2.php" );
+    }
+    break;
+
+   case "confirmation" :
+   case "account" :
+    {
+        $Action = $url_array[3];
+        include( "kernel/ezuser/user/account_static.php" );
+	
+    }
+    break;
+
+    // ##BREAK
 
     case "login" :
     {
@@ -57,12 +81,95 @@ switch ( $url_array[2] )
     }
     break;
 
+    case "new":
+      if ( $url_array[2] == "new" ){
+	$Action = "New";
+      }
+    case "edit":
+
+      if ( $url_array[3] == "new" || $url_array[3] == "edit")   // && $url_array[2] == "edit")
+        {
+          $Action = "Edit";
+          $url_array[3] = "edit";
+        }
+      if ( $url_array[2] == "edit" ); // new" || $url_array[2] == "edit")   // && $url_array[2] == "edit")
+        {
+	  $Action = "Edit";
+	  $url_array[3] = "edit";
+        }
+      //      die( " $url_array[2] - $url_array[3] ");
     case "user" :
+    {   
+        if ( $url_array[3] == "new" || $url_array[2] == "new")   // && $url_array[2] == "new")
+        {
+            $Action = "New";
+        }
+        if ( $url_array[3] == "edit" ) // || $url_array[2] == "edit" )
+        {
+            if ( $url_array[5] == "MissingAddress" )
+                $MissingAddress = true;
+            else
+                $MissingAddress = false;
+            if ( $url_array[5] == "MissingCountry" )
+                $MissingCountry = true;
+            else
+                $MissingCountry = false;
+
+	    /*
+	    if ( $url_array[4] != '' ){
+               $UserID = $url_array[4];
+               $Action = "Edit";
+	    } else {
+	      $UserID = 0;
+	      $Action = "Edit";
+	    }
+	    */
+        }
+        if ( $url_array[3] == "update" )
+        {
+            $UserID = $url_array[4];
+            $Action = "Update";
+        }
+
+        if ( $url_array[3] == "" )
+            $Action = "New";
+
+        if ( $url_array[3] == "insert" )
+            $Action = "Insert";
+
+	//	die( " $Action : $url_array[2] - $url_array[3] ");
+
+	$OverrideUserWithAddress = "";
+
+	if( $ini->read_var( "eZUserMain", "OverrideUserWithAddress" ) != "disabled" ){ 
+	  $OverrideUserWithAddress = $ini->read_var( "eZUserMain", "OverrideUserWithAddress" );
+	}
+
+        if ( empty( $OverrideUserWithAddress ) )
+        {
+            include( "kernel/ezuser/user/useredit.php" );
+        }
+        else
+        {
+            if ( is_file( $OverrideUserWithAddress ) )
+            {
+                include( $OverrideUserWithAddress );
+            }
+            else
+            {   
+  	        // patric's : header("Location: /index.php/user/step1/");
+                include( "kernel/ezuser/user/useredit.php" );
+            }
+        }
+    }
+    break;
+    case "withaddress" : 
     case "userwithaddress" :
     {
         if ( $url_array[3] == "new" )
         {
             $Action = "New";
+            header("Location: /user/new/");
         }
         if ( $url_array[3] == "edit" )
         {
@@ -199,4 +306,5 @@ switch ( $url_array[2] )
 
 
 }
+
 ?>

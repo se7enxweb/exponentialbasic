@@ -90,11 +90,14 @@ if ( !$user )
     {
         if ( $UserWithAddress == "enabled" )
         {
-            $t->set_var( "user_edit_url", "/user/userwithaddress/new/" );
+	  //$t->set_var( "user_edit_url", "/user/userwithaddress/new/" );
+	  //$t->set_var( "user_edit_url", "/user/step1/" );
+	  $t->set_var( "user_edit_url", "/user/new/" );
         }
         else
         {
-            $t->set_var( "user_edit_url", "/user/user/new/" );
+	  $t->set_var( "user_edit_url", "/user/new/" );
+	  //$t->set_var( "user_edit_url", "/user/step1/" );
         }
         $t->parse( "standard_creation", "standard_creation_tpl" );
     }
@@ -129,12 +132,15 @@ else
         "userbox" => "userbox.tpl"
         ) );
 
+	$t->set_block( "userbox", "message_switch_tpl", "message_switch" );
+	$t->set_block( "message_switch_tpl", "message_switch_item_tpl", "message_switch_item" ); 
+
     if ( !isset( $GlobalSectionID ) )
         $GlobalSectionID = "";
     $t->set_var( "section_id", $GlobalSectionID );
     
-    $t->set_var( "first_name", $user->firstName() );
-    $t->set_var( "last_name", $user->lastName() );
+    $t->set_var( "user_first_name", $user->firstName() );
+    $t->set_var( "user_last_name", $user->lastName() );
     $t->set_var( "user_id", $user->id() );
     if ( ! isset( $SiteDesign ) )
         $SiteDesign = "";
@@ -158,13 +164,14 @@ else
 
     if ( $UserWithAddress == "enabled" )
     {
-        $t->set_var( "user_edit_url", "/user/userwithaddress/edit/" );
+      //$t->set_var( "user_edit_url", "/user/userwithaddress/edit/" );
+      $t->set_var( "user_edit_url", "/user/step1/" );
     }
     else
     {
-        $t->set_var( "user_edit_url", "/user/user/edit/" );
+        //$t->set_var( "user_edit_url", "/user/user/edit/" );
+        $t->set_var( "user_edit_url", "/user/step1/" );
     }
-
     $adminSiteAccessHostNameURL = $ini->read_var( "site", "AdminSiteURL" );
     $isAdminShowLinkMarkup = "<tr><td width='1%' valign='top'><img src='/design/intranet/images/dot.gif' width='10' height='12' border='0' alt=''><br></td>
         <td width='99%'><a target='_blank' class='menu' href='https://$adminSiteAccessHostNameURL'>Administrator</a></td></tr>
@@ -181,7 +188,42 @@ else
     
     $t->set_var( "user_password_edit_url", '/user/passwordchange/' );
 
+    include_once( "ezmessage/classes/ezmessage.php" );
+    $t->set_var( "message_switch", "" );
+    $t->set_var( "message_switch_item", "" );
+    
+    $message = new eZMessage( );
+    //$user = new eZUser();
+    //$user->currentUser();
+    $locale = new eZLocale( $Language );
+    $messageArray =& $message->messagesToUser( $user );
+    $i = 0;
+    
+    foreach ( $messageArray as $message )
+    {    
+        if ( $message->isRead() != true )
+        {
+            $i++;
+            $created = $message->created();
+            $t->set_var( "message_date", $locale->format( $created ) );
+            $fromUser = $message->fromUser();
+            $t->set_var( "message_from_user", $fromUser->firstName() . " " . $fromUser->lastName() );
+            $t->set_var( "message_subject", $message->subject() ) ;
+            $t->parse( "message_switch_item", "message_switch_item_tpl", true );
+        }
+        if ( $i > 0 )
+        {
+            $t->set_var( "new_message_count", $i );
+            $t->parse( "message_switch", "message_switch_tpl" );
+        }
+    }
+    
+    $t->set_var( "new_message_count", $i );
+    $t->set_var( "message_count", count($messageArray) );
+    
     $t->set_var( "sitedesign", $GlobalSiteDesign );
     
     $t->pparse( "output", "userbox" );
 } 
+
+?>

@@ -339,3 +339,5 @@ class eZTime
     var $SecondsElapsed;
     var $Time;
 }
+
+?>

@@ -51,9 +51,9 @@ class eZCCTool
                 $ret = true;
             }
 
-            $CCNumberLenght = strlen ( $CCNumber );
+            $CCNumberLength = strlen ( $CCNumber );
 
-            if ( $CCNumberLenght != 13 && $CCNumberLenght != 15 && $CCNumberLenght != 16 )
+            if ( $CCNumberLength != 13 && $CCNumberLength != 15 && $CCNumberLength != 16 )
             {
                 return false;
             }
@@ -63,7 +63,7 @@ class eZCCTool
             }
 
 
-            if ( ( $CCNumberLenght % 2 ) == 0 )
+            if ( ( $CCNumberLength % 2 ) == 0 )
             {
                 $pair = 0;
             }
@@ -73,13 +73,13 @@ class eZCCTool
             }
 
             // Get each number of the card and put it in an array
-            for ( $i=0; $i != $CCNumberLenght; $i++ )
+            for ( $i=0; $i != $CCNumberLength; $i++ )
             {
                 $numberArray[$i] = substr( $CCNumber, $i, 1 );
             }
 
             // Algorithm Mod10 modificated (by me :-)
-            for ( $nume = ($p/2); $nume != $CCNumberLenght-$pair; $nume = $nume + 2)
+            for ( $nume = ($p/2); $nume != $CCNumberLength-$pair; $nume = $nume + 2)
             {
                 $numberArray[$nume] = $numberArray[$nume] * 2;
                 if ( $numberArray[$nume] >= 10 )
@@ -92,7 +92,7 @@ class eZCCTool
         
             // Sums each value of the modificated array
             // Check the result of the algorithm
-            for( $i=0; $i != $CCNumberLenght; $i++ )
+            for( $i=0; $i != $CCNumberLength; $i++ )
             {
                 $val = $val + $numberArray[$i];
             }
@@ -115,4 +115,5 @@ class eZCCTool
         }
     }
 }
+
 ?>

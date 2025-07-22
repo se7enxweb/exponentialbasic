@@ -99,8 +99,8 @@
 
 */
 
-include_once( "kernel/classes/INIFile.php" );
-include_once( "kernel/classes/ezlog.php" );
+// include_once( "kernel/classes/INIFile.php" );
+// include_once( "kernel/classes/ezlog.php" );
 
 class eZTemplate
 {
@@ -158,10 +158,10 @@ class eZTemplate
         {
             $this->languageFile = array();
             $this->Ini = INIFile::globalINI();
-            $intl_dir =& each( $intlDir );
+            
             foreach ( $phpFile as $php_file )
             {
-                $lang_file = $intl_dir[1] . "/" . $language . "/" . $php_file . ".ini";
+                $lang_file = $intlDir[1] . "/" . $language . "/" . $php_file . ".ini";
                 $this->languageFile[] = $lang_file;
                 if ( INIFile::file_exists( $lang_file ) )
                 {
@@ -175,10 +175,18 @@ class eZTemplate
                         print( "<br><b>Error: language file, $lang_file, could not be found.</b><br>" );
                     }
                 }
-                $intl_dir =& each( $intlDir );
+                
+            }
+            if ( $GLOBALS["DEBUG"] == true )
+            {
+                if ( count( $this->languageFile ) == 0 )
+                {
+                    print( "<br><b>Error: no language files found.</b><br>" );
+                }
             }
         }
-        else if ( !is_array( $phpFile ) and !is_array( $intlDir ) )
+
+        if ( !is_array( $phpFile ) and !is_array( $intlDir ) )
         {
             $this->languageFile = $intlDir . "/" . $language . "/" . $phpFile . ".ini";
             $this->Ini = INIFile::globalINI();
@@ -486,7 +494,10 @@ class eZTemplate
             if ( !$this->loadfile( $parent ) )
             {
                 if ( $required )
-                    $this->halt("subst: unable to load $parent.");
+					{
+                    	$phpFile = $this->phpFile;
+						$this->halt("subst ($phpFile): unable to load $parent.");
+					}
                 return false;
             }
             if ( $name == "" )
@@ -497,14 +508,14 @@ class eZTemplate
             preg_match( $reg, $str, $m );
             $str =& preg_replace( $reg, "{" . "$name}", $str );
 
-	    if( is_array( $m ) and isset( $m[1] ) )
-	    {
-	        $handleValue = $m[1];
-	    }
-	    else {
-   	        $handleValue = "";
-		//var_dump($m); echo '<hr>';
-	    }
+            if( is_array( $m ) and isset( $m[1] ) )
+            {
+                $handleValue = $m[1];
+            }
+            else {
+                $handleValue = "";
+            //var_dump($m); echo '<hr>';
+            }
             $this->set_var_internal( $handle, $handleValue );
             $this->set_var_internal( $parent, $str );
         }
@@ -564,7 +575,7 @@ class eZTemplate
       \private
       Sets the template variable using references.
     */
-    function set_var_internal( $varname, $value )
+    function set_var_internal( &$varname, $value )
     {
         if ( !is_array( $varname ) )
         {
@@ -583,7 +594,7 @@ class eZTemplate
         else
         {
             reset( $varname );
-            while ( list( $k, $v ) = each( $varname ) )
+            foreach( $varname as $k => $v )
             {
                 if ( $this->ReplaceFunc != "str_replace" )
                 {                
@@ -683,7 +694,7 @@ class eZTemplate
         else
         {
             reset( $handle );
-            while ( list( $i, $h ) = each( $handle ) )
+            foreach ( $handle as $i => $h )
             {
                 $str =& $this->subst( $h );
                 $this->set_var_internal( $target, $str );

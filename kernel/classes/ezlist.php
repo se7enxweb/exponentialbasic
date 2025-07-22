@@ -282,7 +282,7 @@ class eZList
             if ( isset( $func_call ) and is_array( $func_call ) )
             {
                 reset( $func_call );
-                while( list($key,$val) = each( $func_call ) )
+                foreach( $func_call as $key => $val )
                 {
                     $t->set_var( $key, eZTextTool::htmlspecialchars( $item->$val() ) );
                 }
@@ -561,3 +561,5 @@ class eZList
         }
     }
 }
+
+?>

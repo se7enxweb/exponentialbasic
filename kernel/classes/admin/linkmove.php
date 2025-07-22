@@ -31,13 +31,13 @@
 //  $ObjectID = The id of the section
 //  $LinkID = The id of the link (only when moving link)
 
-include_once( "kernel/classes/ezhttptool.php" );
+// include_once( "kernel/classes/ezhttptool.php" );
 
 switch( $ObjectType )
 {
     case "section":
     {
-        include_once( "kernel/classes/ezlinksection.php" );
+        // include_once( "kernel/classes/ezlinksection.php" );
         if ( $MoveUp )
             eZLinkSection::moveUp( $ItemID, $ObjectID, $ClientModuleName, $ClientModuleType );
         else
@@ -51,7 +51,7 @@ switch( $ObjectType )
     }
     case "link":
     {
-        include_once( "kernel/classes/ezlinkitem.php" );
+        // include_once( "kernel/classes/ezlinkitem.php" );
         if ( $MoveUp )
             eZLinkItem::moveUp( $ObjectID, $LinkID, $ClientModuleName );
         else

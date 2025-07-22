@@ -96,4 +96,5 @@ class eZURITool
         return $text;
     }
 }
+
 ?>

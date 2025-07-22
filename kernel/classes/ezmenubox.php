@@ -220,3 +220,5 @@ class eZMenuBox
         return false;
     }
 };
+
+?>

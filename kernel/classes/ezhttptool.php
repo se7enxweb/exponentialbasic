@@ -343,3 +343,4 @@ class eZHTTPTool
     var $url_array_length = 0;
 }
 
+?>

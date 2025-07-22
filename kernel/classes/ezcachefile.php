@@ -25,7 +25,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "kernel/classes/ezdatetime.php" );
+// include_once( "kernel/classes/ezdatetime.php" );
 
 //!! eZCommon
 //! The class eZCacheFile manages cache files in an easy way
@@ -71,7 +71,9 @@ class eZCacheFile
     {
         if ( empty( $this->Filename ) )
         {
-            $this->Filename = implode( $this->Separator, $this->Components ) . "." . $this->Suffix;
+            unset( $this->Components[2] );
+            (string)$part = implode( $this->Separator[0], $this->Components );
+            $this->Filename = $part . "." . $this->Suffix;
         }
         if ( $with_root and empty( $this->AbsFilename ) )
         {

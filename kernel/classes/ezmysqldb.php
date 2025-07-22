@@ -93,7 +93,7 @@ class eZMySQLDB
         if ( $debug )
         {
             // include_once( "kernel/classes/ezbenchmark.php" );
-
+            // echo "Executing SQL: $sql<br>";
             $bench = new eZBenchmark();
             $bench->start();
             $result =& mysqli_query( $this->Database, $sql );
@@ -383,3 +383,5 @@ class eZMySQLDB
     var $Counter;
 
 }
+
+?>

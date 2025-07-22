@@ -63,7 +63,7 @@
   \endcode
 */
 
-include_once( "kernel/classes/ezfile.php" );
+//include_once( "kernel/classes/ezfile.php" );
     
 
 class eZImageFile extends eZFile
@@ -107,25 +107,38 @@ class eZImageFile extends eZFile
     static public function &information( $file, $use_default = false )
     {
         $ret = array();
-        $suffix = "";
         if ( preg_match( '/\.([a-zA-Z]+)$/', $file, $regs ) )
         {
             // We got a suffix, make it lowercase and store it
             $suffix = strtolower( $regs[1] );
         }
-
+        else
+        {
+            // If we don't have a suffix, we assume it's not supported
+            $suffix = "";
+        }
         // List of supported suffixes
         $suffix_list = array( "jpg" => array( ".jpg", "image/jpeg" ),
                               "jpeg" => array( ".jpg", "image/jpeg" ),
                               "gif" => array( ".gif", "image/gif" ),
                               "png" => array( ".png", "image/png" ) );
-        
-        $postfix = $suffix_list[$suffix];
-        $ret["suffix"] = $suffix;
-        $ret["dot-suffix"] = $postfix[0];
-        $ret["image-type"] = $postfix[1];
-        $ret["supported"] = is_array( $postfix );
-        if ( !$ret["supported"] and $use_default )
+
+        if( isset( $suffix_list[$suffix] ) )
+        {
+            $postfix = $suffix_list[$suffix];
+            $ret["suffix"] = $suffix;
+            $ret["dot-suffix"] = $postfix[0];
+            $ret["image-type"] = $postfix[1];
+            $ret["supported"] = is_array( $postfix );
+        }
+        else {
+            // If we don't have a suffix, we assume it's not supported
+            $ret["suffix"] = $suffix;
+            $ret["dot-suffix"] = "";
+            $ret["image-type"] = "";
+            $ret["supported"] = false;
+        }
+        if ( isset( $ret["supported"] ) and !$ret["supported"] and $use_default )
             return eZImageFile::defaultInformation();
         return $ret;
     }
@@ -190,12 +203,92 @@ class eZImageFile extends eZFile
             $ret = false;
         }
 
+	// Watermark Code added by Brian Ducharme - www.brianducharme.com 
+	// - modified for image watermarks by Dylan McDiarmid
+		$watermarkCodeTL = "";
+		$watermarkCodeBR = "";
+		$watermark_enabled = "false";
+		$watermark_width = "200";
+		$watermark_height = "200";
+		$watermark_position = "south";
+		// $watermark_image = "ttwater.gif";
+
+	    if ( $ini->has_var( "watermark", "watermarkEnabled" ) )
+             $watermark_enabled = $ini->read_var( "watermark", "watermarkEnabled" );
+	    if ( $ini->has_var( "watermark", "watermarkImage" ) )
+             $watermark_image = $ini->read_var( "watermark", "watermarkImage" );
+	    if ( $ini->has_var( "watermark", "watermarkImageBr" ) )
+             $watermark_image_br = $ini->read_var( "watermark", "watermarkImageBr" );
+	    if ( $ini->has_var( "watermark", "watermarkImageBrSmall" ) )
+             $watermark_image_br_small = $ini->read_var( "watermark", "watermarkImageBrSmall" );
+
+		if ( $watermark_enabled == "true" )
+		if ( $ini->has_var( "watermark", "minWidth" ) )
+			$watermark_width = $ini->read_var( "watermark", "minWidth" );
+		if ( $ini->has_var( "watermark", "minHeight" ) )
+			$watermark_height = $ini->read_var( "watermark", "minHeight" );
+		if ( $ini->has_var( "watermark", "position" ) )
+			$watermark_position = $ini->read_var( "watermark", "position" );
+		{
+			
+		// static for now while we get the scaling thing figured out
+		$actualsize = getimagesize($dest);
+		$actualheight = $actualsize[1];
+		$actualwidth = $actualsize[0];
+		if (($width >= 400 | $height >= 400) && ($actualheight >= 400 | $actualwidth >= 400)) { 
+                  $watermark_image_br = $watermark_image_br;
+		  // $watermark_image_br = 'design/tt/images/watermarks/ttwater-br.png';
+		 // $watermark_image_br = 'design/tt/images/watermarks/ttwater-br-outline.png';
+		} else {
+		  $watermark_image_br = $watermark_image_br_small;
+		 // $watermark_image_br = 'design/tt/images/watermarks/ttwater-br-small-outline.png';
+		}
+		// some lame error handling
+		if (!is_file($watermark_image_br)) {
+		  // ezlog: new eZLog
+		  eZLog::writeNotice( "User Site: Could not locate watermark image file." );
+		  echo ('Could not locate watermark image file.');
+		  print ('Could not locate watermark image file.');
+		}
+
+		if ( $width >= $watermark_width | $height >= $watermark_height ):
+		  //	$watermarkCodeTL = "/usr/bin/composite -gravity northwest $watermark_image_tl $dest $dest";
+		  
+		  $watermarkCodeBR = "/usr/bin/composite -gravity southeast $watermark_image_br $dest $dest";
+
+		//	$watermarkCode = '';			
+		endif;				
+
+
+		//$watermarkCode = " composite -compose atop -gravity $watermark_position $watermark_text " .  $this->TmpFileName;
+		//$watermarkCode = " -font helvetica -draw 'gravity $watermark_position fill white  text 0,20  \"$watermark_text\" fill black text 1,21  \"$watermark_text\"' ";
+		}
+
+		//	print('watermark is ' . $watermarkCode . "\n");
+		// $execstr = "$image_prog  -colorspace Transparent $grayCode -geometry \"$width" . "x" . "$height" . ">\"  $watermarkCode "  . $this->TmpFileName . " " . $dest;
+		// die('exec' . $execstr);
+		
+		// End of Watermark Code
+		
+		if ($watermarkCodeBR != "") {
+		  $err_water = system( $watermarkCodeBR, $ret_code_water );
+		  if ( $ret_code_water == 0 )
+		    {
+		      @eZFile::chmod( $dest, 0644 );
+		      $re2 = true;
+		    }
+		  else
+		    {
+		      $ret2 = false;
+		    }
+        }
+
         // Check for animated gif/png
         if ( eZFile::file_exists( "$dest" . ".0" ) )
         {
             // TODO: not sure
-	    // copy( $this->TmpFileName, $dest );
-	    eZFile::copy( $dest );
+	        // copy( $this->TmpFileName, $dest );
+	        eZFile::copy( $dest );
             @eZFile::chmod( $dest, 0644 );
             $i = 0;
             while( eZFile::file_exists( "$dest.$i" ) )
@@ -208,7 +301,9 @@ class eZImageFile extends eZFile
 
         eZFile::unlink( $lock_file );
 
-        return $ret;
+	 if ((isset($ret2) && $ret2 == false) || $ret == false ) return false;
+	
+        return true;
     }
 
     /*!

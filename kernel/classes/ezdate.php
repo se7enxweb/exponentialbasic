@@ -146,8 +146,8 @@ class eZDate
     function mySQLDate()
     {
         $return = $this->Year;
-        $return = $return . "-" . $this->Month;
-        $return = $return . "-" . $this->Day;
+        $return = $return . "-" . $this->addZero($this->Month);
+        $return = $return . "-" . $this->addZero($this->Day);
 
         return $return;
     }
@@ -514,4 +514,5 @@ class eZDate
     var $Month;
     var $Day;
 }
+
 ?>

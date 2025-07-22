@@ -498,3 +498,5 @@ class INIFile
     var $WWWDir = "";
     var $SiteDir = "";
 }
+
+?>

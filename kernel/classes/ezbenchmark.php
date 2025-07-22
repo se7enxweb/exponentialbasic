@@ -104,3 +104,5 @@ class eZBenchmark
     var $StartTime;
     var $StopTime;
 }
+
+?>

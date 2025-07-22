@@ -53,11 +53,11 @@
 //  $ClientRoot = The root of the module, default is "classes/", eg. "kernel/eztrade/admin/"
 //  $ClientIntlDir = The intl dir of the module, default is "classes/admin/intl/", eg. "kernel/eztrade/admin/intl/"
 
-include_once( "kernel/classes/INIFile.php" );
-include_once( "kernel/classes/eztemplate.php" );
-include_once( "kernel/classes/ezlocale.php" );
-include_once( "kernel/classes/ezcachefile.php" );
-include_once( "kernel/classes/ezhttptool.php" );
+// include_once( "kernel/classes/INIFile.php" );
+// include_once( "kernel/classes/eztemplate.php" );
+// include_once( "kernel/classes/ezlocale.php" );
+// include_once( "kernel/classes/ezcachefile.php" );
+// include_once( "kernel/classes/ezhttptool.php" );
 
 
 $ini =& INIFile::globalINI();
@@ -66,19 +66,19 @@ $Modules = $ini->read_array( $INIGroup, "ModuleList" );
 
 if ( !isset( $ClientRoot ) )
 {
-    $ClientRoot = "classes/";
+    $ClientRoot = "kernel/classes/";
 }
 if ( !isset( $ClientIntlDir ) )
 {
-    $ClientIntlDir = "classes/admin/intl/";
+    $ClientIntlDir = "kernel/classes/admin/intl/";
 }
 
 $intl_dirs = array( $ClientIntlDir );
 $php_files = array( "linklist.php" );
 foreach( $Modules as $module )
 {
-    $dir = strtolower( $module ) . "/user/intl/";
-    $file = strtolower( $module ) . "/user/urlsupplier.php";
+    $dir = strtolower( "kernel/" . $module ) . "/user/intl/";
+    $file = strtolower( "kernel/" . $module ) . "/user/urlsupplier.php";
     if ( eZFile::file_exists( $file ) )
     {
         $intl_dirs[] = $dir;
@@ -86,14 +86,14 @@ foreach( $Modules as $module )
     }
 }
 
-include_once( "kernel/classes/ezmodulelink.php" );
-include_once( "kernel/classes/ezlinksection.php" );
-include_once( "kernel/classes/ezlinkitem.php" );
+// include_once( "kernel/classes/ezmodulelink.php" );
+// include_once( "kernel/classes/ezlinksection.php" );
+// include_once( "kernel/classes/ezlinkitem.php" );
 
 if ( isset( $ItemInsert ) )
 {
     list($ModuleName,$Type) = explode( "/", $ModuleType );
-    $module_lower = strtolower( $ModuleName );
+    $module_lower = strtolower("kernel/$ModuleName" );
     if ( !isset( $LinkID ) )
          $LinkID = false;
     switch( $ModuleName )
@@ -181,7 +181,7 @@ $t->set_var( "value", "" );
 $t->set_var( "client_name", $ClientModuleName );
 $t->set_var( "client_type", $ClientModuleType );
 
-include_once( "kernel/ezsession/classes/ezpreferences.php" );
+// include_once( "kernel/ezsession/classes/ezpreferences.php" );
 $preferences = new eZPreferences();
 $LinkType = $preferences->variable( $PreferencesSetting );
 if ( is_bool( $LinkType ) )

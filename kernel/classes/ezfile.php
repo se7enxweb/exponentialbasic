@@ -46,6 +46,14 @@
 
 class eZFile
 {
+    /*!
+      Constructs a new eZFile object
+    */
+    function __construct()
+    {
+
+
+    }
 
     /*!
       Fetches the uploaded file information.
@@ -88,6 +96,38 @@ class eZFile
         fwrite( $fh, $data );
         fclose( $fh );
     }
+
+
+  /*!
+     Dumps the data to a temporary file. Sets the variables in this file.
+  */
+  function dumpFroogleDataToFile( $data, $fileName )
+  {
+        $this->FileName = $fileName;
+        $ini =& INIFile::globalINI();
+        $tmpDir = $ini->read_var( "site", "SiteFroogleExportDir" );
+        $tmpfileName = tempnam( $tmpDir, "att" );
+        $this->TmpFileName = $tmpfileName;
+        $fh = fopen( $tmpfileName, 'wb' );
+        fwrite( $fh, $data );
+        fclose( $fh );
+    }
+
+  /*!
+     Dumps the data to a temporary file. Sets the variables in this file.
+  */
+  function dumpYahooDataToFile( $data, $fileName )
+  {
+    $this->FileName = $fileName;
+    $ini =& INIFile::globalINI();
+    $tmpDir = $ini->read_var( "site", "SiteYahooExportDir" );
+    $tmpfileName = tempnam( $tmpDir, "att" );
+    $this->TmpFileName = $tmpfileName;
+    $fh = fopen( $tmpfileName, 'wb' );
+    fwrite( $fh, $data );
+    fclose( $fh );
+  }
+
 
     /*!
 
@@ -399,3 +439,5 @@ class eZFile
     var $FileType;
     var $FileSize;
 }
+
+?>

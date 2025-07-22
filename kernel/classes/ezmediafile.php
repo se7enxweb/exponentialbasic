@@ -60,7 +60,7 @@
   \endcode
 */
 
-include_once( "kernel/classes/ezfile.php" );
+//include_once( "kernel/classes/ezfile.php" );
     
 
 class eZMediaFile extends eZFile
@@ -145,4 +145,5 @@ class eZMediaFile extends eZFile
         return $ret;
     }
 }
+
 ?>

@@ -271,4 +271,5 @@ class eZQuery
     var $SingleString;
     var $Literal;
 }
+
 ?>

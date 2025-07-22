@@ -124,7 +124,6 @@ class eZGPG
    //var $home = "/var/www/.gnupg";
    var $home="HOME=/var/www/";
    var $gnuhome="/var/www/.gnupg";
-
-
 }
+
 ?>

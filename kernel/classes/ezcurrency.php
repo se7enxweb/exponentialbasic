@@ -49,7 +49,7 @@ class eZCurrency
     function __construct( $value=0 )
     {
         $this->Value = $value;
-        settype( $this->Value, 'double' );
+        settype( $this->Value, 'float' );
     }
 
     /*!
@@ -66,7 +66,7 @@ class eZCurrency
     function setValue( $value  )
     {
         $this->Value = $value;
-        settype( $this->Value, 'double' );
+        settype( $this->Value, 'float' );
     }
 
     /*!
@@ -86,3 +86,5 @@ class eZCurrency
     
     var $Value;
 }
+
+?>

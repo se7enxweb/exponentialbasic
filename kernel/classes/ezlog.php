@@ -86,14 +86,14 @@ class eZLog
         }
         else
         {
-            include_once( "kernel/classes/INIFile.php" );
+            //include_once( "kernel/classes/INIFile.php" );
             $ini =& INIFile::globalINI();
 
             $fileName = $ini->read_var( "site", "LogFileName" );
 	    $logDir = $ini->read_var( "site", "LogDir" );
 
 	    // build timestamp for today's date 	    
-	    include_once( "kernel/classes/ezdate.php" );
+	    //include_once( "kernel/classes/ezdate.php" );
 
 	    $today = new eZDate();
 	    $year = eZDateTime::addZero( $today->year() );

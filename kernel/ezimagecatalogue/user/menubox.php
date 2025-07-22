@@ -44,6 +44,25 @@ $t->set_file( array(
     "menu_box_tpl" => "menubox.tpl"
     ) );
 
+////////////////
+// BEGIN random image block added by admin [at] riderhaus [dot] com
+
+$RandImageCategory =& $ini->read_var( "eZImageCatalogueMain", "RandImageCategory" );
+$width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
+$height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
+$randimage = eZImage::randomImage( $RandImageCategory );
+$variation =& $randimage->requestImageVariation( $width, $height );
+$t->set_var( "image_src", "/" . $variation->imagePath() );
+$t->set_var( "image_file_name", $randimage->name() );
+$t->set_var( "image_category", $RandImageCategory );
+$t->set_var( "image_caption", $randimage->caption() );
+$t->set_var( "image_width", $variation->width()  );
+$t->set_var( "image_height", $variation->height() );
+
+// END random image block added by admin [at] riderhaus [dot] com
+////////////////
+
+
 $t->set_block( "menu_box_tpl", "user_login_tpl", "user_login" );
 
 if ( $user && ( eZObjectPermission::getObjects( "imagecatalogue_category", 'w', true ) > 0 ||
@@ -57,7 +76,7 @@ else
     $t->set_var( "user_login", "" );
 }
 
-$t->set_var( "sitedesign", $GlobalSiteDesign );
+$t->set_var( "sitedesign", $GlobalSiteDesign );  
     
 $t->pparse( "output", "menu_box_tpl" );
 

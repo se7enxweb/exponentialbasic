@@ -39,7 +39,7 @@ switch ( $RequestType )
             case "tree":
             case "search":
             {
-                include( "ezimagecatalogue/xmlrpc/categorylist.php" );
+                include( "kernel/ezimagecatalogue/xmlrpc/categorylist.php" );
                 break;
             }
             case "data":
@@ -48,7 +48,7 @@ switch ( $RequestType )
             case "permission":
             case "info":
             {
-                include( "ezimagecatalogue/xmlrpc/category.php" );
+                include( "kernel/ezimagecatalogue/xmlrpc/category.php" );
                 break;
             }
             default:
@@ -61,7 +61,7 @@ switch ( $RequestType )
         {
             case "list":
             {
-                include( "ezimagecatalogue/xmlrpc/unassignedlist.php" );
+                include( "kernel/ezimagecatalogue/xmlrpc/unassignedlist.php" );
                 break;
             }
             default:
@@ -80,7 +80,7 @@ switch ( $RequestType )
             case "permission":
             case "info":
             {
-                include( "ezimagecatalogue/xmlrpc/image.php" );
+                include( "kernel/ezimagecatalogue/xmlrpc/image.php" );
                 break;
             }
             default:
@@ -95,7 +95,7 @@ switch ( $RequestType )
         {
             case "search":
             {
-                include( "ezimagecatalogue/xmlrpc/search.php" );
+                include( "kernel/ezimagecatalogue/xmlrpc/search.php" );
                 break;
             }
             default:

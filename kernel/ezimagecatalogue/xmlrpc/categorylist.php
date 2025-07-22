@@ -239,4 +239,5 @@ function &categoryTree( $cat )
     }
     return $item;
 }
+
 ?>

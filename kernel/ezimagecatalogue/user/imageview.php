@@ -44,6 +44,13 @@ $t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->read_var( "eZImageC
                      "kernel/ezimagecatalogue/user/intl/", $Language, "imageview.php" );
 
 $t->set_file( "image_view_tpl", "imageview.tpl" );
+$t->set_block( "image_view_tpl", "product_item_tpl", "product_item" );
+$t->set_block( "image_view_tpl", "article_item_tpl", "article_item" );
+$t->set_block( "image_view_tpl", "related_products_tpl", "related_products" );
+$t->set_block( "image_view_tpl", "related_articles_tpl", "related_articles" );
+$t->set_block( "image_view_tpl", "path_tpl", "path" );
+$t->set_var( "related_products", "" );
+$t->set_var( "related_articles", "" );
 
 $t->setAllStrings();
 
@@ -91,16 +98,100 @@ else if ( isset( $VariationID ) )
     }
 }
 
+
+$t->set_var( "path", "" );
+$category = $image->categoryDefinition();
+if ( $category != -1 )
+{
+	$pathArray =& $category->path();
+	foreach ( $pathArray as $path )
+		{
+	    $t->set_var( "category_id", $path[0] );
+    	$t->set_var( "category_name", $path[1] );
+	    $t->parse( "path", "path_tpl", true );
+		}
+}
+
+// added related articles, products
+
+$info_items = 0;
+$t->set_var( "article_item", "" );
+    $articles = $image->articles();
+
+    foreach( $articles as $article )
+    {
+        if ( ( $user ) &&
+             ( eZObjectPermission::hasPermission( $article->id(), "article_article", "r", $user ) ) &&
+			 ( $article->isPublished() )				 			 
+			)
+        {
+	    $t->set_var( "td_class", ( $i % 2 ) == 0 ? "bglight" : "bgdark" );
+            $t->set_var( "article_id", $article->id() );
+            $t->set_var( "article_name", $article->name() );
+
+            $t->parse( "article_item", "article_item_tpl", true );
+	    $info_items++;	
+        }
+    }
+    if( $info_items > 0 )
+        $t->parse( "related_articles", "related_articles_tpl", false );
+
+$info_items = 0;
+$t->set_var( "product_item", "" );
+    $products = $image->products();
+
+    foreach( $products as $product )
+    	if ( $product->showProduct() )
+		{
+		$t->set_var( "td_class", ( $i % 2 ) == 0 ? "bglight" : "bgdark" );
+        $t->set_var( "product_id", $product->id() );
+        $t->set_var( "product_name", $product->name() );
+        $t->parse( "product_item", "product_item_tpl", true );
+        $info_items++;	
+	    }
+   if( $info_items > 0 )
+        $t->parse( "related_products", "related_products_tpl", false );
+
+    if ( $image->fileExists( true ) )
+    {
+        $imagePath =& $image->filePath( true );
+        $size = eZFile::filesize( $imagePath );
+	$t->set_var( "image_path", $imagePath );
+    }
+    else
+    {
+        $size = 0;
+	$t->set_var( "image_path", "" );
+    }
+
+$size = eZFile::siFileSize( $size );
+
+$width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
+$height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
+$thumbnail =& $image->requestImageVariation( $width, $height );
+
+$t->set_var( "orig_width", $image->width() );
+$t->set_var( "orig_height", $image->height() );
+$t->set_var( "image_src", "/" . $thumbnail->imagePath() );
+$t->set_var( "site_url", $SiteURL );
+
+$t->set_var( "image_size", $size["size-string"] );
+$t->set_var( "image_unit", $size["unit"] );
+
+$t->set_var( "image_id", $image->id() );
 $t->set_var( "image_uri", "/" . $variation->imagePath() );
 $t->set_var( "image_width", $variation->width() );
 $t->set_var( "image_height", $variation->height() );
 $t->set_var( "image_caption", $image->caption() );
 $t->set_var( "image_name", $image->name() );
 $t->set_var( "image_description", $image->description() );
+$t->set_var( "original_image_name", $image->originalFileName() );
+
+if ( !$RefererURL )
+	$RefererURL="";
 
 $t->set_var( "referer_url", $RefererURL );
 
 $t->pparse( "output", "image_view_tpl" );
-
 
 ?>

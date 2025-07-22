@@ -52,7 +52,7 @@ if ( $image->get( $ImageID ) )
     }
 
 }
-die( "Image not found" );
 
+die( "Image not found" );
 
 ?>

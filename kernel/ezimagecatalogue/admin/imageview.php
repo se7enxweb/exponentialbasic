@@ -44,6 +44,7 @@ $t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->read_var( "eZImage
                      "kernel/ezimagecatalogue/admin/intl/", $Language, "imageview.php" );
 
 $t->set_file( "image_view_tpl", "imageview.tpl" );
+$t->set_block( "image_view_tpl", "path_tpl", "path" );
 
 $t->setAllStrings();
 
@@ -75,6 +76,19 @@ else if ( isset( $VariationID ) )
     }
 }
 
+$t->set_var( "path", "" );
+$category = $image->categoryDefinition();
+if ( $category != -1 )
+{
+	$pathArray =& $category->path();
+	foreach ( $pathArray as $path )
+		{
+	    $t->set_var( "category_id", $path[0] );
+    	$t->set_var( "category_name", $path[1] );
+	    $t->parse( "path", "path_tpl", true );
+    }
+}
+
 $t->set_var( "image_uri", "/" . $variation->imagePath() );
 $t->set_var( "image_width", $variation->width() );
 $t->set_var( "image_height", $variation->height() );
@@ -85,6 +99,5 @@ $t->set_var( "image_description", $image->description() );
 $t->set_var( "referer_url", $RefererURL );
 
 $t->pparse( "output", "image_view_tpl" );
-
 
 ?>

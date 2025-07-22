@@ -28,7 +28,7 @@
 // include_once( "ezimagecatalogue/classes/ezimagevariation.php" );
 
 
-$image = new eZImage( );
+$image = new eZImage();
 
 if ( $image->get( $ImageID ) )
 {
@@ -52,7 +52,7 @@ if ( $image->get( $ImageID ) )
     }
 
 }
-die( "Image not found" );
 
+die( "Image not found" );
 
 ?>

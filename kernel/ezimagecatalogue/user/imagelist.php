@@ -230,11 +230,23 @@ if ( isset( $SearchText ) )
 {
     $imageList =& eZImage::search( $SearchText );
     $count =& eZImage::searchCount( $SearchText );
+    
+    $URL = "search/?SearchText=$SearchText";
+
+    $page_link = "search/?SearchText=$SearchText&Offset={item_index}";
+    $page_link_next = "search/?SearchText=$SearchText&Offset={item_next_index}";
+    $page_link_prev = "search/?SearchText=$SearchText&Offset={item_previous_index}";
 }
 else
 {
     $imageList =& $category->images( "time", $Offset, $limit );
     $count =& $category->imageCount();
+    
+    $URL = "image/list/$CategoryID/$Offset";
+   
+    $page_link = "image/list/$CategoryID/parent/{item_index}";
+    $page_link_next = "image/list/$CategoryID/parent/{item_next_index}";    
+    $page_link_prev = "image/list/$CategoryID/parent/{item_previous_index}";
 }
 
 $i = 0;
@@ -384,6 +396,12 @@ foreach ( $imageList as $image )
 
     $counter++;
 }
+$t->set_var( "URL", $URL );
+$t->set_var( "page_link", $page_link );
+$t->set_var( "page_link_next", $page_link_next );
+$t->set_var( "page_link_prev", $page_link_prev );
+
+
 $t->set_var( "main_category_id", $CategoryID );
 eZList::drawNavigator( $t, $count, $limit, $Offset, "image_list_page_tpl" );
 
@@ -405,7 +423,8 @@ else
 // Print out the category/image menu
 if ( $category->id() != 0 )
 {
-    if ( eZObjectPermission::hasPermission( $category->id(), "imagecatalogue_category", "w", $user ) )
+    if ( ( $user ) &&
+         ( eZObjectPermission::hasPermission( $category->id(), "imagecatalogue_category", "w", $user ) ) )
     {
         $t->parse( "default_new", "default_new_tpl" );
         $t->parse( "write_menu", "write_menu_tpl" );

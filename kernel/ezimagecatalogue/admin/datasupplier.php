@@ -91,6 +91,12 @@ switch ( $url_array[2] )
     }
     break;
 
+	case "import" :
+    {
+        include( "kernel/ezimagecatalogue/admin/imagelist.php" );
+    }
+    break;
+
     case "image" :
     {
         switch ( $url_array[3] )

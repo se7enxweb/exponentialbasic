@@ -30,10 +30,16 @@ ob_end_clean();
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
+// we can move this to an ini variable later if need be
+$watermarkToggle = true;
 $file = new eZImage( $ImageID );
+// $fileName = $file->fileName();
 $fileName = $file->name();
 $originalFileName = $file->originalFileName();
 $filePath = $file->filePath( true );
+if ($watermarkToggle)
+  $watermarkPath = $file->watermarkPath(true);
+  $watermarkFileSize = eZFile::filesize( $watermarkPath );
 
 $user =& eZUser::currentUser();
 $image = new eZImage( $ImageID );
@@ -50,11 +56,41 @@ $fileSize = eZFile::filesize( $filePath );
 $fp = eZFile::fopen( $filePath, "r" );
 $content =& fread( $fp, $fileSize );
 
+//Header("Content-type: application/oct-stream"); 
+//Header("Content-length: $fileSize"); 
+//Header("Content-disposition: attachment; filename=\"$originalFileName\"");
+/*
+//header( "Cache-Control:" );
 Header("Content-type: application/oct-stream"); 
-Header("Content-length: $fileSize"); 
-Header("Content-disposition: attachment; filename=\"$originalFileName\"");
+Header( "Content-Length: $fileSize" );
+Header( "Content-disposition: attachment; filename=\"$fileName\"" );
+//header( "Content-Transfer-Encoding: binary" );
+*/
 
-echo($content);
-exit();
+//echo($content);
+if ($watermarkToggle) {
+    header( "Cache-Control:" );
+    Header("Content-type: application/oct-stream"); 
+    header( "Content-Length: $watermarkFileSize" );
+    header( "Content-disposition: attachment; filename=\"$originalFileName\"" );
 
-?> 
+    $fh = eZFile::fopen( "$watermarkPath", "rb" );
+    fpassthru( $fh );
+    exit();
+} else {
+    header( "Cache-Control:" );
+    Header("Content-type: application/oct-stream"); 
+    header( "Content-Length: $fileSize" );
+    header( "Content-disposition: attachment; filename=\"$originalFileName\"" );
+    //header( "Content-Transfer-Encoding: binary" );
+
+    $fh = eZFile::fopen( "$filePath", "rb" );
+    fpassthru( $fh );
+    exit();
+}
+
+//$fh = eZFile::fopen( "../ezimagecatalogue/catalogue/$fileName", "rb" );
+//fpassthru( $fh );
+//exit();
+
+?>

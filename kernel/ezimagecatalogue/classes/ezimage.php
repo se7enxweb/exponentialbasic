@@ -88,6 +88,7 @@
 
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "ezforum/classes/ezforum.php" );
 
 class eZImage
 {
@@ -268,6 +269,7 @@ class eZImage
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $fileArray = array();
         $returnArray = array();
         if ( $userID > -1 )
             $user = new eZUser( $userID );
@@ -299,7 +301,9 @@ class eZImage
         $queryString .= " WHERE (" . $query->buildQuery() . ") $groupString ";
         $queryString .= " GROUP BY i.ID ORDER BY i.Name";
         $db->array_query( $fileArray, $queryString );
-        $ret = $fileArray[0][$db->fieldName( "Count" )];
+        // $ret = $fileArray[0][$db->fieldName( "Count" )];
+  		$ret = count($fileArray);
+
         return $ret;
     }
 
@@ -324,6 +328,7 @@ class eZImage
             $db->query( "DELETE FROM eZImageCatalogue_ImageCategoryLink WHERE ImageID='$this->ID'" );
             $db->query( "DELETE FROM eZImageCatalogue_ImageCategoryDefinition WHERE ImageID='$this->ID'" );
             $db->query( "DELETE FROM eZImageCatalogue_ImageMap WHERE ImageID='$this->ID'" );
+			$db->query( "DELETE FROM eZImageCatalogue_ImageForumLink WHERE ImageID='$this->ID'" );
 
             // Delete from the filesystem
             if ( eZFile::file_exists( $this->filePath( true ) ) )
@@ -474,6 +479,24 @@ class eZImage
         return $category;
     }
 
+	    /*!
+      Returns all the images found in the database.
+
+      The images are returned as an array of eZImage objects.
+    */
+    function &getAll()
+    {
+        $db =& eZDB::globalDatabase();
+        $return_array = array();
+        $category_array = array();
+        $db->array_query( $category_array, "SELECT ID FROM eZImageCatalogue_Image ORDER BY Name" );
+		for ( $i = 0; $i < count( $category_array ); $i++ )
+        {
+            $return_array[$i] = new eZImage( $category_array[$i][$db->fieldName("ID")], 0 );
+        }
+        return $return_array;
+    }
+
     /*!
       Get all the images that is not assigned to a category.
 
@@ -483,11 +506,13 @@ class eZImage
     {
         $db =& eZDB::globalDatabase();
         $returnArray = array();
+        $imageArray = array();
 
         if ( $offset > 0 || $limit > 0 )
             $limitArray = array( "Offset" => $offset, "Limit" => $limit );
         else
             $limitArray = array();
+        
         $db->array_query( $imageArray, "SELECT Image.ID, Link.ImageID
                                         FROM eZImageCatalogue_Image AS Image
                                         LEFT JOIN  eZImageCatalogue_ImageCategoryLink AS Link
@@ -677,12 +702,23 @@ class eZImage
     /*!
       Returns the name of the image.
     */
-    function name( $html = true )
+    function &name( $html = true )
     {
-       if ( $html )
-           return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Name ) );
-       else
-           return $this->Name;
+	    $this->Name = stripslashes($this->Name);
+        if ( $this->Name )
+        {
+            if ( $html )
+                return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Name ) );
+            else
+                return $this->Name;
+        }
+        else
+        {
+            if ( $html )
+                return eZTextTool::fixhtmlentities( htmlspecialchars( $this->OriginalFileName ) );
+            else
+                return $this->OriginalFileName;
+        }
     }
 
     /*!
@@ -690,10 +726,11 @@ class eZImage
     */
     function caption( $html = true )
     {
-       if ( $html )
-           return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Caption ) );
-       else
-           return $this->Caption;
+        $this->Caption = stripslashes($this->Caption);
+        if ( $html )
+            return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Caption ) );
+        else
+            return $this->Caption;
     }
 
     /*!
@@ -701,10 +738,11 @@ class eZImage
     */
     function description( $html = true )
     {
-       if ( $html )
-           return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Description ) );
-       else
-           return $this->Description;
+		$this->Description = stripslashes($this->Description);
+        if ( $html )
+            return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Description ) );
+        else
+            return $this->Description;
     }
 
     /*!
@@ -764,6 +802,78 @@ class eZImage
                $path = "/$path";
        }
        return $path;
+    }
+
+    /*
+    * Checks for a watermark version of the image, creates one if it doesn't exist, and returns the path.
+    */
+    function &watermarkPath( $relative = false )
+    {
+       $relPath = "ezimagecatalogue/catalogue/fullwatermarks/" . $this->FileName;
+
+       if ( $relative == true )
+       {
+           $path = "ezimagecatalogue/catalogue/fullwatermarks/" . $this->FileName;
+       }
+       else
+       {
+           $path = "/ezimagecatalogue/catalogue/fullwatermarks/" . $this->FileName;
+       }
+
+       if ( !eZFile::file_exists( $relPath ) or !is_file( $relPath ) )
+       {
+          if (!$this->createWatermark()) {
+           $path = "ezimagecatalogue/admin/images/failedimage.gif";
+           if ( !$relative )
+               $path = "/$path";
+            }
+       }
+       return $path;
+    }
+    
+    function &createWatermark() {
+	    $ini =& INIFile::globalINI();
+		$sitePath = $ini->read_var("site", "SitePath");
+    	    if ( $ini->has_var( "watermark", "watermarkImage" ) )
+             $watermark_image = $ini->read_var( "watermark", "watermarkImage" );
+	    if ( $ini->has_var( "watermark", "watermarkImageBr" ) )
+             $watermark_image_br = $ini->read_var( "watermark", "watermarkImageBr" );
+	    if ( $ini->has_var( "watermark", "watermarkImageBrSmall" ) )
+             $watermark_image_br_small = $ini->read_var( "watermark", "watermarkImageBrSmall" );
+		$imagepath = $this->filePath( true);
+		$dest = 'ezimagecatalogue/catalogue/fullwatermarks/' . $this->FileName;
+		$actualsize = getimagesize($imagepath);
+	       $actualheight = $actualsize[1];
+	    	$actualwidth = $actualsize[0];
+		if ($actualheight >= 400 | $actualwidth >= 400) { 
+      $watermark_image_br = $watermark_image_br;
+		} else {
+		  $watermark_image_br =  $watermark_image_br_small;
+		}
+
+		// some lame error handling
+		if (!is_file($watermark_image_br)) {
+		  // ezlog: new eZLog
+		  eZLog::writeNotice( "User Site: Could not locate watermark image file." );
+		  echo ('Could not locate watermark image file.');
+		  print ('Could not locate watermark image file.');
+		}
+	
+		  $watermarkCodeBR = "/usr/bin/composite -gravity southeast $watermark_image_br $imagepath $dest";				
+  		if ($watermarkCodeBR != "") {
+
+  		  $err_water = system( $watermarkCodeBR, $ret_code_water );
+  		  if ( $ret_code_water == 0 )
+  		    {
+  		      @eZFile::chmod( $dest, 0644 );
+  		      $ret = true;
+  		    }
+  		  else
+  		    {
+  		      $ret = false;
+  		    }
+  		}
+  		return $ret;
     }
 
     /*!
@@ -954,18 +1064,24 @@ class eZImage
            if ( $postfix != "" )
            {
                // Copy the file since we support it directly
-               $file->copy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . $postfix );
+   			   if ( array_pop(explode('.', $file->tmpName() )) == $suffix ) {
+			   		$fname = basename($file->tmpName(), '.'.$suffix);
+					$tmpname = $fname . $uniqueID . '.' . $suffix;
+					$postfix = "";
+					}
+               $file->copy( "kernel/ezimagecatalogue/catalogue/" . basename( $tmpname ) . $postfix );
            }
            else
            {
                // Convert it to jpg.
-               if ( !$file->convertCopy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . ".jpg" ) )
+//               if ( !$file->convertCopy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . ".jpg" ) )
+               if ( !$file->convertCopy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() )  ) )
                    return false;
                $postfix = ".jpg";
            }
-
-           $this->FileName = basename( $file->tmpName() ) . $postfix;
-
+           // $this->FileName = basename( $file->tmpName() ) . $postfix;
+           $this->FileName = basename( $tmpname ) . $postfix;
+           
            $name = $file->name();
 
            $this->OriginalFileName =& $name;
@@ -1270,6 +1386,99 @@ class eZImage
             return false;
     }
 
+/*!
+      Returns the comments for the image.
+    */
+    function forum( $as_object = true )
+    {
+        $db =& eZDB::globalDatabase();
+
+        $db->array_query( $res, "SELECT ForumID FROM
+                                            eZImageCatalogue_ImageForumLink
+                                            WHERE ImageID='$this->ID'" );
+        $forum = false;
+        if ( count( $res ) == 1 )
+        {
+            if ( $as_object )
+                $forum = new eZForum( $res[0][$db->fieldName( "ForumID" )] );
+            else
+                $forum = $res[0][$db->fieldName( "ForumID" )];
+        }
+        else
+        {
+            $forum = new eZForum();
+            $forum->setName( $db->escapeString( $this->Name ) );
+
+	      $forum->setIsModerated(false);
+//	      $moderatorgroup = new eZUserGroup( 1 ); //should be a variable - administrator groupid
+//            $forum->setModerator( $moderatorgroup );
+
+            $forum->store();
+			
+			$ini =& INIFile::globalINI();
+			$linkModules = $ini->read_var( "eZForumMain", "LinkModules" );
+			$module_array = explode(',', $linkModules );
+			unset ($linkModules);
+			foreach ( $module_array as $module)
+			{
+				$moduleSubArray = explode( ':', $module );
+				list($module_name, $forum_id) = $moduleSubArray;
+				$linkModules[$module_name] = $forum_id;
+			}	
+			
+            $category = new eZForumCategory( $linkModules['eZImageCatalogue'] );  
+			
+            $category->addForum( $forum );
+
+            $forumID = $forum->id();
+
+            $db->begin( );
+
+            $db->lock( "eZImageCatalogue_ImageForumLink" );
+
+            $nextID = $db->nextID( "eZImageCatalogue_ImageForumLink", "ID" );
+
+            $res = $db->query( "INSERT INTO eZImageCatalogue_ImageForumLink
+                                ( ID, ImageID, ForumID )
+                                VALUES
+                                ( '$nextID', '$this->ID', '$forumID' )" );
+
+            $db->unlock();
+
+            if ( $res == false )
+                $db->rollback( );
+            else
+                $db->commit();
+
+
+            if ( $as_object )
+                $forum = new eZForum( $forumID );
+            else
+                $forum = $forumID;
+        }
+        return $forum;
+    }
+
+/*!
+      Returns the image which a review is connected to.
+     */
+    function imageIDFromForum( $ForumID )
+    {
+        $db =& eZDB::globalDatabase();
+
+        $ImageID = 0;
+
+        $db->array_query( $result, "SELECT ImageID FROM
+                                    eZImageCatalogue_ImageForumLink
+                                    WHERE ForumID='$ForumID' GROUP BY ImageID" );
+
+        if( count( $result ) > 0 )
+        {
+            $ProductID = $result[0][$db->fieldName("ImageID")];
+        }
+
+        return $ImageID;
+    }
     var $ID;
     var $Name;
     var $Caption;

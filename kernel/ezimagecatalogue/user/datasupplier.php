@@ -32,6 +32,7 @@
 
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
+$UserComments = $ini->read_var( "eZImageCatalogueMain", "UserComments" );
 
 function writeAtAll()
 {
@@ -65,6 +66,27 @@ switch ( $url_array[2] )
         $ImageID = $url_array[3];
         $VariationID = $url_array[4];
         include( "kernel/ezimagecatalogue/user/imageview.php" );
+
+if  (  ( $PrintableVersion != "enabled" ) &&  ( $UserComments == "enabled" ) )
+            {
+		$RedirectURL = "/imagecatalogue/imageview/$ImageID/";
+                $image = new eZImage ( $ImageID );
+                if ( ( $image->id() >= 1 ) )    //  && $product->discuss() )
+                {
+                    for ( $i = 0; $i < count( $url_array ); $i++ )
+                    {
+                        if ( ( $url_array[$i] ) == "parent" )
+                        {
+                            $next = $i + 1;
+                            $Offset = $url_array[$next];
+                        }
+                    }
+                    $forum = $image->forum();
+                    $ForumID = $forum->id();
+                    include( "kernel/ezforum/user/messagesimplelist.php" );
+                }
+            }
+
     }
     break;
 
@@ -82,14 +104,29 @@ switch ( $url_array[2] )
         {
             case "list" :
             {
-                $CategoryID = $url_array[4];
+                if ( isset( $url_array[4] ) )
+                {
+                    $CategoryID = $url_array[4];
+                }
+                else
+                {
+                    $CategoryID = 0;
+                }
+                
                 if ( !is_numeric($CategoryID ) )
                 {
                     $CategoryID = 0;
                 }
                 
-                $Offset = $url_array[6];
-                
+                if( isset( $url_array[6] ) )    
+                {
+                    $Offset = $url_array[6];
+                }
+                else
+                {
+                    $Offset = 0;
+                }   
+
                 if ( $Offset == "" && is_Numeric( $url_array[4] ) && is_Numeric( $url_array[5] ) )
                 {
                     $Offset = $url_array[5];
@@ -257,4 +294,5 @@ switch ( $url_array[2] )
         eZHTTPTool::header( "Location: /error/403?Info=$info" );
 
 }
+
 ?>

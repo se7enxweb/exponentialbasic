@@ -233,14 +233,19 @@ class eZImageCategory
 
       The categories are returned as an array of eZImageCategory objects.
     */
-    function getAll()
+    public static function getAll( $limit = false, $offset = 0 )
     {
         $db =& eZDB::globalDatabase();
+        
+		if ( is_numeric($limit) && $limit > 0 )
+			$limitText = " ORDER BY ID DESC LIMIT ".$limit;
+		else
+			$limitText = " ORDER BY Name";
 
         $return_array = array();
         $category_array = array();
 
-        $db->array_query( $category_array, "SELECT ID, Name FROM eZImageCatalogue_Category ORDER BY Name" );
+        $db->array_query( $category_array, "SELECT ID, Name FROM eZImageCatalogue_Category ORDER BY Name LIMIT $limit" );
 
         for ( $i = 0; $i < count( $category_array ); $i++ )
         {
@@ -416,6 +421,7 @@ class eZImageCategory
     */
     function name( $html = true )
     {
+		$this->Name = stripslashes($this->Name);
        if ( $html )
            return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Name ) );
        else
@@ -427,6 +433,7 @@ class eZImageCategory
     */
     function description( $html = true )
     {
+		$this->Description = stripslashes($this->Description);
        if ( $html )
            return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Description ) );
        else

@@ -43,6 +43,13 @@ class eZImageVariation
     */
     function __construct( $id="" )
     {
+      $this->ImageID = 0;
+      $this->VariationGroupID = 0;
+      $this->Width = 0;
+      $this->Height = 0;
+      $this->ImagePath = "";
+      $this->Modification = "";
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -62,7 +69,7 @@ class eZImageVariation
 
         $this->ID = $db->nextID( "eZImageCatalogue_ImageVariation", "ID" );
 
-        $res = $db->query( "INSERT INTO eZImageCatalogue_ImageVariation
+        $query = "INSERT INTO eZImageCatalogue_ImageVariation
                                  ( ID, ImageID, VariationGroupID, Width, Height, ImagePath, Modification ) VALUES
                                  ( '$this->ID',
                                    '$this->ImageID',
@@ -70,8 +77,9 @@ class eZImageVariation
                                    '$this->Width',
                                    '$this->Height',
                                    '$this->ImagePath',
-                                   '$this->Modification')" );
+                                   '$this->Modification' )";
 
+        $res = $db->query( $query );
         $db->unlock();
 
         if ( $res == false )

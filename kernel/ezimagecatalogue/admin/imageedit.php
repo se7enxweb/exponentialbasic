@@ -62,6 +62,11 @@ if ( isset( $DeleteCategories ) )
     $Action = "DeleteCategories";
 }
 
+if ( isset( $UpdateImages ) )
+{
+    $Action = "UpdateImages";
+}
+
 if (isset( $Action ) && $Action == "New" )
 {
     $Name = false;
@@ -284,6 +289,8 @@ if ( $Action == "Insert" && $error == false )
 
     foreach ( $categories as $categoryItem )
     {
+        /// if( eZObjectPermission::hasPermission( $image->id(), "imagecatalogue_image", 'w' ) )
+        // this may be unnecessary or even wrong, as the image may not have been stored yet
         if( eZObjectPermission::hasPermission( $categoryItem, "imagecatalogue_category", 'w' ) )
             eZImageCategory::addImage( $image, $categoryItem );
     }
@@ -405,6 +412,26 @@ if ( $Action == "DeleteImages" )
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" . $CurrentCategoryID . "/" );
     exit();
 }
+
+// Update captions
+if ( $Action == "UpdateImages" )
+
+    {
+        for ( $i = 0; $i < count( $ImageUpdateArrayID ); $i++ )
+        {
+            if ( $NewCaption[$i] != $OldCaption[$i] )
+		{
+			$image = new eZImage($ImageUpdateArrayID[$i]);
+			$image->setCaption( $NewCaption[$i] );
+		        $image->store();
+		}
+        }
+
+    // include_once( "classes/ezhttptool.php" );
+    eZHTTPTool::header( "Location: /imagecatalogue/image/list/" . $CurrentCategoryID . "/" );
+    exit();
+}
+
 
 // Delete a category
 if( $Action == "DeleteCategories" )
@@ -563,8 +590,6 @@ if ( $Action == "Edit" )
     $readGroupArrayID =& $objectPermission->getGroups( $image->id(), "imagecatalogue_image", "r", false );
     $writeGroupArrayID =& $objectPermission->getGroups( $image->id(), "imagecatalogue_image", "w", false );
 }
-
-
 
 $category = new eZImageCategory() ;
 $categoryList =& $category->getTree( );
@@ -727,4 +752,5 @@ function changePermissions( $objectID, $groups , $permission )
     }
 
 }
+
 ?>

@@ -38,10 +38,15 @@
 // include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
+$wwwDir = $ini->WWWDir;
+$indexFile = $ini->Index;
 
 $Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
 
 $ImageDir = $ini->read_var( "eZImageCatalogueMain", "ImageDir" );
+$PicCat = $ini->read_var( "eZImageCatalogueMain", "PicCat" );
+$SyncDir = $ini->read_var( "eZImageCatalogueMain", "SyncDir" );
+$SectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
 
 $t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->read_var( "eZImageCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezimagecatalogue/admin/intl/", $Language, "imagelist.php" );
@@ -63,6 +68,93 @@ if ( isset ( $NormalView ) )
     $session =& eZSession::globalSession();
     $session->setVariable( "ImageViewMode", "Normal" );
 }
+
+
+function syncDir( $root, $category )
+	{
+    	global $user;
+	    $dir = eZFile::dir( $root, false );
+	    while ( $entry = $dir->read() )
+	    {
+    	    if ( $entry != "." && $entry != ".." )
+        	{
+            	if ( filetype( $root . $entry ) == "dir" )
+            	{
+                	// check if category exists if not create it:
+                	$subCategoryArray =& $category->getByParent( $category );
+	                $sub = false;
+    	            foreach ( $subCategoryArray as $subCategory )
+        	        {
+            	        if ( $subCategory->name() == $entry )
+                	    {
+                    	    $sub = $subCategory;
+                    	}
+                    	//print( $subCategory->name() . "\n<br>" );
+                	}
+	                if ( $sub == false )
+    	            {
+        	            $sub = new eZImageCategory(  );
+            	        $sub->setParent( $category );
+                	    $sub->setName( $entry );
+					    $sub->setSectionID( $SectionID );
+                    	$sub->store();
+	                    eZObjectPermission::removePermissions( $sub->id(), "imagecatalogue_category", "r" );
+    	                eZObjectPermission::removePermissions( $sub->id(), "imagecatalogue_category", "w" );
+	                    eZObjectPermission::removePermissions( $sub->id(), "imagecatalogue_category", "u" );
+	                    $group = new eZUserGroup( -1 );
+			            eZObjectPermission::setPermission( -1, $sub->id(), "imagecatalogue_category", "r" );
+	                    eZObjectPermission::setPermission( 1, $sub->id(), "imagecatalogue_category", "w" );
+    	                eZObjectPermission::setPermission( 1, $sub->id(), "imagecatalogue_category", "u" );
+        	        }
+            	    //print( "Syncing dir " . $root . $entry . "<br>" );
+                	syncDir( $root . $entry . "/", $sub );
+            	}
+            	else if ( filetype( $root . $entry ) == "file" )
+            	{
+                	$images = $category->images( "time", 0, -1, false, $user );
+	                $imageExists = false;
+	                foreach ( $images as $image )
+    	            {
+        	            if ( $entry == $image->name() )
+            	        {
+                	        $imageExists = true;
+                    	}
+      	}
+	                if ( $imageExists == false )
+    	  {
+        	 $image = new eZImage();
+             $image->setName( $entry );
+             $image->setDescription( $Description );
+             $image->setUser( $user );
+             $author = new eZAuthor( 1 );
+             $image->setPhotographer( $author );
+             //print( "adding image: " . $root . $entry . "<br>" );
+             $file = new eZImageFile();
+             $file->getFile( $root . $entry );
+             $image->store();
+             $image->setImage( $file, $image->id() );
+             $image->setCategoryDefinition( $category );
+             eZImageCategory::addImage( $image, $category->id() );
+			$image->setOriginalFileName( $entry );
+            $image->store();
+            eZObjectPermission::removePermissions( $image->id(), "imagecatalogue_image", "r" );
+            eZObjectPermission::removePermissions( $image->id(), "imagecatalogue_image", "w" );
+            eZObjectPermission::setPermission( -1, $image->id(), "imagecatalogue_image", "r" );
+            eZObjectPermission::setPermission( 1, $image->id(), "imagecatalogue_image", "w" );
+         }
+      }
+   }
+ }
+}
+
+if ( isSet ( $ImageUpload ) )
+{
+	$category = new eZImageCategory( $PicCat );
+	syncDir( $SyncDir, $category );
+	eZHTTPTool::header( "Location: /imagecatalogue/image/list/$PicCat/" );
+    exit();
+}
+
 
 $checkMode =& eZSession::globalSession();
 
@@ -125,6 +217,8 @@ $t->set_var( "delete_categories_button" , "" );
 $t->set_var( "default_new" , "" );
 $t->set_var( "default_delete" , "" );
 $t->set_var( "main_category_id", $CategoryID );
+
+$t->set_var( "sync_dir", $SyncDir );
 
 $category = new eZImageCategory( $CategoryID );
 
@@ -221,11 +315,28 @@ if ( isset( $SearchText )  )
 {
     $imageList =& eZImage::search( $SearchText );
     $count =& eZImage::searchCount( $SearchText );
+
+  $URL = "search/?SearchText=$SearchText";
+
+  // die("$SearchText - $Offset - $limit -- $count ---");
+
+  $page_link = "search/?SearchText=$SearchText&Offset={item_index}";
+  $page_link_next = "search/?SearchText=$SearchText&Offset={item_next_index}";
+  $page_link_prev = "search/?SearchText=$SearchText&Offset={item_previous_index}";
+
+  // $imageList =& eZImage::search( $SearchText );
+  // $count =& eZImage::searchCount( $SearchText );
 }
 else
 {
     $imageList =& $category->images( "time", $Offset, $limit );
     $count =& $category->imageCount(  );
+
+  $URL = "image/list/$CategoryID/$Offset";
+
+  $page_link = "image/list/$CategoryID/parent/{item_index}";
+  $page_link_next = "image/list/$CategoryID/parent/{item_next_index}";
+  $page_link_prev = "image/list/$CategoryID/parent/{item_previous_index}";
 }
 
 
@@ -378,7 +489,14 @@ foreach ( $imageList as $image )
 
     $counter++;
 }
+
+$t->set_var( "URL", $URL );
+$t->set_var( "page_link", $page_link );
+$t->set_var( "page_link_next", $page_link_next );
+$t->set_var( "page_link_prev", $page_link_prev );
+
 $t->set_var( "main_category_id", $CategoryID );
+
 eZList::drawNavigator( $t, $count, $limit, $Offset, "image_list_page_tpl" );
 
 $t->set_var( "detail_button", "" );
@@ -439,6 +557,5 @@ else
     eZHTTPTool::header( "Location: /error/403/" );
     exit();
 }
-
 
 ?>

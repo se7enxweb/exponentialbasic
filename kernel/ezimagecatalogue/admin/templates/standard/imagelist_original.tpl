@@ -1,19 +1,17 @@
+<!-- start #breadcrumbs -->
+<div id="breadcrumbs">
+&nbsp; <a href="{www_dir}{index}/imagecatalogue/image/list/0/">{intl-image_root}</a>
+<!-- BEGIN path_item_tpl -->
+&raquo; <a href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/">{category_name}</a>
+<!-- END path_item_tpl -->
+</div>
+<!-- end #breadcrumbs -->
 
-<table width="100%" cellspacing="0" cellpadding="0" border="0">
-<tr>
-	<td valign="bottom">
-	<h1>{intl-images}</h1>
-	</td>
-	
-	</td>
-	<td align="right">
-	<form action="{www_dir}{index}/imagecatalogue/search/" method="post">
-	<input class="searchbox" type="text" name="SearchText" size="10" />	
-	<input class="stdbutton" type="submit" value="{intl-search}" />
-	</form>	
-	</td>
-</tr>
-</table>
+<!-- start #contentWrap -->
+<div id="contentWrap">
+
+<h1 class="mainHeading">{intl-images}</h1>
+
 <form method="post" action="{www_dir}{index}/imagecatalogue/image/new/" enctype="multipart/form-data">
 
 <input type="hidden" name="CategoryID" value="{main_category_id}">
@@ -22,28 +20,16 @@
 
 <!-- END current_category_tpl -->
 
-<hr noshade="noshade" size="4" />
-
-<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="">
-<a class="path" href="{www_dir}{index}/imagecatalogue/image/list/0/">{intl-image_root}</a>
-
-<!-- BEGIN path_item_tpl -->
-<img src="{www_dir}/design/admin/images/layout/path-slash.gif" height="10" width="16" border="0" alt="">
-<a class="path" href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/">{category_name}</a>
-<!-- END path_item_tpl -->
-
-<hr noshade="noshade" size="4" />
-
 <div class="spacer"><div class="p">{current_category_description}</div></div>
 
 <!-- BEGIN category_list_tpl -->
-<table width="100%" border="0" cellspacing="0" cellpadding="4" >
+<table width="90%" border="0" cellspacing="0" cellpadding="4" >
 
 <!-- BEGIN category_tpl -->
 <tr>
         <!-- BEGIN category_read_tpl -->
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/"><img src="{www_dir}/design/admin/images/layout/folder.gif" alt="" width="16" height="16" border="0" /></a>
+	<a href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/"><img src="{www_dir}/images/folder.gif" alt="" width="16" height="16" border="0" /></a>
 	</td>
 	<td class="{td_class}" width="38%">
 	<a href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/">{category_name}</a>
@@ -54,7 +40,7 @@
         <!-- END category_read_tpl -->
         <!-- BEGIN category_write_tpl -->
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/category/edit/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezim{category_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
+	<a href="{www_dir}{index}/imagecatalogue/category/edit/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-red','','{www_dir}/images/redigerminimrk.gif',1)"><img name="ezim{category_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 	</td>
 	<td class="{td_class}" width="1%">
 	<input type="checkbox" name="CategoryArrayID[]" value="{category_id}" />
@@ -67,7 +53,7 @@
 <!-- END category_list_tpl -->
 
 <!-- BEGIN image_list_tpl -->
-<table width="100%" border="0" cellspacing="0" cellpadding="4" >
+<table width="90%" border="0" cellspacing="0" cellpadding="4" >
 <!-- BEGIN image_tpl -->
 {begin_tr}
 	<!-- BEGIN read_tpl -->
@@ -93,22 +79,19 @@
 	<a href="{www_dir}{index}/imagecatalogue/imageview/{image_id}/?RefererURL=/imagecatalogue/image/list/{main_category_id}/"><img src="{www_dir}{image_src}" width="{image_width}" height="{image_height}" border="0" alt="{image_alt}" /></a>
 	</td>
 	<td >
-		<textarea name="NewCaption[]" cols="35" rows="5">{image_caption}</textarea>
-		<input type="hidden" name="OldCaption[]" value="{image_caption}">
-		<input type="hidden" name="ImageUpdateArrayID[]" value="{image_id}">
-
+	<span class="small">{image_caption}</span>
 	</td>
 	<td><span class="small">{image_name}</span></td>
 	<td >
 	{image_size}&nbsp;{image_unit}
 	</td>
 	<td width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/download/{image_id}/{original_image_name}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezimg{image_id}-dl','','{www_dir}/ezimagecatalogue/user/{image_dir}/downloadminimrk.gif',1)"><img name="ezimg{image_id}-dl" border="0" src="{www_dir}/ezimagecatalogue/user/{image_dir}/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a><br />
+	<a href="{www_dir}{index}/imagecatalogue/download/{image_id}/{original_image_name}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezimg{image_id}-dl','','{www_dir}/ezimagecatalogue/user{image_dir}standard/downloadminimrk.gif',1)"><img name="ezimg{image_id}-dl" border="0" src="{www_dir}/ezimagecatalogue/user{image_dir}standard/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a><br />
 	</td>
 	<!-- END detail_read_tpl -->
 	<!-- BEGIN detail_write_tpl -->
 	<td width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/image/edit/{image_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezimg{image_id}-red','','{www_dir}/ezimagecatalogue/user/{image_dir}/redigerminimrk.gif',1)"><img name="ezimg{image_id}-red" border="0" src="{www_dir}/ezimagecatalogue/user/{image_dir}/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
+	<a href="{www_dir}{index}/imagecatalogue/image/edit/{image_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezimg{image_id}-red','','{www_dir}/ezimagecatalogue/user{image_dir}standard/redigerminimrk.gif',1)"><img name="ezimg{image_id}-red" border="0" src="{www_dir}/ezimagecatalogue/user{image_dir}standard/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 	</td>
 	<td  width="1%">
 	<input type="checkbox" name="ImageArrayID[]" value="{image_id}">
@@ -193,13 +176,6 @@
 	</td>
     <!-- END delete_images_button_tpl -->
 
-    <!-- BEGIN update_images_button_tpl -->
-    <td>&nbsp;</td>
-    <td>
-	<input class="stdbutton" type="submit" name="UpdateImages" value="{intl-update_images}">
-	</td>
-    <!-- END update_images_button_tpl -->
-
 </tr>
 </table>
 <!-- END default_delete_tpl -->
@@ -223,12 +199,6 @@
 <!-- END write_menu_tpl -->
 </form>
 
-<hr noshade="noshade" size="4" />
-
-<form method="post" action="{www_dir}{index}/imagecatalogue/import/" enctype="multipart/form-data">
-	<input type="text" name="SyncImageDir" size="20" value="{sync_dir}" />&nbsp;	
-	<input class="stdbutton" type="submit" name="ImageUpload" value="{intl-image_upload}" />
-</form>
 
 <form method="post" action="{www_dir}{index}/imagecatalogue/image/list/{main_category_id}/{pos}/" enctype="multipart/form-data">
 <input type="hidden" name="Detail" value="{is_detail_view}">
@@ -250,4 +220,5 @@
 <!-- END detail_view_button -->
 
 </form>
+</div>
 

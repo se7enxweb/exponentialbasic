@@ -32,6 +32,7 @@ ob_end_clean();
 
 $file = new eZImage( $ImageID );
 $fileName = $file->name();
+//$fileName = $file->fileName();
 $originalFileName = $file->originalFileName();
 $filePath = $file->filePath( true );
 

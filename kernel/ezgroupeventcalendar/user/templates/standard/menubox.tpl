@@ -7,17 +7,17 @@
     <td colspan="2" background="/images/pix_kakhi.gif" height="16" class="menu" align="left">
       <table width="100%" cellspacing="0" cellpadding="2" border="0">
         <tr> 
-          <td width="1%" valign="top"><img src="/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12"><br />
+          <td width="1%" valign="top"><img src="/design/{sitedesign}/images/dot.gif" width="10" height="12"><br />
           </td>
           <td width="99%"><a class="menu" href="{www_dir}{index}/groupeventcalendar/monthview/">{intl-month_view}</a></td>
         </tr>
         <tr> 
-          <td width="1%" valign="top"><img src="/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12"><br />
+          <td width="1%" valign="top"><img src="/design/{sitedesign}/images/dot.gif" width="10" height="12"><br />
           </td>
           <td width="99%"><a class="menu" href="{www_dir}{index}/groupeventcalendar/eventedit/new/">{intl-new_appointment}</a></td>
         </tr>
         <tr>
-          <td width="1%" valign="top"><img src="/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12"><br />
+          <td width="1%" valign="top"><img src="/design/{sitedesign}/images/dot.gif" width="10" height="12"><br />
           </td>
           <td width="99%"><a class="menu" href="{www_dir}{index}/groupeventcalendar/rss">{intl-rss_headlines}</a></td>
         </tr>

@@ -307,4 +307,3 @@ else
 $t->pparse( "output", "wishlist_page_tpl" );
 
 ?>
-

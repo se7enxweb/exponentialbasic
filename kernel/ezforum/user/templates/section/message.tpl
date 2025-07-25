@@ -3,11 +3,11 @@
     <td class="tdminipath" width="1%"><img src="{www_dir}/images/1x1.gif" width="1" height="38"></td>
 	<td class="tdminipath" align="left" width="99%">
 
-	<img src="{www_dir}/sitedesign/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
+	<img src="{www_dir}/design/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
 	<a class="toppath" href="{www_dir}{index}/forum/categorylist/">{intl-forum-main}</a>
-	<img src="{www_dir}/sitedesign/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
+	<img src="{www_dir}/design/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
     <a class="toppath" href="{www_dir}{index}/forum/forumlist/{category_id}/">{category_name}</a>
-	<img src="{www_dir}/sitedesign/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
+	<img src="{www_dir}/design/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
 	<a class="toppath" href="{www_dir}{index}/forum/messagelist/{forum_id}/">{forum_name}</a>
 
 	</td>

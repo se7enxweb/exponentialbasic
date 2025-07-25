@@ -83,7 +83,7 @@
 <td>
 <!-- BEGIN add_to_cart_tpl -->
 <form action="{www_dir}{index}/{module}/{action_url}/{product_id}/" method="post">
-<!-- <div class="spacer"><div class="pris"><input type="image" src="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/<? print ($GlobalSiteDesign); ?>/images/buynow.gif" name="AddToCart" alt="{intl-add_to_cart}" /></div></div> -->
+<!-- <div class="spacer"><div class="pris"><input type="image" src="<? print $GlobalSiteIni->WWWDir; ?>/design/<? print ($GlobalSiteDesign); ?>/images/buynow.gif" name="AddToCart" alt="{intl-add_to_cart}" /></div></div> -->
 <div class="spacer"><div class="pris"><input type="image" src="/design/trade/images/addtocart.gif" name="Cart" value="{intl-add_to_cart}" /></div></div> 
 </form>
 <!-- END add_to_cart_tpl -->

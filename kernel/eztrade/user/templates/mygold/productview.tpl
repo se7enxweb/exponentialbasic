@@ -20,7 +20,7 @@
       <td colspan="2" width="99%" valign="top"> 
 	<h2>{title_text}</h2>
       </td>
-      <td rowspan="3"><img src="/sitedesign/mygold/images/shim.gif" alt="" width="8" height="8" /></td>
+      <td rowspan="3"><img src="/design/mygold/images/shim.gif" alt="" width="8" height="8" /></td>
       <td align="right" width="1%" valign="bottom"> 
 	<!-- BEGIN product_number_item_tpl -->
 	{intl-nr}: {product_number}<br /><br /> 

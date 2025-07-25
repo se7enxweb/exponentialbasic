@@ -8,7 +8,7 @@ Sie betreten in K&uuml;rze den gesicherten Bereich der MyGold.com Webseite. In d
 <hr noshade="noshade" size="1" />
 <table border="0" cellspacing="5" cellpadding="0" width="1" align="left">
  <tr>
-  <td style="background-image: url(/sitedesign/mygold/images/nossl.gif);"><a href="https://www.thawte.com/cgi/server/certdetails.exe?code=DEIMPE1" onclick="window.open('https://www.thawte.com/cgi/server/certdetails.exe?code=DEIMPE1', 'anew', config='height=400,width=450,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,directories=no,status=yes'); return false;" target="new"><img src="https://www.mygold.com/sitedesign/mygold/images/stampger.gif" alt="" border="0" width="134" height="85" /></a></td>
+  <td style="background-image: url(/design/mygold/images/nossl.gif);"><a href="https://www.thawte.com/cgi/server/certdetails.exe?code=DEIMPE1" onclick="window.open('https://www.thawte.com/cgi/server/certdetails.exe?code=DEIMPE1', 'anew', config='height=400,width=450,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,directories=no,status=yes'); return false;" target="new"><img src="https://www.mygold.com/design/mygold/images/stampger.gif" alt="" border="0" width="134" height="85" /></a></td>
  </tr>
  <tr>
   <td class="pictext">Verifizieren Sie unser Zertifikat</td>

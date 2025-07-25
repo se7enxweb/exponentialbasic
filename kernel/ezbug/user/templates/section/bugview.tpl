@@ -3,11 +3,11 @@
     <td class="tdminipath" width="1%"><img src="{www_dir}/images/1x1.gif" width="1" height="38"></td>
 	<td class="tdminipath" align="left" width="99%">
 	<!-- BEGIN path_tpl -->
-	<img src="{www_dir}/sitedesign/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
+	<img src="{www_dir}/design/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
 	<a class="toppath" href="{www_dir}{index}/bug/archive/0/">{intl-top_level}</a>
 	<!-- END path_tpl -->
 	<!-- BEGIN path_item_tpl -->	
-	<img src="{www_dir}/sitedesign/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
+	<img src="{www_dir}/design/designsection1/images/path-arrow-top.gif" width="16" height="10" border="0" alt="" />
 	<a class="toppath" href="{www_dir}{index}/bug/archive/{module_id}/">{module_name}</a>
 	<!-- END path_item_tpl -->
 	</td>

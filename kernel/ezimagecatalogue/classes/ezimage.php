@@ -704,9 +704,9 @@ class eZImage
     */
     function &name( $html = true )
     {
-	    $this->Name = stripslashes($this->Name);
         if ( $this->Name )
         {
+	    $this->Name = stripslashes($this->Name);
             if ( $html )
                 return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Name ) );
             else
@@ -714,7 +714,7 @@ class eZImage
         }
         else
         {
-            if ( $html )
+            if ( $html && $this->OriginalFileName != null )
                 return eZTextTool::fixhtmlentities( htmlspecialchars( $this->OriginalFileName ) );
             else
                 return $this->OriginalFileName;
@@ -726,10 +726,12 @@ class eZImage
     */
     function caption( $html = true )
     {
-        $this->Caption = stripslashes($this->Caption);
-        if ( $html )
+        if ( $html && $this->Caption != null)
+        {
+	    $this->Caption = stripslashes($this->Caption);
             return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Caption ) );
-        else
+        }
+	else
             return $this->Caption;
     }
 
@@ -1356,7 +1358,7 @@ class eZImage
     /*!
       Returns a random image from a category.
     */
-    function randomImage( $categoryID=0 )
+    public static function randomImage( $categoryID=0 )
     {
         $db =& eZDB::globalDatabase();
 
@@ -1366,8 +1368,9 @@ class eZImage
             $db->query_single( $res, "SELECT ImageID as ID, ((ImageID*0)+RAND()) AS Random FROM eZImageCatalogue_ImageCategoryLink WHERE CategoryID='$categoryID' ORDER BY Random LIMIT 1" );
         else
             $db->query_single( $res, "SELECT ID, ((ID*0)+RAND()) AS Random FROM eZImageCatalogue_Image ORDER BY Random LIMIT 1" );
-
-        return new eZImage( $res["ID"] );
+	if( is_array( $res ) )
+            return new eZImage( $res["ID"] );
+	return new eZImage();
     }
 
     /*!

@@ -55,6 +55,14 @@ CREATE TABLE eZTrade_CartOptionValue (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE eZTrade_CartShipOptions (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `AddressID` int(11) DEFAULT NULL,
+  `ServiceCode` varchar(250) DEFAULT NULL,
+  `CartID` int(11) DEFAULT NULL,
+  PRIMARY KEY (ID)
+);
+
 CREATE TABLE eZTrade_Category (
   ID int NOT NULL,
   Parent int(11) default NULL,

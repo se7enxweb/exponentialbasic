@@ -5,7 +5,7 @@
 
 <!-- BEGIN link_category_tpl -->
 <tr>
-	<td width="1%" valign="top"><img src="/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="/link/category/{linkcategory_id}/">{linkcategory_name}</a></td>
 </tr>
 <!-- END link_category_tpl -->
@@ -16,7 +16,7 @@
 <!-- END no_link_category_tpl -->
 
 <tr>
-	<td width="1%" valign="top"><img src="/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="/link/suggestlink/">{intl-suggest_link}</a></td>
 </tr>
 <tr>

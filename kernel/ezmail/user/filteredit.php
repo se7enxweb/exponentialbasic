@@ -150,4 +150,5 @@ foreach( $folders as $folderItem )
 }
 
 $t->pparse( "output", "filter_edit_page_tpl" );
+
 ?>

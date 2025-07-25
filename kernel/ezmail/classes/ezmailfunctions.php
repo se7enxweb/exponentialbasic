@@ -296,5 +296,4 @@ function getPart($stream, $msg_number, $mime_type, $structure = false, $part_num
     return false;
 }           
 
-
 ?>

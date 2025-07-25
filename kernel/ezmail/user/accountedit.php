@@ -101,6 +101,6 @@ if( $AccountID != 0 ) // TODO: check that user really is the owner of the accoun
         $t->set_var( "delete_from_server_checked", "checked" );
 }
 
-
 $t->pparse( "output", "account_edit_page_tpl" );
+
 ?>

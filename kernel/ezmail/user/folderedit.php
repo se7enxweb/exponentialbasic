@@ -107,6 +107,6 @@ foreach( $folders as $folderItem )
     }
 }
 
-
 $t->pparse( "output", "folder_edit_page_tpl" );
+
 ?>

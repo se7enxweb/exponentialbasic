@@ -131,6 +131,6 @@ foreach( $folders as $folderItem )
     $t->parse( "folder_item", "folder_item_tpl", true );
 }
 
-
 $t->pparse( "output", "folder_list_page_tpl" );
+
 ?>

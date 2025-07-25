@@ -152,7 +152,4 @@ else
     $t->pparse( "output", "news_archive_page_tpl" );
 }
 
-
-
 ?>
-

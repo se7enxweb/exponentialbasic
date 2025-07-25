@@ -102,6 +102,3 @@ if ( $Action == "Edit" )
 $t->pparse( "output", "category_edit_page_tpl" );
 
 ?>
-
-
-

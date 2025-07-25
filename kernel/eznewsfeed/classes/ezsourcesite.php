@@ -370,5 +370,4 @@ class eZSourceSite
     var $IsPublished;
 }
 
-
 ?>

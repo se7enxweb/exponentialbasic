@@ -220,7 +220,6 @@ foreach ( $categoryArray as $catItem )
     $t->parse( "value", "value_tpl", true );    
 }
 
-
 $t->pparse( "output", "news_edit_page_tpl" );
 
 ?>

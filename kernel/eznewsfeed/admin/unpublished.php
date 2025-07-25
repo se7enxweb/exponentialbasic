@@ -264,7 +264,6 @@ else
     $t->set_var( "next", "" );
 }
 
-
 $t->pparse( "output", "news_unpublished_page_tpl" );
 
 ?>

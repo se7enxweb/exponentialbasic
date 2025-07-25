@@ -105,7 +105,7 @@ if( !function_exists( 'printNewsHeaderList' ) )
 }
 
 $PageCaching = $ini->read_var( "eZNewsfeedMain", "PageCaching" );
-$cachedFile = "eznewsfeed/cache/headlines," . $CategoryID . ".cache";
+$cachedFile = "kernel/eznewsfeed/cache/headlines," . $CategoryID . ".cache";
 
 if ( $PageCaching == "enabled" )
 {
@@ -123,3 +123,4 @@ else
     printNewsHeaderList( $CategoryID, "false", $cachedFile );
 }
 
+?>

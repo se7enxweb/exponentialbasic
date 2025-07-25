@@ -35,6 +35,7 @@
 
 // This will fetch the news from every source site
 $Action = "ImportNews";
+
 if ( $Action == "ImportNews" )
 {
     $sourceSite = new eZSourceSite();
@@ -54,6 +55,5 @@ if ( $Action == "ImportNews" )
         $newsImporter->importNews();
     }    
 }
-
 
 ?>

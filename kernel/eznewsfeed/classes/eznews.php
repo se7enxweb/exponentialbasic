@@ -589,5 +589,4 @@ class eZNews
     var $URL;
 }
 
-
 ?>

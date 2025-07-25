@@ -213,10 +213,8 @@ else
     $t->parse( "day_next", "day_next_tpl" );
 
 $t->parse( "day_previous", "day_previous_tpl" );
-
 $t->parse( "day", "day_tpl" );
 
 $t->pparse( "output", "day_report_tpl" );
-
 
 ?>

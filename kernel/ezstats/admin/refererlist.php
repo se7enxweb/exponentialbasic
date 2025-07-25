@@ -25,7 +25,6 @@
 
 // include_once( "classes/INIFile.php" );
 $ini =& INIFile::globalINI();
-
 $Language = $ini->read_var( "eZStatsMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
@@ -88,7 +87,6 @@ else
 
 $t->set_var( "view_mode", $ViewMode );
 $t->set_var( "view_limit", $ViewLimit );
-
 
 $t->pparse( "output", "referer_page_tpl" );
 

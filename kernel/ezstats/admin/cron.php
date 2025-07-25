@@ -316,7 +316,6 @@ $res[] = $db->query( "DELETE FROM eZStats_PageView WHERE Date < " . $timestamp )
 if ( in_array( false, $res ) )
     $db->rollback();
 else
-$db->commit();
-
+    $db->commit();
 
 ?>

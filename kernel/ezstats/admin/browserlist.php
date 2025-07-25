@@ -86,8 +86,6 @@ else
 $t->set_var( "view_mode", $ViewMode );
 $t->set_var( "view_limit", $ViewLimit );
 
-
 $t->pparse( "output", "browser_page_tpl" );
-
 
 ?>

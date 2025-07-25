@@ -36,5 +36,6 @@ $menuItems = array(
     array( "/stats/yearreport/", "{intl-year_report}" ),
     array( "/stats/monthreport/", "{intl-month_report}" ),
     array( "/stats/dayreport/", "{intl-day_report}" )
-    );
+);
+
 ?>

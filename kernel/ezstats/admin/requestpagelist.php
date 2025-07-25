@@ -88,8 +88,6 @@ else
     $t->set_var( "request_list", "" );
 }
 
-
 $t->pparse( "output", "request_page_tpl" );
-
 
 ?>

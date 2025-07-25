@@ -201,10 +201,8 @@ else
     $t->parse( "month_next", "month_next_tpl" );
 
 $t->parse( "month_previous", "month_previous_tpl" );
-
 $t->parse( "month", "month_tpl" );
 
 $t->pparse( "output", "month_report_tpl" );
-
 
 ?>

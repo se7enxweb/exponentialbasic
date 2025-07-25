@@ -85,8 +85,6 @@ else
     $t->set_var( "visitor_list", "" );
 }
 
-
 $t->pparse( "output", "visitor_page_tpl" );
-
 
 ?>

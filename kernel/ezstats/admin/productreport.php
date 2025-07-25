@@ -231,6 +231,5 @@ $t->set_var( "this_year", $Year );
 
 
 $t->pparse( "output", "product_report_tpl" );
- 
 
 ?>

@@ -175,5 +175,4 @@ $t->set_var( "this_year", $Year );
 
 $t->pparse( "output", "entry_exit_report_tpl" );
 
-
 ?>

@@ -92,5 +92,4 @@ else
 
 $t->pparse( "output", "page_view_page_tpl" );
 
-
 ?>

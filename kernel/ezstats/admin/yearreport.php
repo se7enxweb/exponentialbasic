@@ -192,11 +192,8 @@ else
     $t->parse( "year_next", "year_next_tpl" );
 
 $t->parse( "year_previous", "year_previous_tpl" );
-
 $t->parse( "year", "year_tpl" );
 
-
 $t->pparse( "output", "year_report_tpl" );
-
 
 ?>

@@ -77,5 +77,8 @@ if( strtolower( $ModuleName ) != 'all' && strtolower( $ModuleName ) != 'none' )
     $uri = $menuItems[0][0];
     unset( $menuItems );
 }
+
 eZHTTPTool::header( "Location: $uri" );
 exit();
+
+?>

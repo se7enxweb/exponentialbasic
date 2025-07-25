@@ -54,5 +54,4 @@ switch ( $url_array[2] )
 
 // display a page with error msg
         
-
 ?>

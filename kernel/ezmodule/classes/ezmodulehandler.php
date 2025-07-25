@@ -303,3 +303,5 @@ class eZModuleHandler
         }
     }
 }
+
+?>

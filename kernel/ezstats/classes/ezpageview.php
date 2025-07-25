@@ -196,7 +196,16 @@ class eZPageView
             // preg_match( "([^?]+)", $requestURI, $regs);
             // $requestURI =& $regs[1];
             $requestURI = explode( '/stats/store', $requestURI  );
-            $requestURI = $requestURI[1];
+            
+            if ( count( $requestURI ) < 2 )
+            {
+                // If the request URI does not contain the stats/store part, we assume it is a full URI.
+                $requestURI = $requestURI[0];
+            }
+            else
+            {
+                $requestURI = $requestURI[1];
+            }
 
             $db->begin();
             $db->lock( "eZStats_RequestPage" );

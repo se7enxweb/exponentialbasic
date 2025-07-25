@@ -65,5 +65,4 @@ $t->set_var( "referer_url", $RefererURL );
 
 $t->pparse( "output", "media_view_tpl" );
 
-
 ?>

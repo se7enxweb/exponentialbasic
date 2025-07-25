@@ -198,6 +198,7 @@ class eZMediaAttribute
     */
     function &name()
     {
+        $this->Name = stripslashes($this->Name);
         return $this->Name;
     }
 

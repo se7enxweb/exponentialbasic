@@ -121,8 +121,15 @@
 	</td>
 </tr>
 </table>
+
 <!-- END default_new_tpl -->
 <!-- END write_menu_tpl -->
+</form>
+<hr noshade="noshade" size="4" />
+
+<form method="post" action="{www_dir}{index}/mediacatalogue/import/" enctype="multipart/form-data">
+        <input type="text" name="SyncMediaDir" size="20" value="{sync_dir}" />&nbsp;
+        <input class="stdbutton" type="submit" name="MediaUpload" value="{intl-media_upload}" />
 </form>
 
 <!-- BEGIN type_list_tpl -->

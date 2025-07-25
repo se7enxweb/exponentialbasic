@@ -376,7 +376,9 @@ class eZMedia
     */
     function caption( $html = true )
     {
-       if ( $html && !is_null( $this->Caption ) )
+		$this->Caption = stripslashes($this->Caption);
+
+        if ( $html && !is_null( $this->Caption ) )
            return htmlspecialchars( $this->Caption );
        else
            return $this->Caption;
@@ -387,6 +389,8 @@ class eZMedia
     */
     function description( $html = true )
     {
+		$this->Description = stripslashes($this->Description);
+
         if ( !is_null( $this->Description ) && $html )
             return htmlspecialchars( $this->Description );
         else
@@ -433,7 +437,7 @@ class eZMedia
     */
     function filePath( $relative=false )
     {
-       $path = "ezmediacatalogue/catalogue/" . $this->FileName;
+       $path = "kernel/ezmediacatalogue/catalogue/" . $this->FileName;
 
        if ( !$relative )
        {

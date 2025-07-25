@@ -134,6 +134,97 @@ foreach ( $pathArray as $path )
 }
 
 
+// ###################################################
+function syncDir( $root, $category )
+{
+  global $user;
+  $dir = eZFile::dir( $root, false );
+  while ( $entry = $dir->read() )
+    {
+      if ( $entry != "." && $entry != ".." )
+	{
+	  if ( filetype( $root . $entry ) == "dir" )
+	    {
+	      // check if category exists if not create it:
+	      $subCategoryArray =& $category->getByParent( $category );
+	      $sub = false;
+	      foreach ( $subCategoryArray as $subCategory )
+		{
+		  if ( $subCategory->name() == $entry )
+		    {
+		      $sub = $subCategory;
+		    }
+		  //print( $subCategory->name() . "\n<br>" );
+		}
+	      if ( $sub == false )
+		{
+		  $sub = new eZMediaCategory(  );
+		  $sub->setParent( $category );
+		  $sub->setName( $entry );
+		  $sub->setSectionID( $SectionID );
+		  $sub->store();
+		  eZObjectPermission::removePermissions( $sub->id(), "mediacatalogue_category", "r" );
+		  eZObjectPermission::removePermissions( $sub->id(), "mediacatalogue_category", "w" );
+		  eZObjectPermission::removePermissions( $sub->id(), "mediacatalogue_category", "u" );
+		  $group = new eZUserGroup( -1 );
+		  eZObjectPermission::setPermission( -1, $sub->id(), "mediacatalogue_category", "r" );
+		  eZObjectPermission::setPermission( 1, $sub->id(), "mediacatalogue_category", "w" );
+		  eZObjectPermission::setPermission( 1, $sub->id(), "mediacatalogue_category", "u" );
+		}
+	      //print( "Syncing dir " . $root . $entry . "<br>" );
+	      syncDir( $root . $entry . "/", $sub );
+	    }
+	  else if ( filetype( $root . $entry ) == "file" )
+	    {
+	      $medias = $category->medias( "time", 0, -1, false, $user );
+	      $mediaExists = false;
+	      foreach ( $medias as $media )
+		{
+		  if ( $entry == $media->name() )
+		    {
+		      $mediaExists = true;
+		    }
+		}
+	      if ( $mediaExists == false )
+		{
+		  $media = new eZMedia();
+		  $media->setName( $entry );
+		  $media->setDescription( $Description );
+		  $media->setUser( $user );
+		  $author = new eZAuthor( 1 );
+		  $media->setPhotographer( $author );
+		  //print( "adding media: " . $root . $entry . "<br>" );
+		  $file = new eZMediaFile();
+		  $file->getFile( $root . $entry );
+		  $media->store();
+		  $media->setMedia( $file, $media->id() );
+		  $media->setCategoryDefinition( $category );
+		  eZMediaCategory::addMedia( $media, $category->id() );
+		  $media->setOriginalFileName( $entry );
+		  $media->store();
+		  eZObjectPermission::removePermissions( $media->id(), "mediacatalogue_media", "r" );
+		  eZObjectPermission::removePermissions( $media->id(), "mediacatalogue_media", "w" );
+		  eZObjectPermission::setPermission( -1, $media->id(), "mediacatalogue_media", "r" );
+		  eZObjectPermission::setPermission( 1, $media->id(), "mediacatalogue_media", "w" );
+		}
+	    }
+	}
+    }
+}
+
+
+if ( isSet ( $MediaUpload ) )
+{
+  $category = new eZMediaCategory( $PicCat );
+  syncDir( $SyncDir, $category );
+  eZHTTPTool::header( "Location: /mediacatalogue/media/list/$PicCat/" );
+  exit();
+}
+
+$t->set_var( "sync_dir", $SyncDir );
+
+// ###################################################
+
 // Print out all the categories
 $categoryList =& $category->getByParent( $category );
 
@@ -163,8 +254,22 @@ foreach ( $categoryList as $categoryItem )
         $t->parse( "category_write", "category_write_tpl" );
         $t->parse( "delete_categories_button", "delete_categories_button_tpl" );
         $t->parse( "default_delete", "default_delete_tpl" );
-        $t->parse( "write_menu", "write_menu_tpl" );
+
+        if ( $CategoryID == 0 )
+        {
+            if ( eZPermission::checkPermission( $user, "eZMediaCatalogue", "WriteToRoot" ) )
+            {
+                $t->parse( "category_write", "category_write_tpl" );
+                $t->parse( "write_menu", "write_menu_tpl" );
+            }
+        }
+        else
+        {
+            $t->parse( "category_write", "category_write_tpl" );
+            $t->parse( "write_menu", "write_menu_tpl" );
+        }
     }
+
     $t->parse( "category", "category_tpl", true );
     $i++;
 }
@@ -304,6 +409,5 @@ else
     eZHTTPTool::header( "Location: /error/403/" );
     exit();
 }
-
 
 ?>

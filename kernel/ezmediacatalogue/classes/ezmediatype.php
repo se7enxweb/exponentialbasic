@@ -154,6 +154,7 @@ class eZMediaType
     */
     function name()
     {
+        $this->Name = stripslashes($this->Name);
         return $this->Name;
     }
 
@@ -162,6 +163,7 @@ class eZMediaType
     */
     function description()
     {
+        $this->Description = stripslashes($this->Description);
         return $this->Description;
     }
 

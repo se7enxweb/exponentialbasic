@@ -33,9 +33,3 @@ onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eztc{type_id}-slett'
 <input class="stdbutton" type="submit" name="Delete" value="{intl-delete_selected}" />
 </form>
 <!-- END type_list_tpl -->
-
-
-
-
-
-

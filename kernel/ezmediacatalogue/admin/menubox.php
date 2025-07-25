@@ -34,4 +34,5 @@ $menuItems = array(
     array( "/mediacatalogue/typeedit/", "{intl-newtype}" )
 
     );
+
 ?>

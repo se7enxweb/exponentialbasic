@@ -385,6 +385,7 @@ class eZMediaCategory
     */
     function &name( $html = true )
     {
+       $this->Name = stripslashes($this->Name);
        if( $html )
            return htmlspecialchars( $this->Name );
        else
@@ -396,6 +397,7 @@ class eZMediaCategory
     */
     function &description( $html = true )
     {
+       $this->Description = stripslashes($this->Description);
        if( $html )
            return htmlspecialchars( $this->Description );
        else

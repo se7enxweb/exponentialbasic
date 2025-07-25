@@ -221,7 +221,10 @@ if( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
     $category->setParent( $parent );
 
     $category->store();
+    changePermissions( $CategoryID, $ReadGroupArrayID, 'r' );
+    changePermissions( $CategoryID, $WriteGroupArrayID, 'w' );
 
+    /*
      if ( count ( $ReadGroupArrayID ) > 0 )
      {
          foreach ( $ReadGroupArrayID as $Read )
@@ -247,6 +250,7 @@ if( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
             eZObjectPermission::setPermission( $group, $category->id(), "mediacatalogue_category", "w" );
         }
     }
+    */
 
     eZHTTPTool::header( "Location: /mediacatalogue/media/list/$ParentID" );
     exit();
@@ -404,4 +408,24 @@ foreach ( $categoryList as $categoryItem )
 }
 
 $t->pparse( "output", "category_edit_tpl" );
+
+/******* FUNCTIONS ****************************/
+function changePermissions( $objectID, $groups , $permission )
+{
+    eZObjectPermission::removePermissions( $objectID, "mediacatalogue_category", $permission );
+    if ( count( $groups ) > 0 )
+    {
+        foreach ( $groups as $groupItem )
+        {
+            if ( $groupItem == 0 )
+                $group = -1;
+            else
+                $group = new eZUserGroup( $groupItem );
+            
+            eZObjectPermission::setPermission( $group, $objectID, "mediacatalogue_category", $permission );
+        }
+    }
+
+}
+
 ?>

@@ -38,9 +38,8 @@ $t = new eZTemplate( "kernel/ezsearch/user/" . $ini->read_var( "eZSearchMain", "
 $t->setAllStrings();
 
 $t->set_file( "menu_box_tpl", "menubox.tpl" );
-
 $t->set_var( "sitedesign", $GlobalSiteDesign );
 
 $t->pparse( "output", "menu_box_tpl" );
-		
+
 ?>

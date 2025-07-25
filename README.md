@@ -55,7 +55,7 @@ Follow these steps to set up eZ Publish Basic via Composer:
   - You will require a new database and database user and password access configured.
 - Filesystem User and Group Permissions
 - Generate eZ Publish Basics Autoloads
-  - Use this command: bin/shell/php/ezpgenerateautoloads.php -k;
+  - Use this command: ```bin/shell/php/ezpgenerateautoloads.php -k;```
 
 2. Set up your database in your database server.
 

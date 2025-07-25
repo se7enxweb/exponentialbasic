@@ -28,7 +28,7 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFile( "kernel/ezlink/user/intl/" . $Language . "/suggestlink.php.ini", false );
@@ -468,7 +468,7 @@ foreach ( $linkCategoryList as $linkCategoryItem )
     $t->parse( "multiple_category", "multiple_category_tpl", true );
 }
 
-
+$t->set_var( "type", "" );
 $type = new eZLinkType();
 $types = $type->getAll();
 
@@ -524,7 +524,6 @@ else
     $t->set_var( "attribute_list", "" );
 }
 
-
 $t->set_var( "yes_selected", $yes_selected );
 $t->set_var( "no_selected", $no_selected );
 
@@ -534,13 +533,13 @@ $t->set_var( "name", $tname );
 $t->set_var( "url", $turl );
 $t->set_var( "keywords", $tkeywords );
 $t->set_var( "description", $tdescription );
+
 // $t->set_var( "accepted", $taccepted );
 
 $t->set_var( "headline", $headline );
-
 $t->set_var( "error_msg", $error_msg );
-
 $t->set_var( "link_id", $LinkID );
+
 $t->pparse( "output", "link_edit" );
 
 ?>

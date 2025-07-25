@@ -266,4 +266,5 @@ $t->set_var( "link_end", min( $Offset + $AdminLimit, $linkCount ) );
 $t->set_var( "link_total", $linkCount );
 
 $t->pparse( "output", "link_page_tpl" );
+
 ?>

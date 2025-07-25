@@ -24,11 +24,10 @@
 //
 
 // include_once( "classes/INIFile.php" );
-
-$ini =& $GLOBALS["GlobalSiteIni"];
-
 // include_once( "ezlink/classes/ezlink.php" );
 // include_once( "ezlink/classes/ezhit.php" );
+
+$ini =& INIFile::globalINI();
 
 if ( $Action == "addhit" )
 {
@@ -38,6 +37,7 @@ if ( $Action == "addhit" )
     $hit->setTime( time() );
     $hit->store();
 }
+
 $link = new eZLink( $LinkID );
 $location =& $link->url();
 

@@ -76,6 +76,7 @@ for( $i = 0; $i < isset( $LinkArrayID ) ? count( $LinkArrayID ) : 0; $i++ )
         $link->update();
     }
 }
+
 eZHTTPTool::header( "Location: /link/unacceptedlist/" );
 exit();
 

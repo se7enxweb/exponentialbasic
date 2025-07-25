@@ -37,6 +37,7 @@ if ( $Action == "addhit" )
     $hit->setRemoteIP( $REMOTE_ADDR );
     $hit->store();
 }
+
 if ( !preg_match( "%^([a-z]+://)%", $Url ) )
     $Url = "http://" . $Url;
 

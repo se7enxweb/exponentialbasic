@@ -58,14 +58,12 @@ $t->set_block( "type_list_tpl", "type_item_tpl", "type_item" );
 $t->set_var( "site_style", $SiteDesign );
 
 $type = new eZLinkType();
-
 $typeList = $type->getAll();
-
-
 
 // categories
 $i=0;
 $t->set_var( "type_list", "" );
+
 foreach ( $typeList as $typeItem )
 {
     $t->set_var( "type_id", $typeItem->id() );
@@ -90,7 +88,6 @@ if ( count( $typeList ) > 0 )
     $t->parse( "type_list", "type_list_tpl" );
 else
     $t->set_var( "type_list", "" );
-
 
 $t->pparse( "output", "type_list_page_tpl" );
 

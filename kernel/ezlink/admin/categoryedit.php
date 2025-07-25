@@ -25,8 +25,8 @@
 
 
 // include_once( "classes/INIFile.php" );
-$ini =& $GLOBALS["GlobalSiteIni"];
 
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 $error_msg = false;
@@ -419,4 +419,5 @@ $t->set_var( "headline", $headline );
 $t->set_var( "error_msg", $error_msg );
 
 $t->pparse( "output", "category_edit" );
+
 ?>

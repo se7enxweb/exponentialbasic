@@ -244,7 +244,6 @@ if ( isset( $Action ) && $Action == "Edit" )
     
 }
 
-
 $t->pparse( "output", "type_edit_tpl" );
 
 ?>

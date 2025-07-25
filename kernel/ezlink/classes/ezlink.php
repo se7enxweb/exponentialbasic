@@ -485,6 +485,14 @@ class eZLink
     }
 
     /*!
+      Returns the id of the link.
+    */
+    function id()
+    {
+        return $this->ID;
+    }
+
+    /*!
       Set's the link's defined category. This is the main category for the link.
       Additional categories can be added with eZLinkCategory::addLink();
     */
@@ -617,6 +625,7 @@ class eZLink
     */
     function &name()
     {
+		    $this->Name = stripslashes( $this->Name );
         return htmlspecialchars( $this->Name );
     }
 
@@ -626,7 +635,9 @@ class eZLink
     */
     function &description()
     {
-        return htmlspecialchars( $this->Description );
+		$this->Description = stripslashes( $this->Description );
+		$this->Description = htmlspecialchars( $this->Description );
+		return nl2br( $this->Description );
     }
 
     /*!
@@ -634,10 +645,13 @@ class eZLink
     */
     function &keyWords()
     {
-	if( !is_null( $this->KeyWords ) )
-        return htmlspecialchars( $this->KeyWords );
+        if( !is_null( $this->KeyWords ) )
+        {    		
+            $this->KeyWords = stripslashes($this->KeyWords);
+            return htmlspecialchars( $this->KeyWords );
+        }
 
-	return $this->KeyWords;
+	      return $this->KeyWords;
     }
 
     /*!
@@ -738,4 +752,5 @@ class eZLink
     var $url_array;
 
 }
+
 ?>

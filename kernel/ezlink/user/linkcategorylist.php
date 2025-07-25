@@ -56,7 +56,7 @@ if ( is_numeric( $linkCategory->sectionID() ) )
 
 
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $UserLimit = $ini->read_var( "eZLinkMain", "UserLinkLimit" );
 $languageIni = new INIFile( "kernel/ezlink/user/intl/". $Language . "/linkcategorylist.php.ini", false );

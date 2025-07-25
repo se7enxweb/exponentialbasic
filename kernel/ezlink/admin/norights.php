@@ -24,20 +24,19 @@
 //
 
 // include_once( "classes/INIFile.php" );
-
-$ini = INIFile::globalINI();
-// $DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-
 // include_once( "classes/ezdb.php" );
 // include_once( "classes/eztemplate.php" );
+
+$ini = INIFile::globalINI();
+$Language = $ini->read_var( "eZLinkMain", "Language" );
+// $DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
 
 $t = new eZTemplate( "kernel/ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),
 "kernel/ezlink/admin/" . "/intl", $Language, "noright.php" );
 $t->setAllStrings();
 
-$t->set_file( array( "norights" => "norights.tpl"
-                     ) );
+$t->set_file( array( "norights" => "norights.tpl" ) );
 
 $t->pparse( "output", "norights" );
+
 ?>

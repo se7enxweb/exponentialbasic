@@ -24,7 +24,8 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& $GLOBALS["GlobalSiteIni"];
+
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );

@@ -280,7 +280,7 @@ class eZLinkCategory
         }
         else
         {
-//              array_push( $path, $category->name() );
+            // array_push( $path, $category->name() );
         }
 
         if ( $categoryID != 0 )
@@ -522,10 +522,13 @@ class eZLinkCategory
     */
     function name()
     {
-	if( !is_null( $this->Name ) )
-        return htmlspecialchars( $this->Name );
+        if( !is_null( $this->Name ) )
+        {
+            $this->Name = stripslashes($this->Name);
+            return htmlspecialchars( $this->Name );
+        }
 
-	return $this->Name;
+	    return $this->Name;
     }
 
     /*!
@@ -533,6 +536,7 @@ class eZLinkCategory
     */
     function description()
     {
+        $this->Description = stripslashes($this->Description);
         return htmlspecialchars( $this->Description );
     }
 

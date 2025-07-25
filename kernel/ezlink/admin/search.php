@@ -133,6 +133,6 @@ $t->set_var( "hit_count", $total_count );
 
 $t->set_var( "linkcategory_id", isset( $LGID ) ? $LGID : 0 );
 
-
 $t->pparse( "output", "search_list" );
+
 ?>

@@ -2,7 +2,7 @@
 // 
 // $Id: onepagelinklist.php 6951 2001-09-05 08:29:58Z br $
 //
-// Bjørn Reiten <br@ez.no>
+// Bjï¿½rn Reiten <br@ez.no>
 // Created on: Created on: <03-Sep-2001 11:09:42 br>
 //
 // This source file is part of eZ publish, publishing software.
@@ -27,7 +27,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZLinkMain", "Language" );
 $UserLimit = $ini->read_var( "eZLinkMain", "UserLinkLimit" );
 $languageIni = new INIFile( "kernel/ezlink/user/intl/". $Language . "/onepagelinklist.php.ini", false );

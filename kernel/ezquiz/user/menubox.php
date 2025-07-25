@@ -27,6 +27,7 @@
 // include_once( "classes/ezcachefile.php" );
 // include_once( "classes/ezlocale.php" );
 
+$ini = INIFile::globalINI();
 $Language = $ini->read_var( "eZQuizMain", "Language" );
 $PageCaching = $ini->read_var( "eZQuizMain", "PageCaching" );
 

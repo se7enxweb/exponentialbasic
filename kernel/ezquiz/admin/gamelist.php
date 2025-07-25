@@ -78,7 +78,6 @@ $t->set_var( "game_start", $Offset + 1 );
 $t->set_var( "game_end", min( $Offset + $Limit, $totalCount ) );
 $t->set_var( "game_total", $totalCount );
 
-
 $t->pparse( "output", "game_page" );
 
 ?>

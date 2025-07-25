@@ -123,8 +123,8 @@ if ( !function_exists( "createHeadlinesMenu" )  )
                     $variation =& $image;
 
                     $imageURL = $variation->filePath( );
-                    $imageWidth =& $variation->width();
-                    $imageHeight =& $variation->height();
+                    // $imageWidth =& $variation->width();
+                    // $imageHeight =& $variation->height();
                     $imageCaption =& $image->caption();
 
                     $t->set_var( "current_image_width", $imageWidth );

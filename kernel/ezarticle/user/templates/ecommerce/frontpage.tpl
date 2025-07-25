@@ -42,11 +42,10 @@
 	</p>
 
         <!-- BEGIN one_column_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
-	<br /><img src="{www_dir}/images/1x1.gif" height="8" width="4" border="0" alt="" /><br />
-    <!-- END one_column_read_more_tpl -->
+        <!-- END one_column_read_more_tpl -->
 	</td>
 </tr>
 </table>
@@ -84,16 +83,15 @@
 	</div></div>
 
         <!-- BEGIN left_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
-	<br /><img src="{www_dir}/images/1x1.gif" height="8" width="4" border="0" alt="" /><br />
         <!-- END left_read_more_tpl -->
 
 	<!-- END left_article_tpl -->
 	</td>
 	
-	<td width="2%"><img src="{www_dir}/images/1x1.gif" height="10" width="4" border="0" alt="" /></td>
+	<td width="2%">&nbsp;</td>
 	
 	<td valign="top" width="48%" class="list">
 	<!-- BEGIN right_article_tpl -->
@@ -122,10 +120,9 @@
 	</div></div>
 
         <!-- BEGIN right_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
-	<br /><img src="{www_dir}/images/1x1.gif" height="8" width="4" border="0" alt="" /><br />
         <!-- END right_read_more_tpl -->
 	<!-- END right_article_tpl -->
 	</td>
@@ -165,7 +162,7 @@
 		<!-- BEGIN left_price_tpl -->
 	    {product_price}
 	    <!-- END left_price_tpl -->
-		<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+		<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
 		<a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{intl-get_more_info}</a>
 	</div>
 
@@ -175,7 +172,7 @@
 	<!-- END left_product_tpl -->
 	</td>
 
-	<td width="2%"><img src="{www_dir}/images/1x1.gif" height="10" width="4" border="0" alt="" /></td>
+	<td width="2%"><img src="{www_dir}/design/base/images/icons/1x1.gif" height="10" width="4" border="0" alt="" /></td>
 	
 	<td valign="top" width="49%" class="list">
 	<!-- BEGIN right_product_tpl -->
@@ -206,7 +203,7 @@
 	<!-- BEGIN right_price_tpl -->
 	{product_price}
 	<!-- END right_price_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{intl-get_more_info}</a>
 	</div>
 	</td>
@@ -252,7 +249,7 @@
 		<!-- BEGIN price_tpl -->
 	    {product_price}
 	    <!-- END price_tpl -->
-		<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+		<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
 		<a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{intl-get_more_info}</a>
 	</div>
 
@@ -283,7 +280,7 @@
 <!-- BEGIN ad_column_tpl -->
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
-	<td class="tdmini"><img src="{www_dir}/images/1x1.gif" height="4" width="4" border="0" alt="" /></td>
+	<td class="tdmini"><img src="{www_dir}/design/base/images/icons/1x1.gif" height="4" width="4" border="0" alt="" /></td>
 </tr>
 
 <tr>
@@ -299,7 +296,7 @@
 	</td>
 </tr>
 <tr>
-	<td class="tdmini"><img src="{www_dir}/images/1x1.gif" height="3" width="4" border="0" alt="" /></td>
+	<td class="tdmini"><img src="{www_dir}/design/base/images/icons/1x1.gif" height="3" width="4" border="0" alt="" /></td>
 </tr>
 </table>
 <!-- END ad_column_tpl -->

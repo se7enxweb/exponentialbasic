@@ -91,7 +91,6 @@ foreach ( $treeArray as $index => $catItem )
     }
 }
 
-
 $t->pparse( "output", "article_sitemap_page_tpl" );
 
 ?>

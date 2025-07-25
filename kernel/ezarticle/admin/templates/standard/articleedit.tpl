@@ -129,11 +129,11 @@
 <br /><br />
 
 <p class="boxtext">{intl-intro}:</p>
-<textarea class="box" name="Contents[]" cols="40" rows="5" wrap="soft">{article_contents_0}</textarea>
+<textarea class="box" name="Contents[]" cols="40" rows="20" wrap="soft">{article_contents_0}</textarea>
 <br /><br />
 
 <p class="boxtext">{intl-contents}:</p>
-<textarea class="box" name="Contents[]" cols="40" rows="20" wrap="soft">{article_contents_1}</textarea>
+<textarea class="box" name="Contents[]" cols="40" rows="40" wrap="soft">{article_contents_1}</textarea>
 <br /><br />
 
 <p class="boxtext">{intl-link_text}:</p>
@@ -298,6 +298,9 @@
         <option value="File">{intl-files}</option>
         <option value="Attribute">{intl-attributes}</option>
         <option value="Form">{intl-forms}</option>
+<!-- BEGIN module_linker_button_tpl -->
+	<option value="ModuleLinker">{intl-links}</option>
+<!-- END module_linker_button_tpl -->
         </select>
     </td>
     <td>
@@ -325,5 +328,3 @@
 	</td>
 </tr>
 </table>
-
-

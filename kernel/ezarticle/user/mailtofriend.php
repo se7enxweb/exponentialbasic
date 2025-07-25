@@ -152,9 +152,12 @@ function sendmail ( $article_id, $CategoryID, $tpl, $sendmail_tpl, $real_name, $
     $intro = strip_tags( $renderer->renderIntro( ) );
     $text = trim( $text );
     
-    $site_url = $GLOBALS["HTTP_HOST"];
-    $server_name = $GLOBALS["SERVER_NAME"];
-    
+    $site_url = $_SERVER["HTTP_HOST"];
+    // $server_name = $_SERVER["SERVER_NAME"];
+    // $server_name = $GLOBALS["HTTP_HOST"];
+
+    $ini =& INIFile::globalINI();
+	$server_name = $ini->read_var( "site", "SiteURL" );
     
 // Build up the mail to send from the template.
     
@@ -163,6 +166,7 @@ function sendmail ( $article_id, $CategoryID, $tpl, $sendmail_tpl, $real_name, $
     
     $sendmail_tpl->set_var( "server_name", $server_name );
     $sendmail_tpl->set_var( "from_name", $from_name );
+
     if ( $text != "" )
     {
         $sendmail_tpl->set_var( "comment", $text );
@@ -284,4 +288,5 @@ function printForm ( $ArticleID, $CategoryID, $tpl, $real_name="", $send_to="", 
     $tpl->parse( "first_page", "first_page_tpl" );
     $tpl->pparse( "output", "mailtofriend_tpl" );
 }
+
 ?>

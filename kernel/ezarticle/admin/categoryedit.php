@@ -647,4 +647,5 @@ foreach ( $categories as $categoryItem )
 }
 
 $t->pparse( "output", "category_edit_tpl" );
+
 ?>

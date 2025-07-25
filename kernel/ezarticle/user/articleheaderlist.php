@@ -199,4 +199,3 @@ $t->set_var( "section_id", $GlobalSectionID );
 $t->pparse( "output", "article_list_page_tpl" );
 
 ?>
-

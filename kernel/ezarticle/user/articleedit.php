@@ -161,6 +161,7 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) )
         {
             $article->setIsPublished( false );
         }
+
         $article->store();
         
         $session->setVariable( "ArticleEditID", "" );
@@ -256,8 +257,17 @@ $t->set_var( "link_text", stripslashes( $LinkText  ) );
 
 $t->set_var( "action_value", "insert" );
 
+if ( $Action == "New" )
+{
+    $user =& eZUser::currentUser();
+    $t->set_var( "author_text", $user->firstName() . " " . $user->lastName());    
+}
 
-$articleID = $session->variable( "ArticleEditID" );
+//pBo modified this: assign the current articleID as suggested by Arne Schirmacher 
+//$articleID = $session->variable( "ArticleEditID" );
+$articleID = $ArticleID;
+//end PBo mod
+
 if ( $Action == "Edit" )
 {
     $article = new eZArticle( $articleID );
@@ -270,6 +280,22 @@ if ( $Action == "Edit" )
     $catDefID = $catDef->id();
 
     $user =& eZUser::currentUser();
+
+    //PBo modification
+    //Check if the id of the author matches the current logged in user
+    //This does refer to the userid who submitted the article, not the possibel "assigned author" 
+    //as can be done through the admin interface
+    //If there is no match, the scripts dies which is still al little harch
+    
+    $editOwnArticle=$ini->read_var( "eZArticleMain", "UserEditOwnArticle" );
+    if (!eZArticle::isAuthor($user, $article->id()) || $editOwnArticle != "enabled" )
+    {
+    	echo "You " . $user->id() . " are not the author" . $article->author(false) . " or user side editing is disabled , bye!<br />";
+	die("THE END");
+	
+    }
+    //End PBo mod
+
     $t->set_var( "author_text", $user->firstName() . " " . $user->lastName());    
 
     $t->set_var( "article_name", $article->name() );

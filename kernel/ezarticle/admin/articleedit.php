@@ -198,6 +198,7 @@ if ( isset( $Action ) && $Action == "Update" || ( isset( $Action ) && $Action ==
             }
 
             // add to categories
+
             $category = new eZArticleCategory( $CategoryID );
 
             $category->addArticle( $article, $CategoryID );
@@ -371,6 +372,15 @@ if ( isset( $Action ) && $Action == "Update" || ( isset( $Action ) && $Action ==
                         exit();
                     }
                     break;
+
+               // attribute
+                case "ModuleLinker":
+                {
+                    eZHTTPTool::header( "Location: /article/articleedit/link/list/$ArticleID/" );
+                    exit();
+                }
+                break;
+
                 }
             }
 
@@ -406,7 +416,9 @@ if ( isset( $Action ) && $Action == "Update" || ( isset( $Action ) && $Action ==
         {
             $invalidContents = $contents;
 
-            if ( $Action != "Insert" )
+            if ( $Action == "Insert" )
+                $Action = "New";
+            else
                 $Action = "Edit";
 
             $ErrorParsing = true;
@@ -446,7 +458,7 @@ elseif ( isset( $Action ) && $Action == "Edit" )
 
     if( !isset( $Keywords ) )
         $Keywords = '';
-/*
+
     if( !isset( $Contents[0] ) )
         $Contents[0] = false;
     if( !isset( $Contents[1] ) )
@@ -455,7 +467,7 @@ elseif ( isset( $Action ) && $Action == "Edit" )
         $Contents[2] = false;
     if( !isset( $Contents[3] ) )
         $Contents[3] = false;
-*/
+
     if( !isset( $AuthorText ) )
         $AuthorText = '';
     if( !isset( $AuthorEmail ) )
@@ -484,6 +496,7 @@ elseif ( isset( $Action ) && $Action == "Edit" )
     $StopHour = '';
 }
 $Language = $ini->read_var( "eZArticleMain", "Language" );
+$ShowModuleLinker = $ini->read_var( "eZArticleMain", "ShowModuleLinker" ) == "true";
 
 $t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "articleedit.php" );
@@ -507,6 +520,7 @@ $t->set_block( "publish_dates_tpl", "un_published_tpl", "un_published" );
 
 $t->set_block( "article_edit_page_tpl", "error_message_tpl", "error_message" );
 $t->set_block( "article_edit_page_tpl", "urltranslator_tpl", "urltranslator" );
+$t->set_block( "article_edit_page_tpl", "module_linker_button_tpl", "module_linker_button" );
 
 $Locale = new eZLocale( $Language );
 if ( isset($_REQUEST['ErrorParsing']) )
@@ -540,7 +554,33 @@ else
 }
 //EP --------------------------------------------------------------------------
 
-if ( isset( $Action ) && $Action == "New" )
+$t->set_var( "article_keywords", stripslashes( $Keywords ) );
+$t->set_var( "article_contents_0", stripslashes( $Contents[0] ) );
+$t->set_var( "article_contents_1", stripslashes( $Contents[1] ) );
+$t->set_var( "article_contents_2", stripslashes( $Contents[2] ) );
+$t->set_var( "article_contents_3", stripslashes( $Contents[3] ) );
+$t->set_var( "author_text", stripslashes( $AuthorText ) );
+$t->set_var( "author_email", stripslashes( $AuthorEmail ) );
+$t->set_var( "link_text", stripslashes( $LinkText ) );
+
+$t->set_var( "start_day", stripslashes( $StartDay ) );
+$t->set_var( "start_month", stripslashes( $StartMonth ) );
+$t->set_var( "start_year", stripslashes( $StartYear ) );
+$t->set_var( "start_hour", stripslashes( $StartHour ) );
+$t->set_var( "start_minute", stripslashes( $StartMinute ) );
+$t->set_var( "stop_day", stripslashes( $StopDay ) );
+$t->set_var( "stop_month", stripslashes( $StopMonth ) );
+$t->set_var( "stop_year", stripslashes( $StopYear ) );
+$t->set_var( "stop_hour", stripslashes( $StopHour ) );
+$t->set_var( "stop_minute", stripslashes( $StopMinute ) );
+
+$t->set_var( "action_value", "insert" );
+$t->set_var( "all_selected", "selected" );
+$t->set_var( "all_write_selected", "selected" );
+$writeGroupsID = array(); 
+$readGroupsID = array(); 
+
+if ( $Action == "New" )
 {
     $user =& eZUser::currentUser();
     $t->set_var( "author_text", $user->firstName() . " " . $user->lastName() );
@@ -727,6 +767,9 @@ if ( isset( $Action ) && $Action == "Edit" || $Action == "Insert" )
 
     $t->parse( "publish_dates", "publish_dates_tpl" );
 
+	$t->set_var( "module_linker_button", "" );
+    if ( $ShowModuleLinker )
+        $t->parse( "module_linker_button", "module_linker_button_tpl" );
 }
 
 $t->set_var( "article_keywords", stripslashes( $Keywords ) );
@@ -760,12 +803,12 @@ foreach( $groupList as $index => $group )
     $groupListIDs[] = $group->id();
 }
 
-if( $readGroupsID[0] == "-1" )
+if( !isset( $readGroupsID[0] ) || $readGroupsID[0] == "-1" )
     $groupListIDsSelection = 0;
 else
     $groupListIDsSelection = $readGroupsID[0];
 
-if( $writeGroupsID[0] == "-1" )
+if( !isset( $writeGroupsID[0] ) || $writeGroupsID[0] == "-1" )
     $writeGroupsIDsSelection = 0;
 else
     $writeGroupsIDsSelection = $writeGroupsID[0];
@@ -925,6 +968,9 @@ foreach ( $groupList as $groupItem )
 
     $t->parse( "group_item", "group_item_tpl", true );
 }
+
+if ( $ShowModuleLinker )
+	$t->parse( "module_linker_button", "module_linker_button_tpl" );
 
 $t->pparse( "output", "article_edit_page_tpl" );
 

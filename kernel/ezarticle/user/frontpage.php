@@ -67,6 +67,7 @@ $t->set_block( "article_list_page_tpl", "element_list_tpl", "element_list" );
 $t->set_block( "article_list_page_tpl", "one_column_article_tpl", "one_column_article" );
 $t->set_block( "one_column_article_tpl", "one_column_article_image_tpl", "one_column_article_image" );
 $t->set_block( "one_column_article_tpl", "one_column_read_more_tpl", "one_column_read_more" );
+$t->set_block( "one_column_article_tpl", "message_count_tpl", "message_count" );
 
 // one column product
 $t->set_block( "article_list_page_tpl", "one_column_product_tpl", "one_column_product" );
@@ -88,10 +89,12 @@ $t->set_block( "article_list_page_tpl", "two_column_article_tpl", "two_column_ar
 $t->set_block( "two_column_article_tpl", "left_article_tpl", "left_article" );
 $t->set_block( "left_article_tpl", "left_article_image_tpl", "left_article_image" );
 $t->set_block( "left_article_tpl", "left_read_more_tpl", "left_read_more" );
+$t->set_block( "left_article_tpl", "left_message_count_tpl", "left_message_count" );
 
 $t->set_block( "two_column_article_tpl", "right_article_tpl", "right_article" );
 $t->set_block( "right_article_tpl", "right_article_image_tpl", "right_article_image" );
 $t->set_block( "right_article_tpl", "right_read_more_tpl", "right_read_more" );
+$t->set_block( "right_article_tpl", "right_message_count_tpl", "right_message_count" );
 
 // short single article
 $t->set_block( "article_list_page_tpl", "one_short_article_tpl", "one_short_article" );
@@ -360,6 +363,8 @@ function &renderFrontpageArticle( &$t, &$locale, &$article )
         $variation =& $thumbnailImage->requestImageVariation( $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" ),
         $ini->read_var( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
 
+//        $t->set_var( "thumbnail_image_uri", $variation->imagePath() );
+
         if(  is_object( $variation ) )
         {
             $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
@@ -390,6 +395,21 @@ function &renderFrontpageArticle( &$t, &$locale, &$article )
     $renderer = new eZArticleRenderer( $article );
     $t->set_var( "article_intro", $renderer->renderIntro(  ) );
 
+	$t->set_var( "messages", "" );
+	if ( $article->forum() )
+		{
+		$forum = $article->forum();
+		$MessageCount = $forum->messageCount( false, true );
+		if ( $MessageCount > 0 )
+			{
+			$t->set_var( "messages", $MessageCount );
+			$t->parse( "message_count", "message_count_tpl" );
+			}
+		else
+			$t->set_var( "message_count", "" );
+		}
+	else
+		$t->set_var( "message_count", "" );
 
     if ( $article->linkText() != "" )
     {
@@ -482,6 +502,21 @@ function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
     $renderer = new eZArticleRenderer( $article1 );
     $t->set_var( "article_intro", $renderer->renderIntro(  ) );
 
+	$t->set_var( "messages", "" );
+	if ( $article1->forum() )
+		{
+		$forum = $article1->forum();
+		$MessageCount = $forum->messageCount( false, true );
+		if ( $MessageCount > 0 )
+			{
+			$t->set_var( "messages", $MessageCount );
+			$t->parse( "left_message_count", "left_message_count_tpl" );
+			}
+		else
+			$t->set_var( "left_message_count", "" );
+		}
+	else
+		$t->set_var( "left_message_count", "" );
 
     if ( $article1->linkText() != "" )
     {
@@ -564,6 +599,21 @@ function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
     $renderer = new eZArticleRenderer( $article2 );
     $t->set_var( "article_intro", $renderer->renderIntro(  ) );
 
+	$t->set_var( "messages", "" );
+	if ( $article2->forum() )
+		{
+		$forum = $article2->forum();
+		$MessageCount = $forum->messageCount( false, true );
+		if ( $MessageCount > 0 )
+			{
+			$t->set_var( "messages", $MessageCount );
+			$t->parse( "right_message_count", "right_message_count_tpl" );
+			}
+		else
+			$t->set_var( "right_message_count", "" );
+		}
+	else
+		$t->set_var( "right_message_count", "" );
 
     if ( $article2->linkText() != "" )
     {
@@ -712,7 +762,8 @@ function &renderFrontpageProduct( &$t, &$locale, &$product )
 
     $t->set_var( "product_name", $product->name() );
 
-    $t->set_var( "product_intro_text", eZTextTool::nl2br( $product->brief() ) );
+    // $t->set_var( "product_intro_text", eZTextTool::nl2br( $product->brief() ) );
+    $t->set_var( "product_intro_text", $product->brief() );
 
     $categoryDefinition = $product->categoryDefinition();
     $t->set_var( "category_id", $categoryDefinition->id() );
@@ -810,7 +861,9 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
     $t->set_var( "product_name", $product1->name() );
     $t->set_var( "product_id", $product1->id() );
 
-    $t->set_var( "product_intro_text", eZTextTool::nl2br( $product1->brief() ) );
+    // $t->set_var( "product_intro_text", eZTextTool::nl2br( $product1->brief() ) );
+    $t->set_var( "product_intro_text", $product1->brief() );
+
 
     $categoryDefinition = $product1->categoryDefinition();
     $t->set_var( "category_id", $categoryDefinition->id() );
@@ -890,12 +943,16 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
         $t->set_var( "thumbnail_image_height", $variation->height() );
         $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
 
-        $t->parse( "right_product_image", "right_product_image_tpl" );
+        $t->parse( "left_product_image", "left_product_image_tpl" );
     }
     else
     {
-        $t->set_var( "right_product_image", "" );
+        $t->set_var( "left_product_image", "" );    
     }
+	
+    $t->parse( "left_product", "left_product_tpl"  );
+
+    $pid = $product2->id();
 
     $t->set_var( "product_name", $product2->name() );
 
@@ -903,7 +960,8 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
     $categoryDefinition = $product2->categoryDefinition();
     $t->set_var( "category_id", $categoryDefinition->id() );
 
-    $t->set_var( "product_intro_text", eZTextTool::nl2br( $product2->brief() ) );
+    // $t->set_var( "product_intro_text", eZTextTool::nl2br( $product2->brief() ) );
+    $t->set_var( "product_intro_text", $product2->brief() );
 
     if ( $product2->showPrice() == true and $product2->hasPrice() )
     {
@@ -960,6 +1018,28 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
     else
     {
         $t->set_var( "td_class", "bgdark" );
+    }
+
+	
+    // preview image
+    $thumbnailImage = $product2->thumbnailImage();
+    
+    $t->set_var( "product_id", $product2->id() );
+    
+    if ( $thumbnailImage )
+    {
+        $variation =& $thumbnailImage->requestImageVariation( $ThumbnailImageWidth, $ThumbnailImageHeight );
+
+        $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
+        $t->set_var( "thumbnail_image_width", $variation->width() );
+        $t->set_var( "thumbnail_image_height", $variation->height() );
+        $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
+
+        $t->parse( "right_product_image", "right_product_image_tpl" );
+    }
+    else
+    {
+        $t->set_var( "right_product_image", "" );    
     }
 
     $t->parse( "right_product", "right_product_tpl"  );

@@ -56,6 +56,9 @@ if ( $Action == "Insert" )
         
         $uploadedFile->store();
 
+        eZObjectPermission::setPermission( -1, $uploadedFile->id(), "filemanager_file", "r" );
+        eZObjectPermission::setPermission( 1, $uploadedFile->id(), "filemanager_file", "w" );
+
         $article->addFile( $uploadedFile );
 
         eZLog::writeNotice( "File added to article $ArticleID  from IP: $REMOTE_ADDR" );

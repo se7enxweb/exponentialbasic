@@ -475,6 +475,4 @@ else
     $t->pparse( "output", "article_view_page_tpl" );
 }
 
-
-
 ?>

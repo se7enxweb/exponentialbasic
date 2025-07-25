@@ -23,11 +23,17 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-$PageCaching =& $ini->read_var( "eZArticleMain", "PageCaching");
+// graham : php - error log fix project : 20005-05-27 (undefined variable patch)
+// this just shuts of the hundreds of thousands of error log entries (performance)
+$DefaultLinkText = "";
+
+$ArticlePageCaching =& $ini->read_var( "eZArticleMain", "PageCaching");
+$PageCaching = "disabled";
 
 $PureStatic = "false";
+//$PureStatic ="true";
 
-unset( $CacheFile );
+// unset( $CacheFile );
 unset( $GenerateStaticPage );
 
 if ( $PageCaching == "enabled" )
@@ -79,7 +85,10 @@ if ( $PureStatic != "true" )
 		
     $category = new eZArticleCategory( $CategoryID );
 
-    $t->set_var( "current_category_name", $category->name() );
+    $category_name_no_whitespace = $category->name();
+    $category_name_no_whitespace = str_replace(" ", "&nbsp;", $category_name_no_whitespace);
+
+    $t->set_var( "current_category_name", $category_name_no_whitespace );
     $t->set_var( "current_category_description", $category->description() );
 
     $articleList =& $category->articles( $category->sortMode(), false, true );
@@ -145,4 +154,3 @@ if ( $PureStatic != "true" )
 }
 
 ?>
-

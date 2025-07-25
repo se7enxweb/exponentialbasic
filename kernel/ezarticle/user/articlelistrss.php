@@ -27,12 +27,9 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztexttool.php" );
 
-
 // include_once( "ezarticle/classes/ezarticlecategory.php" );
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
-
-
 
 $ini =& INIFile::globalINI();
 $Title = htmlspecialchars($ini->read_var( "eZArticleRSS", "Title" ));
@@ -120,4 +117,3 @@ print( "\n</rss>\n" );
 exit();
 
 ?>
-

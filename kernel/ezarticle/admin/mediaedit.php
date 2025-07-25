@@ -73,6 +73,10 @@ if ( isset ( $OK ) )
     }
 
     $media->store();
+	
+	$objectPermission = new eZObjectPermission();
+	eZObjectPermission::setPermission( -1, $media->id(), "mediacatalogue_media", "r" );
+	eZObjectPermission::setPermission( 1, $media->id(), "mediacatalogue_media", "w" );
 
     if ( $TypeID == -1 )
     {

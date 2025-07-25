@@ -44,7 +44,11 @@
         <!-- END one_column_article_image_tpl -->
 
 
-	<div class="spacer"><div class="p">{article_intro}</div></div>
+	<div class="spacer"><div class="p">{article_intro}</div>
+	    <!-- BEGIN message_count_tpl -->
+		<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
+		<!-- END message_count_tpl -->
+		</div>
 
         <!-- BEGIN one_column_read_more_tpl -->
 		<div>
@@ -87,7 +91,9 @@
 
 
 	<div class="spacer"><div class="p">{article_intro}</div></div>
-
+        <!-- BEGIN left_message_count_tpl -->
+		<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
+		<!-- END left_message_count_tpl -->
         <!-- BEGIN left_read_more_tpl -->
 
 		<div>
@@ -124,7 +130,11 @@
 		</div>
     <!-- END right_article_image_tpl -->
 
-	<div class="spacer"><div class="p">{article_intro}</div></div>
+	<div class="spacer"><div class="p">{article_intro}</div>
+	<!-- BEGIN right_message_count_tpl -->
+	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
+	<!-- END right_message_count_tpl -->
+	</div>
 
         <!-- BEGIN right_read_more_tpl -->
 		<div>

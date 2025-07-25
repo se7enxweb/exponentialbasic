@@ -344,3 +344,5 @@ class eZTopic
     var $Name;
     var $Description;
 }
+
+?>

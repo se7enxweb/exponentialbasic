@@ -4,7 +4,7 @@
 //
 // Definition of ||| class
 //
-// Bjørn Reiten <br@ez.no>
+// Bjï¿½rn Reiten <br@ez.no>
 // Created on: <29-Aug-2001 16:47:13 br>
 //
 // This source file is part of eZ publish, publishing software.
@@ -141,4 +141,5 @@ function menuMaker()
     $t->pparse( "output", "menu_maker_tpl" );
 
 }
+
 ?>

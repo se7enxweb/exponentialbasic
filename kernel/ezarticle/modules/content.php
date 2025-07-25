@@ -61,4 +61,5 @@ if( $viewer != "articleprint" )
 {
     echo $str;
 }
+
 ?>

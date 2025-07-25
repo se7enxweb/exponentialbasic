@@ -149,12 +149,13 @@ $t->set_block( "article_view_page_tpl", "next_page_link_tpl", "next_page_link" )
 $t->set_block( "article_view_page_tpl", "prev_page_link_tpl", "prev_page_link" );
 $t->set_block( "article_view_page_tpl", "numbered_page_link_tpl", "numbered_page_link" );
 $t->set_block( "article_view_page_tpl", "print_page_link_tpl", "print_page_link" );
+$t->set_block( "article_view_page_tpl", "section_item_tpl", "section_item" );
 
 $t->set_block( "article_view_page_tpl", "mail_to_tpl", "mail_to" );
 $t->set_block( "article_view_page_tpl", "attribute_list_tpl", "attribute_list" );
 $t->set_block( "attribute_list_tpl", "type_item_tpl", "type_item" );
 $t->set_block( "type_item_tpl", "attribute_item_tpl", "attribute_item" );
-
+$t->set_block( "section_item_tpl", "link_item_tpl", "link_item" );
 
 // read user override variables for image size
 $ListImageWidth = $ini->read_var( "eZArticleMain", "ListImageWidth" );
@@ -264,6 +265,30 @@ if ( $article->get( $ArticleID ) )
         $t->parse( "path_item", "path_item_tpl", true );
     }
 
+// link list
+$module_link = new eZModuleLink( "eZArticle", "Article", $article->id() );
+$sections =& $module_link->sections();
+$t->set_var( "section_item", "" );
+foreach ( $sections as $section )
+{
+    $t->set_var( "link_item", "" );
+    $t->set_var( "section_name", $section->name() );
+    $t->set_var( "section_id", $section->id() );
+    $links =& $section->links();
+    $i = 0;
+    foreach ( $links as $link )
+    {
+        $t->set_var( "td_class", ($i % 2) == 0 ? "bglight" : "bgdark" );
+        $t->set_var( "link_name", $link->name() );
+        $t->set_var( "link_url", $link->url() );
+        $t->set_var( "link_id", $link->id() );
+        $t->parse( "link_item", "link_item_tpl", true );
+        ++$i;
+    }
+    $t->parse( "section_item", "section_item_tpl", true );
+}
+
+
 
     $renderer = new eZArticleRenderer( $article );
 
@@ -313,7 +338,6 @@ if ( $article->get( $ArticleID ) )
         $ShowHeader = "hide";
     }
 
-
     $categoryDef =& $article->categoryDefinition();
 
     $t->set_var( "category_definition_name", $categoryDef->name() );
@@ -333,6 +357,15 @@ if ( $article->get( $ArticleID ) )
            $t->parse( "article_intro", "article_intro_tpl" );
     else
         $t->set_var( "article_intro", "" );
+
+    if ( $articleContents[0] != '' )
+    {    
+      $t->set_var( "article_intro", $articleContents[0] );
+      $t->parse( "article_intro", "article_intro_tpl" );
+    } else {
+       $t->set_var( "article_intro", "" );
+    }
+
 
     $t->set_var( "article_body", $articleContents[1] );
 
@@ -400,6 +433,9 @@ if ( $article->get( $ArticleID ) )
                     $t->set_var( "image_width", $variation->width() );
                     $t->set_var( "image_height",$variation->height() );
                 }
+
+                $img_id = $image->id();
+                $t->set_var( "alt_image_url", "/imagecatalogue/imageview/$img_id/?RefererURL=".$_SERVER["REQUEST_URI"] );
 
                 $t->parse( "image", "image_tpl", true );
                 $i++;
@@ -496,7 +532,8 @@ if ( count( $files ) > 0 )
         }
 
         $t->set_var( "file_id", $file->id() );
-        $t->set_var( "original_file_name", $file->originalFileName() );
+        // $t->set_var( "original_file_name", $file->originalFileName() );
+        $t->set_var( "original_file_name", $file->fileName() );
         $t->set_var( "file_name", $file->name() );
         $t->set_var( "file_url", $file->name() );
         $t->set_var( "file_description", $file->description() );
@@ -590,6 +627,27 @@ else
     $t->set_var( "next_page_link", "" );
 }
 
+// PBo Mod
+// If the current logged in user matches the author, show an edit link or button 
+// as defined in the corresponding template block article_edit_tpl
+$currentuser =& eZUser::currentUser(); 
+$t->set_block( "article_view_page_tpl", "article_edit_tpl", "article_edit" ); 
+$editOwnArticle=$ini->read_var( "eZArticleMain", "UserEditOwnArticle" );
+
+//if ($currentuser->id() == $article->author(false) && $editOwnArticle == "enabled")
+if ( eZArticle::isAuthor($currentuser, $article->id()) && $editOwnArticle == "enabled")
+{
+    $t->set_var( "edit_article_id", $article->id() );
+    $t->parse ( "article_edit", "article_edit_tpl" );
+   
+}
+else
+{
+    $t->set_var( "article_edit", "", "" );
+
+  
+}
+//End PBo mod
 
 // set variables for meta information
 $SiteTitleAppend = $article->name();
@@ -609,7 +667,7 @@ if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
     $output .= "\$SiteTitleAppend=\"$SiteTitleAppend\";\n";
     $output .= "\$SiteDescriptionOverride=\"$SiteDescriptionOverride\";\n";
     $output .= "\$SiteKeywordsOverride=\"$SiteKeywordsOverride\";\n";
-    $output .= "\$eZLanguageOverride=\"$eZLanguageOverride\";\n";
+    // $output .= "\$eZLanguageOverride=\"$eZLanguageOverride\";\n";
     $output .= "?>\n";
 
     $printOut = $t->parse(  "output", "article_view_page_tpl" );

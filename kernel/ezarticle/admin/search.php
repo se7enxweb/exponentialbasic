@@ -137,7 +137,8 @@ if ( $SearchText )
         $t->set_var( "url_category_array", urlencode( implode( "-", $CategoryArray ) ) );
     }
 
-    $paramsArray["SearchExcludedArticles"] = "true";
+ //   $paramsArray["SearchExcludedArticles"] = "true";
+    
     
     $article = new eZArticle();
     $totalCount = false;
@@ -182,6 +183,15 @@ if ( isset( $articleList ) && count ( $articleList ) > 0 )
         $i++;
     }
 }
+
+//echo "<pre>";
+//print_r ( $t );
+
+//echo "totalCount:".$totalCount."<br>";
+//echo "Limit:".$Limit."<br>";
+//echo "Offset:".$Offset."<br>";
+//echo "</pre>";
+//exit();
 
 eZList::drawNavigator( $t, $totalCount, $Limit, $Offset, "article_list_page_tpl" );
 

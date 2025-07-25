@@ -302,3 +302,5 @@ class eZArticleForm
     var $Form;
     var $Article;
 }
+
+?>

@@ -62,6 +62,63 @@ switch ( $url_array[2] )
 
     case "frontpage":
     {
+        if ( isset( $url_array[3] ) ) 
+        {
+            $GlobalSectionID = $url_array[3];
+
+            if ( $url_array[3] != 3 )
+            {  
+                    $GlobalSectionID = 3;
+            }
+        }
+
+        // if file exists... evrything is ok..
+        // if not.. check permission, then run page if ok
+        $user =& eZUser::currentUser();
+        $groupstr = "";
+
+        if ( get_class( $user ) == "ezuser" )
+        {
+            $groupIDArray =& $user->groups( false );
+            sort( $groupIDArray );
+            $first = true;
+            foreach ( $groupIDArray as $groupID )
+            {
+                $first ? $groupstr .= "$groupID" : $groupstr .= "-$groupID";
+                $first = false;
+            }
+        }
+        else
+            $user = 0;
+
+        if ( $PageCaching == "enabled" )
+        {
+            //include_once( "classes/ezcachefile.php" );
+            $file = new eZCacheFile( "kernel/ezarticle/cache/", array( "articlefrontpage", $GlobalSectionID, $groupstr ),
+                                     "cache", "," );
+
+            $cachedFile = $file->filename( true );
+
+            if ( $file->exists() )
+            {
+                include( $cachedFile );
+            }
+            else
+            {
+                $GenerateStaticPage = "true";
+                include( "kernel/ezarticle/user/frontpage.php" );
+            }
+        }
+        else
+        {
+            include( "kernel/ezarticle/user/frontpage.php" );
+        }
+
+    }
+    break;
+
+    case "homepage":
+    {
         if ( isset( $url_array[3] ) )
             $GlobalSectionID = $url_array[3];
 
@@ -93,17 +150,19 @@ switch ( $url_array[2] )
 
             if ( $file->exists() )
             {
+                $GenerateStaticPage = "false";
                 include( $cachedFile );
             }
             else
             {
                 $GenerateStaticPage = "true";
-                include( "kernel/ezarticle/user/frontpage.php" );
+                include( "kernel/ezarticle/user/homepage.php" );
             }
         }
         else
         {
-            include( "kernel/ezarticle/user/frontpage.php" );
+            $GenerateStaticPage = "false";
+            include( "kernel/ezarticle/user/homepage.php" );
         }
 
     }
@@ -152,7 +211,11 @@ switch ( $url_array[2] )
         if ( !isset( $CategoryID ) || ( $CategoryID == "" ) )
             $CategoryID = 0;
 
-        $Offset = $url_array[4];
+	if ( isset( $url_array[4] ) )
+          $Offset = $url_array[4];
+	else
+	  $Offset = 0;
+	  
         if ( !is_numeric( $Offset ) )
             $Offset = 0;
 
@@ -181,13 +244,15 @@ switch ( $url_array[2] )
             $cachedFile = $file->filename( true );
 //            print( "Cache file name: $cachedFile" );
 
+            $articleCategoryTest = new eZArticleCategory( $CategoryID );
+            $isOwner = $articleCategoryTest->isOwner( $user, $CategoryID);
+
             if ( $file->exists() )
             {
                 include( $cachedFile );
             }
             else if ( $CategoryID == 0 || eZObjectPermission::hasPermission( $CategoryID, "article_category", 'r' ) ||
-            eZArticleCategory::isOwner( $user, $CategoryID) )
-                // check if user really has permissions to browse this category
+                $isOwner )// check if user really has permissions to browse this category
             {
                 $GenerateStaticPage = "true";
 
@@ -225,21 +290,28 @@ switch ( $url_array[2] )
             $Offset = 0;
             if ( $url_array[3] == "parent" )
             {
-                $SearchText = htmlspecialchars( $url_array[4] );
-                if ( $url_array[5] != "+" )
-                    $StartStamp = htmlspecialchars( $url_array[5] );
-                if ( $url_array[6] != "+" )
-                    $StopStamp = htmlspecialchars( $url_array[6] );
-                if ( $url_array[7] != "+" )
-                    $CategoryArray = explode( "-", htmlspecialchars( $url_array[7] ) );
-                if ( $url_array[8] != "+" )
-                    $ContentsWriterID = htmlspecialchars( $url_array[8] );
-                if ( $url_array[9] != "+" )
-                    $PhotographerID = htmlspecialchars( $url_array[9] );
-
+                $SearchText = urldecode( $url_array[4] );
+                if ( $url_array[5] != urlencode( "+" ) )
+                    $StartStamp = urldecode( $url_array[5] );
+                if ( $url_array[6] != urlencode( "+" ) )
+                    $StopStamp = urldecode( $url_array[6] );
+                if ( $url_array[7] != urlencode( "+" ) )
+                    $CategoryArray = explode( "-", urldecode( $url_array[7] ) );
+                if ( $url_array[8] != urlencode( "+" ) )
+                    $ContentsWriterID = urldecode( $url_array[8] );
+                if ( $url_array[9] != urlencode( "+" ) )
+                    $PhotographerID = urldecode( $url_array[9] );
                 $Offset = $url_array[10];
             }
-            include( "kernel/ezarticle/user/search.php" );
+
+/*
+	echo "<pre>";
+	print_r ( $url_array );
+	echo "</pre>";
+	exit();
+*/			
+			
+            include( "ezarticle/user/search.php" );
         }
     }
     break;
@@ -385,6 +457,7 @@ switch ( $url_array[2] )
                     }
                     $forum = $article->forum();
                     $ForumID = $forum->id();
+					$MessageCount = $forum->messageCount( false, true );
                     include( "kernel/ezforum/user/messagesimplelist.php" );
                 }
             }
@@ -546,6 +619,7 @@ switch ( $url_array[2] )
     }
     break;
 
+    case "rss":
     case "rssheadlines":
     {
         include( "kernel/ezarticle/user/articlelistrss.php" );
@@ -568,7 +642,10 @@ switch ( $url_array[2] )
                 case "edit":
                 {
                     $Action = "Edit";
-                    include( "kernel/ezarticle/user/articleedit.php" );
+                    //PBo added this
+                    $ArticleID = $url_array[4];
+                    //end pbo mods
+                    include( "ezarticle/user/articleedit.php" );
                     break;
                 }
                 case "insert":

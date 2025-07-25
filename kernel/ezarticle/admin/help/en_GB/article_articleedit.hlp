@@ -241,7 +241,6 @@ If the caption variable is "_blank" it will not show a caption, even if there is
 	</td>
 </tr>
 </table>
-
 <p>
 This tag let's you make a link to another web page. This link opens in the existing browser window.
 </p>
@@ -249,6 +248,39 @@ This tag let's you make a link to another web page. This link opens in the exist
 <p>
 The "URL" attribute is the "internett address" of the link, and the "linktext" attribute is the text that may be clicked to activate the link. The "linktext" attribute may contain multiple words.
 </p>
+
+<h2>Hyperlink tags for anchors</h2>
+
+<p>
+<b>&lt;link <i>#anchorName linktext</i>&gt;</b>
+</p>
+<p>
+<b>&lt;ezanchor <i>anchorName</i>&gt;</b>
+</p>
+
+<p>
+This tag let's you make a link to another position on the same web page or a specific position in another web page. This link opens in the existing browser window.
+</p>
+
+<table cellpadding="4" cellspacing="0" border="1" width="100%">
+<tr>
+	<td width="50%">
+	<b>&lt;link <i>#funimation My Favorate Cartoons are by ...</i>&gt;</b>
+	</td>
+	<td width="50%">
+	<a href="#funimation">My Favorate Cartoons are by ...</a>
+	</td>
+</tr>
+<tr>
+	<td width="50%">
+	<b>&lt;ezanchor <i>funimation</i>&gt;</b>
+	</td>
+	<td width="50%">
+	<a name="funimation">My Favorate Cartoons are by ...</a>
+	</td>
+</tr>
+</table>
+<br />
 
 <p>
 <b>&lt;popuplink <i>URL linktext</i>&gt;</b>

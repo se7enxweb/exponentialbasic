@@ -428,7 +428,7 @@ class eZQDomGenerator
                 }
             }
 
-            $contentsArray[] = $intro;
+            $contentsArray[] = stripslashes($intro);
 
             $bodyContents = "";
             $i=0;
@@ -450,10 +450,12 @@ class eZQDomGenerator
                 }
             }
 
-            if ( $htmlSpecialChars == true )
+            if ( $htmlSpecialChars == true ) {		
+				$bodyContents = stripslashes($bodyContents);
                 $contentsArray[] = htmlspecialchars( $bodyContents );
+				}
             else
-                $contentsArray[] = $bodyContents;
+                $contentsArray[] = stripslashes($bodyContents);
         }
 
         return $contentsArray;
@@ -583,8 +585,6 @@ class eZQDomGenerator
                         break;
                     }
                 }
-
-                
                 
                 $pageContent .= "<header $level>" . $content . "</header>";
             }
@@ -657,7 +657,9 @@ class eZQDomGenerator
 	            	$hrefText = "href=\"$imageHref\"";
 	                
 	            $pageContent = "<image id=\"$imageID\" align=\"$imageAlignment\" size=\"$imageSize\" $hrefText $captionText $targetText />";
-			} else {
+            }
+            else
+            {
 				$pageContent = "<image $imageID $imageAlignment $imageSize $imageHref>";
 			}
         }                            
@@ -1215,6 +1217,5 @@ class eZQDomGenerator
     var $CustomTagsArray;
     var $Level;
 }
-
 
 ?>

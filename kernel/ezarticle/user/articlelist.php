@@ -36,6 +36,12 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
+$GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
+
+// init the section
+$sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
+$sectionObject->setOverrideVariables();
+
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZArticleMain", "Language" );
@@ -45,6 +51,7 @@ $DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
 $UserListLimit = $ini->read_var( "eZArticleMain", "UserListLimit" );
 $GrayScaleImageList = $ini->read_var( "eZArticleMain", "GrayScaleImageList" );
 $ForceCategoryDefinition = $ini->read_var( "eZArticleMain", "ForceCategoryDefinition" );
+$NoArticleHeader = false;
 $TemplateDir = $ini->read_var( "eZArticleMain", "TemplateDir" );
 
 if ( isset( $CategoryID ) )
@@ -57,7 +64,7 @@ $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
 $templateDirTmp = $sectionObject->templateStyle();
-if ( trim( $templateDirTmp ) != "" )
+if ( !is_null( $templateDirTmp) && trim( $templateDirTmp ) != "" )
 {
     $TemplateDir = preg_replace( "/(.+)\/.+(\/?)/", "/\\1/$templateDirTmp\\2", $TemplateDir );
 }
@@ -94,8 +101,8 @@ else
 $t->set_block( "article_list_page_tpl", "header_item_tpl", "header_item" );
 
 // headline
-$t->set_block( "header_item_tpl", "latest_headline_tpl", "latest_headline_item" );
-$t->set_block( "header_item_tpl", "category_headline_tpl", "category_headline_item" );
+$t->set_block( "header_item_tpl", "latest_headline_tpl", "latest_headline" );
+$t->set_block( "header_item_tpl", "category_headline_item_tpl", "category_headline_item" );
 
 // path
 $t->set_block( "article_list_page_tpl", "path_item_tpl", "path_item" );
@@ -121,6 +128,7 @@ $t->set_block( "article_item_tpl", "headline_without_link_tpl", "headline_withou
 $t->set_block( "article_item_tpl", "article_image_tpl", "article_image" );
 $t->set_block( "article_item_tpl", "read_more_tpl", "read_more" );
 $t->set_block( "article_item_tpl", "article_topic_tpl", "article_topic" );
+$t->set_block( "article_item_tpl", "message_count_tpl", "message_count" );
 
 // prev/next
 $t->set_block( "article_list_page_tpl", "previous_tpl", "previous" );
@@ -129,15 +137,15 @@ $t->set_block( "article_list_page_tpl", "next_tpl", "next" );
 // print headline
 if ( isset( $CategoryID ) && $CategoryID == 0 )
 {
-    $t->parse( "latest_headline_item", "latest_headline_tpl" );
+    $t->parse( "latest_headline", "latest_headline_tpl" );
     $t->set_var( "category_headline_item", "" );
 }
 else
 {
     $t->parse( "category_headline_item", "category_headline_tpl" );
+    $t->set_var( "latest_headline", "" );
     $t->set_var( "latest_headline_item", "" );
 }
-
 
 // read user override variables for image size
 $ThumbnailImageWidth = $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" );
@@ -173,12 +181,12 @@ if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
     {
 	// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-        $article = new eZArticle ();
-	$article->setContents ($category->description(false));
+        $article = new eZArticle();
+	    $article->setContents ($category->description(false));
 
         $renderer = new eZArticleRenderer( $article );
 
-	$t->set_var( "current_category_description", $renderer->renderIntro() );
+	    $t->set_var( "current_category_description", $renderer->renderIntro() );
     }
     else
     {
@@ -191,7 +199,7 @@ else
 }
 //EP ---------------------------------------------------------------------------
 
-if ( isset( $NoArticleHeader ) and $NoArticleHeader )
+if ( isset( $NoArticleHeader ) and $NoArticleHeader == true )
 {
     $t->set_var( "header_item", "" );
 }
@@ -318,8 +326,8 @@ foreach ( $categoryList as $categoryItem )
     {
 	// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-        $article = new eZArticle ();
-	$article->setContents ($categoryItem->description(false));
+        $article = new eZArticle();
+	    $article->setContents ($categoryItem->description(false));
 
         $renderer = new eZArticleRenderer( $article );
 
@@ -327,7 +335,7 @@ foreach ( $categoryList as $categoryItem )
     }
     else
     {
-	$t->set_var( "category_description", $categoryItem->description() );
+	    $t->set_var( "category_description", $categoryItem->description() );
     }
 
     //EP ---------------------------------------------------------------------------
@@ -479,6 +487,23 @@ foreach ( $articleList as $article )
     $renderer = new eZArticleRenderer( $article );
 
     $t->set_var( "article_intro", $renderer->renderIntro(  ) );
+    $t->set_var( "article_intro", $renderer->renderIntro(  ) );
+
+	$t->set_var( "messages", "" );
+	if ( $article->forum() )
+		{
+		$forum = $article->forum();
+		$MessageCount = $forum->messageCount( false, true );
+		if ( $MessageCount > 0 )
+			{
+			$t->set_var( "messages", $MessageCount );
+			$t->parse( "message_count", "message_count_tpl" );
+			}
+		else
+			$t->set_var( "message_count", "" );
+		}
+	else
+		$t->set_var( "message_count", "" );
 
     if ( $article->linkText() != "" )
     {
@@ -527,7 +552,7 @@ if ( isset( $GenerateStaticPage ) and $GenerateStaticPage == "true" and $cachedF
     $output .= "\$GlobalSectionID=\"$GlobalSectionID\";\n";
     $output .= "\$SiteTitleAppend=\"$SiteTitleAppend\";\n";
     $output .= "\$SiteDescriptionOverride=\"$SiteDescriptionOverride\";\n";
-    $output .= "\$eZLanguageOverride=\"$eZLanguageOverride\";\n";
+    // $output .= "\$eZLanguageOverride=\"$eZLanguageOverride\";\n";
     $output .= "?>\n";
 
     $output .= $t->parse( "output", "article_list_page_tpl" );

@@ -55,18 +55,22 @@ $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain",
 
 $t->setAllStrings();
 
-$t->set_file( "article_list_page_tpl", "search.tpl" );
+// $t->set_file( "article_list_page_tpl", "search.tpl" );
+
+$t->set_file( array(
+    "article_list_page_tpl" => "search.tpl"
+    ) );
 
 // article
 $t->set_block( "article_list_page_tpl", "article_list_tpl", "article_list" );
 $t->set_block( "article_list_tpl", "article_item_tpl", "article_item" );
 
 // Init url variables - for eZList...
-$t->set_var( "url_start_stamp", "+" );
-$t->set_var( "url_stop_stamp", "+" );
-$t->set_var( "url_category_array", "+" );
-$t->set_var( "url_contentswriter_id", "+" );
-$t->set_var( "url_photographer_id", "+" );
+$t->set_var( "url_start_stamp", urlencode( "+" ) );
+$t->set_var( "url_stop_stamp", urlencode( "+" ) );
+$t->set_var( "url_category_array", urlencode( "+" ) );
+$t->set_var( "url_contentswriter_id", urlencode( "+" ) );
+$t->set_var( "url_photographer_id", urlencode( "+" ) );
 
 if ( isset($_REQUEST['StartMonth']) && isset($_REQUEST['StartDay']) && isset($_REQUEST['StartYear']) && 
 	checkdate ( $_REQUEST['StartMonth'], $_REQUEST['StartDay'], $_REQUEST['StartYear'] ) )
@@ -108,17 +112,17 @@ $Offset = isset ( $_REQUEST['Offset'] )?isset ( $_REQUEST['Offset'] ):0;
 $paramsArray = array();
 if ( isset($_REQUEST['SearchText']) )
 {
-    if ( isset( $StartStamp ) )
+/*    if ( isset( $StartStamp ) )
     {
         $paramsArray["FromDate"] = $StartStamp;
-        $t->set_var( "url_start_stamp", htmlspecialchars( $StartStamp ) );
+        $t->set_var( "url_start_stamp", urlencode( $StartStamp ) );
     }
 
     if ( isset( $StopStamp ) )
     {
         $paramsArray["ToDate"] = $StopStamp;
-        $t->set_var( "url_stop_stamp", htmlspecialchars( $StopStamp ) );
-    }
+        $t->set_var( "url_stop_stamp", urlencode( $StopStamp ) );
+    }   */
     
     if ( $SearchWithinSections == "enabled" )
     {
@@ -152,6 +156,16 @@ if ( isset($_REQUEST['SearchText']) )
         // fix output string for URL
         $t->set_var( "url_category_array", htmlspecialchars( implode( "-", $_REQUEST['CategoryArray'] ) ) );
     }
+/*
+	echo "StartStamp: ".$StartStamp."<br>";
+	echo "StopStamp: ".$StopStamp."<br>";
+	echo "SectionID: ".$SectionIDOverride."<br>";
+	echo "ContentWriterID: ".$ContentsWriterID."<br>";
+	echo "PhotographerID: ".$PhotographerID."<br>";  
+	echo "<pre>";
+	print_r ( $paramsArray );
+	echo "</pre>";
+	exit();  */
 
     $t->set_var( "search_text", $tmpSearchText );
 
@@ -194,6 +208,15 @@ if ( isset( $articleList ) && count ( $articleList ) > 0 )
         $i++;
     }
 }
+
+//echo "<pre>";
+//print_r ( $t );
+
+//echo "totalCount:".$totalCount."<br>";
+//echo "Limit:".$Limit."<br>";
+//echo "Offset:".$Offset."<br>";
+//echo "</pre>";
+//exit();
 
 eZList::drawNavigator( $t, $totalCount, $Limit, $Offset, "article_list_page_tpl" );
 

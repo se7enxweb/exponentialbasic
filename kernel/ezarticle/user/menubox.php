@@ -178,7 +178,4 @@ else
     createArticleMenu();
 }
 
-
-
-
 ?>

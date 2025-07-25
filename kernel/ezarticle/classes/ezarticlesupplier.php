@@ -95,7 +95,8 @@ class eZArticleSupplier
                     $id = $article->id();
                     $cat = $article->categoryDefinition();
                     $cat = $cat->id();
-                    $url = "$article_url/$id/$cat/1";
+                    // $url = "$article_url/$id/$cat/1";
+		            $url = "$article_url/$id/1/$cat";
                     $article_array[] = array( "name" => $article->name(),
                                               "id" => $id,
                                               "url" => $url );
@@ -136,7 +137,8 @@ class eZArticleSupplier
                     $article_url = "/article/view";
                     $cat = $article->categoryDefinition();
                     $cat = $cat->id();
-                    $url = "$article_url/$id/$cat/1";
+                    // $url = "$article_url/$id/$cat/1";
+		            $url = "$article_url/$id/1/$cat";
                     $ret = array( "name" => $article->name(),
                                   "id" => $id,
                                   "url" => $url );

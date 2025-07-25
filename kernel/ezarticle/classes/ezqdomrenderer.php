@@ -289,7 +289,7 @@ class eZQDomRenderer
             }
 
 //            $newArticle = eZTextTool::nl2br( $intro );
-            $newArticle = $intro;
+            $newArticle = stripslashes($intro);
         }
 
         return $newArticle;
@@ -418,8 +418,8 @@ class eZQDomRenderer
             }
         }
 
-        $returnArray[] =& $intro;
-        $returnArray[] =& $bodyContents;
+        $returnArray[] =& stripslashes($intro);
+        $returnArray[] =& stripslashes($bodyContents);
 
         return $returnArray;
     }
@@ -734,7 +734,8 @@ class eZQDomRenderer
                     }
                     else
                     {
-                        $imageURL = false;
+                        $imageURL = "/" . $variation->imagePath();
+                        // $imageURL = false;
                         $imageWidth = 0;
                         $imageHeight = 0;
                     }

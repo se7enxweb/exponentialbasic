@@ -43,7 +43,7 @@
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">
 	<tr>
 		<td rowspan="2" width="50%">
-		<a href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
+		<a href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/"><img src="{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
 		</td>
 		<td >
 		<a href="{www_dir}{index}/article/articleview/{article_id}"><b>{article_name}<b/></a>

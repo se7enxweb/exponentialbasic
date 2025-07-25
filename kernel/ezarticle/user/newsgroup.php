@@ -188,6 +188,4 @@ else
     $t->pparse( "output", "news_group_tpl" );
 }
 
-
 ?>
-

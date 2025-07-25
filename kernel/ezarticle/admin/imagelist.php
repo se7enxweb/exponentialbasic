@@ -151,3 +151,5 @@ else
 $t->set_var( "article_id", $article->id() );
 
 $t->pparse( "output", "image_list_page_tpl" );
+
+?>

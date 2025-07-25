@@ -108,7 +108,11 @@
         <!-- END article_image_tpl -->
 
 
-	<div class="spacer"><div class="p">{article_intro}</div></div>
+	<div class="spacer"><div class="p">{article_intro}
+        <!-- BEGIN message_count_tpl -->
+	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
+	<!-- END message_count_tpl -->
+	<br/></div></div>
 
 
         <!-- BEGIN read_more_tpl -->

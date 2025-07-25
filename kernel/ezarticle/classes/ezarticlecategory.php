@@ -187,6 +187,20 @@ class eZArticleCategory
             else if ( count( $category_array ) == 1 )
             {
                 $this->fill( $category_array[0] );
+                /*
+                $this->ID = $category_array[0][$db->fieldName( "ID" )];
+                $this->Name = $category_array[0][$db->fieldName( "Name" )];
+                $this->Description = $category_array[0][$db->fieldName( "Description" )];
+                $this->ParentID = $category_array[0][$db->fieldName( "ParentID" )];
+                $this->ExcludeFromSearch = $category_array[0][$db->fieldName( "ExcludeFromSearch" )];
+                $this->SortMode = $category_array[0][$db->fieldName( "SortMode" )];
+                $this->OwnerID = $category_array[0][$db->fieldName( "OwnerID" )];
+                $this->Placement = $category_array[0][$db->fieldName( "Placement" )];
+                $this->SectionID = $category_array[0][$db->fieldName( "SectionID" )];
+                $this->ImageID = $category_array[0][$db->fieldName( "ImageID" )];
+                $this->EditorGroupID = $category_array[0][$db->fieldName( "EditorGroupID" )];
+                $this->ListLimit = $category_array[0][$db->fieldName( "ListLimit" )];
+                */
                 $ret = true;
             }
         }
@@ -696,6 +710,7 @@ class eZArticleCategory
     {
         if ( isset( $this->Name ) )
         {
+			$this->Name = stripslashes($this->Name);
             if ( $asHTML )
                 return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Name ) );
             return $this->Name;
@@ -711,6 +726,7 @@ class eZArticleCategory
     {
         if ( isset( $this->Description ) )
         {
+			$this->Description = stripslashes($this->Description);
             if ( $asHTML )
                 return eZTextTool::fixhtmlentities( htmlspecialchars( $this->Description ) );
             return $this->Description;
@@ -810,6 +826,10 @@ class eZArticleCategory
 
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT OwnerID from eZArticle_Category WHERE ID='$categoryID'");
+        
+        if ( !$res )
+            return false;
+
         $ownerID = $res[$db->fieldName("OwnerID")];
         if ( $ownerID == $user->id() )
             return true;
@@ -1036,7 +1056,9 @@ class eZArticleCategory
             return false;
 
         if ( !$categoryid )
-            $categoryid = false; //this->ID;
+            $categoryid = $this->ID;
+            // $categoryid = false;
+            // //this->ID;
 
         $db =& eZDB::globalDatabase();
         $query = "DELETE FROM eZArticle_ArticleCategoryLink
@@ -1063,9 +1085,9 @@ class eZArticleCategory
             return false;
 
         if ( !$categoryid )
-            $categoryid = 1;
+            $categoryid = $this->ID;
+            // $categoryid = 1;
             //$categoryid = $this->ID;
-
         // check if article already exists in category.
         $db->array_query( $qry, "SELECT ID FROM eZArticle_ArticleCategoryLink
                                  WHERE CategoryID='$categoryid' AND ArticleID='$articleID'" );
@@ -1147,7 +1169,6 @@ class eZArticleCategory
                         $categoryID=0,
                         $check_write = false )
     {
-
         if ( $categoryID != 0 )
             $catID = $categoryID;
         else
@@ -1316,8 +1337,18 @@ class eZArticleCategory
        {
            $db->array_query( $article_array, $query, array( "Limit" => $limit, "Offset" => $offset ) );
        }
+
        for ( $i=0; $i < count( $article_array ); $i++ )
        {
+           //            // Bad hack to make permission work with read *AND* write
+//            if ( $usePermission and $check_write  )
+//            {
+//                if ( $article_array[$i][$db->fieldName( "MaxReadPerm" )] == 1 and
+//                     $article_array[$i][$db->fieldName( "MaxWritePerm" )] == 1 )
+//                    $return_array[$i] = new eZArticle( $article_array[$i][$db->fieldName( "ArticleID" )] );
+//            }
+//            else
+                  // $return_array[$i] = new eZArticle( $article_array[$i] );
            $return_array[$i] = new eZArticle( $article_array[$i] );
        }
 

@@ -11,6 +11,12 @@
 <tr>
 	<td>
 	<h1>{article_name}</h1>
+
+<!-- BEGIN article_edit_tpl -->
+<p class="byline"> As the author, you may <a class="byline" href="{www_dir}{index}/article/articleedit/edit/{edit_article_id}/">edit</a> this article.</p>
+
+<!-- END article_edit_tpl -->
+
 	</td>
 	<td>
 	<!-- BEGIN current_category_image_item_tpl -->
@@ -104,10 +110,10 @@
 <!-- END type_item_tpl -->
 <!-- END attribute_list_tpl -->
 
-
-<!-- BEGIN attached_file_list_tpl -->
-<h2>{intl-attached_files}</h2>
 <table class="list" width="100%" cellspacing="0" cellpadding="4" border="0">
+<!-- BEGIN attached_file_list_tpl -->
+<tr><th>{intl-attached_files}:</th></tr>
+
 <!-- BEGIN attached_file_tpl -->
 <tr>
      <td width="50%" class="{td_class}">
@@ -126,6 +132,27 @@
 </table>
 <!-- END attached_file_list_tpl -->
 
+<br clear="all" />
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<!-- BEGIN section_item_tpl -->
+<tr>
+	<th>
+	{section_name}:
+	</th>
+</tr>
+<!-- BEGIN link_item_tpl -->
+<tr>
+	<td class="{td_class}">
+	&nbsp;<a href="{www_dir}{index}{link_url}">{link_name}</a>
+	</td>
+</tr>
+<!-- END link_item_tpl -->
+<tr>
+	<td>&nbsp;
+	</td>
+</tr>
+<!-- END section_item_tpl -->
+</table>
 <br clear="all" />
 <form method="post" action="{www_dir}{index}/article/mailtofriend/{article_id}/1/{category_id}/">
 

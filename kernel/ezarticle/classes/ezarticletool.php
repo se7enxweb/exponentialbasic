@@ -142,6 +142,7 @@ class eZArticleTool
         $PublishNoticePadding = $ini->read_var( "eZArticleMain", "PublishNoticePadding" );
         $PublishSite = $ini->read_var( "site", "SiteTitle" );
         $SiteURL = $ini->read_var( "site", "SiteURL" );
+        $UserSiteURL = $ini->read_var( "site", "UserSiteURL" );
 
 	//EP - different charsets for the MIME mail ----------------------------
 	global $GlobalSectionID;
@@ -150,6 +151,10 @@ class eZArticleTool
 	
 	$category = $article->categoryDefinition();
 	$GlobalSectionID = $category->sectionID();
+
+        // Set the global nVH variables.
+	$wwwDir = $ini->WWWDir; 
+	$indexFile = $ini->Index; 
 	
 	// init the section ???
 	//$sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
@@ -174,11 +179,6 @@ class eZArticleTool
         $mailTemplate->set_var( "site", $PublishSite );
         $mailTemplate->set_var( "title", $article->name( false ) );
         $mailTemplate->set_var( "author", $article->authorText( false ) );
-
-
-        // Set the global nVH variables.
-        $index = $ini->Index;
-        $wwwDir = $ini->WWWDir;
 
         // the index should be index.php for the usersite. 
         if ( $index == "/index_admin.php" )
@@ -216,6 +216,7 @@ class eZArticleTool
             if ( $bulkMailCategory != false )
                 $bulkMailCategories[] = $bulkMailCategory;
         }
+
 
         if ( count( $bulkMailCategories ) > 0 ) // send a mail to this group
         {

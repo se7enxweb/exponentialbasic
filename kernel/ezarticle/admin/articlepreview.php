@@ -235,5 +235,4 @@ else
 
 $t->pparse( "output", "article_preview_page_tpl" );
 
-
 ?>

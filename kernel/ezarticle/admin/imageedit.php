@@ -73,6 +73,12 @@ if ( $Action == "Insert" )
             {
                 $article->setThumbnailImage( $image );
             }
+				
+		    $objectPermission = new eZObjectPermission();
+						
+			eZObjectPermission::setPermission( -1, $image->id(), "imagecatalogue_image", "r" );
+			eZObjectPermission::setPermission( 1, $image->id(), "imagecatalogue_image", "w" );
+		
             eZLog::writeNotice( "Picture added to article: $ArticleID  from IP: $REMOTE_ADDR" );
         }
     }

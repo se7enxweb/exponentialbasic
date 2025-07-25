@@ -96,4 +96,5 @@ foreach ( $treeArray as $catItem )
 if ( isset ($SectionIDOverride) ) $t->set_var( "section_id", $SectionIDOverride );
 
 $t->pparse( "output", "search_form_tpl" );
+
 ?>

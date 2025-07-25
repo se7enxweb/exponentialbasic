@@ -85,4 +85,5 @@ foreach ( $treeArray as $catItem )
 }
 
 $t->pparse( "output", "search_form_tpl" );
+
 ?>

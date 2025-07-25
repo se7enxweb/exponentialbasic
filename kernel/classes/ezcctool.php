@@ -31,7 +31,7 @@
 
 class eZCCTool
 {
-    function checkCC( $CCNumber,$month,$year )
+    public static function checkCC( $CCNumber,$month,$year )
     {
         $ret = false;
         

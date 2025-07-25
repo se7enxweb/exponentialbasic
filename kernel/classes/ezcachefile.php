@@ -70,9 +70,14 @@ class eZCacheFile
     function &filename( $with_root = false )
     {
         if ( empty( $this->Filename ) )
-        {
-            unset( $this->Components[2] );
-            (string)$part = implode( $this->Separator[0], $this->Components );
+        {            
+            //$part = (string) implode( $this->Separator[0], $this->Components );
+	    $flatComponents = array_map(function ($item) {
+	        return is_array($item) ? json_encode($item) : (string)$item;
+		}, $this->Components);
+
+	    $part = implode($this->Separator[0], $flatComponents);
+
             $this->Filename = $part . "." . $this->Suffix;
         }
         if ( $with_root and empty( $this->AbsFilename ) )

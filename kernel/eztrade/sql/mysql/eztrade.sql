@@ -91,6 +91,21 @@ CREATE TABLE eZTrade_CategoryPermission (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE `eZTrade_ProductFileLink` (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `ProductID` int(11) NOT NULL DEFAULT 0,
+  `FileID` int(11) NOT NULL DEFAULT 0,
+  `Created` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (ID)
+);
+
+CREATE TABLE `eZTrade_ProductForumLink` (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `ProductID` int(11) NOT NULL DEFAULT 0,
+  `ForumID` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (ID)
+);
+
 CREATE TABLE eZTrade_ProductFormDict (
   ID int NOT NULL,
   ProductID int default NULL,

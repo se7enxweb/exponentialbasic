@@ -44,9 +44,10 @@ class eZAddress
     */
     function __construct( $id = "" )
     {
+        $this->PhoneID = 0;
+        $this->AddressTypeID = 0;
         if ( $id != "" )
         {
-
             $this->ID = $id;
             $this->get( $this->ID );
         }
@@ -79,8 +80,8 @@ class eZAddress
         {
             $db->lock( "eZAddress_Address" );
 			$this->ID = $db->nextID( "eZAddress_Address", "ID" );
-            $res[] = $db->query( "INSERT INTO eZAddress_Address
-                                  (ID, Street1, Street2, Zip, Place, CountryID, RegionID, AddressTypeID, Name)
+            $query = "INSERT INTO eZAddress_Address
+                                  (ID, Street1, Street2, Zip, Place, CountryID, RegionID, AddressTypeID, Name, Phone)
                                   VALUES
                                   ('$this->ID',
                                    '$street1',
@@ -88,10 +89,12 @@ class eZAddress
                                    '$this->Zip',
                                    '$place',
                                    '$country_id',
-				                   '$region_id',
+				   '$region_id',
                                    '$this->AddressTypeID',
                                    '$name', 
-                                   '$this->Phone')" );
+                                   '$this->Phone')";
+
+            $res[] = $db->query( $query );
             $db->unlock();
             $ret = true;
         }
@@ -479,6 +482,7 @@ class eZAddress
 
     /// Relation to an eZAddressTypeID
     var $AddressTypeID;
+    var $PhoneID;
 }
 
 ?>

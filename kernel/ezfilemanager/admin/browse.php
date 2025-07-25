@@ -35,9 +35,7 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
 $ini =& INIFile::globalINI();
-
 $Language = $ini->read_var( "eZFileManagerMain", "Language" );
-
 $ImageDir = $ini->read_var( "eZFileManagerMain", "ImageDir" );
 
 $t = new eZTemplate( "kernel/ezfilemanager/admin/" . $ini->read_var( "eZFileManagerMain", "AdminTemplateDir" ),
@@ -66,6 +64,11 @@ $t->set_block( "folder_tpl", "folder_read_tpl", "folder_read" );
 $t->set_var( "read", "" );
 
 $user =& eZUser::currentUser();
+
+if( !isset( $FolderID ) )
+{
+    $FolderID = 0;
+}
 
 $folder = new eZVirtualFolder( $FolderID );
 

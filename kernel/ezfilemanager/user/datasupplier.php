@@ -148,6 +148,13 @@ switch ( $url_array[2] )
     }
     break;
 
+    case "browse":
+    {
+        $FolderID = $url_array[3];
+        include( "kernel/ezfilemanager/admin/browse.php" );
+    }
+    break;
+
     case "search":
     {
         if ( $url_array[3] == "parent" )

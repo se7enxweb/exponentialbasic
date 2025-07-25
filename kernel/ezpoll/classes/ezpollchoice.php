@@ -242,4 +242,5 @@ class eZPollChoice
     var $PollID;
     var $Offset;
 }
+
 ?>

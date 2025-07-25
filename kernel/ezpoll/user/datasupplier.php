@@ -85,7 +85,9 @@ switch ( $url_array[2] )
 
     case "test":
     {
-        include( "ezcontact/test.php" );
+        include( "kernel/ezcontact/test.php" );
     }
 
 }
+
+?>

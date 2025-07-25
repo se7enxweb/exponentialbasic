@@ -28,7 +28,7 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZPollMain", "Language" );
 $errorIni = new INIFIle( "kernel/ezpoll/admin/intl/" . $Language . "/polledit.php.ini", false );
@@ -338,4 +338,5 @@ $t->set_var( "head_line", $headline );
 $t->set_var( "error_msg", isset( $errorMsg ) ? $errorMsg : false );
 
 $t->pparse( "output", "poll_edit_page" );
+
 ?>

@@ -27,7 +27,7 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZPollMain", "Language" );
 $PageCaching = $ini->read_var( "eZPollMain", "PageCaching" );
 $errorIni = new INIFIle( "kernel/ezpoll/user/intl/" . $Language . "/votebox.php.ini", false );
@@ -147,4 +147,5 @@ function createPollMenu( $generateStaticPage = false )
     }
 
 }
+
 ?>

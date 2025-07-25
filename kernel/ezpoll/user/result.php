@@ -26,7 +26,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZPollMain", "Language" );
 
@@ -129,4 +129,5 @@ foreach ( $pollArray as $poll )
 }
 
 $t->pparse( "output", "result" );
+
 ?>

@@ -11,8 +11,10 @@
 </tr>
 <!-- BEGIN vote_item_tpl -->
 <tr>
-	<td class="menutext" width="99%" colspan="2">
+	<td width="1%">
 	<input type="radio" value="{choice_id}" name="ChoiceID">
+	</td>
+	<td class="menutext" width="99%">
 	{choice_name}
 	</td>
 </tr>

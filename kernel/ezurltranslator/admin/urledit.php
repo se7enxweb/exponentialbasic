@@ -90,8 +90,9 @@ foreach ( $urlArray as $url )
 
     $t->parse( "url_item", "url_item_tpl", true );
 }
+
 $t->parse( "url_list", "url_list_tpl" );
 
-
 $t->pparse( "output", "url_edit_tpl" );
+
 ?>

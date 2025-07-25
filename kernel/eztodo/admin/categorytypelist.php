@@ -72,7 +72,6 @@ if ( count( $category_type_array ) == 0 )
     $t->set_var( "category_item", "" );
 }
 
-
 $t->pparse( "output", "category_type_page" );
     
 ?>

@@ -35,7 +35,7 @@
 // include_once( "eztodo/classes/eztodo.php" );
 // include_once( "eztodo/classes/ezstatus.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTodoMain", "Language" );
 
 

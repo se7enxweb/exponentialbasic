@@ -115,4 +115,5 @@ $t->set_var( "category_type_name", $CategoryName );
 $t->set_var( "document_root", $DOC_ROOT );
 
 $t->pparse( "output", "categorytypeedit" );
+
 ?>

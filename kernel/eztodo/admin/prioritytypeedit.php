@@ -35,7 +35,7 @@
 
 // include_once( "eztodo/classes/ezpriority.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTodoMain", "Language" );
 $DOC_ROOT = $ini->read_var( "eZTodoMain", "DocumentRoot" );
 
@@ -116,4 +116,5 @@ $t->set_var( "submit_text", isset( $submittext ) ? $submittext : false );
 $t->set_var( "document_root", $DOC_ROOT );
 
 $t->pparse( "output", "prioritytypeedit" );
+
 ?>

@@ -34,7 +34,7 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTodoMain", "Language" );
 
  
@@ -77,4 +77,5 @@ if ( count ( $priority_type_array ) == 0 )
 }
 
 $t->pparse( "output", "priority_type_page" );
+
 ?>

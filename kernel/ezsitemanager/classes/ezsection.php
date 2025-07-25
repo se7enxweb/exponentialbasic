@@ -238,7 +238,10 @@ class eZSection
         {
             $db =& eZDB::globalDatabase();
             $db->query_single( $siteDesign, "SELECT SiteDesign FROM eZSiteManager_Section WHERE ID='$sectionID'" );
-            return $siteDesign[$db->fieldName("SiteDesign")];
+	    if( is_array( $siteDesign ) && !empty( $siteDesign ) )
+	    {
+                return $siteDesign[$db->fieldName("SiteDesign")];
+	    }
         }
         else {
             if( isset( $this->SiteDesign ) )
@@ -302,8 +305,8 @@ class eZSection
             $db->query_single( $templateStyle, "SELECT Language FROM eZSiteManager_Section WHERE ID='$sectionID'" );
             return $templateStyle[$db->fieldName("Language")];
         }
-        else
-            return htmlspecialchars( $this->SecLanguage );
+        // else
+        //     return htmlspecialchars( $this->SecLanguage );
     }
 
     /*!

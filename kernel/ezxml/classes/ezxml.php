@@ -113,8 +113,8 @@ class eZXML
                     //gb: not understanding what this was original intended on doing so we disable it to proceed.
                     if ( $lastTag != $tagName )
                     {
-                        //print( "Error parsing XML, unmatched tags $tagName vs $lastTag" );
-                        //return false;
+                        print( "Error parsing XML, unmatched tags $tagName" );
+                        return false;
                     }
                     else
                     {

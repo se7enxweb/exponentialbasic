@@ -28,10 +28,13 @@ $ini =& INIFile::globalINI();
 $PageCaching =& $ini->read_var( "eZTradeMain", "PageCaching");
 
 $PureStatic = "false";
+//$PureStatic = "true";
 
-unset( $CacheFile );
-
+//unset( $CacheFile );
 $GenerateStaticPage = "false";
+//$GenerateStaticPage = "true";
+
+
 if ( $PageCaching == "enabled" )
 {
     // include_once( "classes/ezcachefile.php" );
@@ -98,6 +101,8 @@ if ( $PureStatic == "false" )
     $i=0;
     foreach ( $categoryList as $categoryItem )
     {
+      if (  $categoryItem->id() != "312" ) {
+
         if ( eZObjectPermission::hasPermission( $categoryItem->id(), "trade_category", "r", $user ) )
         {
             $t->set_var( "category_id", $categoryItem->id() );
@@ -147,8 +152,9 @@ if ( $PureStatic == "false" )
             // $t->parse( "category", "category_tpl", true );
             $i++;
         }
+      }
     }
-          
+             
     if ( $CategoryListProductImages == "true" ) {
         $t->parse( "category_image_hot_deals", "category_image_hot_deals_tpl", true);
         $t->parse( "category_image_list", "category_image_list_tpl", true);

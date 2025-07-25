@@ -47,6 +47,12 @@ $t->set_block( "customer_item_list_tpl", "customer_item_tpl", "customer_item" );
 
 $t->set_var( "customer_item", "" );
 
+if ( isset( $SearchText) && $SearchText != "" )
+	{
+		$SearchText = addslashes (trim ($SearchText) );
+		$customers =& eZOrder::customers( $SearchText );
+	}
+else
 $customers =& eZOrder::customers();
 
 $i=0;

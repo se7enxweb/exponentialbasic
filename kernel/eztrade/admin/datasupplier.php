@@ -41,12 +41,115 @@ $url_array = explode( "/", $REQUEST_URI );
 
 switch ( $url_array[2] )
 {
+    case "funkyhomo" :
+    {
+
+        if ( isset( $AddType ) )
+            $Action = "AddType";
+
+        if ( isset( $AddGroup ) )
+            $Action = "AddGroup";
+
+        if ( isset( $Store ) )
+            $Action = "Store";
+
+        if ( isset( $Delete ) )
+            $Action = "DeleteSelected";
+
+
+        include( "kernel/eztrade/admin/shippingtypes.php" );
+    }
+    break;
+    /*
+    case "export" :
+    {
+      // automated ftp or manual ?
+      if ( $url_array[3] == 'froogle' )
+      {  
+	if ( $url_array[4] == 'download' )
+	{
+	  $Action = "export";
+	} 
+	else {
+	  // $Action = "export-cron";
+	  $Action = "display";
+	}
+
+	include( "kernel/eztrade/admin/export_froogle.php" );
+      } 
+      elseif ( $url_array[3] == 'yahoo' )
+      {  
+        if ( $url_array[4] == 'download' )
+	{
+	  $Action = "export";
+	}
+        else {
+          // $Action = "export-cron";
+          $Action = "display";
+        }
+
+        include( "kernel/eztrade/admin/export_yahoo.php" );
+      } 
+      elseif ( $url_array[3] == 'download' )
+      {  
+	$Action = "export";
+        include( "kernel/eztrade/admin/export_froogle.php" );
+      } 
+      else {
+	// $Action = "export-cron";
+	$Action = "display";
+	include( "kernel/eztrade/admin/export_froogle.php" );
+      }
+
+      // include( "kernel/eztrade/admin/froogle.php" );
+    }
+    break;
+    */
+
+    case "export" :
+    {
+      if ( $url_array[3] == 'froogle' )
+      {
+	if ( $url_array[4] == 'download' )
+	{
+	  $Action = "export";
+        }
+	else
+	{
+	  $Action = "export-cron";
+        }
+	include( "kernel/eztrade/admin/export_froogle.php" );
+      }
+      elseif ( $url_array[3] == 'yahoo' )
+      {
+	if ( $url_array[4] == 'download' )
+	{
+	  $Action = "export";
+        }
+	else
+	{
+	  $Action = "export-cron";
+        }
+	include( "kernel/eztrade/admin/export_yahoo.php" );
+      }
+      else {
+	$Action = "export-cron";
+	include( "kernel/eztrade/admin/export_froogle.php" );
+      }
+    }
+    break;
+
     case "orderlist" :
     {
         if ( $url_array[3] != "" )
             $Offset = $url_array[3];
         else
             $Offset = 0;
+        
+        if( isset( $_REQUEST['SortBy'] ) )
+            $OrderBy = $_REQUEST['SortBy'];
+        else
+            $OrderBy = "Date";
 
         include( "kernel/eztrade/admin/orderlist.php" );
     }
@@ -86,8 +189,9 @@ switch ( $url_array[2] )
 
 
     case "categorylist" :
-
-        if ( isset( $url_array[4] ) && ( $url_array[3] == "parent") && ( $url_array[4] != "" ) )
+    {
+      if( isset( $DetailView ) && $DetailView ){
+        if ( ( $url_array[3] == "parent") && ( $url_array[4] != "" ) )
         {
             $ParentID = $url_array[4];
 
@@ -98,9 +202,25 @@ switch ( $url_array[2] )
         }
         else
         {
-            include( "kernel/eztrade/admin/categorylist.php" );
+            include( "kernel/eztrade/admin/detailcategorylist.php" );
         }
+      }else{
+        // else assume ( $NormalView )
 
+	if ( ( $url_array[3] == "parent") && ( $url_array[4] != "" ) )
+	{
+            $ParentID = $url_array[4];
+            $Offset = $url_array[5];
+            include( "kernel/eztrade/admin/simplecategorylist.php" );
+	}
+    else
+	{
+	  include( "kernel/eztrade/admin/simplecategorylist.php" );
+    }
+//             include( "kernel/eztrade/admin/categorylist.php" );
+
+      }
+    }
         break;
 
     case "typelist" :
@@ -200,11 +320,65 @@ switch ( $url_array[2] )
     {
         switch ( $url_array[3] )
         {
+		
+			   // filelist
+             case "filelist" :
+                {
+                    $ProductID = $url_array[4];
+                    include( "kernel/eztrade/admin/filelist.php" );
+                    break;
+                }
+				
             // preview
             case "productpreview" :
                 $ProductID = $url_array[4];
                 include( "kernel/eztrade/admin/productpreview.php" );
                 break;
+
+			//files	
+				case "fileedit" :
+            {
+                if ( isSet( $Browse ) )
+                {
+                    include( "kernel/ezfilemanager/admin/browse.php" );
+                    break;
+                }
+                switch ( $url_array[4] )
+                {
+                    case "new" :
+                    {
+                        $Action = "New";
+                        $ProductID = $url_array[5];
+                        include( "kernel/eztrade/admin/fileedit.php" );
+                    }
+                    break;
+
+                    case "edit" :
+                    {
+                        $Action = "Edit";
+                        $ProductID = $url_array[6];
+                        $FileID = $url_array[5];
+                        include( "kernel/eztrade/admin/fileedit.php" );
+                    }
+                    break;
+
+                    case "delete" :
+                    {
+                        $Action = "Delete";
+                        $ProductID = $url_array[6];
+                        $FileID = $url_array[5];
+                        include( "kernel/eztrade/admin/fileedit.php" );
+                    }
+                    break;
+
+		    default :
+                    {
+                        include( "kernel/eztrade/admin/fileedit.php" );
+                    }
+                }
+            }
+            break;
+				
 
             // Images
             case "imagelist" :
@@ -242,6 +416,8 @@ switch ( $url_array[2] )
                     $Action = "StoreDef";
                     if ( isset( $DeleteSelected ) )
                         $Action = "Delete";
+		    if ( isset( $UpdateImages ) )
+                        $Action = "UpdateImages";
                     $ProductID = $url_array[5];
                     include( "kernel/eztrade/admin/imageedit.php" );
                 }
@@ -276,8 +452,8 @@ switch ( $url_array[2] )
             case "link" :
             {
                 $ItemID = $url_array[5];
-                // include_once( "eztrade/classes/ezproduct.php" );
-                // include_once( "eztrade/classes/ezproducttool.php" );
+                // include_once( "kernel/eztrade/classes/ezproduct.php" );
+                // include_once( "kernel/eztrade/classes/ezproducttool.php" );
 
                 $INIGroup = "eZTradeMain";
                 $DefaultSectionsName = "ProductLinkSections";
@@ -447,6 +623,21 @@ switch ( $url_array[2] )
             $Action = "Delete";
 
         include( "kernel/eztrade/admin/vattypes.php" );
+    }
+    break;
+
+    case "boxtypes" :
+    {
+        if ( isset( $Add ) )
+            $Action = "Add";
+
+        if ( isset( $Store ) )
+            $Action = "Store";
+
+        if ( isset( $Delete ) )
+            $Action = "Delete";
+
+        include( "kernel/eztrade/admin/boxtypes.php" );
     }
     break;
 

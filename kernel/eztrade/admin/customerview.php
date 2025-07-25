@@ -82,7 +82,8 @@ if ( $customer->accountNumber() != "" )
 }else {
   $t->set_var( "customer_account_number", "N/A" );
 }
-$orders =& eZOrder::getByCustomer( $customer );
+$order = new eZOrder();
+$orders =& $order->getByCustomer( $customer );
 
 $locale = new eZLocale( $Language );
 $currency = new eZCurrency();
@@ -94,7 +95,7 @@ $addressArray =& $customer->addresses();
 foreach ( $addressArray as $address )
 {    
     $t->set_var( "street1", $address->street1() );
-    $t->set_var( "street2", $address->street1() );
+    $t->set_var( "street2", $address->street2() );
     $t->set_var( "zip", $address->zip() );
     $t->set_var( "place", $address->place() );
 
@@ -126,7 +127,7 @@ foreach ( $orders as $order )
 
     $statusType = $status->type();
     $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-    $statusName =  $languageINI->read_var( "strings", $statusName );
+//    $statusName =  $languageINI->read_var( "strings", $statusName );
     $t->set_var( "order_status", $statusName );
 
     $currency->setValue( $order->totalPrice() );
@@ -136,7 +137,8 @@ foreach ( $orders as $order )
     $t->parse( "order_item",  "order_item_tpl", true );    
 }
 
-$wishlist =& eZWishList::getByUser( $customer );
+$wishlistObject  =new eZWishList();
+$wishlist =& $wishlistObject->getByUser( $customer );
 
 $t->set_var( "wish_count", "0" );
 $t->set_var( "wish_list", "" );
@@ -229,7 +231,8 @@ if ( $wishlist )
 
 $t->set_var( "voucher_list", "" );
 $vouchers = "0";
-$vouchers =& eZVoucherUsed::getByUser( $customer );
+$voucherObject = new eZVoucherUsed();
+$vouchers =& $voucherObject->getByUser( $customer );
 $count = count ( $vouchers );
 $t->set_var( "voucher_count", $count );
 $t->set_var( "used_item", "" );

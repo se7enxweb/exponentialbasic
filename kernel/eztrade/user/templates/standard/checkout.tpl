@@ -15,7 +15,7 @@
 <!-- END empty_cart_tpl -->
 
 <!-- BEGIN full_cart_tpl -->
-<table class="list" width="100%" cellspacing="0" cellpadding="4" border="0">
+<table border="0" class="list" width="100%" cellspacing="0" cellpadding="4">
 
 <!-- BEGIN cart_item_list_tpl -->
 <tr>
@@ -48,6 +48,10 @@
     <td class="{td_class}">{product_number}</td>
     <td class="{td_class}"><a href="{www_dir}{index}/trade/productview/{product_id}">{product_name}</a></td>
     <td class="{td_class}" align="right"><nobr>{product_price}</nobr></td>
+    
+	<!-- BEGIN cart_savings_item_tpl -->
+    <td class="{td_class}" align="right">&nbsp;</td>
+	<!-- END cart_savings_item_tpl -->
     
     <td class="{td_class}" align="right">
     {product_count}    
@@ -196,7 +200,7 @@
     <td align="right">
 	    <select name="ShippingTypeID">
 	    <!-- BEGIN shipping_type_tpl -->
-	    <option value="{shipping_type_id}" {type_selected}>{shipping_type_name}</option>
+	    <option value="{shipping_type_id}" {type_selected}>{shipping_type_name} (${shipping_type_cost})</option>
 	    <!-- END shipping_type_tpl -->
 	    </select>
 	    <input class="stdbutton" type="submit" name="Recalculate" value="{intl-recalculate}" />
@@ -236,16 +240,13 @@
 <!-- END tax_specification_tpl -->
 <!-- END full_cart_tpl -->
 
-
-
-
-
+<hr noshade="noshade" size="4" />
 
 <!-- BEGIN billing_address_tpl -->
 <p class="boxtext">{intl-billing_to}:</p>
 <select name="BillingAddressID">
 <!-- BEGIN billing_option_tpl -->
-<option {is_selected} value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}, {zip} {place} {region} {country}</option>
+<option value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}{place}{region} {zip}{country}</option>
 <!-- END billing_option_tpl -->
 </select>
 <!-- END billing_address_tpl -->
@@ -253,12 +254,13 @@
 <p class="boxtext">{intl-shipping_to}:</p>
 <select name="ShippingAddressID">
 <!-- BEGIN shipping_address_tpl -->
-<option {is_selected} value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}, {zip} {place} {region} {country}</option>
+<option value="{address_id}">{customer_first_name} {customer_last_name}, {street1}, {street2}{place}{region} {zip}{country}</option>
 <!-- END shipping_address_tpl -->
 <!-- BEGIN wish_user_tpl -->
 <option value="{wish_user_address_id}">{wish_first_name} {wish_last_name}</option>
 <!-- END wish_user_tpl -->
 </select>
+<br>[<a href="{www_dir}{index}/user/userwithaddress/edit/{user_id}/" class="small">{intl-add_address}</a>]
 
 <br /><br />
 <p class="boxtext">{intl-comment}:</p>

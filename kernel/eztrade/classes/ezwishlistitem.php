@@ -286,7 +286,7 @@ class eZWishListItem
 
        foreach ( $res_array as $item )
        {
-           $return_array[] = new eZWishlistOptionValue( $item[$db->fieldName( "ID" )] );
+           $return_array[] = new eZWishListOptionValue( $item[$db->fieldName( "ID" )] );
        }
        return $return_array;
     }

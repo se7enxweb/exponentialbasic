@@ -36,6 +36,12 @@
 <tr>
 	<td>
 	<h2>{title_text}</h2>
+
+<!-- BEGIN user_login_tpl -->
+<p class="byline"> As the admin, you may <a class="byline" href="{www_dir}index_admin.php/trade/productedit/edit/{product_id}/" target="_blank">edit</a> this product.</p>
+
+<!-- END user_login_tpl -->
+
 	</td>
 	<td align="right">
 	<br />
@@ -68,7 +74,7 @@
 <!-- END main_image_tpl -->
 
 <p>{intro_text}</p>
-
+<br>
 <div class="p">{description_text}</div>
 
 
@@ -272,7 +278,7 @@
 	<td align="right" valign="top">
 	<!-- BEGIN external_link_tpl -->
 	<p class="boxtext">{intl-external_link}:</p>
-	<a href="{www_dir}{index}{external_link_url}" target="_blank">{external_link_url}</a>
+	<a href="{external_link_url}" target="_blank">{external_link_url}</a>
 	<!-- END external_link_tpl -->
 	</td>
 
@@ -314,14 +320,87 @@
 <input class="okbutton" type="submit" name="Voucher" value="{intl-next}" />
 
 <!-- END voucher_buttons_tpl -->
+<hr noshade="noshade" size="4" /><br>
 
-</form>
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+<tr>
+	<td width="70%">
+<!-- BEGIN image_list_tpl -->
+<table width="100%" align="left" cellspacing="1" cellpadding="2" border="0">
+
+<!-- BEGIN image_tpl -->
+<tr>
+<td valign="top">
+<a href="{www_dir}{index}/imagecatalogue/imageview/{image_id}/?RefererURL=/{module}/{module_view}/{product_id}/{category_id}/">
+<img src="{image_url}" border="0" alt="{image_caption}" width="{image_width}" height="{image_height}"/></a>
+</td>
+<td valign="top" class="pictext">{image_caption}</td>
+</tr>
+<!-- END image_tpl -->
+</table>
+<br />
+
+<!-- END image_list_tpl -->
+	</td>
+	<td width="30%" valign="top">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<!-- BEGIN section_item_tpl -->
+<tr>
+	<th>
+	{section_name}:
+	</th>
+</tr>
+<!-- BEGIN link_item_tpl -->
+<tr>
+	<td class="{td_class}">
+	&nbsp;<a href="{www_dir}{index}{link_url}">{link_name}</a>
+	</td>
+</tr>
+<!-- END link_item_tpl -->
+<tr>
+	<td>&nbsp;
+	</td>
+</tr>
+<!-- END section_item_tpl -->
+</table>
+	</td>
+</tr>
+
+<tr><td colspan="2">
+<table width="100%" class="list" cellspacing="0" cellpadding="4" border="0">
+<!-- BEGIN attached_file_list_tpl -->
+<tr><th>{intl-attached_files}:</th></tr>
+
+<!-- BEGIN attached_file_tpl -->
+<tr>
+     <td width="50%" class="{td_class}">
+     <a href="{site_protocol}{site_host}/{www_dir}{index}/filemanager/download/{file_id}/{original_file_name}">{file_name}</a>
+     </td>
+     <td width="50%" class="{td_class}" align="right">
+     <div class="p"><a href="{site_protocol}{site_host}/{www_dir}{index}/filemanager/download/{file_id}/{original_file_name}">( {file_size}&nbsp;{file_unit} )</a></div>
+     </td>
+</tr>
+<tr>
+     <td colspan="2" valign="top" class="{td_class}"> 
+	{file_description}
+     </td>
+</tr>
+<!-- END attached_file_tpl -->
+</table>
+<!-- END attached_file_list_tpl -->
+</td></tr>
+</table>
+
+
 <br /><br />
 
 <!-- BEGIN numbered_page_link_tpl -->
-<div align="center"><a class="path" href="{www_dir}{index}/{module}/{module_view}/{product_id}/{product_category_id}/">| {intl-numbered_page} |</a></div>
+<div align="center"><a class="path" href="{www_dir}{index}/{module}/{module_view}/{product_id}/0/">| {intl-numbered_page} |</a></div>
 <!-- END numbered_page_link_tpl -->
 
 <!-- BEGIN print_page_link_tpl -->
-<div align="center"> <a class="path" href="{www_dir}{index}/{module}/{module_print}/{product_id}/{product_category_id}/">| {intl-print_page} |</a></div>
+<div align="center"> <a class="path" href="{www_dir}{index}/{module}/{module_print}/{product_id}/{category_id}/">| {intl-print_page} |</a></div>
 <!-- END print_page_link_tpl -->
+
+</form>
+

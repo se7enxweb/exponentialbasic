@@ -427,7 +427,7 @@ class eZPriceGroup
                     $first ? $group_text = "PriceID='$group'" : $group_text .= "OR PriceID='$group'";
                     $first = false;
                 }
-                if ( $group_text )
+                if ( isset( $group_text ) && $group_text != "" )
                     $group_text = " AND ( $group_text )";
                 else
                     $group_text = "";
@@ -437,6 +437,8 @@ class eZPriceGroup
             {
                 $group_text = "AND PriceID='$priceid'";
             }
+
+	        $array = array();
 
             // don't give better price unless you're a part of a price group
             if ( $group_text != "" )
@@ -471,8 +473,7 @@ class eZPriceGroup
     {
         $db =& eZDB::globalDatabase();
         $db->begin();
-
-        $ret[] = $db->query( "INSERT INTO eZTrade_ProductPriceLink
+        $query = "INSERT INTO eZTrade_ProductPriceLink
                      ( PriceID,
                        ProductID,
                        Price,
@@ -483,14 +484,16 @@ class eZPriceGroup
                        '$productid',
                        '$price',
                        '$optionid',
-                       '$valueid' )" );
+                       '$valueid' )";
+
+        $ret[] = $db->query( $query );
         eZDB::finish( $ret, $db );
     }
 
     /*!
       Removes all prices from a product with the specific option and value id.
     */
-    static public function removePrices( $productid, $optionid = 0, $valueid = 0 )
+    static public function removePrices( $productid, $optionid = 0, $valueid = 0, $priceid='' )
     {
         $db =& eZDB::globalDatabase();
         $db->begin();
@@ -498,8 +501,12 @@ class eZPriceGroup
             $option_text = "AND OptionID='$optionid'";
         if ( $valueid >= 0 )
             $value_text = "AND ValueID='$valueid'";
+		if ( $priceid != '' )
+			$priceid_text = "AND PriceID='$priceid'";
+		else
+			$priceid_text = '';
         $ret[] = $db->query( "DELETE FROM eZTrade_ProductPriceLink
-                     WHERE ProductID='$productid' $option_text $value_text" );
+                     WHERE ProductID='$productid' $option_text $value_text $priceid_text" );
         eZDB::finish( $ret, $db );
     }
 

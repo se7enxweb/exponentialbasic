@@ -42,6 +42,7 @@
 if ( $CategoryID != 0 )
 {
     $GlobalSectionID = eZProductCategory::sectionIDStatic( $CategoryID );
+    $CategoryArray = $CategoryID;
 }
 
 // init the section
@@ -62,6 +63,7 @@ $CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
 $ThumbnailImageWidth = $ini->read_var( "eZTradeMain", "ThumbnailImageWidth" );
 $ThumbnailImageHeight = $ini->read_var( "eZTradeMain", "ThumbnailImageHeight" );
 
+$ShowPrice = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
 
 $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "productlist.php" );
@@ -78,7 +80,10 @@ $t->set_block( "product_tpl", "product_image_tpl", "product_image" );
 $t->set_block( "product_list_page_tpl", "category_list_tpl", "category_list" );
 $t->set_block( "category_list_tpl", "category_tpl", "category" );
 
-if ( !isset( $ModuleName ) )
+$t->set_var( "product", "" );
+$t->set_var( "module", "" );
+
+if ( !isSet( $ModuleName ) )
     $ModuleName = "trade";
 if ( !isset( $ModuleList ) )
     $ModuleList = "productlist";
@@ -113,37 +118,42 @@ foreach ( $pathArray as $path )
 
 $categoryList =& $category->getByParent( $category );
 
+$user =& eZUser::currentUser();
+
 // categories
 $i = 0;
 foreach ( $categoryList as $categoryItem )
 {
-    $t->set_var( "category_id", $categoryItem->id() );
-    $t->set_var( "category_name", $categoryItem->name() );
-    $t->set_var( "category_description", $categoryItem->description() );
+  if ( eZObjectPermission::hasPermission( $categoryItem->id(), "trade_category", "r", $user ) )
+  {
+        $t->set_var( "category_id", $categoryItem->id() );
+        $t->set_var( "category_name", $categoryItem->name() );
+        $t->set_var( "category_description", $categoryItem->description() );
 
-    $parent = $categoryItem->parent();
-    
-    if ( $categoryItem->parent() != 0 )
-    {
         $parent = $categoryItem->parent();
-        $t->set_var( "category_parent", $parent->name() );
-    }
-    else
-    {
-        $t->set_var( "category_parent", "&nbsp;" );
-    }
+        
+        if ( $categoryItem->parent() != 0 )
+        {
+            $parent = $categoryItem->parent();
+            $t->set_var( "category_parent", $parent->name() );
+        }
+        else
+        {
+            $t->set_var( "category_parent", "&nbsp;" );
+        }
 
-    if ( ( $i % 2 ) == 0 )
-    {
-        $t->set_var( "td_class", "bglight" );
-    }
-    else
-    {
-        $t->set_var( "td_class", "bgdark" );
-    }
-    
-    $t->parse( "category", "category_tpl", true );
-    $i++;
+        if ( ( $i % 2 ) == 0 )
+        {
+            $t->set_var( "td_class", "bglight" );
+        }
+        else
+        {
+            $t->set_var( "td_class", "bgdark" );
+        }
+        
+        $t->parse( "category", "category_tpl", true );
+        $i++;
+	}
 }
 
 if ( count( $categoryList ) == 0 )
@@ -169,6 +179,8 @@ $i = 0;
 
 foreach ( $productList as $product )
 {
+  if ( eZObjectPermission::hasPermission( $category->id(), "trade_category", "r", $user ) )
+{
     $t->set_var( "product_id", $product->id() );
 
     // preview image
@@ -191,7 +203,7 @@ foreach ( $productList as $product )
     }
     if( isset( $SiteDescriptionOverride ) )
     $SiteDescriptionOverride .= $product->name() . " ";
-
+    // $SiteDescriptionOverride = addslashes( $SiteDescriptionOverride );
     $t->set_var( "product_name", $product->name() );
 
     $t->set_var( "product_intro_text", eZTextTool::nl2br( $product->brief() ) );
@@ -258,6 +270,7 @@ foreach ( $productList as $product )
     $t->parse( "add_to_cart", "add_to_cart_tpl" );
     $t->parse( "product", "product_tpl", true );
     $i++;
+    }
 }
 
 if ( count( $productList ) > 0 )
@@ -275,21 +288,32 @@ eZList::drawNavigator( $t, $TotalTypes, $Limit, $Offset, "product_list_page_tpl"
 
 if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
-    if ( $user )
-        $CategoryArray =& $user->groups( false );
-    $cache = new eZCacheFile( "kernel/eztrade/cache/", array( "productlist", $CategoryArray, $Offset, $PriceGroup ),
+    // if ( $user ) {
+    //     $CategoryArray =& $user->groups( false );
+    // } 
+    // else
+    // {
+    //     $CategoryArray = '';
+    // }
+  
+    if ( !$PriceGroup ) 
+      $PriceGroup = 0;
+    
+    $cache = new eZCacheFile( "kernel/eztrade/cache/", array( "productlist", $CategoryID, $Offset, $PriceGroup ),
                               "cache", "," );
-
+      $cacheFileName = $cache->filename( true );
     // add PHP code in the cache file to store variables
+    /*
     $output = "<?php\n";
     $output .= "\$GlobalSectionID=\"$GlobalSectionID\";\n";
     $output .= "\$SiteTitleAppend=\"$SiteTitleAppend\";\n";
     $output .= "\$SiteDescriptionOverride=\"$SiteDescriptionOverride\";\n";    
     $output .= "?>\n";
+    */
     
-    $output .= $t->parse( "output", "product_list_page_tpl" );
-    print( $output );
-    $CacheFile->store( $output );
+    $output = $t->parse( "output", "product_list_page_tpl" );
+    print( $output ."<br /><br />" );
+    $cache->store( $output );
 }
 else
 {

@@ -61,6 +61,9 @@ class eZCartItem
     */
     function __construct( $id="" )
     {
+        $this->VoucherInformationID = 0;
+        $this->WishListItemID = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -84,8 +87,7 @@ class eZCartItem
         {
             $db->lock( "eZTrade_CartItem" );
             $nextID = $db->nextID( "eZTrade_CartItem", "ID" );
-
-            $res = $db->query( "INSERT INTO eZTrade_CartItem
+            $query = "INSERT INTO eZTrade_CartItem
                       ( ID, ProductID, CartID, Count, WishListItemID, VoucherInformationID )
                       VALUES
                       ( '$nextID',
@@ -94,7 +96,8 @@ class eZCartItem
                         '$this->Count',
                         '$this->WishListItemID',
                         '$this->VoucherInformationID' )
-                      " );
+                      ";
+            $res = $db->query( $query );
             $db->unlock();
 
 			$this->ID = $nextID;
@@ -541,7 +544,7 @@ class eZCartItem
     var $VoucherInformationID;
 
     /// ID to a wishlist item. Indicates which wishlistitem the cart item comes from. 0 if added from product.
-    var $WishListItemID = 0;
+    var $WishListItemID;
 }
 
 ?>

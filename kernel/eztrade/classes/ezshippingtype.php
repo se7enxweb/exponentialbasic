@@ -214,6 +214,15 @@ class eZShippingType
     */
     function name()
     {
+		if  ( substr($this->ID, 0, 3) == "UPS" )
+		{
+	        // include_once( "eztrade/classes/ezupsxml.php" );
+			$ups = new upsRate('','','');
+			$upsRateNames = $ups->upsRateNames;
+			$nameID = substr($this->ID, 3);
+			return $upsRateNames[$nameID];
+		}
+		else
         return $this->Name;
     }
 
@@ -262,11 +271,38 @@ class eZShippingType
 
        if ( is_a ( $user, "eZUser" ) && $CountryDisc == true )
        {
+	  		$cart = new eZCart();
+			$session =& eZSession::globalSession();
+			// if no session exist create one.
+			if ( !$session->fetch() )
+		    	$session->store();
+		
+			// get the cart or create it
+			$cart = $cart->getBySession( $session, "Cart" );
+
+			/*
+			if ( !$cart || !$cart->items() )
+			{
+			    eZHTTPTool::header( "Location: /trade/cart/" );
+			    exit();
+			}
+			*/
+
+           if ( eZHTTPTool::getVar( "ShippingTypeID" ) )
+			   $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+			elseif ( isset( $cart->AddressID ) )
+				$currentTypeID = $cart->AddressID;
+			else
+                $currentTypeID = "";
+            
            $mainAddress = $user->mainAddress();
            if ( is_a ( $mainAddress, "eZAddress" ) )
            {
                $country = $mainAddress->country();
-               if ( ( is_a ( $country, "eZCountry" ) ) and ( $country->hasVAT() == true ) )
+               $region = $mainAddress->region();
+               if ( ( is_a( $country, "eZCountry") ) and ( $country->hasVAT() == true )
+			   || ( is_a( $region, "eZRegion" ) ) and ( $region->hasVAT() == true ) 
+			   || ( $currentTypeID != "" ) )
                {
                    $useVAT = true;
                }

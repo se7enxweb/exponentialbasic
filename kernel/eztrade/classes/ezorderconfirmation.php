@@ -78,11 +78,11 @@ class eZOrderConfirmation
         $this->OrderSenderEmail = $ini->read_var( "eZTradeMain", "OrderSenderEmail" );
         $this->OrderReceiverEmail = $ini->read_var( "eZTradeMain", "OrderReceiverEmail" );
         $this->PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
-        $this->ShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
-        $this->ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
+        $this->EmailShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
+        $this->EmailShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
         $this->DiscontinueQuantityless = $ini->read_var( "eZTradeMain", "DiscontinueQuantityless" ) == "true";
         $this->SiteURL =  $ini->read_var( "site", "SiteURL" );
-
+		$this->checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
         $this->IndexFile = $ini->Index;
     }
 
@@ -201,6 +201,20 @@ class eZOrderConfirmation
                 $mailTemplate->set_var( "billing_country", "" );
             }
 
+	    $region = $billingAddress->region();
+
+            if ( $region )
+            {
+                if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+                    $mailTemplate->set_var( "billing_region", $region->name() );
+                else
+                    $mailTemplate->set_var( "billing_region", "" );
+            }
+            else
+            {  
+                $mailTemplate->set_var( "billing_region", "" );
+            }
+
             if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
                 $mailTemplate->parse( "billing_address", "billing_address_tpl" );
             else
@@ -253,6 +267,20 @@ class eZOrderConfirmation
                 $mailTemplate->set_var( "shipping_country", "" );
             }
 
+	    $region = $shippingAddress->region();
+
+            if ( $region )
+            {
+                if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+                    $mailTemplate->set_var( "shipping_region", $region->name() );
+                else
+                    $mailTemplate->set_var( "shipping_region", "" );
+            }
+            else
+            {  
+                $mailTemplate->set_var( "shipping_region", "" );
+            }
+
             $mailTemplate->parse( "shipping_address", "shipping_address_tpl" );
         }
         else
@@ -262,7 +290,6 @@ class eZOrderConfirmation
 
         // fetch the order items
         $items = $order->items();
-
 
         $i = 0;
         $sum = 0.0;
@@ -301,7 +328,13 @@ class eZOrderConfirmation
                 $productID = $product->id();
 
                 $productsForEmail[$i]["product_id"] = $productID;
-                $productsForEmail[$i]["product_name"] = trim( $product->name() );
+				
+				$productName = substr( $product->name(), 0, 20);
+				if ( strlen($productName) < 21 )
+					$productName = str_pad($productName, 21);
+				
+//                $productsForEmail[$i]["product_name"] = trim( $product->name() );
+                $productsForEmail[$i]["product_name"] = html_entity_decode($productName);
                 $productsForEmail[$i]["product_number"] = trim( $product->productNumber() );
                 $productsForEmail[$i]["product_price"] = preg_replace( $search, $replace, $item->localePrice( false, true, $this->PricesIncludeVAT ) );
                 $productsForEmail[$i]["product_count"] = $item->count();
@@ -337,7 +370,7 @@ class eZOrderConfirmation
         $order->orderTotals( $tax, $total );
         $mailTemplate->set_var( "empty_cart", "" );
 
-        if ( $this->ShowExTaxColumn == true )
+        if( $this->EmailShowExTaxColumn == true )
         {
             $currency->setValue( $total["subextax"] );
             $subextax = $locale->format( $currency );
@@ -356,7 +389,7 @@ class eZOrderConfirmation
             $len_product_total_ex_tax = strlen( $shipextax ) > $len_product_total_ex_tax ? strlen( $shipextax ) : $len_product_total_ex_tax;
         }
 
-        if ( $this->ShowIncTaxColumn == true )
+        if( $this->EmailShowIncTaxColumn == true )
         {
             $currency->setValue( $total["subinctax"] );
             $subinctax = $locale->format( $currency );
@@ -438,13 +471,13 @@ class eZOrderConfirmation
         $headers = $headers . str_pad( $productsForEmail[$i]["product_price"], $len_product_price, " ", STR_PAD_LEFT );
         $headers = $headers . str_pad( $productsForEmail[$i]["product_count"], $len_product_count, " ", STR_PAD_LEFT );
 
-        if ( $this->ShowExTaxColumn == true )
+        if ( $this->EmailShowExTaxColumn == true )
         {
             $headers = $headers . str_pad( $productsForEmail[$i]["product_total_ex_tax"], $len_product_total_ex_tax , " ", STR_PAD_LEFT );
             $lineFillLen += $len_product_total_ex_tax;
         }
 
-        if ( $this->ShowIncTaxColumn == true )
+        if ( $this->EmailShowIncTaxColumn == true )
         {
             $headers = $headers . str_pad( $productsForEmail[$i]["product_total_inc_tax"], $len_product_total_inc_tax, " ", STR_PAD_LEFT );
             $lineFillLen += $len_product_total_inc_tax;
@@ -469,12 +502,12 @@ class eZOrderConfirmation
             $mailTemplate->set_var( "product_price", str_pad( $productsForEmail[$i]["product_price"], $len_product_price, " ", STR_PAD_LEFT ) );
             $mailTemplate->set_var( "product_count", str_pad( $productsForEmail[$i]["product_count"], $len_product_count, " ", STR_PAD_LEFT ) );
 
-            if ( $this->ShowExTaxColumn == true )
+            if ( $this->EmailShowExTaxColumn == true )
                 $mailTemplate->set_var( "product_total_ex_tax", str_pad( $productsForEmail[$i]["product_total_ex_tax"], $len_product_total_ex_tax, " ", STR_PAD_LEFT ) );
             else
                 $mailTemplate->set_var( "product_total_ex_tax", "" );
 
-            if ( $this->ShowIncTaxColumn == true )
+            if ( $this->EmailShowIncTaxColumn == true )
                 $mailTemplate->set_var( "product_total_inc_tax", str_pad( $productsForEmail[$i]["product_total_inc_tax"], $len_product_total_inc_tax, " ", STR_PAD_LEFT ) );
             else
                 $mailTemplate->set_var( "product_total_inc_tax", "" );
@@ -528,7 +561,29 @@ class eZOrderConfirmation
             $mailTemplate->set_var( "shipping_inc_tax", str_pad( $shipinctax, $len_product_total_inc_tax, " ", STR_PAD_LEFT ) );
 
             $mailTemplate->set_var( "subtotal_ex_tax", str_pad( $subextax, $len_product_total_ex_tax, " ", STR_PAD_LEFT ) );
-            $mailTemplate->set_var( "total_ex_tax", str_pad( $extax, $len_product_total_ex_tax, " ", STR_PAD_LEFT ) );
+//$mailTemplate->set_var( "total_ex_tax", str_pad( $extax, $len_product_total_ex_tax, " ", STR_PAD_LEFT ) );
+
+            $currency->setValue( $total["inctax"] );
+            $inctax =  $locale->format( $currency );
+            $inctax = preg_replace( $search, $replace, $inctax );
+            $len_product_total_inc_tax = strlen( $inctax ) > $len_product_total_inc_tax ? strlen( $inctax ) : $len_product_total_inc_tax;
+
+if($total["shiptax"] == 0){
+            $mailTemplate->set_var( "total_ex_tax", str_pad( $extax, $len_product_total_ex_tax + 3, " ", STR_PAD_LEFT ) );
+            $mailTemplate->set_var( "sales-tax-inc", str_pad( "", "" , " ", STR_PAD_LEFT ) );
+            $mailTemplate->set_var( "sales-tax", str_pad( "", "" , " ", STR_PAD_LEFT ) );
+}else{
+
+            $currency->setValue( $total["tax"] );
+            $subtax =  $locale->format( $currency );
+            $subtax = preg_replace( $search, $replace, $subtax );
+            $len_product_total_sub_tax = strlen( $subtax ) > $len_product_total_sub_tax ? strlen( $subtax ) : $len_product_total_sub_tax;
+
+            $mailTemplate->set_var( "total_ex_tax", str_pad( $inctax, $len_product_total_inc_tax + 3, " ", STR_PAD_LEFT ) );
+            $mailTemplate->set_var( "sales-tax-inc", str_pad( $subtax, 25 , " ", STR_PAD_LEFT ) );
+            $mailTemplate->set_var( "sales-tax", str_pad( "Sales Tax", 54, " ", STR_PAD_LEFT ) );
+
+}
             $mailTemplate->set_var( "shipping_ex_tax", str_pad( $shipextax, $len_product_total_ex_tax, " ", STR_PAD_LEFT ) );
 
             $mailTemplate->set_var( "intl-subtotal", str_pad( trim( $mailTemplateIni->read_var( "strings", "subtotal" ) ), $totalsLen , " ", STR_PAD_LEFT ) );
@@ -605,9 +660,53 @@ class eZOrderConfirmation
         $mailTemplate->set_var( "comment", $order->comment() );
 
         $shippingType = $order->shippingType();
-        if ( $shippingType )
+        if (( $shippingType )&&($this->checkups!=1))
         {
             $mailTemplate->set_var( "shipping_type", $shippingType->name() );
+        }
+
+        if (( $shippingType )&&($this->checkups==1))
+        {
+$getnames =array ( 
+
+	'01' => 'UPS Next Day Air',
+
+       	'02' => 'UPS 2nd Day Air',
+
+	'03' => 'UPS Ground',
+
+	'07' => 'UPS Worldwide Express',
+
+	'08' => 'UPS Worldwide Expedited',
+
+	'11' => 'UPS Standard',
+
+	'12' => 'UPS 3 Day Select',
+
+	'13' => 'UPS Next Day Air Saver',
+
+	'14' => 'UPS Next Day Air Early A.M.',
+
+	'54' => 'UPS Worldwide Express Plus',
+
+	'59' => 'UPS 2nd Day Air A.M.',
+
+	'64' => '',
+
+	'65' => 'UPS Express Saver',
+
+   );
+if (!$getnames["$shippingType"])
+{
+$service_name=$shippingType;
+}
+else
+{
+$service_name=$getnames["$shippingType"];
+}
+
+
+$mailTemplate->set_var( "shipping_type",$service_name);
         }
 
         $shippingCost = $order->shippingCharge();
@@ -627,6 +726,7 @@ class eZOrderConfirmation
 
         $mailTemplate->set_var( "order_id", $order->id() );
 
+		$mailTemplate->set_var( "site_url", $ini->read_var( "site", "SiteURL" ) );
         // Send E-mail
         $mail = new eZMail();
 
@@ -914,8 +1014,8 @@ class eZOrderConfirmation
     var $OrderSenderEmail;
     var $OrderReceiverEmail;
     var $PricesIncludeVAT;
-    var $ShowExTaxColumn;
-    var $ShowIncTaxColumn;
+    var $EmailShowExTaxColumn;
+    var $EmailShowIncTaxColumn;
     var $DiscontinueQuantityless;
     var $SiteURL;
 

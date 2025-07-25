@@ -37,6 +37,8 @@ $ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
 $ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
 $RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true";
 $ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
+$TinyImageWidth = $ini->read_var( "eZImageCatalogueMain", "TinyImageWidth" );
+$TinyImageHeight = $ini->read_var( "eZImageCatalogueMain", "TinyImageHeight" );
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezoption.php" );
@@ -49,7 +51,7 @@ $ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 
 
-$wishlist = new eZWishlist();
+$wishlist = new eZWishList();
 $session = new eZSession();
 
 // if no session exist create one.
@@ -73,7 +75,7 @@ $wishlist = $wishlist->getByUser( $user );
 
 if ( !$wishlist )
 {
-    $wishlist = new eZWishlist();
+    $wishlist = new eZWishList();
     $wishlist->setUser( $user );
 
     $wishlist->store();
@@ -151,7 +153,7 @@ if ( isset( $Action ) && $Action == "AddToBasket" )
     
     if ( $productAddedToWishlist == false )
     {
-        $wishlistItem = new eZWishlistItem();
+        $wishlistItem = new eZWishListItem();
 
         $wishlistItem->setProduct( $product );
         $wishlistItem->setWishlist( $wishlist );
@@ -168,7 +170,7 @@ if ( isset( $Action ) && $Action == "AddToBasket" )
                 $optionValue = new eZOptionValue( $value );
 
                 $wishlistOption = new eZWishlistOptionValue();
-                $wishlistOption->setWishlistItem( $wishlistItem );
+                $wishlistOption->setWishListItem( $wishlistItem );
                 $wishlistOption->setOption( $option );
                 $wishlistOption->setOptionValue( $optionValue );
 
@@ -205,7 +207,7 @@ if ( isset( $Action ) && $Action == "Refresh" )
     if ( count( $WishlistIDArray ) > 0 )
     foreach ( $WishlistIDArray as $wishlistID )
     {
-        $wishlistItem = new eZWishlistItem( $wishlistID );
+        $wishlistItem = new eZWishListItem( $wishlistID );
         $wishlistItem->setCount( $WishlistCountArray[$i] );
         $wishlistItem->store();
         $i++;
@@ -334,7 +336,7 @@ foreach ( $items as $item )
 
     if ( $image )
     {
-        $thumbnail =& $image->requestImageVariation( 35, 35 );
+        $thumbnail =& $image->requestImageVariation( $TinyImageWidth, $TinyImageHeight );
 
         $t->set_var( "product_image_path", "/" . $thumbnail->imagePath() );
         $t->set_var( "product_image_width", $thumbnail->width() );
@@ -406,7 +408,10 @@ foreach ( $items as $item )
         $t->set_var( "option_name", $option->name() );
 
         $descriptions =& $value->descriptions();
-        $t->set_var( "option_value", $descriptions[0] );
+        if ( count( $descriptions ) > 0 )
+            $t->set_var( "option_value", $descriptions[0] );
+        else
+            $t->set_var( "option_value", $value->option()->name() );
 
         $t->set_var( "wishlist_item_option_availability", "" );
         if ( !(is_bool( $value_quantity ) and !$value_quantity) )

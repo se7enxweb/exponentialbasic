@@ -5,11 +5,12 @@
 
 <hr noshade="noshade" size="4" />
 
+<a href="#status" style="text-decoration: none;">Order Status</a>
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
         <td><p class="boxtext">{intl-customer_email}:</p>
-	<div class="p"><a href="mailto:{customer_email}">{customer_email}</a> <a href="/trade/customerview/{customer_id}/" >( {intl-view_customer} )</a></div>
+	<div class="p"><a href="mailto:{customer_email}">{customer_email}</a> ( <a href="{www_dir}{index}/trade/customerview/{customer_id}/" >{intl-view_customer}</a> ) ( <a href="{www_dir}{index}/user/useredit/edit/{customer_id}/" >{intl-view_customer_user}</a> )</div>
 	<br /><br /></td>
 	<td align="right"><p class="boxtext">{intl-preorder_id}:</p>
         <div class="p">{preorder_id}</div>
@@ -25,8 +26,9 @@
 	{customer_first_name} {customer_last_name}<br /> 
 	{billing_street1}<br />
 	{billing_street2}<br />
-	{billing_zip} {billing_place}<br />
-	{billing_country}
+	{billing_place}, {billing_region} {billing_zip}<br />
+	{billing_country}<br />
+	{shipping_phone}
 	</div>
 	<br />
 	</td>
@@ -36,8 +38,9 @@
 	{shipping_first_name} {shipping_last_name}<br />
 	{shipping_street1}<br />
 	{shipping_street2}<br />
-	{shipping_zip} {shipping_place}<br />
-	{shipping_country}
+	{shipping_place}, {shipping_region} {shipping_zip}<br />
+	{shipping_country}<br />
+	{shipping_phone}
 	</div>
 	<br />
 	</td>
@@ -51,6 +54,14 @@
 	<p class="boxtext">{intl-shipping_method}:</p>
 	<div class="p">{shipping_method}</div>
 	</td>
+</tr>
+<tr>
+<td>
+<br>
+<p class="boxtext">{user-comment-str}</p>
+<div class="p">{user-comment}</div>
+</td>
+<td></td>
 </tr>
 </table>
 
@@ -305,7 +316,7 @@
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
 	<td>
-	<p class="boxtext">{intl-choose_status}:</p>
+	<a name"status"><p class="boxtext">{intl-choose_status}:</p></a>
 	<select name="StatusID">
 	<!-- BEGIN order_status_option_tpl -->	
 	<option value="{option_id}">
@@ -324,6 +335,30 @@
 </tr>
 <tr>
 	<td>
+
+
+<br/><p class="boxtext">{intl-email_message}:</p>
+<textarea class="box" name="MailBody" cols="30" rows="10">
+{customer_first_name},
+
+Thanks again for your order to FullThrottle.com.  We sincerely appreciate your business, and we'll work hard to make sure that you're happy with both our products and our customer service.
+<!-- BEGIN email_followup_tpl -->
+{intl-email_followup}
+<!-- END email_followup_tpl -->
+{intl-email_line2}:
+http://{www_site}/trade/orderview/{order_id}/
+
+Photo submissions, product reviews, and installation tutorials submitted by clients like you are what make our website special.  Please email your photos and product comments to info@fullthrottle.com. We'll add them to our photo galleries, give you credit for your submissions, and share them with other riders to help them find products that fit their needs.  By submitting your photos, you'll also be entered in our monthly drawing for a $20 gift certificate to fullThrottle.com. 
+
+Again, please do not hesitate to contact us if you have any questions.
+
+Sincerely,
+Full Throttle Team
+{admin_email}
+</textarea>
+<input type="checkbox" name="MailNotice" checked />&nbsp;<span class="boxtext">{intl-mail_notice}</span>
+<input type="hidden" name="CustomerEmail" value="{customer_email}" />
+
 	</td>
 </tr>
 </table>

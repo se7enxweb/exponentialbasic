@@ -45,22 +45,23 @@ $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "tru
 $languageINI = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/orderedit.php.ini", false );
 
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" );
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+// Unclear: $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" && $total["shiptax"] ? true : false;
+
 $ShowExTaxColumn = $ini->read_var( "eZTradeMain", "AdminShowExTaxColumn" ) == "enabled" ? true : false;
-$ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "AdminShowIncTaxColumn" ) == "enabled" ? true : false;
+//$ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "AdminShowIncTaxColumn" ) == "enabled" && $total["shiptax"]  ? true : false;
+// Unclear:$ShowIncTaxColumn = $total["shiptax"] ? true : false;
 $ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
 $ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
+$wwwDir = $ini->read_var( "site", "UserSiteURL" );
+$adminEmail = $ini->read_var( "eZTradeMain", "mailToAdmin" );
+$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )=="enabled"?1:0;
+$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )=="enabled"?1:0;
+if(($upscheck==0)&&($uspscheck==0))
+$checkups=0;
+else
+$checkups=1;
 
-
-// include_once( "eztrade/classes/ezproductcategory.php" );
-// include_once( "eztrade/classes/ezproduct.php" );
-// include_once( "eztrade/classes/ezorder.php" );
-// include_once( "eztrade/classes/ezpreorder.php" );
-// include_once( "eztrade/classes/ezcheckout.php" );
-// include_once( "eztrade/classes/ezpricegroup.php" );
-
-// include_once( "eztrade/classes/ezorderstatustype.php" );
-
+$tester =  0;
 if ( $Action == "newstatus" )
 {
     $status = new eZOrderStatus();
@@ -76,12 +77,49 @@ if ( $Action == "newstatus" )
     $user =& eZUser::currentUser();
 
     $status->setAdmin( $user );
+
     $status->store();            
 
-    // include_once( "classes/ezhttptool.php" );
-    eZHTTPTool::header( "Location: /trade/orderlist/" );
+	//send customer email notice of status change
+	if ( $MailNotice == "on" )
+	{
+		$mailTemplate = new eZTemplate( "eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+                     "eztrade/admin/intl/", $Language, "orderedit.php" );
+					 
+        $mailTemplate->setAllStrings();
+
+        $subjectLine = $mailTemplate->Ini->read_var( "strings", "subject" );
+        $subjectLine = $subjectLine . " #" . $OrderID;
+		
+	    $statusName = preg_replace( "#intl-#", "", $statusType->Name() );
+		$statusName = $mailTemplate->Ini->read_var( "strings", "reason" ).": ".$statusName;
+		$StatusComment = $mailTemplate->Ini->read_var( "strings", "comment" ).": ".$StatusComment;
+				
+		$MailBody = "$MailBody\n";
+		$MailBody .= "========================================\n";
+		$MailBody .= "$statusName\n";
+		$MailBody .= "$StatusComment";
+		
+        // send a notice mail
+        $noticeMail = new eZMail();
+
+        $noticeMail->setFrom( $adminEmail );
+//        $noticeMail->setCc( $adminEmail );
+		
+        $noticeMail->setTo( $CustomerEmail );
+
+        $noticeMail->setSubject( $subjectLine );
+        $noticeMail->setBodyText( $MailBody );
+
+        $noticeMail->send();
+	}		
+        
+
+    include_once( "classes/ezhttptool.php" );
+    eZHTTPTool::header( "Location: /trade/orderedit/$OrderID" );
     exit();
 }
+
 
 if ( $Action == "delete" )
 {
@@ -104,6 +142,7 @@ $t->set_block( "order_edit_tpl", "visa_tpl", "visa" );
 $t->set_block( "order_edit_tpl", "mastercard_tpl", "mastercard" );
 $t->set_block( "order_edit_tpl", "cod_tpl", "cod" );
 $t->set_block( "order_edit_tpl", "invoice_tpl", "invoice" );
+$t->set_block( "order_edit_tpl", "email_followup_tpl", "email_followup" );
 
 $t->set_block( "order_edit_tpl", "order_status_option_tpl", "order_status_option" );
 $t->set_block( "order_edit_tpl", "order_status_history_tpl", "order_status_history" );
@@ -158,6 +197,7 @@ $user = $order->user();
 
 if ( $user )
 {
+
     if ( $order->personID() == 0 && $order->companyID() == 0 )
     {
         $t->set_var( "customer_email", $user->email() );
@@ -202,6 +242,7 @@ if ( $user )
     $t->set_var( "shipping_street2", $shippingAddress->street2() );
     $t->set_var( "shipping_zip", $shippingAddress->zip() );
     $t->set_var( "shipping_place", $shippingAddress->place() );
+    $t->set_var( "shipping_phone", $shippingAddress->phone() );
 
     if ( $order->personID() == 0 && $order->companyID() == 0 )
     {    
@@ -215,6 +256,7 @@ if ( $user )
     }
     else
     {
+
         if ( $order->personID() > 0 )
         {
             $customer = new eZPerson( $order->personID() );
@@ -228,7 +270,6 @@ if ( $user )
             $t->set_var( "shipping_last_name", "" );
         }
     }
-
     $country = $shippingAddress->country();
     if ( is_object( $country ) )
     {
@@ -238,12 +279,25 @@ if ( $user )
     {
         $t->set_var( "shipping_country", "" );
     }
+	
+	    $region = $shippingAddress->region();
+
+    if ( is_object( $region ) )
+    {
+        $t->set_var( "shipping_region", $region->name() );
+    }
+    else
+    {
+        $t->set_var( "shipping_region", "" );
+    }
+	
     $billingAddress =& $order->billingAddress();
 
     $t->set_var( "billing_street1", $billingAddress->street1() );
     $t->set_var( "billing_street2", $billingAddress->street2() );
     $t->set_var( "billing_zip", $billingAddress->zip() );
     $t->set_var( "billing_place", $billingAddress->place() );
+    $t->set_var( "billing_phone", $billingAddress->phone() );
     
     $PriceGroup = eZPriceGroup::correctPriceGroup( $user->groups( false ) );
 
@@ -256,8 +310,21 @@ if ( $user )
     {
         $t->set_var( "billing_country", "" );
     }
+    
+    $region = $billingAddress->region();
+
+    if ( is_object( $region ) )
+    {
+        $t->set_var( "billing_region", $region->name() );
+            // $t->set_var( "billing_region", $region->Abbreviation() );
+    }
+    else
+    {
+        $t->set_var( "billing_region", "" );
+    }
 }
 
+// fetch the order items
 if ( $Action == "edit" )
 {
     // fetch the order items
@@ -296,7 +363,9 @@ function turnColumnsOnOff( $rowName )
         $t->set_var( $rowName . "_ex_tax_item", "" );
     }
 
-    if ( $ShowIncTaxColumn == true )
+      $t->parse( $rowName . "_inc_tax_item", $rowName . "_inc_tax_item_tpl" );
+    /*
+    if ($total["shiptax"] or $ShowIncTaxColumn == true )
     {
         $t->parse( $rowName . "_inc_tax_item", $rowName . "_inc_tax_item_tpl" );
     }
@@ -304,6 +373,7 @@ function turnColumnsOnOff( $rowName )
     {
         $t->set_var( $rowName . "_inc_tax_item", "" );
     }
+    */
 }
 
 $locale = new eZLocale( $Language );
@@ -387,6 +457,9 @@ if ( $ShowCart == true )
 {
     
     $order->orderTotals( $tax, $total );
+if($total["shiptax"]){
+  $ShowIncTaxColumn = true;
+}
 
     $t->set_var( "empty_cart", "" );
 
@@ -470,10 +543,13 @@ if ( $ShowCart == true )
 
     $j = 0;
 
+    $salestax= 0;
+    if($total["shiptax"]){
     foreach ( $tax as $taxGroup )
     {
         $t->set_var( "td_class", ( $j % 2 ) == 0 ? "bglight" : "bgdark" );
         $j++;  
+	if($taxGroup["basis"] == $total["subextax"]){
         $currency->setValue( $taxGroup["basis"] );    
         $t->set_var( "sub_tax_basis", $locale->format( $currency ) );
 
@@ -482,13 +558,30 @@ if ( $ShowCart == true )
 
         $t->set_var( "sub_tax_percentage", $taxGroup["percentage"] );
         $t->parse( "tax_item", "tax_item_tpl", true );
+	  $salestax = $taxGroup["percentage"];
+	}else{
+	  $currency->setValue( $total["shipextax"] );    
+	  $t->set_var( "sub_tax_basis", $locale->format( $currency ) );
+	  
+	  $currency->setValue( $total["shiptax"] );    
+	  $t->set_var( "sub_tax", $locale->format( $currency ) );
+	  
+	  $t->set_var( "sub_tax_percentage", $salestax);
+	  $t->parse( "tax_item", "tax_item_tpl", true );
+	  
+	}
     }
+    
 
     $t->parse( "tax_specification", "tax_specification_tpl" );
+    }else{
+    $t->set_var("tax_specification", "");
+    }
 }
 
 $usedVouchers =& $order->usedVouchers();
-
+$t->set_var("user-comment-str", "Comment:");
+$t->set_var("user-comment", $order->comment());
 $t->set_var( "voucher_item_list", "" );
 
 if ( count ( $usedVouchers ) > 0 )
@@ -529,7 +622,7 @@ $statusTypeArray = $statusType->getAll();
 foreach ( $statusTypeArray as $status )
 {
     $statusName = preg_replace( "#intl-#", "", $status->name() );
-    $statusName =  $languageINI->read_var( "strings", $statusName );
+//    $statusName =  $languageINI->read_var( "strings", $statusName );
     
     $t->set_var( "option_name", $statusName );
     $t->set_var( "option_id", $status->id() );
@@ -551,7 +644,7 @@ foreach ( $historyArray as $status )
     $statusType = $status->type();
 
     $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-    $statusName =  $languageINI->read_var( "strings", $statusName );
+//    $statusName =  $languageINI->read_var( "strings", $statusName );
     
     
     $t->set_var( "status_date", $locale->format( $status->altered() ) );
@@ -562,7 +655,6 @@ foreach ( $historyArray as $status )
     $i++;
 }
 
-
 $checkout = new eZCheckout();
 $instance =& $checkout->instance();
 $paymentMethod = $instance->paymentName( $order->paymentMethod() );
@@ -572,14 +664,83 @@ $t->set_var( "payment_method", $paymentMethod );
 $shippingType = $order->shippingType();
 
 $t->set_var( "shipping_method", "" );
-if ( $shippingType )
+
+if (($shippingType )&&($checkups!=1))
 {    
     $t->set_var( "shipping_method", $shippingType->name() );
 }
+if (($shippingType )&&($checkups==1))
+{    
+$getnames =array ( 
+
+	'01' => 'UPS Next Day Air',
+
+       	'02' => 'UPS 2nd Day Air',
+
+	'03' => 'UPS Ground',
+
+	'07' => 'UPS Worldwide Express',
+
+	'08' => 'UPS Worldwide Expedited',
+
+	'11' => 'UPS Standard',
+
+	'12' => 'UPS 3 Day Select',
+
+	'13' => 'UPS Next Day Air Saver',
+
+	'14' => 'UPS Next Day Air Early A.M.',
+
+	'54' => 'UPS Worldwide Express Plus',
+
+	'59' => 'UPS 2nd Day Air A.M.',
+
+	'64' => '',
+
+	'65' => 'UPS Express Saver',
+
+   );
+if (!$getnames["$shippingType"])
+{
+$service_name=$shippingType;
+}
+else
+{
+$service_name=$getnames["$shippingType"];
+}
+
+
+
+    $t->set_var( "shipping_method", $service_name);
+}
+
+
+
+
 
 $t->set_var( "order_id", $order->id() );
+$t->set_var( "www_site", $wwwDir );
 
+$status = $order->lastStatus();
+$lastDateTime = $status->altered();	
+$t->set_var( "altered_date", $locale->format( $lastDateTime ) );
+$lastDateTime = $status->rawAltered();	
+$statusAge = ( round( (( time()-$lastDateTime )/86400),0 ) );
+if ($statusAge > 42)
+    $t->parse( "email_followup", "email_followup_tpl" );
+else
+	$t->set_var( "email_followup", "" );
 
+$t->set_var( "admin_email", $adminEmail );
 $t->pparse( "output", "order_edit_tpl" );
 
+
+//print_r($tax);
+//print "<br><br>";
+
+//print_r($total);
+//print_r($ok);
+//print_r($test);
+//print $order->comment();
+//print_r($instance);
 ?>

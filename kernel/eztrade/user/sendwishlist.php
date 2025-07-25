@@ -31,6 +31,8 @@
 // include_once( "ezuser/classes/ezuser.php" );
 
 $ini =& INIFile::globalINI();
+$wwwDir = $ini->WWWDir;
+$indexFile = $ini->Index;
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
@@ -104,7 +106,7 @@ if ( isset( $Action ) && $Action == "SendWishlist" )
         
         $mailTemplate->set_var( "first_name", $user->firstName() );
 
-        $mailTemplate->set_var( "host_name", $headersInfo["Host"] );
+        $mailTemplate->set_var( "host_name", $headersInfo["Host"].$indexFile );
         $mailTemplate->set_var( "user_id", $user->id() );
 
         $subject = $mailTemplate->parse( "dummy", "subject_tpl" );
@@ -117,7 +119,7 @@ if ( isset( $Action ) && $Action == "SendWishlist" )
 
         foreach ( $items as $item )
         {
-            $mailTemplate->set_var( "host_name", $headersInfo["Host"] );
+            $mailTemplate->set_var( "host_name", $headersInfo["Host"].$indexFile );
             
             $product =& $item->product();
             $mailTemplate->set_var( "product_id", $product->id() );
@@ -203,4 +205,3 @@ $locale = new eZLocale( $Language );
 $t->pparse( "output", "sendwishlist_page_tpl" );
 
 ?>
-

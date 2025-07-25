@@ -59,6 +59,10 @@ if ( $Action == "Insert" )
             $product->setThumbnailImage( $image );
             $product->setMainImage( $image );
         }
+		
+		$objectPermission = new eZObjectPermission();
+		eZObjectPermission::setPermission( -1, $image->id(), "imagecatalogue_image", "r" );
+		eZObjectPermission::setPermission( 1, $image->id(), "imagecatalogue_image", "w" );
 
         eZLog::writeNotice( "Picture added to product: $ProductID  from IP: $REMOTE_ADDR" );
     }
@@ -125,10 +129,42 @@ if ( $Action == "Delete" )
     exit();    
 }
 
+// update captions
+
+if ( $Action == "UpdateImages" )
+
+	{
+         for ( $i = 0; $i < count( $ImageUpdateArrayID ); $i++ )
+        	{
+            	if ( $NewCaption[$i] != $OldCaption[$i] )
+			{
+			$image = new eZImage($ImageUpdateArrayID[$i]);
+			$image->setCaption( $NewCaption[$i] );
+			$image->store();
+			}
+	      	  }
+
+	include_once( "classes/ezhttptool.php" );
+	eZHTTPTool::header( "Location: /trade/productedit/imagelist/" . $ProductID . "/" );
+	exit();    
+		}
+
+
+
 // store the image definition
 if ( $Action == "StoreDef" )
 {
     $product = new eZProduct( $ProductID );
+
+	for ( $i = 0; $i < count( $ImageUpdateArrayID ); $i++ )
+        	{
+            	if ( $NewCaption[$i] != $OldCaption[$i] )
+			{
+			$image = new eZImage($ImageUpdateArrayID[$i]);
+			$image->setCaption( $NewCaption[$i] );
+			$image->store();
+			}
+		}
 
     // Unset main page image radiobutton
     if ( isset( $NoMainImage ) )

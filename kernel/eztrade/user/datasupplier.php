@@ -35,6 +35,7 @@ $SiteDesign = $ini->read_var( "site", "SiteDesign" );
 
 $RequireUser = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
 $ShowPrice = $RequireUser ? is_a( $user, "eZUser" ) : true;
+$UserReviews = $ini->read_var( "eZTradeMain", "UserReviews" );
 
 $PriceGroup = 0;
 if ( is_a( $user, "eZUser" ) )
@@ -47,13 +48,16 @@ if ( !$ShowPrice )
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZTradeMain", "DefaultSection" );
 
-
-$user =& eZUser::currentUser();
 if ( $user )
 {
     $groupIDArray =& $user->groups( false );
     sort( $groupIDArray );
 }
+else
+{
+    $groupIDArray = null;
+}
+
 
 switch ( $url_array[2] )
 {
@@ -68,9 +72,9 @@ switch ( $url_array[2] )
             $Offset = 0;
         if ( $PageCaching == "enabled" )
         {
-            include_once( "classes/ezcachefile.php" );
+            //include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
-                                            array_merge( "hotdealsgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
+                                            array( "hotdealsgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                             "cache", "," );
             if ( $CacheFile->exists() )
             {
@@ -101,7 +105,7 @@ switch ( $url_array[2] )
         {
             //include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
-                                            array_merge( "hotdealslist", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
+                                            array( "hotdealslist", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                             "cache", "," );
             if ( $CacheFile->exists() )
             {
@@ -130,9 +134,9 @@ switch ( $url_array[2] )
             $Offset = 0;
         if ( $PageCaching == "enabled" )
         {
-            include_once( "classes/ezcachefile.php" );
+            // include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
-                                            array_merge( "productgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
+                                            array( "productgallery", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
                                             "cache", "," );
             if ( $CacheFile->exists() )
             {
@@ -159,13 +163,23 @@ switch ( $url_array[2] )
             $Offset = 0;
         if ( $PageCaching == "enabled" )
         {
+            if ( !isset( $groupIDArray ) || !$groupIDArray )
+                $groupIDArray = 0;
+  
+              if ( !isset( $PriceGroup ) || !$PriceGroup )
+                $PriceGroup = 0;
+
             // include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
-                                          array_merge( "productlist", $CategoryID, $groupIDArray, $Offset, $PriceGroup ),
+                                          array( "productlist", $CategoryID, $Offset, $PriceGroup ),
                                           "cache", "," );
             if ( $CacheFile->exists() )
             {
-                include( $CacheFile->filename( true ) );
+                if ( $CacheFile->filename( true ) != "" )
+                {
+                    include( $CacheFile->filename( true ) );
+                    // print_r( $CacheFile->filename( true ) );
+                }
             }
             else
             {
@@ -175,12 +189,21 @@ switch ( $url_array[2] )
         }
         else
         {
+            //$GenerateStaticPage = "false";
+            $GenerateStaticPage = "false";
             include( "kernel/eztrade/user/productlist.php" );
         }
         break;
     }
 
+    case "sitemap" :
+    {
+        include( "kernel/eztrade/user/sitemap.php" );
+        break;
+    }
+    
     case "productview" :
+        $PrintableVersion = "disabled";
         if ( $PageCaching == "enabled" )
         {
             $ProductID = $url_array[3];
@@ -188,7 +211,7 @@ switch ( $url_array[2] )
 
             // include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
-                                          array_merge( "productview", $ProductID, $groupIDArray, $PriceGroup ),
+                                          array( "productview", $ProductID, $groupIDArray, $PriceGroup ),
                                           "cache", "," );
             if ( $CacheFile->exists() )
             {
@@ -206,6 +229,25 @@ switch ( $url_array[2] )
             $CategoryID = $url_array[4];
             include( "kernel/eztrade/user/productview.php" );
         }
+        if  ( ( $PrintableVersion != "enabled" ) && ( $UserReviews == "enabled" ) )
+        {
+            $RedirectURL = "/trade/productview/$ProductID/$CategoryID/";
+            $product = new eZProduct( $ProductID );
+            if ( ( $product->id() >= 1 ) )    //  && $product->discuss() )
+            {
+                for ( $i = 0; $i < count( $url_array ); $i++ )
+                {
+                    if ( ( $url_array[$i] ) == "parent" )
+                    {
+                        $next = $i + 1;
+                        $Offset = $url_array[$next];
+                    }
+                }
+                $forum = $product->forum();
+                $ForumID = $forum->id();
+                include( "kernel/ezforum/user/messagereviewlist.php" );
+            }
+        }
 
         break;
 
@@ -219,7 +261,7 @@ switch ( $url_array[2] )
 
             // include_once( "classes/ezcachefile.php" );
             $CacheFile = new eZCacheFile( "kernel/eztrade/cache/",
-                                          array_merge( "productprint", $ProductID, $groupIDArray, $PriceGroup ),
+                                          array( "productprint", $ProductID, $groupIDArray, $PriceGroup ),
                                           "cache", "," );
             if ( $CacheFile->exists() )
             {
@@ -436,18 +478,51 @@ switch ( $url_array[2] )
         include( "kernel/eztrade/user/extendedsearch.php" );
     }
     break;
+    
+    case "export" :
+    {
+      if ( $url_array[3] == 'froogle' )
+      {
+        if ( $url_array[4] == 'download' )
+	{
+	  $Action = "export";
+	}
+        else 
+	{
+          $Action = "export-cron";
+        }
+        include( "kernel/eztrade/admin/export_froogle.php" );
+      }
+      elseif ( $url_array[3] == 'yahoo' )
+      {
+        if ( $url_array[4] == 'download' )
+	{
+	  $Action = "export";
+	}
+        else 
+	{
+          $Action = "export-cron";
+        }
+        include( "kernel/eztrade/admin/export_yahoo.php" );
+      }
+      else {
+	$Action = "export-cron";
+	include( "kernel/eztrade/admin/export_froogle.php" );
+      }
+    }
+    break;
 
     // XML rpc interface
     case "xmlrpc" :
     {
-        include( "eztrade/xmlrpc/xmlrpcserver.php" );
+        include( "kernel/eztrade/xmlrpc/xmlrpcserver.php" );
     }
     break;
 
     // XML rpc interface
     case "xmlrpcimport" :
     {
-        include( "eztrade/xmlrpc/xmlrpcserverimport.php" );
+        include( "kernel/eztrade/xmlrpc/xmlrpcserverimport.php" );
     }
     break;
 

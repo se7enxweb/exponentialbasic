@@ -28,17 +28,38 @@
 $menuItems = array(
     array( "/trade/orderlist/", "{intl-orderlist}" ),
     array( "/trade/categorylist/", "{intl-categorylist}" ),
-    array( "/trade/productedit/", "{intl-newproduct}" ),
+ //   array( "/trade/productedit/", "{intl-newproduct}" ),
     array( "/trade/customerlist/", "{intl-customerlist}" ),
+    array( "/trade/categorylist/", "{intl-categorylist}" ),
+
+    array( "/trade/categorylist/parent/3/", "{intl-manufacturers}" ),
+    array( "/trade/categorylist/parent/133/", "{intl-product_type}" ),
+    array( "/trade/categorylist/parent/81/", "{intl-mybike}" ),
+    array( "/trade/categorylist/parent/312/", "{intl-bulk_import}" ),
+
     array( "/trade/typelist/", "{intl-typelist}" ),
     array( "/trade/vattypes/", "{intl-vattypes}" ),
+    array( "/trade/boxtypes/", "{intl-boxtypes}" ),
     array( "/trade/shippingtypes/", "{intl-shippingtypes}" ),
     array( "/trade/currency/", "{intl-currency}" ),
     array( "/trade/pricegroups/list", "{intl-pricegroups}" ),
     array( "/trade/categoryedit/", "{intl-newcategory}" ),
     array( "/trade/typeedit/", "{intl-newtype}" ),
+    array( "/trade/productedit/", "{intl-newproduct}" ),
     array( "/trade/voucher/", "{intl-newvoucher}" ),
-    array( "/trade/voucherlist/", "{intl-voucher_list}" )
-    );
+    array( "/trade/voucherlist/", "{intl-voucher_list}" ),
+    array( "", "&nbsp;" ),
+    array( "/trade/export/froogle", "{intl-feed_froogle}" ),
+    array( "/trade/export/froogle/download", "{intl-feed_froogle_download}" ),
+    array( "/trade/export/yahoo", "{intl-feed_yahoo}"),
+    array( "/trade/export/yahoo/download", "{intl-feed_yahoo_download}" )
+	);
+
+/*
+ array( "/trade/export/", "{intl-export_froogle}" ),
+ array( "/trade/export/froogle", "{intl-export_froogle}" )
+ array( "/trade/export/froogle", "{intl-export_froogle}" ),
+ array( "/trade/export/yahoo", "{intl-export_yahoo}"),
+*/
 
 ?>

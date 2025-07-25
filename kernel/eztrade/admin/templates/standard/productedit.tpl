@@ -71,7 +71,7 @@
 <br /><br />
 
 <p class="boxtext">{intl-external_link}:</p>
-http://<input type="text" size="36" name="ExternalLink" value="{external_link}"/><br />
+<input type="text" size="36" name="ExternalLink" value="{external_link}"/><br />
 <br />
 
 	
@@ -83,9 +83,34 @@ http://<input type="text" size="36" name="ExternalLink" value="{external_link}"/
 	<!-- BEGIN quantity_item_tpl -->
 	<p class="boxtext">{intl-availability}:</p>
 	<input type="text" size="10" name="Quantity" value="{quantity_value}" />
+    </td><td>
+     	<p class="boxtext">{intl-stock_date}:</p>
+    <select name="StockDay">
+	<!-- BEGIN day_item_tpl -->
+	<option value="{day_id}" {selected}>{day_value}</option>
+	<!-- END day_item_tpl -->
+	</select>
+
+    <select name="StockMonth" >
+	<option value="1" {select_january}>{intl-january}</option>
+	<option value="2" {select_february}>{intl-february}</option>
+	<option value="3" {select_march}>{intl-march}</option>
+	<option value="4" {select_april}>{intl-april}</option>
+	<option value="5" {select_may}>{intl-may}</option>
+	<option value="6" {select_june}>{intl-june}</option>
+	<option value="7" {select_july}>{intl-july}</option>
+	<option value="8" {select_august}>{intl-august}</option>
+	<option value="9" {select_september}>{intl-september}</option>
+	<option value="10" {select_october}>{intl-october}</option>
+	<option value="11" {select_november}>{intl-november}</option>
+	<option value="12" {select_december}>{intl-december}</option>
+	</select>
+
+        <input type="text" size="4" name="StockYear" value="{stockyear}" />
+
 	<!-- END quantity_item_tpl -->&nbsp;
-    </td>
-    <td valign="top">
+    </td></tr>
+<tr>    <td valign="top" colspan="2">
 	<p class="boxtext">{intl-shipping_group}:</p>
 	<select name="ShippingGroupID">
 
@@ -111,12 +136,26 @@ http://<input type="text" size="36" name="ExternalLink" value="{external_link}"/
     </td>
 </tr>
 <tr>
-    <td valign="top" colspan="2">&nbsp;</td>
+	<td valign="top">
+	<p class="boxtext">{intl-box_type}:</p>
+	<select name="BoxTypeID">
+	<option value="0" {box_selected}>{intl-no_box}</option>
+	<!-- BEGIN box_select_tpl -->
+	<option value="{box_id}" {box_selected}>{box_name}</option>
+	<!-- END box_select_tpl -->
+
+	</select>
+	</td>
+
+    <td valign="top">
+	    <p class="boxtext">{intl-weight}:</p>
+	    <input type="text" size="3" name="Weight" value="{weight_value}" />&nbsp;<span class="boxtext">{intl-weight_unit}</span><br />
+    </td>
 </tr>
 <tr>
 	<td valign="top">
 	<p class="boxtext">{intl-vat_type}:</p>
-	<select name="VATTypeID">
+	<select name="VatTypeID">
 
 	<!-- BEGIN vat_select_tpl -->
 	<option value="{vat_id}" {vat_selected}>{vat_name}</option>
@@ -127,6 +166,19 @@ http://<input type="text" size="36" name="ExternalLink" value="{external_link}"/
     <td>
         <input type="radio" name="IncludesVAT" {include_vat} value="true" /> <span class="boxtext">{intl-includes_vat}</span>
         <input type="radio" name="IncludesVAT" {exclude_vat} value="false" /> <span class="boxtext">{intl-excludes_vat}</span>
+    </td>
+</tr>
+<tr>
+	<td><br />
+		<span class="boxtext">Flat Rate UPS</span><br />
+		<input type="text" name="FlatFeeUPS" size="10" value="{flat_fee_ups}" />
+	</td><td><br />
+		<span class="boxtext">Flat Rate USPS</span> <br />
+		<input type="text" name="FlatFeeUSPS" size="10" value="{flat_fee_usps}" /></td>
+</tr><tr>
+<td><div class="check">
+        <input type="checkbox" name="FlatCombine" {flat_combine_checked} />&nbsp;<span class="boxtext">Combine Shipping When Grouped</span>
+	</div>
     </td>
 </tr>
 <tr>
@@ -153,6 +205,17 @@ http://<input type="text" size="36" name="ExternalLink" value="{external_link}"/
         <input type="checkbox" name="Active" {showproduct_checked} />&nbsp;<span class="boxtext">{intl-active}</span>
         <input type="checkbox" name="ShowPrice" {showprice_checked} />&nbsp;<span class="boxtext">{intl-has_price}</span>
         </div>
+    </td>
+</tr>
+<tr>
+	<td valign="top">
+        <!-- BEGIN list_price_tpl -->
+	<p class="boxtext">{intl-list_price}:</p>
+	<input type="text" size="10" name="ListPrice" value="{list_price}" />
+	<br /><br />
+        <!-- END list_price_tpl -->
+	</td>
+<td>&nbsp;
     </td>
 </tr>
 </table>
@@ -193,6 +256,7 @@ http://<input type="text" size="36" name="ExternalLink" value="{external_link}"/
     <td>
         <select name="ItemToAdd">
 	<option value="Image">{intl-pictures}</option>
+	<option value="File">{intl-files}</option>
 	<option value="Option">{intl-options}</option>
 	<option value="Attribute">{intl-attributes}</option>
 <!-- BEGIN module_linker_button_tpl -->

@@ -30,6 +30,7 @@
 
 
 $ini =& INIFile::globalINI();
+$wwwDir = $ini->WWWDir;
 $ForceSSL = $ini->read_var( "eZTradeMain", "ForceSSL" );
 
 $index = $ini->Index;
@@ -43,6 +44,7 @@ if ( ( $ForceSSL == "enabled" ) )
     // force SSL if supposed to
 //    if ( $SERVER_PORT != '443' )
     {
+        // $params = "?ShippingCost=1&ShippingVAT=1&TotalCost=1&TotalVAT=1&shippcost=1&shippname={ship_get_name}&Recalculate=Recalculate&lastshipid=1282&PayWithVoucher=false";
         eZHTTPTool::header("Location: https://" . $HTTP_HOST . $index . "/trade/checkout/" );
         exit();
     }
@@ -51,7 +53,7 @@ elseif ( $ForceSSL == "disabled" )
 {
     $session->setVariable( "SSLMode", "disabled" );
 
-    eZHTTPTool::header("Location: http://" . $HTTP_HOST . $index . "/trade/checkout/" );
+    eZHTTPTool::header("Location: http://" . $HTTP_HOST . $wwwDir . $index . "/trade/checkout/" );
     exit();
 }
 elseif ( $ForceSSL == "choose" )
@@ -60,14 +62,14 @@ elseif ( $ForceSSL == "choose" )
 
     if( isset ( $WithSSL ) )
     {
-        eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $index . "/trade/checkout" );
+        eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $wwwDir . $index . "/trade/checkout" );
         exit();
 
     }
 
     if( isset ( $WithOutSSL ) )
     {
-        eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $index . "/trade/checkout" );
+        eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $wwwDir . $index . "/trade/checkout" );
         exit();
 
     }

@@ -260,7 +260,7 @@ class eZWishList
     /*!
       Returns all the wishlist items in the wishlist.
 
-      An array of eZWishlistItem objects are retunred if successful, an empty array.
+      An array of eZWishListItem objects are retunred if successful, an empty array.
     */
     function &items( )
     {
@@ -277,7 +277,7 @@ class eZWishList
            $return_array = array();
            foreach ( $wishlist_array as $item )
            {
-               $ret[] = new eZWishlistItem( $item[$db->fieldName( "ID" )] );
+               $ret[] = new eZWishListItem( $item[$db->fieldName( "ID" )] );
            }
        }
 

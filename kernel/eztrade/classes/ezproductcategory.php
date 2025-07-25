@@ -207,14 +207,22 @@ class eZProductCategory
     function get( $id=-1 )
     {
         $db =& eZDB::globalDatabase();
-
+        $category_array = array();
         $ret = false;
-        if ( $id != "" && $id != 0 )
+
+        if ( $id == 0 )
         {
-            $db->array_query( $category_array, "SELECT * FROM eZTrade_Category WHERE ID='$id'" );
+            $id = 1;
+        }
+
+        if ( $id != "" && $id != -1 )
+        {
+            $query = "SELECT * FROM eZTrade_Category WHERE ID='$id'";
+            $db->array_query( $category_array, $query );
+
             if ( count( $category_array ) > 1 )
             {
-                die( "Error: Category's with the same ID was found in the database. This shouldent happen." );
+                die( "Error: Category's with the same ID was found in the database. This should not happen." );
             }
             else if ( count( $category_array ) == 1 )
             {
@@ -356,9 +364,10 @@ class eZProductCategory
     /*!
       Returns the name of the category.
     */
-    function name()
+    function &name()
     {
-        return htmlspecialchars( $this->Name );
+		$ret = stripslashes( $this->Name );
+        return htmlspecialchars( $ret );
     }
 
     /*!
@@ -400,15 +409,16 @@ class eZProductCategory
     /*!
       Returns the group description.
     */
-    function description()
+    function &description()
     {
-        return htmlspecialchars( $this->Description );
+		$description = stripslashes( $this->Description );
+        return htmlspecialchars( $description );
     }
 
     /*!
       Returns the parent if one exist. If not 0 is returned.
     */
-    function parent()
+    function &parent()
     {
        if ( is_a($this->Parent, 'eZProductCategory'))
        {
@@ -428,7 +438,7 @@ class eZProductCategory
       3 - alphabetic desc
       4 - absolute placement
     */
-    function sortMode()
+    function &sortMode()
     {
        switch( $this->SortMode )
        {
@@ -671,17 +681,19 @@ class eZProductCategory
     /*!
       Returns every product to a category as a array of eZProduct objects.
     */
-    static public function products( $sortMode="time",
+    static public function &products( $sortMode="time",
                         $fetchNonActive=false,
                         $offset=0,
                         $limit=50,
                         $fetchDiscontinued=false,
                         $categoryID=0 )
     {
-       
-       $catID = $categoryID;
+        if ( $categoryID != -1 )
+            $catID = $categoryID;
+        else
+            $catID = $this->ID;
 
-       $db =& eZDB::globalDatabase();
+        $db =& eZDB::globalDatabase();
 
        switch( $sortMode )
        {
@@ -718,10 +730,20 @@ class eZProductCategory
        $return_array = array();
        $product_array = array();
 
-
        $permissionSQLArray = eZProductCategory::generatePermissionSQL( $catID );
        $permissionTableSQL = $permissionSQLArray["TableSQL"];
        $permissionSQL = $permissionSQLArray["SQL"];
+
+       $user =& eZUser::currentUser();
+       if ( $user )
+       {
+           $groups = $user->groups();
+       }
+       else
+       {
+           $groups = array();
+       }
+       
        if ( $fetchNonActive  == true )
        {
            $nonActiveCode = "";
@@ -815,7 +837,7 @@ class eZProductCategory
     /*!
       Returns every active product to a category as a array of eZProduct objects.
     */
-    function activeProducts( $sortMode="time",
+    function &activeProducts( $sortMode="time",
                               $offset=0,
                               $limit=50,
                               $categoryID=false )
@@ -859,7 +881,7 @@ class eZProductCategory
     /*!
       Returns every option to a category as a array of eZOption objects.
     */
-    function options()
+    function &options()
     {
         $db =& eZDB::globalDatabase();
 
@@ -1018,7 +1040,7 @@ class eZProductCategory
     /*!
       Returns the Image ID.
     */
-    function image( $AsObject = true )
+    function &image( $AsObject = true )
     {
         if ( $AsObject )
             $image = new eZImage( $this->ImageID );

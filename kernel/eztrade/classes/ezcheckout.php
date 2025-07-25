@@ -51,17 +51,17 @@ class eZCheckout
     function __construct()
     {
         $ini =& INIFile::globalINI();
-        $Checkout = $ini->read_var( "eZTradeMain", "Checkout" );
+        $checkout = $ini->read_var( "eZTradeMain", "Checkout" );
 
         // check for local checkout code
-        if ( eZFile::file_exists( "kernel/classes/checkout/ezcheckoutsuppliergateway.php" ) )
+        if ( eZFile::file_exists( "kernel/classes/$checkout/ezcheckoutsuppliergateway.php" ) )
         {
-            include_once( "kernel/classes/checkout/ezcheckoutsuppliergateway.php" );
+            //include_once( "kernel/classes/checkout/ezcheckoutsuppliergateway.php" );
             $this->CheckoutObject = new eZCheckoutSupplierGateway();
         }
         else
         {
-            include_once( "kernel/eztrade/classes/ezcheckoutsupplier.php" );
+            //include_once( "kernel/eztrade/classes/ezcheckoutsupplier.php" );
             $this->CheckoutObject = new eZCheckoutSupplier();
         }
     }

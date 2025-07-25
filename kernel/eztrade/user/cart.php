@@ -45,17 +45,27 @@ $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enab
 $ShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
 $ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
 $ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
+$ShowTaxBasis = $ini->read_var( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
 $ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
+
+//$checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
+
 
 if ( isset( $ShopMore ) ) 
 {
-    eZHTTPTool::header( "Location: /trade/productlist/1" );
+    eZHTTPTool::header( "Location: /trade/productlist/0" );
+    //    eZHTTPTool::header( "Location: ".$_SERVER['HTTP_REFERRER']  );
     exit();
 }
 
 // These are the common objects regardless of Action
 $session =& eZSession::globalSession();
 
+if(eZHTTPTool::getVar( "ShippingTypeID" )){
+  $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+}else{
+  $currentTypeID[0] = "03";
+}
 
 // Set some variables to defaults.
 $ShowCart = false;
@@ -177,9 +187,13 @@ if ( isset( $DoCheckOut ) )
     exit();
 }
 
-$cart = new eZCart();
-$cart = $cart->getBySession( $session );
 $user =& eZUser::currentUser();
+
+$cart = new eZCart();
+$cartBySession = $cart->getBySession( $session );
+
+if( $cartBySession )
+    $cart = $cart->getBySession( $session );
 
 // if ( !$cart )
 // {
@@ -273,7 +287,7 @@ if ( isset( $Action ) && $Action == "AddToBasket" )
         if ( $productAddedToBasket == false )
         {
             $can_add = true;
-            if ( !$product->hasQuantity() )
+            if ( !$product->hasQuantity( $RequireQuantity ) )
                 $can_add = false;
 
             if ( isset( $OptionValueArray ) && count( $OptionValueArray ) > 0 )
@@ -348,6 +362,9 @@ $t->set_block( "full_cart_tpl", "subtotal_ex_tax_item_tpl", "subtotal_ex_tax_ite
 $t->set_block( "full_cart_tpl", "subtotal_inc_tax_item_tpl", "subtotal_inc_tax_item" );
 $t->set_block( "full_cart_tpl", "shipping_ex_tax_item_tpl", "shipping_ex_tax_item" );
 $t->set_block( "full_cart_tpl", "shipping_inc_tax_item_tpl", "shipping_inc_tax_item" );
+$t->set_block( "full_cart_tpl", "anon_shipping_notification_tpl", "anon_shipping_notification" );
+$t->set_block( "full_cart_tpl", "shipping_notification_tpl", "shipping_notification" );
+$t->set_block( "full_cart_tpl", "shipping_noaddress_tpl", "shipping_noaddress" );
 
 $t->set_block( "cart_item_list_tpl", "cart_item_tpl", "cart_item" );
 $t->set_block( "cart_item_tpl", "cart_savings_item_tpl", "cart_savings_item" );
@@ -365,6 +382,7 @@ $t->set_block( "cart_item_basis_tpl", "basis_inc_tax_item_tpl", "basis_inc_tax_i
 $t->set_block( "cart_item_basis_tpl", "basis_ex_tax_item_tpl", "basis_ex_tax_item" );
 
 $t->set_block( "full_cart_tpl", "tax_specification_tpl", "tax_specification" );
+$t->set_block( "full_cart_tpl", "tax_total_tpl", "tax_total" );
 $t->set_block( "tax_specification_tpl", "tax_item_tpl", "tax_item" );
 
 $t->set_block( "cart_page_tpl", "cart_checkout_tpl", "cart_checkout" );
@@ -400,6 +418,20 @@ function turnColumnsOnOff( $rowName )
         $t->set_var( $rowName . "_inc_tax_item", "" );
     }
 }
+
+if($user){
+    $mainAddress = $user->mainAddress();
+    if($mainAddress){
+      // Check above - otherwise below will error for non-address members
+      $region = $mainAddress->region();
+    }
+}
+
+/*
+$mainAddress = $user->mainAddress();
+$region = $mainAddress->region();
+if ( $region->hasVAT() )
+*/
 
 $locale = new eZLocale( $Language );
 $currency = new eZCurrency();
@@ -454,9 +486,16 @@ foreach ( $items as $item )
         $value_quantity = $value->totalQuantity();
         $descriptions = $value->descriptions();
 
-        $t->set_var( "option_id", $option->id() );
+        // $t->set_var( "option_id", $option->id() );
         $t->set_var( "option_name", $option->name() );
-        $t->set_var( "option_value", $descriptions[0] );
+        if ( count( $descriptions ) > 0 )
+        {
+            $t->set_var( "option_value", $descriptions[0] );
+        }
+        else
+        {
+            $t->set_var( "option_value", $value->option()->name() );
+        }
         $t->set_var( "option_price", $value->localePrice( $PricesIncludeVAT, $product ) );
 
         $t->parse( "cart_item_option", "cart_item_option_tpl", true );
@@ -513,14 +552,71 @@ $t->setAllStrings();
 
 turnColumnsOnOff( "header" );
 
+$user =& eZUser::currentUser();
+$vat=false;
+
+if ($user)
+{
+  $address = new eZAddress();
+  if (isset( $cart->AddressID ) ){
+    $taxaddressID = $cart->AddressID;
+  }elseif( eZHTTPTool::getVar( "ShippingAddressID") ){
+    $taxaddressID = eZHTTPTool::getVar( "ShippingAddressID");
+  }else {
+    $taxaddressObj = $address->mainAddress($user);
+    if($taxaddressObj){
+      // Check above - otherwise will error for no address members
+      $taxaddressID = $taxaddressObj->ID();
+    }
+  }
+  $shippingAddress = new eZAddress( $taxaddressID );
+  $shippingRegion = $shippingAddress->region();
+
+  if ( $shippingRegion )
+  {
+    if ( $shippingRegion->hasVAT() )
+        $vat = false; // set to true to enable sales tax
+  }
+}
+
+$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == 'enabled'?1:0;
+$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == 'enabled'?1:0;
+
 if ( $ShowCart == true )
 {
-    
-    $cart->cartTotals( $tax, $total );
+  $shipaddID = eZHTTPTool::getVar( "ShippingAddressID" );
+  
+  if( !$cart->ShipServiceCode )
+  {
+    $cart->AddressID=$shipaddID;
+    $cart->ShipServiceCode=$currentTypeID[0];
+    $cart->storeshipoptions($currentTypeID[0],$shipaddID);
+  }
+  else
+  {
+    $cart->AddressID=$shipaddID;
+  }  
+  $cart->cartTotals( $tax, $total );
 
-    $locale = new eZLocale( $Language );
-    $currency = new eZCurrency();
-    
+  $locale = new eZLocale( $Language );
+  $currency = new eZCurrency();  
+  $shipServiceCode=false;
+  $upsNames =array ( 
+		    '01' => 'UPS Next Day Air',
+		    '02' => 'UPS 2nd Day Air',
+		    '03' => 'UPS Ground',
+		    '07' => 'UPS Worldwide Express',
+		    '08' => 'UPS Worldwide Expedited',
+		    '11' => 'UPS Standard',
+		    '12' => 'UPS 3 Day Select',
+		    '13' => 'UPS Next Day Air Saver',
+		    '14' => 'UPS Next Day Air Early A.M.',
+		    '54' => 'UPS Worldwide Express Plus',
+		    '59' => 'UPS 2nd Day Air A.M.',
+		    '64' => '',
+		    '65' => 'UPS Express Saver',
+		    );
+  
     $t->set_var( "empty_cart", "" );
 
     $currency->setValue( $total["subinctax"] );
@@ -532,14 +628,76 @@ if ( $ShowCart == true )
     $currency->setValue( $total["inctax"] );
     $t->set_var( "total_inc_tax", $locale->format( $currency ) );
 
-    $currency->setValue( $total["extax"] );
-    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+  //    $currency->setValue( $total["extax"] );
+  //    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+  
+  if ( isset( $upsNames[$shipServiceCode] ) && $upsNames[$shipServiceCode] != "" )
+  {
+     $shippingName = $upsNames[$shipServiceCode];
+  }
+  else
+    $shippingName = $upsNames[$cart->ShipServiceCode]; //$shipServiceCode;
+  
+    // ser =& eZUser::currentUser();
+    
+  if ( $shippingName != "" && $user )		
+    $t->set_var( "shipping_name", " (" . $shippingName . ")" );
+  else
+    $t->set_var( "shipping_name", "" );
     
     $currency->setValue( $total["shipinctax"] );
     $t->set_var( "shipping_inc_tax", $locale->format( $currency ) );
 
     $currency->setValue( $total["shipextax"] );
     $t->set_var( "shipping_ex_tax", $locale->format( $currency ) );
+  
+  //  print("here4 <br />");		 
+  
+  // If the user has no main address, set the display of shipping calculation to N/A
+  if ( !$user || !$user->mainAddress() )
+  {
+    //    print("here6  <br />");
+
+    $t->set_var( "shipping_inc_tax", 'N/A');
+    $t->set_var( "shipping_ex_tax", 'N/A');
+    $t->parse( "shipping_noaddress", "shipping_noaddress_tpl" );
+  } else {
+    $t->set_var( "shipping_noaddress", "" );
+    //    print("here7 <br />");
+  }
+ 
+  /*
+    if ( !$address->mainAddress($user) ) {
+      $t->set_var( "shipping_inc_tax", 'N/A');
+      $t->set_var( "shipping_ex_tax", 'N/A');
+      $t->parse( "shipping_noaddress", "shipping_noaddress_tpl" );
+    } else {
+      $t->set_var( "shipping_noaddress", "" );
+    }
+  */
+  //  die("here5");		
+
+  $t->set_var( "tax_percentage", round( (($total["tax"])/$total["subextax"])*100 , 2) );
+
+    $currency->setValue( $total["tax"] );
+    $t->set_var( "total_cart_tax", $locale->format( $currency ) );
+	
+	$t->set_var( "tax_total", "" );
+	if ( !$ShowIncTaxColumn && $vat==true )
+	{
+	    $currency->setValue( $total["inctax"] );
+	    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+		if ( $total["tax"]>0 )
+			$t->parse( "tax_total", "tax_total_tpl" );
+		else
+			$t->set_var( "tax_total", "" );
+	}
+	else
+	{
+	    $currency->setValue( $total["extax"] );
+	    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+	    $t->set_var( "tax_total", "" );
+	}
     
     if ( $ShowSavingsColumn == false )
     {
@@ -595,6 +753,18 @@ if ( $ShowCart == true )
     }
     
     $t->set_var( "totals_span_size", $ColSpanSizeTotals );
+	
+	$t->set_var( "shipping_notification", "" );
+	$t->set_var( "anon_shipping_notification", "" );
+
+//	if ($user && $shippingName!="" )
+	if ($user)
+		$t->parse( "shipping_notification", "shipping_notification_tpl" );
+
+//	if (!$user || $shippingName == "" || !$shippingName)
+	if (!$user)
+		$t->parse( "anon_shipping_notification", "anon_shipping_notification_tpl" );
+		
     $t->parse( "cart_item_list", "cart_item_list_tpl" );
     $t->parse( "full_cart", "full_cart_tpl" );
 
@@ -603,6 +773,8 @@ if ( $ShowCart == true )
 
     $j = 0;
 
+if ($ShowTaxBasis)
+	{
     foreach( $tax as $taxGroup )
     {
         $t->set_var( "td_class", ( $i % 2 ) == 0 ? "bglight" : "bgdark" );
@@ -616,10 +788,13 @@ if ( $ShowCart == true )
         $t->set_var( "sub_tax_percentage", $taxGroup["percentage"] );
         $t->parse( "tax_item", "tax_item_tpl", true );
     }
+    $t->parse( "tax_specification", "tax_specification_tpl" );
 
     // add switch if default country does not have tax to dissable tax display
     // $t->parse( "tax_specification", "tax_specification_tpl" );
 
+	}
+else
     $t->set_var( "tax_specification", "" );
     $t->set_var( "tax_item", "" );
     $t->parse( "cart_checkout_button", "cart_checkout_button_tpl" );    
@@ -638,4 +813,19 @@ else
 
 $t->pparse( "output", "cart_page_tpl" );
 
+
+/*
+print "debug: $ShowTaxBasis, $ShowIncTaxColumn, ".$region->hasVAT();
+print "debug test: $test";
+print_r($cart);
+print_r($taxaddressID);
+*/
+//print "here: $shipServiceCode";
+//print_r($taxaddressID);
+//print_r($taxaddressObj);
+//if($user->Login() == 'ptully'){
+//  print_r($shippingCost);
+//}
+
 ?>
+

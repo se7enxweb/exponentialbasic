@@ -598,11 +598,11 @@ class eZVoucherInformation
 
     var $ID;
     var $Description;
-    var $PreOrderID = 0;
+    var $PreOrderID;
     var $OnlineID;
-    var $ToAddressID = 0;
-    var $FromAddressID = 0;
-    var $VoucherID = 0;
+    var $ToAddressID;
+    var $FromAddressID;
+    var $VoucherID;
     var $MailMethod;
     var $Price;
     var $ToName;

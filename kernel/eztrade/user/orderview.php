@@ -40,7 +40,17 @@ if ( isset( $Cancel ) )
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZTradeMain", "Language" );
+
+$TinyImageWidth = $ini->read_var( "eZImageCatalogueMain", "TinyImageWidth" );
+$TinyImageHeight = $ini->read_var( "eZImageCatalogueMain", "TinyImageHeight" );
+
 $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )==enabled?1:0;
+$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )==enabled?1:0;
+if(($upscheck==0)&&($uspscheck==0))
+$checkups=0;
+else
+$checkups=1;
 
 $languageINI = new INIFIle( "kernel/eztrade/user/intl/" . $Language . "/orderview.php.ini", false );
 
@@ -67,6 +77,9 @@ $t->set_block( "order_edit_tpl", "invoice_tpl", "invoice" );
 
 $t->set_block( "order_edit_tpl", "order_item_list_tpl", "order_item_list" );
 $t->set_block( "order_item_list_tpl", "order_item_tpl", "order_item" );
+
+//$t->set_block( "order_edit_tpl", "order_status_option_tpl", "order_status_option" );
+$t->set_block( "order_item_list_tpl", "order_status_history_tpl", "order_status_history" );
 
 $t->set_block( "order_item_tpl", "order_item_option_tpl", "order_item_option" );
 
@@ -221,7 +234,7 @@ foreach ( $items as $item )
     
     if ( $image )
     {
-        $thumbnail =& $image->requestImageVariation( 35, 35 );
+        $thumbnail =& $image->requestImageVariation( $TinyImageWidth, $TinyImageHeight );
         
         $t->set_var( "product_image_path", "/" . $thumbnail->imagePath() );
         $t->set_var( "product_image_width", $thumbnail->width() );
@@ -265,21 +278,76 @@ $shippingCost = $order->shippingCharge();
 $currency->setValue( $shippingCost );
 $t->set_var( "shipping_cost", $locale->format( $currency ) );
 
+//print_r($order); print_r( $order->shippingVAT() ); exit();
+
 $totalVAT = $order->totalVAT();
 $currency->setValue( $totalVAT );
 $t->set_var( "vat_cost", $locale->format( $currency ) );
 if ( $order->isVATInc() )
 {
-    $sum = $order->totalPriceIncVAT() + $shippingCost;
+	$totalVAT = $order->totalVAT();
+	if ( $order->shippingVAT() > 0 )
+		$totalVAT = $totalVAT + $order->shippingVAT();
+	$currency->setValue( $totalVAT );
+	$t->set_var( "vat_cost", $locale->format( $currency ) );
+    $sum = $order->totalPriceIncVAT() + $shippingCost + $order->shippingVAT();
     $currency->setValue( $sum );
     $t->set_var( "order_sum", $locale->format( $currency ) );
 }
 else
 {
+	$currency->setValue( 0 );
+	$t->set_var( "vat_cost", $locale->format( $currency ) );
     $sum += $shippingCost;
     $currency->setValue( $sum );
     $t->set_var( "order_sum", $locale->format( $currency ) );
 }
+
+//$statusType = new eZOrderStatusType();
+/*
+$statusTypeArray = $statusType->getAll();
+foreach ( $statusTypeArray as $status )
+{
+    $statusName = preg_replace( "#intl-#", "", $status->name() );
+    $statusName =  $languageINI->read_var( "strings", $statusName );
+    
+    $t->set_var( "option_name", $statusName );
+    $t->set_var( "option_id", $status->id() );
+    $t->parse( "order_status_option", "order_status_option_tpl", true );
+}
+*/
+
+$historyArray = $order->statusHistory();
+/*
+echo "<pre>";
+print_r($historyArray);
+echo "</pre>";
+exit();
+*/
+$j=0;
+foreach ( $historyArray as $status )
+{
+    if ( ( $j % 2 ) == 0 )
+        $t->set_var( "td_class", "bglight" );
+    else
+        $t->set_var( "td_class", "bgdark" );
+
+    $admin =  $status->admin();
+    
+    $statusType = $status->type();
+
+    $statusName = preg_replace( "#intl-#", "", $statusType->name() );
+//    $statusName =  $languageINI->read_var( "strings", $statusName );
+    
+    $t->set_var( "status_date", $locale->format( $status->altered() ) );
+    $t->set_var( "status_name", $statusName );
+    $t->set_var( "status_comment", $status->comment() );
+    $t->set_var( "admin_login", $admin->login() );
+    $t->parse( "order_status_history", "order_status_history_tpl", true );
+    $j++;
+}
+
+
 
 $checkout = new eZCheckout();
 $instance =& $checkout->instance();
@@ -290,7 +358,49 @@ $t->set_var( "payment_method", $paymentMethod );
 $shippingType = $order->shippingType();
 
 $t->set_var( "shipping_method", "" );
-if ( $shippingType )
+
+
+ if (( $shippingType )&&($checkups==1))
+        {
+
+$getnames =array ( 
+
+	'01' => 'UPS Next Day Air',
+
+       	'02' => 'UPS 2nd Day Air',
+
+	'03' => 'UPS Ground',
+
+	'07' => 'UPS Worldwide Express',
+
+	'08' => 'UPS Worldwide Expedited',
+
+	'11' => 'UPS Standard',
+
+	'12' => 'UPS 3 Day Select',
+
+	'13' => 'UPS Next Day Air Saver',
+
+	'14' => 'UPS Next Day Air Early A.M.',
+
+	'54' => 'UPS Worldwide Express Plus',
+
+	'59' => 'UPS 2nd Day Air A.M.',
+
+	'64' => '',
+
+	'65' => 'UPS Express Saver',
+
+   );
+if (!$getnames["$shippingType"])
+$service_name=$shippingType;
+else
+$service_name=$getnames["$shippingType"];
+
+ $t->set_var( "shipping_method", $service_name );
+}
+
+if (( $shippingType )&&($checkups!=1))
 {    
     $t->set_var( "shipping_method", $shippingType->name() );
 }

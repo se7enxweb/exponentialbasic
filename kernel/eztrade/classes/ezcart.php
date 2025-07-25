@@ -1,4 +1,6 @@
 <?php
+
+use function PHPUnit\Framework\isEmpty;
 //
 // $Id: ezcart.php 9276 2002-02-26 14:41:12Z ce $
 //
@@ -55,9 +57,14 @@
   \sa eZCartItem eZProductCategory eZOption
 */
 
+
 // include_once( "classes/ezdb.php" );
 // include_once( "eztrade/classes/ezcartitem.php" );
 // include_once( "eztrade/classes/ezshippingtype.php" );
+
+//include_once( "eztrade/classes/ezproduct.php" );
+//include_once( "eztrade/classes/ezboxtype.php" );
+//include_once( "eztrade/classes/ezcartitem.php" );
 
 class eZCart
 {
@@ -108,12 +115,12 @@ class eZCart
         }
         else
         {
-            $res = $db->query( "UPDATE eZTrade_Cart SET
-		                         SessionID='$this->SessionID',
-                                 PersonID='$this->PersonID',
-                                 CompanyID='$this->CompanyID',
-                                 WHERE ID='$this->ID'
-                                 " );
+            $query = "UPDATE eZTrade_Cart SET
+                                SessionID='$this->SessionID',
+                                PersonID='$this->PersonID',
+                                CompanyID='$this->CompanyID'
+                                WHERE ID='$this->ID'";
+            $res = $db->query( $query );
         }
 
         if ( $res == false )
@@ -151,6 +158,14 @@ class eZCart
         if ( $id != "" )
         {
             $db->array_query( $cart_array, "SELECT * FROM eZTrade_Cart WHERE ID='$id'" );
+           
+
+//qcomp AMin.
+
+	    $db->array_query( $cartshipoptions_array, "SELECT * FROM eZTrade_CartShipOptions WHERE CartID='$id'" );
+
+//End qcomp AMin.
+
             if ( count( $cart_array ) > 1 )
             {
                 die( "Error: Cart's with the same ID was found in the database. This shouldent happen." );
@@ -161,6 +176,17 @@ class eZCart
                 $this->SessionID = $cart_array[0][$db->fieldName( "SessionID" )];
                 $this->PersonID = $cart_array[0][$db->fieldName( "PersonID" )];
                 $this->CompanyID = $cart_array[0][$db->fieldName( "CompanyID" )];
+//qcomp AMin.
+
+
+if ( count( $cartshipoptions_array ) == 1 )
+{
+  $this->ShipServiceCode = $cartshipoptions_array[0][$db->fieldName( "ServiceCode" )];
+  $this->AddressID = $cartshipoptions_array[0][$db->fieldName( "AddressID" )];
+}
+
+//End qcomp AMin.
+
                 $ret = true;
             }
         }
@@ -213,11 +239,19 @@ class eZCart
         }
 
         $res = $db->query( "DELETE FROM eZTrade_Cart WHERE ID='$this->ID'" );
+	$res2 = $db->query( "DELETE FROM eZTrade_CartShipOptions WHERE CartID='$this->ID'" );
 
         if ( $res == false )
             $db->rollback( );
         else
             $db->commit();
+
+	if ( $res2 == false )
+            $db->rollback( );
+        else
+	{
+            $db->commit();
+	}
 
         return true;
     }
@@ -257,6 +291,18 @@ class eZCart
             $this->PersonID = $id;
         }
     }
+
+
+    /*!
+      Sets the ship service code
+    */
+
+    function setShipServiceCode( $code )
+    {
+       $this->currentTypeID[0] = $code;
+       $this->ShipServiceCode = $code;
+    }
+
 
     /*!
       Sets the company we are shopping for
@@ -302,32 +348,56 @@ class eZCart
     /*
         This function calculates the totals of the cart contents.
      */
-    function cartTotals( &$tax, &$total, $voucher=false )
+
+    function cartTotals( &$tax, &$total, $voucher=false,$checkout=false, $calcVAT=false)
     {
+        $ini =& INIFile::globalINI();
+	
+        // $checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
+        $upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == 'enabled'?1:0;
+        $uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == 'enabled'?1:0;
+
+        $this->userFreeShipping = $ini->read_var( "eZTradeMain", "FreeShippingUser" );
+        $this->dealerFreeShipping = $ini->read_var( "eZTradeMain", "FreeShippingDealer" );
+        $this->singleBoxMaxWeight = $ini->read_var( "eZTradeMain", "SingleBoxMaxWeight" );
+        $this->shippingMarkupPct = $ini->read_var( "eZTradeMain", "ShippingMarkupPct" );
+        $this->shippingMarkupFlat = $ini->read_var( "eZTradeMain", "ShippingMarkupFlat" );
+              
         $tax = array();
         $total = array();
-        $totalIncTax = 0;
-        $totalExTax = 0;
-        $shippingVAT = 0;
-        $shippingCost = 0;
-        
-        
         $products = false;
+        $totalExTax = 0;
+        $totalIncTax = 0;
+        $shippingCost = 0;
+        $shippingVAT = 0;
+        $shippingVATPercentage = "";
 
+        $items = array();
+        $voucher = false;
+
+    
         if ( !$voucher )
         {
-            $items = $this->items( );
+            $items = $this->items();
+
             foreach( $items as $item )
             {
+                $itemquantity = $item->Count;
+
                 $product =& $item->product();
                 $vatPercentage = $product->vatPercentage();
+                
                 $tax["$vatPercentage"] = array();
                 $tax["$vatPercentage"]["basis"] = false;
                 $tax["$vatPercentage"]["tax"] = false;
                 $tax["$vatPercentage"]["percentage"] = false;
 
                 $exTax = $item->correctPrice( true, true, false );
-                $incTax = $item->correctPrice( true, true, true );
+
+                if ($calcVAT)
+                        $incTax = $item->correctPrice( true, true, true );
+                else
+                  $incTax = $exTax;
 
                 if ( $product->productType() != 2 )
                 {
@@ -347,82 +417,547 @@ class eZCart
                 $tax["$vatPercentage"]["basis"] += $exTax;
                 $tax["$vatPercentage"]["tax"] += $incTax - $exTax;
                 $tax["$vatPercentage"]["percentage"] = $vatPercentage;
-            }
-        }
-        else if ( is_a ( $voucher, "eZVoucher" ) )
+                    }
+                }
+                else if ( is_a ( $voucher, "eZVoucher" ) )
+                {
+                    $product =& $voucher->product();
+                    $vatPercentage = $product->vatPercentage();
+
+                    $exTax = $voucher->correctPrice( false );
+                    $incTax = $voucher->correctPrice( true );
+
+
+                    $totalExTax += $exTax;
+                    $totalIncTax += $incTax;
+
+                    $tax["$vatPercentage"]["basis"] += $exTax;
+                    $tax["$vatPercentage"]["tax"] += $incTax - $exTax;
+                    $tax["$vatPercentage"]["percentage"] = $vatPercentage;
+                }
+
+
+                $total["subinctax"] = $totalIncTax;
+                $total["subextax"] = $totalExTax;
+                $total["subtax"] = $totalIncTax - $totalExTax;
+
+
+                if ( $products == true )
+                {
+                    $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+            
+            if ( isset($currentTypeID[0] ) && is_numeric ( $currentTypeID[0] )
+                && !$upscheck 
+                && !$uspscheck	)
+                    {
+              $shippingType = new eZShippingType( $currentTypeID[0] );
+                    }
+                    else
+                    {
+                        $type = new eZShippingType( );
+                        $shippingType =& $type->defaultType();
+                    }
+                    $shippingCost = $this->shippingCost( $shippingType );
+                    $shippingVAT = $this->shippingVAT( $shippingType );
+                    $shippingVATPercentage = $this->extractShippingVATPercentage( $shippingType );
+
+            ///////////////////////////////////////////////////////
+            //print_r($shippingVATPercentage); exit();
+                }
+
+                if ( $shippingVATPercentage == "" || !$calcVAT)
+                    $shippingVATPercentage = 0;
+
+          // $shippingVATPercentage = 6;
+
+                $user =& eZUser::currentUser();
+                $useVAT = true;
+
+          if ( $shippingVATPercentage != 0 
+              && !$upscheck
+              && !$uspscheck
+              )
+          {
+            $tax["$shippingVATPercentage"]["basis"] += $shippingCost - $shippingVAT;
+            $tax["$shippingVATPercentage"]["tax"] += $shippingVAT;
+            $tax["$shippingVATPercentage"]["percentage"] = $shippingVATPercentage;
+          }
+          
+          //RS        $total["shipinctax"] = $shippingCost;
+          //RS        $total["shipextax"] = $shippingCost - $shippingVAT;
+          
+
+          $total["shipinctax"] = $shippingCost + $shippingVAT;
+          $total["shipextax"] = $shippingCost;
+          $total["shiptax"] = $shippingVAT;
+
+          $total["inctax"] = $total["subinctax"] + $total["shipinctax"];
+          $total["extax"] = $total["subextax"] + $total["shipextax"];
+          $total["tax"] = $total["subtax"] + $total["shiptax"];
+          
+        //Qcomp Codes Start here.
+
+        /////////////////////////////////////////////////////////
+        //Ups service,USPS service calculations start here 
+
+        // include_once( "ezuser/classes/ezuser.php" );
+        // include_once( "eztrade/classes/ezboxtype.php" );
+        // include_once( "ezaddress/classes/ezaddress.php" );
+
+        $getnames =array ( 
+            '01' => 'UPS Next Day Air',
+            '02' => 'UPS 2nd Day Air',
+            '03' => 'UPS Ground',
+            '07' => 'UPS Worldwide Express',
+            '08' => 'UPS Worldwide Expedited',
+            '11' => 'UPS Standard',
+            '12' => 'UPS 3 Day Select',
+            '13' => 'UPS Next Day Air Saver',
+            '14' => 'UPS Next Day Air Early A.M.',
+            '54' => 'UPS Worldwide Express Plus',
+            '59' => 'UPS 2nd Day Air A.M.',
+            '64' => '',
+            '65' => 'UPS Express Saver',
+          );
+
+        $arrcount=0;
+        $withoutbox=0;
+
+        $boxarr = array();
+        $totalarr = array();
+
+
+        ///////////////////////////////////////////////////////
+        //if both(UPS,USPS) is disabled,then get default value.
+
+        if(($upscheck==0)&&($uspscheck==0))
+          $checkups=0;
+        else
+          $checkups=1;
+
+        // START UPS CHECK
+        if($checkups==1)
         {
-            $product =& $voucher->product();
-            $vatPercentage = $product->vatPercentage();
+          // include_once( "eztrade/classes/ezupsservice.php" );
+          // include_once( "eztrade/classes/ezusps.php" );
+          
+          // Depricated: $uspsserver = "http://production.shippingapis.com/ShippingAPI.dll";
 
-            $exTax = $voucher->correctPrice( false );
-            $incTax = $voucher->correctPrice( true );
+          $uspsserver = $ini->read_var( "site", "UserUSPSServer" );
+          $uspsuser = $ini->read_var( "site", "UserUSPS" );
+          $uspspass = $ini->read_var( "site", "PassUSPS" );
+          
+          $user =& eZUser::currentUser();
 
+          if($user)
+          {
+            $id = $user->id();
+            $isaddress = $user->addresses($id);
 
-            $totalExTax += $exTax;
-            $totalIncTax += $incTax;
-
-            $tax["$vatPercentage"]["basis"] += $exTax;
-            $tax["$vatPercentage"]["tax"] += $incTax - $exTax;
-            $tax["$vatPercentage"]["percentage"] = $vatPercentage;
-        }
-
-
-        $total["subinctax"] = $totalIncTax;
-        $total["subextax"] = $totalExTax;
-        $total["subtax"] = $totalIncTax - $totalExTax;
-
-
-        if ( $products == true )
-        {
-            $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
-            if ( is_numeric( $currentTypeID ) )
+            if ($this->ShipServiceCode)
             {
-                $shippingType = new eZShippingType( $currentTypeID );
+              $currentTypeID[0] =$this->ShipServiceCode;
+            }
+
+            if ($this->AddressID)
+            {
+              $shipaddressID  =$this->AddressID;
+            }
+
+            if ((eZHTTPTool::getVar( "ShippingTypeID" )) || (eZHTTPTool::getVar( "ShippingAddressID" )))
+            {
+              $shipaddressID = eZHTTPTool::getVar("ShippingAddressID");
+              $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+
+              $this->AddressID=$shipaddressID;
+              $this->ShipServiceCode=$currentTypeID;
+
+              if( isset( $currentTypeID ) )
+              {
+                $this->storeshipoptions($currentTypeID[0],$shipaddressID);      
+              }
+            }
+
+            // graham : debug
+            // echo $currentTypeID[0]." hh ".$shipaddressID."<br />";
+            
+            if( $isaddress )
+            {
+                if( !empty( $shipaddressID ) )
+          {
+            // include_once("ezaddress/classes/ezaddress.php");
+
+            $ezadd = new eZAddress($shipaddressID);
+
+            if($ezadd)
+            {
+              $zip = $ezadd->zip();
+              $country = $ezadd->country();
+              $countryiso = $country->iso();
+              $countryname = $country->name();
+              $region = $ezadd->region();
+              $regionAbb = $region->Abbreviation();
             }
             else
             {
-                $type = new eZShippingType( );
-                $shippingType =& $type->defaultType();
+              $addpoint = $isaddress[0];
+              $zip = $addpoint->zip();
+              $country = $addpoint->country();
+
+              $countryiso = $country->iso();
+              $countryname = $country->name();
+              $region = $addpoint->region();
+              $regionAbb = $region->Abbreviation();
+
             }
-            $shippingCost = $this->shippingCost( $shippingType );
-            $shippingVAT = $this->shippingVAT( $shippingType );
-            $shippingVATPercentage = $this->extractShippingVATPercentage( $shippingType );
+          }
+          else
+          {
+            $addpoint = $isaddress[0];
+            $zip = $addpoint->zip();
+            $country = $addpoint->country();
+            $countryiso = $country->iso();
+            $countryname = $country->name();
+
+            // graham : 2005-05-27 : without this check : non-us countries 
+                  // without a region cause the cart to crash
+            // this is a bug fix (undocumented) to bob sims work
+
+            if ( $addpoint->region() )
+              $region = $addpoint->region();
+            
+            if ( $region )
+              $regionAbb = $region->Abbreviation();
+          }
+
+          $items = $this->items();
+          $getcartid =$this->id();
+          
+          // This will be incremented when $this->singleBoxMaxWeight is exceeded, representing another box.
+          $curboxnum = 0; 
+
+          $skipground = true;
+
+          foreach($items as $item)
+          {
+            $getcount = $item->count();
+            $proobj = $item->product();
+            $proid = $proobj->id();
+            
+          // echo "<br>CURBOXNUM : $curboxnum ID: $proid QUANT: $getcount WEIGHT: $proweight SINGLE: " .$proobj->weight() ."<br>";
+            
+            $proboxtypeID = $proobj->BoxTypeID();
+            
+            if ($proboxtypeID>0) {
+              $proweight = $proobj->weight();
+            } else {
+              $proweight = $proobj->weight() * $getcount;
+            }
+
+            $proboxtype = new eZBoxType($proboxtypeID);
+            $proflatups = $proobj->flatups();
+            $proflatusps = $proobj->flatusps();
+            $procombineflat = $proobj->flatcombine();
+
+            // 
+            $getlength = $proboxtype->length();
+            $getwidth =  $proboxtype->width();
+            $getheight =  $proboxtype->height();
+            
+            if ($procombineflat || $proflatups == 'off')
+              $skipground = false;
+            if ($procombineflat || $proflatups == 'off')
+              $skipparcel = false;
+            if($proboxtypeID>0)
+            {
+              $boxarr[$arrcount] =array("weight"=>$proweight,"length"=>$getlength,"height"=>$getheight,"width"=>$getwidth,"count"=>$getcount, 'flatups'=>$proflatups, 'flatusps'=>$proflatusps, 'combineflat'=>$procombineflat,); 
+            }
+            else
+            {
+              $without = array();
+              $without[$curboxnum] = array();
+              $without[$curboxnum]['weight'] = false;
+              $without[$curboxnum]['count'] = false;
 
 
-        }
-        if ( !isset($shippingVATPercentage) )
-            $shippingVATPercentage = 0;
+              if ($proweight > $this->singleBoxMaxWeight ) {
+            //echo "$proweight is > $this->singleBoxMaxWeight<br>";
+              $loopNum = floor($proweight / $this->singleBoxMaxWeight);
+              // add to any box going
+              if ( ($this->singleBoxMaxWeight - $without[$curboxnum]['weight']) > 0) {
+                  $proweight = $proweight - ($this->singleBoxMaxWeight - $without[$curboxnum]['weight']);
+                $without[$curboxnum]['weight'] = $this->singleBoxMaxWeight;
+                $without[$curboxnum]['count'] += $getcount;
+                $without[$curboxnum]['flatups'] = $proflatups;
+                $without[$curboxnum]['flatusps'] = $proflatusps;
+                $without[$curboxnum]['combineflat'] = $procombineflat;
+                }
+              for ($l=0; $l<$loopNum; $l++) {
+                if ($proweight - $this->singleBoxMaxWeight > 0) {
+                  $curboxnum++;
+            
+                  $without[$curboxnum]['weight'] += $this->singleBoxMaxWeight;
+                    $without[$curboxnum]['count'] += $getcount;
+                  $without[$curboxnum]['flatups'] = $proflatups;
+                  $without[$curboxnum]['flatusps'] = $proflatusps;
+                  $without[$curboxnum]['combineflat'] = $procombineflat;
+                  $proweight = $proweight - $this->singleBoxMaxWeight;
+                }
+                
+              }
+              $curboxnum++;
+              }
+            
+              if ( isset($without[$curboxnum]['weight']) && ($without[$curboxnum]['weight'] + $proweight) > $this->singleBoxMaxWeight && isset($without[$curboxnum]['weight']) )
+              { 
+                // echo $without[$curboxnum]['weight'] . ' + ' . $proweight .' is more than ' . $this->singleBoxMaxWeight;
+                $curboxnum++;
+              }
 
-        $user =& eZUser::currentUser();
-        $useVAT = true;
+            $without[$curboxnum]['weight'] += $proweight;
+            $without[$curboxnum]['count'] += $getcount;
+            $without[$curboxnum]['flatups'] = $proflatups;
+            $without[$curboxnum]['flatusps'] = $proflatusps;
+            $without[$curboxnum]['combineflat'] = $procombineflat; 
+            }
+            $arrcount +=1;
+          }
+          /*
+            ### DEBUG STUFF
+            #for ($i = 0; $i<sizeof($without); $i++) {
+            #	echo("Box $i : " . $without[$i]['weight'].'<br>');
+            #}
+              ###
+          */
+          // $without = array("weight"=>$withoutbox,"count"=>$totcount);
 
-        if (!isset($tax[$shippingVATPercentage])) 
+          $totalarr = array( "box" => $boxarr );
+          if( isset($withoutbox) )
+          {
+              $totalarr["withoutbox"] = $withoutbox;  
+          }
+          // graham : 2005-05-24 : this gets the shipping types for UPS
+          // if UPS is disabled,these codes are skipped.
+          if($upscheck==1)
+          {  
+            $upsclass = new ezups();   
+            $upsresults = $upsclass->ezupsser("$id","02","$regionAbb","$zip","$countryiso",$totalarr);  
+          
+            foreach($upsresults as $upsnullvalue){
+              if(($upsnullvalue==0)||($upsnullvalue==0.00)||($upsnullvalue=='0')||($upsnullvalue=='0.00')){
+                $upsresults=array();
+              }
+            }
+          }
+          else
+            $upsresults=array();
+          
+
+          // if USPS is disabled,these codes are skipped.
+          if($uspscheck==1)
+          {
+            $uspsclass = new ezuspsservices();
+            // graham : question : why is State & Zip hard coded to PA instead of RI / ini variable ?
+            $uspsres = $uspsclass->ezuspsget($uspsserver,$uspsuser,$uspspass,$totalarr,"10","$zip","$regionAbb","$countryname","19004","PA","US","", "true");
+
+            // print_r( '>>'. $uspsres .'<<');
+            // print_r( $countryname );
+            /*
+            if ( !in_array("", $uspsres) )
+              die("sorry, please try again...");
+            */
+                  
+            if( !empty($uspsres) )
+            {
+              foreach($uspsres as $uspsnullvalue)
+              {
+                if(($uspsnullvalue==0)||($uspsnullvalue=='0')||($uspsnullvalue==0.00)||($uspsnullvalue=='0.00')){
+            $uspsres=array();
+                }
+              }
+            }
+
+          }
+          else
+            $uspsres=array();
+  
+          // print_r( $uspsres );
+          if( is_array($upsresults) && is_array($uspsres) )
+              $upsresults=array_merge($upsresults,$uspsres);
+          else
+              $upsresults=array();
+          $res = asort($upsresults);
+          
+          //$currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+          
+          $i=1;
+          // print_r($shippingVAT); exit();
+          
+          $ugroups = $user->groups();
+          $isdealer = false;
+          foreach ($ugroups as $curgroup)
+          {
+            if ($curgroup->Name == 'Dealers')
+              $isdealer = true;
+          }
+          if($this->shippingMarkupPct)
+              $upsresults = $this->applyPctShippingMarkup ( $upsresults );
+          if ($this->shippingMarkupFlat)
+            $upsresults = $this->applyFlatShippingMarkup ( $upsresults );
+          if ($isdealer = true && $this->dealerFreeShipping > 0) {
+            if ($total['subextax'] >= $this->dealerFreeShipping)
+              $upsresults = $this->applyFreeShipping( $upsresults );
+          }
+          if (!$isdealer && $this->userFreeShipping > 0)
+          {
+            if ($total['subextax'] >= $this->userFreeShipping)
+              $upsresults = $this->applyFreeShipping( $upsresults );
+          }
+
+          foreach($upsresults as $upsr)
+          {
+              $splups=explode("\|\|",$upsr);
+              // echo $splups[1];
+              // die();
+
+              if( $i == 1 )
+              {
+                $first = $splups[0];
+              }
+
+              /*
+              echo $splups[0];
+              die();
+
+              // graham
+              //	    print $currentTypeID[0];
+              //	    die();
+              */
+              
+              if( !empty( $currentTypeID ) )
+              {
+                  if( isset( $splups[1] ) && $currentTypeID[0] == $splups[1] )
+                  {
+                      //eZHTTPTool::setcookie("lastshipID",$shipaddressID);
+                      $shippingVAT = $this->extractShippingVAT( $splups[0],$shippingVATPercentage );
+                      $total["shipinctax"] =$splups[0]+$shippingVAT;
+                      $total["shipextax"] =$splups[0]; //-$shippingVAT;
+                      $total["shiptax"] = $shippingVAT;
+                      $tax["$shippingVATPercentage"]["basis"] += $splups[0];
+                      $tax["$shippingVATPercentage"]["tax"] += $shippingVAT;
+                      $tax["$shippingVATPercentage"]["percentage"] = $shippingVATPercentage;
+                      
+                      break;
+                    }
+                    else { 
+                      // there is a currentTypeID but this isn't it
+                      if( $splups[0]< $first ){
+                        $first = $splups[0];
+                      }
+
+                      $shippingVAT = $this->extractShippingVAT( $first, $shippingVATPercentage );
+
+                      $total["shipinctax"] = $first . $shippingVAT;
+                      $total["shipextax"] = (float)$first;              // -$shippingVAT;
+                      $total["shiptax"] = $shippingVAT;
+                      $tax["$shippingVATPercentage"]["basis"] += (float)$first;
+                      $tax["$shippingVATPercentage"]["tax"] += $shippingVAT;
+                      $tax["$shippingVATPercentage"]["percentage"] = $shippingVATPercentage;
+                      //echo "ddd";
+                    }
+                }
+                else // there is no currentTypeID
+                {
+              if($i==1){
+                $first = $splups[0];}
+              else
+              {
+                if($splups[0]<$first)
+                {
+                  $first=$splups[0];
+                }
+                else
+                {
+                  $first = $first;
+                }
+
+                $shippingVAT = $this->extractShippingVAT( $first, $shippingVATPercentage );
+                $total["shipinctax"] =$first+$shippingVAT;
+                $total["shipextax"] =$first; //-$shippingVAT;
+                $total["shiptax"] = $shippingVAT;
+
+                $tax["$shippingVATPercentage"]["basis"] += $first;
+                $tax["$shippingVATPercentage"]["tax"] += $shippingVAT;
+                $tax["$shippingVATPercentage"]["percentage"] = $shippingVATPercentage;
+
+                //echo "ccc";
+
+                break;
+              }
+                  }
+                $i=$i+1;
+              }
+              }
+            }
+
+                $total["inctax"] = $total["subinctax"] + (float)$total["shipinctax"];
+                $total["extax"] = $total["subextax"] + $total["shipextax"];
+                $total["tax"] = $total["subtax"] + $total["shiptax"];
+            }
+        // END UPS CHECK
+
+
+        if( ($checkout==true ) && ($checkups==1 ))
         {
-	        $tax[$shippingVATPercentage]= array(
-	        	"basis" => $shippingCost - $shippingVAT,
-	        	"tax"   => $shippingVAT,
-	        	"percentage" => $shippingVATPercentage);
+          // setcookie("last_access_code", $currentTypeID[0]);
+          // setcookie("last_access_address", $shipaddressID);
+          return $upsresults;
         }
-        else
-        {
-	        $tax[$shippingVATPercentage]["basis"] += $shippingCost - $shippingVAT;
-	        $tax[$shippingVATPercentage]["tax"] += $shippingVAT;
-	        $tax[$shippingVATPercentage]["percentage"] = $shippingVATPercentage;
-        }
-
-        $total["shipinctax"] = $shippingCost;
-        $total["shipextax"] = $shippingCost - $shippingVAT;
-        $total["shiptax"] = $shippingVAT;
-
-        $total["inctax"] = $total["subinctax"] + $total["shipinctax"];
-        $total["extax"] = $total["subextax"] + $total["shipextax"];
-        $total["tax"] = $total["subtax"] + $total["shiptax"];
-    }
+ 
+   // UPS,USPS Calculations end here.
+} // Qcomp codes End here.
 
     /*!
-      Calculates the shipping cost with the given
-      shippint type.
+      Applies a percentage shipping markup from the ini file.
+    */
+	function applyPctShippingMarkup( $shiplist )
+	{
+		for ($i=0; $i<sizeof($shiplist); $i++) {
+		  $li = explode('\|\|', $shiplist[$i]);
+	   	  $li[0] = $li[0] + ( $li[0] / ( 100 / $this->shippingMarkupPct ) );
+	   	  $shiplist[$i] = $li[0] . '||' . $li[1];
+		}
+		return $shiplist;
+	}
 
+	function applyFlatShippingMarkup( $shiplist )
+	{
+		for ($i=0; $i<sizeof($shiplist); $i++)
+    {
+		  	$li = explode('\|\|', $shiplist[$i]);
+	   	  $li[0] = $li[0] . $this->shippingMarkupFlat;
+        if( isset( $li[1] ))
+            $shiplist[$i] = $li[0] . '||' . $li[1];
+        else
+            $shiplist[$i] = $li[0];
+		}
+		return $shiplist;
+	}
+
+	function applyFreeShipping( $shiplist )
+	{
+		  for ($i=0; $i<sizeof($shiplist); $i++) {
+		 $li = explode('\|\|', $shiplist[$i]);
+	   	  if ($li[1] == '03') { // we may want to switch the service check to an ini var at some point
+		   $shiplist[$i] = '0.00' . '||' . $li[1];
+		  break;
+		  }
+		}
+		return $shiplist;
+	}
+
+/*!
+      Calculates the shipping cost with the given shippment type.
       The argument must be a eZShippingType object.
     */
     function shippingCost( $shippingType )
@@ -433,6 +968,7 @@ class eZCart
        foreach ( $items as $item )
        {
            $product =& $item->product();
+           $shippingGroup =& $product->shippingGroup();
 
            $shippingGroup =& $product->shippingGroup();
            if ( $shippingGroup )
@@ -457,6 +993,8 @@ class eZCart
        $cost = 0;
 
        $max = 0;
+       $max_id = 0;
+
        // Find largest start sum first
        foreach( $ShippingCostValues as $value )
        {
@@ -592,12 +1130,89 @@ class eZCart
            $db->commit();
 
        $this->delete();
+
     }
+
+//qcomp AMin.
+
+ function storeshipoptions($shipservice,$addressid)
+ {
+    if (!$shipservice){$shipservice=0;}
+
+    if (!$addressid){$addressid=0;}
+        $db =& eZDB::globalDatabase();
+        $db->begin();
+        $db->array_query( $cartshipoptions_array, "SELECT * FROM eZTrade_CartShipOptions WHERE CartID='$this->ID'" );
+        $ss = "SELECT * FROM eZTrade_CartShipOptions WHERE CartID='$this->ID'";
+
+    if ( count( $cartshipoptions_array ) == 1 )
+    {
+        $sqlx="UPDATE eZTrade_CartShipOptions SET ";
+
+        if ($addressid)
+        {
+            $sqlx=$sqlx." AddressID='".$addressid."',";
+        }
+
+        if ($shipservice)
+        {
+            $sqlx=$sqlx."ServiceCode='".$shipservice."'";
+        }
+
+        $sqlx= $sqlx . " WHERE CartID='".$this->ID."'";
+
+        $res = $db->query( $sqlx );
+    }
+    else
+    {
+        $db->lock( "eZTrade_CartShipOptions" );
+        $nextID = $db->nextID( "eZTrade_CartShipOptions", "ID" );
+        $res = $db->query( "INSERT INTO eZTrade_CartShipOptions
+                                        ( ID,
+                                          AddressID,
+                                          ServiceCode,
+                                          CartID )
+                                        VALUES
+                                        ( '$nextID',
+                                          '$addressid',
+                                          '$shipservice',
+                                          '$this->ID' )
+                                      " );
+          $db->unlock();
+      }
+
+      if ( $res == false )
+
+          $db->rollback( );
+
+      else
+
+          $db->commit();
+
+      return true;
+    } //End qcomp AMin.
 
     var $ID;
     var $SessionID;
     var $PersonID;
     var $CompanyID;
-}
 
+
+
+//qcomp AMin.
+
+    var $ShipServiceCode;
+    var $userFreeShipping;
+    var $dealerFreeShipping;
+    var $singleBoxMaxWeight;
+    var $shippingMarkupPct;
+    var $shippingMarkupFlat;
+
+    var $AddressID;
+
+//End qcomp AMin.
+
+
+
+}
 ?>

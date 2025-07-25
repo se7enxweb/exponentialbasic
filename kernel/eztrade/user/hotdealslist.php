@@ -148,7 +148,7 @@ foreach ( $productList as $product )
 
     $t->set_var( "product_id", $product->id() );
     $t->set_var( "product_name", $product->name() );
-    $t->set_var( "product_intro_text", $product->brief() );
+    $t->set_var( "product_intro_text", htmlspecialchars( $product->brief() ) );
 
     $image = $product->thumbnailImage();
 

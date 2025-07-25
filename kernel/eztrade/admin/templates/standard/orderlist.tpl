@@ -21,10 +21,11 @@
 <!-- BEGIN order_item_list_tpl -->
 <table class="list" width="100%" cellspacing="0" cellpadding="4" border="0">
 <tr>
-	<th><a href="/trade/orderlist/?OrderBy=No">{intl-nr}:</a></th>
-	<th><a href="/trade/orderlist/?OrderBy=Created">{intl-created}:</a></th>
-	<th><a href="/trade/orderlist/?OrderBy=Modified">{intl-modified}:</a></th>
-	<th><a href="/trade/orderlist/?OrderBy=Status">{intl-status}:</a></th>
+	<th><a href="{www_dir}{index}/trade/orderlist/?OrderBy=No">{intl-nr}:</a></th>
+	<th>{intl-name}:</th>
+	<th><a href="{www_dir}{index}/trade/orderlist/?OrderBy=Created">{intl-created}:</a></th>
+	<th><a href="{www_dir}{index}/trade/orderlist/?OrderBy=Modified">{intl-modified}:</a></th>
+	<th><a href="{www_dir}{index}/trade/orderlist/?OrderBy=Status">{intl-status}:</a></th>
 	<td align="right"><b>{intl-price}:</b></td>
 	<th>&nbsp;</th>
 	<th>&nbsp;</th>
@@ -32,17 +33,21 @@
 
 <!-- BEGIN order_item_tpl -->
 <tr>
+	<span class="menusubhead">
 	<td class="{td_class}">
-	<b><a href="/trade/orderview/{order_id}">{order_id}</a></b>
+	<a href="{www_dir}{index}/trade/orderedit/{order_id}/" title="{intl-edit}">{order_id}</a>
+	</td>
+	<td class="{td_class}">
+	<span class="small"><a href="mailto:{customer_email}" title="{intl-send_email} {customer_first_name}&nbsp;{customer_last_name}">{customer_first_name}&nbsp;{customer_last_name}</a></span>
 	</td>
 	<td class="{td_class}">
 	<span class="small">{order_date}</span>
 	</td>
 	<td class="{td_class}">
-	<span class="small">{altered_date}</span>
+	<span class="small">{altered_date}<br/></span>
 	</td>
 	<td class="{td_class}">
-	{order_status}
+	{order_status}<br/><span class="{age_color}">{status_age} days ago</span>
 	</td>
 	<td class="{td_class}" align="right">
 	{order_price}
@@ -54,6 +59,7 @@
 <!--	<a href="#" onClick="verify( '{intl-delete}', '/trade/orderedit/{order_id}/delete/'); return false;" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezto{order_id}-slett','','{www_dir}/design/admin/images/{site_style}/slettminimrk.gif',1)"><img name="ezto{order_id}-slett" border="0" src="{www_dir}/design/admin/images/{site_style}/slettmini.gif" width="16" height="16" align="top"></a> -->
         <input type="checkbox" name="OrderArrayID[]" value="{order_id}" />
      	</td>
+	</span>
 </tr>
 <!-- END order_item_tpl -->
 

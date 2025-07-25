@@ -44,6 +44,8 @@ $ShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enable
 $ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
 $ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
 $ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
+$checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
+$ShowTaxBasis = $ini->read_var( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
 
 $locale = new eZLocale( $Language );
 $currency = new eZCurrency();
@@ -108,6 +110,7 @@ $t->set_block( "cart_item_basis_tpl", "basis_inc_tax_item_tpl", "basis_inc_tax_i
 $t->set_block( "cart_item_basis_tpl", "basis_ex_tax_item_tpl", "basis_ex_tax_item" );
 
 $t->set_block( "full_cart_tpl", "tax_specification_tpl", "tax_specification" );
+$t->set_block( "full_cart_tpl", "tax_total_tpl", "tax_total" );
 $t->set_block( "tax_specification_tpl", "tax_item_tpl", "tax_item" );
 
 
@@ -134,6 +137,8 @@ if ( $currentUser->id() != $user->id() )
     exit();
 }
 
+$vat=false;
+$tester = 1;
 if ( $user )
 {
     // print out the addresses
@@ -162,6 +167,7 @@ if ( $user )
     
     $t->set_var( "billing_street1", $billingAddress->street1() );
     $t->set_var( "billing_street2", $billingAddress->street2() );
+    $t->set_var( "billing_phone", $billingAddress->phone() );
     $t->set_var( "billing_zip", $billingAddress->zip() );
     $t->set_var( "billing_place", $billingAddress->place() );
     $t->set_var( "billing_region", $billingAddress->region() );    
@@ -186,6 +192,10 @@ if ( $user )
         if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
             $t->set_var( "billing_region", $region->name() );
         else
+            $t->set_var( "billing_region", "" );
+    }
+    else
+    {
             $t->set_var( "billing_region", "" );
     }
     
@@ -224,6 +234,7 @@ if ( $user )
 
     $t->set_var( "shipping_street1", $shippingAddress->street1() );
     $t->set_var( "shipping_street2", $shippingAddress->street2() );
+    $t->set_var( "shipping_phone", $shippingAddress->phone() );
     $t->set_var( "shipping_zip", $shippingAddress->zip() );
     $t->set_var( "shipping_place", $shippingAddress->place() );
     $t->set_var( "shipping_region", $shippingAddress->region() );      
@@ -243,11 +254,21 @@ if ( $user )
 
     $region = $shippingAddress->region();
 
+	if ( $shippingRegion )
+		{
+			if ( $region->hasVAT() )
+				$vat = true;
+		}
+
     if ( $region )
     {
         if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
             $t->set_var( "shipping_region", $region->name() );
         else
+            $t->set_var( "shipping_region", "" );
+    }
+    else
+    {
             $t->set_var( "shipping_region", "" );
     }
     
@@ -496,6 +517,29 @@ if ( $ShowCart == true )
 
     $t->set_var( "empty_cart", "" );
 
+	$t->set_var( "tax_total", "" );
+
+	if ( !$ShowIncTaxColumn && $order->isVATInc() )
+	{
+	    $currency->setValue( $total["inctax"] );
+	    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+	    $currency->setValue( $total["tax"] );
+    	$t->set_var( "total_cart_tax", $locale->format( $currency ) );	
+
+		if ( $total["tax"]>0 )
+			$t->parse( "tax_total", "tax_total_tpl" );
+		else
+			$t->set_var( "tax_total", "" );
+	}
+	else
+	{
+
+	    $currency->setValue( $total["extax"] );
+	    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+	    $t->set_var( "total_cart_tax", "" );		
+	    $t->set_var( "tax_total", "" );
+	}
+
     $currency->setValue( $total["subinctax"] );
     $t->set_var( "subtotal_inc_tax", $locale->format( $currency ) );
 
@@ -505,14 +549,20 @@ if ( $ShowCart == true )
     $currency->setValue( $total["inctax"] );
     $t->set_var( "total_inc_tax", $locale->format( $currency ) );
 
-    $currency->setValue( $total["extax"] );
-    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+//    $currency->setValue( $total["extax"] );
+//    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
     
     $currency->setValue( $total["shipinctax"] );
     $t->set_var( "shipping_inc_tax", $locale->format( $currency ) );
 
+	$currency->setValue( $total["subextax"] );
+    $t->set_var( "subtotal_ex_tax", $locale->format( $currency ) );		
+
     $currency->setValue( $total["shipextax"] );
     $t->set_var( "shipping_ex_tax", $locale->format( $currency ) );
+
+    $currency->setValue( $total["tax"] );
+    $t->set_var( "tax", $locale->format( $currency ) );
     
     if ( $ShowSavingsColumn == false )
     {
@@ -576,24 +626,28 @@ if ( $ShowCart == true )
 
     $j = 0;
 
-    foreach( $tax as $taxGroup )
-    {
-        $t->set_var( "td_class", ( $j % 2 ) == 0 ? "bglight" : "bgdark" );
-        $j++;  
-        $currency->setValue( $taxGroup["basis"] );    
-        $t->set_var( "sub_tax_basis", $locale->format( $currency ) );
+	if ($ShowTaxBasis)
+	{
+        foreach( $tax as $taxGroup )
+        {
+            $t->set_var( "td_class", ( $j % 2 ) == 0 ? "bglight" : "bgdark" );
+            $j++;  
+            $currency->setValue( $taxGroup["basis"] );    
+            $t->set_var( "sub_tax_basis", $locale->format( $currency ) );
 
-        $currency->setValue( $taxGroup["tax"] );    
-        $t->set_var( "sub_tax", $locale->format( $currency ) );
+            $currency->setValue( $taxGroup["tax"] );    
+            $t->set_var( "sub_tax", $locale->format( $currency ) );
 
-        $t->set_var( "sub_tax_percentage", $taxGroup["percentage"] );
-        $t->parse( "tax_item", "tax_item_tpl", true );
-    }
-
+            $t->set_var( "sub_tax_percentage", $taxGroup["percentage"] );
+            $t->parse( "tax_item", "tax_item_tpl", true );
+        }
+        $t->parse( "tax_specification", "tax_specification_tpl" );
+	}
+	else
     // replace with a tax overview site.ini in eZTrade variable = enabled/dissabled
     // $t->parse( "tax_specification", "tax_specification_tpl" );
-    $t->set_var( "tax_specification", "" );
-    $t->set_var( "tax_item", "" );
+        $t->set_var( "tax_specification", "" );
+        $t->set_var( "tax_item", "" );
 }
 
 $usedVouchers =& $order->usedVouchers();
@@ -644,9 +698,55 @@ $t->set_var( "payment_method", $paymentMethod );
 $t->set_var( "comment", $order->comment() );
 
 $shippingType = $order->shippingType();
-if ( $shippingType )
+
+// print_r( $shippingType ); 
+
+if (($shippingType )&&($checkups!=1))
 {    
     $t->set_var( "shipping_type", $shippingType->name() );
+}
+if (($shippingType )&&($checkups==1))
+{    
+$getnames =array ( 
+
+	'01' => 'UPS Next Day Air',
+
+       	'02' => 'UPS 2nd Day Air',
+
+	'03' => 'UPS Ground',
+
+	'07' => 'UPS Worldwide Express',
+
+	'08' => 'UPS Worldwide Expedited',
+
+	'11' => 'UPS Standard',
+
+	'12' => 'UPS 3 Day Select',
+
+	'13' => 'UPS Next Day Air Saver',
+
+	'14' => 'UPS Next Day Air Early A.M.',
+
+	'54' => 'UPS Worldwide Express Plus',
+
+	'59' => 'UPS 2nd Day Air A.M.',
+
+	'64' => '',
+
+	'65' => 'UPS Express Saver',
+
+   );
+
+   if (!$getnames["$shippingType"])
+   {
+     $service_name=$shippingType;
+   }
+   else
+   {
+     $service_name=$getnames["$shippingType"];
+   }
+
+   $t->set_var( "shipping_type", $service_name);
 }
 
 $shippingCost = $order->shippingCharge();

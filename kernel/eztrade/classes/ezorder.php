@@ -66,6 +66,8 @@ class eZOrder
             $this->ID = $id;
             $this->get( $this->ID );
         }
+	    $ini =& INIFile::globalINI();
+	    $this->checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
     }
 
     /*!
@@ -119,7 +121,7 @@ class eZOrder
 
             // store the status
             $statusType = new eZOrderStatusType( );
-            $statusType = $statusType->getByName( "intl-initial" );
+            $statusType = $statusType->getByName( "intl-order received" );
 
             $status = new eZOrderStatus();
             $status->setType( $statusType );
@@ -233,17 +235,17 @@ class eZOrder
         {
             case "no":
             {
-                $OrderBy = "ID";
+                $OrderBy = "ID DESC";
                 break;
             }
             case "created":
             {
-                $OrderBy = "Date";
+                $OrderBy = "Date DESC";
                 break;
             }
             case "modified":
             {
-                $OrderBy = "Altered";
+                $OrderBy = "Altered DESC";
                 break;
             }
             case "status":
@@ -253,7 +255,7 @@ class eZOrder
             }
             default:
             {
-                $OrderBy = "Date";
+                $OrderBy = "Date DESC";
                 break;
             }
         }
@@ -263,15 +265,14 @@ class eZOrder
         $order_array = array();
 
         $db->array_query( $order_array,
-                          "SELECT eZTrade_Order.ID as ID,
+                          "SELECT * FROM ( SELECT eZTrade_Order.ID as ID,
                            eZTrade_Order.Date as Date,
                            max( eZTrade_OrderStatus.Altered ) as Altered,
                            max( eZTrade_OrderStatus.StatusID ) as StatusID
                            FROM eZTrade_Order, eZTrade_PreOrder, eZTrade_OrderStatus
                            WHERE eZTrade_Order.ID = eZTrade_OrderStatus.OrderID AND
                            eZTrade_Order.ID = eZTrade_PreOrder.OrderID
-                           GROUP BY eZTrade_Order.ID, eZTrade_Order.Date
-                           ORDER BY $OrderBy",
+                           GROUP BY eZTrade_Order.ID, eZTrade_Order.Date ) AS tmp_table ORDER BY $OrderBy",
                            array( "Limit" => $limit, "Offset" => $offset ) );
 
         for ( $i = 0; $i < count( $order_array ); $i++ )
@@ -663,9 +664,17 @@ class eZOrder
     function &shippingType()
     {
        $ret = false;
-       if ( $this->ShippingTypeID > 0 )
+
+       if( $this->checkups == 1 )
        {
-           $ret = new eZShippingType( $this->ShippingTypeID );
+           $ret = $this->ShippingTypeID;
+       }
+       else
+       {
+            if ( $this->ShippingTypeID > 0 )
+            {
+                $ret = new eZShippingType( $this->ShippingTypeID );
+            }
        }
 
        return $ret;
@@ -679,6 +688,14 @@ class eZOrder
        return $this->PaymentMethod;
     }
 
+    
+	/*      Returns the authorization code.
+    
+    function authCode()
+    {
+       return $this->AuthCode;
+    }
+*/
     /*!
       Returns true if the order is exported. This is for use with integration
       with other systems.
@@ -727,6 +744,10 @@ class eZOrder
         $this->PaymentMethod = $value;
     }
 
+/*    function setAuthCode( $value )
+    {
+        $this->AuthCode = $value;
+    }  */
 
     /*!
       Sets the user.
@@ -747,6 +768,8 @@ class eZOrder
         $this->Comment = $value;
     }
 
+///////////////////////////////////////////////////////////////////////////
+// possible "User Info Swap"
 
     /*!
       Sets the shipping address.
@@ -761,7 +784,9 @@ class eZOrder
 
            $db =& eZDB::globalDatabase();
            $db->begin();
-           $userID = $user->id();
+
+	   //           $userID = $user->id();
+
            $db->lock( "eZUser_UserShippingLink" );
            $nextID = $db->nextID( "eZUser_UserShippingLink", "ID" );
 
@@ -887,7 +912,7 @@ class eZOrder
         $db =& eZDB::globalDatabase();
         $statusType = new eZOrderStatusType();
 
-        $statusType->getByName( "intl-initial" );
+        $statusType->getByName( "intl-order received" );
 
         $db->array_query( $status_array, "SELECT ID FROM eZTrade_OrderStatus
                                                     WHERE OrderID='$this->ID'
@@ -908,7 +933,7 @@ class eZOrder
         $db =& eZDB::globalDatabase();
         $statusType = new eZOrderStatusType();
 
-        $statusType->getByName( "intl-initial" );
+        $statusType->getByName( "intl-order received" );
 
         $db->array_query( $status_array, "SELECT ID FROM eZTrade_OrderStatus
                                                     WHERE OrderID='$this->ID'
@@ -930,7 +955,7 @@ class eZOrder
 
         $statusType = new eZOrderStatusType();
 
-        $statusType->getByName( "intl-initial" );
+        $statusType->getByName( "intl-order received" );
 
         $db->array_query( $status_array, "SELECT ID FROM eZTrade_OrderStatus
                                                     WHERE OrderID='$this->ID'
@@ -1145,13 +1170,13 @@ class eZOrder
         foreach ( $items as $item )
         {
             $product =& $item->product();
-            $vatPercentage = $product->vatPercentage();
+            $vatPercentage = (int)$product->vatPercentage();
 
             $tax["$vatPercentage"] = array();
             $tax["$vatPercentage"]["basis"] = false;
             $tax["$vatPercentage"]["tax"] = false;
             $tax["$vatPercentage"]["percentage"] = false;
-
+    
             $exTax = $item->correctPrice( true, true, false );
             $incTax = $item->correctPrice( true, true, true );
 
@@ -1177,13 +1202,21 @@ class eZOrder
         else
             $shippingVATPercentage = 0;
 
+        $tax["$shippingVATPercentage"] = array();
+        $tax["$shippingVATPercentage"]["basis"] = false;
+        $tax["$shippingVATPercentage"]["tax"] = false;
+        $tax["$shippingVATPercentage"]["percentage"] = false;
+
         $tax["$shippingVATPercentage"]["basis"] += $shippingCost - $shippingVAT;
         $tax["$shippingVATPercentage"]["tax"] += $shippingVAT;
         $tax["$shippingVATPercentage"]["percentage"] = $shippingVATPercentage;
 
-        $total["shipinctax"] = $shippingCost;
-        $total["shipextax"] = $shippingCost - $shippingVAT;
+//RS        $total["shipinctax"] = $shippingCost;
+//RS        $total["shipextax"] = $shippingCost - $shippingVAT;
         $total["shiptax"] = $shippingVAT;
+
+        $total["shipinctax"] = $shippingCost + $shippingVAT;
+        $total["shipextax"] = $shippingCost;
 
         $total["inctax"] = $total["subinctax"] + $total["shipinctax"];
         $total["extax"] = $total["subextax"] + $total["shipextax"];
@@ -1232,16 +1265,24 @@ class eZOrder
 
       The users are returned as an array of eZUser objects.
     */
-    static public function &customers()
+    static public function &customers( $searchText = false )
     {
         $db =& eZDB::globalDatabase();
 
         $return_array = array();
         $user_array = array();
+		
+		if ( $searchText )
+			$searchQuery = "AND (eZUser_User.FirstName LIKE '%$searchText%' OR
+                                            eZUser_User.LastName LIKE '%$searchText%' OR
+                                            eZUser_User.Login LIKE '%$searchText%' OR
+                                            eZUser_User.Email LIKE '%$searchText%')";
+		else
+			$searchQuery = "";
 
         $db->array_query( $user_array, "SELECT eZTrade_Order.UserID, eZUser_User.FirstName FROM eZTrade_Order, eZTrade_PreOrder, eZUser_User
                                         WHERE eZTrade_Order.UserID=eZUser_User.ID AND eZTrade_Order.ID = eZTrade_PreOrder.OrderID
-                                        GROUP BY eZTrade_Order.UserID, eZUser_User.FirstName ORDER BY eZUser_User.FirstName " );
+                                        $searchQuery GROUP BY eZTrade_Order.UserID, eZUser_User.FirstName ORDER BY eZUser_User.FirstName " );
 
         for ( $i = 0; $i < count( $user_array ); $i++ )
         {
@@ -1260,15 +1301,18 @@ class eZOrder
     /// the VAT component of ShippingCharge
     var $ShippingVAT;
     var $PaymentMethod;
+	//var $AuthCode;
     var $Date;
     var $PersonID;
     var $CompanyID;
     var $IsVATInc;
     var $Comment;
+    
     var $ShippingTypeID;
     var $OrderStatus_;
     var $IsExported;
     var $TextPaymentMethod;
+    var $checkups;
 
 }
 

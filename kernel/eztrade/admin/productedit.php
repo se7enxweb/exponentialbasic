@@ -34,7 +34,7 @@
 
 // include_once( "ezxml/classes/ezxml.php" );
 
-function deleteCache($ProductID, $CategoryID, $CategoryArray, $Hotdeal )
+function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
 {
     if ( is_a( $ProductID, "eZProduct" ) )
     {
@@ -87,6 +87,9 @@ $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "tru
 $ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
 $ShowModuleLinker = $ini->read_var( "eZTradeMain", "ShowModuleLinker" ) == "true";
 
+$CSVDelimiter = $ini->read_var( "eZTradeMain", "CSVDelimiter" );
+$DefaultDealerPriceGroup = $ini->read_var( "eZTradeMain", "DefaultDealerPriceGroup" );
+
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezproductcategory.php" );
 // include_once( "eztrade/classes/ezvattype.php" );
@@ -95,7 +98,290 @@ $ShowModuleLinker = $ini->read_var( "eZTradeMain", "ShowModuleLinker" ) == "true
 // must have to generate XML
 // include_once( "ezarticle/classes/ezarticlegenerator.php" );
 
-if ( isset( $SubmitPrice ) )
+if ( isset($CSVImport) )
+{
+	// include_once( "eztrade/classes/ezcsvimport.php" );
+	//get default target category ID
+	$CategoryID = $ini->read_var( "eZTradeMain", "CSVImportCat" );
+	//read CSV file
+	$ProductImport = new eZCSVImport();
+	$csvArray =  $ProductImport->csvFileToArray($ImportCSVDir, $CSVDelimiter, 'none', TRUE, TRUE, FALSE);
+//	print_r($csvArray); exit();
+	foreach ( $csvArray as $row )
+	{
+		// make a new product
+		// build the product
+		/*
+			$row[0] = Name
+			$row[1] = Product_Number
+			$row[2] = Keywords
+			$row[3] = Lead_In
+			$row[4] = Description
+			$row[5] = External_Link
+			$row[6] = Quantity
+			$row[7] = StockDate
+			$row[8] = Shipping_group
+			$row[9] = Weight
+			$row[10] = BoxType
+			$row[11] = Duration
+			$row[12] = IsHotDeal
+			$row[13] = Discontinued
+			$row[14] = Tax_Amount
+			$row[15] = IncludesVAT
+			$row[16] = Price
+			$row[17] = ListPrice
+			$row[18] = DealerPrice
+			$row[19] = Show_Product
+			$row[20] = Show_Price
+			$row[21] = FlatUPS
+			$row[22] = FlatUSPS
+			$row[23] = FlatCombine
+		*/
+		
+		$product = new eZProduct();
+		$generator = new eZArticleGenerator();		
+		
+		// check to see if product already exists
+		$item = $product->findProductNumber($row[1]);
+		// update fields if true
+		if ( $item )
+		{
+		    if ( eZXML::domTree( $contents ) )
+    		{
+    			if ( $item->name() != $row[0] )
+					$item->setName( $row[0] );
+				
+				$contentsArray =& $generator->decodeXML( $item->contents() );
+
+				if ( $contentsArray[0] != $row[3] )
+					$item->setBrief( $row[3] );
+				if ( $contentsArray[1] != $row[4] )
+					$item->setDescription( $row[4] );
+				
+				if ( ($contentsArray[0] != $row[3]) || ($contentsArray[1] != $row[4]) )
+				{
+					$Contents = array( $row[3], $row[4] );
+				    $contents =& $generator->generateXML( $Contents );
+					$item->setContents( $contents );
+				}
+				
+    	    	if ( $item->keywords() != $row[2] )
+					$item->setKeywords( $row[2]  );
+				if ( $item->productNumber != $row[1] )
+				   	$item->setProductNumber( $row[1] );
+				if ( $item->externalLink != $row[5] )
+	        		$item->setExternalLink( $row[5] );
+				//set delivery date if quantity = 0
+				if ( is_numeric($row[6]) && $row[6] == 0 && $row[7] != "" )
+					{
+						$dateArray = explode('/', $row[7]);
+			            $DateInStock = new eZDate( $dateArray[2], $dateArray[1], $dateArray[0] );
+						$date = $DateInStock->timeStamp();
+						if ( $item->stockDate != $date )
+							$item->setStockDate( $date );
+					}
+				
+				if ( $row[6] > 0 || $row[7] == "" )
+					$item->setStockDate('');
+				
+		        $vattype = $item->vatType();
+				if ( $vattype->id() != $row[14] && $row[14] > 0 )
+					{
+						$newVATType = new eZVATType( $row[14] );
+	    	    		$item->setVATType( $newVATType );
+					}
+			
+				$boxtype = $item->boxType();
+				if ($boxtype && $boxtype->id() != $row[10] && $row[10] > 0 )
+				{
+		        	$newBoxType = new eZBoxType( $row[10] );
+    	    		$item->setBoxType( $newBoxType );
+				}
+				
+				if ($boxtype && $row[10]=='' )
+				{
+		        	$newBoxType = new eZBoxType();
+    	    		$item->setBoxType( $newBoxType );
+				}
+				
+				if ( !$item->shippingGroup() )
+					$item->setShippingGroup( $row[8] );
+				
+				$shippingGroup = $item->shippingGroup();
+
+				if ( $shippingGroup && $shippingGroup->id() != $row[8] )
+	    	    {
+					$newShippingGroup = new eZShippingGroup( $row[8] );
+    			    $item->setShippingGroup( $newShippingGroup );
+				}
+    
+    		    if ( $row[20] == "on" )
+    	    	   	$item->setShowPrice( true );
+	       		else if ( $row[20] == "off" )
+    	    	    $item->setShowPrice( false );
+        		if ( $item->weight() != $row[9] )
+					$item->setWeight( $row[9] );
+				//product is not a voucher
+				$item->setProductType( 1 );
+    	        $item->setShowProduct( $row[19] == "on" );
+	        	$item->setDiscontinued( $row[13] == "on" );
+
+	    	    if ( $row[12] == "on" )
+    		    	$item->setIsHotDeal( true );
+	        	else if ( $row[12] == "off" )
+     				$item->setIsHotDeal( false );
+           		$item->setPrice( $row[16] );
+				$item->setListPrice( $row[17] );
+	    	    if ( $row[15] == "true" )
+    		  	    $item->setIncludesVAT( true );
+        	    else if ( $row[15] == "false" )
+        			$item->setIncludesVAT( false );
+				if ( $row[11] > 0 )
+	            	$item->setExpiryTime( $row[11] );
+	            // Flat Rate 	
+				  if ( is_numeric( $row[21] ) )
+				   $item->setFlatUPS( $row[21] );
+				  else
+				   $item->setFlatUPS( 'off' );
+				   
+				  if ( is_numeric( $row[22] ) )
+				   $item->setFlatUSPS( $row[22] );
+				  else
+				   $item->setFlatUSPS( 'off' );
+				
+				$item->setFlatCombine( $row[23] );
+
+				//store product
+    		    $item->store();
+   		     	$itemID = $item->id();
+				//set dealer price
+				if ( $row[18] != '' )
+				{
+		            eZPriceGroup::removePrices( $itemID, -1, -1, $DefaultDealerPriceGroup );
+					eZPriceGroup::addPrice( $itemID, $DefaultDealerPriceGroup, $row[18] );
+				}
+				
+				if ( $row[18] == '' )
+				    eZPriceGroup::removePrices( $itemID, -1, -1, $DefaultDealerPriceGroup );
+										
+				//set quantity data
+				$item->setTotalQuantity( is_numeric( $row[6] ) ? $row[6] : false );
+				// setup the category
+			//	$category = new eZProductCategory( $CategoryID );
+			//	$item->setCategoryDefinition( $category );
+			//	eZProductCategory::addProduct( $item, $CategoryID );
+				// set write permissions
+    		/*    eZObjectPermission::removePermissions( $itemID, "trade_product", 'w' );
+	        	eZObjectPermission::setPermission( 1, $itemID, "trade_product", 'w' );
+            	// set read permissions
+    		    eZObjectPermission::removePermissions( $itemID, "trade_product", 'r' );
+    	    	eZObjectPermission::setPermission( -1, $itemID, "trade_product", 'r' );  */
+			}
+		
+		}
+
+	
+		if (!$item)
+		{	
+			$Contents = array( $row[3], $row[4] );
+//    	$generator = new eZArticleGenerator();
+    		$contents =& $generator->generateXML( $Contents );
+
+	   		if ( eZXML::domTree( $contents ) )
+    		{
+    			$product->setName( $row[0] );	
+				$product->setContents( $contents );
+				$product->setBrief( $row[3] );
+				$product->setDescription( $row[4] );
+        		$product->setKeywords( $row[2]  );
+        		$product->setProductNumber( $row[1] );
+        		$product->setExternalLink( $row[5] );
+				//set delivery date if quantity = 0
+				if ( is_numeric($row[6]) && $row[6] == 0 )
+					{
+						$dateArray = explode('/', $row[7]);
+		            	$DateInStock = new eZDate( $dateArray[2], $dateArray[1], $dateArray[0] );
+						$date = $DateInStock->timeStamp();
+						$product->setStockDate( $date );
+					}
+				
+	    	    $vattype = new eZVATType( $row[14] );
+    	    	$product->setVATType( $vattype );
+			
+				if ($row[10])
+				{
+	        		$boxtype = new eZBoxType( $row[10] );
+    	    		$product->setBoxType( $boxtype );
+				}			
+	        	$shippingGroup = new eZShippingGroup( $row[8] );
+    	    	$product->setShippingGroup( $shippingGroup );
+    
+    		    if ( $row[20] == "on" )
+        		   	$product->setShowPrice( true );
+       			else if ( $row[20] == "off" )
+    	        	$product->setShowPrice( false );
+        		if ( $row[9] )
+					$product->setWeight( $row[9] );
+				//product is not a voucher
+				$product->setProductType( 1 );
+            	$product->setShowProduct( $row[19] == "on" );
+        		$product->setDiscontinued( $row[13] == "on" );
+
+		        if ( $row[12] == "on" )
+    		    	$product->setIsHotDeal( true );
+        		else if ( $row[12] == "off" )
+     				$product->setIsHotDeal( false );
+           		$product->setPrice( $row[16] );
+				$product->setListPrice( $row[17] );
+	        	if ( $row[15] == "true" )
+    	  		    $product->setIncludesVAT( true );
+            	else if ( $row[15] == "false" )
+        			$product->setIncludesVAT( false );
+				if ( $row[11] > 0 )
+            		$product->setExpiryTime( $row[11] );
+
+				  if ( is_numeric( $row[21] ) )
+				   $product->setFlatUPS( $row[21] );
+				  else
+				   $product->setFlatUPS( 'off' );
+				   
+				  if ( is_numeric( $row[22] ) )
+				   $product->setFlatUSPS( $row[22] );
+				  else
+				   $product->setFlatUSPS( 'off' );
+				
+				$product->setFlatCombine( $row[23] );  
+				//store product
+    	    	$product->store();
+        		$productID = $product->id();
+				if ( $row[18] != '' )
+				{
+		            eZPriceGroup::removePrices( $productID, -1, -1, $DefaultDealerPriceGroup );
+					eZPriceGroup::addPrice( $productID, $DefaultDealerPriceGroup, $row[18] );
+				}
+				
+				if ( $row[18] == '' )
+				    eZPriceGroup::removePrices( $productID, -1, -1, $DefaultDealerPriceGroup );
+				//set quantity data
+				$product->setTotalQuantity( is_numeric( $row[6] ) ? $row[6] : false );
+				// setup the category
+				$category = new eZProductCategory( $CategoryID );
+				$product->setCategoryDefinition( $category );
+				eZProductCategory::addProduct( $product, $CategoryID );
+				// set write permissions
+    	    	eZObjectPermission::removePermissions( $productID, "trade_product", 'w' );
+        		eZObjectPermission::setPermission( 1, $productID, "trade_product", 'w' );
+            	// set read permissions
+    	    	eZObjectPermission::removePermissions( $productID, "trade_product", 'r' );
+        		eZObjectPermission::setPermission( -1, $productID, "trade_product", 'r' );
+			}
+		}
+	}
+	eZHTTPTool::header( "Location: /trade/categorylist/parent/$CategoryID/" );	
+	exit();
+}
+
+if ( isSet( $SubmitPrice ) )
 {
     for ( $i = 0; $i < count( $ProductEditArrayID ); $i++ )
     {
@@ -115,7 +401,189 @@ if ( isset( $SubmitPrice ) )
     exit();
 }
 
-if ( isset( $DeleteProducts ) )
+
+if ( isSet( $UpdateProducts ) )
+{	
+/*	echo "<pre>";
+	print_r( $Discontinued );
+	print_r($ShowPrice);
+	echo "</pre>";
+	exit ();  */
+
+    for ( $i = 0; $i < count( $ProductEditArrayID ); $i++ )
+    {
+        $product = new eZProduct( $ProductEditArrayID[$i] );
+        
+		if ( $Name[$i] != $product->name() )
+			$product->setName($Name[$i]);
+			
+		if ( $Price[$i] != "" and is_numeric( $Price[$i] ) )
+            $product->setPrice( $Price[$i] );
+			
+		if ( $ListPrice[$i] != "" and is_numeric( $ListPrice[$i] ) )
+            $product->setListPrice( $ListPrice[$i] );
+		
+//		if ( $Brief[$i] != $product->brief() || $Description[$i] != $product->description() )
+//		{
+			$Contents = array( $Brief[$i], $Description[$i] );
+	    	$generator = new eZArticleGenerator();
+    		$contents =& $generator->generateXML( $Contents );
+//		}
+		
+	    if ( $contents && eZXML::domTree( $contents ) )
+		{
+			$product->setContents( $contents );
+			$was_hotdeal = $product->isHotDeal();
+		
+			if ( $Keywords[$i] != "" )
+				$product->setKeywords( $Keywords[$i]  );
+		
+			if ( $ProductNumber[$i] != $product->productNumber() )
+        		$product->setProductNumber( $ProductNumber[$i] );
+		
+			if ( $ExternalLink[$i] != $product->externalLink() )
+        		$product->setExternalLink( $ExternalLink[$i] );
+		
+			$VatType =& $product->vatType();
+		
+			if ( $VATTypeID[$i] and $VATTypeID[$i] != $VatType->id() )
+			{
+        		$vattype = new eZVATType( $VATTypeID[$i] );
+        		$product->setVATType( $vattype );
+			}
+			
+			/* Flat and Free Shipping section */
+			if ( $FlatFeeUPS[$i] ) {
+			  if (  is_numeric( $FlatFeeUPS[$i] ) )
+			   $product->setFlatUPS( $FlatFeeUPS[$i] );
+			  else
+			   $product->setFlatUPS( 'off' );
+			} else {
+				$product->setFlatUPS('off' );	
+			}
+			if ( $FlatFeeUSPS[$i] ) {
+			  if ( is_numeric( $FlatFeeUSPS[$i] ) )
+			   $product->setFlatUSPS( $FlatFeeUSPS[$i] );
+			  else
+			   $product->setFlatUSPS( 'off' );
+			} else {
+				$product->setFlatUSPS('off' );	
+			}
+
+			$product->setFlatCombine( $FlatCombine[$i] == "on" );
+//			$BoxType =& $product->boxType();
+		
+//			if ( $BoxTypeID[$i] > 0 && $BoxTypeID[$i] != $BoxType->id() )
+			if ( $BoxTypeID[$i] > 0 )
+			{
+        		$boxtype = new eZBoxType( $BoxTypeID[$i] );
+        		$product->setBoxType( $boxtype );
+			}
+			elseif ( $BoxTypeID[$i] == 0 )
+        		$product->setBoxType( "" );
+		
+			$ShippingGroup =& $product->shippingGroup();
+		
+			if ( $ShippingGroupID[$i] and $ShippingGroupID[$i] != $ShippingGroup->id() )
+			{
+        		$shippingGroup = new eZShippingGroup( $ShippingGroupID[$i] );
+        		$product->setShippingGroup( $shippingGroup );
+    		}
+		
+        	if ( $ShowPrice[$i] == "on" )
+            	$product->setShowPrice( true );
+        	else
+            	$product->setShowPrice( false );
+
+			$product->setShowProduct( $Active[$i] == "on" );
+			$product->setDiscontinued( $Discontinued[$i] == "on" );
+		
+/*			if ( $Discontinued[$i] == "on" )
+	        	$product->setDiscontinued( true );
+			else
+				$product->setDiscontinued( false );
+			
+			if ( $Active[$i] == "on" )
+    	        $product->setShowProduct( true );
+        	else
+            	$product->setShowProduct( false );
+*/		
+        	if ( $IsHotDeal[$i] == "on" )
+            	$product->setIsHotDeal( true );
+        	else
+            	$product->setIsHotDeal( false );
+   
+			if ( $ShowQuantity && is_numeric($Quantity[$i]) && $Quantity[$i] != $product->totalQuantity() )
+				$product->setTotalQuantity( is_numeric( $Quantity[$i] ) ? $Quantity[$i] : false );
+				
+			if ( is_numeric($Quantity[$i]) && $Quantity[$i] == 0 ) {
+            	$DateInStock = new eZDate( $StockYear[$i], $StockMonth[$i], $StockDay[$i] );
+				$date = $DateInStock->timeStamp();
+				$product->setStockDate( $date );
+			}	
+			
+			if ( is_numeric($Quantity[$i]) && $Quantity[$i] > 0 )
+				$product->setStockDate( "" );
+			
+			if ( $Weight[$i]>0 && is_numeric($Weight[$i]) && $Weight[$i] != $product->weight() )
+            	$product->setWeight( $Weight[$i] );
+		
+			if ( $IncludesVAT[$i] == "true" )
+            	$product->setIncludesVAT( true );
+        	else
+            	$product->setIncludesVAT( false );
+			$product->store();
+
+			//update categories
+		
+    	    $old_maincategory = $product->categoryDefinition();
+        	$old_categories = array_merge( $old_maincategory->id(), $product->categories( false ) );
+        	$old_categories = array_unique( $old_categories );
+
+	        $new_categories = array_unique( array_merge( $MainCategoryID[$i], $CategoryArray[$i] ) );
+       
+    	    $remove_categories = array_diff( $old_categories, $new_categories );
+        	$add_categories = array_diff( $new_categories, $old_categories );
+		
+	        foreach ( $remove_categories as $categoryItem )
+    	    {
+        	  eZProductCategory::removeProduct( $product, $categoryItem );
+         	}
+		 	// add a product to the categories
+			$category = new eZProductCategory( $MainCategoryID[$i] );
+        	$product->setCategoryDefinition( $category );
+
+	        foreach ( $add_categories as $categoryItem )
+    	    {
+        	    eZProductCategory::addProduct( $product, $categoryItem );
+        	}
+
+		
+	        // clear the cache files.
+    	    deleteCache( $ProductID, $CategoryID, $old_categories, $was_hotdeal or $product->isHotDeal() );
+
+	    }
+	}
+// for array debugging use
+//	echo "<pre>";
+//	            print_r($CategoryArray);
+//				print_r($MainCategoryID);
+//				echo "<br>"."specified element:"."<br>";
+//				print_r($CategoryArray[1]);
+//	echo "</pre>";
+
+	if ( isSet( $Query ) )
+        eZHTTPTool::header( "Location: /trade/search/$Offset/$Query" );
+    else
+        eZHTTPTool::header( "Location: /trade/categorylist/parent/$CategoryID/$Offset" );
+	
+    exit();
+
+
+}
+
+
+if ( isSet( $DeleteProducts ) )
 {
     $Action = "DeleteProducts";
 }
@@ -151,8 +619,11 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         $product->setCatalogNumber( $CatalogNumber );
         $product->setExternalLink( $ExternalLink );
 
-        $vattype = new eZVATType( $VATTypeID );
+        $vattype = new eZVATType( $VatTypeID );
         $product->setVATType( $vattype );
+
+		$boxtype = new eZBoxType( $BoxTypeID );
+        $product->setBoxType( $boxtype );
 
         $shippingGroup = new eZShippingGroup( $ShippingGroupID );
         $product->setShippingGroup( $shippingGroup );
@@ -188,6 +659,10 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         }
 
         $product->setPrice( $Price );
+		$product->setListPrice( $ListPrice );
+
+		if ( $Weight>0 && is_numeric($Weight) )
+	        $product->setWeight( $Weight );
 
         if ( $IncludesVAT == "true" )
         {
@@ -197,14 +672,41 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         {
             $product->setIncludesVAT( false );
         }
-
-
+			/* Flat and Free Shipping section */
+		if ( $FlatFeeUPS ) {
+			if ( is_numeric( $FlatFeeUPS ) )
+			$product->setFlatUPS( $FlatFeeUPS );
+			else {
+			 $product->setFlatUPS( 'off' );
+			}
+			} else {
+				$product->setFlatUPS('off' );	
+			}
+			if ( $FlatFeeUSPS ) {
+			  if ( is_numeric( $FlatFeeUSPS ) )
+			   $product->setFlatUSPS( $FlatFeeUSPS );
+			  else
+			   $product->setFlatUSPS( 'off' );
+			} else {
+				$product->setFlatUSPS('off' );	
+			}
+			$product->setFlatCombine( $FlatCombine == "on" );
 
         if ( $Expiry > 0 )
             $product->setExpiryTime( $Expiry );
+		
+		if ( is_numeric($Quantity) && $Quantity == 0 ) {
+                $DateInStock = new eZDate( $StockYear, $StockMonth, $StockDay );
+				$date = $DateInStock->timeStamp();
+
+				$product->setStockDate( $date );
+				}	
+		
+		if ( is_numeric($Quantity) && $Quantity > 0 )
+			$product->setStockDate( "" );
 
         $product->store();
-
+//				print_r($product); exit();
         $productID = $product->id();
 
         if ( $product->productType() == 2 )
@@ -349,6 +851,15 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
                     exit();
                 }
                 break;
+				
+			    // add files
+                case "File":
+                    {
+                        // add files
+                        eZHTTPTool::header( "Location: /trade/productedit/filelist/$productID/" );
+                    exit();
+                }
+                break;
 
                 // add images
                 case "Image":
@@ -387,6 +898,7 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         // get the category to redirect to
         $category = $product->categoryDefinition();
         $categoryID = $category->id();
+    
         eZHTTPTool::header( "Location: /trade/categorylist/parent/$categoryID" );
         exit();
     }
@@ -499,14 +1011,17 @@ $t->set_block( "product_edit_tpl", "module_linker_button_tpl", "module_linker_bu
 $t->set_block( "product_edit_tpl", "group_item_tpl", "group_item" );
 
 $t->set_block( "product_edit_tpl", "vat_select_tpl", "vat_select" );
+$t->set_block( "product_edit_tpl", "box_select_tpl", "box_select" );
 $t->set_block( "product_edit_tpl", "shipping_select_tpl", "shipping_select" );
 $t->set_block( "product_edit_tpl", "quantity_item_tpl", "quantity_item" );
+$t->set_block( "quantity_item_tpl", "day_item_tpl", "day_item" );
 
 $t->set_block( "product_edit_tpl", "read_group_item_tpl", "read_group_item" );
 $t->set_block( "product_edit_tpl", "write_group_item_tpl", "write_group_item" );
 
 $t->set_block( "product_edit_tpl", "price_range_tpl", "price_range" );
 $t->set_block( "product_edit_tpl", "normal_price_tpl", "normal_price" );
+$t->set_block( "product_edit_tpl", "list_price_tpl", "list_price" );
 
 $t->set_block( "product_edit_tpl", "price_group_list_tpl", "price_group_list" );
 $t->set_block( "price_group_list_tpl", "price_groups_item_tpl", "price_groups_item" );
@@ -523,7 +1038,12 @@ $t->set_var( "keywords_value", "" );
 $t->set_var( "product_nr_value", "" );
 $t->set_var( "product_catalog_number", "" );
 $t->set_var( "price_value", "" );
+$t->set_var( "list_price", "" );
 $t->set_var( "expiry_value", "" );
+
+$t->set_var( "weight_value", "");
+$t->set_var( "flat_fee_ups", "");
+$t->set_var( "flat_fee_usps", "");
 
 $t->set_var( "showprice_checked", "" );
 $t->set_var( "showproduct_checked", "" );
@@ -536,7 +1056,7 @@ $t->set_var( "price_max", "0" );
 $t->set_var( "external_link", "" );
 
 $t->set_var( "action_value", "insert" );
-
+$t->set_var( "flat_combine_checked", "");
 $writeGroupsID = array();
 $readGroupsID = array();
 
@@ -544,16 +1064,19 @@ $PriceGroup = array();
 $PriceGroupID = array();
 
 $VatType = false;
+$BoxType = false;
 // edit
 if ( isset( $Action ) && $Action == "Edit" )
 {
     $product = new eZProduct();
     $product->get( $ProductID );
-    $t->set_var( "name_value", $product->name() );
+	
+    $t->set_var( "name_value", htmlspecialchars($product->name()) );
     $t->set_var( "keywords_value", $product->keywords() );
     $t->set_var( "product_nr_value", $product->productNumber() );
     $t->set_var( "product_catalog_number", $product->catalogNumber() );
     $t->set_var( "price_value", $product->price() );
+    $t->set_var( "list_price", $product->listPrice() );
     $t->set_var( "expiry_value", $product->expiryTime() ? $product->expiryTime() : "" );
     $t->set_var( "external_link", $product->externalLink() );
 
@@ -586,6 +1109,11 @@ if ( isset( $Action ) && $Action == "Edit" )
 
     if ( $product->isHotDeal() == true )
         $t->set_var( "is_hot_deal_checked", "checked" );
+		
+    if ( $product->weight() > 0 )
+        $t->set_var( "weight_value", $product->weight() );
+	else
+        $t->set_var( "weight_value", "" );	
 
     if ( $product->productType() == 2 )
         $t->set_var( "mark_as_voucher", "checked" );
@@ -595,10 +1123,85 @@ if ( isset( $Action ) && $Action == "Edit" )
 
     if ( $product->excludedVAT() == true )
         $t->set_var( "exclude_vat", "checked" );
+	
+	if ($product->FlatUPS() == 'off')
+	 $t->set_var( "flat_fee_ups", '' );
+	else
+	 $t->set_var( "flat_fee_ups", $product->FlatUPS ); 
+	 
+	if ($product->FlatUSPS() == 'off')
+	 $t->set_var( "flat_fee_usps", '' );
+	else
+	 $t->set_var( "flat_fee_usps", $product->FlatUSPS ); 
+	 
+	if ($product->FlatCombine())
+		$t->set_var( "flat_combine_checked", 'checked' );	
 
     $VatType =& $product->vatType();
+	
+    $BoxType =& $product->BoxType();
 
     $Quantity = $product->totalQuantity();
+
+            if ( $product->stockDate() )
+            {
+                $Stock = new eZDate();
+                $Stock->setTimeStamp( $product->stockDate() );	
+                $StockYear = $Stock->year();
+                $StockMonth = $Stock->month();
+                $StockDay = $Stock->day();
+            }
+            else
+            {
+                $StockYear = "";
+                $StockMonth = 1;
+                $StockDay = 1;
+            }
+	
+     for ( $i = 1; $i <= 31; $i++ )
+            {
+                $t->set_var( "day_id", $i );
+                $t->set_var( "day_value", $i );
+                $t->set_var( "selected", "" );
+//                if ( ( $StockDay == "" and $i == 1 ) or $StockDay == $i )
+                if ( $StockDay == $i )
+ 	                 $t->set_var( "selected", "selected" );
+                if ( $StockDay == "" and $i == date(j) )
+ 	                 $t->set_var( "selected", "selected" );
+	                $t->parse( "day_item", "day_item_tpl", true );
+            }
+
+            $month_array = array( 1 => "select_january",
+                                  2 => "select_february",
+                                  3 => "select_march",
+                                  4 => "select_april",
+                                  5 => "select_may",
+                                  6 => "select_june",
+                                  7 => "select_july",
+                                  8 => "select_august",
+                                  9 => "select_september",
+                                  10 => "select_october",
+                                  11 => "select_november",
+                                  12 => "select_december" );
+
+            foreach ( $month_array as $month )
+            {
+                $t->set_var( $month, "" );
+            }
+
+            $var_name =& $month_array[$StockMonth];
+            if ( $var_name == "" ) {
+//				$dateMonth = date(n);
+                $var_name =& $month_array[date(n)];
+				}
+				
+            $t->set_var( $var_name, "selected" );
+			
+			if ( $StockYear )
+	            $t->set_var( "stockyear", $StockYear );
+			else
+				$t->set_var( "stockyear", date("Y") );
+			
 
     $prices = eZPriceGroup::prices( $ProductID );
 
@@ -619,7 +1222,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     $writeGroupsID = eZObjectPermission::getGroups( $ProductID, "trade_product", 'w' , false );
     $readGroupsID = eZObjectPermission::getGroups( $ProductID, "trade_product", 'r', false );
 
-    $VatType =& $product->vatType();
+//    $VatType =& $product->vatType();    
     $ShippingGroup =& $product->shippingGroup();
 }
 
@@ -638,6 +1241,7 @@ if ( isset( $UseVoucher ) && $UseVoucher )
 
     $t->set_var( "url_action", "voucher" );
     $t->set_var( "normal_price", "" );
+    $t->set_var( "list_price", "" );
     $t->parse( "price_range", "price_range_tpl" );
 }
 else
@@ -645,6 +1249,7 @@ else
     $t->set_var( "url_action", "productedit" );
     $t->set_var( "price_range", "" );
     $t->parse( "normal_price", "normal_price_tpl" );
+	$t->parse( "list_price", "list_price_tpl" );
 }
 
 $category = new eZProductCategory();
@@ -724,6 +1329,28 @@ foreach ( $vatTypes as $type )
     $t->set_var( "vat_name", $type->name() . " (" . $type->value() . ")%" );
 
     $t->parse( "vat_select", "vat_select_tpl", true );
+}
+
+// show the box values
+
+$box = new eZBoxType();
+$boxTypes = $box->getAll();
+
+foreach ( $boxTypes as $type )
+{
+    if ( $BoxType  and  ( $BoxType->id() == $type->id() ) )
+    {
+        $t->set_var( "box_selected", "selected" );
+    }
+    else
+    {
+        $t->set_var( "box_selected", "" );
+    }
+        
+    $t->set_var( "box_id", $type->id() );
+    $t->set_var( "box_name", $type->name()." (".$type->length()."x".$type->width()."x".$type->height()." in)" );
+
+    $t->parse( "box_select", "box_select_tpl", true );
 }
 
 // show shipping groups
@@ -807,8 +1434,8 @@ if ( $ShowPriceGroups )
         $t->parse( "price_groups_item", "price_groups_item_tpl" );
         $t->parse( "price_group_list", "price_group_list_tpl" );
     }
-    else
-        $t->parse( "price_groups_no_item", "price_groups_no_item_tpl" );
+//    else
+//        $t->parse( "price_groups_no_item", "price_groups_no_item_tpl" );
 }
 
     if ( isset( $ShippingGroup ) && $ShippingGroup and ( $ShippingGroup->id() == $group->id() ) )
@@ -835,48 +1462,36 @@ $groupList = $group->getAll();
 $t->set_var( "selected", "" );
 foreach ( $groupList as $groupItem )
 {
-
     // for the group owner selector
-    if ( in_array( -1, $writeGroupsID ) )
-    {
-        $t->set_var( "all_write_selected", "selected" );
-        $t->set_var( "write_name", $groupItem->name() );
-        $t->set_var( "write_id", $groupItem->id() );
-        $t->set_var( "is_selected", "" );
-    }
+    $t->set_var( "read_id", $groupItem->id() );
+    $t->set_var( "read_name", $groupItem->name() );
+    
+    if ( in_array( $groupItem->id(), $readGroupsID ) )
+        $t->set_var( "selected", "selected" );
     else
-    {
-        $t->set_var( "all_write_selected", "" );
+        $t->set_var( "selected", "" );
+
+	if ( in_array( "-1", $readGroupsID ) )
+	    $t->set_var( "all_selected", "selected" );
+	else
+		$t->set_var( "all_selected", "" );
+		
+    $t->parse( "read_group_item", "read_group_item_tpl", true );
+    
+    // for the read access groups selector
         $t->set_var( "write_name", $groupItem->name() );
         $t->set_var( "write_id", $groupItem->id() );
-
         if ( in_array( $groupItem->id(), $writeGroupsID ) )
             $t->set_var( "is_selected", "selected" );
         else
             $t->set_var( "is_selected", "" );
-    }
-    $t->parse( "write_group_item", "write_group_item_tpl", true );
 
-
-    // for the read access groups selector
-    if ( in_array( -1, $readGroupsID ) )
-    {
-        $t->set_var( "all_selected", "selected" );
-        $t->set_var( "read_id", $groupItem->id() );
-        $t->set_var( "read_name", $groupItem->name() );
-        $t->set_var( "selected", "" );
-    }
+	if ( in_array( "-1", $writeGroupsID ) )
+	    $t->set_var( "all_write_selected", "selected" );
     else
-    {
-        $t->set_var( "all_selected", "" );
-        $t->set_var( "read_id", $groupItem->id() );
-        $t->set_var( "read_name", $groupItem->name() );
-        if ( in_array( $groupItem->id(), $readGroupsID ) )
-            $t->set_var( "selected", "selected" );
-        else
-            $t->set_var( "selected", "" );
-    }
-    $t->parse( "read_group_item", "read_group_item_tpl", true );
+		$t->set_var( "all_write_selected", "" );
+		
+    $t->parse( "write_group_item", "write_group_item_tpl", true );
 }
 
 $t->pparse( "output", "product_edit_tpl" );

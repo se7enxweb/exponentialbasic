@@ -1,9 +1,18 @@
 {intl-confirming-order}
+{equal_line}<!-- BEGIN shipping_address_tpl -->
+>>>>>>>>>> {intl-shipping_address}:  >>>>>
+
+          {shipping_first_name} {shipping_last_name}
+          {shipping_street1}
+          {shipping_street2}
+          {shipping_place}, {shipping_region}  {shipping_zip}
+          {shipping_country}
+<!-- END shipping_address_tpl -->{equal_line}
+
 
 {intl-thanks_for_shopping}
 
 {intl-order_no}: {order_id}
-
 <!-- BEGIN billing_address_tpl -->
 {intl-billing_address}:
 {customer_first_name} {customer_last_name}

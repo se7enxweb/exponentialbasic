@@ -93,13 +93,48 @@
 <tr>
 	<td colspan="3">&nbsp;</td>
 	<th>{intl-vat}:</th>
+	<td>&nbsp;</td>
 	<td align="right">{vat_cost}</td>
 </tr>
 <tr>
 	<td colspan="3">&nbsp;</td>
 	<th>{intl-total}:</th>
+	<td>&nbsp;</td>
 	<td align="right">{order_sum}</td>
 </tr>
+
+	<tr>
+		<th colspan="3">{intl-status_history}:</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+	</tr>
+
+<tr>
+	<td colspan="3">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<!-- BEGIN order_status_history_tpl -->	
+	<tr>
+		<td class="{td_class}">
+		<span class="small">{status_date}</span>&nbsp;
+		</td>
+		<td class="{td_class}">
+		{status_name}&nbsp;&nbsp;
+		</td>
+		<td class="{td_class}">
+		<span class="small">{status_comment}</span>&nbsp;
+		</td>
+		<td class="{td_class}">
+		<span class="small">{admin_login}</span>&nbsp;
+		</td>
+	</tr>
+	<!-- END order_status_history_tpl -->	
+	</table></td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	</tr>
+
 </table>
 <!-- END order_item_list_tpl -->
 

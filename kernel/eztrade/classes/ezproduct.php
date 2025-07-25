@@ -77,6 +77,8 @@ class eZProduct
     function __construct( $id="" )
     {
         $this->ExpiryTime = 0;
+        $this->FlatCombine = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -122,7 +124,19 @@ class eZProduct
         {
             $price = "NULL";
         }
-
+		
+		if ( isSet( $this->ListPrice ) and $this->ListPrice != "" and is_numeric( $this->ListPrice ) )
+        {
+            $listPrice = "'$this->ListPrice'";
+        }
+        else
+        {
+            $listPrice = "NULL";
+        }
+        if ( $this->FlatCombine == null )
+        {
+            $this->FlatCombine = 0;
+        }
         $name = $db->escapeString( $this->Name );
         $brief = $db->escapeString( $this->Brief );
         $description = $db->escapeString( $this->Description );
@@ -143,18 +157,25 @@ class eZProduct
                                   Keywords,
                                   ProductNumber,
                                   Price,
+								  ListPrice,
                                   ShowPrice,
                                   ShowProduct,
                                   Discontinued,
                                   ExternalLink,
                                   RemoteID,
                                   IsHotDeal,
+								  Weight,
                                   VATTypeID,
+								  BoxTypeID,
                                   ProductType,
                                   ShippingGroupID,
                                   Published,
                                   ExpiryTime,
-                                  IncludesVAT )
+								  StockDate,
+                                  IncludesVAT,
+								  FlatUPS,
+								  FlatUSPS,
+								  FlatCombine )
                                   VALUES
                                   ( '$nextID',
 		                            '$name',
@@ -162,43 +183,59 @@ class eZProduct
                                     '$keywords',
                                     '$productNumber',
                                      $price,
+									 $listPrice,
                                     '$showPrice',
                                     '$showProduct',
                                     '$discontinued',
                                     '$this->ExternalLink',
                                     '$this->RemoteID',
                                     '$this->IsHotDeal',
+									'$this->Weight',
                                     '$this->VATTypeID',
+									'$this->BoxTypeID',
                                     '$this->ProductType',
                                     '$this->ShippingGroupID',
                                     '$timeStamp',
                                     '$this->ExpiryTime',
-                                    '$this->IncludesVAT' )" );
+									'$this->StockDate',
+                                    '$this->IncludesVAT',
+									'$this->FlatUPS',
+									'$this->FlatUSPS',
+									'$this->FlatCombine' )" );
             $db->unlock();
 			$this->ID = $nextID;
         }
         else
         {
-            $res = $db->query( "UPDATE eZTrade_Product SET
+            $query = "UPDATE eZTrade_Product SET
 		                         Name='$name',
                                  Contents='$contents',
                                  Keywords='$keywords',
                                  ProductNumber='$productNumber',
                                  CatalogNumber='$catalogNumber',
                                  Price=$price,
+								 ListPrice=$listPrice,
                                  ShowPrice='$showPrice',
                                  ShowProduct='$showProduct',
                                  Discontinued='$discontinued',
                                  ExternalLink='$this->ExternalLink',
                                  IsHotDeal='$this->IsHotDeal',
+								 Weight='$this->Weight',
                                  VATTypeID='$this->VATTypeID',
+								 BoxTypeID='$this->BoxTypeID',
                                  ShippingGroupID='$this->ShippingGroupID',
                                  ProductType='$this->ProductType',
                                  Published=Published,
                                  ExpiryTime='$this->ExpiryTime',
-                                 IncludesVAT='$this->IncludesVAT'
+								 StockDate='$this->StockDate',
+                                 IncludesVAT='$this->IncludesVAT',
+                                 FlatUPS='$this->FlatUPS',
+                                 FlatUSPS='$this->FlatUSPS',
+								 FlatCombine='$this->FlatCombine'
                                  WHERE ID='$this->ID'
-                                 " );
+                                 ";
+                                 echo $query;
+            $res = $db->query( $query );
         }
 
         if ( $res == false )
@@ -246,16 +283,24 @@ class eZProduct
                 $this->CatalogNumber =& $category_array[0][$db->fieldName( "CatalogNumber" )];
                 $this->ExternalLink =& $category_array[0][$db->fieldName( "ExternalLink" )];
                 $this->Price =& $category_array[0][$db->fieldName( "Price" )];
+				$this->ListPrice =& $category_array[0][$db->fieldName( "ListPrice" )];
                 $this->IsHotDeal =& $category_array[0][$db->fieldName( "IsHotDeal" )];
+				$this->Weight =& $category_array[0][$db->fieldName( "Weight" )];
                 $this->RemoteID =& $category_array[0][$db->fieldName( "RemoteID" )];
                 $this->VATTypeID =& $category_array[0][$db->fieldName( "VATTypeID" )];
+				$this->BoxTypeID =& $category_array[0][$db->fieldName( "BoxTypeID" )];
                 $this->ShippingGroupID =& $category_array[0][$db->fieldName( "ShippingGroupID" )];
                 $this->ProductType =& $category_array[0][$db->fieldName( "ProductType" )];
                 $this->ExpiryTime =& $category_array[0][$db->fieldName( "ExpiryTime" )];
+                $this->StockDate =& $category_array[0][$db->fieldName( "StockDate" )];
                 $this->IncludesVAT =& $category_array[0][$db->fieldName( "IncludesVAT" )];
+                $this->FlatUPS =& $category_array[0][$db->fieldName( "FlatUPS" )];
+                $this->FlatUSPS =& $category_array[0][$db->fieldName( "FlatUSPS" )];
+				$this->FlatCombine =& $category_array[0][$db->fieldName( "FlatCombine")];
                 if ( $this->Price == "NULL" )
                     unset( $this->Price );
-
+                if ( $this->ListPrice == "NULL" )
+                    unset( $this->ListPrice );
                 if ( $category_array[0][ $db->fieldName( "ShowPrice" )] == 1 )
                     $this->ShowPrice = true;
                 else
@@ -295,6 +340,7 @@ class eZProduct
 
             $res[] = $db->query( "DELETE FROM eZTrade_ProductImageLink WHERE ProductID='$this->ID'" );
             $res[] = $db->query( "DELETE FROM eZTrade_ProductImageDefinition WHERE ProductID='$this->ID'" );
+			$res[] = $db->query( "DELETE FROM eZTrade_ProductForumLink WHERE ProductID='$this->ID'" );
 
             $db->array_query( $qry_array, "SELECT QuantityID FROM eZTrade_ProductQuantityDict
                                                        WHERE ProductID='$this->ID'" );
@@ -335,13 +381,14 @@ class eZProduct
     */
     function name( )
     {
-       return htmlspecialchars( $this->Name );
+       // return htmlspecialchars( $this->Name );
+       return stripslashes( $this->Name );
     }
 
     /*!
       Returns the remote ID of the product.
     */
-    function remoteID( )
+    function &remoteID( )
     {
        return $this->RemoteID;
     }
@@ -350,11 +397,42 @@ class eZProduct
     /*!
       Returns the price of the product.
     */
-    function price()
+    function &price()
     {
         return $this->Price;
     }
 
+    /*!
+      Returns the manufacturer's list 'price of the product.
+    */
+    function &listPrice()
+    {
+        return $this->ListPrice;
+    } 
+	
+    /*!
+      Returns the flat UPS shipping amount for the product.
+    */
+    function flatUps()
+    {
+        return $this->FlatUPS;
+    } 	
+
+    /*!
+      Returns the flat USPS shipping amount for the product.
+    */
+    function flatUsps()
+    {
+        return $this->FlatUSPS;
+    } 
+
+    /*!
+      Returns bool value indicating if the flat shipped product should be combined with others if purchased in a group.
+    */
+    function flatCombine()
+    {
+        return $this->FlatCombine;
+    } 
     /*!
       Returns the correct price of the product based on the logged in user, and the
       VAT status and use.
@@ -680,7 +758,7 @@ class eZProduct
       If a value is given as argument this value is used for VAT calculation.
       This is used in carts where you have multiple products and prices on options.
     */
-    function priceIncVAT( $price="" )
+    function &priceIncVAT( $price="" )
     {
        if ( $price == "" )
        {
@@ -776,7 +854,7 @@ class eZProduct
       If a value is given as argument this value is used for VAT calculation.
       This is used in carts where you have multiple products and prices on options.
     */
-    function addVAT( $price="" )
+    function &addVAT( $price="" )
     {
        if ( $price == "" )
        {
@@ -815,6 +893,14 @@ class eZProduct
     function expiryTime()
     {
         return $this->ExpiryTime;
+    }
+
+    /*!
+      Returns the products expected stock date
+    */
+    function stockDate()
+    {
+        return $this->StockDate;
     }
 
     /*!
@@ -871,6 +957,14 @@ class eZProduct
     function setExpiryTime( $time )
     {
         $this->ExpiryTime = $time;
+    }
+
+    /*!
+      Sets the expiry time for this product
+    */
+    function setStockDate( $time )
+    {
+        $this->StockDate = $time;
     }
 
     /*!
@@ -989,7 +1083,13 @@ class eZProduct
     */
     function &contents( )
     {
-        return $this->Contents;
+        return stripslashes($this->Contents);
+    }    
+
+    // returns Box Type ID
+    function &BoxTypeID( )
+    {
+        return $this->BoxTypeID;
     }
 
     /*!
@@ -1004,6 +1104,33 @@ class eZProduct
         // include_once( "ezarticle/classes/ezarticlerenderer.php" );
         $renderer = new eZArticleRenderer( $this );
         $articleContents = $renderer->renderPage( 0 );
+        
+        return $articleContents[0];
+    }    
+
+    function &briefPlain( )
+    {
+        //include_once( "ezarticle/classes/ezarticlegenerator.php" );
+        //include_once( "ezarticle/classes/ezarticlerenderer.php" );
+
+        // $renderer = new eZArticleRenderer( $this );
+        // $articleContents = $renderer->renderPage( -1 );
+	/*
+        $generator = new eZArticleGenerator( );
+	$articleContents =& $generator->decodeXML( $this->content);
+
+        $generator = new eZArticleGenerator();
+        $contentsArray =& $generator->decodeXML( $product->contents() );
+	*/
+	/*
+	$renderer = new eZArticleRenderer( $this );
+        $articleContents = $renderer->renderPage( -1 );
+	*/
+
+	$generator = new eZArticleGenerator();
+        $articleContents =& $generator->decodeXML( $this->Contents );
+
+	//	print_r($contentsArray); exit();
 
         return $articleContents[0];
     }
@@ -1015,8 +1142,28 @@ class eZProduct
     {
         // include_once( "ezarticle/classes/ezarticlerenderer.php" );
         $renderer = new eZArticleRenderer( $this );
-        $articleContents = $renderer->renderPage( 0 );
+        $articleContents = $renderer->renderPage( -1 );
 
+        return $articleContents[1];
+    }
+
+    function &descriptionPlain( )
+    {
+	include_once( "ezarticle/classes/ezarticlegenerator.php" );
+	include_once( "ezarticle/classes/ezarticlerenderer.php" );
+
+        // $renderer = new eZArticleRenderer( $this );
+        // $articleContents = $renderer->renderPage( 0 );
+        /*
+        $generator = new eZArticleGenerator( );
+        $articleContents =& $generator->decodeXML( $this->contents );
+
+        $renderer = new eZArticleRenderer( $this );
+        $articleContents = $renderer->renderPage( -1 );
+        */
+
+	$generator = new eZArticleGenerator();
+	$articleContents =& $generator->decodeXML( $this->Contents );
 
         return $articleContents[1];
     }
@@ -1053,6 +1200,17 @@ class eZProduct
     function externalLink()
     {
        return htmlspecialchars( $this->ExternalLink );
+    }
+	
+    /*!
+      Returns the weight the product.
+    */
+    function weight()
+    {
+		$ini =& INIFile::globalINI();
+		if ( $this->Weight != 0 )
+		       return $this->Weight;
+		else return $ini->read_var( "eZTradeMain", "DefaultWeight" );
     }
 
     /*!
@@ -1133,7 +1291,7 @@ class eZProduct
     {
         $this->CatalogNumber = $value;
     }
-
+    
     /*!
       Sets the product number.
     */
@@ -1141,6 +1299,17 @@ class eZProduct
     {
        $this->Price = $value;
        setType( $this->Price, "double" );
+	   
+    }
+
+    /*!
+      Sets the product manufacturer's list price'.
+    */
+    function setListPrice( $value )
+    {
+       $this->ListPrice = $value;
+       setType( $this->ListPrice, "double" );
+	   
     }
 
     /*!
@@ -1180,6 +1349,14 @@ class eZProduct
     }
 
     /*!
+      Sets the product weight.
+    */
+    function setWeight( $value )
+    {
+       $this->Weight = $value;
+    }
+
+    /*!
       Set the product to be a hot deal or not. True makes
       the product a hot deal, false it it just as an ordinary
       product.
@@ -1194,6 +1371,29 @@ class eZProduct
        {
            $this->IsHotDeal = 0;
        }
+    }
+	/*!
+	  Sets Flat UPS shipping (price or off)
+	*/
+	function setFlatUPS ( $value )
+	{
+		$this->FlatUPS = $value;	
+	}
+	
+	/*!
+	  Sets Flat USPS shipping (price or off)
+	*/
+	function setFlatUSPS ( $value )
+	{
+		$this->FlatUSPS = $value;	
+	}
+
+	/*!
+	  Sets bool indicating if the flat-shipped product will combine shipping when purchased with other products.
+	*/
+	function setFlatCombine ( $value )
+	{
+		$this->FlatCombine = $value;	
     }
 
     /*!
@@ -1541,10 +1741,16 @@ class eZProduct
       Searches through every product and returns the result as an array
       of eZProduct objects.
     */
-    function activeProductSearch( $sortMode="time", $query=false, $offset=false, $limit=false )
+    function activeProductSearch( $query=false, $offset=false, $limit=false , $active=TRUE, $sortMode="time")
     {
         $db =& eZDB::globalDatabase();
         $ret = array();
+        
+		if ( $active==FALSE )
+			$activeText="";
+		else
+			$activeText=" ShowProduct='1' AND ";
+
         // kracker: 6/12/2002: added sortMode to activeProductSearch, this creates a new paramiter dependancies for productsearch. 
         // ps does this actualy even check active status ? better add the code to do it hommie!
         
@@ -1619,9 +1825,9 @@ class eZProduct
                                         WHERE
                                         Name LIKE '%$query%' OR
                                         Description LIKE '%$query%' OR
-                                        ProductNumber LIKE '%$query%' OR
+                                        ProductNumber LIKE '%$query%' ) OR
                                         CatalogNumber LIKE '%$query%' OR
-                                        ( Keywords LIKE '%$query%' )
+                                       ( Keywords LIKE '%$query%' )
                                         $nonActiveCode
                                         $discontinuedCode 
                                         ORDER BY $OrderBy",
@@ -1645,16 +1851,23 @@ class eZProduct
     /*!
       Searches through every product and returns the result count
     */
-    function activeProductSearchCount( $query )
+    function activeProductSearchCount( $query, $active=TRUE )
     {
         $db =& eZDB::globalDatabase();
         $ret = array();
 
+		if ( $active==FALSE )
+			$activeText="";
+		else
+			$activeText=" ShowProduct='1' AND ";
+
         $db->array_query( $res_array, "SELECT count(ID) AS Count FROM eZTrade_Product
                                      WHERE
-                                     ( Name LIKE '%$query%' ) OR
+									 $activeText
+                                     (( Name LIKE '%$query%' ) OR
                                      ( Description LIKE '%$query%' ) OR
-                                     ( Keywords LIKE '%$query%' )
+									 ( ProductNumber LIKE '%$query%' ) OR
+                                     ( Keywords LIKE '%$query%' ))
                                    " );
 
         return $res_array[0][$db->fieldName( "Count" )];
@@ -1870,6 +2083,28 @@ class eZProduct
        return $ret;
 
     }
+
+    /*!
+      Returns the products for a given product number (SKU)).
+    */
+    function &findProductNumber( $id )
+    {
+        $db =& eZDB::globalDatabase();
+        
+        $product = false;
+        
+        $db->array_query( $res, "SELECT ID FROM
+                                            eZTrade_Product
+                                            WHERE ProductNumber='$id'" );
+        
+        if ( count( $res ) == 1 )
+        {
+            $product = new eZProduct( $res[0][$db->fieldName( "ID" )] );
+        }
+        
+        return $product;
+    }
+	
 
     /*!
       Returns the categrories a product is assigned to.
@@ -2134,6 +2369,39 @@ class eZProduct
        }
     }
 
+    /*!
+      Sets the box type.
+    */
+    function setBoxType( $type )
+    {
+       $db =& eZDB::globalDatabase();
+
+       if ( get_class( $type ) == "ezboxtype" )
+       {
+           $this->BoxTypeID = $type->id();
+       }
+	   elseif ($type="false")
+	   		$this->BoxTypeID = -1;	   		
+    }
+	
+	   /*!
+      Returns the box type as a eZBoxType object.
+
+      False if no type is not assigned.
+    */
+    function boxType( )
+    {
+       $db =& eZDB::globalDatabase();
+
+       $ret = false;
+       if ( is_numeric( $this->BoxTypeID ) and ( $this->BoxTypeID > 0 ) )
+       {
+           $ret = new eZBoxType( $this->BoxTypeID );
+       }
+//	   else $ret = new eZBoxType( 1 );
+
+       return $ret;
+    }
 
     /*!
       Returns the VAT type.
@@ -2173,6 +2441,23 @@ class eZProduct
                }
            }
 
+       }
+
+        if ( is_a( $user, "eZUser" ) && $CountryDisc == true )
+       {
+           $mainAddress = $user->mainAddress();
+           if ( is_a( $mainAddress , "eZAddress" ) )
+           {
+              $region = $mainAddress->region();
+               if ( ( is_a ( $region, "eZRegion" ) ) and ( $region->hasVAT() == true ) )
+               {
+                   $useVAT = true;
+               }
+               else
+               {
+                   $useVAT = false;
+               }
+          }      
        }
 
        if ( ( $useVAT == true ) and ( is_numeric( $this->VATTypeID ) ) and ( $this->VATTypeID > 0 ) )
@@ -2504,6 +2789,190 @@ class eZProduct
     }
 
 
+/*!
+      Returns the review for the product.
+    */
+    function forum( $as_object = true )
+    {
+        $ini =& INIFile::globalINI();
+        $db =& eZDB::globalDatabase();
+
+        $db->array_query( $res, "SELECT ForumID FROM
+                                            eZTrade_ProductForumLink
+                                            WHERE ProductID='$this->ID'" );
+        $forum = false;
+        if ( count( $res ) == 1 )
+        {
+            if ( $as_object )
+                $forum = new eZForum( $res[0][$db->fieldName( "ForumID" )] );
+            else
+                $forum = $res[0][$db->fieldName( "ForumID" )];
+        }
+        else
+        {
+            $forum = new eZForum();
+            $forum->setName( $db->escapeString( $this->Name ) );
+
+	      	$forum->setIsModerated(true);
+	      	$moderatorgroup = new eZUserGroup( 1 ); //should be a variable - administrator groupid
+            $forum->setModerator( $moderatorgroup );
+
+            $forum->store();
+			
+			$ini =& INIFile::globalINI();
+			$linkModules = $ini->read_var( "eZForumMain", "LinkModules" );
+			$module_array = explode(',', $linkModules );
+			unset ($linkModules);
+			foreach ( $module_array as $module)
+			{
+				$moduleSubArray = explode( ':', $module );
+				list($module_name, $forum_id) = $moduleSubArray;
+				$linkModules[$module_name] = $forum_id;
+			}	
+
+            $category = new eZForumCategory( $linkModules['eZTrade'] );  //should be a variable - categoryid
+            $category->addForum( $forum );
+
+            $forumID = $forum->id();
+
+            $db->begin( );
+
+            $db->lock( "eZTrade_ProductForumLink" );
+
+            $nextID = $db->nextID( "eZTrade_ProductForumLink", "ID" );
+
+            $res = $db->query( "INSERT INTO eZTrade_ProductForumLink
+                                ( ID, ProductID, ForumID )
+                                VALUES
+                                ( '$nextID', '$this->ID', '$forumID' )" );
+
+            $db->unlock();
+
+            if ( $res == false )
+                $db->rollback( );
+            else
+                $db->commit();
+
+
+            if ( $as_object )
+                $forum = new eZForum( $forumID );
+            else
+                $forum = $forumID;
+/*				
+			//insert reverse-link post
+			$postTemplate = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+                                        "eztrade/user/intl", $this->Language, "posttemplate.php" );
+
+	        $postTemplateIni = new INIFile( "eztrade/user/intl/" . $this->Language . "/posttemplate.php.ini", false );
+    	    $postTemplate->set_file( "post_template_tpl", "posttemplate.tpl" );
+        	$postTemplate->setAllStrings();
+			
+			$NewMessagePostedAt = htmlspecialchars( $ini->read_var( "eZForumMain", "FutureDate" ) );
+			$msg = new eZForumMessage();
+            $msg->setForumID( $forumID );
+*/			
+				
+        }
+        return $forum;
+    }
+
+/*!
+      Returns the product which a review is connected to.
+     */
+    function productIDFromForum( $ForumID )
+    {
+        $db =& eZDB::globalDatabase();
+
+        $ProductID = 0;
+
+        $db->array_query( $result, "SELECT ProductID FROM
+                                    eZTrade_ProductForumLink
+                                    WHERE ForumID='$ForumID' GROUP BY ProductID" );
+
+        if( count( $result ) > 0 )
+        {
+            $ProductID = $result[0][$db->fieldName("ProductID")];
+        }
+
+        return $ProductID;
+    }
+
+ /*!
+      Adds an file to the product.
+      $value can either be a eZVirtualFile or an ID
+    */
+    function addFile( $value )
+    {
+        if ( get_class( $value ) == "ezvirtualfile" )
+        {
+            $fileID = $value->id();
+        }
+        else
+            $fileID = $value;
+
+        $db =& eZDB::globalDatabase();
+
+        $db->begin( );
+
+        $db->lock( "eZTrade_ProductFileLink" );
+
+        $nextID = $db->nextID( "eZTrade_ProductFileLink", "ID" );
+
+        $timeStamp = eZDateTime::timeStamp( true );
+
+        $res = $db->query( "INSERT INTO eZTrade_ProductFileLink
+                         ( ID, ProductID, FileID, Created ) VALUES ( '$nextID', '$this->ID', '$fileID', '$timeStamp' )" );
+
+        $db->unlock();
+
+        if ( $res == false )
+            $db->rollback( );
+        else
+            $db->commit();
+    }
+
+    /*!
+      Deletes an file from the product.
+      $value can either be a eZVirtualFile or an ID
+
+      NOTE: the file does not get deleted from the file catalogue.
+    */
+    function deleteFile( $value )
+    {
+        if ( get_class( $value ) == "ezvirtualfile" )
+        {
+            $fileID = $value->id();
+
+        }
+        else
+            $fileID = $value;
+
+        $db =& eZDB::globalDatabase();
+        $db->query( "DELETE FROM eZTrade_ProductFileLink WHERE ProductID='$this->ID' AND FileID='$fileID'" );
+    }
+
+    /*!
+      Returns every file to a product as an array of eZFile objects.
+    */
+    function files( $as_object = true )
+    {
+        $db =& eZDB::globalDatabase();
+
+        $return_array = array();
+        $file_array = array();
+
+        $db->array_query( $file_array, "SELECT FileID, Created FROM eZTrade_ProductFileLink WHERE ProductID='$this->ID' ORDER BY Created" );
+
+        for ( $i=0; $i < count($file_array); $i++ )
+        {
+            $id = $file_array[$i][$db->fieldName("FileID")];
+            $return_array[$i] = $as_object ? new eZVirtualFile( $id, false ) : $id;
+        }
+
+        return $return_array;
+    }
+
+
     var $ID;
     var $Name;
 
@@ -2519,13 +2988,21 @@ class eZProduct
     var $Discontinued;
     var $ExternalLink;
     var $IsHotDeal;
+    var $Weight;
     var $RemoteID;
     var $VATTypeID;
+    var $BoxTypeID;
     var $ShippingGroupID;
     var $ProductType;
     var $Price;
+    var $ListPrice;
     var $ExpiryTime;
+    var $StockDate;
     var $IncludesVAT;
+    var $FlatUPS;
+    var $FlatUSPS;
+    var $FlatDHL;
+    var $FlatCombine;
 }
 
 ?>

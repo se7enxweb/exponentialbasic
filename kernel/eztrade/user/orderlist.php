@@ -100,7 +100,7 @@ foreach ( $orderArray as $order )
     
     $t->set_var( "order_id", $order->id() );
 
-    $status = $order->initialStatus( );
+    $status = $order->lastStatus( );
     $dateTime = $status->altered();
     $t->set_var( "order_date", $locale->format( $dateTime ) );
 
@@ -108,7 +108,7 @@ foreach ( $orderArray as $order )
     {
         $statusType = $status->type();
         $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-        $statusName =  $languageINI->read_var( "strings", $statusName );
+//        $statusName =  $languageINI->read_var( "strings", $statusName );
         $t->set_var( "order_status", $statusName );
 
         $t->parse( "order_status", "order_status_tpl" );
@@ -116,7 +116,18 @@ foreach ( $orderArray as $order )
     else
         $t->set_var( "order_status", "" );
         
+/*        
     $currency->setValue( $order->totalPrice() );
+    $t->set_var( "order_price", $locale->format( $currency ) );
+*/    
+	
+	
+	$order->orderTotals( $tax, $total );
+    
+    if ( $PricesIncludeVAT == true )
+        $currency->setValue( $total["inctax"] );
+    else
+        $currency->setValue( $total["extax"] );    
 
     $t->set_var( "order_price", $locale->format( $currency ) );
     

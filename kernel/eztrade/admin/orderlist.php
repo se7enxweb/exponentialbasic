@@ -39,6 +39,30 @@ $Language = $ini->read_var( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezorderstatustype.php" );
 
+//echo $HideFollowup;
+//print_r($HTTP_POST_VARS);
+//exit();
+
+
+
+if ( isset( $Hide ) )
+{
+    $session =& eZSession::globalSession();
+    $session->setVariable( "OrderList", "Hide" );
+}
+
+if ( isset( $Show ) )
+{
+    $session =& eZSession::globalSession();
+    $session->setVariable( "OrderList", "Show" );
+}
+
+$checkMode =& eZSession::globalSession();
+if ( $checkMode->variable( "OrderList" ) == "Hide" )
+    $HideFollowup = "on";
+else
+	$HideFollowup = "";
+
 if( isset( $Delete ) && count( $OrderArrayID ) > 0 )
 {
     foreach( $OrderArrayID as $orderid )
@@ -77,8 +101,17 @@ if ( isset( $URLQueryText ) )
 {
     $QueryText = urldecode( $URLQueryText );
 }
+else
+{
+    $QueryText = "";
+}
 
-$t->set_var( "query_string",  isset( $QueryText ) ? $QueryText : ''  );
+$t->set_var( "query_string", $QueryText );
+
+if ( $HideFollowup = "on" )
+	$t->set_var( "followup_checked", "checked" );
+else
+	$t->set_var( "followup_checked", "" );
 
 $t->set_var( "previous", "" );
 $t->set_var( "next", "" );
@@ -97,7 +130,7 @@ $t->set_var( "current_offset", $Offset );
 $order = new eZOrder();
 
 // perform search
-if ( isset( $QueryText ) )
+if ( isset( $QueryText ) && $QueryText != "" )
 {
     $orderArray = $order->search( $QueryText, $Offset, $Limit );
     $total_count = $order->getSearchCount( $QueryText );
@@ -123,18 +156,78 @@ foreach ( $orderArray as $order )
         $t->set_var( "td_class", "bglight" );
     
     $t->set_var( "order_id", $order->id() );
-    $status = $order->initialStatus( );
+
+/*
+	echo "<pre>";
+	print_r($status);
+    $dateTime = $status->altered();	
+	
+	echo $locale->format( $dateTime )."<br>";
+    $dateTime = $status->altered();	
+
+//	echo $locale->format( $dateTime )."<br>";
+	print_r( $order->lastStatus() );
+	echo "</pre>";
+	exit();  */
+    $status = $order->initialStatus();		
     $dateTime = $status->altered();
     $t->set_var( "order_date", $locale->format( $dateTime ) );
+    $dateTime = $status->rawAltered();
     
-    $status = $order->lastStatus( );
-    $dateTime = $status->altered();
-    $t->set_var( "altered_date", $locale->format( $dateTime ) );
+    $status = $order->lastStatus();
+    $lastDateTime = $status->altered();	
+    $t->set_var( "altered_date", $locale->format( $lastDateTime ) );
+    $lastDateTime = $status->rawAltered();	
+
+//	if ($dateTime == $lastDateTime)
+//		$lastDateTime = time();
+
+	$statusAge = ( round( (( time()-$lastDateTime )/86400),0 ) );
+
+	$t->set_var( "age_color", "smallgreen" );  //age since last status change - green
+	
+	if ( $statusAge > 7 )  //turns amber after one week
+		$t->set_var( "age_color", "smallamber" );
+		
+	if ( $statusAge > 42 )  //turns red after six weeks
+		$t->set_var( "age_color", "smallred" );
+	
+	$t->set_var( "status_age", $statusAge );
+	
     
     $statusType = $status->type();
     $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-    $statusName =  $languageINI->read_var( "strings", $statusName );
+//    $statusName =  $languageINI->read_var( "strings", $statusName );
     $t->set_var( "order_status", $statusName );
+	
+	$user = $order->user();
+	
+	if ( $user )
+	{
+    	if ( $order->personID() == 0 && $order->companyID() == 0 )
+    	{
+        $t->set_var( "customer_email", $user->email() );
+        $t->set_var( "customer_first_name", $user->firstName() );
+        $t->set_var( "customer_last_name", $user->lastName() );
+    	}
+    	else
+    	{
+        	if ( $order->personID() > 0 )
+        	{
+            $customer = new eZPerson( $order->personID() );
+            $t->set_var( "customer_first_name", $customer->firstName() );
+            $t->set_var( "customer_last_name", $customer->lastName() );
+        	}
+        	else
+        	{
+            $customer = new eZCompany( $order->companyID() );
+            $t->set_var( "customer_first_name", $customer->name() );
+            $t->set_var( "customer_last_name", "" );
+        	}
+        $emailList = $customer->emailAddress();
+        $t->set_var( "customer_email", $emailList[0] );
+    	}
+	}
 
     $order->orderTotals( $tax, $total );
     

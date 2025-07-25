@@ -69,7 +69,7 @@ if ( isset( $Action ) && $Action == "Insert" )
 
     $category = new eZProductCategory();
     $category->setName( $Name );
-    $category->setParent( $ParentID );
+    $category->setParent( $parentCategory );
     $category->setDescription( $Description );
     $category->setSectionID( $SectionID );
     $category->setSortMode( $SortMode );
@@ -257,7 +257,10 @@ if ( isset( $Action ) && $Action == "Update" )
         exit();
     }
 
-    eZHTTPTool::header( "Location: /trade/categorylist/" );
+	if ( $ParentID )
+	    eZHTTPTool::header( "Location: /trade/categorylist/parent/".$ParentID."/" );
+	else
+        eZHTTPTool::header( "Location: /trade/categorylist/" );
     exit();
 }
 
@@ -539,6 +542,11 @@ foreach( $groupList as $groupItem )
         $t->set_var( "selected", "selected=\"selected\"" );
     else
         $t->set_var( "selected", "" );
+		
+	if ( in_array( "-1", $readGroupsID ) )
+	    $t->set_var( "all_selected", "selected" );
+	else
+		$t->set_var( "all_selected", "" );
 
     $t->parse( "read_group_item", "read_group_item_tpl", true );
 
@@ -550,6 +558,11 @@ foreach( $groupList as $groupItem )
         $t->set_var( "is_selected", "selected=\"selected\"" );
     else
         $t->set_var( "is_selected", "" );
+
+	if ( in_array( "-1", $writeGroupsID ) )
+	    $t->set_var( "all_write_selected", "selected" );
+	else
+		$t->set_var( "all_write_selected", "" );
 
     $t->parse( "write_group_item", "write_group_item_tpl", true );
 }

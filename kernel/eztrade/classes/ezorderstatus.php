@@ -153,6 +153,15 @@ class eZOrderStatus
        return $dateTime;
     }
 
+	    /*!
+      Returns the raw altered timestamp.
+    */
+    function rawAltered()
+    {
+       return $this->Altered;
+    }
+	
+
     /*!
       Returns the status type as a eZOrderStatusType object.
     */

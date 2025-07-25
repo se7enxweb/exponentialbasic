@@ -39,6 +39,14 @@ $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "tru
 $ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
 $ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$hotDealImageWidth  = $ini->read_var( "eZTradeMain", "HotDealImageWidth" );
+$hotDealImageHeight  = $ini->read_var( "eZTradeMain", "HotDealImageHeight" );
+$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )==enabled?1:0;
+$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )==enabled?1:0;
+if(($upscheck==0)&&($uspscheck==0))
+$checkups=0;
+else
+$checkups=1;
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezoption.php" );
@@ -86,8 +94,8 @@ $t->set_block( "cart_page_tpl", "empty_cart_tpl", "empty_cart" );
 
 $t->set_block( "cart_page_tpl", "cart_item_list_tpl", "cart_item_list" );
 $t->set_block( "cart_item_list_tpl", "cart_item_tpl", "cart_item" );
-
-
+$t->set_block( "cart_item_tpl", "product_image_tpl", "product_image" );
+$t->set_block( "cart_item_list_tpl", "cart_item_prelist_tpl", "cart_item_prelist" );
 // fetch the cart items
 $items =& $cart->items( );
 
@@ -110,6 +118,47 @@ foreach ( $items as $item )
     $product = $item->product();
     if ( $product )
     {
+
+        $t->set_var( "product_id", $product->id() );
+        $t->set_var( "product_name", $product->name() );
+
+    $image = $product->thumbnailImage();
+
+    if  ( $image )
+    {
+        $thumbnail =& $image->requestImageVariation( $hotDealImageWidth, $hotDealImageHeight );
+//        $thumbnail =& $image->requestImageVariation( 109, 109 );
+        
+        if ( $thumbnail )
+        {
+            if ( !isset( $HotDealsPage ) )
+            {
+                $t->set_var( "product_image_path", "/" . $thumbnail->imagePath() );
+                $t->set_var( "product_image_width", $thumbnail->width() );
+                $t->set_var( "product_image_height", $thumbnail->height() );
+//                $t->set_var( "product_image_caption", $image->caption() );
+            }
+            else
+            {
+                $t->set_var( "thumbnail_image_uri", "/" . $thumbnail->imagePath() );
+                $t->set_var( "thumbnail_image_width", $thumbnail->width() );
+                $t->set_var( "thumbnail_image_height", $thumbnail->height() );
+//                $t->set_var( "thumbnail_image_caption", $image->caption() );
+            }
+            $t->parse( "product_image", "product_image_tpl" );            
+        }
+        else
+        {
+            $t->set_var( "product_image", "" );
+        }
+
+
+    }
+    else
+    {
+        $t->set_var( "product_image", "" );
+    }
+
         $price = $product->price() * $item->count();
 
         $currency->setValue( $price );
@@ -125,6 +174,8 @@ foreach ( $items as $item )
         {
            $t->set_var( "product_price", $item->localePrice( true, true, $PricesIncludeVAT ) );
         }
+       
+	    $t->set_var( "product_intro_text", $product->brief() );
 
         // product price
         $currency->setValue( $price );
@@ -177,6 +228,12 @@ $cart->cartTotals( $tax, $total );
 $locale = new eZLocale( $Language );
 $currency = new eZCurrency();
 
+$user = eZUser::currentUser();
+if($checkups==1)
+{
+if ($user)
+{
+
 $currency->setValue( $total["shipinctax"] );
 $t->set_var( "shipping_sum", $locale->format( $currency ) );
 
@@ -185,10 +242,35 @@ $t->set_var( "cart_sum", $locale->format( $currency ) );
 
 $currency->setValue( $total["tax"] );
 $t->set_var( "cart_vat_sum", $locale->format( $currency ) );
+$t->parse( "cart_item_prelist", "cart_item_prelist_tpl", true );
 
-// graham@brookinsconsulting.com - 12-19-2001: add sub total to small cart display
-$currency->setValue( $sum );
-$t->set_var( "subtotal_sum", $locale->format( $currency ) );
+}
+else
+{
+
+$t->set_var( "cart_item", "" );
+$t->set_var( "cart_item_prelist", "" );
+$t->set_var( "shipping_sum","");
+$t->set_var( "cart_sum","");
+$t->set_var( "cart_vat_sum","");
+ }
+
+}
+else
+{
+{
+$currency->setValue( $total["shipinctax"] );
+$t->set_var( "shipping_sum", $locale->format( $currency ) );
+
+$currency->setValue( $total["inctax"] );
+$t->set_var( "cart_sum", $locale->format( $currency ) );
+
+$currency->setValue( $total["tax"] );
+$t->set_var( "cart_vat_sum", $locale->format( $currency ) );
+$t->parse( "cart_item_prelist", "cart_item_prelist_tpl", true );
+}
+
+}
 
 if ( count( $items ) > 0 and $can_checkout )
 {

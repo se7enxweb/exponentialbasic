@@ -27,9 +27,8 @@
 
 <form method="post" action="{www_dir}{index}/user/userwithaddress/new/?RedirectURL=/trade/customerlogin/">
 
-<hr noshade="noshade" size="4" />
-
 <input class="okbutton" class="stdbutton" type="submit" value="{intl-newuser}" />
-
+<br />
+<hr noshade="noshade" size="4" />
 </form>
 

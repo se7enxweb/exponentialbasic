@@ -23,13 +23,16 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-// include_once( "classes/INIFile.php" );
+$_GET = array_map('stripslashes',  $_GET);
+$_POST = array_map('stripslashes',  $_POST);// include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 // include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
+
+$shippingname = eZHTTPTool::getVar( "shippname" );
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 $OrderSenderEmail = $ini->read_var( "eZTradeMain", "OrderSenderEmail" );
@@ -44,8 +47,24 @@ $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enab
 $ShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
 $ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
 $ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
+$ShowTaxBasis = $ini->read_var( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
 $ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
+$StateTaxBilling = $ini->read_var( "eZTradeMain", "StateTaxBilling" ) == "enabled" ? true : false;
+$StateTaxShipping = $ini->read_var( "eZTradeMain", "StateTaxShipping" ) == "enabled" ? true : false;
 $CountryVATDiscrimination = $ini->read_var( "eZTradeMain", "CountryVATDiscrimination" ) == "enabled" ? true : false;
+
+$OrderDisclaimer = $ini->read_var( "eZTradeMain", "OrderDisclaimer" ) == "enabled" ? true : false;
+$OrderDisclaimerText = $ini->read_var( "eZTradeMain", "OrderDisclaimerText" );
+$ShippingDisclaimerText = $ini->read_var( "eZTradeMain", "ShippingDisclaimerText" );
+
+//Depricated ? $checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
+$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )=="enabled"?1:0;
+$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )=="enabled"?1:0;
+
+if(($upscheck==0)&&($uspscheck==0))
+$checkups=0;
+else
+$checkups=1;
 
 // Set some variables to defaults.
 $ShowCart = false;
@@ -77,9 +96,22 @@ $ShowSavingsColumn = false;
 
 // include_once( "ezmail/classes/ezmail.php" );
 
+//$currentTypeID = array();
 
+if(eZHTTPTool::getVar( "ShippingTypeID" )){
+    $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID", true );
+    $test = $currentTypeID[0];
+}else{
+    $currentTypeID[0] = "03";
+    $test = $currentTypeID[0];
+}
 
 $cart = new eZCart();
+
+// there are way to manny calls to get the current user in
+// this particular file, i've commented out the duplicates as needed.
+// $user = eZUser::currentUser();
+
 $session =& eZSession::globalSession();
 
 $user = eZUser::currentUser();
@@ -143,11 +175,17 @@ $t->set_block( "checkout_page_tpl", "remove_voucher_tpl", "remove_voucher" );
 
 $t->set_block( "full_cart_tpl", "total_ex_tax_item_tpl", "total_ex_tax_item" );
 $t->set_block( "full_cart_tpl", "total_inc_tax_item_tpl", "total_inc_tax_item" );
+$t->set_block( "full_cart_tpl", "tax_total_tpl", "tax_total" );
+
 
 $t->set_block( "full_cart_tpl", "tax_specification_tpl", "tax_specification" );
 $t->set_block( "tax_specification_tpl", "tax_item_tpl", "tax_item" );
 
 $t->set_block( "full_cart_tpl", "shipping_type_tpl", "shipping_type" );
+
+
+
+$t->set_block( "checkout_page_tpl", "shipping_select_tpl", "shipping_select" );
 
 $t->set_block( "checkout_page_tpl", "shipping_address_tpl", "shipping_address" );
 $t->set_block( "checkout_page_tpl", "billing_address_tpl", "billing_address" );
@@ -160,6 +198,7 @@ $t->set_block( "checkout_page_tpl", "show_payment_tpl", "show_payment" );
 $t->set_block( "show_payment_tpl", "payment_method_tpl", "payment_method" );
 
 
+$t->set_var( "show_payment", "" );
 
 $t->set_var( "show_payment", "" );
 $t->set_var( "price_ex_vat", "" );
@@ -169,7 +208,24 @@ $t->set_var(  "wish_user", "" );
 $t->set_var( "pay_with_voucher", "false" );
 
 
+$t->set_block( "order_disclaimer_tpl", "order_disclaimer" );
+$t->set_block( "shipping_disclaimer_tpl", "shipping_disclaimer" );
+
+/*
+  $t->set_var(  "order_disclaimer_text", "$OrderDisclaimerText" );
+  $t->set_var(  "shipping_disclaimer_text", "$ShippingDisclaimerText" );
+*/
+
+$t->set_var(  "order_disclaimer_text", "By submitting this order, I hereby agree to FullThrottle.com's <a href=\"/policy/return\">Return Policy</a> and <a href=\"/policy/shipping\">Shipping Policy</a>" );
+
+$t->set_var(  "shipping_disclaimer_text", "Please call us before ordering to confirm availability if you need the items delivered by a specific date!" );
+
+$t->parse( "order_disclaimer", "order_disclaimer_tpl" );
+$t->parse( "shipping_disclaimer", "shipping_disclaimer_tpl" );
+
+
 if ( isset ( $RemoveVoucher ) )
+
 {
     if ( count ( $RemoveVoucherArray ) > 0 )
     {
@@ -186,21 +242,81 @@ if ( isset ( $RemoveVoucher ) )
     }
 }
 
+//wha?
+$test = "test";
+
 if ( isset( $SendOrder ) )
 {
 
+  // die ( eZHTTPTool::getVar( "ShippingTypeID", true ) );
+
+  if( eZHTTPTool::getVar( "ShippingTypeID" ) ){
+    // print(  "totaly ");
+    // which shipping type?
+    $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+    // $currentTypeID = $currentTypeID['0'];
+    // $currentTypeID[0] = $currentTypeID['0'];
+
+    // $ShippingTypeID = $currentTypeID['0'];
+    // echo '<br /> CurrentTypeID:: ' . $ShippingTypeID;
+
+    // echo "REQUEST: <br><br>";
+    // print_r($_REQUEST);
+
+/*
+    echo "<br><br>";
+    $ShippingTypeID = $_REQUEST[ShippingTypeID];
+    echo 'ShippingType: ' . $ShippingTypeID['0'];
+*/
+ 
+}else{
+    // default to ... shipping type
+    // print(  "totaly not");
+    $currentTypeID[0] = "03";
+  }
+
+/*
+ echo $currentTypeID;
+   phpinfo();
+ die();
+
+*/
+
     // set the variables as session variables and make sure that it is not read by
     // the HTTP GET variables for security.
-
-    $currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+if(empty($currentTypeID[0]))
+  {
+    $uuid = $user->id();
+     echo "<h3>Error:Your Shipping Address may be wrong.</h3>";
+     // eZHTTPTool::header( "Location:/user/userwithaddress/edit/$uuid/" );
+     eZHTTPTool::header( "Location: /trade/checkout/" );
+     exit;
+  }
 
     $preOrder = new eZPreOrder();
     $preOrder->store();
 
+    //////////////////////////////////////////////////////////////////////////////
+    // User Info Swap ....
+
     $session->setVariable( "PreOrderID", $preOrder->id() );
+    /*
+
+     $session->setVariable( "ShippingAddressID", $_POST["ShippingAddressID"] );
+     $session->setVariable( "BillingAddressID",  $_POST["BillingAddressID"] );
 
     $session->setVariable( "ShippingAddressID", eZHTTPTool::getVar( "ShippingAddressID", true ) );
     $session->setVariable( "BillingAddressID", eZHTTPTool::getVar( "BillingAddressID", true ) );
+
+     $session->setVariable( "ShippingAddressID", eZHTTPTool::getVar( "ShippingAddressID" );
+     $session->setVariable( "BillingAddressID", eZHTTPTool::getVar( "BillingAddressID" );
+
+    */
+
+     $session->setVariable( "ShippingAddressID", eZHTTPTool::getVar( "ShippingAddressID", true ) );
+     $session->setVariable( "BillingAddressID", eZHTTPTool::getVar( "BillingAddressID", true ) );
+
+    //////////////////////////////////////////////////////////////////////////////
 
     $session->setVariable( "TotalCost", eZHTTPTool::getVar( "TotalCost", true ) );
     $session->setVariable( "TotalVAT", eZHTTPTool::getVar( "TotalVAT", true ) );
@@ -214,14 +330,17 @@ if ( isset( $SendOrder ) )
     }
     else
         $session->setArray( "PaymentMethod", array( eZHTTPTool::getVar( "PaymentMethod", true ) ) );
+    
+    //    $session->setVariable( "AuthCode", eZHTTPTool::getVar( "AuthCode", true ) );
 
-    $session->setVariable( "Comment", eZHTTPTool::getVar( "Comment", true ) );
+    $session->setVariable( "Comment", stripslashes( eZHTTPTool::getVar( "Comment", true ) ), eZHTTPTool::getVar( "Comment", true ) );
 
     $session->setVariable( "ShippingCost", $cart->shippingCost( new eZShippingType( $currentTypeID ) ) );
     $session->setVariable( "ShippingVAT", $cart->shippingVAT( new eZShippingType( $currentTypeID ) ) );
 
-    $session->setVariable( "ShippingTypeID", eZHTTPTool::getVar( "ShippingTypeID", true ) );
-
+    $session->setVariable( "ShippingCost",eZHTTPTool::getVar("shippcost"),true);
+    $session->setVariable( "ShippingVAT", eZHTTPTool::getVar("ShippingVAT"),true);
+    $session->setVariable( "ShippingTypeID", $currentTypeID[0], true);
 
     // create a new order
     $order = new eZOrder();
@@ -234,6 +353,10 @@ if ( isset( $SendOrder ) )
         exit();
     }
 
+
+    //////////////////////////////////////////////////////////////////////////////
+    // very important step .... possible breakdown for "user info swap"
+
     $order->setUser( $user );
 
     if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) != "enabled" )
@@ -241,24 +364,62 @@ if ( isset( $SendOrder ) )
         $billingAddressID = $shippingAddressID;
     }
 
+    $addressList = $user->addresses();
+
     $shippingAddress = new eZAddress( $session->variable( "ShippingAddressID" ) );
     $billingAddress = new eZAddress( $session->variable( "BillingAddressID" ) );
+
+    //////////////////////////////////////////////////////////////////////////////
+    // assumsions here are fairly safe, but not completely (user could switch order of usage here)
+    /*
+    if( $addressList[1] ){
+      $shippingAddress = $addressList[1];
+      $billingAddress  = $addressList[0];
+    }else{
+      $shippingAddress = $addressList[0];
+      $billingAddress  = $addressList[0];  
+    }
+    */
+
+    // kracker (2005.05.20)
+    /*
+    print_r( $shippingAddress );
+    echo "<br>";
+    print_r( $billingAddress );
+    die();
+    */
+
+    //
+    //////////////////////////////////////////////////////////////////////////////
 
     $order->setShippingCharge( $session->variable( "ShippingCost" ) );
     $order->setShippingVAT( $session->variable( "ShippingVAT" ) );
 
+    //////////////////////////////////////////////////////////////////////////////
+    // very important step .... possible breakdown for "user info swap"
+
     $order->setShippingAddress( $shippingAddress, $user );
     $order->setBillingAddress( $billingAddress, $user );
 
+    //
+    //////////////////////////////////////////////////////////////////////////////
+
     $order->setPaymentMethod( $session->arrayValue( "PaymentMethod" ) );
 
-    $order->setShippingTypeID( $session->variable( "ShippingTypeID" ) );
+    // $order->setAuthCode( $session->variable( "AuthCode" ) );
 
-    $order->setComment( $Comment );
+    // $order->setShippingTypeID( $session->variable( "ShippingTypeID" ) );
+
+    $order->setShippingTypeID($currentTypeID[0]);
+
+    $order->setComment( stripslashes($Comment) );
 
     $order->setPersonID( $cart->personID() );
     $order->setCompanyID( $cart->companyID() );
 
+    if($_POST['ShippingVAT'] > 0 || $_POST['TotalVAT'] > 0 )
+      $order->setIsVATInc( true );
+    else
     $order->setIsVATInc( false );
 
 
@@ -343,13 +504,55 @@ if ( isset( $SendOrder ) )
 $type = new eZShippingType();
 $types = $type->getAll();
 
-$currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+// print_r($types);
+
+
+//qcomp AMin.
+if ($cart->ShipServiceCode && (! eZHTTPTool::getVar( "ShippingTypeID" )))
+{
+  $currentTypeID[0] = $cart->ShipServiceCode;
+}
+
+if ($cart->AddressID)
+{
+  $shipaddID = $cart->AddressID;
+}
+
+
+if (true || eZHTTPTool::getVar( "ShippingTypeID" ) || eZHTTPTool::getVar( "ShippingAddressID" ))
+{
+  //$currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
+  $shipaddID = eZHTTPTool::getVar( "ShippingAddressID" );
+  $cart->AddressID=$shipaddID;
+  $cart->ShipServiceCode=$currentTypeID[0];
+  $cart->storeshipoptions($currentTypeID[0],$shipaddID);
+}
+
+//End qcomp AMin.
+
+
+$markup =0;
 
 $currentShippingType = false;
+
+$thisuser =& eZUser::currentUser();
+
+$id = $thisuser->id();
+
+
+if($checkups==1)
+{
+
+}
+else
+{
+
 foreach ( $types as $type )
 {
     $t->set_var( "shipping_type_id", $type->id() );
     $t->set_var( "shipping_type_name", $type->name() );
+    $t->set_var( "shipping_type_cost", "" );
+}
 
     if ( is_numeric( $currentTypeID ) )
     {
@@ -376,13 +579,58 @@ foreach ( $types as $type )
 }
 
 $vat = true;
-if ( isset( $BillingAddressID ) && is_numeric( $BillingAddressID ) )
-{
-    $address = new eZAddress( $BillingAddressID );
-    $country =& $address->country();
-    if ( !$country->hasVAT() )
+$address = new eZAddress();
+
+if ($cart->AddressID){
+  $taxaddressID = $cart->AddressID;
+}elseif( eZHTTPTool::getVar( "ShippingAddressID" ) ){
+  $taxaddressID = eZHTTPTool::getVar( "ShippingAddressID" );
+}else {
+  $addressList = $thisuser->addresses();
+
+  if( isset($addressList[1]) ){
+    $taxaddressObj = $addressList[1];
+  }else{
+    $taxaddressObj = $addressList[0];
+  }
+
+  //$taxaddressObj = $address->mainAddress($thisuser);
+  // print_r($addressList);
+
+  $taxaddressID = $taxaddressObj->ID();
+}
+	
+/////////////////////////////////////////////////////////////////
+// possible bug? "User Info Swap"
+
+//if (  eZHTTPTool::getVar( "ShippingAddressID" ) )
+//{
+
+    $shippingAddress = new eZAddress( $taxaddressID );
+    $shippingRegion =& $shippingAddress->region();
+
+//    $billingAddress = new eZAddress( $BillingAddressID );
+//    $billingRegion =& $billingAddress->region();
+//    $country =& $address->country();
+
+
+///////////////////////////////////////////////////////////
+// Open Ended Comment : Re : Shipping Vats .... ?
+/*
+	if ( !$shippingRegion->hasVAT() || !$StateTaxShipping 
+		|| ( $shippingRegion->hasVAT() && !$billingRegion->hasVAT() )
+		)
+        $vat = false;  
+*/
+	
+	if ( !$shippingRegion )
+           $vat = false;
+	else
+		{
+			if ( !$shippingRegion->hasVAT() )
         $vat = false;
 }
+/*
 else if ( $CountryVATDiscrimination == true )
 {
     $address = new eZAddress();
@@ -400,7 +648,7 @@ else if ( $CountryVATDiscrimination == true )
         $totalVAT = 0;
     }
 }
-
+*/
 if ( $vat == false )
 {
     $ShowExTaxColumn = true;
@@ -492,7 +740,19 @@ foreach ( $items as $item )
 
         $t->set_var( "option_id", $option->id() );
         $t->set_var( "option_name", $option->name() );
-        $t->set_var( "option_value", $descriptions[0] );
+
+        if ( count( $descriptions ) > 0 )
+        {
+            $t->set_var( "option_value", $descriptions[0] );
+        }
+        else
+        {
+            $t->set_var( "option_value", $value->option()->name() );
+        }
+
+		if ( $value->localePrice( $PricesIncludeVAT, $product ) == 0 )
+			$t->set_var( "option_price", "" );
+		else
         $t->set_var( "option_price", $value->localePrice( $PricesIncludeVAT, $product ) );
         $t->parse( "cart_item_option", "cart_item_option_tpl", true );
 
@@ -554,8 +814,133 @@ $currency = new eZCurrency();
 if ( $ShowCart == true )
 {
     // Vouchers
+   // qcomp Amin
 
-    $cart->cartTotals( $tax, $total );
+   ///////////////////////////////////////////////
+   // graham : 2005-05-24 : this gets the shipping types
+   $upsresults =  $cart->cartTotals( $tax, $total, false, true, $vat );
+
+//print_r($total); exit();
+
+
+// This is the real shipping name code
+
+if($checkups==1)
+{
+  if($thisuser)
+  {
+      $getnames =array( 
+	'01' => 'UPS Next Day Air',
+       	'02' => 'UPS 2nd Day Air',
+	'03' => 'UPS Ground',
+	'07' => 'UPS Worldwide Express',
+	'08' => 'UPS Worldwide Expedited',
+	'11' => 'UPS Standard',
+	'12' => 'UPS 3 Day Select',
+	'13' => 'UPS Next Day Air Saver',
+	'14' => 'UPS Next Day Air Early A.M.',
+	'54' => 'UPS Worldwide Express Plus',
+	'59' => 'UPS 2nd Day Air A.M.',
+	'64' => '',
+	'65' => 'UPS Express Saver',
+       );
+
+       $codearr = array();
+       $codarr = array();
+
+       if(empty($upsresults) ||  $upsresults[0] == '||')
+       {
+// Depricated Oneline?   
+// echo "<h3><font color=\"#ff0000\">Error:Your Shipping address may be wrong.</font></h3>";
+
+	      $t->set_var( "shipping_type_error","<font color=\"#ff0000\">Error:  Your Shipping address may be wrong.  Please re-check your post code.</font>");
+       }
+       else
+       {
+	        $t->set_var( "shipping_type_error","");
+       }
+
+       foreach($upsresults as $upsr)
+       {
+            $splups=explode("\|\|",$upsr);
+            if( isset( $splups[1] ) && $splups[1] != "" )
+            $codearr[] = array($splups[0],$splups[1]);
+       }
+
+       $codesort = asort($codearr);
+
+       foreach($codearr as $cod)
+       {
+	      $codarr[] = $cod;
+       }
+
+       $ii=0;
+       foreach($codarr as $co)
+       {
+           if( isset( $co[1] ) && $co[1] != "" )
+           $ser_code = $co[1];
+        else
+           $ser_code = false;
+
+        // $splups=explode("\|\|",$upsr);
+
+        //for USPS
+        if (isset($getnames["$ser_code"]))
+        {
+            $service_name= $getnames["$ser_code"];
+        }
+        else
+        {
+            $service_name=$ser_code;
+        }
+        
+        // Shippment Type
+        $concade =  $service_name ." $ " .sprintf("%01.2f", $co[0]);
+            // print($concade . "<br />");
+        // print($co[1] . "<br />");
+
+        $t->set_var( "shipping_type_id",$co[1]);
+        $t->set_var( "shipping_type_name",$concade);
+        $t->set_var( "shipping_type_cost",sprintf("%01.2f", $co[0]));
+
+        if ( $currentTypeID[0] == $co[1])
+        {
+            $test = "$currentTypeID[0], $co[1], $concade";
+            $currentShippingType = $type;
+
+            $t->set_var( "ship_get_name",$concade);
+            $t->set_var( "type_selected", "selected" );
+            $markup = 1;
+        }
+        elseif((isset($cc[0]) && ($ii==0)&&($cc[0])))
+        {
+        $t->set_var( "type_selected", "selected" );
+        $markup = 1;
+        }
+        else
+        {
+        $t->set_var( "type_selected", "" );
+        }
+
+        $t->parse( "shipping_type", "shipping_type_tpl", true );
+        
+        $ii +=1;
+       }
+  }
+  else
+  {
+    foreach ( $types as $type )
+    {
+      $t->set_var( "shipping_type_id","");
+      $t->set_var( "shipping_type_name","");
+      $t->set_var( "shipping_type_cost", "" );
+
+      $t->parse( "shipping_type", "shipping_type_tpl", true );
+    }
+  }
+}
+
+// End qcomp Amin
 
     $t->set_var( "empty_cart", "" );
     $t->set_var( "voucher_item", "" );
@@ -636,14 +1021,67 @@ if ( $ShowCart == true )
     $currency->setValue( $total["inctax"] );
     $t->set_var( "total_inc_tax", $locale->format( $currency ) );
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+// kracker(2005-20-05): tax_percentage : first change
+// orig
+//	$t->set_var( "tax_percentage", round( (($total["tax"])/$total["subextax"])*100 , 2) );
+
+// static display only fix (that's what this wrong .... no)
+//      $t->set_var( "tax_percentage", round(7.00, 2) );
+
+// the dynamic user : ez region : vat fix ....
+//      $t->set_var( "tax_percentage", round(7.00, 2) );
+
+// Description: 
+// take user, 
+// get it's main address ( how do you tell if its the shipping address? can't untill after this view currently )
+// consider an option to add to user registration to specify shipping address preference durring userwithaddress edit
+// that option used to exist! client asked for it's removal ... grrr
+// this would screw upp everything, andcould provide free shipping based on first address in system
+
+// so we can't really know where it's going attthis point or calc the proper shipping, 
+// shipping tax rate, tax rate, total tax, product total w/o / w/tax ...
+
+// major workflow / user address managment bug (pre-existing)
+
+//
+/////////////////////////////////////////////////////////////////////////////////////
+ $t->set_var( "tax_percentage", round( ( $total["tax"]) / ($total["subextax"] + $total["shipextax"]) * 100 , 2 ) );
+
+   //     $t->set_var( "tax_percentage", round(7.00, 2) );
+
+/////////////////////////////////////////////////////////////////////////////////////
+	
+	$t->set_var( "tax_total", "" );
+			
+	if ( !$ShowIncTaxColumn )
+	{
+	    $currency->setValue( $total["inctax"] );
+	    $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+
+	    if ( $total["tax"]>0 )
+	      $t->parse( "tax_total", "tax_total_tpl" );
+	    else
+	      $t->set_var( "tax_total", "" );
+	}
+	else
+	{
     $currency->setValue( $total["extax"] );
     $t->set_var( "total_ex_tax", $locale->format( $currency ) );
+	    $t->set_var( "tax_total", "" );
+	}
 
     $currency->setValue( $total["shipinctax"] );
     $t->set_var( "shipping_inc_tax", $locale->format( $currency ) );
 
+    $currency->setValue( $total["tax"] );
+    $t->set_var( "total_cart_tax", $locale->format( $currency ) );
+	
+	$t->set_var( "shipping_inc_hide_tax",$total["shipinctax"] );
     $currency->setValue( $total["shipextax"] );
     $t->set_var( "shipping_ex_tax", $locale->format( $currency ) );
+	$t->set_var( "shipping_ex_hide_tax", $total["shipextax"] );
 
     if ( $ShowSavingsColumn == false )
     {
@@ -656,12 +1094,14 @@ if ( $ShowCart == true )
     {
         if ( $ShowExTaxTotal == true or $ShowIncTaxColumn == false )
         {
+			$GLOBALS["shcost"] = $total["shipextax"];
             $t->parse( "total_ex_tax_item", "total_ex_tax_item_tpl" );
             $t->parse( "subtotal_ex_tax_item", "subtotal_ex_tax_item_tpl" );
             $t->parse( "shipping_ex_tax_item", "shipping_ex_tax_item_tpl" );
         }
         else
         {
+			$GLOBALS["shcost"] = $total["shipinctax"];
             $t->set_var( "total_ex_tax_item", "" );
             $t->set_var( "subtotal_ex_tax_item", "" );
             $t->set_var( "shipping_ex_tax_item", "" );
@@ -721,10 +1161,7 @@ if ( $ShowCart == true )
         $t->parse( "tax_specification", "tax_specification_tpl" );
     }
     else
-    {
-        $t->set_var( "tax_specification", "" );
-        $t->set_var( "tax_item", "" );
-    }
+		 $t->set_var( "tax_specification", "" );
 }
 else
 {
@@ -738,10 +1175,12 @@ else
 }
 
 
+
 $can_checkout = true;
 
 $user =& eZUser::currentUser();
 
+$t->set_var( "user_id", $user->id() );
 // print out the addresses
 
 if ( $cart->personID() == 0 && $cart->companyID() == 0 )
@@ -769,11 +1208,27 @@ else
     $addressArray = $customer->addresses();
 }
 
+if ( $checkups == 1 )
+{
+    $t->set_var("shipchange","onchange=\"return shipaddchange(this.form)\"");
+}
+else
+{
+    $t->set_var("shipchange","");
+}
+
+$t->parse( "shipping_select", "shipping_select_tpl", true );
+
 foreach ( $addressArray as $address )
 {
     $t->set_var( "address_id", $address->id() );
     $t->set_var( "street1", $address->street1() );
-    $t->set_var( "street2", $address->street2() );
+
+	if ( $address->street2() )
+        $t->set_var( "street2", $address->street2().",&nbsp;" );
+	else
+        $t->set_var( "street2", "" );
+
     $t->set_var( "zip", $address->zip() );
     $t->set_var( "place", $address->place() );
 
@@ -797,7 +1252,7 @@ foreach ( $addressArray as $address )
 
     if ( $region )
     {
-        $region = $region->Name();
+        $region = ", " . $region->name();
     }
 
     if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
@@ -807,20 +1262,54 @@ foreach ( $addressArray as $address )
 
     unset( $mainAddress );
     $t->set_var( "is_selected", "" );
-    $mainAddress = $address->mainAddress( $user );
+	
+    if ( isset( $BillingAddressID ) && $BillingAddressID == "" )
+	{
+	    $mainAddress = $addressList[0];
 
-    if ( is_a( $mainAddress, "eZAddress" ) )
+	  //$mainAddress = $address->mainAddress( $user );
+	$BillingAddressID = $mainAddress->id();
+	}
+
+/*	
+    if ( get_class( $mainAddress ) == "ezaddress" )
     {
         if ( $mainAddress->id() == $address->id() )
         {
             $t->set_var( "is_selected", "selected" );
         }
     }
+*/
 
     if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
+        {
+			if ( isset( $BillingAddressID ) && (int)$BillingAddressID == $address->id() )
+				$t->set_var( "billing_selected", "selected" );
+			else 
+				$t->set_var( "billing_selected", "" );
         $t->parse( "billing_option", "billing_option_tpl", true );
+		}		
     else
         $t->set_var( "billing_option", "" );
+
+    $t->set_var("type_selected","");
+
+	if ($shipaddID == ""){
+	  if($addressList){
+        if(isset($addressList[1]) &&$addressList[1]){
+	      $shipaddID = $addressList[1]->ID();
+	    }else{
+	      $shipaddID = $addressList[0]->ID();
+	    }	    
+	  }
+	  //$shipaddID = $mainAddress->id();
+	}
+	
+	if($shipaddID==$address->id())
+	{
+		$t->set_var("lastshipid","$shipaddID");
+		$t->set_var("type_selected","selected");
+	}
 
     $t->parse( "shipping_address", "shipping_address_tpl", true );
 }
@@ -873,10 +1362,13 @@ else
 $payment = true;
 
 // the total cost of the payment
-$t->set_var( "total_cost_value", $total["inctax"] );
-$t->set_var( "total_vat_value", $totalVAT );
 
+$t->set_var( "total_cost_value", round($total["inctax"],2) );
 
+//$t->set_var( "total_vat_value", $totalVAT );
+$t->set_var( "total_vat_value", round($total["tax"],2) );
+$t->set_var( "shipping_cost_value", round((float)$total["shipinctax"],2) );
+$t->set_var( "shipping_vat_value", round($total["shiptax"],2) );
 
 // A check should be done in the code above for qty.
 $can_checkout = true;
@@ -885,6 +1377,5 @@ if ( $can_checkout )
     $t->parse( "sendorder_item", "sendorder_item_tpl" );
 
 $t->pparse( "output", "checkout_page_tpl" );
-
 
 ?>

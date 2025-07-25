@@ -56,12 +56,15 @@ $PurchaseProduct = $ini->read_var( "eZTradeMain", "PurchaseProduct" ) == "true";
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 $locale = new eZLocale( $Language );
 
+$AdminSiteURL = $ini->read_var( "site", "AdminSiteURL" );
+$SiteURL = $ini->read_var( "site", "SiteURL" );
+
 if ( isset( $CategoryID ) )
     $categoryID = $CategoryID;
 else
     $categoryID = 0;
 
-$product = new eZProduct( );
+$product = new eZProduct();
 
 if ( isset( $ProductID ) && !$product->get( $ProductID, $categoryID ) )
 {
@@ -107,6 +110,13 @@ $sectionObject->setOverrideVariables();
 
 $user =& eZUser::currentUser();
 
+
+if ( !eZObjectPermission::hasPermission( $category->id(), "trade_category", "r", $user ) )
+{
+  eZHTTPTool::header( "Location: /trade/productlist/0/" );
+  exit();
+}
+
 if ( !isset( $IntlDir ) )
     $IntlDir = "kernel/eztrade/user/intl";
 if ( !isset( $IniFile ) )
@@ -137,16 +147,43 @@ else
     $t->set_file( "product_view_tpl", $productview );
 }
 
+// begin inline edit mod RBS
+
+$t->set_block( "product_view_tpl", "user_login_tpl", "user_login" );
+
+$t->set_var( "admin_site", "http://$AdminSiteURL" );
+
+if ( $user && ( eZPermission::checkPermission( $user, "eZTrade", "WriteToRoot" ) ) )
+	{
+    		$t->parse( "user_login", "user_login_tpl" );
+	}
+	else
+	{
+    		$t->set_var( "user_login", "" );
+	}
+//end inline edit mod RBS
+
 //  $t->set_file( array(
 //      "product_view_tpl" => "productview.tpl"
 //      ) );
 
+$t->set_block( "product_view_tpl", "shipping_message_tpl", "shipping_message" );
+$t->set_block( "shipping_message_tpl", "free_ups_tpl", "free_ups" );
+$t->set_block( "shipping_message_tpl", "free_usps_tpl", "free_usps" );
+$t->set_block( "shipping_message_tpl", "flat_ups_tpl", "flat_ups" );
+$t->set_block( "shipping_message_tpl", "flat_usps_tpl", "flat_usps" );
+$t->set_block( "shipping_message_tpl", "flat_ups_combine_tpl", "flat_ups_combine" );
+$t->set_block( "shipping_message_tpl", "flat_usps_combine_tpl", "flat_usps_combine" );
 
 $t->set_block( "product_view_tpl", "product_number_item_tpl", "product_number_item" );
 $t->set_block( "product_view_tpl", "price_tpl", "price" );
+$t->set_block( "product_view_tpl", "list_price_tpl", "list_price" );
 
 $t->set_block( "product_view_tpl", "price_to_high_tpl", "price_to_high" );
 $t->set_block( "product_view_tpl", "price_to_low_tpl", "price_to_low" );
+
+$t->set_block( "product_view_tpl", "attached_file_list_tpl", "attached_file_list" );
+$t->set_block( "attached_file_list_tpl", "attached_file_tpl", "attached_file" );
 
 $t->set_block( "product_view_tpl", "price_range_tpl", "price_range" );
 $t->set_block( "product_view_tpl", "mail_method_tpl", "mail_method" );
@@ -159,6 +196,7 @@ $t->set_block( "price_tpl", "alternative_currency_list_tpl", "alternative_curren
 $t->set_block( "alternative_currency_list_tpl", "alternative_currency_tpl", "alternative_currency" );
 
 $t->set_block( "product_view_tpl", "quantity_item_tpl", "quantity_item" );
+$t->set_block( "product_view_tpl", "date_available_tpl", "date_available" );
 $t->set_block( "product_view_tpl", "add_to_cart_tpl", "add_to_cart" );
 $t->set_block( "product_view_tpl", "voucher_buttons_tpl", "voucher_buttons" );
 $t->set_block( "product_view_tpl", "path_tpl", "path" );
@@ -180,7 +218,7 @@ $t->set_block( "value_tpl", "value_availability_item_tpl", "value_availability_i
 $t->set_block( "value_tpl", "value_price_currency_list_tpl", "value_price_currency_list" );
 
 $t->set_block( "value_price_currency_list_tpl", "value_price_currency_item_tpl", "value_price_currency_item" );
-//$t->set_block( "product_view_tpl", "external_link_tpl", "external_link" );
+$t->set_block( "product_view_tpl", "external_link_tpl", "external_link" );
 $t->set_block( "product_view_tpl", "attribute_list_tpl", "attribute_list" );
 
 $t->set_block( "attribute_list_tpl", "attribute_tpl", "attribute" );
@@ -202,6 +240,11 @@ if ( !isset( $ModuleView ) )
 if ( !isset( $ModulePrint ) )
     $ModulePrint = "productprint";
 
+// Add Product Information into Site / Page Title
+// escape product names with quotes (kicks new error) re: htmlspecialchars are not search engine friendly 
+$SiteTitleAppend = $product->name();
+$SiteTitleAppend .= " - ". $product->productNumber();
+
 $t->set_var( "module", $ModuleName );
 $t->set_var( "module_list", $ModuleList );
 $t->set_var( "module_view", $ModuleView );
@@ -215,6 +258,63 @@ $t->set_var( "price_to_low", "" );
 
 $MailMethod = 1;
 
+if ($product->flatUSPS() != 'off') {
+	if (0 == $product->flatUSPS()) {	
+		$t->set_var( "flat_usps_combine", "");
+		$t->set_var( "flat_usps", "");
+		$t->parse("free_usps", "free_usps_tpl");
+	} elseif ($product->flatCombine()) {
+		$t->set_var("free_usps", "");
+		$t->set_var("flat_usps", "");
+		$t->set_var ("flat_usps_price", $product->flatUSPS() );
+		$t->parse("flat_usps_combine", "flat_usps_combine_tpl");
+	} else {
+		$t->set_var("free_usps", "");
+		$t->set_var("flat_usps_combine", "");
+		$t->set_var ("flat_usps_price", $product->flatUSPS() );
+		$t->parse("flat_usps", "flat_usps_tpl");
+	}
+} else {
+	$t->set_var("free_usps", "");
+	$t->set_var("flat_usps", "");
+	$t->set_var("flat_usps_combine", "");
+}
+if ($product->flatUPS() != 'off') {
+	if (0 == $product->flatUPS()) {
+		$t->set_var( "flat_ups_combine", "");
+		$t->set_var( "flat_ups", "");
+		$t->parse("free_ups", "free_ups_tpl");
+	} elseif ($product->flatCombine()) {
+		$t->set_var( "free_ups", "");
+		$t->set_var( "flat_ups", "");
+		$t->set_var ("flat_ups_price", $product->flatUPS() );
+		$t->parse("flat_ups_combine", "flat_ups_combine_tpl");
+	} else {
+		$t->set_var( "free_ups", "");
+		$t->set_var( "flat_ups_combine", "");
+		$t->set_var ("flat_ups_price", $product->flatUPS() );
+		$t->parse("flat_ups", "flat_ups_tpl");
+	}
+} else {
+	$t->set_var("free_ups", "");
+	$t->set_var("flat_ups", "");
+	$t->set_var("flat_ups_combine", "");
+}
+
+
+if ($product->flatUPS() != 'off' || $product->flatUSPS() != 'off')
+{
+	$t->parse("shipping_message", "shipping_message_tpl");
+} else {
+	$t->set_var("shipping_message", "");
+} 
+
+if ( !$product->showProduct() )
+{
+    eZHTTPTool::header( "Location: /error/404/" );
+	echo "Sorry, this product is not currently available.";	
+	exit();
+}
 if ( isset ( $Voucher ) )
 {
     $range = $product->priceRange();
@@ -433,7 +533,7 @@ foreach ( $options as $option )
             {
                 $price = new eZCurrency( $value->correctPrice( $PricesIncludeVAT, $product ) );
                 if ( $value->price() != 0 )
-                    $t->set_var( "value_price", $value->localePrice( $PricesIncludeVAT, $product ) );
+                    $t->set_var( "value_price", "+".$value->localePrice( $PricesIncludeVAT, $product ) );
                 else
                     $t->set_var( "value_price", "" );
 
@@ -618,11 +718,29 @@ if ( $ShowQuantity and $product->hasPrice() )
     $t->parse( "quantity_item", "quantity_item_tpl" );
 }
 
+$t->set_var( "date_available", "" );
+
+if ( $product->stockDate() && $NamedQuantity == 0 )
+            {
+                $Stock = new eZDate();
+                $Stock->setTimeStamp( $product->stockDate() );	
+				$t->set_var( "date_available", $locale->format( $Stock ) );
+				$t->parse( "date_available", "date_available_tpl" );				
+}
+
 $t->set_var( "price", "" );
+$t->set_var( "list_price", "" );
+$t->set_var( "product_list_price", "" );
 $t->set_var( "add_to_cart", "" );
 $t->set_var( "voucher_buttons", "" );
 
-
+if ( $product->listPrice() && $product->listPrice() > 0 )
+	{
+		$currency = new eZCurrency();
+		$currency->setValue( $product->listPrice() );
+		$t->set_var( "product_list_price", $locale->format( $currency ) );
+		$t->parse( "list_price", "list_price_tpl", true );
+	}
 
 if ( $ShowPrice and $product->showPrice() == true and $product->hasPrice()  )
 {
@@ -757,7 +875,8 @@ if ( isset( $PrintableVersion ) && $PrintableVersion == "enabled" )
 }
 else
 {
-    $t->parse( "print_page_link", "print_page_link_tpl" );
+    $t->set_var( "print_page_link", "" );
+    //    $t->parse( "print_page_link", "print_page_link_tpl" );
     $t->set_var( "numbered_page_link", "" );
 }
 
@@ -769,26 +888,82 @@ if ( isset( $func_array ) and is_array( $func_array ) )
     }
 }
 
+// files
+$files = $product->files();
+
+if ( count( $files ) > 0 )
+{
+    $i=0;
+    foreach ( $files as $file )
+    {
+        if ( ( $i % 2 ) == 0 )
+        {
+            $t->set_var( "td_class", "bglight" );
+        }
+        else
+        {
+            $t->set_var( "td_class", "bgdark" );
+        }
+
+	
+        $t->set_var( "site_protocol", "http://" );
+        $t->set_var( "site_host", $SiteURL );
+
+
+        $t->set_var( "file_id", $file->id() );
+        $t->set_var( "original_file_name", $file->fileName() );
+        $t->set_var( "file_name", $file->name() );
+        $t->set_var( "file_url", $file->name() );
+        $t->set_var( "file_description", $file->description() );
+
+        $size = $file->siFileSize();
+        $t->set_var( "file_size", $size["size-string"] );
+        $t->set_var( "file_unit", $size["unit"] );
+
+
+        $i++;
+        $t->parse( "attached_file", "attached_file_tpl", true );
+    }
+
+    $t->parse( "attached_file_list", "attached_file_list_tpl" );
+}
+else
+	 $t->set_var( "attached_file_list", "" );
+
+
 $SiteTitleAppend = $product->name();
 $SiteDescriptionOverride = str_replace( "\"", "", strip_tags( $product->brief() ) );
 $SiteKeywordsOverride = str_replace( "\"", "", strip_tags( $product->keywords() ) );
 
-
-
 if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" && !$useVoucher )
 {
+
+    $title_check_single = strstr( $SiteTitleAppend, "'" );
+    $title_check_double = strstr( $SiteTitleAppend, '"' );
+
     $template_var = "product_view_tpl";
 
     // add PHP code in the cache file to store variables
     $output = "<?php\n";
     $output .= "\$GlobalSectionID=\"$GlobalSectionID\";\n";
-    $output .= "\$SiteTitleAppend=\"$SiteTitleAppend\";\n";
+
+    if ( $title_check_double && !$title_check_single )  
+    {
+        $output .= "\$SiteTitleAppend='". $SiteTitleAppend ."';" ."\n";
+    } elseif ( $title_check_single && !$title_check_double ) {
+        $output .= "\$SiteTitleAppend=\"". $SiteTitleAppend ."\";" ."\n";
+        // print ( '$SiteTitleAppend="1-'. $SiteTitleAppend .'";' ."\n" );
+    } else {
+        $output .= "\$SiteTitleAppend='". $SiteTitleAppend ."';" ."\n";
+        // print ( '$SiteTitleAppend="1-'. $SiteTitleAppend .'";' ."\n" );
+    }
+
     $output .= "\$SiteDescriptionOverride=\"$SiteDescriptionOverride\";\n";
     $output .= "\$SiteKeywordsOverride=\"$SiteKeywordsOverride\";\n";
     $output .= "?>\n";
 
 
-    $output .= $t->parse($target, $template_var );
+    $output .= $t->parse("output", $template_var );
     // print the output the first time while printing the cache file.
     print( $output );
     $CacheFile->store( $output );

@@ -158,7 +158,7 @@ class eZProductPriceRange
     /*!
       Fills in information to the object taken from the array.
     */
-    function fill( $productArray )
+    function fill( &$productArray )
     {
         $db =& eZDB::globalDatabase();
         $this->ID = $productArray[$db->fieldName( "ID" )];

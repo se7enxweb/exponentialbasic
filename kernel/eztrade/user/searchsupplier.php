@@ -24,7 +24,7 @@
 //
 
 
-$ModuleName = "eZ trade";
+$ModuleName = "Products";
 $SearchResult[0]["DetailedSearchPath"] = "/trade/search/";
 $SearchResult[0]["DetailedSearchVariable"] = "Query";
 $SearchResult[0]["DetailViewPath"] = "/trade/productview/";

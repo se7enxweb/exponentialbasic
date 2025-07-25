@@ -1,0 +1,250 @@
+<?php
+$GlobalSectionID="3";
+$SiteTitleAppend="MRA Double-Bubble RacingScreen Windshield for Yamaha YZF R6, \&#039;03-";
+$SiteDescriptionOverride="The original \double-bubble\ racingscreen!  Available in 10 colors, including a new carbon-look finish.";
+$SiteKeywordsOverride="mra varioscreen maxi variotouringscreen windshield motorcycle touringscreen racingscreen spoilerscre";
+?>
+<!-- start #breadcrumbs -->
+<div id="breadcrumbs">
+&nbsp; <a href="/trade/productlist/0/">Top level</a>
+
+ &raquo; <a href="/trade/productlist/511/">Hot Deals!</a>
+</div>
+<!-- end #breadcrumbs -->
+<!-- start #contentWrap -->
+<div id="contentWrap">
+   <h1 class="mainHeading">MRA Double-Bubble RacingScreen Windshield for Yamaha YZF R6, \&#039;03-</h1>
+
+
+
+
+<!-- BEGIN user_login_tpl -->
+<p class="byline"> As the admin, you may <a class="byline" href="{admin_site}/trade/productedit/edit/1654/" target="_blank">edit</a> this product.</p>
+<!-- END user_login_tpl -->
+
+         <!-- start #productWrap -->
+          <div id="productWrap">
+            <div id="productFloat">
+	      
+              <strong>Order No.:</strong> MRA.06.015.R<br />
+              <!-- start #orderBox -->
+
+              <div id="orderBox">
+                <h3>{intl-orderbox_head}</h3>
+
+                <div class="orderBoxWrap">
+                  <!-- BEGIN list_price_tpl -->
+			<span id="lPrice">{intl-list_price}: <strike>{product_list_price}</strike></span><br />
+			<!-- END list_price_tpl -->
+                  <span id="oPrice">
+					
+					Price: $&nbsp;109.99<br />
+						
+					
+		  		  </span><br />
+
+		<form action="/trade/cart/add/1654/">
+			
+                  	<small>Color: choose a color</small><br />
+			
+			<input type="hidden" name="OptionIDArray[]" value="449" />
+			
+			
+			
+			
+
+                    <select name="OptionValueArray[]">
+			
+			
+			<option value="2814">0-clear
+			
+			
+			
+			</option>
+			
+			
+			<option value="2815">1-smoke gray
+			
+			
+			
+			</option>
+			
+			
+			<option value="2816">1c-carbon look
+			
+			$&nbsp;9.99
+			
+			</option>
+			
+			
+			<option value="2817">3-blue
+			
+			$&nbsp;9.99
+			
+			</option>
+			
+			
+			<option value="2818">4-red
+			
+			$&nbsp;9.99
+			
+			</option>
+			
+			
+			<option value="2819">8-shadow line black
+			
+			$&nbsp;9.99
+			
+			</option>
+			
+			
+			<option value="2820">8s-black satin
+			
+			-&nbsp;$&nbsp;-31.99
+			
+			</option>
+			
+			
+			<option value="2821">9-yellow
+			
+			$&nbsp;9.99
+			
+			</option>
+			
+			
+			<option value="2822">10-violet
+			
+			$&nbsp;9.99
+			
+			</option>
+			
+			
+			<option value="2823">12-Kawasaki green
+			
+			$&nbsp;9.99
+			
+			</option>
+			
+                    </select><br />
+			
+			<input type="submit" name="Cart" id="addCart" value="Add to cart" /><br />
+			<input type="submit" name="WishList" id="addWish" value="Wish list" />
+			
+                  </form>
+			
+			<!-- BEGIN date_available_tpl -->
+			<p>{intl-date_available}: {date_available}</p>
+			<!-- END date_available_tpl -->
+			<!-- BEGIN shipping_message_tpl -->
+			<table width="100%" cellpadding="2" cellspacing="2" align="center"><tr><td align="center">
+			<strong>Important Shipping Info</strong></td></tr>
+			<!-- BEGIN free_ups_tpl -->
+			<tr><td align="center">
+			<img src="/images/free-shipping-upsground.jpg" />
+			</td></tr>
+			<!-- END free_ups_tpl -->
+			<!-- BEGIN free_usps_tpl -->
+			<tr><td align="center">
+			Free Shipping via...<br />
+			<img src="/images/free-shipping-usps.jpg" />
+			</td ></tr>
+			<!-- END free_usps_tpl -->
+			<!-- BEGIN flat_usps_tpl -->
+			<tr><td align="center">
+			This product ships for a flat rate of {flat_usps_price} when shipped via USPS Parcel.
+			</td></tr>
+			<!-- END flat_usps_tpl -->
+			<!-- BEGIN flat_usps_combine_tpl -->
+			<tr><td align="center">
+			This product ships for a flat rate of {flat_usps_price} when ordered by itself and shipped via USPS Parcel.
+			</td></tr>
+			<!-- END flat_usps_combine_tpl -->
+			<!-- BEGIN flat_ups_tpl -->
+			<tr><td align="center">
+			This product ships for a flat rate of {flat_ups_price} when shipped via UPS Ground.
+			</td></tr>
+			<!-- END flat_ups_tpl -->
+			<!-- BEGIN flat_ups_combine_tpl -->
+			<tr><td align="center">
+			This product ships for a flat rate of {flat_ups_price} when ordered by itself and shipped via UPS Ground.
+			</td></tr>
+			<!-- END flat_ups_combine_tpl -->
+			</table>
+			<!-- END shipping_message_tpl -->
+                </div>
+              </div>
+              <!-- end #orderBox -->
+              <!-- start #related -->
+	      <div id="related">
+	
+	      </div>
+              <!-- end #related -->
+		<!-- BEGIN print_page_link_tpl -->
+		<div align="center">
+		<a class="path" href="/trade/productprint/1654/511/">Printer-friendly page</a><br></div>
+		<!-- END print_page_link_tpl 
+		<a class="path" href="/trade/mailtofriend/1654/1/511/">{intl-send_mailtofriend}</a></div> -->
+            </div>
+            <!-- start #itemBox -->
+
+            <div id="itemBox">
+	      <!-- BEGIN external_link_tpl -->
+              <strong>Manufacturer's Link:</strong> <a href="http://www.mra.de" target="_blank">http://www.mra.de</a><br />
+	      <!-- END external_link_tpl -->
+		
+		<table cellpadding="0" cellspacing="0" border="0"><tr><td>
+		<a href="/imagecatalogue/imageview/4988/?RefererURL=/trade/productview/1654/511/"><img src="/kernel/ezimagecatalogue/admin/images/failedimage.gif" alt="MRA Double-Bubble RacingScreen Windshield for Yamaha YZF R6, \&#039;03-" width="120" height="40" /></a></td>
+		</tr>
+		<tr><td>
+              <div class="row prodRow">
+	     <a href="/imagecatalogue/imageview/4988/?RefererURL=/trade/productview/1654/511/"> MRA Double-Bubble RacingScreen Windshield for Yamaha YZF R6, \&#039;03-</a>
+              </div></td></tr></table>
+            </div>
+            <!-- end #itemBox -->
+	      
+          </div>
+          <!-- end #productWrap -->
+
+          <div class="clearRight">
+            &nbsp;
+          </div><table cellpadding="0" cellspacing="0" border="0"><tr><td>
+          <!-- start #featuresWrap -->
+          <div id="featuresWrap">
+	    
+	
+    <div id="featuresLeft">
+			<p>The original \"double-bubble\" racingscreen!  Available in 10 colors, including a new carbon-look finish.</p>
+			<p>In 1994, MRA introduced the first “double bubble” racing screen at the IMFA international motorcycle trade fair in Cologne, Germany. The latest generation of MRA RacingScreens includes a revolutionary dome design that is flattened at the top. Instead of creating lift, this new design pushes the front of the bike down onto the road – a more desirable effect when racing!  Bottom of screen is printed with a black raster conforming to the shape of the underlying fairing.  Available in standard width or the narrower \"Superbike\" width, which accomodates widened or raised replacement handlebars.  Overall length: 13.8 inches (350 mm).<br />
+<br />
+<b> Clearance Price on the Black Satin RacingScreen: $72.00 </b></p>
+			
+    </div>
+    <!-- end #featuresLeft -->
+
+          </div>
+          <!-- end #featuresWrap -->
+        </div></td></tr></table>
+        <!-- end #contentWrap -->
+        
+        
+<!-- BEGIN attached_file_list_tpl -->
+<table class="list" cellspacing="0" cellpadding="4" border="0" width="77%%">
+<tr><th><font size="2">{intl-attached_files}:</font></th></tr>
+
+<!-- BEGIN attached_file_tpl -->
+<tr>
+     <td width="50%" class="{td_class}">
+     <font size="2"><a href="/filemanager/download/{file_id}/">{file_name}</a></font>
+     </td>
+     <td width="50%" class="{td_class}" align="right">
+     <div class="p"><font size="2"><a href="/filemanager/download/{file_id}/">( {file_size}�{file_unit} )</a></font></div>
+     </td>
+</tr>
+<tr>
+     <td colspan="2" valign="top" class="{td_class}"> 
+	<font size="2">{file_description}</font>
+     </td>
+</tr>
+<!-- END attached_file_tpl -->
+</table>
+<!-- END attached_file_list_tpl -->

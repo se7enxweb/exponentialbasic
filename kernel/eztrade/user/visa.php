@@ -34,11 +34,18 @@ $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZTradeMain", "Language" );
 
-if ( $Action == "Verify" )
+if ( !isset( $PaymentType ) )
+    $PaymentType = false;
+
+if ( isset( $Action ) && $Action == "Verify" )
 {
     // add clearing code here
     if ( eZCCTool::checkCC( $CCNumber, $ExpierMonth, $ExpierYear ) )
         $PaymentSuccess = true;
+}
+else
+{
+    $PaymentSuccess = false;
 }
 
 $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
@@ -54,4 +61,5 @@ $t->set_var( "order_id", $PreOrderID );
 $t->set_var( "payment_type", $PaymentType );
 
 $t->pparse( "output", "visa_tpl" );
+
 ?>

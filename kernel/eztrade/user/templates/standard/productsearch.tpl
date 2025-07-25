@@ -39,6 +39,7 @@
 	<!-- BEGIN product_tpl -->
 		<tr>
 			<td width="90">
+			<div class="listproducts"><a class="listproducts" href="{www_dir}{index}/{module}/{module_view}/{product_id}/{category_id}/">{product_name}</a></div>
 			<a href="{www_dir}{index}/{module}/{module_view}/{product_id}/{category_id}/">{product_number}</a>
 			</td>
                         <td width="80">
@@ -57,7 +58,7 @@
                         &nbsp;
                         </td>
 			<td>
-			<img src="/sitedesign/aih_standard/images/dot.gif" width="10" height="12" border="0" alt="" /> {description_text}
+			<img src="{www_dir}/design/admin/images/dot.gif" width="10" height="12" border="0" alt="" /> {description_text}
 			</td>
 		</tr>
 		<!-- END product_tpl -->		
@@ -66,25 +67,24 @@
 </tr>
 </table>
     <!-- BEGIN image_tpl -->
-    <table align="right">
+    <table width="1%" align="right">
     <tr>
         <td>
-        <img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" />
+        <a href="{www_dir}{index}/{module}/{module_view}/{product_id}/{category_id}/"><img src="{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
         </td>
     </tr>
     <tr>
-        <td>
+        <td class="pictext">
         {thumbnail_image_caption}
         </td>
     </tr>
     </table>
     <!-- END image_tpl -->
 
-    {product_intro_text}
+<div class="p">{product_intro_text}</div>
 
-<br>
 	<!-- BEGIN price_tpl -->
-	{product_price}<br>
+	<div class="spacer"><div class="pris">{product_price}</div></div>
 	<!-- END price_tpl -->
 
 	</td>

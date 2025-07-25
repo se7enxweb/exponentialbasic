@@ -33,6 +33,7 @@ unset( $PaymentSuccess );
 // include_once( "eztrade/classes/ezcheckout.php" );
 
 $ini =& INIFile::globalINI();
+$wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
 $session =& eZSession::globalSession();
@@ -156,6 +157,11 @@ else
 if ( $PaymentSuccess == true )
 {
     $orderID = $session->variable( "OrderID" );
+
+//	if ( $IOC_authorization_code )
+//    	$session->setVariable( "AuthCode", $IOC_authorization_code );
+//	else
+//   	$session->setVariable( "AuthCode", "" );	
 
     // create a new order
     $order = new eZOrder();
@@ -1079,9 +1085,9 @@ if ( $PaymentSuccess == true )
 
     $session->setVariable( "SSLMode", "disabled" ); 
 
-    eZHTTPTool::header( "Location: http://$HTTP_HOST/trade/ordersendt/$OrderID/" );
     // set the confirmation 
-    // eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $indexFile . "/trade/confirmation/" );
+    // eZHTTPTool::header( "Location: http://$HTTP_HOST/trade/ordersendt/$OrderID/" );
+    eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $wwwDir . $indexFile . "/trade/confirmation/" );
     exit();
 }
 ?>

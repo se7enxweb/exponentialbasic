@@ -57,7 +57,7 @@ $t->setAllStrings();
 $t->set_file(  "product_search_tpl", "productsearch.tpl" );
 
 $t->set_block( "product_search_tpl", "product_tpl", "product" );
-$t->set_block( "product_search_tpl", "error_max_search_for_products_tpl", "error_max_search_for_products" );
+//$t->set_block( "product_search_tpl", "error_max_search_for_products_tpl", "error_max_search_for_products" );
 
 if ( !isset( $ModuleName ) )
     $ModuleName = "trade";
@@ -75,6 +75,8 @@ $t->set_var( "module_print", $ModulePrint );
 
 $t->set_block( "product_tpl", "image_tpl", "image" );
 $t->set_block( "product_tpl", "price_tpl", "price" );
+$t->set_var( "image", "" ); 
+$t->set_var( "price", "" ); 
 
 $t->set_var( "next", "" );
 $t->set_var( "previous", "" );
@@ -121,6 +123,11 @@ if ( isset( $productList ) && isset( $Query ) && ( count ( $productList ) > 0 ) 
 {
     foreach ( $productList as $product )
     {
+        $t->set_var( "product_id", $product->id() );
+
+        $defCat = $product->categoryDefinition();
+        $t->set_var( "category_id", $defCat->id() );
+		
         // preview image
         $thumbnailImage = $product->thumbnailImage();
         if ( $thumbnailImage )

@@ -2,7 +2,7 @@
 //
 // $Id: confirmation.php 9407 2002-04-10 11:49:02Z br $
 //
-// <Bjørn Reiten> <br@ez.no>
+// <Bjï¿½rn Reiten> <br@ez.no>
 // Created on: <20-Mar-2002 14:11:34 br>
 //
 // This source file is part of eZ publish, publishing software.
@@ -33,6 +33,7 @@ $session =& eZSession::globalSession();
 $orderID = $session->variable( "OrderID" );
 
 $ini =& INIFile::globalINI();
+$wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
 $orderConfirmation = $session->variable( "OrderConfirmation" ); 
@@ -51,29 +52,29 @@ if ( is_Numeric( $orderID ) && $orderConfirmation == $orderID )
         if ( $result == true )
         {
             $session->setVariable( "OrderConfirmation", "" );
-            eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $indexFile . "/trade/ordersendt/$orderID/" );
+            eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $wwwDir . $indexFile . "/trade/ordersendt/$orderID/" ); 
             exit();
         }
         else
         {
-            eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $indexFile . "/trade/checkout/" );
+            eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $wwwDir . $indexFile . "/trade/checkout/" );
             exit();
         }
     }
     else
-    {
-        eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $indexFile . "/trade/checkout/" );
+    {	//ends up here!
+        eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $wwwDir . $indexFile . "/trade/checkout/" );
         exit();
     }
 }
 else if ( is_Numeric( $orderID ) )
 {
-    eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $indexFile . "/trade/ordersendt/$orderID/" );
+    eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $wwwDir . $indexFile . "/trade/ordersendt/$orderID/" );
     exit();
 }
 else
 {
-    eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $indexFile . "/trade/checkout/" );
+    eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $wwwDir . $indexFile . "/trade/checkout/" );
     exit();
 }
 

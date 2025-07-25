@@ -1,0 +1,14 @@
+<input type="hidden" name="MessageID"           value="{message_id}"        />
+<input type="hidden" name="OriginalID"          value="{original_id}"       />
+<input type="hidden" name="ForumID"             value="{forum_id}"          />
+<input type="hidden" name="PreviewID"           value="{preview_id}"        />
+<input type="hidden" name="ReplyToID"           value="{reply_to_id}"       />
+<input type="hidden" name="ActionValue"         value="{action_value}"      />
+<input type="hidden" name="EndAction"           value="{end_action}"        />
+<input type="hidden" name="MessageNotice"       value="{message_notice}"    />
+<input type="hidden" name="StartAction"         value="{start_action}"      />
+<input type="hidden" name="MessageBody"         value="{message_body}"      />
+<input type="hidden" name="MessageTopic"        value="{message_topic}"     />
+<input type="hidden" name="RedirectURL"         value="{redirect_url}"      />
+<input type="hidden" name="NewMessagePostedAt"  value="{message_posted_at}" />
+<input type="hidden" name="NewMessageAuthor"    value="{message_author}"    />

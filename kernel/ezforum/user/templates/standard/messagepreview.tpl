@@ -13,6 +13,17 @@
 </tr>
 </table>
 
+<!-- BEGIN moderated_tpl -->
+
+<br />
+<b>{intl-moderated_info_1}:</b>&nbsp
+{intl-moderated_info_2}.&nbsp
+{intl-moderated_info_3}.&nbsp
+{intl-moderated_info_4}.&nbsp
+<br />
+<br />
+<!-- END moderated_tpl -->
+
 {message_path_file}
 
 <br />

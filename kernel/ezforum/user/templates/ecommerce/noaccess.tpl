@@ -1,0 +1,1 @@
+<p class="error">{intl-no_access}</a>

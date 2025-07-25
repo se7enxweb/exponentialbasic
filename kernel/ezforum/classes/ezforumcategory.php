@@ -176,13 +176,17 @@ class eZForumCategory
     /*!
       Returns every forum under the current category.
     */
-    function forums()
+    function forums( $offset = 0, $limit = -1 )
     {
        $db =& eZDB::globalDatabase();
-
-       $db->array_query( $forum_array, "SELECT ForumID FROM
-                                                       eZForum_ForumCategoryLink
-                                                       WHERE CategoryID='$this->ID'" );
+       $forum_array = array();
+       
+       if ( $this->ID == 1 || $this->ID == 3 ) {
+	         $forumQuery = "SELECT ForumID FROM eZForum_ForumCategoryLink WHERE CategoryID='$this->ID'";
+       } else {
+	         $forumQuery = "SELECT * FROM ( SELECT eZForum_ForumCategoryLink.ForumID as ForumID, eZForum_ForumCategoryLink.CategoryID FROM eZForum_ForumCategoryLink, eZForum_Forum, eZForum_Message WHERE eZForum_ForumCategoryLink.CategoryID='$this->ID' AND eZForum_Forum.ID = eZForum_ForumCategoryLink.ForumID AND eZForum_Message.ForumID = eZForum_Forum.ID GROUP BY eZForum_ForumCategoryLink.ForumID ) as tmpForumTable ORDER BY ForumID asc";
+       }
+       $db->array_query( $forum_array, $forumQuery, array( "Limit" => $limit, "Offset" => $offset ) );
 
        $ret = array();
 
@@ -192,6 +196,25 @@ class eZForumCategory
        }
 
        return $ret;
+    }
+	
+	    /*!
+      Counts forum under the current category.
+    */
+    function forumCount( )
+    {
+      $db =& eZDB::globalDatabase();
+
+      if ( $this->ID == 1 && $this->ID == 3 ) {
+          $forumQuery = "SELECT ForumID FROM eZForum_ForumCategoryLink WHERE CategoryID='$this->ID'";
+      } else {
+          $forumQuery = "SELECT * FROM ( SELECT eZForum_ForumCategoryLink.ForumID as ForumID, eZForum_ForumCategoryLink.CategoryID FROM eZForum_ForumCategoryLink, eZForum_Forum, eZForum_Message WHERE eZForum_ForumCategoryLink.CategoryID='$this->ID' AND eZForum_Forum.ID = eZForum_ForumCategoryLink.ForumID AND eZForum_Message.ForumID = eZForum_Forum.ID GROUP BY eZForum_ForumCategoryLink.ForumID ) as tmpForumTable ORDER BY ForumID asc";
+       }
+
+      $db->array_query( $forum_array, "$forumQuery" );
+
+      $ret = count($forum_array);
+      return $ret;
     }
 
     /*!
@@ -232,9 +255,19 @@ class eZForumCategory
     function getAllCategories()
     {
         $db =& eZDB::globalDatabase();
+        $ini = INIFile::globalINI();
+        $ExcludeFeatureForums = $ini->read_var( "eZForumMain", "ExcludeFeatureForums" );
+        // $ExcludeFeatureForums = $ini->read_var( "eZForumMain", "ExcludeFeatureForums" ); 
+        // consider : (Array of IDS to loop over to exclude instead of static code
 
-        $db->array_query( $category_array, "SELECT ID FROM eZForum_Category" );
+        if ( $ExcludeFeatureForums == "enabled" ) { 
+          // $exclude = "WHERE ID != 1000 AND ID != 6 AND ID !=5;";
+          $exclude = "WHERE ID != 1000 AND ID != 6";
+        } else {
+          $exclude = ""; 
+        }
 
+        $db->array_query( $category_array, "SELECT ID FROM eZForum_Category $exclude" );
         $ret = array();
         foreach ( $category_array as $category )
         {
@@ -297,7 +330,8 @@ class eZForumCategory
     */
     function name()
     {
-        return htmlspecialchars( $this->Name );
+        $this->Name = htmlspecialchars($this->Name);
+		    return stripslashes ( $this->Name );
     }
 
     /*!
@@ -323,4 +357,5 @@ class eZForumCategory
     var $SectionID;
 
 }
+
 ?>

@@ -37,7 +37,7 @@ require( "kernel/ezuser/admin/admincheck.php" );
 $cat = new eZForumCategory();
 
 $t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
-"kernel/ezforum//admin/" . "/intl", $Language, "categorylist.php" );
+"kernel/ezforum/admin/" . "/intl", $Language, "categorylist.php" );
 $t->setAllStrings();
 
 $t->set_file( "category_page", "categorylist.tpl" );

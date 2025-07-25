@@ -93,7 +93,14 @@
 	</table>
     </td>
     <td class="{td_class}">
-        <span class="small">{user}</span>
+        <span class="small">{author}
+
+	<!-- BEGIN private_message_tpl -->    
+	&nbsp;[<a href="{www_dir}{index}/message/edit/?Subject={intl-re}{PM_topic}&Receiver={username}" 
+	title="{intl-send-msg}&nbsp;{author}" class="small">{intl-PM}</a>]
+	<!-- END private_message_tpl -->
+
+	</span>
     </td>
     <td class="{td_class}" align="right">
         <span class="small">{postingtime}</span>

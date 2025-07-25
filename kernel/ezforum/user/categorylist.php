@@ -72,4 +72,5 @@ else
 } 
 
 $t->pparse( "output", "categorylist" );
+
 ?>

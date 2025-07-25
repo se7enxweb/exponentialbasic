@@ -26,6 +26,11 @@
 // include_once( "ezmail/classes/ezmail.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
+$ini =& INIFile::globalINI();
+$wwwDir = $ini->WWWDir;
+$index = $ini->Index;
+$Language = $ini->read_var( "eZForumMain", "Language" );
+
 if ( $StartAction == "reply" )
 {
     if ( !is_object( $msg ) )
@@ -92,14 +97,14 @@ if ( $StartAction == "reply" )
                 }
                 else
                 {
-                    $mailTemplate->set_var( "link_1", "http://" . $headersInfo["Host"] . "/forum/message/" . $msg->id() );
+                    $mailTemplate->set_var( "link_1", "https://" . $headersInfo["Host"] . $wwwDir. $index. "/forum/message/" . $msg->id() );
                     $mailTemplate->parse( "link", "link_tpl" );
                 }
                 $mailTemplate->set_var( "topic", $msg->topic() );
                 $mailTemplate->set_var( "body", $msg->body() );
                 $mailTemplate->set_var( "forum_name", $forum->name() );
-                $mailTemplate->set_var( "forum_link", "http://"  . $headersInfo["Host"] . "/forum/messagelist/" . $forum->id() );
-                $mailTemplate->set_var( "link_2", "http://admin." . $headersInfo["Host"] . "/forum/messageedit/edit/" . $msg->id() );
+                $mailTemplate->set_var( "forum_link", "https://"  . $headersInfo["Host"] . $wwwDir . $index. "/forum/messagelist/" . $forum->id() );
+                $mailTemplate->set_var( "link_2", "https://admin." . $headersInfo["Host"] . $wwwDir . $index. "/forum/messageedit/edit/" . $msg->id() );
                 $mailTemplate->set_var( "intl-info_message_1", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_1" ) );
                 $mailTemplate->set_var( "intl-info_message_2", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_2" ) );
                 $mailTemplate->set_var( "intl-info_message_3", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_3" ) );
@@ -155,9 +160,9 @@ if ( $StartAction == "reply" )
                     $mailTemplate->set_var( "topic", $msg->topic() );
                     $mailTemplate->set_var( "body", $msg->body() );
                     $mailTemplate->set_var( "forum_name", $forum->name() );
-                    $mailTemplate->set_var( "forum_link", "http://" . $headersInfo["Host"] . "/forum/message/" . $message->id() );
-                    $mailTemplate->set_var( "link_1", "http://" . $headersInfo["Host"] . "/forum/message/" . $msg->id() );
-                    $mailTemplate->set_var( "link_2", "http://" . $headersInfo["Host"] . "/forum/message/" . $msg->id() );
+                $mailTemplate->set_var( "forum_link", "http://" . $headersInfo["Host"] . $wwwDir. $index. "/forum/message/" . $message->id() );
+                $mailTemplate->set_var( "link_1", "http://" . $headersInfo["Host"] . $wwwDir. $index. "/forum/message/" . $msg->id() );
+                $mailTemplate->set_var( "link_2", "http://" . $headersInfo["Host"] . $wwwDir. $index. "/forum/message/" . $msg->id() );
                     $mailTemplate->parse( "link", "link_tpl" );
 
                     $bodyText = $mailTemplate->parse( "dummy", "mailreply" );
@@ -269,6 +274,5 @@ if ( $StartAction == "moderatorapprove" )
         }
     }
 }
-
 
 ?>

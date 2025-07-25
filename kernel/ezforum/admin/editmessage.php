@@ -70,9 +70,9 @@ else
 }
 
 $t->set_var( "link1-url", "admin/category.php" );
-$t->set_var( "link1-caption", "Gå til topp" );
+$t->set_var( "link1-caption", "Gï¿½ til topp" );
 $t->set_var( "link2-url", "search.php" );
-$t->set_var( "link2-caption", "Søk" );
+$t->set_var( "link2-caption", "Sï¿½k" );
 
 $t->set_var( "back-url", "admin/message.php" );
 $t->parse( "navigation-bar-bottom", "navigation-bottom", true );

@@ -43,8 +43,9 @@ if ( isset( $ShowMessage ) && $ShowMessage )
     if( !isset( $MessageTopic ) )
     $MessageTopic = $msg->topic();
 
-    if( !isset( $MessageBody ) )
-    $MessageBody = $msg->body();
+
+    $MessageBody = eZTextTool::nl2br( $msg->body() );
+    $MessageBody = stripslashes($MessageBody);
     
     $author = new eZUser( $msg->userID() );
     $MessageNotice = $msg->emailNotice();

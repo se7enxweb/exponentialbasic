@@ -125,4 +125,5 @@ $t->set_var( "forum_end", min( $Offset + $Limit, $total_count ) );
 $t->set_var( "forum_total", $total_count );
 
 $t->pparse("output","search_tpl");
+
 ?>

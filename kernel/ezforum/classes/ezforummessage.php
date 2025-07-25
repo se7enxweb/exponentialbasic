@@ -567,10 +567,12 @@ class eZForumMessage
     {
        if ( !is_null( $this->Topic ) && $htmlchars == true )
        {
+            $this->Topic = stripslashes($this->Topic);
             return htmlspecialchars( $this->Topic );
        }
        else
        {
+	   		    $this->Topic = stripslashes($this->Topic);
             return $this->Topic;
        }
     }
@@ -580,6 +582,7 @@ class eZForumMessage
     */
     function name()
     {
+		    $this->topic = stripslashes($this->topic);
         return $this->topic();
     }
 
@@ -597,7 +600,7 @@ class eZForumMessage
     */
     function &body()
     {
-        return $this->Body;
+        return stripslashes($this->Body);
     }
 
     /*!
@@ -867,7 +870,7 @@ class eZForumMessage
       The returned array has the following values
       array( "ID" => $id, "Topic" => $topic );
     */
-    static public function &lastMessages( $limit, $user = false )
+    public static function &lastMessages( $limit, $user = false, $userid = false )
     {
         $db =& eZDB::globalDatabase();
 
@@ -884,10 +887,18 @@ class eZForumMessage
             }
         }
         $query_string .= ")";
+		
+        if ( $userid )
+        {
+            $query_string .= " AND ( m.UserID='$userid' )";
+        }
 
         $ret = array();
+        $message_array = array();
+
 
         $db->array_query( $message_array, "SELECT m.ID as ID, m.UserID, m.ForumID, m.Topic, m.PostingTime, m.IsApproved,
+										   m.Body,
                                            l.ForumID,
                                            f.ID as FID, f.GroupID
                                            FROM eZForum_Message as m, eZForum_ForumCategoryLink as l,
@@ -927,4 +938,5 @@ class eZForumMessage
     var $Keywords;
 
 }
+
 ?>

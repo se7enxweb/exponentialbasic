@@ -42,7 +42,11 @@
    	<td valign="top">
 	<p class="boxtext">{intl-author}:</p>
     {main-user}
+<!-- BEGIN private_message_tpl -->    
+	&nbsp;[<a href="{www_dir}{index}/message/edit/?Subject={intl-re}{PM_topic}&Receiver={username}" 
+	title="{intl-send-msg}&nbsp;{main-user}" class="small">{intl-PM}</a>]
 	</td>
+<!-- END private_message_tpl -->
 	<td align="right" valign="top">
 	<p class="boxtext">{intl-time}:</p>
 	<span class="small">{main-postingtime}</span>
@@ -125,7 +129,14 @@
 	</table>
 	</td>
     	<td class="{td_class}">
-	<span class="small">{user}</span>
+	<span class="small">{user}
+	
+	<!-- BEGIN item_private_message_tpl -->    
+	&nbsp;[<a href="{www_dir}{index}/message/edit/?Subject={intl-re}{PM_topic}&Receiver={username}" 
+	title="{intl-send-msg}&nbsp;{user}" class="small">{intl-PM}</a>]
+	<!-- END item_private_message_tpl -->
+	
+	</span>
 	</td>
     	<td class="{td_class}" align="right">
 	<span class="small">{postingtime}</span>

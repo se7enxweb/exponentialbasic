@@ -47,9 +47,23 @@ $t->set_file( "forumlist", "forumlist.tpl" );
 
 $t->set_block( "forumlist", "view_forums_tpl", "view_forums" );
 $t->set_block( "view_forums_tpl", "forum_item_tpl", "forum_item" );
+// prev/next
+$t->set_block( "forumlist", "previous_tpl", "previous" );
+$t->set_block( "forumlist", "next_tpl", "next" );
 
 $category = new eZForumCategory( $CategoryID );
 
+if ( !isset( $Offset ) )
+{
+    $Offset = 0;
+}
+
+if ( !isset( $UserListLimit ) )
+{
+    $UserListLimit = 15;
+}
+
+//
 // sections
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
@@ -64,7 +78,10 @@ $t->set_var( "category_id", $category->id( ) );
 $t->set_var( "category_name", $category->name( ) );
 $t->set_var( "category_description", $category->name( ) );
 
-$forumList =& $category->forums( );
+$forumList =& $category->forums( $Offset,$UserListLimit );
+
+$forumCount = $category->forumCount();
+$t->set_var( "forum_item", "" );
 
 if ( !$forumList )
 {
@@ -73,6 +90,17 @@ if ( !$forumList )
 
     $t->set_var( "forum_item", $noitem );
 }
+
+    // $linkModules = $ini->read_var( "eZForumMain", "LinkModules" );
+    $module_array = explode(',', $ini->read_var( "eZForumMain", "LinkModules") );
+    
+    $showForum = true;
+    foreach ($module_array as $module)
+    {
+        $moduleBits = explode(':', $module);
+        if ($moduleBits[1]=$category->id() )
+            $showForum=false;
+    }
 
 $i=0;
 $j=0; // The number of viewable forums for this session.
@@ -135,6 +163,8 @@ else
 }
 
 $t->set_var( "category_id", $CategoryID );
+
+eZList::drawNavigator( $t, $forumCount, $UserListLimit, $Offset, "forumlist" );
 
 $t->pparse( "output", "forumlist" );
 

@@ -40,10 +40,11 @@ $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 $NewMessageLimit = $ini->read_var( "eZForumMain", "NewMessageLimit" );
-
+// include_once( "ezsection/classes/ezsection.php" );
 $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "messagelist.php" );
 
+    $languageIni = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/messagelist.php.ini", false );
 $t->set_file( "messagelist", "messagelist.tpl" );
 
 $t->set_block( "messagelist", "header_list_tpl", "header_list" );
@@ -56,12 +57,14 @@ $t->set_block( "read_access_tpl", "previous_tpl", "previous" );
 
 $t->set_block( "message_item_tpl", "new_icon_tpl", "new_icon" );
 $t->set_block( "message_item_tpl", "old_icon_tpl", "old_icon" );
+$t->set_block( "message_item_tpl", "private_message_tpl", "private_message" );
+
 
 $t->set_block( "read_access_tpl", "messages_element_tpl", "messages_element" );
 $t->set_block( "read_access_tpl", "show_threads_tpl", "show_threads" );
 $t->set_block( "read_access_tpl", "hide_threads_tpl", "hide_threads" );
 
-$t->set_var( "header_list", "" );
+//$t->set_var( "header_list", "" );
 $t->setAllStrings();
 
 $session =& eZSession::globalSession();
@@ -100,6 +103,7 @@ else
 $forum = new eZForum( $ForumID );
 
 $categories =& $forum->categories();
+
 
 if ( $user )
 {
@@ -232,7 +236,8 @@ else
         else
             $t->set_var( "td_class", "bgdark" );
 
-        $t->set_var( "topic", htmlspecialchars( $message[$db->fieldName( "Topic" )] ) );
+		$topic = htmlspecialchars( $message[$db->fieldName( "Topic" )]);
+        $t->set_var( "topic", stripslashes($topic) );
 
         $time->setTimeStamp( $message[$db->fieldName( "PostingTime" )] );
         $t->set_var( "postingtime", $locale->format( $time  ) );
@@ -272,16 +277,39 @@ else
             $t->set_var( "count_replies", $count );
         }
 
+        $anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+
         if ( $author->id() == 0 )
         {
-            if ( empty( $message[$db->fieldName( "UserName" )] ) )
-                 $t->set_var( "user", $ini->read_var( "eZForumMain", "AnonymousPoster" ) );
-            else
+            if ( empty( $message[$db->fieldName( "UserName" )] ) ) {
+                $t->set_var( "user", $anonymous );
+                $messageAuthor = $anonymous;    
+            }
+            else {
                 $t->set_var( "user", $message[$db->fieldName( "UserName" )] );
+                $messageAuthor = $message[$db->fieldName( "UserName" )];
+            }
         }
         else
         {
+            $messageAuthor = $author->firstName() . " " . $author->lastName();
             $t->set_var( "user", $author->firstName() . " " . $author->lastName() );
+            if ( $author->firstName()== "" && $author->lastName()=="" )
+                $messageAuthor = $anonymous;
+                
+                $t->set_var( "author", $messageAuthor );
+                
+                $currentUser =& eZUser::currentUser();
+                $t->set_var( "private_message", "" );
+                if ( ( $messageAuthor != $anonymous) && ($currentUser) )
+                { 
+            //		$user = new eZUser();
+            //		$user->get( $author->id() );
+                    $t->set_var( "username", $author->login() );
+                    $t->set_var( "PM_topic", urlencode(": ".$message[$db->fieldName( "Topic" )] ) );
+            //		$t->set_var( "topic", $message->topic() );
+                    $t->parse( "private_message", "private_message_tpl" );
+                }
         }
 
         /*
@@ -297,6 +325,8 @@ else
         $i++;
     }
 }
+
+unset( $user );
 
 eZList::drawNavigator( $t, $messageCount, $UserLimit, $Offset, "read_access_tpl" );
 

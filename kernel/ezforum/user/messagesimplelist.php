@@ -40,6 +40,12 @@ $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 $SimpleUserList = $ini->read_var( "eZForumMain", "SimpleUserList" );
+$anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+
+if ( $ProductID )
+	{ $ListTemplate = "reviewsimplelist.php"; }
+else
+	{ $ListTemplate = "messagesimplelist.php"; }
 
 $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "messagesimplelist.php" );
@@ -48,6 +54,7 @@ $t->set_file( "messagelist", "messagesimplelist.tpl"  );
 
 $t->set_block( "messagelist", "message_list_tpl", "message_list" );
 $t->set_block( "message_list_tpl", "message_item_tpl", "message_item" );
+$t->set_block( "message_item_tpl", "private_message_tpl", "private_message" );
 
 $t->setAllStrings();
 
@@ -60,6 +67,7 @@ if ( !isset($Offset) )
 
 $messageList =& $forum->messageTree( $Offset, $SimpleUserList );
 $messageCount =& $forum->messageCount();
+$t->set_var( "total_posts", $messageCount );
 
 if ( !$messageList )
 {
@@ -93,11 +101,48 @@ else
         $t->set_var( "message_id", $message->id() );
         
         $muser =& $message->user();
+/*
+		echo "<pre>";
+		print_r ($muser);
+		echo "</pre>";
+*/		
         if ( $muser->id() == 0 )
             $t->set_var( "user", $message->userName() );
         else
             $t->set_var( "user", $muser->firstName() . " " . $muser->lastName() );
-        
+      
+		if ( $muser->id() == 0 )
+		{
+    		$MessageAuthor = $anonymous;
+		}
+		else
+		{
+    		$MessageAuthor = $muser->firstName() . " " . $muser->lastName();
+		}
+
+		if ( $muser->firstName()== "" && $muser->lastName()=="" )
+			$MessageAuthor = $anonymous;
+				
+        $t->set_var( "user", $MessageAuthor );
+		
+
+$user =& eZUser::currentUser();
+$t->set_var( "private_message", "" );
+
+
+if ( ( $MessageAuthor != $anonymous) and ($user) )
+{
+//	$user = new eZUser( $muser->id() );
+		
+//	$toUser = eZUser::getUser( $user );
+	$t->set_var( "username", $muser->login() );
+	$t->set_var( "PM_topic", urlencode (": ".$message->topic() ) );
+//	$t->set_var( "topic", $message->topic() );
+	$t->parse( "private_message", "private_message_tpl" );
+}
+ 
+//        $t->set_var( "username", $muser->id() );
+//		$t->set_var( "PM_topic", urlencode (": ".$message->topic() ) );  
         $t->parse( "message_item", "message_item_tpl", true );
         $i++;
     }
@@ -107,7 +152,7 @@ eZList::drawNavigator( $t, $messageCount, $SimpleUserList, $Offset, "messagelist
 
 $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
 
-#$t->set_var( "newmessage", $newmessage );
+$t->set_var( "newmessage", $newmessage );
 
 $url = explode( "parent", $_SERVER['REQUEST_URI'] );
 $t->set_var( "url", $url[0] );

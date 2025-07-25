@@ -36,7 +36,7 @@
 // include_once( "ezforum/classes/ezforum.php" );
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
-
+$Limit = $ini->read_var( "eZForumMain", "ShowMessageLimit" );
 $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "latestmessages.php" );
 
@@ -46,7 +46,7 @@ $t->setAllStrings();
 
 $user =& eZUser::currentUser();
 $db =& eZDB::globalDatabase();
-$messages = eZForumMessage::lastMessages( isset($Limit)?$Limit:10 );
+$messages =& eZForumMessage::lastMessages( $Limit );
 
 global $GlobalSiteDesign;
 

@@ -36,8 +36,8 @@ $t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "A
 "kernel/ezforum/admin/" . "/intl", $Language, "noright.php" );
 $t->setAllStrings();
 
-$t->set_file( array( "norights" => "norights.tpl"
-                     ) );
+$t->set_file( array( "norights" => "norights.tpl" ) );
 
 $t->pparse( "output", "norights" );
+
 ?>

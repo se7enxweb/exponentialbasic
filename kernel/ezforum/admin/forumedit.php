@@ -233,6 +233,7 @@ $t->set_var( "forum_name", "" );
 $t->set_var( "forum_description", "" );
 $action_value = "update";
 
+
 if ( $Action == "new" )
 {
 

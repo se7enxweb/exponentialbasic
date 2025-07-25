@@ -28,6 +28,7 @@
 
 $AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
 $language = $ini->read_var( "eZForumMain", "Language" );
+$AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
 $author = eZUser::currentUser();
 
 $locale = new eZLocale( $language );
@@ -47,7 +48,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
         $t->set_var( "message_body_info_item", "" );
         $t->set_var( "message_reply_info_item", "" );
         $t->set_var( "message_notice_checkbox", "" );
-
+	    $t->set_var( "allowed_tags", htmlspecialchars( $AllowedTags ) );  
         $t->set_var( "headline", $t->Ini->read_var( "strings", $Action . "_headline" ) );
     }
 
@@ -55,6 +56,9 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
     {
         $t->set_file( "hidden_form", "messagehiddenform.tpl" );
     }
+
+    if (( $ShowBodyInfo ) && ( $AllowHTML ))
+        $t->parse( "message_body_info", "message_body_info_tpl" );
 
     if (  isset( $BodyInfo ) && $BodyInfo )
     {

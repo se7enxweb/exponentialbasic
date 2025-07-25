@@ -26,16 +26,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
 $ini =& INIFile::globalINI();
-
 $Language = $ini->read_var( "eZForumMain", "Language" );
-
-// include_once( "classes/eztemplate.php" );
-// include_once( "classes/ezlocale.php" );
-
-// include_once( "ezforum/classes/ezforum.php" );
-// include_once( "ezforum/classes/ezforummessage.php" );
-// include_once( "ezmail/classes/ezmail.php" );
-
 $locale = new eZLocale( $Language );
 
 require( "kernel/ezuser/admin/admincheck.php" );
@@ -46,62 +37,60 @@ $message = new eZForumMessage();
 
 if( isset( $ActionValueArray ) )
 {
-    
-for ( $i = 0; $i < count( $ActionValueArray ); $i++ )
-{
-    $message = new eZForumMessage( $MessageID[$i] );
-
-    if ( $ActionValueArray[$i] == "Defer" )
+    for ( $i = 0; $i < count( $ActionValueArray ); $i++ )
     {
-    }
-    if ( $ActionValueArray[$i] == "Approve" )
-    {
-        $message->setIsApproved( 1 );
-        $message->store();
-        $msg = $message;
-        $StartAction = "moderatorapprove";
-        include( "kernel/ezforum/user/messagereply.php" );
-    }
-    if ( $ActionValueArray[$i] == "Discard" )
-    {
-        $message->delete();
-    }
-    if ( $ActionValueArray[$i] == "Reject" )
-    {
-        $mail = new eZMail();
-        $mailTemplate = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
-                                        "kernel/ezforum/admin/intl", $Language, "mailreject.php" );
+        $message = new eZForumMessage( $MessageID[$i] );
 
-        $languageIni = new INIFile( "kernel/ezforum/admin/intl/" . $Language . "/mailreject.php.ini", false );
-
-        $mailTemplate->set_file( "mail_reject_tpl", "mailreject.tpl" );
-        $mailTemplate->setAllStrings();
-
-        $mailTemplate->set_var( "reason_for_reject", $RejectReason[$i] );
-        $mailTemplate->set_var( "message_body", nl2br( $message->body() ) );
-        $mailTemplate->set_var( "message_topic", $message->topic() );
-        $mailTemplate->set_var( "message_postingtime", $locale->format( $message->postingTime() ) );
-
-        $body =& $mailTemplate->parse( "dummy", "mail_reject_tpl" );
-
-        $mail->setSubject( $languageIni->read_var( "strings", "mail_subject" ) . " " . $message->topic() );
-
-        $messageUser =& $message->user();
-
-        if ( is_a( $messageUser, "eZUser" ) )
+        if ( $ActionValueArray[$i] == "Defer" )
         {
-            $mail->setTo( $messageUser->email() );
-            $forum = new eZForum( $message->forumID() );
-            $forumUser =& $forum->moderator();
-
-            $mail->setFrom( $user->email() );
-            $mail->setBody( $body );
-            $mail->send();
         }
-        $message->delete();
-    }
-}
+        if ( $ActionValueArray[$i] == "Approve" )
+        {
+            $message->setIsApproved( 1 );
+            $message->store();
+            $msg = $message;
+            $StartAction = "moderatorapprove";
+            // include( "kernel/ezforum/user/messagereply.php" );
+        }
+        if ( $ActionValueArray[$i] == "Discard" )
+        {
+            $message->delete();
+        }
+        if ( $ActionValueArray[$i] == "Reject" )
+        {
+            $mail = new eZMail();
+            $mailTemplate = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+                                            "kernel/ezforum/admin/intl", $Language, "mailreject.php" );
 
+            $languageIni = new INIFile( "kernel/ezforum/admin/intl/" . $Language . "/mailreject.php.ini", false );
+
+            $mailTemplate->set_file( "mail_reject_tpl", "mailreject.tpl" );
+            $mailTemplate->setAllStrings();
+
+            $mailTemplate->set_var( "reason_for_reject", $RejectReason[$i] );
+            $mailTemplate->set_var( "message_body", nl2br( $message->body() ) );
+            $mailTemplate->set_var( "message_topic", $message->topic() );
+            $mailTemplate->set_var( "message_postingtime", $locale->format( $message->postingTime() ) );
+
+            $body =& $mailTemplate->parse( "dummy", "mail_reject_tpl" );
+
+            $mail->setSubject( $languageIni->read_var( "strings", "mail_subject" ) . " " . $message->topic() );
+
+            $messageUser =& $message->user();
+
+            if ( is_a( $messageUser, "eZUser" ) )
+            {
+                $mail->setTo( $messageUser->email() );
+                $forum = new eZForum( $message->forumID() );
+                $forumUser =& $forum->moderator();
+
+                $mail->setFrom( $user->email() );
+                $mail->setBody( $body );
+                $mail->send();
+            }
+            $message->delete();
+        }
+    }
 }
 
 eZHTTPTool::header( "Location: /forum/unapprovedlist/" );

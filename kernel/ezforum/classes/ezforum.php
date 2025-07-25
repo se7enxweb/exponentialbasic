@@ -197,7 +197,7 @@ class eZForum
     /*!
       Returns the messages in a forum.
     */
-    function messages()
+    function &messages()
     {
         $db =& eZDB::globalDatabase();
 
@@ -219,7 +219,7 @@ class eZForum
     /*!
       Returns the messages in every forum matching the query string.
     */
-    function search( $queryText, $offset, $limit, &$SearchTotalCount, $params = array() )
+    function &search( $queryText, $offset, $limit, &$SearchTotalCount, $params = array() )
     {
         $db =& eZDB::globalDatabase();
         $return_array = array();
@@ -326,7 +326,7 @@ class eZForum
     /*!
       Returns the total count of a query.
     */
-    function getQueryCount( $queryString )
+    function &getQueryCount( $queryString )
     {
         $db =& eZDB::globalDatabase();
         $queryString = $db->escapeString( $queryString );
@@ -352,7 +352,7 @@ class eZForum
 
       Default limit is set to 30.
     */
-    function messageTree( $offset = 0, $limit = 30, $showUnApproved = false )
+    function &messageTree( $offset = 0, $limit = 30, $showUnApproved = false )
     {
         $db =& eZDB::globalDatabase();
 
@@ -491,9 +491,9 @@ class eZForum
     /*!
       Returns the name of the forum.
     */
-    function name( $html = true )
+    function &name( $html = true )
     {
-        return htmlspecialchars( $this->Name );
+        return stripslashes ( $this->Name );
     }
 
     /*!
@@ -507,9 +507,10 @@ class eZForum
     /*!
 
     */
-    function description()
+    function &description()
     {
-        return htmlspecialchars( $this->Description );
+		$description = stripslashes( $this->Description );
+        return htmlspecialchars( $description );
     }
 
     /*!
@@ -547,7 +548,7 @@ class eZForum
     /*!
       Returns the forum moderator as a eZUser object.
     */
-    function moderator()
+    function &moderator()
     {
         $group = false;
 
@@ -563,7 +564,7 @@ class eZForum
     /*!
       Returns the forum moderator as a eZUser object.
     */
-    function group()
+    function &group()
     {
         $group = false;
 
@@ -712,3 +713,5 @@ class eZForum
     var $ModeratorID;
     var $GroupID;
 }
+
+?>

@@ -38,7 +38,7 @@ unset( $menuCachedFile );
 // do the caching
 if ( $PageCaching == "enabled" )
 {
-    $menuCachedFile = "ezpoll/cache/menubox,". $GlobalSiteDesign .".cache";
+    $menuCachedFile = "kernel/ezpoll/cache/menubox,". $GlobalSiteDesign .".cache";
     
     if ( eZFile::file_exists( $menuCachedFile ) )
     {
@@ -130,7 +130,6 @@ function createPollMenu( $generateStaticPage = false )
         $t->set_var( "poll_id", $PollID );
 
     }
-    
     if ( $generateStaticPage == true )
     {
         $fp = eZFile::fopen( $menuCachedFile, "w+");

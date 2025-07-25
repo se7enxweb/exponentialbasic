@@ -1,0 +1,10 @@
+<dt title="{intl-links}"><a href="{www_dir}{index}/links">{intl-links}</a></dt>
+<!-- BEGIN link_category_tpl -->
+<dd><a href="{www_dir}{index}/link/category/{linkcategory_id}/">{linkcategory_name}</a></dd>
+<!-- END link_category_tpl -->
+<!-- BEGIN no_link_category_tpl -->
+<dd>{intl-no_link_categories}</dd>
+<!-- END no_link_category_tpl -->
+<dd><a href="{www_dir}{index}/link/suggestlink/">{intl-suggest_link}</a></dd>
+
+

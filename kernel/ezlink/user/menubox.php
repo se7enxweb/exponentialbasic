@@ -35,7 +35,7 @@ unset( $menuCachedFile );
 // do the caching
 if ( $PageCaching == "enabled" )
 {
-    $menuCacheFile = new eZCacheFile( "ezlink/cache",
+    $menuCacheFile = new eZCacheFile( "kernel/ezlink/cache",
                                       array( "menubox", $GlobalSiteDesign ),
                                       "cache", "," );
 

@@ -77,7 +77,6 @@ $t->set_var( "section_start", $Offset + 1 );
 $t->set_var( "section_end", min( $Offset + $Limit, $totalCount ) );
 $t->set_var( "section_total", $totalCount );
 
-
 $t->pparse( "output", "section_page" );
 
 ?>

@@ -140,4 +140,5 @@ foreach( $menuList as $menuItem )
 }
 
 $t->pparse( "output", "menu_edit_page" );
+
 ?>

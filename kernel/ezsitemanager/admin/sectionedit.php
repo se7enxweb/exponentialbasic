@@ -83,6 +83,14 @@ $t->set_block( "setting_item_tpl", "no_item_move_up_tpl", "no_item_move_up" );
 $t->set_block( "setting_item_tpl", "no_item_separator_tpl", "no_item_separator" );
 $t->set_block( "setting_item_tpl", "no_item_move_down_tpl", "no_item_move_down" );
 
+
+$t->set_var( "section_name", $Name );
+$t->set_var( "section_sitedesign", $SiteDesign );
+$t->set_var( "section_templatestyle", $TemplateStyle );
+$t->set_var( "section_description", $Description );
+$t->set_var( "section_language", $SecLanguage );
+$t->set_var( "setting_list", "" );
+
 $warning = true;
 
 if ( isset ( $AddRow ) )

@@ -57,7 +57,6 @@ $t->set_var( "path_item", "" );
 $menuList =& eZMenu::getByParent( $ParentID, $Offset, $Limit );
 $totalCount =& eZMenu::count( $ParentID );
 
-
 $menu = new eZMenu( $ParentID );
 // path
 $pathArray =& $menu->path();
@@ -94,7 +93,6 @@ eZList::drawNavigator( $t, $totalCount, $Limit, $Offset, "menu_page" );
 $t->set_var( "menu_start", $Offset + 1 );
 $t->set_var( "menu_end", min( $Offset + $Limit, $totalCount ) );
 $t->set_var( "menu_total", $totalCount );
-
 
 $t->pparse( "output", "menu_page" );
 

@@ -118,6 +118,7 @@ while ( $entry = $dir->read() )
 	$i++;
     }
 }
+
 $t->pparse( "output", "file_list_tpl" );
 
 ?>

@@ -28,6 +28,21 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/ezfile.php" );
 
+$ini =& INIFile::globalINI();
+$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$SitePath = $ini->read_var( "site", "SitePath" );
+
+/* Nice Idea, Not Needed because of classes/ezfile's predicate path
+   Specificly the sitedir.ini does this work for us (dependancy)
+*/
+
+/*
+  $ini_file = "$SitePath/override/site.ini";
+  $ini_php_file = "$SitePath/override/site.ini.php" ;
+*/
+
+$ini_file = "/override/site.ini";
+$ini_php_file = "/override/site.ini.php" ;
 
 if ( isset( $Store ) )
 {
@@ -56,23 +71,36 @@ $t->setAllStrings();
 $t->set_file( "site_config_tpl", "siteconfig.tpl" );
 
 if ( eZFile::file_exists( "bin/ini/override/site.ini.php" ) )
+{
     $lines = eZFile::file( "bin/ini/override/site.ini.php" );
+}
 elseif ( eZFile::file_exists( "bin/ini/override/site.ini" ) )
-    $lines = eZFile::file( "bin/ini/override/site.ini" );
+{
+        $lines = eZFile::file( "bin/ini/override/site.ini" );
+}
 elseif ( eZFile::file_exists( "bin/ini/site.ini.php" ) )
+{
     $lines = eZFile::file( "bin/ini/site.ini.php" );
+}
 elseif ( eZFile::file_exists( "bin/ini/site.ini" ) )
+{
     $lines = eZFile::file( "bin/ini/site.ini" );
+}
+else
+{
+  print("<span style='color: red;'>Warning</span>: The eZ publish site.ini file could not be found : <span style='color: red;'>$ini_file</span>");
 
+  //  print("<br />");
+}
+
+// print("<br />This is the End ...");
 $contents = "";
 foreach ( $lines as $line )
 {
-    $contents .= $line;
+    $contents .= stripslashes($line);
 }
 $t->set_var( "file_contents", htmlspecialchars( $contents ) );
-
 $t->set_var( "file_name", isset( $fileName ) ? $fileName : false );
-
 
 $t->pparse( "output", "site_config_tpl" );
 

@@ -254,4 +254,5 @@ while ( $is_file == false && $entry = $dir->read() )
 }
 
 $t->pparse( "output", "template_list_tpl" );
+
 ?>

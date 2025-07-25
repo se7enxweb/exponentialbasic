@@ -27,10 +27,11 @@
 
 $menuItems = array(
     array( "/sitemanager/cache/", "{intl-cache_admin}" ),
-    array( "/sitemanager/section/list/", "{intl-section_list}" ),
+    array( "/sitemanager/cache/variation", "{intl-variation_admin}" ),
+    array( "/sitemanager/siteconfig/", "{intl-site_config}" ),
     array( "/sitemanager/file/list/", "{intl-file_list}" ),
     array( "/sitemanager/template/list/", "{intl-template_list}" ),
-    array( "/sitemanager/siteconfig/", "{intl-site_config}" ),
+    array( "/sitemanager/section/list/", "{intl-section_list}" ),
     array( "/sitemanager/menu/list/", "{intl-menu_config}" ),
     array( "/sitemanager/sqladmin/query/", "{intl-sql_admin}" )
     );

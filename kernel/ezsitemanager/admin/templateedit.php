@@ -56,11 +56,8 @@ foreach ( $lines as $line )
 }
 
 $t->set_var( "file_contents", htmlspecialchars( $contents ) );
-
 $t->set_var( "file_name", $realPath );
 
 $t->pparse( "output", "site_config_tpl" );
-
-
 
 ?>

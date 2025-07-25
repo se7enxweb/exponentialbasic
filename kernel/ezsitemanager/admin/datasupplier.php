@@ -86,6 +86,12 @@ switch ( $url_array[2] )
         include( "kernel/ezsitemanager/admin/siteconfig.php" );        
     }
     break;
+
+    case "csseditor":
+    {
+        include( "kernel/ezsitemanager/admin/csseditor.php" );
+    }
+    break;
     
     case "file":
     {
@@ -115,7 +121,33 @@ switch ( $url_array[2] )
 
     case "cache":
     {
-        include( "kernel/ezsitemanager/admin/cacheadmin.php" );
+
+        switch ( $url_array[3] )
+        {
+            case "variation":
+            {
+	          include( "kernel/ezsitemanager/admin/imagevariationadmin.php" );
+	        }
+      	    break;
+
+            case "template":
+            {
+            include( "kernel/ezsitemanager/admin/cacheadmin.php" );
+            }
+            break;
+
+            default :
+            {
+            include( "kernel/ezsitemanager/admin/cacheadmin.php" );
+            }
+            break;
+        }
+    }
+    break;
+
+    case "imagecache":
+    {
+        include( "kernel/ezsitemanager/admin/imagevariationcacheadmin.php" );
     }
     break;
     

@@ -20,20 +20,23 @@
 	<th>
 	{intl-message_date}:
 	</th>
+	<th>&nbsp;
+	</th>
 </tr>
 <!-- BEGIN message_item_tpl -->
 <tr>
         <!-- BEGIN message_read_tpl -->
 	<td class="{td_class}">
-	{intl-is_read}
+	<!-- {intl-is_read} -->
+	{time_read}
 	</td>
         <!-- END message_read_tpl -->
         <!-- BEGIN message_unread_tpl -->
-	<td>
+	<td class="{td_class}">
 	{intl-is_unread}
 	</td>
         <!-- END message_unread_tpl -->
-	<td class="{td_class}" width="50%">
+	<td class="{td_class}" width="40%">
 	<a href="{www_dir}{index}/message/view/{message_id}/">
 	{message_subject}
 	</a>
@@ -44,9 +47,17 @@
 	<td class="{td_class}">
 	{message_date}
 	</td>
+	<td class="{td_class}">
+	<input type="checkbox" name="DelMessage[{message_id}]" value="{message_id}" {message_disabled}/>
+	</td>
 </tr>
 
 <!-- END message_item_tpl -->
+</tr>
+<tr>
+<td colspan="5" align="right">
+<input class="stbutton" type="submit" name="Delete" value="{intl-delete}" />
+</td>
 </tr>
 </table>
 

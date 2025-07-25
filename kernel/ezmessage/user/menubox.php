@@ -1,6 +1,6 @@
 <?php
 // 
-// $Id: menubox.php 6222 2001-07-20 11:19:37Z jakobn $
+// $Id: menubox.php,v 1.2 2001/07/20 11:19:36 jakobn Exp $
 //
 // Created on: <05-Jun-2001 15:52:05 bf>
 //
@@ -22,6 +22,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
+
 
 $menuItems = array(
     array( "/message/list/", "{intl-message_list}" ),

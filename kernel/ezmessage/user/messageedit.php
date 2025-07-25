@@ -1,6 +1,6 @@
 <?php
 // 
-// $Id: messageedit.php 6484 2001-08-17 13:36:01Z jhe $
+// $Id: messageedit.php,v 1.5 2001/08/17 13:36:00 jhe Exp $
 //
 // Created on: <05-Jun-2001 17:19:01 bf>
 //
@@ -23,19 +23,23 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-// include_once( "classes/ezlocale.php" );
-// include_once( "classes/ezhttptool.php" );
-// include_once( "classes/eztemplate.php" );
-// include_once( "classes/INIFile.php" );
-// include_once( "classes/eztexttool.php" );
+include_once( "classes/ezlocale.php" );
+include_once( "classes/ezhttptool.php" );
+include_once( "classes/eztemplate.php" );
+include_once( "classes/INIFile.php" );
+include_once( "classes/eztexttool.php" );
 
-// include_once( "ezuser/classes/ezuser.php" );
+include_once( "ezuser/classes/ezuser.php" );
 
-// include_once( "ezmessage/classes/ezmessage.php" );
+include_once( "ezmessage/classes/ezmessage.php" );
+include_once( "ezmessage/classes/ezmessagemessagedefinition.php" );
 
 $MessageSent = false;
 if ( isset( $SendMessage ) )
 {
+if ( substr( trim( $Receiver ) ,strlen( trim( $Receiver ) ) -1 ) == "," )
+$Receiver = substr( trim( $Receiver ) , 0, strlen( trim( $Receiver ) ) -1 );
+
     $users = explode( ",", $Receiver );
 
     // check for valid users:
@@ -43,7 +47,7 @@ if ( isset( $SendMessage ) )
     foreach ( $users as $user )
     {
         $user = trim( $user );
-        
+
         if ( !eZUser::exists( $user ) )            
             $usersValid = false;
     }
@@ -65,6 +69,7 @@ if ( isset( $SendMessage ) )
             $message->setToUser( $toUser );
 
             $fromUser =& eZUser::currentUser();
+            
             $message->setFromUser( $fromUser );
 
             $message->store();
@@ -87,10 +92,14 @@ $messageDefinition->store();
     }    
 }
 
-$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->read_var( "eZMessageMain", "AdminTemplateDir" ),
-                     "kernel/ezmessage/admin/intl", $Language, "messageedit.php" );
+$ini =& INIFile::globalINI();
+$Language = $ini->read_var( "eZMessageMain", "Language" );
+$t = new eZTemplate( "ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
+                     "ezmessage/user/intl", $Language, "messageedit.php" );
 
 $locale = new eZLocale( $Language );
+
+
 
 $t->set_file( "message_page_tpl", "messageedit.tpl" );
 
@@ -100,18 +109,29 @@ $t->set_block( "message_page_tpl", "message_verify_tpl", "message_verify" );
 $t->set_block( "message_verify_tpl", "message_receiver_tpl", "message_receiver" );
 $t->set_block( "message_page_tpl", "message_edit_tpl", "message_edit" );
 
+
 $t->setAllStrings();
 
-$t->set_var( "receiver", isset( $Receiver ) ? $Receiver : false );
-$t->set_var( "subject", isset( $Subject ) ? $Subject : false );
-$t->set_var( "description", isset( $Description ) ? $Description : false );
+$t->set_var( "receiver", $Receiver );
+$t->set_var( "subject", $Subject );
+$t->set_var( "description", $Description );
 
+$mes = new eZMessage( );
+$t->set_var( "show_description", $mes->render( $Description ) );
 $t->set_var( "error", "" );
 
-if ( isset ( $Reply ) )
+if ( isSet ( $Reply ) )
 {
     $fromUser = new eZUser ( $FromUserID );
+    $t->set_var( "full_name", $fromUser->firstName() );
+    if ( $Message != "" )
+{
     $t->set_var( "description", eZTextTool::addPre( $Message ), ">" );
+}
+else
+{
+    $t->set_var( "description", "" );
+}
     $t->set_var( "receiver", $fromUser->login()  );
 }
 
@@ -124,29 +144,37 @@ if ( $MessageSent == true )
 else if ( !isset( $Preview ) || isset( $Edit ) )
 {
     $t->parse( "message_edit", "message_edit_tpl" );
+
+if ($Receiver != "")
+{
+         $UserName = eZUser::getUser( $Receiver );
+         $t->set_var( "full_name", $UserName->firstName()." ".$UserName->lastName() );
+}
     $t->set_var( "message_verify", "" );
     $t->set_var( "message_sent", "" );
     
 }
 else
 {
-    if ( substr( trim( $Receiver ) ,strlen( trim( $Receiver ) ) -1 ) == "," )
-    $Receiver = substr( trim( $Receiver ) , 0, strlen( trim( $Receiver ) ) -1 );
-    
-    $users = explode( ",", $Receiver );
 
+if ( substr( trim( $Receiver ) ,strlen( trim( $Receiver ) ) -1 ) == "," )
+$Receiver = substr( trim( $Receiver ) , 0, strlen( trim( $Receiver ) ) -1 );
+    $users = explode( ",", $Receiver );
+    
     // check for valid users:
     $usersValid = true;
     foreach ( $users as $user )
     {
         $user = trim( $user );
         
-        if ( !eZUser::exists( $user ) )            
+        if ( !eZUser::exists( $user )  )            
             $usersValid = false;
     }
     
     if ( $usersValid == true )
     {
+    	//$fromUser =& eZUser::currentUser();
+    	//print_r($fromUser);
         foreach ( $users as $user )
         {
             $user = trim( $user );
@@ -176,4 +204,11 @@ else
 
 $t->pparse( "output", "message_page_tpl" );
 
+if ( $MessageSent == true )
+	{
+	echo "<br>";
+	include( "ezmessage/user/messagelist.php" );
+	}
+
 ?>
+

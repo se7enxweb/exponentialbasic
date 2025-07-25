@@ -1,4 +1,4 @@
-<form action="{www_dir}{index}/message/edit/" method="post">
+<form action="{www_dir}{index}/message/edit/" method="post" name="form">
 
 <h1>{intl-message_edit} </h1>
 
@@ -32,7 +32,7 @@
 {subject}
 
 <p class="boxtext">{intl-description}:</p>
-{description}
+{show_description}
 
 <hr size="4" noshade="noshade" />
 <br />
@@ -47,9 +47,15 @@
 <!-- END message_verify_tpl -->
 
 <!-- BEGIN message_edit_tpl -->
-
+<script>
+function picker( File ) {
+	MsgWindow=window.open(File,"pickwin","toolbar=no,menubar=no,location=no,status=no,directories=no,scrollbars=yes, width=422, height=390, innerWidth=650, innerHeight=500, resizable=yes, alwaysRaised=yes");
+	MsgWindow.focus();
+}
+</script>
 <p class="boxtext">{intl-receiver}:</p>
-<input class="box" type="text" name="Receiver" size="40" value="{receiver}" />
+<input class="box" type="text" name="Receiver" size="40" value="{receiver}" />&nbsp;&nbsp;
+<INPUT name="To" onclick="picker('{www_dir}{index}/message/popup/selectreciver')" title="{intl-select_receiver}" type="button" value="{intl-select_receiver}"> 
 <br /><br />
 
 
@@ -68,6 +74,5 @@
 <input class="okbutton" type="submit" name="Preview" value="{intl-preview}" />
 
 <!-- END message_edit_tpl -->
-
 
 </form>

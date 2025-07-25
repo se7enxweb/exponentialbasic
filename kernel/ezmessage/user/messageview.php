@@ -1,6 +1,6 @@
 <?php
 // 
-// $Id: messageview.php 6222 2001-07-20 11:19:37Z jakobn $
+// $Id: messageview.php,v 1.3 2001/07/20 11:19:36 jakobn Exp $
 //
 // Created on: <06-Jun-2001 10:27:02 bf>
 //
@@ -23,16 +23,18 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-// include_once( "classes/ezlocale.php" );
-// include_once( "classes/ezhttptool.php" );
-// include_once( "classes/eztemplate.php" );
-// include_once( "classes/INIFile.php" );
+include_once( "classes/ezlocale.php" );
+include_once( "classes/ezhttptool.php" );
+include_once( "classes/eztemplate.php" );
+include_once( "classes/INIFile.php" );
 
-// include_once( "ezmessage/classes/ezmessage.php" );
+include_once( "ezmessage/classes/ezmessage.php" );
 
+$ini =& INIFile::globalINI();
+$Language = $ini->read_var( "eZMessageMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->read_var( "eZMessageMain", "AdminTemplateDir" ),
-                     "kernel/ezmessage/admin/intl", $Language, "messageview.php" );
+$t = new eZTemplate( "ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
+                     "ezmessage/user/intl", $Language, "messageview.php" );
 
 $locale = new eZLocale( $Language ); 
 
@@ -54,11 +56,10 @@ if ( $message->get( $MessageID ) )
         eZHTTPTool::header( "Location: /error/403/" );
         exit();
     }
-
     if ( $currentUser->id() == $toUser->id() )
     {
-        $message->setIsRead( true );
-        $message->store();
+    	$message->setIsRead( true );
+    	$message->store();
     }
     $messageArray =& $message->messagesToUser( $user );
 
@@ -66,7 +67,7 @@ if ( $message->get( $MessageID ) )
     $t->set_var( "message_date", $locale->format( $created ) );
 
     $fromUser = $message->fromUser();
-    $t->set_var( "message_id", $message->id() );
+$t->set_var( "message_id", $message->id() );
     $t->set_var( "from_user_first_name", $fromUser->firstName() );
     $t->set_var( "from_user_last_name", $fromUser->lastName() );
     $t->set_var( "message_user_id", $fromUser->id() );
@@ -85,3 +86,4 @@ else
 }
 
 ?>
+

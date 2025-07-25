@@ -41,7 +41,26 @@ switch( $url_array[2] )
 
     case "edit" :
     {
-        include( "kernel/ezmessage/admin/messageedit.php" );
+       	include( "kernel/ezmessage/admin/messageedit.php" );
+    }
+    break;
+    
+    case "popup" :
+    {
+       	include( "kernel/ezmessage/admin/reciverpopup.php" );
+    }
+    break; 
+    
+    case "send" :
+    {
+       	include( "kernel/ezmessage/admin/messagesend.php" );
+    }
+    break;
+    
+    default :
+    {
+        eZHTTPTool::header( "Location: /error/404" );
+        exit();
     }
     break;    
 }

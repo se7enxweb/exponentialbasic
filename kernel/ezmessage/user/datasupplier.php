@@ -1,8 +1,8 @@
 <?php
-// 
-// $Id: menubox.php 6222 2001-07-20 11:19:37Z jakobn $
 //
-// Created on: <05-Jun-2001 15:52:05 bf>
+// $Id: datasupplier.php,v 1.2 2001/07/20 11:19:36 jakobn Exp $
+//
+// Created on: <23-Oct-2000 17:53:46 bf>
 //
 // This source file is part of eZ publish, publishing software.
 //
@@ -23,10 +23,47 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-$menuItems = array(
-    array( "/message/list/", "{intl-message_list}" ),
-    array( "/message/edit/", "{intl-message_edit}" ),
-    array( "/message/send/", "{intl-message_sendlist}" )
-    );
+include_once( "classes/ezhttptool.php" );
+
+switch( $url_array[2] )
+{
+    case "view" :
+    {
+        $MessageID = $url_array[3];
+        include( "ezmessage/user/messageview.php" );
+    }
+    break;    
+
+    case "list" :
+    {
+        include( "ezmessage/user/messagelist.php" );
+    }
+    break;    
+
+    case "edit" :
+    {
+       	include( "ezmessage/user/messageedit.php" );
+    }
+    break;
+    
+    case "popup" :
+    {
+       	include( "ezmessage/user/reciverpopup.php" );
+    }
+    break; 
+    
+    case "send" :
+    {
+       	include( "ezmessage/user/messagesend.php" );
+    }
+    break;
+    
+    default :
+    {
+        eZHTTPTool::header( "Location: /error/404" );
+        exit();
+    }
+    break;
+}
 
 ?>

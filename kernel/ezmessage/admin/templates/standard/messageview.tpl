@@ -28,14 +28,14 @@
 	<td colspan="2">&nbsp;</td>
 </tr>
 <tr>
-	<th colspan="2">
+	<td colspan="2">
 	{intl-message_message}:
-	</th>
+	</td>
 
 </tr>
 <tr>
 	<td valign="top" colspan="2">
-	{message_message}
+	{message_show_message}
 	</td>
 </tr>
 </tr>
@@ -50,14 +50,19 @@
        <input class="okbutton" type="submit" name="Back" value="{intl-back}" />&nbsp;
        </form>
 </td>
-<td width="99%">
-       <form action="{www_dir}{index}/message/edit/" method="post">
-       <input type="hidden" name="Subject" value="{message_subject}" />
-       <input type="hidden" name="Message" value="{message_message}" />
-       <input type="hidden" name="FromUserID" value="{message_user_id}" />
-       <input class="okbutton" type="submit" name="Reply" value="{intl-reply}" />
-       </form>
+<td>
+        <form action="{www_dir}{index}/message/edit/" method="post">
+        <input type="hidden" name="Subject" value="{message_subject}" />
+        <input type="hidden" name="Message" value="{message_message}" />
+        <input type="hidden" name="FromUserID" value="{message_user_id}" />
+        <input class="okbutton" type="submit" name="Reply" value="{intl-reply}" />
+        </form>
+</td>
+<td>
+		<form action="{www_dir}{index}/message/list/" method="post">
+		<input type="hidden" name="DelMessage[{message_id}]" value="{message_id}" />
+		<input class="okbutton" type="submit" name="Delete" value="{intl-delete}" />&nbsp;
+		</form>
 </td>
 </tr>
 </table>
-

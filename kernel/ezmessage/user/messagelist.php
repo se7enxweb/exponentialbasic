@@ -1,6 +1,6 @@
 <?php
 // 
-// $Id: messagelist.php 6316 2001-07-30 13:22:37Z bf $
+// $Id: messagelist.php,v 1.4 2001/07/30 13:22:37 bf Exp $
 //
 // Created on: <05-Jun-2001 16:42:09 bf>
 //
@@ -23,16 +23,19 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-// include_once( "classes/ezlocale.php" );
-// include_once( "classes/ezhttptool.php" );
-// include_once( "classes/eztemplate.php" );
-// include_once( "classes/INIFile.php" );
+include_once( "classes/ezlocale.php" );
+include_once( "classes/ezhttptool.php" );
+include_once( "classes/eztemplate.php" );
+include_once( "classes/INIFile.php" );
 
-// include_once( "ezmessage/classes/ezmessage.php" );
+include_once( "ezmessage/classes/ezmessage.php" );
+include_once( "ezmessage/classes/ezmessagemessagedefinition.php" );
 
+$ini =& INIFile::globalINI();
+$Language = $ini->read_var( "eZMessageMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->read_var( "eZMessageMain", "AdminTemplateDir" ),
-                     "kernel/ezmessage/admin/intl", $Language, "messagelist.php" );
+$t = new eZTemplate( "ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
+                     "ezmessage/user/intl", $Language, "messagelist.php" );
 
 $locale = new eZLocale( $Language ); 
 
@@ -124,6 +127,9 @@ if ( count( $messageArray ) > 0 )
 else
     $t->set_var( "message_list", "" );
 
+
 $t->pparse( "output", "message_page_tpl" );
 
+
 ?>
+

@@ -1,6 +1,6 @@
 <?php
 // 
-// $Id: messagelist.php 6316 2001-07-30 13:22:37Z bf $
+// $Id: messagelist.php,v 1.4 2001/07/30 13:22:37 bf Exp $
 //
 // Created on: <05-Jun-2001 16:42:09 bf>
 //
@@ -23,20 +23,23 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-// include_once( "classes/ezlocale.php" );
-// include_once( "classes/ezhttptool.php" );
-// include_once( "classes/eztemplate.php" );
-// include_once( "classes/INIFile.php" );
+include_once( "classes/ezlocale.php" );
+include_once( "classes/ezhttptool.php" );
+include_once( "classes/eztemplate.php" );
+include_once( "classes/INIFile.php" );
 
-// include_once( "ezmessage/classes/ezmessage.php" );
+include_once( "ezmessage/classes/ezmessage.php" );
+include_once( "ezmessage/classes/ezmessagemessagedefinition.php" );
 
+$ini =& INIFile::globalINI();
+$Language = $ini->read_var( "eZMessageMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->read_var( "eZMessageMain", "AdminTemplateDir" ),
-                     "kernel/ezmessage/admin/intl", $Language, "messagelist.php" );
+$t = new eZTemplate( "ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
+                     "ezmessage/user/intl", $Language, "messagesend.php" );
 
 $locale = new eZLocale( $Language ); 
 
-$t->set_file( "message_page_tpl", "messagelist.tpl" );
+$t->set_file( "message_page_tpl", "messagesend.tpl" );
 
 if ( isSet( $Delete ) && isSet( $DelMessage ) && count( $DelMessage ) > 0 )
 {
@@ -47,26 +50,27 @@ if ( isSet( $Delete ) && isSet( $DelMessage ) && count( $DelMessage ) > 0 )
 		$fromUser = $message->fromUser();
 		$user =& eZUser::currentUser();
 		
-		if ( $toUser->id() == $user->id() )
+		if ( $fromUser->id() == $user->id() )
 		{
-			
 			$messageDefinition = new eZMessageDefinition();
 			$definitionArray = $messageDefinition->getMessageID( $value );
+//			print_r($definitionArray);
 
 			foreach ( $definitionArray as $definition )
 			{
 				$to_user = $definition->toUserID();
-				
 				if ( $to_user->id() == $user->id() )
+				{
 					$definition->delete();
+				}
 			}
-			//print_r($definitionArray);
-			//echo count($definitionArray);
-			if ( count( $definitionArray ) == 1 )
+			if ( count( $definitionArray ) == 1 || $toUser == $fromUser )
 				$message->delete();
+
 		}
 	}
 }
+
 
 $t->setAllStrings();
 
@@ -81,7 +85,7 @@ $t->set_var( "user_last_name", $user->lastName() );
 
 $message = new eZMessage( );
 
-$messageArray =& $message->messagesToUser( $user );
+$messageArray =& $message->messagesFromUser( $user );
 
 $i = 0;
 foreach ( $messageArray as $key => $message )
@@ -91,8 +95,8 @@ foreach ( $messageArray as $key => $message )
     $created = $message->created();
     $t->set_var( "message_date", $locale->format( $created ) );
 
-    $fromUser = $message->fromUser();
-    $t->set_var( "message_from_user", $fromUser->firstName() . " " . $fromUser->lastName() );
+    $toUser = $message->toUser();
+    $t->set_var( "message_to_user", $toUser->firstName() . " " . $toUser->lastName() );
 
     $t->set_var( "message_subject", $message->subject() );
 
@@ -124,6 +128,8 @@ if ( count( $messageArray ) > 0 )
 else
     $t->set_var( "message_list", "" );
 
+
 $t->pparse( "output", "message_page_tpl" );
 
 ?>
+

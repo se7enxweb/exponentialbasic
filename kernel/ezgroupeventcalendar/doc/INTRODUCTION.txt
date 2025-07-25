@@ -1,0 +1,88 @@
+eZ GroupEventCalendar Introduction
+
+eZ calendar is an extension to the eZ publish 2 cms. eZ calendar provides
+an advanced web based calendar application.
+
+Brookins Consulting has provided much needed additional refinements
+and improvements to eZ calendar v2.0 (formerly known as eZGroupEventCalendar).
+
+The eZ calendar, eZ publish 2 module enables an eZ publish instance to provide
+a full fledged web calendar to users. eZ calendar supports recurring events,
+event comments, event group, event type, event category, event priority,
+event status, event comments, event files, event links, sort events by group,
+month view, week view, day view, year view, event tooltips,
+jscalendar date selection, new design templates,
+
+
+Online Demo:
+
+http://ezcommunity.net/calendar/
+
+
+Features:
+
+With eZ calendar you can filter the events based on the event type and for
+which group of people the event concerns. The eZ calendar features very 
+flexible security and permissions on calendar administration depending on 
+user groups specified in the admin which can view, add, edit, delete events. 
+The public user in the prerequisite group can view either by day, month or year.
+
+It also supports a new dhtml, css user interphase, advanced repeat event,
+file/image/map attachments, directions link, html descriptions, 
+multi-tier event groupings and many more features . . .
+
+eZ calendar is a powerful component to add into any existing eZ publish 
+installation, especially used for collaborative and informative sites.
+
+eZ calendar provides calendar features which match most handheld and computer 
+desktop datebook / calendar applications.
+
+eZ calendar has been extended to support every possible kind of reoccurring 
+event type you can imagine.
+
+eZ calendar is a standalone module, which depends on the eZ publish framework, 
+modules and classes.
+
+A special thanks goes out to everyone in the eZ publish user community 
+who contributed to eZ calendar's design, development, motivation, funding, 
+testing, extension, feedback and so much more . . .
+
+eZ calendar is available from any of these fine locations:
+eZ community, SourceForge, BerliOS, /download/
+
+
+Examples:
+- Add Event
+- Edit Event
+- Enable Notification
+- Manage Event Attachements
+- Add Event Attachement
+- Manage Calendar Configuration (Admin | Module)
+
+Calendar Usage:
+- User
+
+An average user will look at the calendar views, download or view 
+event file attachements.
+
+A contributing user will create an account, login, submit event comments, 
+recieve event notifications.
+
+A editor user will do all of the above and add, edit events, upload and attach event file attachements.
+
+
+
+Dependancies and Requirements:
+
+Client Side Scripting : The calendar uses the following Javascript tools.
+
+Dom Drag - Used for draggable calendar navigation div, and the Sort by Group div.
+http://www.youngpup.net/2001/domdrag
+
+JS Calendar - Used for filling date fields when adding/editing an event.
+http://www.dynarch.com/projects/calendar/
+
+Overlib - Used for informational popups.
+http://www.bosrup.com/web/overlib/
+
+

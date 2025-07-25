@@ -1,0 +1,92 @@
+//Add the following lines to site.ini and modify as needed
+
+[eZGroupEventCalendarMain]
+AdminTemplateDir=templates/standard/
+TemplateDir=templates/standard/
+ImageDir=/images/standard/
+Language=en_US
+DayStartTime=00:00
+DayStopTime=24:00
+DayInterval=00:15
+Priority=2
+Status=0
+SubGroupSelect=disabled
+TwelveHourSelect=enabled
+MinutesSelectInterval=15
+UserComments=enabled
+TruncateTitle=enabled
+TruncateTitleSize=20
+LinkModules=eZGroupEventCalendar:1000
+YearsPrint=19
+
+[eZGroupEventCalendarRSS]
+# Channel Title, Link, Description and Language
+Title=eZ Community Calendar
+Link=http://ezcommunity.net/
+Description=Calendar Events, stuff that matters . . .
+Encoding=ISO-8859-1
+#RssVersion=0.9|1.0|2.0
+RssVersion=1.0
+Language=en
+# Channel Image, Width should be 1-144, Height should be 1-400 (default: 31)
+Image=/design/standard/images/rss_image.gif
+# Group, from which the events will be fetched (0=all groups)
+GroupID=0
+Limit=50
+
+#
+#[eZGroupEventCalendarMain]
+#
+# DayStartTime:           The time that you would like the Calendar to start printing each day.
+#
+# DayStopTime:            The time that you would like the Calendar to stop printing each day.
+#
+# YearsPrint:             The number of years in advance you would like displayed in the 
+#                         eventedit year select. (Depricated)
+#
+# Priority:               The default priority selected when a new event is created( 0, 1, 2, 3, or 4).
+#
+# Status:                 The default status selected when a new event is created( 0, 1, or 2).
+#
+# SubGroupSelect:         Leave this option disabled.  This function will not work with standard versions
+#                         of eZPublish.  This is a special function programed for the Mobius Consortium Office
+#                         web site, and MCO developed code in eZUser is required.
+#
+# TwelveHourSelect:       If enabled U.S 12 hour time is displayed, if disabled 24 time is displayed
+#
+# MinutesSelectInterval:  The interval displayed between minutes in the start and stop time
+#                         minutes select of eventedit
+#
+# UserComments            The option to enable users to login and create comments on an event
+#
+# TruncateTitle           The option to truncate event title text in calendar views
+# TruncateTitleSize       The size (of characters) which a title must be less than in order 
+#			  to avoid being truncated (visualy) in monthview
+#
+# LinkModules		  The eZForum ID of the forum created by the Admin for the eZ Calendar 
+#			  Event Coments. Example Syntax it accepts is (ModuleName:ID) ie: eZGroupEventCalendar:1000 
+#
+
+
+#
+#[eZGroupEventCalendarRSS]
+#
+#
+# Title			  RSS Feed Channel Title
+#
+# Link			  RSS Feed Channel Link to Originating Website
+#
+# Description		  RSS Feed Channel Calendar Events, stuff that matters . . .
+#
+# Encoding                RSS Feed XML Encoding Format / Standard ( ISO-8859-1 )
+#
+# RssVersion	 	  RSS Feed RssVersion ( 0.9|1.0|2.0 ) (2.0 not supported)
+#
+# Language		  RSS Feed Language ( Must be an iso639 Language Abbreviation, ie: en )
+#
+# Image 		  (optional) RSS Feed Channel Image, Width should be 1-144, Height should be 1-400 ( Default, 31 )
+#
+# GroupID		  Group, which the events will be fetched ( 0=all groups ) 
+#
+# Limit			  RSS Feed Event List Limit ( Default, 7 )
+#

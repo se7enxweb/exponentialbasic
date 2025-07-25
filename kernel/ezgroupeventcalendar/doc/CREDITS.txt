@@ -1,0 +1,32 @@
+eZ GroupEventCalendar
+Licence: GNU GPL v2 (or greater)
+
+Thank you to Brendan Pike for his generous funding, help, ideas and suggestions.
+
+A special thank you to Jo Henrik Endrerud for his generous help, ideas and 
+suggestions with eZ publish 2 eZDateTime Storage Implimentations.
+
+
+Releases:
+
+eZ GroupEventCalendar 2.0.2
+Written by:  Graham Brookins ( Brookins Consulting : http://brookinsconsulting.com/ )        
+Development sponsored by: Brendan Pike  DB Informatics : http://www.dbinformatics.com.au/
+Release: 12/24/2004
+
+
+eZ GroupEventCalendar 1.0.0
+Written by:  Adam Fallert (MOBIUS Consortium Office)
+Release (Aproximetly): 02/06/2002
+
+
+References:
+
+eZ Community (eZ publish 2 Community): http://ezcommunity.net/
+eZ Community Calendar (eZ publish 2 Community): http://ezcommunity.net/calendar
+
+Original eZGroupEventCalendar v1: http://ezcommunity.net/article/view/165/
+Original Release Statement: http://web.archive.org/web/20020603120338/developer.ez.no/article/articleview/273/1/1/
+Original Installation of eZ GroupEventCalendar: http://mco.mobius.umsystem.edu/home/calendar/
+
+

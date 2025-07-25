@@ -1,0 +1,3 @@
+MAILTO=root@localhost
+58 0,11,23 * * * /var/www/ezpublish.dom/html/ezgroupeventcalendar/cron/cron_alerts.php >> /var/www/ezpublish.dom/html/bin/logs/ezgroupeventcalendar_notifications.cron.log;
+

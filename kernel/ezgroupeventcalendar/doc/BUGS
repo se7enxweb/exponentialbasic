@@ -1,0 +1,498 @@
+Bug List
+Version: v2.0
+Description: 
+Brief List of Key Breakdowns that are possible
+
+Checklist
+
+1. eZ publish 2 (stock) clearcache.sh script fails on calender cache dirs
+
+If your calendar installation gets googled / indexed by a web spider it is very possible to fill up over
+10,000 - 30,000 cache files of different calender views.
+
+This is even more possible with eZGroupEventCalendar / eZ Calendar / eZ Trade for the above
+spider / cache issue to become a problem.
+
+The clearcache script stock that's distributed with eZ publish 2.2 uses a feature in the linux/unix/bash
+called keyword expansion which is limited by the servers available memory which can fail to expand a
+directory with several thousands of files.
+
+There have been many reported cases of this occurance, this is not myth or folkore.
+
+To solve this problem with clearing eZ publish 2 cache directories with a large number of cache files,
+I developed a replacement clearcache.sh script which did not use command line keyword expansion,
+instead it uses the find program in combination with the xargs program and unix pipes to achive 
+the same functionality without the previous limitations.
+
+Note: The clearcache2.sh script is a little slower than the stock/orginal clearcache.sh script.
+In most cases the clearcache2.sh script would only need to be used in on a production ezpublish 2 installation
+where a few extra seconds to do the job properly are a fair trade off.
+
+
+2. eZGroupEventCalender : eZ publish 2 : eZUser_Module & eZUser_Permissions Problems
+
+First this is a required part of the installation process that is manual and must be done with care and by hand.
+
+The original eZGroupEventCalendar's Installation attempted to do this automaticly but the sql in most cases failed
+to do so properly instead inserting improper values into the eZUser_Module & eZUser_Permissions Tables.
+
+To properly install a user most find the next greatest id not used in eZUser_Module and place that id 
+in place of the 000 in ezgroupeventcalendar/sql/eZGroupEventCalendar.sql in the INSERT entry for eZUser_Module.
+
+The same ID must be used in the INSERT entry for eZUser_Permissions as the ModuleID for the entries for Read & WriteToRoot
+
+If your upgrading a previous version of eZGroupEventCalendar you must manualy make sure that there are not 
+duplicate or invalid entries in the above tables for the calendar to work proplerly.
+
+If this is a brand new installation you must still manualy decide the proper ID values which won't conflict 
+with existing ID values.
+                             
+This is a *required* step that must be completed properly for the calendar edit mode to work properly.
+(We are looking for an automated solution to this step, suggestions gladly welcome :)
+
+3. eZGroupEventCalender TIMESTAMP problems with MySQL v4.1 and greater
+The eZGroupEventCalender v1 was designed like much of eZ publish 2 to use the MySQL v3.x -> v4.0 API
+
+The MySQL v4.1 API was changed dramaticly in v4.1 which droped support in general for the MySQL
+Column Type TIMESTAMP "width" paramiter which eZGroupEventCalender like a lot of applications which
+used eZ publish 2 :: eZDate:MysqlTimeStamp() for database date storage.
+
+The eZGroupEventCalender v2 was developed to use MySQL v4.0.x API like much of eZ publish 2.
+So it continued to use the original design for date timestamp db storage. 
+
+This was not a problem until our project sponsor DB Informatics, which happend to use MySQL v4.1-alpha
+contacted me about the application / server api bug. Our quick solution / patch was to use a different
+db column type for the actual storage of the date timestamp. 
+
+(Quick Solution) Use: ezgroupeventcalendar/sql/eZGroupEventCalendar_mysql_v4.1+.sql
+
+###############################################################
+
+The official solution as provided by Jo Henrik Endrerud (frmr ez.no developer)
+Is to use unix timestamps & int(11) column type instead of mysql specific timestamps.
+This is a db independant solution which will fix the problem perminently and across the board for a very long time.
+
+Unfortunatly, the eZGroupEventCalender v2 was developed to make heavy use of mysqltimestamp and it
+will take some time to remove this dependancy. We have opted to release the quick solution and the package now,
+and plan to replace the offending code in time. (help wanted :)
+
+Full Description:
+-----------------------------------------------------------------
+
+Hi Graham
+
+In order to start using UNIX timestamp and not MySQL timestamp you have to
+do a conversion. The MySQL timestamp is simply the date written without any
+separation characters (right now the timestamp would be 20041221131245
+(YYYYMMDDHHMMSS)). The Unix timestamp has a different syntax, it's just the
+number of seconds since 1st of January 1970. This makes it a lot easier to
+do math on the dates because you can subtract and add to them like any other
+number.
+
+To convert your table you would have to create a new table and insert
+everything into. Here is what I did for my guestbook when I did this
+(remember to back up your database first):
+
+I had a table called eZGuestbook with this content:
+CREATE TABLE eZGuestbook (
+  ID int(11) NOT NULL auto_increment,
+  Name varchar(40),
+  Email varchar(30),
+  Link varchar(40),
+  Text text,
+  Created timestamp,
+  IP varchar(15),
+  PRIMARY KEY(ID)
+) TYPE=MyISAM;
+
+I then created a new temporary table for the conversion. This is the same
+table (with different name) but we use an int for the timestamp instead:
+
+CREATE TABLE eZGuestbook_new (
+  ID int(11) NOT NULL auto_increment,
+  Name varchar(40),
+  Email varchar(30),
+  Link varchar(40),
+  Text text,
+  Created int(11),
+  IP varchar(15),
+  PRIMARY KEY(ID)
+) TYPE=MyISAM;
+
+And I inserted everything into the new table and, at the same time,
+converted the MySQL timestamps to UNIX timestamps with the
+"UNIX_TIMESTAMP(Created) as Created" in the line below
+
+INSERT INTO eZGuestbook_new SELECT ID, Name, Email, Link, Text,
+UNIX_TIMESTAMP(Created) as Created, IP FROM eZGuestbook;
+
+In the end I removed the first table and renamed the new and gave it the old
+name.
+
+DROP TABLE eZGuestbook;
+ALTER TABLE eZGuestbook_new RENAME eZGuestbook;
+
+
+When this is done, everything is stored in the database with unix timestamp.
+This is database independent and will not have problem with database
+upgrades in the future (this is also one of the things that have to be done
+in order to make your module work on different databases).
+
+The last thing you have to do is to change your module to use UNIX timestamp
+and not MySQL timestamp. I will recommend you to always use the eZDate and
+eZDateTime for this. If you are simply splitting up the MySQL timestamp and
+working and placing the parts in an array, then you should change this to
+eZDateTime. If you are using eZDateTime already you should only have to
+change the setMYSQLTimestamp() function calls to a setTimestamp() call.
+
+-----------------------------------------------------------------
+
+Hey Jo Henrik,
+
+Thanks for the great reply.
+
+I'm still wondering about using eZDateTime::mysqlTimeStamp()
+and the problems I've been having storing the above function's returned 
+string inside of an int(11) vs varchar(14) inside of a mysql db.
+
+The application I'm working on works great using mysql v4.0 & an actual 
+timestamp(14) column but
+when I try to simply / only alter the database storage field (to ensure 
+compatibility with mysql v4.1) I find my eZDateTime::mysqlTimeStamp() 
+string's are truncated when they are stored to a v4.1 int(11).
+
+I can understand why one might want to use the unix timestamp method / 
+conversion you describe, yet in my case I am at the end of this project and
+this conversion is out of scope for the project and a fair amount of 
+changes and testing to the eZGroupEventCalendar product I've been working
+on, I'm really trying to minimize the cost of keeping the application 
+running at the immediate moment.
+
+On another note, I really like eZDateTime::mysqlTimeStamp() and don't 
+exactly grasp how changing from eZDateTime::mysqlTimeStamp() to 
+eZDateTime::timeStamp() (unix timestamps) will solve my primary breakdown, 
+which is . .
+
+When I try to store eZDateTime::mysqlTimeStamp() into an int(11) they are 
+truncated / not stored in a way which works the same as the timestamp 
+(mysql column type), yet when i store the same eZDateTime::mysqlTimeStamp()
+into a varchar(14) the application works exactly the same under mysql v4.1 
+as mysql v4.0 using the timestamp mysql column type.
+
+I'd really like to use an int(11) or some other numeric mysql column type 
+to store the eZDateTime::mysqlTimeStamp() as I think performance would be 
+faster than using a varchar(14) but since int(11) only seems to store 
+numeric values with of less than 11 and increasing int(11) to int(14) does 
+not help I'm kind of stuck, I even tried bigint(14) but to no avail ... I 
+simply have not been able to find a numeric mysql column type which can 
+properly store a eZDateTime::mysqlTimeStamp()
+
+Again, varchar(14) works as a great solution to my problem but I just 
+thought I would ask you if you knew of a numeric field which would support 
+the storage of a 14 character / number used by eZDateTime::mysqlTimeStamp()
+
+I hope my question is not being too persistent, this is the problem / 
+situation I'm trying to work inside.
+
+I greatly appreciate your comment and suggestions. Thank you again Jo Henrik
+:)
+
+Cheers,
+Graham Brookins
+eZ community Developer
+http://ezcommunity.net/  
+
+-----------------------------------------------------------------
+
+Hi
+
+If bigint doesn't work I'm not sure how you can store the timestamp as a
+number. If you decide to store at a string I would recommend to use a
+char(14) instead of a varchar(14), this will speed things up a bit and
+doesn't require more space since every value is exact 14 digits.
+
+I will also try to explain a bit more why the UNIX timestamp conversion
+would work (and be a very quick way to solve your problem). I do believe
+this is a very quick change and you would benefit in both performance and
+compatibility.
+
+As eZDateTime stores the date of the object as a UNIX timestamp internally
+regardless is the object was created with setMysqlTimestamp() or
+setTimestamp() you can use functions for both UNIX timestamp and MySQL
+timestamps in your logic in the module. It is therefore very little that has
+to be changed in order to make this work. The only place you need to change
+your logic is where you work is where data is stored and fetched from your
+database (totally two places). When you are fetching the data you take the
+int returned from the SELECT query and send this to a setTimestamp in order
+to create the eZDateTime object. When you are storing you use timestamp() to
+get the timestamp and sends this to the UPDATE/INSERT query. Other than
+these two places you probably don't need to change anything in the code.
+
+-Jo Henrik   
+
+-----------------------------------------------------------------
+
+
+4. eZGroupEventCalender (v2) : client side js script dependancies and conflicts.
+
+Overlib and Dom Drag are incompatible. After dragging the navigation calendar or Sort By box,
+mousing over an event name will display the overlib div in the upper right hand corner.
+
+Solution: use a php if statement / case to avoid including the two js files at the same time
+(since overlib and domdrag are only used separatly, never on the same page). One could patch 
+the two libraries to be compatable but not really necissary.
+
+See doc/frame.php for example if statement
+See doc/introduction.txt for js script references and documentation
+
+############################################################
+############################################################
+Bug List
+
+Version : v1.0
+Description:
+  This is a list of bugs / comments / feature request from the original public release (v1) on ez.no in 2002
+
+############################################################
+Key 
+
+
+Topic:
+Author:
+Time:
+Description:
+
+############################################################
+
+	Anyone created searchsupplier parts for ezgroupeventcalendar?
+	peter mcaneny 	02.05.2002 23:06
+I would like to search event descriptions but find no searchsupplier.php and related scripts out there for groupevent calendar. Has anyone created such a thing? Plan to? thanks. 
+
+############################################################
+
+some bugs
+	Marco Zinn 	14.04.2002 22:34
+Hi Adam,
+
+great module! I think, we will test it some days and maybe use it for our extranet soon.
+I found some bugs in the release, that is available for download at ez.no.
+Is there a newer version?
+How should i post the bugs? (Maybe ask the ezCrew to create a new category for you in their bug database).
+
+Thanks to Paul for the hint to enable the module in the admin site ;)
+I'm at
+
+PS: Did you negotiate with the ezCrew to include your module in the next releases? 
+
+############################################################
+
+ 	Adding Forms to eventview
+	Darren Pike 	06.03.2002 06:21
+Adam,
+well done, this module is very useful for my future applications and will be using it on my sites.
+I would also like the ability to add various forms to the event view so users can indicate their attendance. However unlike ezEventcalendar, I would like the choice not to have a form.
+
+Have you thought of adding this feature?
+I would envisage it operating similar to adding forms to an article.
+
+Thanks 
+
+############################################################
+
+problems with eztime.php???
+	T F 	04.03.2002 20:34
+I'm having problems with EZ 2.2 and your module. It works fine with month or year view, but whenever i attempt to do anything that involves the dayview I get the following error message returned.
+
+Fatal error: Maximum execution time of 30 seconds exceeded in /home/ezpublish/classes/eztime.php on line 150
+
+Line number seems to vary depending on the date being passed.
+
+What gives? Otherwise, nice code-looks good. Too bad its useless to me so far. :) 
+
+############################################################
+
+both ezCalendar and eZGroupCalendar
+	Pierre Menga 	12.02.2002 19:55
+Thanks for this program.
+Some things to correct:
+You have to modify the templates (menubox.tpl) so as to point to the correct modules and clean the "history class" which doesn't exist in the basic eZPublish.
+
+It would be very powerfull if it could combine both calendars (ezCalendar and eZGroupCalendar) so as to simulate a real web-scheduler) 
+
+############################################################
+
+ 	RE: both ezCalendar and eZGroupCalendar
+	Adam Fallert 	19.02.2002 21:51
+Thanks for the input of the tpl files. I did clean the menubox.tpl, but I guess I zipped the wrong set of files. Sorry!!!!
+
+As for combining both calendars, I have been considering do just that for about 2 months. The problem that I face right now is that the groupeventcalendar was developed for my orgainzation. Any enhancements I want to add would now be on my personal time (which is very scarce at the moment) without $$$$. As soon as I get the time I will try to combine the two together.
+
+It really shouldn't be too difficult. A lot of the code is the original code for ezcalendar. All that needs to be done is to add the methods for finding individual user events in the event class and placing the user dropdown menu in.
+
+> Thanks for this program.
+> Some things to correct:
+> You have to modify the templates (menubox.tpl) so as to
+> point to the correct modules and clean the "history class"
+> which doesn't exist in the basic eZPublish.
+>
+> It would be very powerfull if it could combine both
+> calendars (ezCalendar and eZGroupCalendar) so as to simulate
+> a real web-scheduler) 
+
+############################################################
+
+Few bugs
+	Atte Junttila 	06.02.2002 23:47
+ch aren't going all the day and click the dayview link you get the following error:
+
+Fatal error: Allowed memory size of 8388608 bytes exhausted (tried to allocate 15 bytes) in classes/eztime.php on line 166*
+
+*on other lines too
+
+It comes also if you send a new event or modify/delete an old event. The event is stored/deleted, but you get the error.
+
+Have a look: www.scandall.com/tapahtumat
+
+The javascript was removed from the template, but this shouldn't affect it!?
+
+Any suggestions??? I found a bug in the eventcalendar. When you have stored some events wh
+
+############################################################
+
+RE: Few bugs
+	Adam Fallert 	19.02.2002 22:12
+Thanks for the input.
+
+Which version of ezpublish and OS are you trying to run this calendar on? I developed and fully tested it on version 2.1 and I have not encountered any errors as you describe.
+
+I do know there are some differences in object referencing between 2.1 and later versions. And your errors sound like a compatibility issue.
+
+I should be downloading and installing the latest version of eZPublish soon. I will take a look that this problem as soon as possible.
+
+
+> I found a bug in the eventcalendar. When you have stored
+ch aren't going all the day and click the
+> dayview link you get the following error:
+>
+> Fatal error: Allowed memory size of 8388608 bytes exhausted
+> (tried to allocate 15 bytes) in classes/eztime.php on line
+> 166*
+>
+> *on other lines too
+>
+> It comes also if you send a new event or modify/delete an
+> old event. The event is stored/deleted, but you get the
+> error.
+>
+> Have a look: www.scandall.com/tapahtumat
+>
+> The javascript was removed from the template, but this
+> shouldn't affect it!?
+>
+> Any suggestions??? > some events wh
+
+############################################################
+
+   	RE: Few bugs
+	Atte Junttila 	20.02.2002 13:18
+It's running on a Suse Linux 7.1, PHP 4.04pl1, MySQL 3.23.33 and Apache 1.3.17. The eZ Publish version is 2.2.2
+
+Can you give me a note, when you know what causes the error?
+
+On your corporation website you had something like the "upcoming events". How is this made? I'd like to have on my frontpage such a module, like the latestmessages.tpl of ezforum.
+
+By the way, if you or maybe the ez crew are going to improve this calender you could try to combine ezArticle with the calender. I mean it would be a nice option to publish images in the calender.
+
+> Thanks for the input.
+>
+> Which version of ezpublish and OS are you trying to run this
+> calendar on? I developed and fully tested it on version 2.1
+> and I have not encountered any errors as you describe.
+>
+> I do know there are some differences in object referencing
+> between 2.1 and later versions. And your errors sound like
+> a compatibility issue.
+>
+> I should be downloading and installing the latest version of
+> eZPublish soon. I will take a look that this problem as
+> soon as possible. 
+
+############################################################
+
+        	RE: Few bugs
+	Adam Fallert 	20.02.2002 20:55
+I am using widgets (or modules for eZArticle, /ezarticle/modules/) for the upcomming events. I have made the code for this available at http://mco.mobius.missouri.edu/~adam/. Feel free to copy them.
+
+You will have to modify eZTechRender and eZTechGenerator to access these modules since they all require argument passing. I have also provided that code at the bottom of the page.
+
+> It's running on a Suse Linux 7.1, PHP 4.04pl1, MySQL 3.23.33
+> and Apache 1.3.17. The eZ Publish version is 2.2.2
+>
+> Can you give me a note, when you know what causes the
+> error?
+>
+> On your corporation website you had something like the
+> "upcoming events". How is this made? I'd like to have on my
+> frontpage such a module, like the latestmessages.tpl of
+> ezforum.
+>
+> By the way, if you or maybe the ez crew are going to improve
+> this calender you could try to combine ezArticle with the
+> calender. I mean it would be a nice option to publish images
+> in the calender.
+>
+> > Thanks for the input.
+> >
+> > Which version of ezpublish and OS are you trying to run
+> this
+> > calendar on? I developed and fully tested it on version
+> 2.1
+> > and I have not encountered any errors as you describe.
+> >
+> > I do know there are some differences in object
+> referencing
+> > between 2.1 and later versions. And your errors sound
+> like
+> > a compatibility issue.
+> >
+> > I should be downloading and installing the latest version
+> of
+> > eZPublish soon. I will take a look that this problem as
+> > soon as possible.
+
+############################################################
+
+         	RE: Few bugs
+	Atte Junttila 	20.02.2002 21:26
+Great, thanks a lot! I'll take a look on that.
+
+> I am using widgets (or modules for eZArticle,
+> /ezarticle/modules/) for the upcomming events. I have made
+> the code for this available at
+> http://mco.mobius.missouri.edu/~adam/. Feel free to copy
+> them.
+>
+> You will have to modify eZTechRender and eZTechGenerator to
+> access these modules since they all require argument
+> passing. I have also provided that code at the bottom of
+> the page.
+
+############################################################
+
+	Great, but a suggestion to add in the readme
+	Paul Borgermans 	05.02.2002 19:19
+Thanks for this module, it is readily applicable here. One suggestion however for the README, add a few lines to get it configured in the admin site:
+
+"Step 5: add eZGroupEventCalendar to the directive EnabledModules to enable the module in the admin site"
+
+Regards
+
+Paul 
+
+############################################################
+
+
+References:
+http://web.archive.org/web/20020603120338/developer.ez.no/article/articleview/273/1/1/
+http://mco.mobius.umsystem.edu/home/calendar/
+http://ezcommunity.net/article/view/165/

@@ -19,7 +19,7 @@
 </tr>
 <!-- BEGIN read_more_tpl -->
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a></td>
 </tr>
 <!-- END read_more_tpl -->

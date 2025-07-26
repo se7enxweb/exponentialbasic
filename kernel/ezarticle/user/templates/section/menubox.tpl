@@ -1,7 +1,7 @@
 <table width="100%" cellspacing="0" cellpadding="2" border="0">
 <tr>
 	<td>
-	<img src="{www_dir}/sitedesign/{sitedesign}/images/articles.gif" width="128" height="20"><br />
+	<img src="{www_dir}/design/{sitedesign}/images/articles.gif" width="128" height="20"><br />
 	</td>
 </tr>
 <tr>
@@ -41,7 +41,7 @@
 </tr>
 <tr>
 	<td>
-	<img src="{www_dir}/sitedesign/{sitedesign}/images/categories.gif" width="128" height="20"><br />
+	<img src="{www_dir}/design/{sitedesign}/images/categories.gif" width="128" height="20"><br />
 	</td>
 </tr>
 

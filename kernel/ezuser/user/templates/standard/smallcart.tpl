@@ -50,12 +50,12 @@
 <table border="0">
 
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="{www_dir}{index}/trade/cart/">{intl-allcart}</a></td>
 	<!-- END cart_checkout_tpl -->
 </tr>
 <td class="small" colspan="3" align="center">
-<input type="image"  src="{www_dir}/sitedesign/{sitedesign}/images/banner_intl.gif" width="88" height="33" border="0" name="DoCheckOut" alt="We accept PayPal, the #1 international online payment service!">
+<input type="image"  src="{www_dir}/design/{sitedesign}/images/banner_intl.gif" width="88" height="33" border="0" name="DoCheckOut" alt="We accept PayPal, the #1 international online payment service!">
 
 </td>
 </tr>
@@ -70,10 +70,10 @@
 
 <tr>
 <td class="small" colspan="3" align="center">
-<img src="{www_dir}/sitedesign/{sitedesign}/images/icon_visa.gif" width="39" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!">
-<img src="{www_dir}/sitedesign/{sitedesign}/images/icon_mastercard.gif" width="39" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!"><br/>
-<img src="{www_dir}/sitedesign/{sitedesign}/images/icon_discover.gif" width="39" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!">
-<img src="{www_dir}/sitedesign/{sitedesign}/images/icon_amex.gif" width="27" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!">
+<img src="{www_dir}/design/{sitedesign}/images/icon_visa.gif" width="39" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!">
+<img src="{www_dir}/design/{sitedesign}/images/icon_mastercard.gif" width="39" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!"><br/>
+<img src="{www_dir}/design/{sitedesign}/images/icon_discover.gif" width="39" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!">
+<img src="{www_dir}/design/{sitedesign}/images/icon_amex.gif" width="27" height="26" border="0" alt="We accept major credit cards through PayPal, the #1 international online payment service!">
 </td>
 </tr>
 

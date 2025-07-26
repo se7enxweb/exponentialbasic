@@ -38,11 +38,11 @@
 
 <table width="100%" cellspacing="0" cellpadding="2" border="0">
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="{www_dir}{index}/poll/result/{poll_id}">{intl-result}</a></td>
 </tr>
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="{www_dir}{index}/poll/polls">{intl-polls}</a></td>
 </tr>
 <tr>

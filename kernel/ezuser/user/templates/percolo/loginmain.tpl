@@ -29,12 +29,12 @@
 	</td>
 </tr>
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="{www_dir}{index}/user/forgot/">{intl-forgot}</a></td>
 </tr>
 <!-- BEGIN standard_creation_tpl -->
 <tr>
-	<td width="1%" valign="top"><img src="{www_dir}/sitedesign/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="{www_dir}/design/{sitedesign}/images/dot.gif" width="10" height="12" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="{www_dir}{index}{user_edit_url}">{intl-register}</a></td>
 </tr>
 <!-- END standard_creation_tpl -->

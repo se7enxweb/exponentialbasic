@@ -27,7 +27,7 @@
 		<td class="spacer2">&nbsp;</td>
 	</tr>
 	<tr> 
-		<td class="bgspacer"><img src="{www_dir}/sitedesign/mygold/images/shim.gif" alt="" width="1" height="2" /></td>
+		<td class="bgspacer"><img src="{www_dir}/design/mygold/images/shim.gif" alt="" width="1" height="2" /></td>
 	</tr>
 	<tr> 
 		<td class="spacer5">&nbsp;</td>

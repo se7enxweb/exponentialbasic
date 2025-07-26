@@ -13,7 +13,7 @@
 	</td>
 </tr>
 <tr>
-	<td width="1%" valign="top"><img src="/sitedesign/ipnett/images/dot.gif" width="10" height="13" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="/design/ipnett/images/dot.gif" width="10" height="13" border="0" alt="" /><br /></td>
 	<td width="99%"><a class="menu" href="/article/articleview/{article_id}/">{article_link_text}</a></td>
 </tr>
 <!-- END article_item_tpl -->

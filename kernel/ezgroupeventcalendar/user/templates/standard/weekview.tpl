@@ -105,7 +105,7 @@
   </tr>
 <!-- BEGIN private_appointment_tpl -->
  <tr valign="top">
-   <td width="8" class="tdmini"><!-- <img src="/sitedesign/{sitedesign}/images/dot.gif" border="0" alt="" /> --></td>
+   <td width="8" class="tdmini"><!-- <img src="/design/{sitedesign}/images/dot.gif" border="0" alt="" /> --></td>
    <td class="tdmini"><div class="small"><i>{appointment_group}</i> - <b>{intl-pvt_event}<br /></div></td>
  </tr>
 <!-- END private_appointment_tpl -->

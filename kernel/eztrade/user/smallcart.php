@@ -41,8 +41,9 @@ $ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 $hotDealImageWidth  = $ini->read_var( "eZTradeMain", "HotDealImageWidth" );
 $hotDealImageHeight  = $ini->read_var( "eZTradeMain", "HotDealImageHeight" );
-$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )==enabled?1:0;
-$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )==enabled?1:0;
+$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == "enabled" ? 1 : 0;
+$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == "enabled" ? 1 : 0;
+
 if(($upscheck==0)&&($uspscheck==0))
 $checkups=0;
 else

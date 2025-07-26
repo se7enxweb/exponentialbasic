@@ -106,7 +106,7 @@
     <tr bgcolor="#DDDDDD">
         <td>
             <form name="formSiegel" method="post" action="https://www.trustedshops.de/tshops/siegel.php3" target="_blank">
-                <input type="image" border="0" src="{www_dir}/sitedesign/mygold/images/trusted_shop.gif" height="69" width="69" alt="Trusted Shops G&uuml;tesiegel - Bitte hier klicken." />
+                <input type="image" border="0" src="{www_dir}/design/mygold/images/trusted_shop.gif" height="69" width="69" alt="Trusted Shops G&uuml;tesiegel - Bitte hier klicken." />
 	        <input name="shop_id" type="hidden" value="XD7D38F69FDE28952D48AC3056C5D449C" />
 	    </form>
 	</td>

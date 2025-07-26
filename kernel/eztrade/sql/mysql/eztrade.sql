@@ -55,6 +55,14 @@ CREATE TABLE eZTrade_CartOptionValue (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE eZTrade_CartShipOptions (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `AddressID` int(11) DEFAULT NULL,
+  `ServiceCode` varchar(250) DEFAULT NULL,
+  `CartID` int(11) DEFAULT NULL,
+  PRIMARY KEY (ID)
+);
+
 CREATE TABLE eZTrade_Category (
   ID int NOT NULL,
   Parent int(11) default NULL,
@@ -80,6 +88,21 @@ CREATE TABLE eZTrade_CategoryPermission (
   GroupID int(11) default NULL,
   ReadPermission int(11) default '0',
   WritePermission int(11) default '0',
+  PRIMARY KEY (ID)
+);
+
+CREATE TABLE `eZTrade_ProductFileLink` (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `ProductID` int(11) NOT NULL DEFAULT 0,
+  `FileID` int(11) NOT NULL DEFAULT 0,
+  `Created` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (ID)
+);
+
+CREATE TABLE `eZTrade_ProductForumLink` (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `ProductID` int(11) NOT NULL DEFAULT 0,
+  `ForumID` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (ID)
 );
 

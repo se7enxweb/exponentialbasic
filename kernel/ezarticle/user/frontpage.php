@@ -48,7 +48,6 @@ $CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
 $DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
 $GrayScaleImageList = $ini->read_var( "eZArticleMain", "GrayScaleImageList" );
 
-
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 

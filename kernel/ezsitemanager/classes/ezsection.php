@@ -139,7 +139,8 @@ class eZSection
 
         if ( $id != "" )
         {
-            $db->array_query( $section_array, "SELECT * FROM eZSiteManager_Section WHERE ID='$id'" );
+            $query = "SELECT * FROM eZSiteManager_Section WHERE ID='$id'";
+            $db->array_query( $section_array, $query );
             if ( count( $section_array ) > 1 )
             {
                 die( "Error: Section's with the same ID was found in the database. This shouldent happen." );
@@ -364,7 +365,7 @@ class eZSection
     static public function &globalSectionObject( $sectionID )
     {
         $objName = "eZSectionObject_$sectionID";
-	global $GLOBALS;
+	    global $GLOBALS;
 	
         if ( !isset( $GLOBALS[$objName] ) or !is_a( $GLOBALS[$objName], "eZSection" ) )
         {

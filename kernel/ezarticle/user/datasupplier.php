@@ -65,19 +65,21 @@ switch ( $url_array[2] )
         if ( isset( $url_array[3] ) ) 
         {
             $GlobalSectionID = $url_array[3];
+            $CategoryID = $url_array[3];
 
-            if ( $url_array[3] != 3 )
-            {  
-                    $GlobalSectionID = 3;
-            }
+        }
+        elseif ( !isset( $url_array[3] ) )
+        {
+            $GlobalSectionID = 1;
+            $CategoryID = 1;
         }
 
         // if file exists... evrything is ok..
         // if not.. check permission, then run page if ok
-        $user =& eZUser::currentUser();
+        $user = eZUser::currentUser();
         $groupstr = "";
 
-        if ( get_class( $user ) == "ezuser" )
+        if ( $user && get_class( $user ) == "eZUser" )
         {
             $groupIDArray =& $user->groups( false );
             sort( $groupIDArray );
@@ -111,6 +113,7 @@ switch ( $url_array[2] )
         }
         else
         {
+            $GenerateStaticPage = "false";
             include( "kernel/ezarticle/user/frontpage.php" );
         }
 

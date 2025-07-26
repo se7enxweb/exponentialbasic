@@ -2740,6 +2740,7 @@ class eZArticle
     */
     static public function authorArticleList( $authorid, $offset = 0, $limit = -1, $sort = false )
     {
+        $sort_text = '';
         if ( is_string( $sort ) )
         {
             switch( $sort )

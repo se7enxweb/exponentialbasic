@@ -15,16 +15,16 @@
    </td>
 </tr>
   <tr>
-    <td bgcolor="#006699" width="9"><img src="{www_dir}/sitedesign/sailing/images/leftrounded.gif" width="9" height="20" hspace="0" vspace="0" border="0" align="left" alt=""></td>
+    <td bgcolor="#006699" width="9"><img src="{www_dir}/design/sailing/images/leftrounded.gif" width="9" height="20" hspace="0" vspace="0" border="0" align="left" alt=""></td>
     <td bgcolor="#006699" width="100%"><b class="white">{category_definition_name}</b></td>
-    <td width="70"><img src="{www_dir}/sitedesign/sailing/images/rightrounded.gif" width="70" height="20" hspace="0" vspace="0" border="0" align="right" alt=""></td>
+    <td width="70"><img src="{www_dir}/design/sailing/images/rightrounded.gif" width="70" height="20" hspace="0" vspace="0" border="0" align="right" alt=""></td>
   </tr>
 
 </table>
 
 <br />
 <!-- BEGIN print_page_link_tpl -->
-&nbsp;&nbsp; <img src="{www_dir}/sitedesign/sailing/images/print.gif" alt="">&nbsp; <a class="section" href="{www_dir}{index}/article/articleprint/{article_id}/">{intl-print_page}</a>
+&nbsp;&nbsp; <img src="{www_dir}/design/sailing/images/print.gif" alt="">&nbsp; <a class="section" href="{www_dir}{index}/article/articleprint/{article_id}/">{intl-print_page}</a>
 <!-- END print_page_link_tpl -->
 
 

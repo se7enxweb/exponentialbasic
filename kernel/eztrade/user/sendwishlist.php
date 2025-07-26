@@ -41,7 +41,7 @@ $Language = $ini->read_var( "eZTradeMain", "Language" );
 // include_once( "ezmail/classes/ezmail.php" );
 
 
-$wishlist = new eZWishlist();
+$wishlist = new eZWishList();
 $session = new eZSession();
 
 // if no session exist create one.

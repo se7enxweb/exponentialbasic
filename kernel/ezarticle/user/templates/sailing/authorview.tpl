@@ -5,9 +5,9 @@
    </td>
 </tr>
   <tr>
-    <td bgcolor="#006699" width="9"><img src="{www_dir}/sitedesign/sailing/images/leftrounded.gif" width="9" height="20" hspace="0" vspace="0" border="0" align="left" alt=""></td>
+    <td bgcolor="#006699" width="9"><img src="{www_dir}/design/sailing/images/leftrounded.gif" width="9" height="20" hspace="0" vspace="0" border="0" align="left" alt=""></td>
     <td bgcolor="#006699" width="100%"><b class="white">{intl-author_info}</b></td>
-    <td width="70"><img src="{www_dir}/sitedesign/sailing/images/rightrounded.gif" width="70" height="20" hspace="0" vspace="0" border="0" align="right" alt=""></td>
+    <td width="70"><img src="{www_dir}/design/sailing/images/rightrounded.gif" width="70" height="20" hspace="0" vspace="0" border="0" align="right" alt=""></td>
   </tr>
 
 </table>
@@ -28,9 +28,9 @@
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
   <tr>
-    <td bgcolor="#006699" width="9"><img src="{www_dir}/sitedesign/sailing/images/leftrounded.gif" width="9" height="20" hspace="0" vspace="0" border="0" align="left" alt=""></td>
+    <td bgcolor="#006699" width="9"><img src="{www_dir}/design/sailing/images/leftrounded.gif" width="9" height="20" hspace="0" vspace="0" border="0" align="left" alt=""></td>
     <td bgcolor="#006699" width="100%"><b class="white">{intl-head_line}{author_firstname} {author_lastname} ({article_start}-{article_end}/{article_count})</b></td>
-    <td width="70"><img src="{www_dir}/sitedesign/sailing/images/rightrounded.gif" width="70" height="20" hspace="0" vspace="0" border="0" align="right" alt=""></td>
+    <td width="70"><img src="{www_dir}/design/sailing/images/rightrounded.gif" width="70" height="20" hspace="0" vspace="0" border="0" align="right" alt=""></td>
   </tr>
 
 </table>

@@ -13,10 +13,10 @@
 	<tr> 
 		<td colspan="2"> 
 			<hr noshade size="1" />
-			<img src="{www_dir}/sitedesign/mygold/images/path-arrow.gif" height="10" width="15" border="0" alt=""/> 
+			<img src="{www_dir}/design/mygold/images/path-arrow.gif" height="10" width="15" border="0" alt=""/> 
 			<a href="{www_dir}{index}/trade/productlist/0/">{intl-top}</a> 
 			<!-- BEGIN path_tpl -->
-			<img src="{www_dir}/sitedesign/mygold/images/path-slash.gif" height="10" width="20" border="0" alt=""/> 
+			<img src="{www_dir}/design/mygold/images/path-slash.gif" height="10" width="20" border="0" alt=""/> 
 			<a href="{www_dir}{index}/trade/productlist/{category_id}/">{category_name}</a> 
 			<!-- END path_tpl -->
 			<hr noshade size="1" />
@@ -81,7 +81,7 @@
 <table width="100%">
     <tr>
         <td class="spacer" width="1%">
-	    <a class="nav" href="#"><img src="{www_dir}/sitedesign/mygold/images/top.gif" width="10" height="15" border="0" alt="" /></a>
+	    <a class="nav" href="#"><img src="{www_dir}/design/mygold/images/top.gif" width="10" height="15" border="0" alt="" /></a>
 	</td>
 	<td>
 	    <a class="nav" href="#">TOP</a>
@@ -90,7 +90,7 @@
 	    <a class="nav" href="#">TOP</a>
 	</td>
         <td class="spacer" width="1%">
-	    <a class="nav" href="#"><img src="{www_dir}/sitedesign/mygold/images/top.gif" width="10" height="15" border="0" alt="" /></a>
+	    <a class="nav" href="#"><img src="{www_dir}/design/mygold/images/top.gif" width="10" height="15" border="0" alt="" /></a>
 	</td>	        
     </tr>
 </table>    	

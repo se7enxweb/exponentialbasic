@@ -1,19 +1,19 @@
  <table width="100%" height="100" border="0" vspace="0" hspace="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="1%"><img src="{www_dir}/sitedesign/percolo/images/onepix.gif" alt="luft" width="14" height="14" hspace="0" vspace="0" /><br /></td>
-			<td width="98%" valign="top"><img src="{www_dir}/sitedesign/percolo/images/onepix.gif" alt="luft" width="1" height="14" hspace="0" vspace="0" /><br /></td>
-            <td rowspan="3" valign="top" width="1%" align="right"><img src="{www_dir}/sitedesign/percolo/images/helikopter.gif" alt="helikopter" width="140" height="100" /><br /></td>
+            <td width="1%"><img src="{www_dir}/design/percolo/images/onepix.gif" alt="luft" width="14" height="14" hspace="0" vspace="0" /><br /></td>
+			<td width="98%" valign="top"><img src="{www_dir}/design/percolo/images/onepix.gif" alt="luft" width="1" height="14" hspace="0" vspace="0" /><br /></td>
+            <td rowspan="3" valign="top" width="1%" align="right"><img src="{www_dir}/design/percolo/images/helikopter.gif" alt="helikopter" width="140" height="100" /><br /></td>
         </tr>
         <tr>
-            <td bgcolor="#009ebf" valign="top"><img src="{www_dir}/sitedesign/percolo/images/onepix.gif" alt="luft" width="14" height="32" hspace="0" vspace="0" /><br /></td>
+            <td bgcolor="#009ebf" valign="top"><img src="{www_dir}/design/percolo/images/onepix.gif" alt="luft" width="14" height="32" hspace="0" vspace="0" /><br /></td>
             <td bgcolor="#009ebf" valign="top"><h1 class="sidetittel">{intl-mastercard_payment}</h1></td>
         </tr>
         <tr>
-            <td><img src="{www_dir}/sitedesign/percolo/images/onepix.gif" alt="luft" width="14" height="14" hspace="0" vspace="0" /><br /></td>
-            <td><img src="{www_dir}/sitedesign/percolo/images/onepix.gif" alt="luft" width="50" height="60" hspace="0" vspace="0"></td>
+            <td><img src="{www_dir}/design/percolo/images/onepix.gif" alt="luft" width="14" height="14" hspace="0" vspace="0" /><br /></td>
+            <td><img src="{www_dir}/design/percolo/images/onepix.gif" alt="luft" width="50" height="60" hspace="0" vspace="0"></td>
         </tr>
 		<tr>
-		    <td><img src="{www_dir}/sitedesign/percolo/images/onepix.gif" alt="luft" width="14" height="14" hspace="0" vspace="0" /><br /></td>
+		    <td><img src="{www_dir}/design/percolo/images/onepix.gif" alt="luft" width="14" height="14" hspace="0" vspace="0" /><br /></td>
 			<td colspan="2">
 
 <form action="{www_dir}{index}/trade/payment/{order_id}/{payment_type}/" method="post" >

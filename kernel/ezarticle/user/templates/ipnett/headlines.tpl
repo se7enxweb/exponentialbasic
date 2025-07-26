@@ -21,7 +21,7 @@
 <!-- BEGIN article_item_tpl -->
 <tr>
 <!--
-	<td width="1%" valign="top"><img src="/sitedesign/ipnett/images/dot.gif" width="10" height="13" border="0" alt="" /><br /></td>
+	<td width="1%" valign="top"><img src="/design/ipnett/images/dot.gif" width="10" height="13" border="0" alt="" /><br /></td>
 -->
 	<td>
 <!-- BEGIN current_image_item_tpl -->

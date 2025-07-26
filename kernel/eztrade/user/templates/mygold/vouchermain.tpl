@@ -12,7 +12,7 @@ Empf&auml;nger schicken m&ouml;chten.<br />
       <table width="100%" border="0" cellspacing="3" cellpadding="3">
         <tr> 					 
           <td align="center" valign="middle">
-	    <img src="/sitedesign/mygold/images/egutschein_s.gif" width="100" height="136" alt="Abbildung E-Mail Gutschein" /><br />
+	    <img src="/design/mygold/images/egutschein_s.gif" width="100" height="136" alt="Abbildung E-Mail Gutschein" /><br />
             <a class="small" href="/imagecatalogue/imageview/218573/?RefererURL=/trade/vouchermain/">Detailansicht</a>
 	  </td>
           <td valign="top"> 
@@ -23,7 +23,7 @@ Empf&auml;nger schicken m&ouml;chten.<br />
         </tr>
         <tr> 
           <td align="center" valign="middle">
-	    <img src="/sitedesign/mygold/images/gutschein_s.gif" width="100" height="99" alt="Abbildung Brief Gutschein" /><br />	  
+	    <img src="/design/mygold/images/gutschein_s.gif" width="100" height="99" alt="Abbildung Brief Gutschein" /><br />	  
             <a class="small" href="/trade/voucheremailsample/">Detailansicht</a>
 	  </td>
           <td valign="top"> 

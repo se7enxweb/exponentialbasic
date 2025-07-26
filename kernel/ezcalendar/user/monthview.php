@@ -33,7 +33,7 @@
 // include_once( "ezcalendar/classes/ezappointment.php" );
 // include_once( "eztodo/classes/eztodo.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZCalendarMain", "Language" );
 $Locale = new eZLocale( $Language );

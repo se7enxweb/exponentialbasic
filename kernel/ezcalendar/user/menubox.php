@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZCalendarMain", "Language" );
 
@@ -41,6 +41,7 @@ $t->setAllStrings();
 
 $t->set_file( "menu_box_tpl", "menubox.tpl" );
 $t->set_var( "sitedesign", $GlobalSiteDesign );
+
 $t->pparse( "output", "menu_box_tpl" );
 		
 ?>

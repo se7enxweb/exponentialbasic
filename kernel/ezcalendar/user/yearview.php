@@ -31,7 +31,7 @@
 // include_once( "classes/ezdatetime.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZCalendarMain", "Language" );
 $Locale = new eZLocale( $Language );

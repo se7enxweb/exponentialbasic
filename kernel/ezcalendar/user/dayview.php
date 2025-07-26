@@ -32,7 +32,7 @@
 
 // include_once( "ezcalendar/classes/ezappointment.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZCalendarMain", "Language" );
 $StartTimeStr = $ini->read_var( "eZCalendarMain", "DayStartTime" );

@@ -1,0 +1,36 @@
+eZTip README
+------------
+
+        Created by DB Informatics www.dbinformatics.com
+
+        This eZTip module is based upon eZAd, it allows HTML text or Images to be
+        randomly displayed.
+        
+
+        Features:
+
+        * Tip categories can limited to certain site sections.
+
+        * Multiple page locations are supported.
+
+        * Tips may or may not have links.
+
+        * Individual links or categories can be set to inactive.
+
+        * Records Total View, Total Click counts and click percentage.
+
+
+        We hope this module proves helpful to the eZ publish community and we look
+        forward to seeing others develop it further.
+
+        Comments can be sent to info@dbinformatics.com.au
+
+        Legal Disclaimer and Credit:
+        a) This module is being distributed free of charge and on an "as is" basis.
+        b) Use of this code, or any part thereof, is contingent upon leaving this
+           Legal Disclaimer and Credit notice in tact.
+        c) By using this code, you accept full responsibility for its use and will
+           not hold the DB Informatics Company, its employees or officers liable for
+           damages of any sort.
+        d) This code is not to be used for illegal purposes.
+        e) This module was created by www.dbinformatics.com.au

@@ -1,0 +1,13 @@
+eZSurvey INSTALL
+
+1. change the "initial data" section in sql/mysql/eZSurvey.sql
+2. run it against the database
+3. change the following according to step 1 and add it to site.ini:
+
+[eZSurveyMain]
+AdminTemplateDir=templates/standard
+TemplateDir=templates/standard
+Language=en_GB
+DefaultSection=25
+SurveyListLimit=5
+ReportTemplateID=8

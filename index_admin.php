@@ -357,7 +357,21 @@ if ( $user )
         }
         else
         {
-            print( "help file not found" );
+        	if ( $url_array[2] != "popup" )
+                print( "help file not found" );
+        	else
+        	{
+                $page = "ez" . $url_array[1] . "/admin/datasupplier.php";
+        
+                if ( eZFile::file_exists( $page ) )
+	        	{
+                    include( $page );
+	        	}
+	        	else
+	        	{
+                    print( "popup file not found" );
+	        	}
+	        }
 
         }
     }
@@ -374,7 +388,8 @@ if ( $user )
         }
         else
         {
-            include( "design/admin/footer.php" );
+        	if ( $url_array[2] != "popup" )
+			include( "design/admin/footer.php" );
         }
     }
 }

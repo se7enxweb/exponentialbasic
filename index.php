@@ -1,5 +1,6 @@
 <?php
 
+// phpinfo();
 // ini_set('display_errors','On');
 // ini_set('max_execution_time', '300');
 
@@ -91,6 +92,7 @@ else
 preg_match( "/([^?]+)/", $_SERVER['REQUEST_URI'], $regs );
 $_SERVER['REQUEST_URI'] = $regs[1];
 
+date_default_timezone_set( 'America/Los_Angeles' );
 
 $GLOBALS["DEBUG"] = false;
 $GLOBALS["DDD"] = '';
@@ -109,6 +111,8 @@ if ( $UsePHPSessions == true )
 
 // Include composer based autoloads (new in 2.4.0.0)
 require __DIR__ . '/vendor/autoload.php';
+
+ini_set( 'display_errors', 'On' );
 
 // settings for sessions
 // max timeout is set to 48 hours
@@ -147,7 +151,9 @@ $session =& eZSession::globalSession();
 //
 unset( $siteDesign );
 unset( $GlobalSiteDesign );
+$SiteStyle = $ini->read_var( "site", "SiteDesign" );
 $siteDesign =& $ini->read_var( "site", "SiteDesign" );
+
 
 // Store the site design in a global variable
 $GlobalSiteDesign = $siteDesign;
@@ -297,6 +303,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
     if ( $_SERVER['REQUEST_METHOD'] == "POST" ||
          $url_array[1] == "forum" ||
          $url_array[1] == "user" ||
+         $url_array[1] == "trade" ||
          $url_array[1] == "error" ||
          $url_array[1] == "poll" )
     {
@@ -488,4 +495,5 @@ $db =& eZDB::globalDatabase();
 $db->close();
 
 ob_end_flush();
+
 ?>

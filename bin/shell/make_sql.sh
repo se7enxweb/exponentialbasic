@@ -6,9 +6,12 @@ else
 	SKIPDISCLAIMER="no"
 fi
 
-modules=`ls -d ez*`
-rm -f bin/sql/generated/publish_postgresql.sql
-rm -f bin/sql/generated/publish_mysql.sql
+modules=`ls -d kernel/ez*`;
+
+mkdir -p ./bin/sql/generated;
+
+rm -f ./bin/sql/generated/publish_postgresql.sql
+rm -f ./bin/sql/generated/publish_mysql.sql
 
 if [ $SKIPDISCLAIMER == "no" ]; then
 	echo "
@@ -19,7 +22,7 @@ if [ $SKIPDISCLAIMER == "no" ]; then
 -- # Any changes to this file will be lost in the release         #
 -- # edit [modulename]/sql/postgresql/[modulenname].sql instead   #
 -- ################################################################
-" >> bin/sql/generated/publish_postgresql.sql
+" >> ./bin/sql/generated/publish_postgresql.sql
 
 	echo "
 -- ################################################################
@@ -29,17 +32,18 @@ if [ $SKIPDISCLAIMER == "no" ]; then
 -- # Any changes to this file will be lost in the release         #
 -- # edit [modulename]/sql/mysql/[modulenname].sql instead        #
 -- ################################################################
-" >> bin/sql/generated/publish_mysql.sql
+" >> ./bin/sql/generated/publish_mysql.sql
 fi
 
 
-for module in $modules
+for moduleDir in $modules
 do
-    if [ -f $module/sql/postgresql/$module.sql ]
-	then cat $module/sql/postgresql/$module.sql >> bin/sql/generated/publish_postgresql.sql
+    module="${moduleDir##*/}";
+    if [ -f kernel/$module/sql/postgresql/$module.sql ]
+	then cat kernel/$module/sql/postgresql/$module.sql >> ./bin/sql/generated/publish_postgresql.sql
     fi
-    if [ -f $module/sql/mysql/$module.sql ]
-	then cat $module/sql/mysql/$module.sql >> bin/sql/generated/publish_mysql.sql
+    if [ -f kernel/$module/sql/mysql/$module.sql ]
+	then cat kernel/$module/sql/mysql/$module.sql >> ./bin/sql/generated/publish_mysql.sql
     fi
 done
 
@@ -53,7 +57,7 @@ if [ $SKIPDISCLAIMER == "no" ]; then
 -- # Any changes to this file will be lost in the release         #
 -- # edit [modulename]/sql/postgresql/[modulenname].sql instead   #
 -- ################################################################
-" >> bin/sql/generated/publish_postgresql.sql
+" >> ./bin/sql/generated/publish_postgresql.sql
 
 	echo "
 -- ################################################################
@@ -63,6 +67,6 @@ if [ $SKIPDISCLAIMER == "no" ]; then
 -- # Any changes to this file will be lost in the release         #
 -- # edit [modulename]/sql/mysql/[modulenname].sql instead        #
 -- ################################################################
-" >> bin/sql/generated/publish_mysql.sql
+" >> ./bin/sql/generated/publish_mysql.sql
 fi
 

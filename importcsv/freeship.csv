@@ -1,0 +1,6 @@
+Flat UPS No Combine,Test01,test,Test UPS No Combine,Test UPS No Combine,,100,,3,5,,,off,off,,,20.00,,,on,on,off,5.00,0
+Flat UPS Combine,Test02,test,Test UPS Combine,Test UPS Combine,,100,,3,5,,,off,off,,,20.00,,,on,on,10.00,off,1
+Flat USPS No Combine,Test03,test,Test USPS No Combine,Test USPS No Combine,,100,,3,5,,,off,off,,,20.00,,,on,on,off,5.00,0
+Flat USPS Combine,Test04,test,Test USPS Combine,Test USPS Combine,,100,,3,5,,,off,off,,,20.00,,,on,on,off,10.00,1
+Flat UPS Free,Test05,test,Test UPS Free,Test UPS Free,,100,,3,5,,,off,off,,,20.00,,,on,on,0.00,off,0
+Flat USPS Free,Test06,test,Test USPS Free,Test USPS Free,,100,,3,5,,,off,off,,,20.00,,,on,on,off,0.00,0

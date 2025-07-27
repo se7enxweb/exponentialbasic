@@ -7,12 +7,15 @@ kernel/ezaddress
 kernel/ezarticle
 kernel/ezbug
 kernel/ezcalendar
+kernel/ezgroupeventcalendar
 kernel/ezcontact
 kernel/ezforum
 kernel/ezlink
 kernel/eznewsfeed
 kernel/ezpoll
 kernel/ezstats
+kernel/ezsurvey
+kernel/eztip
 kernel/eztodo
 kernel/eztrade
 kernel/ezuser

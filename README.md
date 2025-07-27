@@ -59,9 +59,14 @@ Follow these steps to set up eZ Publish Basic via Composer:
 
 2. Set up your database in your database server.
 
-3. Update settings files as needed. 
+- You will first need to generate the database SQL file. Run this command: ```cd /path/to/ezpb/; ./bin/shell/make_sql.sh```
+- Then load the SQL file generated from: ```mysql -u user databaseName -p < ./bin/sql/generated/publish_mysql.sql;```
 
-- Update site name, domain hostnames for user and admin websites, default design, database name and connecting username and password settings all in the site.ini in bin/ini/override/site.ini
+4. Update settings files
+
+Update settings file ```bin/ini/override/site.ini``` as needed to include the default settings customized to your own needs.
+
+- Update site name, domain hostnames for user and admin websites, default design, database name and database connection username and password settings all in the site.ini in bin/ini/override/site.ini
 
 3. Initialize the application in your web browser. We recommend loading the admin site first but it doesn't matter much.
 

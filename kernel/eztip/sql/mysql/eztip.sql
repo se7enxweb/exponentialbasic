@@ -24,6 +24,9 @@ CREATE TABLE eZTip_Category (
   Name varchar(150) default NULL,
   Description text,
   ParentID int not NULL,
+  SectionID int not NULL,
+  IsPublished int not NULL,
+  LocationID int not NULL,
   ExcludeFromSearch int default '0',
   PRIMARY KEY (ID)
 );

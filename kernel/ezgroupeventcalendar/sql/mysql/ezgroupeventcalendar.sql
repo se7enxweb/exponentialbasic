@@ -125,7 +125,7 @@ CREATE TABLE `eZGroupEventCalendar_EventForumLink` (
   `EventID` int(11) NOT NULL default '0',
   `ForumID` int(11) NOT NULL default '0',
   PRIMARY KEY  (`ID`)
-) TYPE=MyISAM;
+);
 
 
 DROP TABLE IF EXISTS eZGroupEventCalendar_EventFileLink;
@@ -139,7 +139,7 @@ CREATE TABLE `eZGroupEventCalendar_EventFileLink` (
   `FileID` int(11) NOT NULL default '0',
   `Created` int(11) NOT NULL,
   PRIMARY KEY  (`ID`)
-) TYPE=MyISAM;
+);
 
 # 
 # Dumping data for table `eZForum_Category`

@@ -268,6 +268,7 @@ class eZGroupEditor
 	function listGroups()
 	{
 		$this->dbInit();
+		$return_array = array();
 
 		$this->Database->array_query( $group_array, "SELECT ID FROM eZGroupEventCalendar_GroupEditor Group By GroupID" );
 		

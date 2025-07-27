@@ -1,16 +1,5 @@
-User-Agent: *
-Disallow: /cgi-bin/
-/robots.txt
-/Var_Dump.php
-/site.ini
-/sitedir.ini
-/index_xmlrpc.php
-/index_admin.php
-/override
-/cron.php
-/article/articleedit/new/
-/section-news
-/section-intranet
-/section-news
-/section-standard
-/temp
+User-agent: *
+
+# Replace the following with your own hostname + uri to sitemal route of your web application.
+# 
+# Sitemap: https://example.com/sitemap.xml

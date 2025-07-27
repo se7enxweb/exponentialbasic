@@ -1,0 +1,1 @@
+52 1,2,3,4,5,6,7,8,9,23 * * * curl http://dev.example.com/trade/export >> /home/full/web/logs/froogle_cron.txt;

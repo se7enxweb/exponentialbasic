@@ -1,0 +1,3 @@
+52 8,22 * * 0 cd /home/full/web/dev/public_html; ./bin/shell/clearcache2.sh;
+52 22 * * 0 cd /home/full/public_html; ./bin/shell/clearcache2.sh;
+

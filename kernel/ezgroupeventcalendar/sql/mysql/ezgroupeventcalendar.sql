@@ -80,6 +80,7 @@ CREATE TABLE eZGroupEventCalendar_EventType (
    ParentID int(11) DEFAULT '0' NOT NULL,
    Description text,
    Name varchar(255),
+   ExcludeFromSearch int(1) DEFAULT '0' NOT NULL,
    PRIMARY KEY (ID)
 );
 

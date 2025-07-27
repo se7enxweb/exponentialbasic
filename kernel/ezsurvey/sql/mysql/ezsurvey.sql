@@ -15,9 +15,9 @@ CREATE TABLE `eZSurvey_Question` (
   `Content` text NOT NULL DEFAULT '',
   `Initial` text DEFAULT NULL,
   `Required` enum('Y','N') NOT NULL DEFAULT 'N',
-  `Public` enum('Y','N') NOT NULL DEFAULT 'Y',
+  `Public` varchar(3) NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `eZSurvey_QuestionChoice` (
   `Content` text NOT NULL DEFAULT '',
   `Value` text DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +80,7 @@ CREATE TABLE `eZSurvey_QuestionType` (
   `HasChoices` enum('Y','N') NOT NULL DEFAULT 'Y',
   `ResponseTable` varchar(32)/*old*/ NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `eZSurvey_Response` (
   `Complete` enum('Y','N') NOT NULL DEFAULT 'N',
   `UserID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +220,7 @@ CREATE TABLE `eZSurvey_ResponseRank` (
   `ChoiceID` int(11) NOT NULL DEFAULT 0,
   `Rank` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,7 +296,7 @@ DROP TABLE IF EXISTS `eZSurvey_Survey`;
 CREATE TABLE `eZSurvey_Survey` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `UserID` int(11) NOT NULL DEFAULT 0,
-  `Public` enum('Y','N') NOT NULL DEFAULT 'Y',
+  `Public` varchar(3) NOT NULL DEFAULT 'Y',
   `Status` varchar(64)/*old*/ NOT NULL DEFAULT 'EDIT',
   `Title` varchar(255)/*old*/ NOT NULL DEFAULT '',
   `SubTitle` text DEFAULT NULL,
@@ -308,7 +308,7 @@ CREATE TABLE `eZSurvey_Survey` (
   `Changed` int(11) DEFAULT NULL,
   `SectionID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

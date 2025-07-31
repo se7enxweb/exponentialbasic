@@ -62,13 +62,23 @@ Follow these steps to set up eZ Publish Basic via Composer:
 - You will first need to generate the database SQL file. Run this command: ```cd /path/to/ezpb/; ./bin/shell/make_sql.sh```
 - Then load the SQL file generated from: ```mysql -u user databaseName -p < ./bin/sql/generated/publish_mysql.sql;```
 
-4. Update settings files
+3. Update settings files
 
 Update settings file ```bin/ini/override/site.ini``` as needed to include the default settings customized to your own needs.
 
 - Update site name, domain hostnames for user and admin websites, default design, database name and database connection username and password settings all in the site.ini in bin/ini/override/site.ini
 
-3. Initialize the application in your web browser. We recommend loading the admin site first but it doesn't matter much.
+4. Configure .htacesss or Web Server Mod_Rewrite Rules
+
+This will direct all trafic by hostname match to index.php or index_admin.php as needed.
+
+4.1 Add your user website domain name (escape periods for syntax match) to the provided .htaccess file configuration.
+
+4.2 Add your admin website domain name (escape periods for syntax match) to the provided .htaccess file configuration.
+
+4.3 Add your IPv4 address (escape periods for syntax match) to the provided .htaccess file configuration.
+
+5. Initialize the application in your web browser. We recommend loading the admin site first but it doesn't matter much.
 
 # Default Admin Account in eZ Publish Basic
 

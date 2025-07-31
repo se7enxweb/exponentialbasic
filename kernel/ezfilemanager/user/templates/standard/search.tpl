@@ -44,7 +44,7 @@
 	{file_size}&nbsp;{file_unit}
 	</td>
 	<td class="{td_class}" width="1%" valign="top">
-	<a href="{www_dir}{index}/filemanager/download/{file_id}/{original_file_name}" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-dl','','{www_dir}/images/downloadminimrk.gif',1)"><img name="ezf{file_id}-dl" border="0" src="{www_dir}/images/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a>
+	<a href="{www_dir}{index}/filemanager/download/{file_id}/{original_file_name}" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-dl','','{www_dir}/images/downloadminimrk.gif',1)"><img name="ezf{file_id}-dl" border="0" src="{www_dir}/design/admin/images/layout/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a>
 	</td>
 	<!-- END read_tpl -->
 </tr>

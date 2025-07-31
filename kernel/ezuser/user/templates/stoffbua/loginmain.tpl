@@ -31,8 +31,8 @@
 	</tr>
 	<tr>
 		<td>
-		<img src="{www_dir}/images/path-arrow.gif" width="15" height="10" /><a class="menu" href="{www_dir}{index}/user/forgot/">{intl-forgot}</a><br />
-		<img src="{www_dir}/images/path-arrow.gif" width="15" height="10" /><a class="menu" href="{www_dir}{index}{user_edit_url}">Ny kunde</a>
+		<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" width="15" height="10" /><a class="menu" href="{www_dir}{index}/user/forgot/">{intl-forgot}</a><br />
+		<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" width="15" height="10" /><a class="menu" href="{www_dir}{index}{user_edit_url}">Ny kunde</a>
 		<input type="hidden" name="RedirectURL" value="{redirect_url}">
 
 		</form>

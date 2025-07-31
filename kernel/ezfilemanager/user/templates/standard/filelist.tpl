@@ -18,7 +18,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="4" >
 <tr>
    <td>
-	<img src="{www_dir}/ezfilemanager/user/{image_dir}/folder.gif" alt="" width="16" height="16" border="0" />&nbsp;<a href="{www_dir}{index}/filemanager/list/{folder_id}/">{folder_name}</a><br />
+	<img src="{www_dir}/design/admin/images/layout/folder.gif" alt="" width="16" height="16" border="0" />&nbsp;<a href="{www_dir}{index}/filemanager/list/{folder_id}/">{folder_name}</a><br />
    </td>
    <td>
    <p>
@@ -66,7 +66,7 @@
         <!-- END folder_read_tpl -->
         <!-- BEGIN folder_write_tpl -->
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/filemanager/folder/edit/{folder_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{folder_id}-red','','{www_dir}/images/redigerminimrk.gif',1)"><img name="ezf{folder_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
+	<a href="{www_dir}{index}/filemanager/folder/edit/{folder_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{folder_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezf{folder_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
 	</td>
 	<td class="{td_class}" width="1%">
 	<input type="checkbox" name="FolderArrayID[]" value="{folder_id}">

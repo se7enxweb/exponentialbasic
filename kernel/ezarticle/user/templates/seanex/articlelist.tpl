@@ -63,7 +63,7 @@
 	<p>
 	{article_intro}
 	</p>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="15" border="0" alt="">
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="15" border="0" alt="">
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/">
 	{article_link_text}
 	</a>

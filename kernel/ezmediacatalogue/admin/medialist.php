@@ -40,7 +40,7 @@
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
-
+$SyncDir = $ini->read_var( "eZMediaCatalogueMain", "SyncDir" );
 $ImageDir = $ini->read_var( "eZMediaCatalogueMain", "ImageDir" );
 
 $t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "TemplateDir" ),
@@ -216,12 +216,16 @@ function syncDir( $root, $category )
 if ( isSet ( $MediaUpload ) )
 {
   $category = new eZMediaCategory( $PicCat );
-  syncDir( $SyncDir, $category );
+  syncDir( $SyncMediaDir, $category );
   eZHTTPTool::header( "Location: /mediacatalogue/media/list/$PicCat/" );
   exit();
 }
+else
+{
+    $SyncMediaDir = $SyncDir;
+}
 
-$t->set_var( "sync_dir", $SyncDir );
+$t->set_var( "sync_dir", $SyncMediaDir );
 
 // ###################################################
 
@@ -328,6 +332,7 @@ foreach ( $mediaList as $media )
     $t->set_var( "media_size", $size["size-string"] );
     $t->set_var( "media_unit", $size["unit"] );
     $t->set_var( "media_caption", $media->caption() );
+    $t->set_var( "media_uri", $media->mediaPath( false ) );
 
     $t->set_var( "read", "" );
     $t->set_var( "write", "" );

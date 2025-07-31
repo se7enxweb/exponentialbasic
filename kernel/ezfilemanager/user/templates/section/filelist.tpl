@@ -44,7 +44,7 @@
 <tr>
         <!-- BEGIN folder_read_tpl -->
 	<td class="{td_class}" width="1%" valign="top">
-	<img src="{www_dir}/images/folder.gif" alt="" width="16" height="16" border="0" />
+	<img src="{www_dir}/design/admin/images/layout/folder.gif" alt="" width="16" height="16" border="0" />
 	</td>
 	<td class="{td_class}" width="98%" valign="top">
 	<a href="{www_dir}{index}/filemanager/list/{folder_id}/">{folder_name}</a><br />
@@ -52,7 +52,7 @@
         <!-- END folder_read_tpl -->
         <!-- BEGIN folder_write_tpl -->
 	<td class="{td_class}" width="1%" valign="top">
-	<a href="{www_dir}{index}/filemanager/folder/edit/{folder_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{folder_id}-red','','/images/redigerminimrk.gif',1)"><img name="ezf{folder_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
+	<a href="{www_dir}{index}/filemanager/folder/edit/{folder_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{folder_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezf{folder_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
 	</td>
 	<td class="{td_class}" width="1%" valign="top">
 	<input type="checkbox" name="FolderArrayID[]" value="{folder_id}">
@@ -91,12 +91,12 @@
 	{file_size}&nbsp;{file_unit}
 	</td>
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/filemanager/download/{file_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-dl','','/images/downloadminimrk.gif',1)"><img name="ezf{file_id}-dl" border="0" src="{www_dir}/images/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a>
+	<a href="{www_dir}{index}/filemanager/download/{file_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-dl','','/images/downloadminimrk.gif',1)"><img name="ezf{file_id}-dl" border="0" src="{www_dir}/design/admin/images/layout/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a>
 	</td>
 	<!-- END read_tpl -->
 	<!-- BEGIN write_tpl -->
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/filemanager/edit/{file_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-red','','/images/redigerminimrk.gif',1)"><img name="ezf{file_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
+	<a href="{www_dir}{index}/filemanager/edit/{file_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezf{file_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a><br />
 	</td>
 	<td class="{td_class}" width="1%" align="center">
 	<input type="checkbox" name="FileArrayID[]" value="{file_id}">

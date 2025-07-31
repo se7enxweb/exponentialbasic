@@ -36,7 +36,7 @@
 	<div class="spacer"><div class="p">{article_intro}</div></div>
 
         <!-- BEGIN read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="8" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="8" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	<br />
         <!-- END read_more_tpl -->

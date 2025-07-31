@@ -70,7 +70,7 @@
 	<td class="{td_class}" width="1%"><a href="{www_dir}{index}{item_up_command}"><img src="{www_dir}/admin/images/move-up.gif" height="12" width="12" border="0" alt="Move up" /></a></td>
 	<td class="{td_class}" width="1%">
 	<!-- BEGIN link_edit_item_tpl -->
-	<a href="{www_dir}{index}{item_edit_command}" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{link_id}-red','','/images/redigerminimrk.gif',1)"><img name="ezc{link_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
+	<a href="{www_dir}{index}{item_edit_command}" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{link_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezc{link_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 	</td>
 	<!-- END link_edit_item_tpl -->
 	</td>

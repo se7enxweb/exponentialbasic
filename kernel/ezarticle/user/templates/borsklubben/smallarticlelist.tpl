@@ -10,7 +10,7 @@
 <tr>
 	<td>
 	<div class="spacer"><div class="p">{article_intro}</div></div>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/">{article_link_text}</a>
 	<br /><br />
 	</td>

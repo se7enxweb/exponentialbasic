@@ -1,4 +1,4 @@
-<h1 class="small"><span class="h1bigger">B </span>R U K T E&nbsp;&nbsp; <span class="h1bigger">B </span>Å T E R</h1>
+<h1 class="small"><span class="h1bigger">B </span>R U K T E&nbsp;&nbsp; <span class="h1bigger">B </span>ï¿½ T E R</h1>
  
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -46,7 +46,7 @@
 	<td width="1%" valign="top" align="left">
 <!-- BEGIN product_image_tpl -->
 	<a href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" /></a>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">Les mer</a>
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">Les mer</a>
 	<br /><img src="{www_dir}/images/1x1.gif" height="8" width="1" border="0" alt="" /><br />
 <!-- END product_image_tpl -->
 	</td>

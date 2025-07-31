@@ -14,7 +14,7 @@
 
 <hr noshade="noshade" size="4" />
 
-<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="">
+<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="">
 <a class="path" href="{www_dir}{index}/article/archive/0/">{intl-top_level}</a>
 
 
@@ -49,7 +49,7 @@
 	<div class="spacer"><div class="p">{article_intro}</div></div>
 
         <!-- BEGIN one_column_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}/article/archive/{category_def_id}/">{category_def_name}</a>
 	<br /><img src="{www_dir}/images/1x1.gif" height="8" width="4" border="0" alt="" /><br />
@@ -87,7 +87,7 @@
 	<div class="spacer"><div class="p">{article_intro}</div></div>
 
         <!-- BEGIN left_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}/article/archive/{category_def_id}/">{category_def_name}</a>
 	<br /><img src="{www_dir}/images/1x1.gif" height="8" width="4" border="0" alt="" /><br />
@@ -121,7 +121,7 @@
 	<div class="spacer"><div class="p">{article_intro}</div></div>
 
         <!-- BEGIN right_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	| <a class="path" href="{www_dir}/article/archive/{category_def_id}/">{category_def_name}</a>
 	<br /><img src="{www_dir}/images/1x1.gif" height="8" width="4" border="0" alt="" /><br />

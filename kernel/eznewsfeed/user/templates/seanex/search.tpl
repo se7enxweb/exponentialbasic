@@ -24,7 +24,7 @@
 	<a href="{www_dir}{index}{news_url}/"><div class="h2">{news_name}</div></a>
 	<span class="small">( {news_origin} - {news_date} )</span>
 	<p class="newslist">{news_intro}</p>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}{news_url}">{intl-read_more}</a>
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}{news_url}">{intl-read_more}</a>
 	</td>
 </tr>
 <!-- END news_item_tpl -->

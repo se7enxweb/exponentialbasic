@@ -15,7 +15,7 @@
 	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}{news_url}" target="_vblank">{news_name}</a></div>
 	<div class="small">( {news_date} )</div>
 	<div class="spacer"><div class="p">{news_intro}</div></div>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="">&nbsp;<a class="path" href="{www_dir}{index}{news_url}" target="_vblank">{intl-read_more}</a>
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="">&nbsp;<a class="path" href="{www_dir}{index}{news_url}" target="_vblank">{intl-read_more}</a>
 	</td>
 {endtr}
 <!-- END news_item_tpl -->

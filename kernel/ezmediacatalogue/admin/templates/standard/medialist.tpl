@@ -66,6 +66,9 @@
 	<td class="{td_class}" width="56%">
 	<span class="small">{media_description}</span>
 	</td>
+	<td class="{td_class}" width="1%">
+	<a href="{www_dir}{index}{media_uri}?RefererURL=/mediacatalogue/media/list/{main_category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezf{file_id}-dl','','{www_dir}/design/admin/images/layout/downloadminimrk.gif',1)"><img name="ezf{file_id}-dl" border="0" src="{www_dir}/design/admin/images/layout/downloadmini.gif" width="16" height="16" align="top" alt="Download" /></a>
+	</td>
 	<!-- END read_tpl -->
 	<!-- BEGIN write_tpl -->
 	<td class="{td_class}" width="1%">

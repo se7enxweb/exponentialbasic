@@ -39,7 +39,7 @@
 <!-- BEGIN category_item_tpl -->
 <tr bgcolor="{color}">
     <td class={td_class} width="1%">
-    <img src="{www_dir}/images/folder.gif" width="16" height="16" border="0" />
+    <img src="{www_dir}/design/admin/images/layout/folder.gif" width="16" height="16" border="0" />
 	</td>
     <td class={td_class} width="50%">
     <a href="{www_dir}{index}/forum/forumlist/{category_id}/">{category_name}</a>

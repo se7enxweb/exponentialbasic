@@ -42,7 +42,7 @@
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
 <td align="left">
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/forum/categorylist/">{intl-forum-main}</a>
 	<img src="{www_dir}/images/path-slash.gif" height="10" width="16" border="0" alt="" />
         <a class="path" href="{www_dir}{index}/forum/forumlist/{category_id}/">{category_name}</a>
@@ -94,7 +94,7 @@
     <td class="{td_class}" align="right">
 		&nbsp;
         <!-- BEGIN edit_message_item_tpl -->
-        <nobr><a href="{www_dir}{index}/forum/messageedit/edit/{message_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezfrm{message_id}-red','','/images/redigerminimrk.gif',1)"><img name="ezfrm{message_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>&nbsp;<a href="{www_dir}{index}/forum/messageedit/delete/{message_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezfrm{message_id}-slett','','/images/slettminimrk.gif',1)"><img name="ezfrm{message_id}-slett" border="0" src="{www_dir}/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a></nobr>
+        <nobr><a href="{www_dir}{index}/forum/messageedit/edit/{message_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezfrm{message_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezfrm{message_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>&nbsp;<a href="{www_dir}{index}/forum/messageedit/delete/{message_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezfrm{message_id}-slett','','/images/slettminimrk.gif',1)"><img name="ezfrm{message_id}-slett" border="0" src="{www_dir}/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a></nobr>
         <!-- END edit_message_item_tpl -->
     </td>
 </tr>

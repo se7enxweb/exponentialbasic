@@ -29,7 +29,7 @@
 <!-- BEGIN category_item_tpl -->
 <tr>
 	<td class="{td_class}" valign="top" width="1%">
-	<img src="{www_dir}/images/folder.gif" height="16" width="16" border="0" alt="" /><br />
+	<img src="{www_dir}/design/admin/images/layout/folder.gif" height="16" width="16" border="0" alt="" /><br />
 	</td>
 	<td class="{td_class}" valign="top" width="98%" colspan="2">
 	<span class="boxtext"><a href="{www_dir}{index}/link/category/{linkcategory_id}/">{linkcategory_name}</a></span>

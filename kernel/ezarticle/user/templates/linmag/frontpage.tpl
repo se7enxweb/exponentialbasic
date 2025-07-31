@@ -28,7 +28,7 @@
 	<div class="spacer"><div class="p">{article_intro}</div></div>
 
         <!-- BEGIN one_column_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	<br /><br />
         <!-- END one_column_read_more_tpl -->
@@ -65,7 +65,7 @@
 	<div class="spacer"><div class="p">{article_intro}</div></div>
 
         <!-- BEGIN left_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	<br /><br />
         <!-- END left_read_more_tpl -->
@@ -98,7 +98,7 @@
 	<div class="spacer"><div class="p">{article_intro}</div></div>
 
         <!-- BEGIN right_read_more_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
 	<br /><br />
         <!-- END right_read_more_tpl -->
@@ -140,7 +140,7 @@
 		<!-- BEGIN left_price_tpl -->
 	    {product_price}
 	    <!-- END left_price_tpl -->
-		<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+		<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 		<a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{intl-get_more_info}</a>
 	</div>
 
@@ -181,7 +181,7 @@
 	<!-- BEGIN right_price_tpl -->
 	{product_price}
 	<!-- END right_price_tpl -->
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 	<a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{intl-get_more_info}</a>
 	</div>
 	</td>
@@ -226,7 +226,7 @@
 		<!-- BEGIN price_tpl -->
 	    {product_price}
 	    <!-- END price_tpl -->
-		<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="" />
+		<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="" />
 		<a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{intl-get_more_info}</a>
 	</div>
 

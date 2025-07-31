@@ -18,7 +18,7 @@
 <table width="100%" cellspacing="0" cellpadding="4" border="0">
 <tr>
 	<td>
-	<div class="h1">Seanex.no er ute på nettet!</div>
+	<div class="h1">Seanex.no er ute pï¿½ nettet!</div>
 	<div class="p">
 	Egen boks for PR for Seanex.no. Denne kan fylles med hva som helst, men gjerne fisk.
 	Egen boks for PR for Seanex.no. Denne kan fylles med hva som helst, men gjerne fisk.
@@ -30,7 +30,7 @@
 </table>
 
 <!-- {intl-latest_news} -->
-<!-- <h1>Siste nytt om fiskerinæringen</h1> -->
+<!-- <h1>Siste nytt om fiskerinï¿½ringen</h1> -->
 
 <!-- BEGIN news_list_tpl -->
 <table width="100%" cellspacing="0" cellpadding="4" border="0">
@@ -41,7 +41,7 @@
 	</a>
 	<span class="small">( {first_news_origin} - {first_news_date} )</span>
 	<p class="newslist">{first_news_intro}</p>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}{first_news_url}" onclick="return popup('{first_news_url}')">{intl-read_more}</a>
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}{first_news_url}" onclick="return popup('{first_news_url}')">{intl-read_more}</a>
 	</td>
 </tr>
 </table>
@@ -70,7 +70,7 @@
 	<a href="{www_dir}{index}{news_url}" onclick="return popup('{news_url}')"><div class="h2">{news_name}</div></a>
 	<span class="small">( {news_origin} - {news_date} )</span>
 	<p class="newslist">{news_intro}</p>
-	<img src="{www_dir}/images/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}{news_url}" onclick="return popup('{news_url}')">{intl-read_more}</a>
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="15" border="0" alt=""><a class="path" href="{www_dir}{index}{news_url}" onclick="return popup('{news_url}')">{intl-read_more}</a>
 	</td>
 {endtr}
 <!-- END news_item_tpl -->
@@ -99,7 +99,7 @@
 <tr>
 	<td align="center">
 	<form action="{www_dir}{index}/newsfeed/search/" method="post">
-	<span class="path">Søk i nyhetsarkivet: </span><input type="text" name="SearchText" size="20" />	
+	<span class="path">Sï¿½k i nyhetsarkivet: </span><input type="text" name="SearchText" size="20" />	
 	<input type="submit" value="{intl-search}" />
 	</form>
 	</td>

@@ -19,7 +19,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="4" >
 <tr>
    <td>
-<img src="{www_dir}/ezfilemanager/user/{image_dir}/folder.gif" alt="" width="16" height="16" border="0" />&nbsp;<a href="{www_dir}{index}/filemanager/browse/{folder_id}/">{folder_name}</a><br />
+<img src="{www_dir}/design/admin/images/layout/folder.gif" alt="" width="16" height="16" border="0" />&nbsp;<a href="{www_dir}{index}/filemanager/browse/{folder_id}/">{folder_name}</a><br />
    </td>
    <td>
    <p>

@@ -55,7 +55,7 @@
 </tr>
 <tr>
 	<td>
-	<img src="{www_dir}/images/path-arrow.gif" width="15" height="10" /><a class="menu" href="{www_dir}{index}/trade/cart/">{intl-allcart}</a>
+	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" width="15" height="10" /><a class="menu" href="{www_dir}{index}/trade/cart/">{intl-allcart}</a>
 	</td>
 	<!-- END cart_checkout_tpl -->
 </tr>

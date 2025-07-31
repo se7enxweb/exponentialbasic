@@ -10,7 +10,7 @@
 
 <hr noshade="noshade" size="4" />
 
-<img src="{www_dir}/images/path-arrow.gif" height="10" width="12" border="0" alt="">
+<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="12" border="0" alt="">
 <a class="path" href="{www_dir}{index}/imagecatalogue/image/list/0/">{intl-image_root}</a>
 
 <!-- BEGIN path_item_tpl -->
@@ -29,7 +29,7 @@
 <tr>
         <!-- BEGIN category_read_tpl -->
 	<td width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/"><img src="{www_dir}/images/folder.gif" alt="" width="16" height="16" border="0" /></a>
+	<a href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/"><img src="{www_dir}/design/admin/images/layout/folder.gif" alt="" width="16" height="16" border="0" /></a>
 	</td>
 	<td width="38%">
 	<a href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/">{category_name}</a>
@@ -40,7 +40,7 @@
         <!-- END category_read_tpl -->
         <!-- BEGIN category_write_tpl -->
 	<td width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/category/edit/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-red','','/images/redigerminimrk.gif',1)"><img name="ezim{category_id}-red" border="0" src="{www_dir}/images/redigermini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/imagecatalogue/category/edit/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezim{category_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top"></a>
 	</td>
 	<td width="1%">
 	<a href="{www_dir}{index}/imagecatalogue/category/delete/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-slett','','/images/slettminimrk.gif',1)"><img name="ezim{category_id}-slett" border="0" src="{www_dir}/images/slettmini.gif" width="16" height="16" align="top"></a>

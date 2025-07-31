@@ -29,6 +29,7 @@ $menuItems = array(
     array( "/sitemanager/cache/", "{intl-cache_admin}" ),
     array( "/sitemanager/cache/variation", "{intl-variation_admin}" ),
     array( "/sitemanager/siteconfig/", "{intl-site_config}" ),
+    array( "/sitemanager/csseditor/", "{intl-css_editor}" ),
     array( "/sitemanager/file/list/", "{intl-file_list}" ),
     array( "/sitemanager/template/list/", "{intl-template_list}" ),
     array( "/sitemanager/section/list/", "{intl-section_list}" ),

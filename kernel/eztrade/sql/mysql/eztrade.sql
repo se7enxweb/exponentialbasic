@@ -465,6 +465,15 @@ CREATE TABLE eZTrade_VoucherUsed (
   PRIMARY KEY  (ID)
 );
 
+CREATE TABLE eZTrade_BoxType (
+  ID int(11) NOT NULL DEFAULT 0,
+  Name varchar(100) DEFAULT NULL,
+  Length int(3) NOT NULL DEFAULT 0,
+  Height int(3) NOT NULL DEFAULT 0,
+  Width int(3) NOT NULL DEFAULT 0,
+  Primary KEY (ID)
+);
+
 CREATE TABLE eZTrade_WishList (
   ID int NOT NULL,
   UserID int(11) default NULL,

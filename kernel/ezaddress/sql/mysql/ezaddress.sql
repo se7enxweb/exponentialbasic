@@ -8,6 +8,8 @@ CREATE TABLE eZAddress_Address (
   RegionID int(11),
   CountryID int(11),
   Name varchar(50),
+  PhoneID int(11) DEFAULT NULL,
+  Phone varchar(32) DEFAULT NULL,
   PRIMARY KEY (ID)
 );
 

@@ -207,6 +207,18 @@ CREATE TABLE eZTrade_OrderOptionValue (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE eZTrade_OrderPayment (
+  ID int(11) NOT NULL DEFAULT 0,
+  OrderID int(11) NOT NULL DEFAULT 0,
+  CardNumber tinytext NOT NULL DEFAULT '',
+  CardExpiration tinytext NOT NULL DEFAULT '',
+  CardAuthorization varchar(25) DEFAULT NULL,
+  CardTransID varchar(25) DEFAULT NULL,
+  CardCVV2 char(1) DEFAULT NULL,
+  CardAVS char(3) DEFAULT NULL,
+  PRIMARY KEY (ID)
+) 
+
 CREATE TABLE eZTrade_OrderStatus (
   ID int NOT NULL,
   StatusID int(11) NOT NULL default '0',
@@ -260,19 +272,26 @@ CREATE TABLE eZTrade_Product (
   Description text,
   Keywords varchar(100) default NULL,
   Price float(10,5) default NULL,
+  ListPrice float(10,2) default NULL,
   ShowPrice int(11) default '1',
   ShowProduct int(11) default '1',
   Discontinued int(11) default '0',
   ProductNumber varchar(100) default NULL,
   ExternalLink varchar(200) default NULL,
   IsHotDeal int(11) default '0',
+  Weight int(11) NOT NULL default '0.0',
   RemoteID varchar(100) default NULL,
   VATTypeID int(11) NOT NULL default '0',
+  BoxTypeID int(11) NOT NULL default '0',
   ShippingGroupID int(11) NOT NULL default '0',
   ProductType int(11) default '1',
   ExpiryTime int(11) NOT NULL default '0',
+  StockDate int(11) DEFAULT NULL,
   Published int(11) default NULL,
   IncludesVAT int(1) default '1',
+  FlatUPS varchar(9) NOT NULL default 'off',
+  FlatUSPS varchar(9) NOT NULL default 'off',
+  FlatCombine smallint(1) NOT NULL default '0',
   CatalogNumber varchar(200) default NULL,
   PRIMARY KEY (ID)
 );

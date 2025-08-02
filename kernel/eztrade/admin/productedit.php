@@ -36,12 +36,13 @@
 
 function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
 {
-    if ( is_a( $ProductID, "eZProduct" ) )
+    $product = new eZProduct( $ProductID );
+    if ( is_a( $product, "eZProduct" ) )
     {
-        $CategoryID =& $ProductID->categoryDefinition( false );
-        $CategoryArray =& $ProductID->categories( false );
-        $Hotdeal = $ProductID->isHotDeal();
-        $ProductID = $ProductID->id();
+        $CategoryID =& $product->categoryDefinition( false );
+        $CategoryArray =& $product->categories( false );
+        $Hotdeal = $product->isHotDeal();
+        $ProductID = $product->id();
     }
 
     $files = eZCacheFile::files( "kernel/eztrade/cache/", array( array( "productview", "productprint" ),
@@ -813,7 +814,14 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         }
         else
         {
-            $add_categories = array_unique( array_merge( $CategoryID, $CategoryArray ) );
+            if( isset( $CategoryArray ) )
+            {
+                $add_categories = array_unique( array_merge( array( $CategoryID ), $CategoryArray ) );
+            }
+            else
+            {
+                $add_categories = array( $CategoryID );
+            }
         }
 
         // add a product to the categories
@@ -1253,7 +1261,7 @@ else
 }
 
 $category = new eZProductCategory();
-$categoryArray = $category->getTree( );
+$categoryArray = $category->getTree();
 
 foreach ( $categoryArray as $catItem )
 {

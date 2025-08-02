@@ -167,7 +167,7 @@ else
 }
 // $category->copy( true );
 
-$ParentID = 1;
+$ParentID = 0;
 
 // $category = new eZProductCategory();
 

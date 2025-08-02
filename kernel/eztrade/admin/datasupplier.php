@@ -210,7 +210,10 @@ switch ( $url_array[2] )
 	if ( ( $url_array[3] == "parent") && ( $url_array[4] != "" ) )
 	{
             $ParentID = $url_array[4];
-            $Offset = $url_array[5];
+            if( isset( $url_array[5] ) )
+                $Offset = $url_array[5];
+            else
+                $Offset = 0;
             include( "kernel/eztrade/admin/simplecategorylist.php" );
 	}
     else

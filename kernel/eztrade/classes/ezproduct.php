@@ -78,6 +78,8 @@ class eZProduct
     {
         $this->ExpiryTime = 0;
         $this->FlatCombine = 0;
+        $this->Weight = 0;
+        $this->StockDate = 0;
 
         if ( $id != "" )
         {
@@ -137,6 +139,9 @@ class eZProduct
         {
             $this->FlatCombine = 0;
         }
+
+        $this->StockDate = 0;
+
         $name = $db->escapeString( $this->Name );
         $brief = $db->escapeString( $this->Brief );
         $description = $db->escapeString( $this->Description );
@@ -149,8 +154,7 @@ class eZProduct
             $timeStamp = (new eZDateTime())->timeStamp( true );
             $db->lock( "eZTrade_Product" );
             $nextID = $db->nextID( "eZTrade_Product", "ID" );
-
-            $res = $db->query( "INSERT INTO eZTrade_Product
+            $query = "INSERT INTO eZTrade_Product
                                 ( ID,
                                   Name,
                                   Contents,
@@ -201,7 +205,9 @@ class eZProduct
                                     '$this->IncludesVAT',
 									'$this->FlatUPS',
 									'$this->FlatUSPS',
-									'$this->FlatCombine' )" );
+									'$this->FlatCombine' )";
+
+            $res = $db->query( $query );
             $db->unlock();
 			$this->ID = $nextID;
         }

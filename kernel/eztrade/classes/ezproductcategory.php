@@ -210,11 +210,6 @@ class eZProductCategory
         $category_array = array();
         $ret = false;
 
-        if ( $id == 0 )
-        {
-            $id = 1;
-        }
-
         if ( $id != "" && $id != -1 )
         {
             $query = "SELECT * FROM eZTrade_Category WHERE ID='$id'";

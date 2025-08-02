@@ -140,8 +140,6 @@ class eZProduct
             $this->FlatCombine = 0;
         }
 
-        $this->StockDate = 0;
-
         $name = $db->escapeString( $this->Name );
         $brief = $db->escapeString( $this->Brief );
         $description = $db->escapeString( $this->Description );

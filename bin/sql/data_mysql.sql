@@ -1,12 +1,12 @@
-INSERT INTO eZAddress_Address VALUES (2,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (3,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (4,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (5,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (6,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (7,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (8,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (9,'Homestreet1','',0,'Skien','1001',162,'');
-INSERT INTO eZAddress_Address VALUES (10,'Homestreet1','',0,'Skien','1001',162,'');
+INSERT INTO eZAddress_Address VALUES (2,'Homestreet1','',0,'Skien','1001',162,NULL,NULL,NULL,NULL);
+INSERT INTO eZAddress_Address VALUES (3,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
+INSERT INTO eZAddress_Address VALUES (4,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
+INSERT INTO eZAddress_Address VALUES (5,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
+INSERT INTO eZAddress_Address VALUES (6,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
+INSERT INTO eZAddress_Address VALUES (7,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
+INSERT INTO eZAddress_Address VALUES (8,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
+INSERT INTO eZAddress_Address VALUES (9,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
+INSERT INTO eZAddress_Address VALUES (10,'Homestreet1','',0,'Skien','1001',162, NULL, NULL, NULL, NULL);
 
 INSERT INTO eZAddress_AddressDefinition VALUES (2,2);
 
@@ -1442,7 +1442,7 @@ INSERT INTO eZSiteManager_SectionFrontPageRowLink VALUES (8,8,4);
 INSERT INTO eZSiteManager_SectionFrontPageRowLink VALUES (9,9,2);
 
 INSERT INTO eZSiteManager_Section VALUES (2,'Intranet','','intranet',1003240754,'','');
-INSERT INTO eZSiteManager_Section VALUES (3,'Trade','','trade',1003240766,'','');
+INSERT INTO eZSiteManager_Section VALUES (3,'Trade','','trade',1003240766,'templates/standard/','');
 INSERT INTO eZSiteManager_Section VALUES (4,'News','','news',1003240778,'','');
 
 INSERT INTO eZTrade_Attribute VALUES (1,1,'Large',1003334675,0,1,'');
@@ -1495,9 +1495,11 @@ INSERT INTO eZTrade_PreOrder VALUES (2,1003310964,0);
 INSERT INTO eZTrade_PreOrder VALUES (3,1003311053,1);
 INSERT INTO eZTrade_PreOrder VALUES (4,1003326942,2);
 
-INSERT INTO eZTrade_Product VALUES (1,'Siberian cat','<?xml version=\"1.0\"?><article><generator>qdom</generator>\n<intro>Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</intro><body><page><header level=\"1\">You can have tags here also</header>\r\nLorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\r\n pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Et harumd und lookum like Greek to me, dereud facilis est er expedit distinct</page></body></article>',NULL,NULL,'',75.00000,1,1,0,'','',1,'',1,1,1,0,1003305597,0);
-INSERT INTO eZTrade_Product VALUES (3,'Voucher','<?xml version=\"1.0\"?><article><generator>qdom</generator>\n<intro>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</intro><body><page>Lorem ipsum dolor sit amet,consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\r\n pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Et harumd und lookum like Greek to me, dereud facilis est er expedit distinct</page></body></article>',NULL,NULL,'voucher',NULL,1,1,0,'ID-645','',0,'',1,1,2,0,1003334989,0);
-INSERT INTO eZTrade_Product VALUES (2,'Another product','<?xml version=\"1.0\"?><article><generator>qdom</generator>\n<intro>This product is a demontration of some of the features of the eZ publish.</intro><body><page>Lorem ipsum dolor sit amet,consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\r\n pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Et harumd und lookum like Greek to me, dereud facilis est er expedit distinct</page></body></article>',NULL,NULL,'flower test',499.00000,1,1,0,'ID-435','',0,'',1,1,1,0,1003334505,1);
+INSERT INTO eZTrade_Product VALUES (1,'Siberian cat','<?xml version=\"1.0\"?><article><generator>qdom</generator>\n<intro>Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</intro><body><page><header level=\"1\">You can have tags here also</header>\r\nLorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\r\n pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Et harumd und lookum like Greek to me, dereud facilis est er expedit distinct</page></body></article>',NULL,NULL,NULL,75.00000,100.00000,1,1,0,NULL,NULL,1,0,NULL,0,0,0,0,0,0,1003305597,0,'off','off',0,0);
+
+INSERT INTO eZTrade_Product VALUES (3,'Voucher','<?xml version=\"1.0\"?><article><generator>qdom</generator>\n<intro>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</intro><body><page>Lorem ipsum dolor sit amet,consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\r\n pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Et harumd und lookum like Greek to me, dereud facilis est er expedit distinct</page></body></article>',NULL,NULL,'voucher',NULL,NULL,1,1,0,'ID-645',NULL,1,0,NULL,0,1,1,2,0,0,1003305597,0,'off','off',0,0);
+
+INSERT INTO eZTrade_Product VALUES (2,'Another product','<?xml version=\"1.0\"?><article><generator>qdom</generator>\n<intro>This product is a demontration of some of the features of the eZ publish.</intro><body><page>Lorem ipsum dolor sit amet,consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\r\n pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Et harumd und lookum like Greek to me, dereud facilis est er expedit distinct</page></body></article>',NULL,NULL,'flower test',499.00000,600.00000,1,1,0,'ID-435',NULL,1,0,NULL,0,1,1,1,0,0,1003305597,1,'off','off',0,0);
 
 INSERT INTO eZTrade_ProductCategoryDefinition VALUES (3,1,1);
 INSERT INTO eZTrade_ProductCategoryDefinition VALUES (4,2,1);
@@ -1517,6 +1519,14 @@ INSERT INTO eZTrade_ProductImageLink VALUES (4,2,3,6,1003334852);
 INSERT INTO eZTrade_ProductOptionLink VALUES (1,1,1);
 INSERT INTO eZTrade_ProductOptionLink VALUES (2,2,2);
 
+INSERT INTO `eZTrade_ProductPermission` (`ID`, `ObjectID`, `GroupID`, `ReadPermission`, `WritePermission`) VALUES
+(1, 1, 1, 0, 1),
+(2, 1, -1, 1, 0),
+(3, 2, 1, 0, 1),
+(4, 2, -1, 1, 0),
+(5, 3, 1, 0, 1),
+(6, 3, -1, 1, 0);
+
 INSERT INTO eZTrade_ProductPriceRange VALUES (1,100,1000,3);
 
 INSERT INTO eZTrade_ProductTypeLink VALUES (1,2,1);
@@ -1531,7 +1541,7 @@ INSERT INTO eZTrade_Type VALUES (1,'Size','');
 
 INSERT INTO eZTrade_VATType VALUES (1,'Standard',16,1003305495);
 
-INSERT INTO eZUser_User VALUES (2,null,'customer','709de31a71b8c5fd','nospam@example.com','Customer','Test',0,'',0,0);
+INSERT INTO eZUser_User VALUES (2,null,'customer','709de31a71b8c5fd','nospam@example.com','Customer','Test',0,'',0,0,0);
 
 INSERT INTO eZUser_UserGroupDefinition VALUES (1,2,2);
 

@@ -342,15 +342,15 @@ else
    $t->set_var( "email_error", "" );
 }
 
-$t->set_var( "user_id", $UserID );
-$t->set_var( "login_value", $Login );
-$t->set_var( "password_value", $Password );
-$t->set_var( "verify_password_value", $VerifyPassword );
-$t->set_var( "email_value", $Email );
-$t->set_var( "info_subscription", $InfoSubscription );
+$t->set_var( "user_id", isset( $UserID ) ? $UserID : false );
+$t->set_var( "login_value", isset( $Login ) ? $Login : false );
+$t->set_var( "password_value", isset( $Password ) ? $Password : false );
+$t->set_var( "verify_password_value", isset( $VerifyPassword ) ? $VerifyPassword : false );
+$t->set_var( "email_value", isset( $Email ) ? $Email : false );
+$t->set_var( "info_subscription", isset( $InfoSubscription ) ? $InfoSubscription : false );
 
-$t->set_var( "first_name_value", $FirstName );
-$t->set_var( "last_name_value", $LastName );
+$t->set_var( "first_name_value", isset( $FirstName ) ? $FirstName : false );
+$t->set_var( "last_name_value", isset( $LastName ) ? $LastName : false );
 
 $t->set_var( "action_value", $actionValue );
 

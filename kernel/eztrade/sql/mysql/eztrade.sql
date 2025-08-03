@@ -217,7 +217,7 @@ CREATE TABLE eZTrade_OrderPayment (
   CardCVV2 char(1) DEFAULT NULL,
   CardAVS char(3) DEFAULT NULL,
   PRIMARY KEY (ID)
-) 
+);
 
 CREATE TABLE eZTrade_OrderStatus (
   ID int NOT NULL,

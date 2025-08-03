@@ -52,5 +52,5 @@ CREATE TABLE eZTip_View (
 
 -- Data : Required to boot
 
-INSERT INTO `eZTip_Category` VALUES(1, 'Tip #1', 'Tip #1 - Description Text', 0, 0);
-INSERT INTO `eZTip_Category` VALUES(2, 'Tip #1', 'Tip #2 - Even More Description Text', 0, 0);
+INSERT INTO `eZTip_Category` VALUES(1, 'Tip #1', 'Tip #1 - Description Text', 0, 0, 0, 0, 0);
+INSERT INTO `eZTip_Category` VALUES(2, 'Tip #2', 'Tip #2 - Even More Description Text', 0, 0, 0, 0, 0);

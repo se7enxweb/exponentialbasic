@@ -212,4 +212,5 @@ CREATE TABLE eZContact_CompanyImageDict (
 
 INSERT INTO `eZContact_ConsultationType` (`ID`, `Name`, `ListOrder`) VALUES ('1', 'Default Consultation Type #1', '0');
 
-INSERT INTO `eZContact_ProjectType` (`ID`, `Name`, `ListOrder`, `ExpiryTime`, `WarningTime`) VALUES ('1', 'Default Project Type #1', '0', '0', '0')
+INSERT INTO `eZContact_ProjectType` (`ID`, `Name`, `ListOrder`, `ExpiryTime`, `WarningTime`) VALUES ('1', 'Default Project Type #1', '0', '0', '0');
+

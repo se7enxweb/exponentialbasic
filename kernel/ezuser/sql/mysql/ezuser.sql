@@ -1,3 +1,5 @@
+
+
 CREATE TABLE eZUser_User (
   ID int NOT NULL,
   PersonID int NULL, 
@@ -10,7 +12,7 @@ CREATE TABLE eZUser_User (
   Signature text NOT NULL,
   SimultaneousLogins int NOT NULL default '0',
   CookieLogin int default '0',
-  AccountNumber int default '',
+  AccountNumber int default NULL,
   PRIMARY KEY (ID)
 );
 
@@ -217,7 +219,7 @@ CREATE TABLE eZUser_UserGroupDefinition (
 );
 
 INSERT INTO eZUser_User (ID, Login, Password, Email, FirstName, LastName, InfoSubscription, Signature, SimultaneousLogins, CookieLogin)  
-VALUES (1,'admin','0c947f956f7aa781','postmaster@yourdomain','admin','user','0','',0,0);
+VALUES (1,'admin','*CCEACE467AAE00A19964031A788144D972033720','postmaster@example.com','admin','user','0','',0,0);
 
 INSERT INTO eZUser_Group (ID, Name, Description, SessionTimeout, IsRoot) VALUES (1,'Administrators','All rights',7200,1);
 INSERT INTO eZUser_Group (ID, Name, Description, SessionTimeout, IsRoot) VALUES (2,'Anonymous','Anonymous users',7200,0);

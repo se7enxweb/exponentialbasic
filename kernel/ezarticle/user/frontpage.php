@@ -247,7 +247,7 @@ $adOffset = 0;
 $pageContents = "";
 $counter = -1;
 // render the page elements
-if ( count( $page_elements ) > 0 )
+if ( isset( $page_elements ) && count( $page_elements ) > 0 )
 foreach ( $page_elements as $element )
 {
     $counter++;

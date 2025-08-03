@@ -78,6 +78,7 @@ switch ( $url_array[2] )
         // if not.. check permission, then run page if ok
         $user = eZUser::currentUser();
         $groupstr = "";
+        $cacheFile = false;
 
         if ( $user && get_class( $user ) == "eZUser" )
         {
@@ -113,7 +114,7 @@ switch ( $url_array[2] )
         }
         else
         {
-            $GenerateStaticPage = "false";
+            $GenerateStaticPage = false;
             include( "kernel/ezarticle/user/frontpage.php" );
         }
 

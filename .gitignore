@@ -17,6 +17,7 @@ kernel/ezfilemanager/files
 kernel/ezarticle/cache
 kernel/ezarticle/admin/cache
 kernel/ezcalendar/user/cache
+kernel/ezgroupeventcalendar/admin/cache
 kernel/ezfilemanager/admin/cache
 kernel/ezforum/admin/cache
 kernel/ezlink/admin/cache
@@ -33,8 +34,10 @@ kernel/ezmediacatalogue/admin/cache
 kernel/eznewsfeed/admin/cache
 kernel/ezquiz/admin/cache
 kernel/ezsitemanager/admin/cache
+kernel/ezsurvey/admin/cache
 kernel/ezstats/admin/cache
 kernel/ezsysinfo/admin/cache
+kernel/eztip/admin/cache
 kernel/eztodo/admin/cache
 kernel/ezurltranslator/admin/cache
 kernel/ezuser/admin/cache

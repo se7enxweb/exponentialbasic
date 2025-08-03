@@ -1069,7 +1069,10 @@ class eZProduct
     */
     function &keywords( )
     {
-       return htmlspecialchars( $this->Keywords );
+        if ( !is_null( $this->Keywords ) )
+            return htmlspecialchars( $this->Keywords );
+        else
+            return false;
     }
 
     /*!
@@ -1077,7 +1080,11 @@ class eZProduct
     */
     function &productNumber( )
     {
-        return htmlspecialchars( $this->ProductNumber );
+        if ( !is_null( $this->ProductNumber ) )
+            return htmlspecialchars( $this->ProductNumber );
+        else
+            return false;
+
     }
     /*!
       Returns the catalog product number of the product.
@@ -1087,7 +1094,7 @@ class eZProduct
         if ( is_null( $this->CatalogNumber ) )
             return false;
 
-    return htmlspecialchars( string: $this->CatalogNumber );
+        return htmlspecialchars( string: $this->CatalogNumber );
     }
     /*!
       Returns the XML contents of the product.
@@ -1210,7 +1217,10 @@ class eZProduct
     */
     function externalLink()
     {
-       return htmlspecialchars( $this->ExternalLink );
+        if( $this->ExternalLink != "" )
+            return htmlspecialchars( $this->ExternalLink );
+        else
+            return false;
     }
 	
     /*!

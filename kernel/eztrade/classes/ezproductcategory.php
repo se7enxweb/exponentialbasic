@@ -96,6 +96,7 @@ class eZProductCategory
     function __construct( $id = -1 )
     {
         $this->ImageID = 0;
+	$this->Parent = 0;
 
         if ( $id != -1 )
         {
@@ -116,6 +117,9 @@ class eZProductCategory
         $description = $db->escapeString( $this->Description );
         $remoteID = $db->escapeString( $this->RemoteID );
 
+	if( $this->Parent == null )
+           $this->Parent = 0;
+
         if ( $this->ID == false )
         {
 
@@ -132,6 +136,7 @@ class eZProductCategory
                                   '$this->ImageID',
                                   '$this->SectionID',
                                   '$this->Parent' ) ";
+             echo $query;
 
             $res = $db->query( $query );
 
@@ -148,7 +153,7 @@ class eZProductCategory
                                  ImageID='$this->ImageID',
                                  SectionID='$this->SectionID',
                                  Parent='$this->Parent' WHERE ID='$this->ID'";
-            $res = $db->query( $query );
+             $res = $db->query( $query );
         }
 
         if ( $res == false )
@@ -224,6 +229,7 @@ class eZProductCategory
                 $this->ID =& $category_array[0][$db->fieldName( "ID" )];
                 $this->Name =& $category_array[0][$db->fieldName( "Name" )];
                 $this->Description =& $category_array[0][$db->fieldName( "Description" )];
+		if( $category_array[0][$db->fieldName( "Parent" )] != NULL )
                 $this->Parent =& $category_array[0][$db->fieldName( "Parent" )];
                 $this->SortMode =& $category_array[0][$db->fieldName( "SortMode" )];
                 $this->RemoteID =& $category_array[0][$db->fieldName( "RemoteID" )];

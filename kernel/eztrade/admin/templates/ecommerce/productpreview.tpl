@@ -23,6 +23,10 @@
 	<!-- BEGIN product_number_item_tpl -->
 	<span class="boxtext">{intl-nr}:</span> {product_number}
 	<!-- END product_number_item_tpl -->
+	<!-- BEGIN product_catalog_number_item_tpl -->
+	<br />
+	<span class="boxtext">{intl-cn}:</span> {product_catalog_number}
+	<!-- END product_catalog_number_item_tpl -->
 	</td>
 </tr>
 <tr>

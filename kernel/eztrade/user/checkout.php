@@ -543,19 +543,19 @@ $id = $thisuser->id();
 
 $t->set_var( "shipping_type_error","");
 
-if($checkups==1)
+if( $checkups == 1 )
 {
 
 }
 else
 {
 
-foreach ( $types as $type )
-{
-    $t->set_var( "shipping_type_id", $type->id() );
-    $t->set_var( "shipping_type_name", $type->name() );
-    $t->set_var( "shipping_type_cost", "" );
-}
+    foreach ( $types as $type )
+    {
+        $t->set_var( "shipping_type_id", $type->id() );
+        $t->set_var( "shipping_type_name", $type->name() );
+        $t->set_var( "shipping_type_cost", "" );
+    }
 
     if ( is_numeric( $currentTypeID ) )
     {

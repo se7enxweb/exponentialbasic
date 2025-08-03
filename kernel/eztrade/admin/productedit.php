@@ -517,7 +517,7 @@ if ( isSet( $UpdateProducts ) )
 			if ( $ShowQuantity && is_numeric($Quantity[$i]) && $Quantity[$i] != $product->totalQuantity() )
 				$product->setTotalQuantity( is_numeric( $Quantity[$i] ) ? $Quantity[$i] : false );
 				
-			if ( is_numeric($Quantity[$i]) && $Quantity[$i] == 0 ) {
+			if ( isset($Quantity[$i]) && $Quantity[$i] == 0 ) {
             	$DateInStock = new eZDate( $StockYear[$i], $StockMonth[$i], $StockDay[$i] );
 				$date = $DateInStock->timeStamp();
 				$product->setStockDate( $date );
@@ -1151,65 +1151,65 @@ if ( isset( $Action ) && $Action == "Edit" )
 
     $Quantity = $product->totalQuantity();
 
-            if ( $product->stockDate() )
-            {
-                $Stock = new eZDate();
-                $Stock->setTimeStamp( $product->stockDate() );	
-                $StockYear = $Stock->year();
-                $StockMonth = $Stock->month();
-                $StockDay = $Stock->day();
-            }
-            else
-            {
-                $StockYear = "";
-                $StockMonth = 1;
-                $StockDay = 1;
-            }
+    if ( $product->stockDate() )
+    {
+        $Stock = new eZDate();
+        $Stock->setTimeStamp( $product->stockDate() );	
+        $StockYear = $Stock->year();
+        $StockMonth = $Stock->month();
+        $StockDay = $Stock->day();
+    }
+    else
+    {
+        $StockYear = "";
+        $StockMonth = 1;
+        $StockDay = 1;
+    }
 	
      for ( $i = 1; $i <= 31; $i++ )
-            {
-                $t->set_var( "day_id", $i );
-                $t->set_var( "day_value", $i );
-                $t->set_var( "selected", "" );
+    {
+        $t->set_var( "day_id", $i );
+        $t->set_var( "day_value", $i );
+        $t->set_var( "selected", "" );
 //                if ( ( $StockDay == "" and $i == 1 ) or $StockDay == $i )
-                if ( $StockDay == $i )
- 	                 $t->set_var( "selected", "selected" );
-                if ( $StockDay == "" and $i == date(j) )
- 	                 $t->set_var( "selected", "selected" );
-	                $t->parse( "day_item", "day_item_tpl", true );
-            }
+        if ( $StockDay == $i )
+                $t->set_var( "selected", "selected" );
+        if ( $StockDay == "" and $i == date(j) )
+                $t->set_var( "selected", "selected" );
+            $t->parse( "day_item", "day_item_tpl", true );
+    }
 
-            $month_array = array( 1 => "select_january",
-                                  2 => "select_february",
-                                  3 => "select_march",
-                                  4 => "select_april",
-                                  5 => "select_may",
-                                  6 => "select_june",
-                                  7 => "select_july",
-                                  8 => "select_august",
-                                  9 => "select_september",
-                                  10 => "select_october",
-                                  11 => "select_november",
-                                  12 => "select_december" );
+    $month_array = array( 1 => "select_january",
+                            2 => "select_february",
+                            3 => "select_march",
+                            4 => "select_april",
+                            5 => "select_may",
+                            6 => "select_june",
+                            7 => "select_july",
+                            8 => "select_august",
+                            9 => "select_september",
+                            10 => "select_october",
+                            11 => "select_november",
+                            12 => "select_december" );
 
-            foreach ( $month_array as $month )
-            {
-                $t->set_var( $month, "" );
-            }
+    foreach ( $month_array as $month )
+    {
+        $t->set_var( $month, "" );
+    }
 
-            $var_name =& $month_array[$StockMonth];
-            if ( $var_name == "" ) {
+    $var_name =& $month_array[$StockMonth];
+    if ( $var_name == "" ) {
 //				$dateMonth = date(n);
-                $var_name =& $month_array[date(n)];
-				}
-				
-            $t->set_var( $var_name, "selected" );
-			
-			if ( $StockYear )
-	            $t->set_var( "stockyear", $StockYear );
-			else
-				$t->set_var( "stockyear", date("Y") );
-			
+        $var_name =& $month_array[date(n)];
+        }
+        
+    $t->set_var( $var_name, "selected" );
+    
+    if ( $StockYear )
+        $t->set_var( "stockyear", $StockYear );
+    else
+        $t->set_var( "stockyear", date("Y") );
+    
 
     $prices = eZPriceGroup::prices( $ProductID );
 

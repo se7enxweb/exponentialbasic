@@ -456,6 +456,7 @@ foreach ( $items as $item )
 
     $t->set_var( "product_name", $product->name() );
     $t->set_var( "product_id", $product->id() );
+    $t->set_var( "category_id", $product->categories()[0]->id() );
     $t->set_var( "product_number", $product->productNumber() );
     $t->set_var( "product_price", $item->localePrice( false, true, $PricesIncludeVAT ) );
 

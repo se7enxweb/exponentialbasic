@@ -157,7 +157,7 @@ class eZForumCategory
     /*!
       Returns every category as an array of eZForumCategory objects.
     */
-    function getAll()
+    public static function getAll()
     {
         $ret = array();
 

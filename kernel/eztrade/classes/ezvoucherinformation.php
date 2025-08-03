@@ -61,6 +61,12 @@ class eZVoucherInformation
     */
     function __construct( $id=-1 )
     {
+        $this->VoucherID = 0;
+        $this->OnlineID = 0;
+        $this->ToAddressID = 0;
+        $this->FromAddressID = 0;
+        $this->PreOrderID = 0;
+
         if ( is_array( $id ) )
         {
             $this->fill( $id );

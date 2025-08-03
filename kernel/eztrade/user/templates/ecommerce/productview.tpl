@@ -64,7 +64,7 @@
 					<!-- END price_range_tpl -->
 		  		  </span><br />
 
-		<form action="{www_dir}{index}/{module}/{action_url}/{product_id}/">
+		<form action="{www_dir}{index}/{module}/{action_url}/{product_id}/{category_id}">
 			<!-- BEGIN option_tpl -->
                   	<small>{option_name}: {option_description}</small><br />
 			
@@ -163,12 +163,7 @@
         <!-- END section_item_tpl -->
 	      </div>
               <!-- end #related -->
-		<!-- BEGIN print_page_link_tpl -->
-		<div align="center">
-		<a class="path" href="{www_dir}{index}/{module}/{module_print}/{product_id}/{category_id}/">{intl-print_page}</a><br></div>
-		<!-- END print_page_link_tpl 
-		<a class="path" href="{www_dir}{index}/{module}/mailtofriend/{product_id}/1/{category_id}/">{intl-send_mailtofriend}</a></div> -->
-            </div>
+
             <!-- start #itemBox -->
 
             <div id="itemBox">
@@ -236,6 +231,12 @@
         </div></td></tr></table>
         <!-- end #contentWrap -->
         
+		<!-- BEGIN print_page_link_tpl -->
+		<div align="center">
+		<a class="path" href="{www_dir}{index}/{module}/{module_print}/{product_id}/{category_id}/">{intl-print_page}</a><br></div>
+		<!-- END print_page_link_tpl 
+		<a class="path" href="{www_dir}{index}/{module}/mailtofriend/{product_id}/1/{category_id}/">{intl-send_mailtofriend}</a></div> -->
+		</div>
         
 <!-- BEGIN attached_file_list_tpl -->
 <table class="list" cellspacing="0" cellpadding="4" border="0" width="77%%">
@@ -247,7 +248,7 @@
      <font size="2"><a href="{www_dir}{index}/filemanager/download/{file_id}/">{file_name}</a></font>
      </td>
      <td width="50%" class="{td_class}" align="right">
-     <div class="p"><font size="2"><a href="{www_dir}{index}/filemanager/download/{file_id}/">( {file_size} {file_unit} )</a></font></div>
+     <div class="p"><font size="2"><a href="{www_dir}{index}/filemanager/download/{file_id}/">( {file_size}ï¿½{file_unit} )</a></font></div>
      </td>
 </tr>
 <tr>

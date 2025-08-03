@@ -16,7 +16,7 @@
 			<img src="{www_dir}/design/mygold/images/path-arrow.gif" height="10" width="15" border="0" alt=""/> 
 			<a href="{www_dir}{index}/trade/productlist/0/">{intl-top}</a> 
 			<!-- BEGIN path_tpl -->
-			<img src="{www_dir}/design/mygold/images/path-slash.gif" height="10" width="20" border="0" alt=""/> 
+			<img src="{www_dir}/design/mygold/design/admin/images/path-slash.gif" height="10" width="20" border="0" alt=""/> 
 			<a href="{www_dir}{index}/trade/productlist/{category_id}/">{category_name}</a> 
 			<!-- END path_tpl -->
 			<hr noshade size="1" />

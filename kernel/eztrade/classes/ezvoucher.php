@@ -474,8 +474,10 @@ class eZVoucher
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $res = array();
 
-        $db->query_single( $res, "SELECT ID FROM eZTrade_VoucherInformation WHERE VoucherID='$this->ID'" );
+        $query = "SELECT ID FROM eZTrade_VoucherInformation WHERE VoucherID='$this->ID'";
+        $db->query_single( $res, $query );
 
         if ( $res[$db->fieldName( "ID" )] )
         {

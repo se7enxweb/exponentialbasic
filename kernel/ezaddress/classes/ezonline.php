@@ -50,6 +50,8 @@ class eZOnline
     */
     function __construct( $id = "" )
     {
+        $this->OnlineTypeID = 0;
+
         if ( !empty( $id ) )
         {
             $this->ID = $id;

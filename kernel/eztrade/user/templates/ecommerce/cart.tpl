@@ -45,7 +45,7 @@
 <tr>
     <td class="{td_class}">&nbsp;</td>
     <td class="{td_class}">{product_number}</td>
-    <td class="{td_class}"><a href="{www_dir}{index}/trade/productview/{product_id}">{product_name}</a></td>
+    <td class="{td_class}"><a href="{www_dir}{index}/trade/productview/{product_id}/{category_id}">{product_name}</a></td>
     <td class="{td_class}" align="right"><nobr>{product_price}</nobr></td>
     
     <td class="{td_class}" align="right">

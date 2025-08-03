@@ -407,7 +407,7 @@ if ( count( $cartshipoptions_array ) == 1 )
                 {
                     $info =& $product->voucherInformation();
 
-                    if ( $info->mailMethod() == 2 )
+                    if ( is_a ( $info, "eZVoucherInformation" ) && $info->mailMethod() == 2 )
                         $products = true;
                 }
 

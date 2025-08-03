@@ -52,7 +52,7 @@ $ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
 $ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
 $RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true" ;
 $ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
-$PurchaseProduct = $ini->read_var( "eZTradeMain", "PurchaseProduct" ) == "true";
+$PurchaseProduct = $ini->read_var( "eZTradeMain", "PurchaseProduct" ) == "true" ? true : false;
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 $locale = new eZLocale( $Language );
 
@@ -588,7 +588,6 @@ if ( !$product->hasQuantity( $RequireQuantity ) )
 
 // $can_checkout = $product->showPrice();
 
-
 // link list
 $module_link = new eZModuleLink( "eZTrade", "Product", $product->id() );
 $sections =& $module_link->sections();
@@ -867,7 +866,6 @@ if ( ( $PurchaseProduct and !$product->discontinued() and $can_checkout ) and !$
     $t->parse( "add_to_cart", "add_to_cart_tpl" );
 if ( ( $PurchaseProduct and !$product->discontinued() and $can_checkout ) and $useVoucher )
     $t->parse( "voucher_buttons", "voucher_buttons_tpl" );
-
 if ( isset( $PrintableVersion ) && $PrintableVersion == "enabled" )
 {
     $t->parse( "numbered_page_link", "numbered_page_link_tpl" );

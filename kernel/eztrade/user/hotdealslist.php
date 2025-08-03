@@ -246,5 +246,4 @@ else
     $t->pparse( "output", "hdl_product_list_page_tpl" );
 }
 
-
 ?>

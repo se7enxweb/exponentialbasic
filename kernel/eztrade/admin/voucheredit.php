@@ -157,7 +157,6 @@ if ( $Action == "Edit" )
     
 }
 
-
 $t->pparse( "output", "voucher_edit_tpl" );
 
 ?>

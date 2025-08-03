@@ -147,6 +147,7 @@ foreach ( $productList as $product )
 	}
     
     $t->set_var( "product_id", $product->id() );
+    $t->set_var( "category_id", $product->categories()[0]->id() );
     $t->set_var( "product_name", $product->name() );
     $t->set_var( "product_intro_text", $product->brief() );
     $t->set_var( "product_number", "" );
@@ -264,6 +265,5 @@ else
 {
     $t->pparse( "output", "product_list_page_tpl" );
 }
-
 
 ?>

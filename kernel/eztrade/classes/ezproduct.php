@@ -139,6 +139,10 @@ class eZProduct
         {
             $this->FlatCombine = 0;
         }
+        if ( $this->StockDate == null )
+        {
+            $this->StockDate = 0;
+        }
 
         $name = $db->escapeString( $this->Name );
         $brief = $db->escapeString( $this->Brief );
@@ -238,7 +242,7 @@ class eZProduct
 								 FlatCombine='$this->FlatCombine'
                                  WHERE ID='$this->ID'
                                  ";
-                                 echo $query;
+
             $res = $db->query( $query );
         }
 
@@ -2217,6 +2221,8 @@ class eZProduct
     function categoryDefinition( $as_object = true )
     {
        $db =& eZDB::globalDatabase();
+       $res = array();
+    
        $db->array_query( $res, "SELECT CategoryID FROM
                                             eZTrade_ProductCategoryDefinition
                                             WHERE ProductID='$this->ID'" );
@@ -2231,6 +2237,7 @@ class eZProduct
        else
        {
            print( "<br><b>Failed to fetch product category definition for ID $this->ID</b><br>" );
+           // debug_print_backtrace();
        }
 
        return $category;
@@ -2779,12 +2786,11 @@ class eZProduct
         $ret = false;
 
         $query = "SELECT ID FROM eZTrade_VoucherInformation
-                      WHERE ProductID='$ProductID'
-                      ";
+                  WHERE ProductID='$ProductID'";
 
         $db->query_single( $res, $query );
 
-        if ( is_numeric ( $res[$db->fieldName( "ID" )] ) )
+        if ( isset( $res[$db->fieldName( "ID" )] ) )
         {
             $ret = new eZVoucherInformation( $res[$db->fieldName( "ID" )] );
         }

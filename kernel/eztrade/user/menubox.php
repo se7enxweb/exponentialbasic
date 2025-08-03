@@ -39,8 +39,19 @@ $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "Te
 $t->setAllStrings();
 
 $t->set_file( "menu_box_tpl", "menubox.tpl" );
+$t->set_block( "menu_box_tpl", "category_tpl", "category" );
 
 $t->set_var( "sitedesign", $GlobalSiteDesign );
+
+$categories = eZForumCategory::getAll( false, true, true );
+
+foreach ( $categories as $category )
+{
+    $t->set_var( "id", $category->id() );
+    $t->set_var( "name", $category->name() );
+    $t->parse( "category", "category_tpl", true );
+}
+//$t->set_var( "category", "" );
 
 $t->pparse( "output", "menu_box_tpl" );
 		

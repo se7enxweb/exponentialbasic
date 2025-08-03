@@ -67,7 +67,7 @@ $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
 $templateDirTmp = $sectionObject->templateStyle();
-if ( trim( $templateDirTmp ) != "" )
+if ( $templateDirTmp != null && trim( $templateDirTmp ) != "" )
 {
     $TemplateDir = preg_replace( "/(.+)\/.+(\/?)/", "/\\1/$templateDirTmp\\2", $TemplateDir );
 }

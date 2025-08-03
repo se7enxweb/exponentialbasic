@@ -363,49 +363,39 @@ $shippingType = $order->shippingType();
 $t->set_var( "shipping_method", "" );
 
 
- if (( $shippingType )&&($checkups==1))
-        {
-
-$getnames =array ( 
-
+if (( $shippingType )&&($checkups==1))
+{
+    $getnames =array ( 
 	'01' => 'UPS Next Day Air',
-
-       	'02' => 'UPS 2nd Day Air',
-
+    '02' => 'UPS 2nd Day Air',
 	'03' => 'UPS Ground',
-
 	'07' => 'UPS Worldwide Express',
-
 	'08' => 'UPS Worldwide Expedited',
-
 	'11' => 'UPS Standard',
-
 	'12' => 'UPS 3 Day Select',
-
 	'13' => 'UPS Next Day Air Saver',
-
 	'14' => 'UPS Next Day Air Early A.M.',
-
 	'54' => 'UPS Worldwide Express Plus',
-
 	'59' => 'UPS 2nd Day Air A.M.',
-
 	'64' => '',
-
 	'65' => 'UPS Express Saver',
-
    );
-if (!$getnames["$shippingType"])
-    $service_name=$shippingType;
-else
-    $service_name=$getnames["$shippingType"];
 
- $t->set_var( "shipping_method", $service_name );
+    if (!$getnames["$shippingType"])
+        $service_name=$shippingType;
+    else
+        $service_name=$getnames["$shippingType"];
+
+    $t->set_var( "shipping_method", $service_name );
 }
 
 if (( $shippingType && is_object($shippingType) ) && ( $checkups !=1 ) )
 {    
     $t->set_var( "shipping_method", $shippingType->name() );
+}
+else
+{
+    $t->set_var( "shipping_method", $shippingType );
 }
 
 $t->set_var( "order_id", $order->id() );

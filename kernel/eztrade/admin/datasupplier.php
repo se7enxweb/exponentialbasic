@@ -157,7 +157,7 @@ switch ( $url_array[2] )
 
     case "orderedit" :
         $OrderID = $url_array[3];
-        $Action = $url_array[4];
+        isset( $url_array[4] ) ? $Action = $url_array[4] : $Action = "Edit";
         include( "kernel/eztrade/admin/orderedit.php" );
     break;
 

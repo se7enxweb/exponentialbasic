@@ -643,8 +643,16 @@ foreach ( $historyArray as $status )
     
     $statusType = $status->type();
 
-    $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-//    $statusName =  $languageINI->read_var( "strings", $statusName );
+    if ( is_object( $statusType ) && $statusType->name() != "" )
+    {    
+        $statusName = preg_replace( "#intl-#", "", $statusType->name() );
+        //    $statusName =  $languageINI->read_var( "strings", $statusName );
+    }
+    else
+    {
+        $statusName = preg_replace( "#intl-#", "", "Pending" );
+        // $statusName =  $languageINI->read_var( "strings", $statusName );
+    }
     
     
     $t->set_var( "status_date", $locale->format( $status->altered() ) );
@@ -665,10 +673,15 @@ $shippingType = $order->shippingType();
 
 $t->set_var( "shipping_method", "" );
 
-if (($shippingType )&&($checkups!=1))
+if ( ( is_object( $shippingType ) ) && ( $checkups != 1 ) )
 {    
     $t->set_var( "shipping_method", $shippingType->name() );
 }
+else
+{
+    $t->set_var( "shipping_method", $shippingType );
+}
+
 if (($shippingType )&&($checkups==1))
 {    
 $getnames =array ( 

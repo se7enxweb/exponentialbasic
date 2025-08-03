@@ -1,0 +1,1109 @@
+/* DOCUMENT	 				------------------------------------*/
+	/* BEGIN */
+		 html {
+			margin: 0px;
+			padding: 0px;
+		 }
+
+		 body {
+			background: #fff;
+			margin: 0px;
+			padding: 0px;
+			font: verdana, sans-serif;
+		}
+		
+		#container {
+			margin: 0px 0px;
+			padding: 0px;
+			background: #fff;
+			font: verdana, sans-serif;
+		}
+
+		table {
+		  margin: 0px;
+		  padding: 0px;
+		  font-family: verdana, sans-serif;
+		  font-size: 100%;
+		}
+		
+		/* END */
+/* DOCUMENT	 				------------------------------------*/
+
+		
+	
+/* GENERAL RULES	 		------------------------------------*/
+		/* BEGIN */	
+
+		select, input, textarea {
+			font: 100% verdana, sans-serif;
+		}
+		
+		a:link, a:visited, a:active {
+			color: #242A6F;
+			text-decoration: none;
+		}
+		
+		a:hover {
+			text-decoration: underline;
+		}
+		
+		a img {
+			border: none;
+		}
+
+		.clearRight {
+			clear: right;
+		}
+		
+		div.row span.left {
+		  float: left;
+		  text-align: left;
+		  font-weight: bold;
+		  width: 49%;
+		}
+		
+		div.row span.right {
+		  float: right;
+		  text-align: right;
+		  font-weight: bold;
+		  width: 49%;
+		}
+		
+		div.spacer {
+			clear: both;
+		}
+
+/* Begin eZPublish standard styles */
+
+		.pictext {
+			font: .85em verdana, sans-serif;
+			background-color: #f0f0f0;
+		}
+
+		.credit, .byline, .subhead {
+			font: .85em verdana, sans-serif;
+		}
+
+		.p {
+			font-size: .95em;
+		}
+
+
+		h1 {
+			font-weight: bold;
+			font-size: 1.3em;
+			color: #000000;
+			margin-bottom: 8px;
+			text-decoration : none;
+		}
+
+
+		h2, .listheadline, .listproducts {
+			font-weight: bold;
+			font-size: 1.05em;
+			color: #000000;
+			margin-top: 16px;
+			margin-bottom: 8px;	
+			text-decoration : none;
+		}
+
+		h2, .listheadline {
+			text-decoration : none;
+		}
+
+		.small, .smallbold {
+			font-size: .85em;
+		}
+
+		.smallbold {
+			font-weight: bold;
+		}
+
+		h3, .path {
+			font-weight: bold;
+			text-decoration : none;
+			margin-top: 8px;
+		}
+		
+		.pris {
+			font-weight: bold;
+			padding-top: 8px;
+			padding-bottom: 12px;
+		}
+
+
+		.bglight {
+			background-color: #f0f0f0;
+		}
+
+		.bgdark {
+/*			background-color: #dcdcdc; */
+			background-color: #E0E7E9;
+		}
+
+		.bgcurrent {
+			background-color: #f07800;
+		}
+
+		.bgweekend {
+			background-color: #a0a0a0;
+		}
+
+		.bgselect {
+			color: #ffffff;
+			background-color: #787878;
+		}
+
+/*		.spacer {
+			padding-top: 8px;
+			padding-bottom: 8px;  */
+		}
+
+		.error
+		{
+			font-size: 14px;
+			font-weight: bold;
+			color: #f08c00;
+		}
+
+		.floatright {
+			float: right;
+			width: 150px;
+			text-align: center;
+			margin: 20px 0 5px 10px;
+			background-color: #f0f0f0;
+			padding: 5px;
+	/*		border-top: 1px solid #999;
+			border-right: 2px solid #555;
+			border-bottom: 2px solid #555;
+			border-left: 1px solid #999;  */
+		}
+
+		div.floatright img {
+		/*	border-top: 2px solid #555;
+			border-right: 1px solid #999;
+			border-bottom: 1px solid #999;
+			border-left: 2px solid #555;  */
+		}
+
+		div.floatright p {
+			margin-top: 0;
+			text-align: left;
+			font: .85em verdana, sans-serif;
+		}
+
+		.intro {
+			float: center;
+			/* width: 100%; */
+			text-align: left;
+			margin: 20px 10px 60px 10px;
+			background-color: #fff;
+			padding: 0 10px 0 10px;
+		/*	border-top: 2px solid #999;
+			border-right: 1px solid #555;
+			border-bottom: 1px solid #555;
+			border-left: 2px solid #999;   */
+		}
+
+
+		th {
+			font-weight: bold;
+			text-align: left;
+		}
+
+		th.right {
+			text-align: right;
+		}
+
+		.boxtext {
+			font-weight: bold;
+			margin-bottom: 4px;
+		}
+		
+		.box {
+			width: 440px;
+		}
+
+		td.list {
+			border-style: dotted;
+			border-top-width: 0px;
+			border-right-width: 0px;
+			border-bottom-width: 1px;
+			border-left-width: 0px;
+			border-color: #697B86;
+			}
+
+		td.productlist {
+			border-style: dotted;
+			border-top-width: 0px;
+			border-right-width: 0px;
+			border-bottom-width: 1px;
+			border-left-width: 0px;
+			border-color: #697B86;
+			padding: 0px 5px 5px 5px;
+			}
+
+
+		div.productlist {
+			font: .90em verdana, sans-serif;
+			}
+
+		form.options {
+			margin: 10px 0px;
+			padding: 0px;
+		}
+		
+		select.options {
+			background: #E0E7E9;
+			color: #333;
+			font-size: x-small;
+		}
+		
+		input.addCart, input.addWish {
+			font: bold .8em verdana, sans-serif;
+			border: 1px solid #fff;
+			margin: 2px 0px;
+			color: #101744;
+			width: 11em;
+			cursor: pointer;	
+		}
+		
+		input.addCart { background: #FFEB3F; }
+		input.addWish { background: #DBE6F1; }
+
+
+/* END */
+/* GENERAL RULES	 		------------------------------------*/
+
+
+		
+/* TOP HEADER AND CART	 	------------------------------------*/
+		/* BEGIN */		
+		#banner {
+			padding: 0px;
+			margin: 0px;
+			background: #e22b0c
+				url(../images/bannerBg.gif)
+				left bottom no-repeat;
+			height: 110px;
+			z-index: 1;
+		}
+		#banner img {
+		z-index: 1;
+		}
+
+		#cart {
+			position: absolute;
+			right: 2px;
+			margin: 0px;
+			width: 207px;
+			height: 100px;
+			background: #AE2824;
+			color: #fff;
+			font: bold 10px verdana, sans-serif;
+			border: 1px solid #71181E;
+			padding: 0px;
+			z-index: 10;
+		}
+		
+		.cartTopRow {
+
+		}
+		
+		.cartTopRowRight {
+			width: 49px;
+			background: #0E1543;
+			float: right;
+			text-align: center;
+		  	font-weight: bold;
+		  	padding: 2px 2px;
+		  	
+		}
+		
+		.cartTopRowRight a:link,
+		.cartTopRowRight a:active,
+		.cartTopRowRight a:visited {
+			color: #F2F07A;
+		}
+		
+		.cartTopRowLeft {
+			width: 150px;
+			float: left;
+			text-align: left;
+		  	font-weight: bold;
+		  	padding: 2px 2px;
+		  	background: #71181E;
+		}
+
+		.cartTopRowLeft a:link,
+		.cartTopRowLeft a:active,
+		.cartTopRowLeft a:visited {
+			color: #F2F07A;
+		}
+		
+		#cartButtons {
+			padding: 0px 6px;
+		}
+		
+		#cartButtons form {
+			display: inline;
+		}
+		
+		#viewcart, #checkout {
+			font: bold .85em verdana, sans-serif;
+			border: 1px solid #fff;
+			margin: 3px 0px;
+			color: #101744;
+			background: #FFEB3F;
+			width: 75px;
+			cursor: pointer;
+		}
+		
+		#myStuff {
+			float: right;
+			padding: 0px 2px 2px;
+			width: 50%;
+			height: 1%;
+			font-size: 1.1em;
+		}
+		
+		#myStuff a:link,
+		#myStuff a:active,
+		#myStuff a:visited {
+			color: #eee;
+		}
+
+		#myStuff form {
+			display: inline;
+		}
+		
+		#myStuff form input {
+			font-size: x-small;
+			background: #E0E7E9;
+			border: 1px solid #fff;
+			margin: 1px 0px 1px 1px;
+			width: 65px;
+		}
+		
+		#myStuff form span {
+			font-size: x-small;
+		}
+
+		#myStuff form #login {
+			font: bold .85em verdana, sans-serif;
+			border: 1px solid #fff;
+			margin: 2px 2px 1px 2px;
+			color: #101744;
+			background: #FFEB3F;
+			width: 20px;
+			cursor: pointer;
+		}
+		/* END */
+/* TOP HEADER AND CART	 	------------------------------------*/
+
+		
+		
+/* TOP MENU AND BREADCRUMBS ------------------------------------*/
+		/* BEGIN */
+		#menuContainer {
+			padding: 0px;
+			margin: 0px;
+			height: 18px;
+			/* url(../images/menuBg.gif) */
+			background: #fff
+			url(../images/navBg.gif)
+			top left repeat;
+			clear: left;
+		}
+		
+		#navcontainer {
+			height: 18px;
+			padding: 0px;
+			margin: 0px 0px 0px 151px;
+			background: url(../images/navBg.gif)
+			left top repeat-x;
+		}
+		
+		#navcontainer ul {
+			padding: 0px;
+			margin: 0px;
+			color: #fff;
+			width: 100%;
+		}
+		
+		#navcontainer ul li { display: inline; }
+		#navcontainer ul li a {
+			padding: 0.09em 0.7em 0.09em 2.5em;
+			margin: 0.16em 0em 0em 0em;
+			background: #242A6F;
+			color: #fff;
+			text-decoration: none;
+			text-transform: uppercase;
+			font-family: verdana, sans-serif;
+			float: left;
+			border-right: 1px solid #fff;
+			font-size: 7.5pt;
+			display: block;
+			white-space:nowrap;
+		}
+		
+
+		#m-reviews a {
+			border-left: 1px solid #fff;
+			background: #00008B;
+		}
+
+		#m-reviews a:link,#m-reviews a:active,
+		#m-reviews a:visited {
+			background: #00008B;
+		}
+
+		#m-calendar a:link,#m-calendar a:active,
+		#m-calendar a:visited {
+			background: #0A51A1;
+		}
+
+		#m-gallery a:link,#m-gallery a:active,
+		#m-gallery a:visited {
+			background: #0A51A1;
+		}
+		
+		#m-reports a:link,#m-reports a:active,
+		#m-reports a:visited {
+			background: #0A51A1;
+		}
+		
+		#m-install a:link,#m-install a:active,
+		#m-install a:visited {
+			background: #4573B3;
+		}
+		
+		#navcontainer ul li a:hover {
+			background: #EB361B;
+			color: #fff;
+		}
+		
+		#home {
+			position: absolute;
+			top: 125px;
+			left: 10px;
+			height: 11px;
+			width: 38px;
+		}
+		
+		#breadcrumbs {
+			padding: 0px;
+			margin: 0px 0px 0px 0px;
+			height: 21px;
+			background: #FFE52F
+				url(../images/breadcrumbsBg.gif)
+				left top repeat-x;
+		}/* END */
+/* TOP MENU AND BREADCRUMBS ------------------------------------*/
+
+
+
+/* LEFT NAVBAR 				------------------------------------*/
+		/* BEGIN */		
+		#left {
+			top: 0px;
+			right: 0px;
+			width: 151px;
+			\width: 151px;
+			w\idth: 151px;
+			margin: 0px;
+			padding: 0px;
+			position: relative;
+		}
+		
+		#left #wrapper {
+			background: #E0E7E9 url(../images/leftTop.gif)
+				right top no-repeat;
+		}
+		
+		#left #wrapper form {
+			background: transparent;
+			color: #eee;
+			font: bold .86em verdana, sans-serif;
+			margin: 0px 10px;
+			padding: 10px 0px 0px 0px;
+		}
+		
+		#left #wrapper form input {
+			width: 80px;
+			background: #E0E7E9;
+			border: 1px solid #242A6F;
+			font: 10px verdana, sans-serif;
+		}
+		
+		#left #wrapper form #searchBut {
+			width: 30px;
+			display: inline;
+			font: bold 1em verdana, sans-serif;
+			background: #FF7B00;
+			color: #fff;
+			border: 1px solid #fff;
+			cursor: pointer;
+		}
+		
+		#left dl {
+			font: .9em verdana, sans-serif;
+			margin: 30px 0px;
+			padding: 0px;
+		}
+		
+		#left dl dt, #left dl dt a, #left dl dt a:link, #left dl dt a:visited, #left dl dt a:hover {
+			color: #eee;
+			background: #3D509D
+				url(../images/dtBg2.gif)
+				left top repeat-y;
+			font-weight: bold;
+			padding: 1px 10px 2px 5px;
+			margin: 0px;
+			
+		}
+		/* How's this for ridiculous ie hacks */
+		* html #left dl dt, * html #left dl dt a, * html #left dl dt a:link, * html #left dl dt a:visited, * html #left dl dt a:hover {
+width: 100%;
+} /
+		#left dl dt a:hover {
+			text-decoration: underline;
+		}
+
+		#dtNone {
+			display: none;
+		}
+		
+		#left dl dd {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#left dl dd a {
+			color: #536785;
+			display: block;
+			text-decoration: none;
+			font: .94em verdana, sans-serif;
+			padding: 2px 10px;
+			line-height: .98em;
+			position: relative;
+		}
+		
+		#left dl dd a:hover {
+			background: #4573B3;
+			color: #eee;
+			text-decoration: none;
+			position: relative;
+		}
+
+
+		/* END */
+/* LEFT NAVBAR 				------------------------------------*/
+
+
+
+/* #CONTENT DIV: #itemBox,#orderBox, #related, #featuresWrap, 
+	#featuresLeft,#featuresRight,.featuresRightBoxes, #reviews				
+------------------------------------							*/
+		/* BEGIN */
+		#content {
+			padding: 0px;
+			margin: 0px;
+			background-position: left top;
+			background-repeat: no-repeat;
+			top: 0px;
+			left: 0px;
+			border: 0px solid blue;
+		}
+		#contentWrap, #commentsWrap {
+			margin: 10px 10px;
+
+		}
+		#calendarWrap
+		{
+		  width: 90%;
+		  margin: 10px 28px;
+		}
+		h1.mainHeading {
+			font: bold 1.3em verdana, sans-serif;
+			border-bottom: 2px solid #697B86;
+			color: #697B86;
+		}
+		
+		#productFloat {
+			float: right;
+		}
+		
+		#productWrap {
+			width: 100%;
+		}
+		
+		#itemBox {
+			width: 350px;
+		}
+		
+		.prodRow {
+			background: #E0E7E9;
+			min-height: 25px;
+			padding: 0px 4px;
+			margin: 0px;
+			font-size: x-small;
+			font-weight: bold;
+		}
+		
+		#zoom {
+			margin: 0px 4px -6px 0px;
+		}
+
+		
+		#orderBox, #related {
+			/* width: 180px; */
+			width: 240px;
+			background: #EBEBEB;
+			color: #000;
+			margin: 10px 0px;
+			font: 80%;
+		}
+		
+		#orderBox .orderBoxWrap, 
+		#related .relatedBoxWrap {
+			padding: 8px 10px 23px 10px;
+		}
+		
+		#orderBox a, #related a {
+			line-height: .94em;
+			display: block;
+			margin-bottom: -1em;
+			padding-top: .16em;
+		}
+		
+		#orderBox h3, #related h3 {
+			background: #697B86;
+			color: #fff;
+			font: bold 1em verdana, sans-serif;
+			padding: 2px 4px;
+			margin: 0px 0px;
+		}
+
+		
+		#lPrice {
+			color: #697B86;
+			font-weight: bold;
+		}
+		
+		#oPrice {
+			color: #101744;
+			font-weight: bold;
+		}
+		
+		#orderBox form {
+			margin: 10px 0px;
+			padding: 0px;
+		}
+		
+		#orderBox select {
+			background: #E0E7E9;
+			color: #333;
+			font-size: x-small;
+		}
+		
+		#addCart, #addWish {
+			font: bold .8em verdana, sans-serif;
+			border: 1px solid #fff;
+			margin: 2px 0px;
+			color: #101744;
+			width: 11em;
+			cursor: pointer;	
+		}
+		
+		#addCart { background: #FFEB3F; }
+		#addWish { background: #DBE6F1; }
+		
+		.orderBoxWrap p {
+			font-size: x-small;
+			margin: 2px 0px;
+		}
+		
+		#featuresWrap {
+			width: 100%;
+		}
+		
+		#featuresLeft {
+			width: 100%;
+			margin: 0px 0px;
+		}
+		
+		#featuresLeft p,#featuresLeft h5,
+		#featuresLeft h6{
+			padding: 0px 10px;
+			margin: .7em 0px;
+		}
+		
+		#featuresLeft ul {
+			padding: 0px 10px;
+			margin: 0px 1.6em;
+		}
+		
+		#featuresRight {
+			float: right;
+			width: 53%;
+			margin: 0px 0px;
+		}
+		
+		.featuresRightBoxes {
+			border: 1px solid #8C9B9F;
+			padding: 6px 10px;
+			margin-bottom: 4px;
+			height: 1%;
+		}
+		
+		.featuresRightBoxes img {
+			float: right;
+		}
+		
+		.featuresRightBoxes p{
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#reviews {
+			color: #666666;	
+		}
+		
+		h5.reviews {
+			width: 100%;
+			border-bottom: 2px solid #697B86;
+			color: #697B86;
+		}
+		
+		.reviewHeadings {
+			font: bold x-small verdana, sans-serif;
+			color: #333;
+		}
+		
+		/* front page styling */
+		
+		#frontpageWrap {
+			width: 100%;
+		}
+		
+		#frontpageFloat {
+			/* float: right; */
+		}
+
+		#importBox, #dealer {
+			width: 100%;
+			left: 10%;
+			background: #EBEBEB;
+			color: #000;
+			margin: 5px 0px 10px 0;
+			text-align:center;
+			padding-bottom: 15px;
+			padding: 0 0 15px 0;
+		}
+		
+		#importBox .importBoxWrap, 
+		#dealer .dealerBoxWrap {
+	/*		padding: 8px 10px 23px 10px;  */
+	/*		padding: 8px 5% 4px 5%;  */
+	/*		text-align: center;  */
+						
+			/*	width:80%;  */
+			/*	background:#ffffcc;  */
+				margin:auto;
+				text-align:center;
+			/*	border: 1px solid #999;  */
+	
+		}
+		
+		#importBox a, #dealer a {
+			line-height: .94em;
+			display: block;
+		/*	margin-bottom: -1em;  */
+			text-align: center;  
+			padding-top: .16em;
+		}
+		
+		#importBox h3, #dealer h3 {
+			background: #697B86;
+			color: #fff;
+			font: bold 1em verdana, sans-serif;
+			text-align: center;
+			padding: 2px 4px;
+			margin: 0px 0px;
+		}
+		
+		.importBoxWrap .thumbnail {
+			width:160px;  
+			height:105px;
+			padding: 5px;
+			/* margin:20px 10px 5px 10px; */ 
+		}
+		
+		/*	
+		.importBoxWrap .thumbnail img {
+			float: none;
+			margin-top: expression(( 105 - this.height ) / 2);
+		}  
+	        */
+				
+		.dealerBoxWrap .thumbnail {
+			width:160px;
+			height:105px;
+			margin:20px 10px 5px 10px; 
+		}
+
+		.dealerBoxWrap p, .importBoxWrap p {
+			margin: 3px;
+		}
+		
+	/*	.dealerBoxWrap .thumbnail img {
+			float: none;
+			margin-top: expression(( 105 - this.height ) / 2);
+		}  */
+
+
+		* html .dealerBoxWrap .thumbnail, .importBoxWrap .thumbnail {display:inline}
+		html>body .dealerBoxWrap, .importBoxWrap {display:table}
+/*
+		html>body .dealerBoxWrap .thumbnail, .importBoxWrap .thumbnail {display:table;float:left}
+*/
+		@media all and (min-width: 0px){
+		html>body .dealerBoxWrap .thumbnail, .importBoxWrap .thumbnail {display:inline-block;float:none;}
+		}
+	
+		
+		
+		#centerFloat {
+			width: 75%;  
+			float: left; 
+			border: 1px solid #999;
+			margin: 0px auto;  
+			text-align: left;  
+		}
+				
+				
+		.frontRight {
+			float: right;
+			width: 49%;
+			margin: 0px 0px;
+	/*		border: 1px solid #8C9B9F;  */
+
+		}
+		
+		.frontRight h3 {
+			background: #697B86;
+			color: #fff;
+			font: bold 1em verdana, sans-serif;
+			text-align: center;
+			padding: 2px 4px;
+			margin: 0px 0px;
+		}
+		
+	/*	#frontRight h5 {
+			font: bold x-small verdana, sans-serif;
+			color: #333;
+		}  */
+		
+		.frontRight p, .frontRight h5,
+		.frontRight h6{
+			padding: 0px 10px 0px 0px;
+			margin: .3em 0px;
+		}
+		
+		.frontRight h5 {
+			padding: 0px 10px 0px 0px;
+			margin: 1.2em 0px 5px 0px;
+		}		
+		
+		.frontRightBoxes {
+			padding: 6px 10px 6px 10px;
+			margin-bottom: 4px;
+			height: 1%;
+			border: 1px solid #8C9B9F;	
+			font-family: verdana, sans-serif;
+		}
+		
+		.frontRightBoxes img {
+			float: right;
+			margin: 0px 0px 3px 3px;
+		} 
+		
+		.frontRightBoxes p{
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#frontRightGallery {
+/*
+			padding: 6px 10px 6px 10px;
+			margin-bottom: 4px;
+			height: 1%;  
+			border: 1px solid #8C9B9F;		
+*/
+
+			
+				margin:auto;
+				text-align:center;
+
+		
+		}
+		
+		#frontRightGallery .thumbnail{
+/*
+			float: left;
+			width: 100px;
+			height: 100px;
+			border: 1px dotted #8C9B9F; 
+			margin: 0 5px 5px 0;
+			padding: 3px;
+			font: .85em verdana, sans-serif;
+			text-align: center;
+*/
+			width:100px;
+			height:100px;
+			margin:0 5px 5px 0; 
+
+		}
+		
+		#frontRightGallery .thumbnail img {
+			float: none;
+			/* margin-top: expression(( 100 - this.height ) / 2); */
+		}
+		
+		html>body #frontRightGallery .thumbnail img {    /* hidden from IE 5-6 */
+			margin-top: 0; /* to clean up, just in case IE later supports valign! */
+			vertical-align: middle;
+		}
+		html>body .dealerBoxWrap .thumbnail, .importBoxWrap .thumbnail {
+		   float: left;
+		}
+
+		
+		.frontpageLeft {
+			float: left;
+			border: 1px solid #8C9B9F;
+			width: 49%;
+			margin: 0px 0px;
+		}
+		
+		.frontpageLeft h3 {
+			background: #697B86;
+			color: #fff;
+			font: bold 1em verdana, sans-serif;
+			text-align: center;
+			padding: 2px 4px;
+			margin: 0px 0px;
+		}
+				
+		.frontpageLeft p, .frontpageLeft h5,
+		.frontpageLeft h6{
+			padding: 0px 10px 0px 0px;
+			margin: .3em 0px;
+		}
+				
+		.frontLeftBoxes {
+			padding: 6px 10px 0px 10px; 
+			margin-bottom: 4px;
+			height: 1%;
+		}
+		
+		.frontLeftBoxes h5 {
+			padding: 0px 10px 0px 0px;
+			margin: 1.2em 0px 5px 0px;
+		}		
+		
+		.frontLeftBoxes img {
+			float: right;
+			margin: 0px 0px 3px 3px;
+		}
+		
+		.frontLeftBoxes p{
+			margin: 0px;
+			padding: 0px;
+		}
+						
+		#comments {
+			color: #666666;	
+			padding: 6px 10px 0px 10px;
+			margin-bottom: 4px;
+			height: 1%;
+			border: 1px solid #8C9B9F;	
+		}
+		
+		#comments p {
+			margin: 7px 0px 5px 0px;
+		}
+		
+		h5.comments {
+			width: 100%;
+			border-bottom: 2px solid #697B86;
+			color: #697B86;
+		}
+		
+		.commentHeadings {
+			font: bold x-small verdana, sans-serif;
+			color: #333;
+		}
+		
+		/* END */
+/* #CONTENT DIV: #itemBox,#orderBox, #related, #featuresWrap, 
+	#featuresLeft,#featuresRight,.featuresRightBoxes, #reviews				
+------------------------------------							*/
+
+
+
+/* FOOTER STYLES 			------------------------------------*/
+		/* BEGIN */
+		#footer-a {
+			clear: both;
+			padding: 4px 0px;
+			margin: 0px 0px;
+			background: #E0E7E9;
+			color: #3A4166;
+			height: 40px;
+			text-align: center;
+		}
+		
+		#footer-a form {
+			display: inline;
+		}
+		
+		#footer-a form input {
+			font-size: x-small;
+			background: #E0E7E9;
+		}
+		
+		#footer-a form span {
+			font-size: x-small;
+		}
+
+		#footer-a a:link,#footer-a a:active,
+		#footer-a a:visited {
+			text-decoration: underline;
+		}
+		
+		#emailGo, #emailNo {
+			border: 1px solid #333;
+			font: bold .9em verdana, sans-serif;
+			cursor: pointer;
+		}
+		
+		#footer-b {
+			padding: 4px 0px;
+			margin: 0px;
+			background: #C2CFE5;
+			text-align: center;
+			font-size: x-small;
+		}/* END */
+       #footerWrap {
+			position: relative;
+	   }
+/* FOOTER STYLES 			------------------------------------*/
+
+
+/* HOME HACK */
+#homeHack {
+   position: relative;
+   top: 1px;
+}

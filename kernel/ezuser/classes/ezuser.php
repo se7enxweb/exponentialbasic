@@ -84,7 +84,9 @@ class eZUser
         $this->InfoSubscription = 0;
         $this->SimultaneousLogins = 0;
         $this->GroupString = false;
+	$this->AccountNumber = 0;
         $this->HasRoot = -1;
+
         if ( is_array( $id ) )
         {
             $this->fill( $id );
@@ -266,6 +268,7 @@ class eZUser
         $this->LastName =& $user_array[$db->fieldName("LastName")];
         $this->Signature =& $user_array[$db->fieldName("Signature")];
         $this->CookieLogin =& $user_array[$db->fieldName("CookieLogin")];
+	if ( $user_array[$db->fieldName("AccountNumber")] != NULL )
         $this->AccountNumber =& $user_array[$db->fieldName("AccountNumber")];
         $this->SimultaneousLogins =& $user_array[$db->fieldName("SimultaneousLogins")];
     }

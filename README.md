@@ -60,7 +60,12 @@ Follow these steps to set up eZ Publish Basic via Composer:
 2. Set up your database in your database server.
 
 - You will first need to generate the database SQL file. Run this command: ```cd /path/to/ezpb/; ./bin/shell/make_sql.sh```
-- Then load the SQL file generated from: ```mysql -u user databaseName -p < ./bin/sql/generated/publish_mysql.sql;```
+- Then load the SQL file generated from: ```mysql -u user databaseName -p < ./bin/sql/generated/publish_mysql.sql;``
+
+2.1 Install Default Content Database Data and Image File Content
+- Then load the SQL file from: ```mysql -u user databaseName -p < ./bin/sql/data_mysql.sql;```
+- Then uncompress the tar.gz file from: ```tar -vzxf ./bin/data/data.tar.gz;```
+- Then finally run the script from: ```./bin/shell/modfix.sh;```
 
 3. Update settings files
 

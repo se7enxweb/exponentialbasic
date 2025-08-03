@@ -43,7 +43,7 @@ if ( is_Numeric( $orderID ) && $orderConfirmation == $orderID )
 {
     $confirmation = new eZOrderConfirmation( $orderID );
     
-    $result = $confirmation->confirmOrder( $session->id() );
+    $result = $confirmation->confirmOrder( $session );
 
     // redirect to the confirmation site if the order is sent
     $user =& eZUser::currentUser();

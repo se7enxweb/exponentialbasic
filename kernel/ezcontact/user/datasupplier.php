@@ -28,7 +28,7 @@
 $ini =& INIFile::globalINI();
 $GlobalSectionID = $ini->read_var( "eZContactMain", "DefaultSection" );
 
-$url_array = eZURITool::split( $REQUEST_URI );
+$url_array = eZURITool::split($_SERVER["REQUEST_URI"] );
 $url_array_count = count( $url_array );
 
 for( $i = $url_array_count; $i <= 25; $i++ )

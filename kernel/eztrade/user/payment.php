@@ -770,11 +770,15 @@ if ( $PaymentSuccess == true )
     $mailTemplate->set_var( "comment", $order->comment() );
 
     $shippingType = $order->shippingType();
-    if ( $shippingType )
+
+    if ( $shippingType && is_a( $shippingType, "eZShippingType" ) )
     {    
         $mailTemplate->set_var( "shipping_type", $shippingType->name() );
     }
-
+    else
+    {
+        $mailTemplate->set_var( "shipping_type", $shippingType );
+    }
     $shippingCost = $order->shippingCharge();
 
     $shippingVAT = $order->shippingVAT();

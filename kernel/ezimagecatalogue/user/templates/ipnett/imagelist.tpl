@@ -12,7 +12,7 @@
 <a class="path" href="/imagecatalogue/image/list/0/">{intl-image_root}</a>
 
 <!-- BEGIN path_item_tpl -->
-<img src="/images/path-slash.gif" height="10" width="16" border="0" alt="">
+<img src="/design/base/images/icons/path-slash.gif" height="10" width="16" border="0" alt="">
 <a class="path" href="/imagecatalogue/image/list/{category_id}/">{category_name}</a>
 <!-- END path_item_tpl -->
 

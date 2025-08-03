@@ -188,7 +188,7 @@ else
     
     $t->set_var( "user_password_edit_url", '/user/passwordchange/' );
 
-    include_once( "ezmessage/classes/ezmessage.php" );
+    // include_once( "ezmessage/classes/ezmessage.php" );
     $t->set_var( "message_switch", "" );
     $t->set_var( "message_switch_item", "" );
     

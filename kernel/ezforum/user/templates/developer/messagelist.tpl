@@ -16,9 +16,9 @@
 
 	<img src="{www_dir}/design/admin/images/layout/path-arrow.gif" height="10" width="15" border="0">
 	<a class="path" href="{www_dir}{index}/forum/categorylist/">{intl-forum-main}</a>
-	<img src="{www_dir}/images/path-slash.gif" height="10" width="20" border="0">
+	<img src="{www_dir}/design/base/images/icons/path-slash.gif" height="10" width="20" border="0">
     <a class="path" href="{www_dir}{index}/forum/forumlist/{category_id}/">{category_name}</a>
-	<img src="{www_dir}/images/path-slash.gif" height="10" width="20" border="0">
+	<img src="{www_dir}/design/base/images/icons/path-slash.gif" height="10" width="20" border="0">
 	<a class="path" href="{www_dir}{index}/forum/messagelist/{forum_id}">{forum_name}</a>
 
 <hr noshade size="4" />

@@ -23,8 +23,10 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-$_GET = array_map('stripslashes',  $_GET);
-$_POST = array_map('stripslashes',  $_POST);// include_once( "classes/INIFile.php" );
+//$_GET = array_map('stripslashes',  $_GET);
+//$_POST = array_map('stripslashes',  $_POST);
+
+// // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
@@ -333,7 +335,7 @@ if(empty($currentTypeID[0]))
     
     //    $session->setVariable( "AuthCode", eZHTTPTool::getVar( "AuthCode", true ) );
 
-    $session->setVariable( "Comment", stripslashes( eZHTTPTool::getVar( "Comment", true ) ), eZHTTPTool::getVar( "Comment", true ) );
+    $session->setVariable( "Comment", eZHTTPTool::getVar( "Comment", true ), eZHTTPTool::getVar( "Comment", true ) );
 
     $session->setVariable( "ShippingCost", $cart->shippingCost( new eZShippingType( $currentTypeID ) ) );
     $session->setVariable( "ShippingVAT", $cart->shippingVAT( new eZShippingType( $currentTypeID ) ) );
@@ -539,6 +541,7 @@ $thisuser =& eZUser::currentUser();
 
 $id = $thisuser->id();
 
+$t->set_var( "shipping_type_error","");
 
 if($checkups==1)
 {

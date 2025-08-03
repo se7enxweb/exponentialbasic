@@ -118,7 +118,7 @@ $t->set_var( "delete_images_button" , "" );
 $t->set_var( "delete_categories_button" , "" );
 $t->set_var( "default_new" , "" );
 $t->set_var( "default_delete" , "" );
-$t->set_var( "main_category_id", $CategoryID );
+$t->set_var( "main_category_id", isset( $CategoryID ) ? $CategoryID : false );
 $t->set_var( "category", "" );
 
 $category = new eZImageCategory( $CategoryID );

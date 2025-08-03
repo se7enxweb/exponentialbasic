@@ -45,8 +45,8 @@ $TinyImageWidth = $ini->read_var( "eZImageCatalogueMain", "TinyImageWidth" );
 $TinyImageHeight = $ini->read_var( "eZImageCatalogueMain", "TinyImageHeight" );
 
 $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )==enabled?1:0;
-$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )==enabled?1:0;
+$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == "enabled"?1:0;
+$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == "enabled"?1:0;
 if(($upscheck==0)&&($uspscheck==0))
 $checkups=0;
 else
@@ -335,9 +335,12 @@ foreach ( $historyArray as $status )
     $admin =  $status->admin();
     
     $statusType = $status->type();
-
-    $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-//    $statusName =  $languageINI->read_var( "strings", $statusName );
+    if( $statusType && $statusType->name() != null )
+        $statusName = preg_replace( "#intl-#", "", $statusType->name() );
+    else
+        $statusName = "Pending";
+    
+    // $statusName =  $languageINI->read_var( "strings", $statusName );
     
     $t->set_var( "status_date", $locale->format( $status->altered() ) );
     $t->set_var( "status_name", $statusName );
@@ -393,14 +396,14 @@ $getnames =array (
 
    );
 if (!$getnames["$shippingType"])
-$service_name=$shippingType;
+    $service_name=$shippingType;
 else
-$service_name=$getnames["$shippingType"];
+    $service_name=$getnames["$shippingType"];
 
  $t->set_var( "shipping_method", $service_name );
 }
 
-if (( $shippingType )&&($checkups!=1))
+if (( $shippingType && is_object($shippingType) ) && ( $checkups !=1 ) )
 {    
     $t->set_var( "shipping_method", $shippingType->name() );
 }

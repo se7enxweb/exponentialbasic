@@ -25,7 +25,7 @@
 -->
 <!-- BEGIN path_item_tpl -->
 <!--
-<img src="{www_dir}/images/path-slash.gif" height="10" width="20" border="0" alt="">
+<img src="{www_dir}/design/base/images/icons/path-slash.gif" height="10" width="20" border="0" alt="">
 <a class="path" href="{www_dir}{index}/article/archive/{category_id}/">{category_name}</a>
 -->
 <!-- END path_item_tpl -->

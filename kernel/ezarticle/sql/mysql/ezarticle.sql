@@ -89,6 +89,14 @@ CREATE TABLE eZArticle_ArticlePermission (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE eZArticle_ArticleSectionDict (
+  ID int(11) NOT NULL DEFAULT 0,
+  ArticleID int(11) NOT NULL DEFAULT 0,
+  SectionID int(11) NOT NULL DEFAULT 0,
+  Placement int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (ArticleID, SectionID)
+);
+
 CREATE TABLE eZArticle_ArticleTypeLink (
   ID int NOT NULL,
   ArticleID int default NULL,
@@ -150,6 +158,12 @@ CREATE TABLE eZArticle_CategoryReaderLink (
   CategoryID int NOT NULL default '0',
   GroupID int NOT NULL default '0',
   Created int NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+CREATE TABLE `eZArticle_LinkSection` (
+  ID int(11) NOT NULL DEFAULT 0,
+  Name varchar(30) DEFAULT NULL,
   PRIMARY KEY (ID)
 );
 

@@ -193,15 +193,21 @@ $cart = new eZCart();
 $cartBySession = $cart->getBySession( $session );
 
 if( $cartBySession )
-    $cart = $cart->getBySession( $session );
+    $cart = $cartBySession;
 
-// if ( !$cart )
-// {
-//     $cart = new eZCart();
-//     $cart->setSession( $session );
-    
-//     $cart->store();
-// }
+// echo "<hr>";
+// var_dump( $cartBySession );
+
+if ( !$cartBySession )
+{
+    $cart = new eZCart();
+    $cart->setSession( $session );
+    // echo "<hr>";
+    $cart->store();
+}
+
+// var_dump( $cart );
+// echo "<hr>";
 
 $items = $cart->items( );
 
@@ -301,6 +307,7 @@ if ( isset( $Action ) && $Action == "AddToBasket" )
                     }
                 }
             }
+
             if ( $can_add )
             {
                 $cartItem = new eZCartItem();
@@ -637,7 +644,7 @@ if ( $ShowCart == true )
      $shippingName = $upsNames[$shipServiceCode];
   }
   else
-    $shippingName = $upsNames[$cart->ShipServiceCode]; //$shipServiceCode;
+    $shippingName = $cart->ShipServiceCode; //$shipServiceCode;
   
     // ser =& eZUser::currentUser();
     

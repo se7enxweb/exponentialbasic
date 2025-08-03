@@ -67,31 +67,44 @@ switch ( $url_array[2] )
         $VariationID = $url_array[4];
         include( "kernel/ezimagecatalogue/user/imageview.php" );
 
-if  (  ( $PrintableVersion != "enabled" ) &&  ( $UserComments == "enabled" ) )
+        if  ( isset( $PrintableVersion ) && ( $PrintableVersion != "enabled" ) &&  ( $UserComments == "enabled" ) )
+        {
+            $RedirectURL = "/imagecatalogue/imageview/$ImageID/";
+            $image = new eZImage ( $ImageID );
+            if ( ( $image->id() >= 1 ) )    //  && $product->discuss() )
             {
-		$RedirectURL = "/imagecatalogue/imageview/$ImageID/";
-                $image = new eZImage ( $ImageID );
-                if ( ( $image->id() >= 1 ) )    //  && $product->discuss() )
+                for ( $i = 0; $i < count( $url_array ); $i++ )
                 {
-                    for ( $i = 0; $i < count( $url_array ); $i++ )
+                    if ( ( $url_array[$i] ) == "parent" )
                     {
-                        if ( ( $url_array[$i] ) == "parent" )
-                        {
-                            $next = $i + 1;
-                            $Offset = $url_array[$next];
-                        }
+                        $next = $i + 1;
+                        $Offset = $url_array[$next];
                     }
-                    $forum = $image->forum();
-                    $ForumID = $forum->id();
-                    include( "kernel/ezforum/user/messagesimplelist.php" );
                 }
+                $forum = $image->forum();
+                $ForumID = $forum->id();
+                include( "kernel/ezforum/user/messagesimplelist.php" );
             }
-
+        }
     }
     break;
 
     case "search" :
     {
+        $CategoryID = $url_array[3];
+
+        if ( !is_numeric( $CategoryID ) )
+            $CategoryID = 0;
+
+        if( isset( $url_array[4] ) )    
+        {
+            $Offset = $url_array[4];
+        }
+        else
+        {
+            $Offset = 0;
+        }   
+
         include( "kernel/ezimagecatalogue/user/imagelist.php" );
         
     }

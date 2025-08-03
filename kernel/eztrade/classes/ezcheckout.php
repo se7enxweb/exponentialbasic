@@ -54,7 +54,8 @@ class eZCheckout
         $checkout = $ini->read_var( "eZTradeMain", "Checkout" );
 
         // check for local checkout code
-        if ( eZFile::file_exists( "kernel/classes/$checkout/ezcheckoutsuppliergateway.php" ) )
+        // if ( eZFile::file_exists( "kernel/classes/$checkout/ezcheckoutsuppliergateway.php" ) )
+        if ( eZFile::file_exists( "kernel/classes/checkout/ezcheckoutsuppliergateway.php" ) )
         {
             //include_once( "kernel/classes/checkout/ezcheckoutsuppliergateway.php" );
             $this->CheckoutObject = new eZCheckoutSupplierGateway();

@@ -62,6 +62,8 @@ class eZAddress
         $db->begin();
 
         $ret = false;
+        $res = array();
+
         if ( $this->CountryID <= 0 )
             $country_id = 0;
         else
@@ -89,7 +91,7 @@ class eZAddress
                                    '$this->Zip',
                                    '$place',
                                    '$country_id',
-				   '$region_id',
+                                   '$region_id',
                                    '$this->AddressTypeID',
                                    '$name', 
                                    '$this->Phone')";

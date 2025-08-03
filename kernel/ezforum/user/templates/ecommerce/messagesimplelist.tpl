@@ -63,9 +63,9 @@
 </table>
 <!-- END type_list_tpl -->
 
-  <p><img src="{www_dir}/images/arrow.gif" alt="" /> <a href=
+  <p><img src="{www_dir}/design/base/images/icons/path-arrow.gif" alt="" /> <a href=
   "{www_dir}{index}/forum/messagelist/{forum_id}/" title="{intl-all-posts}">{intl-all-posts}</a><br />
-  <img src="{www_dir}/images/arrow.gif" title="" /> <a href=
+  <img src="{www_dir}/design/base/images/icons/path-arrow.gif" title="" /> <a href=
   "{www_dir}{index}/forum/userlogin/newsimple/{forum_id}?RedirectURL={redirect_url}" title="{intl-new-posting}">{intl-new-posting}</a></p>
 </div>
 <!-- end #contentWrap -->

@@ -38,7 +38,7 @@
 	<img src="{image_url}" alt="{image_caption}" width="{image_width}" height="{image_height}" border="0" /></a>
 	<!-- END image_item_tpl -->
 	<!-- BEGIN no_image_tpl -->
-	<img src="/images/1x1.gif" height="1" width="1" border="0" alt="" /><br />
+	<img src="/design/base/images/design/1x1.gif" height="1" width="1" border="0" alt="" /><br />
 	<!-- END no_image_tpl -->
     </td>
 </tr>

@@ -774,7 +774,7 @@ $mailTemplate->set_var( "shipping_type",$service_name);
     function confirm( $sessionID )
     {
         $ret = true;
-        if ( is_Numeric( $sessionID ) )
+        if ( isset( $sessionID ) && is_numeric( $sessionID ) )
         {
             $session = new eZSession( $sessionID );
             $preOrderID = $session->variable( "PreOrderID" );
@@ -802,6 +802,7 @@ $mailTemplate->set_var( "shipping_type",$service_name);
 
             // get the cart or create it
             $cart = new eZCart();
+            debug_print_backtrace();
             $cart = $cart->getBySession( $session );
             $cart->cartTotals( $tax, $total );
 

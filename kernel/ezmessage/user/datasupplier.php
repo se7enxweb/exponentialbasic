@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezhttptool.php" );
+// include_once( "classes/ezhttptool.php" );
 
 switch( $url_array[2] )
 {
@@ -36,25 +36,25 @@ switch( $url_array[2] )
 
     case "list" :
     {
-        include( "ezmessage/user/messagelist.php" );
+        include( "kernel/ezmessage/user/messagelist.php" );
     }
     break;    
 
     case "edit" :
     {
-       	include( "ezmessage/user/messageedit.php" );
+       	include( "kernel/ezmessage/user/messageedit.php" );
     }
     break;
     
     case "popup" :
     {
-       	include( "ezmessage/user/reciverpopup.php" );
+       	include( "kernel/ezmessage/user/reciverpopup.php" );
     }
     break; 
     
     case "send" :
     {
-       	include( "ezmessage/user/messagesend.php" );
+       	include( "kernel/ezmessage/user/messagesend.php" );
     }
     break;
     

@@ -202,6 +202,8 @@ if ( count( $cartshipoptions_array ) == 1 )
         $db =& eZDB::globalDatabase();
 
         $ret = false;
+        $cart_array = array();
+
         if ( is_a( $session, "eZSession" ) )
         {
             $sid = $session->id();
@@ -213,6 +215,10 @@ if ( count( $cartshipoptions_array ) == 1 )
             if ( count( $cart_array ) == 1 )
             {
                 $ret = new eZCart( $cart_array[0][$db->fieldName( "ID" )] );
+            }
+            else if ( count( $cart_array ) > 1 )
+            {
+                die( "Error: Carts with the same session ID was found in the database. This should not happen. See: $query" );
             }
         }
         return $ret;
@@ -239,19 +245,19 @@ if ( count( $cartshipoptions_array ) == 1 )
         }
 
         $res = $db->query( "DELETE FROM eZTrade_Cart WHERE ID='$this->ID'" );
-	$res2 = $db->query( "DELETE FROM eZTrade_CartShipOptions WHERE CartID='$this->ID'" );
+	      $res2 = $db->query( "DELETE FROM eZTrade_CartShipOptions WHERE CartID='$this->ID'" );
 
         if ( $res == false )
             $db->rollback( );
         else
             $db->commit();
 
-	if ( $res2 == false )
-            $db->rollback( );
-        else
-	{
-            $db->commit();
-	}
+        if ( $res2 == false )
+                  $db->rollback( );
+              else
+        {
+                  $db->commit();
+        }
 
         return true;
     }
@@ -292,7 +298,6 @@ if ( count( $cartshipoptions_array ) == 1 )
         }
     }
 
-
     /*!
       Sets the ship service code
     */
@@ -302,7 +307,6 @@ if ( count( $cartshipoptions_array ) == 1 )
        $this->currentTypeID[0] = $code;
        $this->ShipServiceCode = $code;
     }
-
 
     /*!
       Sets the company we are shopping for
@@ -714,11 +718,14 @@ if ( count( $cartshipoptions_array ) == 1 )
                 $curboxnum++;
               }
 
-            $without[$curboxnum]['weight'] += $proweight;
-            $without[$curboxnum]['count'] += $getcount;
-            $without[$curboxnum]['flatups'] = $proflatups;
-            $without[$curboxnum]['flatusps'] = $proflatusps;
-            $without[$curboxnum]['combineflat'] = $procombineflat; 
+              if( isset( $without[$curboxnum] ) )
+              {
+                  $without[$curboxnum]['weight'] += $proweight;
+                  $without[$curboxnum]['count'] += $getcount;
+                  $without[$curboxnum]['flatups'] = $proflatups;
+                  $without[$curboxnum]['flatusps'] = $proflatusps;
+                  $without[$curboxnum]['combineflat'] = $procombineflat;                
+              }
             }
             $arrcount +=1;
           }

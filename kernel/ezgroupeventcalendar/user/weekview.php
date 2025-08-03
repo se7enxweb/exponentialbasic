@@ -157,6 +157,8 @@ $noShowGroup = new eZGroupNoShow();
 $user_groupID = "-1";
 $groupsList   = "-1";
 
+$rootAccess = false;
+
 // retreive all the groups the user is a member of
 if( $user )
 {

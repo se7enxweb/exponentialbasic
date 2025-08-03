@@ -874,7 +874,7 @@ if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
             {
                 if( isset( $RealAddressID[$i] ) )
                 {
-                    $t>set_var( "address_id", $RealAddressID[$i] );
+                    $t->set_var( "address_id", $RealAddressID[$i] );
                 }
                 else
                 {

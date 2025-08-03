@@ -30,16 +30,21 @@ ob_end_clean();
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-// we can move this to an ini variable later if need be
-$watermarkToggle = true;
+$ini =& INIFile::globalINI();
+$watermarkToggle = $ini->read_var( "watermark", "watermarkEnabled" ) == "true" ? true : false;
+
 $file = new eZImage( $ImageID );
+
 // $fileName = $file->fileName();
 $fileName = $file->name();
 $originalFileName = $file->originalFileName();
 $filePath = $file->filePath( true );
-if ($watermarkToggle)
+
+if ( $watermarkToggle == true )
+{
   $watermarkPath = $file->watermarkPath(true);
   $watermarkFileSize = eZFile::filesize( $watermarkPath );
+}
 
 $user =& eZUser::currentUser();
 $image = new eZImage( $ImageID );
@@ -68,7 +73,7 @@ Header( "Content-disposition: attachment; filename=\"$fileName\"" );
 */
 
 //echo($content);
-if ($watermarkToggle) {
+if ( $watermarkToggle == true ) {
     header( "Cache-Control:" );
     Header("Content-type: application/oct-stream"); 
     header( "Content-Length: $watermarkFileSize" );

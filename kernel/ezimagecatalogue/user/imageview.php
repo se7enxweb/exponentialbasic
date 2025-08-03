@@ -169,6 +169,7 @@ $size = eZFile::siFileSize( $size );
 $width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
 $height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
 $thumbnail =& $image->requestImageVariation( $width, $height );
+$SiteURL = $ini->read_var( "site", "SiteURL" );
 
 $t->set_var( "orig_width", $image->width() );
 $t->set_var( "orig_height", $image->height() );

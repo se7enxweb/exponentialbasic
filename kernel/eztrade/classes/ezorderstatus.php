@@ -49,6 +49,7 @@ class eZOrderStatus
     */
     function __construct( $id="" )
     {
+        $this->StatusID = 0;
 
         if ( $id != "" )
         {
@@ -71,22 +72,24 @@ class eZOrderStatus
         {
             $db->lock( "eZTrade_OrderStatus" );
             $nextID = $db->nextID( "eZTrade_OrderStatus", "ID" );
-            $ret[] = $db->query( "INSERT INTO eZTrade_OrderStatus
-                                 (ID,
-                                  StatusID,
-                                  Altered,
-		                          AdminID,
-		                          Comment,
-		                          OrderID)
-                                 VALUES
-                                 ('$nextID',
-		                          '$this->StatusID',
-                                  '$timestamp',
-		                          '$this->AdminID',
-		                          '$this->Comment',
-		                          '$this->OrderID')" );
+            $query = "INSERT INTO eZTrade_OrderStatus
+                      (ID,
+                      StatusID,
+                      Altered,
+                      AdminID,
+                      Comment,
+                      OrderID)
+                      VALUES
+                      ('$nextID',
+                      '$this->StatusID',
+                      '$timestamp',
+                      '$this->AdminID',
+                      '$this->Comment',
+                      '$this->OrderID')";
+
+            $ret[] = $db->query( $query );
             $db->unlock();
-			$this->ID = $nextID;
+			      $this->ID = $nextID;
         }
         else
         {

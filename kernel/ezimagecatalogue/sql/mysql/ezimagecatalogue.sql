@@ -52,6 +52,13 @@ CREATE TABLE eZImageCatalogue_ImageCategoryLink (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE eZImageCatalogue_ImageForumLink (
+  ID int(11) NOT NULL DEFAULT 0,
+  ImageID int(11) NOT NULL DEFAULT 0,
+  ForumID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (ID)
+);
+
 CREATE TABLE eZImageCatalogue_ImageVariation (
   ID int NOT NULL,
   ImageID int NOT NULL,

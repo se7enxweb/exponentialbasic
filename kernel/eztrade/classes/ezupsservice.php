@@ -74,7 +74,7 @@ class ezups {
         $ini = &INIFile::globalINI();
         $emptyarr = array();
         if (strtolower($cou) == "us") {
-            if (($sta != "AF") && ($sta != "AA") && ($tsta != "AC") && ($state != "AE") && ($sta != "AM") && ($sta != "AP")) {
+            if (($sta != "AF") && ($sta != "AA") && ($sta != "AC") && ($sta != "AE") && ($sta != "AM") && ($sta != "AP")) {
                 if (($sta != "AK") && ($sta != "HI")) {
                     // $servicearr =array ( '02','03','12');
                     $serviceprearr = $ini->read_var("eZTradeMain", "USExcept");

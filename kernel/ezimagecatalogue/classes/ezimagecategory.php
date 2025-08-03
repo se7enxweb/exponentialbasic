@@ -476,14 +476,21 @@ class eZImageCategory
       $user is either a userID or an eZUser.
       $imagecategory is the ID of the image category.
      */
-    static public function isOwner( $user, $imagecategory )
+    static public function isOwner( $user, $imageCategory = false )
     {
+        $res = array();
+
         if ( !is_a( $user, "eZUser" ) )
             return false;
 
         $db =& eZDB::globalDatabase();
-        $db->query_single( $res, "SELECT UserID from eZImageCatalogue_Category WHERE ID='$imagecategory'");
-        $userID = $res[$db->fieldName("UserID")];
+        $db->query_single( $res, "SELECT UserID from eZImageCatalogue_Category WHERE ID='$imageCategory'");
+
+        if( isset( $res["UserID"] ) && is_numeric($res["UserID"] ) )
+            $userID = $res["UserID"];
+        else
+            $userID = false;
+
         if ( $userID == $user->id() )
             return true;
 

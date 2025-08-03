@@ -23,19 +23,19 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/INIFile.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/INIFile.php" );
 
-include_once( "ezmessage/classes/ezmessage.php" );
-include_once( "ezmessage/classes/ezmessagemessagedefinition.php" );
+// include_once( "ezmessage/classes/ezmessage.php" );
+// include_once( "ezmessage/classes/ezmessagemessagedefinition.php" );
 
 $ini =& INIFile::globalINI();
 $Language = $ini->read_var( "eZMessageMain", "Language" );
 
-$t = new eZTemplate( "ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
-                     "ezmessage/user/intl", $Language, "messagelist.php" );
+$t = new eZTemplate( "kernel/ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
+                     "kernel/ezmessage/user/intl", $Language, "messagelist.php" );
 
 $locale = new eZLocale( $Language ); 
 

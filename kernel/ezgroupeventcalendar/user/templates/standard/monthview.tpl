@@ -112,7 +112,7 @@
   </tr>
   <tr>
     <td colspan="2">
-      <img src="/images/1x1.gif" height="4" width="2" border="0" alt="" /><br />
+      <img src="/design/base/images/design/1x1.gif" height="4" width="2" border="0" alt="" /><br />
     </td>
   </tr>
 <!-- BEGIN private_appointment_tpl -->

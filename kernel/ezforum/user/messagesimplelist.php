@@ -42,7 +42,7 @@ $Language = $ini->read_var( "eZForumMain", "Language" );
 $SimpleUserList = $ini->read_var( "eZForumMain", "SimpleUserList" );
 $anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
 
-if ( $ProductID )
+if ( isset( $ProductID ) )
 	{ $ListTemplate = "reviewsimplelist.php"; }
 else
 	{ $ListTemplate = "messagesimplelist.php"; }
@@ -152,7 +152,7 @@ eZList::drawNavigator( $t, $messageCount, $SimpleUserList, $Offset, "messagelist
 
 $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
 
-$t->set_var( "newmessage", $newmessage );
+$t->set_var( "newmessage", isset( $newmessage ) ? $newmessage : false );
 
 $url = explode( "parent", $_SERVER['REQUEST_URI'] );
 $t->set_var( "url", $url[0] );

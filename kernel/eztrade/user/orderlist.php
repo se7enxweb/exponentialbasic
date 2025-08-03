@@ -107,8 +107,12 @@ foreach ( $orderArray as $order )
     if ( $ShowOrderStatusToUser )
     {
         $statusType = $status->type();
-        $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-//        $statusName =  $languageINI->read_var( "strings", $statusName );
+
+        if ( $statusType && $statusType->name() != null )
+            $statusName = preg_replace( "#intl-#", "", $statusType->name() );
+        else
+            $statusName = "Pending";
+        // $statusName =  $languageINI->read_var( "strings", $statusName );
         $t->set_var( "order_status", $statusName );
 
         $t->parse( "order_status", "order_status_tpl" );
@@ -124,7 +128,7 @@ foreach ( $orderArray as $order )
 	
 	$order->orderTotals( $tax, $total );
     
-    if ( $PricesIncludeVAT == true )
+    if ( isset( $_GET["PricesIncludeVAT"] ) && $PricesIncludeVAT == true )
         $currency->setValue( $total["inctax"] );
     else
         $currency->setValue( $total["extax"] );    

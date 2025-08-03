@@ -162,6 +162,8 @@ $groupsList = "-1";
 // groups not to include
 $noShowGroup = new eZGroupNoShow();
 
+$rootAccess = false;
+
 // Determin the users group membership and access
 if ($user) {
     if (

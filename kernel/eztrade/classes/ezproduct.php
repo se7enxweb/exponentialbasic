@@ -449,6 +449,7 @@ class eZProduct
     {
         $db =& eZDB::globalDatabase();
         $inUser =& eZUser::currentUser();
+        $price = 0;
 
         if ( is_a( $inUser, "eZUser" ) && $withPriceGroups == true )
         {
@@ -539,6 +540,8 @@ class eZProduct
         $db =& eZDB::globalDatabase();
         $inUser =& eZUser::currentUser();
         $maxPrice = 0;
+        $price = 0;
+
         if ( is_a( $inUser, "eZUser" ) )
         {
             $groups = eZPriceGroup::priceGroups( $inUser, false );

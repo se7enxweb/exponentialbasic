@@ -14,7 +14,7 @@
 <a class="path" href="{www_dir}{index}/imagecatalogue/image/list/0/">{intl-image_root}</a>
 
 <!-- BEGIN path_item_tpl -->
-<img src="{www_dir}/images/path-slash.gif" height="10" width="16" border="0" alt="">
+<img src="{www_dir}/design/base/images/icons/path-slash.gif" height="10" width="16" border="0" alt="">
 <a class="path" href="{www_dir}{index}/imagecatalogue/image/list/{category_id}/">{category_name}</a>
 <!-- END path_item_tpl -->
 
@@ -82,7 +82,7 @@
 	<!-- END detail_read_tpl -->
 	<!-- BEGIN detail_write_tpl -->
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/image/edit/{image_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezimg{image_id}-red','','/ezimagecatalogue/user/{image_dir}/redigerminimrk.gif',1)"><img name="ezimg{image_id}-red" border="0" src="{www_dir}/ezimagecatalogue/user/{image_dir}/redigermini.gif" width="16" height="16" align="top">{image_id}</a>
+	<a href="{www_dir}{index}/imagecatalogue/image/edit/{image_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezimg{image_id}-red','','/ezimagecatalogue/user/{image_dir}/redigerminimrk.gif',1)"><img name="ezimg{image_id}-red" border="0" src="{www_dir}/kernel/ezimagecatalogue/user/{image_dir}/redigermini.gif" width="16" height="16" align="top">{image_id}</a>
 	</td>
 	<td class="{td_class}" width="1%">
 	<input type="checkbox" name="ImageArrayID[]" value="{image_id}">

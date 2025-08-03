@@ -478,6 +478,7 @@ class eZSession
         $db =& eZDB::globalDatabase();
 
         $dbError = false;
+        $value_array = array();
         $db->begin( );
 
         // lock the table
@@ -516,17 +517,16 @@ class eZSession
             if ( is_bool( $group ) )
                 $group_sql = "";
             else
-                $group_sql = "'$group'";
+                $group_sql = "$group";
 
             $nextID = $db->nextID( "eZSession_SessionVariable", "ID" );
-
-            $res = $db->query( "INSERT INTO eZSession_SessionVariable ( ID, SessionID, Name, Value, GroupName ) VALUES
-                                      ( '$nextID',
-                                        '$this->ID',
-		                                '$name',
-		                                '$value',
-                                        '$group_sql' )
-                                 " );
+            $query = "INSERT INTO eZSession_SessionVariable ( ID, SessionID, Name, Value, GroupName ) VALUES
+                    ( '$nextID',
+                    '$this->ID',
+                    '$name',
+                    '$value',
+                    '$group_sql' );";
+            $res = $db->query( $query );
             if ( $res == false )
                 $dbError = true;
         }

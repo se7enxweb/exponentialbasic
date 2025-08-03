@@ -34,11 +34,9 @@ $Language = $ini->read_var( "eZLinkMain", "Language" );
 $error = new INIFile( "kernel/ezlink/user/intl/" . $Language . "/suggestlink.php.ini", false );
 
 // include_once( "classes/eztemplate.php" );
-
-include( "ezlink/classes/ezlinkcategory.php" );
-include( "ezlink/classes/ezlink.php" );
-include( "ezlink/classes/ezhit.php" );
-
+// include( "ezlink/classes/ezlinkcategory.php" );
+// include( "ezlink/classes/ezlink.php" );
+// include( "ezlink/classes/ezhit.php" );
 // include_once( "ezlink/classes/ezlinktype.php" );
 // include_once( "ezlink/classes/ezlinkattribute.php" );
 // include_once( "ezlink/classes/ezmeta.php" );
@@ -91,10 +89,12 @@ if ( isset( $GetSite ) && $GetSite )
     if ( $Url )
     {
         if ( !preg_match( "%^([a-z]+://)%", $Url ) )
-            $real_url = "http://" . $Url;
+            $real_url = "https://" . $Url;
         else
             $real_url = $Url;
 
+
+        include( "kernel/ezlink/classes/ezmeta.php" );
         $metaList = fetchURLInfo( $real_url );
 
         if ( $metaList == false )
@@ -106,25 +106,26 @@ if ( isset( $GetSite ) && $GetSite )
             $error_msg = $error->read_var( "strings", "error_nometa" );
         }
 
-        if ( $metaList["description"] )
+        if ( isset( $metaList["description"] ) && $metaList["description"] )
             $tdescription = $metaList["description"];
         else
             $tdescription = $description;
 
-        if ( $metaList["keywords"] )
+        if ( isset( $metaList["keywords"] ) && $metaList["keywords"] )
             $tkeywords = $metaList["keywords"];
         else
-            $tkeywords = $keywords;
+            $tkeywords = $Keywords;
 
-        if ( $metaList["title"] )
+        if ( isset( $metaList["title"] ) &&$metaList["title"] )
             $tname = $metaList["title"];
         else if ( $metaList["abstract"] )
             $tname = $metaList["abstract"];
         else
             $tname = $Name;
-//          $tdescription = $metaList["description"];
-//          $tkeywords = $metaList["keywords"];
-//          $tname = $Name;
+
+        // $tdescription = $metaList["description"];
+        // $tkeywords = $metaList["keywords"];
+        // $tname = $Name;
 
         $turl = eZTextTool::htmlspecialchars( $Url );
     }
@@ -332,12 +333,12 @@ if ( isset( $Action ) && $Action == "insert" )
 else
 {
 //    eZHTTPTool::header( "Location: /link/norights" );
-    $LinkID = false;
-    $error_msg = false;
-    $tdescription = false;
-    $tkeywords = false;
-    $turl = false;
-    $tname = false;
+    // $LinkID = false;
+    // $error_msg = false;
+    // $tdescription = false;
+    // $tkeywords = false;
+    // $turl = false;
+    // $tname = false;
     $linkType = false;
 }
 
@@ -529,16 +530,16 @@ $t->set_var( "no_selected", $no_selected );
 
 $t->set_var( "action_value", $action_value );
 
-$t->set_var( "name", $tname );
-$t->set_var( "url", $turl );
-$t->set_var( "keywords", $tkeywords );
-$t->set_var( "description", $tdescription );
+$t->set_var( "name", isset( $tname ) ? $tname : false );
+$t->set_var( "url", isset( $turl ) ? $turl : false );
+$t->set_var( "keywords", isset( $tkeywords ) ? $tkeywords : false );
+$t->set_var( "description", isset( $tdescription ) ? $tdescription : false );
 
 // $t->set_var( "accepted", $taccepted );
 
-$t->set_var( "headline", $headline );
-$t->set_var( "error_msg", $error_msg );
-$t->set_var( "link_id", $LinkID );
+$t->set_var( "headline", isset( $headline ) ? $headline : false );
+$t->set_var( "error_msg", isset( $error_msg ) ? $error_msg : false );
+$t->set_var( "link_id", isset( $LinkID ) ? $LinkID : false );
 
 $t->pparse( "output", "link_edit" );
 

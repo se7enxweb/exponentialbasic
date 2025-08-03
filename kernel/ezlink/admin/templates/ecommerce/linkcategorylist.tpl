@@ -85,7 +85,7 @@
 <!-- BEGIN link_item_tpl -->
 <tr>
 	<td width="1%" class="{td_class}">
-	<img src="{www_dir}/design/admin/images/link.gif" height="16" width="16" border="0" alt="" align="top" />
+	<img src="{www_dir}/design/admin/images/layout/link.gif" height="16" width="16" border="0" alt="" align="top" />
 	</td>
 	<td width="97%" class="{td_class}">
 	<b><a href="{www_dir}{index}/link/gotolink/addhit/{link_id}/?Url={link_url}" target="_blank">{link_name}</a></b><br />

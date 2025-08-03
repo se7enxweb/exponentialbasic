@@ -485,14 +485,6 @@ class eZLink
     }
 
     /*!
-      Returns the id of the link.
-    */
-    function id()
-    {
-        return $this->ID;
-    }
-
-    /*!
       Set's the link's defined category. This is the main category for the link.
       Additional categories can be added with eZLinkCategory::addLink();
     */

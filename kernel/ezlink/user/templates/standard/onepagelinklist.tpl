@@ -63,7 +63,7 @@
 <!-- BEGIN link_item_tpl -->
 <tr>
 	<td class="{td_class}" valign="top" width="1%">
-	<img src="{www_dir}/images/link.gif" height="16" width="16" border="0" alt="" /><br />
+	<img src="{www_dir}/design/base/images/icons/link.gif" height="16" width="16" border="0" alt="" /><br />
 	</td>
 	<td class="{td_class}" valign="top" width="99%">
 	<span class="boxtext"><a href="{www_dir}{index}/link/gotolink/addhit/{link_id}/?Url={link_url}"  target="_blank">{link_name}</a></span>

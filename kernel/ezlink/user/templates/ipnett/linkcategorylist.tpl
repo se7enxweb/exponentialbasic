@@ -6,7 +6,7 @@
   	<td align="right">
 	 <form action="/link/search/" method="post">
 	       <input type="text" name="QueryString" size="12" />
-	       <input class="stdbutton" type="submit" name="search" value="Søk etter linker" />
+	       <input class="stdbutton" type="submit" name="search" value="Sï¿½k etter linker" />
          </form>
      </td>
 </tr>
@@ -79,7 +79,7 @@
 <!-- BEGIN link_item_tpl -->
 <tr class="{td_class}">
 	<td class="{td_class}" valign="top" width="1%">
-	<img src="/images/link.gif" height="16" width="16" border="0" alt="" /><br />
+	<img src="/design/base/images/icons/link.gif" height="16" width="16" border="0" alt="" /><br />
 	</td>
 	<td valign="top" width="99%" colspan="2">
 	<span class="p"><a href="/link/gotolink/addhit/{link_id}/?Url={link_url}" target="_blank">{link_name}</a></span>

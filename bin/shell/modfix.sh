@@ -60,6 +60,7 @@ kernel/classes/cache
 kernel/ezsysinfo/admin/cache
 kernel/ezurltranslator/admin/cache
 kernel/ezsitemanager/admin/cache
+kernel/ezsurvey/admin/cache
 kernel/ezquiz/admin/cache
 kernel/ezquiz/cache
 kernel/ezmessage/admin/cache

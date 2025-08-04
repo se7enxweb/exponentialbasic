@@ -51,9 +51,9 @@
 			border: none;
 		}
 
-		.clearRight {
+		/* .clearRight {
 			clear: right;
-		}
+		} */
 		
 		div.row span.left {
 		  float: left;

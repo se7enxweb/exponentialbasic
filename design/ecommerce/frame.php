@@ -7,10 +7,9 @@
 ///////////////////////////////////////////////////////////////////
 ?>
 <body>
-<div id="container">
-
-<table cellpadding="0" cellspacing="0" border="0" width="100%" style="font: 80% verdana, sans-serif;"><tr style="height: 125px;"><td style="height: 125px; ">
-    <a onmouseover="document.getElementById('home').src='/design/ecommerce/images/home2.gif';" onmouseout="document.getElementById('home').src='/design/ecommerce/images/home.gif';" id="homeHack" href="/<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>"><img id="home" src="<? print $GlobalSiteIni->WWWDir; ?>/design/<? print ($GlobalSiteDesign); ?>/images/home.gif" alt="Full Throttle home" /> </a>
+<div class="body" id="container">
+  <div class="all">
+    <div id="header">
 
 <? /*
 
@@ -21,7 +20,7 @@
 
    <!-- start #banner -->
 */ ?>
-     <div id="banner"><img src="/design/ecommerce/images/bannerBg.gif" usemap="#ezmap1" border="0" style="position: absolute; height: inherit;" /><map name="ezmap1">
+     <div id="banner"><img src="/design/ecommerce/images/bannerBg.gif" usemap="#ezmap1" border="0" style="position: relative; width: 400px; height: inherit;" /><map name="ezmap1">
 <area shape="poly" alt="FullThrottle.com" coords="155,48, 152,44, 149,44, 145,44, 145,48, 149,53" href="/">
 <area shape="poly" alt="FullThrottle.com" coords="135,44, 127,49, 127,53, 131,53, 140,48, 140,44" href="/">
 <area shape="poly" alt="FullThrottle.com" coords="118,59, 122,59, 124,61, 122,64, 118,66, 113,63" href="/">
@@ -70,7 +69,8 @@
               </form>
             </div>
           </div>
-        </div>"; }  
+        </div>";
+           }
 		else
 		{
 	   /* echo "<form action=\"post\" method=\"".$GlobalSiteIni->WWWDir.$GlobalSiteIni->Index."/user/login/login/\">
@@ -113,10 +113,12 @@
 <? /*
 
       <!-- end #banner -->
+      <!-- <li id="m-home"><a onmouseover="document.getElementById('home').src='/design/ecommerce/images/home2.gif';" onmouseout="document.getElementById('home').src='/design/ecommerce/images/home.gif';" id="homeHack" href="/<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>"><img id="home" src="<? print $GlobalSiteIni->WWWDir; ?>/design/<? print ($GlobalSiteDesign); ?>/images/home.gif" alt="Full Throttle home" /> </a></li> -->
 */ ?>
    <div id="menuContainer">
      <div id="navcontainer">
        <ul id="navlist">
+         <li id="m-home"><a href="/">Home</a></li>
          <li id="m-reviews"><a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/shop">Shop</a></li>
          <li id="m-reports"><a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/groupeventcalendar/monthview">Calendar</a></li>
          
@@ -129,18 +131,18 @@
      <!-- end #menuContainer -->
      <!-- start #left -->
  */ ?>
- </td></tr>
-<tr><td width="100%" >
-<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" style="padding: 0px; margin: 0px;">
-<tr><td width="151" style="vertical-align: top; padding: 0px; margin: 0px;">
-      <div id="left">
+</div>
+<div class="main-body">
+
+      <div class="menu-left" id="left">
         <div id="wrapper">
+          <div class="searchBox">
           <form action="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/search/" method="get">
        	    <input type="hidden" name="SectionIDOverride" value="3" />
             Site Search <br />
             <input type="text" name="SearchText"/> <input type="submit" value="GO" id="searchBut" />
           </form>
-
+          </div>
 	  <dl><dt id="dtNone"></dt>
           <dd><a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/news">News and Updates</a></dd>
           <dd><a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/reviews">In-Depth Reviews</a></dd>
@@ -168,9 +170,8 @@
 	
         </div>
       </div>
-	  </td><td style="vertical-align: top;">
 
-<? /*
+      <? /*
          <!-- start #content -->
 	 <!-- Main content view start -->
 */ ?>
@@ -181,20 +182,21 @@
 	 <?
               print( $MainContents );
          ?>
-	 </div>
+	        </div>
 	 <? /*
 	    <!-- Main content view end -->	
             <!-- end #content -->
 	    */ ?>
+
+    </div>
 
 	 <? /*      <!-- start #footer -->    
            <!-- <div id="footer-b1" style="width: 100%; z-index: 2; left: -10px; background-color: #e0e7e9;"> -->
           */ ?>
    </span>
 
-</td></tr></table>
-</td></tr>
-<tr><td>
+</div>
+<div>
 <?
 
     ///////////////////////////////////////////////////////////////////
@@ -240,7 +242,8 @@
  </div></div>
 	  <? /* <!-- end #footerWrap -- */ ?>
     </form>
-	</tr></td></table>
+</div>
+</div>
 <?
 
 //

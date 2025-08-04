@@ -18,8 +18,6 @@
 
 <!-- BEGIN cart_item_list_tpl -->
 <tr>
-    <th>&nbsp;</th>
-
 	<th>{intl-product_number}:</th>
 	<th>{intl-product_name}:</th>
 	<th class="right">{intl-product_price}:</th>
@@ -43,7 +41,6 @@
 
 <!-- BEGIN cart_item_tpl -->
 <tr>
-    <td class="{td_class}">&nbsp;</td>
     <td class="{td_class}">{product_number}</td>
     <td class="{td_class}"><a href="{www_dir}{index}/trade/productview/{product_id}/{category_id}">{product_name}</a></td>
     <td class="{td_class}" align="right"><nobr>{product_price}</nobr></td>
@@ -71,7 +68,6 @@
 <!-- BEGIN cart_item_basis_tpl -->
 <tr>
     <td class="{td_class}">&nbsp;</td>
-    <td class="{td_class}">&nbsp;</td>
     <td class="{td_class}"><span class="small">{intl-basis_price} <nobr>{basis_price}<nobr/></span></td>
     <td class="{td_class}" align="right">&nbsp;</td>
     
@@ -95,7 +91,6 @@
 
 <!-- BEGIN cart_item_option_tpl -->
 <tr>
-    <td class="{td_class}">&nbsp;</td>
     <td class="{td_class}">&nbsp;</td>
     <td class="{td_class}"><span class="small">{option_name} {option_value} <nobr>{option_price}<nobr/></span></td>
     <td class="{td_class}" align="right">&nbsp;</td>
@@ -123,7 +118,6 @@
 <!-- END cart_item_list_tpl -->
 
 <tr>
-    <td>&nbsp;</td>
     
     <th colspan="{subtotals_span_size}" class="right">{intl-subtotal}:</th>
 
@@ -139,7 +133,6 @@
 </tr>
 
 <tr>
-    <td>&nbsp;</td>
     <th colspan="{subtotals_span_size}" class="right">{intl-shipping}{shipping_name}:</th>
 
 	<!-- BEGIN shipping_ex_tax_item_tpl -->
@@ -155,7 +148,6 @@
 
 <!-- BEGIN tax_total_tpl -->
 <tr>
-    <td>&nbsp;</td>
     <th colspan="{subtotals_span_size}" class="right">{intl-tax_total} ({tax_percentage}%):</th>
     <td align="right"><nobr>{total_cart_tax}</nobr></td>
     <td align="right">&nbsp;</td>
@@ -164,7 +156,6 @@
 <!-- END tax_total_tpl -->
 
 <tr>
-    <td>&nbsp;</td>
     <th colspan="{subtotals_span_size}" class="right">{intl-total}:</th>
 
 	<!-- BEGIN total_ex_tax_item_tpl -->

@@ -282,9 +282,10 @@
 		#banner {
 			padding: 0px;
 			margin: 0px;
-			background: #e22b0c
+			background-color: #e22b0c;
+			/* background: #e22b0c
 				url(../images/bannerBg.gif)
-				left bottom no-repeat;
+				left bottom no-repeat; */
 			height: 110px;
 			z-index: 1;
 		}
@@ -294,6 +295,7 @@
 
 		#cart {
 			position: absolute;
+			top: 0rem;
 			right: 2px;
 			margin: 0px;
 			width: 207px;
@@ -419,7 +421,7 @@
 		#navcontainer {
 			height: 18px;
 			padding: 0px;
-			margin: 0px 0px 0px 151px;
+			margin: 0px 0px 0px 0px;
 			background: url(../images/navBg.gif)
 			left top repeat-x;
 		}
@@ -433,7 +435,7 @@
 		
 		#navcontainer ul li { display: inline; }
 		#navcontainer ul li a {
-			padding: 0.09em 0.7em 0.09em 2.5em;
+			padding: 0.09em 0.7em 0.09em 0.75em;
 			margin: 0.16em 0em 0em 0em;
 			background: #242A6F;
 			color: #fff;
@@ -483,13 +485,13 @@
 			color: #fff;
 		}
 		
-		#home {
+		/* #home {
 			position: absolute;
 			top: 125px;
 			left: 10px;
 			height: 11px;
 			width: 38px;
-		}
+		} */
 		
 		#breadcrumbs {
 			padding: 0px;
@@ -508,22 +510,21 @@
 		#left {
 			top: 0px;
 			right: 0px;
-			width: 151px;
-			\width: 151px;
-			w\idth: 151px;
+			width: 100%;
 			margin: 0px;
 			padding: 0px;
 			position: relative;
+			order 2;
 		}
 		
-		#left #wrapper {
-			background: #E0E7E9 url(../images/leftTop.gif)
-				right top no-repeat;
+		#left .searchBox {
+			background-color: #697b86;
+			padding-bottom: 2.2rem;
 		}
 		
 		#left #wrapper form {
 			background: transparent;
-			color: #eee;
+			color: #1e0f0f;
 			font: bold .86em verdana, sans-serif;
 			margin: 0px 10px;
 			padding: 10px 0px 0px 0px;
@@ -548,7 +549,7 @@
 		
 		#left dl {
 			font: .9em verdana, sans-serif;
-			margin: 30px 0px;
+			margin: 8px 0px;
 			padding: 0px;
 		}
 		
@@ -621,8 +622,7 @@ width: 100%;
 		}
 		#calendarWrap
 		{
-		  width: 90%;
-		  margin: 10px 28px;
+		  margin: 10px 8px;
 		}
 		h1.mainHeading {
 			font: bold 1.3em verdana, sans-serif;
@@ -1101,6 +1101,20 @@ width: 100%;
 	   }
 /* FOOTER STYLES 			------------------------------------*/
 
+/* PAGE CONTENT STYLES 		------------------------------------*/
+
+
+div.all {
+  display: flex;
+  flex-direction: column;
+}
+
+div.main-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* PAGE CONTENT STYLES 		------------------------------------*/
 
 /* HOME HACK */
 #homeHack {

@@ -1,4 +1,4 @@
- <div id="calendarWrap">
+ <div id="calendarWrap" class="gcalYearView">
 <table width="100%" cellspacing="2" cellpadding="0" border="0">
 <tr>
 	<td align="right" colspan="10" style="padding: 5px;">

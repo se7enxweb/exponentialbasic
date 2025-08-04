@@ -31,7 +31,12 @@
     else
        print( $ini->read_var( "site", "SiteTitle" ) );
 ?></title>
-<link rel="stylesheet" type="text/css" href="<? print $GlobalSiteIni->WWWDir; ?>/design/<? print ($GlobalSiteDesign); ?>/css/mainStyle.css" />
+<link rel="stylesheet" type="text/css" 
+href="<? print $GlobalSiteIni->WWWDir; ?>/design/<?
+print ($GlobalSiteDesign); ?>/css/mainStyle.css" />
+<link rel="stylesheet" type="text/css" 
+href="<? print $GlobalSiteIni->WWWDir; ?>/design/<?
+print ($GlobalSiteDesign); ?>/css/responsive.css" />
 <?php 
 
    // eZ publish : Application : Page Meta Keywords

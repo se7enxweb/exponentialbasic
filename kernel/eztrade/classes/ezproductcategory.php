@@ -414,6 +414,8 @@ class eZProductCategory
     {
         if( $this->Description != null )
             $description = stripslashes( $this->Description );
+	 else
+	    return false;
 
         return htmlspecialchars( $description );
     }

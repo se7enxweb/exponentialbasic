@@ -84,11 +84,11 @@ $t->set_block( "setting_item_tpl", "no_item_separator_tpl", "no_item_separator" 
 $t->set_block( "setting_item_tpl", "no_item_move_down_tpl", "no_item_move_down" );
 
 
-$t->set_var( "section_name", $Name );
-$t->set_var( "section_sitedesign", $SiteDesign );
-$t->set_var( "section_templatestyle", $TemplateStyle );
-$t->set_var( "section_description", $Description );
-$t->set_var( "section_language", $SecLanguage );
+$t->set_var( "section_name", isset( $Name ) ? $Name : false );
+$t->set_var( "section_sitedesign", isset( $SiteDesign ) ? $SiteDesign : false );
+$t->set_var( "section_templatestyle", isset( $TemplateStyle ) ? $TemplateStyle : false );
+$t->set_var( "section_description", isset( $Description ) ? $Description : false );
+$t->set_var( "section_language", isset( $SecLanguage ) ? $SecLanguage : false );
 $t->set_var( "setting_list", "" );
 
 $warning = true;

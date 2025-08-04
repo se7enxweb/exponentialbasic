@@ -367,7 +367,7 @@ class eZProductCategory
     */
     function &name()
     {
-		$ret = stripslashes( $this->Name );
+        $ret = stripslashes( $this->Name );
         return htmlspecialchars( $ret );
     }
 
@@ -412,7 +412,9 @@ class eZProductCategory
     */
     function &description()
     {
-		$description = stripslashes( $this->Description );
+        if( $this->Description != null )
+            $description = stripslashes( $this->Description );
+
         return htmlspecialchars( $description );
     }
 

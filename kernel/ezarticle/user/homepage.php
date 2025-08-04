@@ -243,12 +243,15 @@ foreach ($productList as $product)
 			$t->set_var( "product_message_count", "" );
 	
 		$image = $product->thumbnailImage();
+		if( is_object( $image ) )
+		{
 		$t->set_var( "image_caption", $image->caption() );
 		$variation = $image->requestImageVariation( $HotDealsThumbWidth, $HotDealsThumbHeight );
 		$t->set_var( "product_image_path", $variation->imagePath() );
 		$t->set_var( "product_image_width", $variation->width() );
 		$t->set_var( "product_image_height", $variation->height() );
 		$t->parse( "product_list_item", "product_list_item_tpl", true );
+		}
 	}
 $i++;
 }

@@ -139,7 +139,10 @@ else
 	</td>
 	<td class="tab" bgcolor="#ffffff" width="30%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-news/">News</a>&nbsp;&nbsp;</td>
 	<td class="tdmini" width="0%">
-	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-right.gif" height="20" width="20" border="0" alt="" /><br />
+	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-mrk-unmrk.gif" height="20" width="20" border="0" alt="" /><br />
+	<td class="tab" bgcolor="#dcdcdc" width="30%">&nbsp;&nbsp;<a href="<?php print $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index; ?>/section-ecommerce/">Store</a>&nbsp;&nbsp;</td>
+	<td class="tdmini" width="0%">
+	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/tab-unmrk-right.gif" height="20" width="20" border="0" alt="" /><br />
 	</td>
 </tr>
 </table>

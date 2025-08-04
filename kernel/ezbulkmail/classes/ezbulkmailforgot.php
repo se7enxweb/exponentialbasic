@@ -164,7 +164,7 @@ class eZBulkMailForgot
       \static
       Returns object with the email if it exists. If it does't and the address is valid a new object is created and returned.
      */
-    function getByEmail( $email )
+    public static function getByEmail( $email )
     {
         $db =& eZDB::globalDatabase();
         $email = addslashes( $email );

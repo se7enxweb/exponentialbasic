@@ -97,4 +97,30 @@ td.menu-right {
 	html body table.body tbody tr td table.all tbody tr td.tdmini table {
                 margin: 0px;
 	}
+
+	/* ecommerce design PAGE CONTENT STYLES 		------------------------------------*/
+
+div#container div#content div#contentWrap form select {
+  width: 90%;
+}
+
+#calendarWrap table table {
+  width: 10%;
+}
+
+div#container.body div.all div.main-body div#content div#calendarWrap table tbody tr th {
+  font-weight: normal;
+  text-align: unset;
+  font-size: x-small;
+}
+
+div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearView table {
+  position: relative;
+}
+
+
+
+/* ecommerce design PAGE CONTENT STYLES 		------------------------------------*/
+
+
 }

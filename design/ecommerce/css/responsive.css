@@ -71,15 +71,13 @@ div#container.body div.all div.main-body div#content div#calendarWrap table tbod
 
 div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearView table {
   position: relative;
-  /*   width: min-content;
-  scale: 0.7;
-  top: -8rem;
-  right: 6.43rem; */
 }
 
 
 
 /* PAGE CONTENT STYLES 		------------------------------------*/
+
+
 	#left {
 		width: 100%;
 	}

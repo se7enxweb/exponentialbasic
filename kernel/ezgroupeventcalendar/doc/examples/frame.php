@@ -55,7 +55,7 @@ function init() {
   if (pngAlpha) {
     for (i=0;i<document.getElementsByTagName("td").length; i++) {
       if (document.getElementsByTagName("td").item(i).className == "bgdark"){
-	document.getElementsByTagName("td").item(i).style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='//ezgroupeventcalendar/user/templates/standard/images/gcalEventTransBg.png', sizingMethod='scale')";
+	document.getElementsByTagName("td").item(i).style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalEventTransBg.png', sizingMethod='scale')";
 	// alert("Message from resident coder: Sorry guys, almost done... " + document.getElementsByTagName("td").item(i).style.filter);
       }
     }

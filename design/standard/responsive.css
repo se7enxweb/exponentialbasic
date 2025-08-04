@@ -100,12 +100,15 @@ td.menu-right {
 
 	/* ecommerce design PAGE CONTENT STYLES 		------------------------------------*/
 
+
 div#container div#content div#contentWrap form select {
-  width: 90%;
+  width: 100%;
 }
 
-#calendarWrap table table {
+#calendarWrap table table.monthView {
   width: 10%;
+  left: 18%;
+  position: relative;
 }
 
 div#container.body div.all div.main-body div#content div#calendarWrap table tbody tr th {
@@ -118,7 +121,66 @@ div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearVi
   position: relative;
 }
 
+#productWrap {
+	display: block;
+	width: 100%;
+}
 
+#productFloat {
+	float: unset;
+	width: 100%;
+}
+#orderBox, #related {
+	width: 100%;
+}
+
+#addCart, #addWish {
+  margin: 0.5rem 0px 0px 0px;
+  padding: 0.4rem;
+  position:relative;
+  left: 25%;
+}
+
+div#calendarWrap table.monthView tbody tr {
+  display: flex;
+}
+
+div#calendarWrap table.monthView tbody tr td {
+  display: flex;
+  width: 100%;
+}
+
+div#calendarWrap table.monthView th {
+  font-size: smaller;
+  font-weight: normal;
+}
+
+div#calendarWrap table.monthView tbody tr:nth-child(2) {
+  display: block;
+}
+
+table.body tbody tr td table.main-body tbody tr td div#calendarWrap table.gcalBorder tbody tr td {
+  width: 2%;
+}
+
+
+div#calendarWrap table.weekView tbody tr {
+  display: flex;
+}
+
+div#calendarWrap table.weekView tbody tr td {
+  display: flex;
+  width: 100%;
+}
+
+div#calendarWrap table.weekView th {
+  font-size: smaller;
+  font-weight: normal;
+}
+
+div#calendarWrap table.monweekViewthView tbody tr:nth-child(2) {
+  display: block;
+}
 
 /* ecommerce design PAGE CONTENT STYLES 		------------------------------------*/
 

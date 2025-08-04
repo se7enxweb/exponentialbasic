@@ -21,7 +21,7 @@
 
 <tr>
 
- <td  id="gcalBigHeader" style="border: 0px; background: url('{www_dir}{index}/ezgroupeventcalendar/user/templates/standard/images/gcalShortTimeBg.png') repeat;">
+ <td  id="gcalBigHeader" style="border: 0px; background: url('{www_dir}{index}/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalShortTimeBg.png') repeat;">
   <a class="gcalMonthViewNext" href="{www_dir}{index}/groupeventcalendar/yearview/{prev_year_number}/">&lt;&lt;</a> &nbsp; &nbsp;
   <span style="font-size: 20px;">{year_number}</span>  &nbsp; &nbsp;
   <a class="gcalMonthViewNext" href="{www_dir}{index}/groupeventcalendar/yearview/{next_year_number}/">&gt;&gt;</a>
@@ -35,7 +35,7 @@
      >
 
 <div class="gcalYearViewHeading"
-style="background: url('{www_dir}{index}/ezgroupeventcalendar/user/templates/standard/images/gcalSmallYearHeader.png') repeat;">
+style="background: url('{www_dir}{index}/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalSmallYearHeader.png') repeat;">
 <a class="gcalYearViewMonthName" href="{www_dir}{index}/groupeventcalendar/monthview/{year_number}/{month_number}/">{month_name}</a></div>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gcalYearViewTable">
 <!-- BEGIN week_tpl -->

@@ -49,7 +49,7 @@
 
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="gcalViewBg">
 <tr>
-	<td id="gcalBigHeader" style="border: 0px; background: url('{www_dir}{index}/ezgroupeventcalendar/user/templates/standard/images/gcalShortTimeBg.png') repeat;" colspan=7>
+	<td id="gcalBigHeader" style="border: 0px; background: url('{www_dir}{index}/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalShortTimeBg.png') repeat;" colspan=7>
 	<span class="gcalBigHeader">
     {event_title}
     </span>

@@ -51,10 +51,7 @@
 				echo "<span class=\"cartTopRowRight\"><a href=\"".$GlobalSiteIni->WWWDir.$GlobalSiteIni->Index."/signup\">Signup</a></span>";
 		  		}    */
 		  echo "</div>
-          <div class=\"spacer\">
-            &nbsp;
-          </div>
-          <div class=\"row\">
+            <div class=\"row\">
             <div id=\"myStuff\">
               <a href=\"".$GlobalSiteIni->WWWDir.$GlobalSiteIni->Index."/user/account/\">My Account</a><br />
               <a href=\"".$GlobalSiteIni->WWWDir.$GlobalSiteIni->Index."/trade/wishlist/\">My Wish List</a><br />

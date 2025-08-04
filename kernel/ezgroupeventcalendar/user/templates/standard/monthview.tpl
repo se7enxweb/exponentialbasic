@@ -3,7 +3,7 @@
  <table border="0" cellspacing="0" cellpadding="0" id="gcalDayViewSortBy">
  <form method="post" action="{www_dir}{index}/groupeventcalendar/monthview/">
  <tr>
-  <td id="gcalDayViewSortByHeader"><img src="{www_dir}{index}/ezgroupeventcalendar/user/templates/standard/images/gcalX.png" style="margin-right:7px;"  alt="close" onclick="document.getElementById('gcalDayViewSortBy').style.visibility = 'hidden';" />
+  <td id="gcalDayViewSortByHeader"><img src="{www_dir}{index}/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalX.png" style="margin-right:7px;"  alt="close" onclick="document.getElementById('gcalDayViewSortBy').style.visibility = 'hidden';" />
  </td>
  </tr>
 <tr>
@@ -24,7 +24,7 @@
 		<!-- END type_item_tpl -->
 		</select><br /><br />
 
-		<input class="gcalDayViewButton" style="background: url('{www_dir}{index}/ezgroupeventcalendar/user/templates/standard/images/gcalButtonBg.png') repeat;" type="submit" Name="GetByGroup" value="{intl-show}">
+		<input class="gcalDayViewButton" style="background: url('{www_dir}{index}/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalButtonBg.png') repeat;" type="submit" Name="GetByGroup" value="{intl-show}">
 	</td>
 
 </tr>
@@ -65,11 +65,11 @@
 	</td>
 </tr>
 </table>
-<table width="100%" border="0" cellspacing="0" cellpadding="2"  style="border: 1px solid gray;">
+<table class="monthView" width="100%" border="0" cellspacing="0" cellpadding="2"  style="border: 1px solid gray;">
 
 <tr>
 
- <td colspan=7 id="gcalBigHeader" style="border: 0px; background: url('{www_dir}{index}/ezgroupeventcalendar/user/templates/standard/images/gcalShortTimeBg.png') repeat;">
+ <td colspan=7 id="gcalBigHeader" style="border: 0px; background: url('{www_dir}{index}/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalShortTimeBg.png') repeat;">
   <a class="gcalMonthViewNext" href="{www_dir}{index}/groupeventcalendar/monthview/{prev_year_number}/{prev_month_number}/">&lt;&lt;</a> &nbsp; &nbsp;
   <span style="font-size: 20px;">{month_name} - {current_year_number}</span>  &nbsp; &nbsp;
   <a class="gcalMonthViewNext" href="{www_dir}{index}/groupeventcalendar/monthview/{next_year_number}/{next_month_number}/">&gt;&gt;</a>
@@ -77,7 +77,7 @@
 </tr>
 <tr>
 <!-- BEGIN week_day_tpl -->
-	<th width="14%" style=" text-align: center; background: url('{www_dir}{index}/ezgroupeventcalendar/user/templates/standard/images/gcalMonthViewHeaderBg.png') repeat;">
+	<th width="14%" style=" text-align: center; background: url('{www_dir}{index}/kernel/ezgroupeventcalendar/user/templates/standard/images/gcalMonthViewHeaderBg.png') repeat;">
 	{week_day_name}
 	</th>
 <!-- END week_day_tpl -->

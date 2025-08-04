@@ -72,7 +72,7 @@ if ( $Action == "MoveToCart" )
     exit();
 }
 
-$wishlist = new eZWishlist();
+$wishlist = new eZWishList();
 $session = new eZSession();
 
 // if no session exist create one.

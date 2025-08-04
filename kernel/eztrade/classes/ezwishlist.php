@@ -25,14 +25,14 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 //!! eZTrade
-//! eZWishlist handles a shopping wishlist
+//! eZWishList handles a shopping wishlist
 /*!
 
   Example:
   \code
 
   // Create a new wishlist
-  $wishlist = new eZWishlist();
+  $wishlist = new eZWishList();
   $wishlist->setUser( $user );
 
   // Store the wishlist to the database
@@ -52,7 +52,7 @@
   }
 
   \endcode
-  \sa eZWishlistItem eZProductCategory eZOption
+  \sa eZWishListItem eZProductCategory eZOption
 */
 
 // include_once( "classes/ezdb.php" );
@@ -61,7 +61,7 @@
 class eZWishList
 {
     /*!
-      Constructs a new eZWishlist object.
+      Constructs a new eZWishList object.
 
       If $id is set the object's values are fetched from the
       database.
@@ -146,7 +146,7 @@ class eZWishList
 
 
     /*!
-      Returns a eZWishlist object.
+      Returns a eZWishList object.
     */
     function getByUser( $user  )
     {
@@ -170,7 +170,7 @@ class eZWishList
     }
 
     /*!
-      Deletes a eZWishlist object from the database.
+      Deletes a eZWishList object from the database.
 
     */
     function delete()
@@ -335,7 +335,7 @@ class eZWishList
 
        foreach ( $wishlist_array as $item )
        {
-               $ret[] = new eZWishlist( $item[$db->fieldName( "ID" )] );
+               $ret[] = new eZWishList( $item[$db->fieldName( "ID" )] );
        }
 
        return $ret;

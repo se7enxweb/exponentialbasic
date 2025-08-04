@@ -25,13 +25,13 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 //!! eZTrade
-//! eZWishlistItem handles a shopping wishlist
+//! eZWishListItem handles a shopping wishlist
 /*!
   Example code:
   \code
   $product = new eZProduct( 3 );
 
-  $wishlistItem = new eZWishlistItem();
+  $wishlistItem = new eZWishListItem();
   $wishlistItem->setProduct( $product );
   $wishlistItem->setWishlist( $wishlist );
 
@@ -39,7 +39,7 @@
   $wishlistItem->store();
 
   \endcode
-  \sa eZWishlist
+  \sa eZWishList
 */
 
 // include_once( "classes/ezdb.php" );
@@ -53,7 +53,7 @@
 class eZWishListItem
 {
     /*!
-      Constructs a new eZWishlist object.
+      Constructs a new eZWishList object.
 
       If $id is set the object's values are fetched from the
       database.
@@ -146,7 +146,7 @@ class eZWishListItem
     }
 
     /*!
-      Deletes a eZWishlistItem object from the database.
+      Deletes a eZWishListItem object from the database.
 
     */
     function delete()
@@ -198,7 +198,7 @@ class eZWishListItem
     {
        $ret = false;
 
-       $wishlist = new eZWishlist( );
+       $wishlist = new eZWishList( );
        if ( $wishlist->get( $this->WishListID ) )
        {
            $ret = $wishlist;
@@ -231,7 +231,7 @@ class eZWishListItem
     */
     function setWishList( $wishlist )
     {
-       if ( is_a( $wishlist, "eZWishlist" ) )
+       if ( is_a( $wishlist, "eZWishList" ) )
        {
            $this->WishListID = $wishlist->id();
        }
@@ -270,7 +270,7 @@ class eZWishListItem
     }
 
     /*!
-      Returns all the option values as an array of eZWishlistOptionValue objects.
+      Returns all the option values as an array of eZWishListOptionValue objects.
 
       An empty array is returned if none exists.
     */

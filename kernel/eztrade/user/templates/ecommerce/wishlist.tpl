@@ -82,7 +82,7 @@
 			<input size="3" type="text" name="WishlistCountArray[]" value="{wishlist_item_count}" />
    		  </td>
 		  <td class="{td_class}" align="right"><nobr>{product_price}</nobr></td>
-		  <td class="{td_class}" align="right"><a href="{www_dir}{index}/trade/wishlist/remove/{wishlist_item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eztrade{wishlist_item_id}-slett','','{www_dir}/images/slettminimrk.gif',1)"><img name="eztrade{wishlist_item_id}-slett" border="0" src="{www_dir}/images/slettmini.gif" alt="{intl-remove}" width="16" height="16" align="top"></a></td>
+		  <td class="{td_class}" align="right"><a href="{www_dir}{index}/trade/wishlist/remove/{wishlist_item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eztrade{wishlist_item_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="eztrade{wishlist_item_id}-slett" border="0" src="{www_dir}/design/base/images/icons/slettmini.gif" alt="{intl-remove}" width="16" height="16" align="top"></a></td>
 		</tr>
 		<!-- END wishlist_item_tpl --> 
 		<tr> 

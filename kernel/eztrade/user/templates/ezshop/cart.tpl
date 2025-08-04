@@ -48,7 +48,7 @@
 	{product_price}
 	</td>
 	<td class="{td_class}" align="right">
-	<a href="{www_dir}{index}/trade/cart/remove/{cart_item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eztrade{cart_item_id}-slett','','/images/slettminimrk.gif',1)"><img name="eztrade{cart_item_id}-slett" border="0" src="{www_dir}/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/trade/cart/remove/{cart_item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eztrade{cart_item_id}-slett','','/design/base/images/icons/slettminimrk.gif',1)"><img name="eztrade{cart_item_id}-slett" border="0" src="{www_dir}/design/base/images/icons/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>
 </tr>
 <!-- END cart_item_tpl -->
@@ -75,7 +75,7 @@
 Fraktkostnader kommer i tillegg: Kr. 50,- for programvarepakker.
 Fraktkostnadene for maskinvare kan variere; postens takster vil gjelde.
 For postoppkravsleveranser kommer postens oppkravsgebyr i tillegg.
-Brukerstøtte leveres fraktfritt.
+Brukerstï¿½tte leveres fraktfritt.
 </p>
 
 <!-- END cart_item_list_tpl -->

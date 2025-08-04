@@ -63,7 +63,7 @@ $wishlist = $wishlist->getByUser( $user );
 if ( !$wishlist )
 {
     print( "creating a wishlist" );
-    $wishlist = new eZWishlist();
+    $wishlist = new eZWishList();
     $wishlist->setUser( $user );
 
     $wishlist->store();

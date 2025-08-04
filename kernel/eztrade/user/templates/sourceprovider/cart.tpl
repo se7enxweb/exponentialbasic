@@ -80,7 +80,7 @@
 	</td>
 	<td class="{td_class}" align="right">
 	<a href="#" onClick="verify( '{intl-delete}', '/trade/cart/remove/{cart_item_id}/'); return false;" 
-onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{cart_item_id}-slett','','/images/slettminimrk.gif',1)"><img name="ezuser{cart_item_id}-slett" border="0" src="{www_dir}/images/slettmini.gif" width="16" height="16" align="top"></a>
+onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{cart_item_id}-slett','','/design/base/images/icons/slettminimrk.gif',1)"><img name="ezuser{cart_item_id}-slett" border="0" src="{www_dir}/design/base/images/icons/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>
 </tr>
 <!-- END cart_item_tpl -->

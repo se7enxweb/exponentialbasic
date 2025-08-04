@@ -73,7 +73,7 @@
 						<!-- END product_available_item_tpl -->
 						<td class="{td_class}" align="right"> {product_price} 
 						</td>
-						<td class="{td_class}" align="right"> <a href="/trade/wishlist/remove/{wishlist_item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eztrade{wishlist_item_id}-slett','','/images/slettminimrk.gif',1)"><img name="eztrade{wishlist_item_id}-slett" border="0" src="/images/slettmini.gif" width="16" height="16" align="top"></a> 
+						<td class="{td_class}" align="right"> <a href="/trade/wishlist/remove/{wishlist_item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('eztrade{wishlist_item_id}-slett','','/design/base/images/icons/slettminimrk.gif',1)"><img name="eztrade{wishlist_item_id}-slett" border="0" src="/design/base/images/icons/slettmini.gif" width="16" height="16" align="top"></a> 
 						</td>
 					</tr>
 					<!-- END wishlist_item_tpl -->

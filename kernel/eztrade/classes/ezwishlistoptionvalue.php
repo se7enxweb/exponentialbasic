@@ -25,7 +25,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 //!! eZTrade
-//! eZWishlistOptionValue handles option values.
+//! eZWishListOptionValue handles option values.
 /*!
 
 
@@ -40,7 +40,7 @@
 class eZWishListOptionValue
 {
     /*!
-      Constructs a new eZWishlistOptionValue object.
+      Constructs a new eZWishListOptionValue object.
 
       If $id is set the object's values are fetched from the
       database.

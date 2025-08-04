@@ -169,7 +169,7 @@ if ( isset( $Action ) && $Action == "AddToBasket" )
                 $option = new eZOption( $OptionIDArray[$i] );
                 $optionValue = new eZOptionValue( $value );
 
-                $wishlistOption = new eZWishlistOptionValue();
+                $wishlistOption = new eZWishListOptionValue();
                 $wishlistOption->setWishListItem( $wishlistItem );
                 $wishlistOption->setOption( $option );
                 $wishlistOption->setOptionValue( $optionValue );

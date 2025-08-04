@@ -1,0 +1,152 @@
+/* 7x */
+
+div.all,
+div.header,
+div.body {
+	table-layout: fixed;
+	width: 100%;
+	/* border:1px solid; */
+	border-collapse: collapse;
+}
+
+div {}
+
+tdivd.menu-left {
+	min-width: 125px;
+	width: 5.8%;
+}
+
+div.menu-right {
+	min-width: 125px;
+	width: 8%;
+}
+
+
+.box {
+        width: unset;
+}
+
+#left {
+	width: 10%;
+}
+
+#content {
+	float: left;
+}
+
+div.main-body {
+	flex-direction: unset;
+}
+
+/* Hellstr�m 24.8.2001 */
+
+/* 
+ * 7x - Responsive redesign of eZ Publish 2
+ * Date: 2024/11/17
+ */
+@media screen and (max-width: 575.98px) {
+	/* .main-body tr {
+		display: grid;
+	} */
+	
+	/* .main-body table tbody {
+		display: grid;
+	} */
+
+/* PAGE CONTENT STYLES 		------------------------------------*/
+
+div#container div#content div#contentWrap form select {
+  width: 90%;
+}
+
+#calendarWrap table table {
+  width: 10%;
+}
+
+div#container.body div.all div.main-body div#content div#calendarWrap table tbody tr th {
+  font-weight: normal;
+  text-align: unset;
+  font-size: x-small;
+}
+
+div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearView table {
+  position: relative;
+  /*   width: min-content;
+  scale: 0.7;
+  top: -8rem;
+  right: 6.43rem; */
+}
+
+
+
+/* PAGE CONTENT STYLES 		------------------------------------*/
+	#left {
+		width: 100%;
+	}
+
+	#content {
+		float: unset;
+	}
+
+	div.main-body {
+		flex-direction: column;
+	}
+
+
+	div.menu-left {
+		width: auto;
+		order: 2;
+	}
+
+	div.menu-right {
+		width: auto;
+		order: 3;
+	}
+
+	.spacer {
+		padding: 0.5rem;
+		transform: translateX(0.5rem);
+	}
+
+	table tr [valign="top"] {
+	         width: auto;
+	         /* display:grid; */
+	}
+
+	[valign="top"] img {
+		margin-left: 0.5rem;
+	}
+
+	[valign="top"] .path:last-of-type {
+		margin-right: 0.5rem;
+	}
+
+	.small + table img {
+		width: 10rem;
+		height: auto;
+	}
+
+	[valign="top"] td[bgcolor="#ffffff"] {
+		width: auto;
+		padding: 0.5rem;
+	}
+
+	body {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.p {
+		padding-bottom: 0.5rem;
+	}
+
+	.path {
+		font-size: 0.75rem;
+	}
+	html body table.body div.all tbody tr td.tdmini a.logo img.logoImage {
+	        padding-bottom: 0.125rem;
+	}
+	html body table.body tbody tr td table.all tbody tr td.tdmini table {
+                margin: 0px;
+	}
+}

@@ -57,7 +57,7 @@
 	<a href="{www_dir}{index}/bug/edit/edit/{bug_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{bug_id}-red','','{www_dir}/design/admin/images/redigerminimrk.gif',1)"><img name="ezaa{bug_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 	</td>
 	<td width="1%" class="{td_class}">
-	<a href="#" onClick="verify( '{intl-delete}', '/bug/bugedit/delete/{bug_id}/'); return false;" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{bug_id}-slett','','{www_dir}/design/admin/images/slettminimrk.gif',1)"><img name="ezaa{bug_id}-slett" border="0" src="{www_dir}/design/admin/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a>
+	<a href="#" onClick="verify( '{intl-delete}', '/bug/bugedit/delete/{bug_id}/'); return false;" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{bug_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezaa{bug_id}-slett" border="0" src="{www_dir}/design/admin/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a>
 	</td>
 </tr>
 <!-- END bug_item_tpl -->

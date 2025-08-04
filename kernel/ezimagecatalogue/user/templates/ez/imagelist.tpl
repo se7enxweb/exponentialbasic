@@ -43,7 +43,7 @@
 	<a href="{www_dir}{index}/imagecatalogue/category/edit/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-red','','{www_dir}/design/admin/images/layout/redigerminimrk.gif',1)"><img name="ezim{category_id}-red" border="0" src="{www_dir}/design/admin/images/layout/redigermini.gif" width="16" height="16" align="top"></a>
 	</td>
 	<td width="1%">
-	<a href="{www_dir}{index}/imagecatalogue/category/delete/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-slett','','/images/slettminimrk.gif',1)"><img name="ezim{category_id}-slett" border="0" src="{www_dir}/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/imagecatalogue/category/delete/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezim{category_id}-slett','','/design/base/images/icons/slettminimrk.gif',1)"><img name="ezim{category_id}-slett" border="0" src="{www_dir}/design/base/images/icons/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>
         <!-- END category_write_tpl -->
 </tr>

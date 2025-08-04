@@ -30,7 +30,7 @@
 //-->
 </SCRIPT> 
 
-<div onLoad="MM_preloadImages('{www_dir}/ezarticle/images/redigerminimrk.gif','{www_dir}/ezarticle/images/slettminimrk.gif')"></div>
+<div onLoad="MM_preloadImages('{www_dir}/ezarticle/images/redigerminimrk.gif','{www_dir}/design/base/images/icons/slettminimrk.gif')"></div>
 
 <form action="{www_dir}{index}/article/articleedit/imageedit/storedef/{article_id}/" method="post">
 
@@ -42,7 +42,7 @@
 <tr>
 	<th>Nr:</th>
 	<th>Bildetekst:</th>
-	<th>Forhåndsvisning:</th>
+	<th>Forhï¿½ndsvisning:</th>
 	<th>Minibilde:</th>
 	<th>&nbsp;</th>
 	<th>&nbsp;</th>
@@ -68,7 +68,7 @@
 	<td width="1%" class="{td_class}">
 
 <a href="#" onClick="verify( 'delete', '{www_dir}{index}/article/articleedit/imageedit/delete/{image_id}/{article_id}/'); return false;"
-onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{article_id}-slett','','{www_dir}/ezarticle/images/slettminimrk.gif',1)"><img name="ezaa{article_id}-slett" border="0" src="{www_dir}/ezarticle/images/slettmini.gif" width="16" height="16" align="top">
+onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{article_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezaa{article_id}-slett" border="0" src="{www_dir}/design/base/images/icons/slettmini.gif" width="16" height="16" align="top">
 </a>
 	</td>
 </tr>

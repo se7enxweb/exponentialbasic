@@ -30,12 +30,12 @@
 //-->
 </SCRIPT> 
 
-<div onLoad="MM_preloadImages('{www_dir}/ezarticle/admin/images/redigerminimrk.gif','{www_dir}/ezarticle/admin/images/slettminimrk.gif')"></div>
+<div onLoad="MM_preloadImages('{www_dir}/ezarticle/admin/images/redigerminimrk.gif','{www_dir}/design/base/images/icons/slettminimrk.gif')"></div>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<td width="1%" class="tdmini" bgcolor="#465da1" align="left" valign="top"><img src="{www_dir}/images/box-tl.gif" width="4" height="4" border="0" alt="" /><br /></td>
-	<td width="98%" bgcolor="#465da1" class="tdminipath" rowspan="3" valign="middle"><div class="smallpath"><span class="smallbold">Søk</span></div></td>
+	<td width="98%" bgcolor="#465da1" class="tdminipath" rowspan="3" valign="middle"><div class="smallpath"><span class="smallbold">Sï¿½k</span></div></td>
 	<td width="1%" class="tdmini" bgcolor="#465da1" align="right" valign="top"><img src="{www_dir}/images/box-tr.gif" width="4" height="4" border="0" alt="" /><br /></td>
 </tr>
 <tr>

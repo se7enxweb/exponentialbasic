@@ -30,7 +30,7 @@
 //-->
 </SCRIPT>
 
-<div onLoad="MM_preloadImages('{www_dir}/ezcontact/admin/images/redigerminimrk.gif','{www_dir}/ezcontact/admin/images/slettminimrk.gif')"></div>
+<div onLoad="MM_preloadImages('{www_dir}/ezcontact/admin/images/redigerminimrk.gif','{www_dir}/design/base/images/icons/slettminimrk.gif')"></div>
 
 <!-- BEGIN list_tpl -->
 <h1>{intl-headline_list}</h1>
@@ -83,7 +83,7 @@
     <td><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_list}/{type_id}/">{type_name}</a></td>
     <td>{type_description}</td>
     <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_edit}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezct{type_id}-red','','{www_dir}/admin/images/redigerminimrk.gif',1)"><img name="ezct{type_id}-red" border="0" src="{www_dir}/admin/images/redigermini.gif" width="16" height="16" align="top"></a></td>
-    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezct{type_id}-slett','','{www_dir}/admin/images/slettminimrk.gif',1)"><img name="ezct{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
+    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezct{type_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezct{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
 </tr>
 <!-- END category_item_tpl -->
 
@@ -110,7 +110,7 @@
     <td><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_view}/{type_id}/">{type_name}</a></td>
     <td>{type_description}</td>
     <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_edit}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-red','','{www_dir}/admin/images/redigerminimrk.gif',1)"><img name="ezuser{type_id}-red" border="0" src="{www_dir}/admin/images/redigermini.gif" width="16" height="16" align="top"></a></td>
-    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-slett','','{www_dir}/admin/images/slettminimrk.gif',1)"><img name="ezuser{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
+    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezuser{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
 </tr>
 <!-- END type_item_tpl -->
 
@@ -156,7 +156,7 @@
 	</td>
 
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/specific/seanex/contact/company/delete/{company_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{company_id}-slett','','{www_dir}/admin/images/slettminimrk.gif',1)"><img name="ezc{company_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/specific/seanex/contact/company/delete/{company_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{company_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezc{company_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>	
 
 </tr>

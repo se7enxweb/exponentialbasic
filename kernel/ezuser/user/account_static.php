@@ -25,9 +25,9 @@ if ($referer){
 <div id="contentWrap">
   <h1 class="mainHeading"><? echo $account_header ?></h1>
 
-  <table border="0" cellspacing="5" cellpadding="8" width="600" style="font-size:10;">
+  <table border="0" cellspacing="5" cellpadding="8" width="" style="font-size:10;">
   <tr>
-    <td align="right" width="250">
+    <td align="right" width="">
       <a href="<? print $shost ?>/user/edit"><< Edit Account</a>
     </td>
     <td align="left">
@@ -46,10 +46,10 @@ if ($referer){
 
 <br />
 
-<table border="0" cellspacing="5" cellpadding="8" width="600" style="font-size:10;">
+<table border="0" cellspacing="5" cellpadding="8" width="" style="font-size:10;">
 
 <tr>
-<td align="right" width="250">
+<td align="right" width="">
   <a href="/trade/wishlist">My Wish List</a>
 </td>
 <td align="left">

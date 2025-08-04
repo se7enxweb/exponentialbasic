@@ -83,7 +83,7 @@
     <td><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_list}/{type_id}/">{type_name}</a></td>
     <td>{type_description}</td>
     <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_edit}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-red','','{www_dir}/admin/images/redigerminimrk.gif',1)"><img name="ezuser{type_id}-red" border="0" src="{www_dir}/admin/images/redigermini.gif" width="16" height="16" align="top"></a></td>
-    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-slett','','{www_dir}/admin/images/slettminimrk.gif',1)"><img name="ezuser{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
+    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezuser{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
 </tr>
 <!-- END category_item_tpl -->
 
@@ -113,7 +113,7 @@
     <td><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_view}/{type_id}/">{type_name}</a></td>
     <td>{type_description}</td>
     <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_edit}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-red','','{www_dir}/admin/images/redigerminimrk.gif',1)"><img name="ezuser{type_id}-red" border="0" src="{www_dir}/admin/images/redigermini.gif" width="16" height="16" align="top"></a></td>
-    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-slett','','{www_dir}/admin/images/slettminimrk.gif',1)"><img name="ezuser{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
+    <td width="1%"><a href="{www_dir}{index}/{intl-module_name}/{command_type}/{intl-command_delete}/{type_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{type_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezuser{type_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a></td>
 </tr>
 <!-- END type_item_tpl -->
 

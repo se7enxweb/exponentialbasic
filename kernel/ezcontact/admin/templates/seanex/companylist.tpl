@@ -30,7 +30,7 @@
 //-->
 </SCRIPT> 
 
-<div onLoad="MM_preloadImages('{www_dir}/ezcontact/admin/images/redigerminimrk.gif','{www_dir}/ezcontact/admin/images/slettminimrk.gif')"></div>
+<div onLoad="MM_preloadImages('{www_dir}/ezcontact/admin/images/redigerminimrk.gif','{www_dir}/design/base/images/icons/slettminimrk.gif')"></div>
 
 <h1>{intl-headline}</h1>aaa
 
@@ -69,7 +69,7 @@
 	</td>
 
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/contact/companytype/delete/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{category_id}-slett','','{www_dir}/admin/images/slettminimrk.gif',1)"><img name="ezuser{category_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/contact/companytype/delete/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{category_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezuser{category_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>	
 
 </tr>
@@ -93,7 +93,7 @@
 	</td>
 
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/contact/company/delete/{company_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{company_id}-slett','','{www_dir}/admin/images/slettminimrk.gif',1)"><img name="ezuser{company_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/contact/company/delete/{company_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{company_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezuser{company_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>	
 </tr>
 <!-- END company_item_tpl -->

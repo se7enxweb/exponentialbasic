@@ -30,7 +30,7 @@
 //-->
 </SCRIPT> 
 
-<div onLoad="MM_preloadImages('{www_dir}/ezarticle/images/redigerminimrk.gif','{www_dir}/ezarticle/images/slettminimrk.gif')"></div>
+<div onLoad="MM_preloadImages('{www_dir}/ezarticle/images/redigerminimrk.gif','{www_dir}/design/base/images/icons/slettminimrk.gif')"></div>
 
 <h1>{intl-head_line} - {current_category_name}</h1>
 
@@ -68,7 +68,7 @@
 	<a href="{www_dir}{index}/article/categoryedit/edit/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezac{category_id}-red','','{www_dir}/ezarticle/images/redigerminimrk.gif',1)"><img name="ezac{category_id}-red" border="0" src="{www_dir}/ezarticle/images/redigermini.gif" width="16" height="16" align="top"></a>
 	</td>
 	<td width="1%" class="{td_class}">
-	<a href="{www_dir}{index}/article/categoryedit/delete/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezac{category_id}-slett','','{www_dir}/ezarticle/images/slettminimrk.gif',1)"><img name="ezac{category_id}-slett" border="0" src="{www_dir}/ezarticle/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/article/categoryedit/delete/{category_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezac{category_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezac{category_id}-slett" border="0" src="{www_dir}/design/base/images/icons/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>
 </tr>
 <!-- END category_item_tpl -->
@@ -97,7 +97,7 @@
 	<td width="1%" class="{td_class}">
 
 <a href="#" onClick="verify( 'delete', '{www_dir}{index}/article/articleedit/delete/{article_id}'); return false;"
-onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{article_id}-slett','','{www_dir}/ezarticle/images/slettminimrk.gif',1)"><img name="ezaa{article_id}-slett" border="0" src="{www_dir}/ezarticle/images/slettmini.gif" width="16" height="16" align="top">
+onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{article_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezaa{article_id}-slett" border="0" src="{www_dir}/design/base/images/icons/slettmini.gif" width="16" height="16" align="top">
 </a>
 
 	</td>

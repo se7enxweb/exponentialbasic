@@ -30,7 +30,7 @@
 //-->
 </SCRIPT> 
 
-<div onLoad="MM_preloadImages('{www_dir}/eztodo/images/redigerminimrk.gif','{www_dir}/eztodo/images/slettminimrk.gif')"></div>
+<div onLoad="MM_preloadImages('{www_dir}/eztodo/images/redigerminimrk.gif','{www_dir}/design/base/images/icons/slettminimrk.gif')"></div>
 
 <h1>{intl-todo_overview}</h1>
 
@@ -118,7 +118,7 @@
 	<a href="{www_dir}{index}/todo/todoedit/edit/{todo_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('et{todo_id}-red','','/eztodo/images/redigerminimrk.gif',1)"><img name="et{todo_id}-red" border="0" src="{www_dir}/eztodo/images/redigermini.gif" width="16" height="16" align="top"></a>
 	</td>
 	<td class="{td_class}">
-	<a href="{www_dir}{index}/todo/todoedit/delete/{todo_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('et{todo_id}-slett','','/eztodo/images/slettminimrk.gif',1)"><img name="et{todo_id}-slett" border="0" src="{www_dir}/eztodo/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/todo/todoedit/delete/{todo_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('et{todo_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="et{todo_id}-slett" border="0" src="{www_dir}/eztodo/design/base/images/icons/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>
 </tr>
 <!-- END todo_item_tpl -->

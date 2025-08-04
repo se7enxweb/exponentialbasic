@@ -28,7 +28,7 @@
 	<a href="{www_dir}{index}/newsfeed/news/edit/{news_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{news_id}-red','','{www_dir}/eznewsfeed/design/admin/images/redigerminimrk.gif',1)"><img name="ezaa{news_id}-red" border="0" src="{www_dir}/eznewsfeed/design/admin/images/redigermini.gif" width="16" height="16" align="top" alt="Edit" /></a>
 	</td>
 	<td width="1%" class="{td_class}">
-	<a href="#" onClick="verify( '{intl-delete}?', '/newsfeed/news/delete/{news_id}/'); return false;" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{news_id}-slett','','{www_dir}/eznewsfeed/design/admin/images/slettminimrk.gif',1)"><img name="ezaa{news_id}-slett" border="0" src="{www_dir}/eznewsfeed/design/admin/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a>
+	<a href="#" onClick="verify( '{intl-delete}?', '/newsfeed/news/delete/{news_id}/'); return false;" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezaa{news_id}-slett','','{www_dir}/eznewsfeed{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezaa{news_id}-slett" border="0" src="{www_dir}/eznewsfeed/design/admin/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a>
 	</td>
 </tr>
 <!-- END news_item_tpl -->

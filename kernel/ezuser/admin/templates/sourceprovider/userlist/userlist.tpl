@@ -30,7 +30,7 @@
 //-->
 </SCRIPT> 
 
-<div onLoad="MM_preloadImages('../images/redigerminimrk.gif','../images/slettminimrk.gif')"></div>
+<div onLoad="MM_preloadImages('../images/redigerminimrk.gif','{www_dir}/design/base/images/icons/slettminimrk.gif')"></div>
 
 <h1>{intl-head_line}</h1>
 
@@ -101,7 +101,7 @@
 	</td>
 
 	<td class="{td_class}" width="1%">
-	<a href="{www_dir}{index}/user/useredit/delete/{user_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{user_id}-slett','','/admin/images/slettminimrk.gif',1)"><img name="ezuser{user_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
+	<a href="{www_dir}{index}/user/useredit/delete/{user_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezuser{user_id}-slett','','/design/base/images/icons/slettminimrk.gif',1)"><img name="ezuser{user_id}-slett" border="0" src="{www_dir}/admin/images/slettmini.gif" width="16" height="16" align="top"></a>
 	</td>	
 </tr>
 <!-- END user_item_tpl -->

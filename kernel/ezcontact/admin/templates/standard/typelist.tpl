@@ -65,7 +65,7 @@
 	</td>
 
 	<td width="1%">
-	<a href="{www_dir}{index}{item_delete_command}/{item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{item_id}-slett','','/design/admin/images/slettminimrk.gif',1)"><img name="ezc{item_id}-slett" border="0" src="{www_dir}/design/admin/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a>
+	<a href="{www_dir}{index}{item_delete_command}/{item_id}/" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezc{item_id}-slett','','{www_dir}/design/base/images/icons/slettminimrk.gif',1)"><img name="ezc{item_id}-slett" border="0" src="{www_dir}/design/admin/images/slettmini.gif" width="16" height="16" align="top" alt="Delete" /></a>
 	</td>	
 
 </tr>

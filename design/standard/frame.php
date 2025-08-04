@@ -24,7 +24,11 @@ if ( isset( $MetaRedirectLocation ) && isset( $MetaRedirectTimer ) )
 ?>
 <link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/style.css" />
 <link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/responsive.css" />
-
+<?php
+   // eZ calendar : Client Side ( DHTML/CSS, Client Side Script )
+   // #############################################################################
+   include_once("design/$GlobalSiteDesign/frame_head_calendar.append.php");
+?>
 <script language="JavaScript1.2">
 <!--//
 

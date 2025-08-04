@@ -635,11 +635,13 @@ width: 100%;
 		}
 		
 		#productWrap {
-			width: 100%;
+			/* width: 100%; */
+			display: flex;
 		}
 		
 		#itemBox {
-			width: 350px;
+			/* width: 350px; */
+			word-wrap: break-word;
 		}
 		
 		.prodRow {
@@ -735,8 +737,8 @@ width: 100%;
 		
 		#featuresLeft p,#featuresLeft h5,
 		#featuresLeft h6{
-			padding: 0px 10px;
-			margin: .7em 0px;
+			/* padding: 0px 10px;*/
+			margin: .7em 0px; 
 		}
 		
 		#featuresLeft ul {
@@ -1112,6 +1114,11 @@ div.all {
 div.main-body {
   display: flex;
   flex-direction: column;
+}
+
+div.mainImage {
+  padding-left: 1.0rem;
+  padding-right: 1.0rem;
 }
 
 /* PAGE CONTENT STYLES 		------------------------------------*/

@@ -168,17 +168,8 @@
 
             <div id="itemBox">
 	      <!-- BEGIN external_link_tpl -->
-              <strong>{intl-external_link}:</strong> <a href="{external_link_url}" target="_blank">{external_link_url}</a><br />
+              <strong>{intl-external_link}:</strong> <a href="{external_link_url}" target="_blank">{external_link_url}</a>
 	      <!-- END external_link_tpl -->
-		<!-- BEGIN main_image_tpl -->
-		<table cellpadding="0" cellspacing="0" border="0"><tr><td>
-		<a href="{www_dir}{index}/imagecatalogue/imageview/{main_image_id}/?RefererURL=/{module}/{module_view}/{product_id}/{category_id}/"><img src="{www_dir}{main_image_uri}" alt="{main_image_caption}" width="{main_image_width}" height="{main_image_height}" /></a></td>
-		</tr>
-		<tr><td>
-              <div class="row prodRow">
-	     <a href="{www_dir}{index}/imagecatalogue/imageview/{main_image_id}/?RefererURL=/{module}/{module_view}/{product_id}/{category_id}/"> {main_image_caption}</a>
-              </div></td></tr></table>
-		<!-- END main_image_tpl -->
             </div>
             <!-- end #itemBox -->
 	      <!-- BEGIN attribute_list_tpl -->
@@ -193,10 +184,14 @@
 	      <!-- END attribute_list_tpl -->
           </div>
           <!-- end #productWrap -->
+		<!-- BEGIN main_image_tpl -->
+		<div class="mainImage">
+		<a href="{www_dir}{index}/imagecatalogue/imageview/{main_image_id}/?RefererURL=/{module}/{module_view}/{product_id}/{category_id}/"><img src="{www_dir}{main_image_uri}" alt="{main_image_caption}" width="{main_image_width}" height="{main_image_height}" /></a></td>
+              <div class="row prodRow">
+	     <a href="{www_dir}{index}/imagecatalogue/imageview/{main_image_id}/?RefererURL=/{module}/{module_view}/{product_id}/{category_id}/"> {main_image_caption}</a>
+              </div></div>
+		<!-- END main_image_tpl -->
 
-          <div class="clearRight">
-            &nbsp;
-          </div><table cellpadding="0" cellspacing="0" border="0"><tr><td>
           <!-- start #featuresWrap -->
           <div id="featuresWrap">
 	    <!-- BEGIN image_list_tpl -->
@@ -228,7 +223,7 @@
 
           </div>
           <!-- end #featuresWrap -->
-        </div></td></tr></table>
+        </div>
         <!-- end #contentWrap -->
         
 		<!-- BEGIN print_page_link_tpl -->

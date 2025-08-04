@@ -56,7 +56,7 @@ div.main-body {
 /* PAGE CONTENT STYLES 		------------------------------------*/
 
 div#container div#content div#contentWrap form select {
-  width: 90%;
+  width: 100%;
 }
 
 #calendarWrap table table {
@@ -73,6 +73,25 @@ div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearVi
   position: relative;
 }
 
+#productWrap {
+	display: block;
+	width: 100%;
+}
+
+#productFloat {
+	float: unset;
+	width: 100%;
+}
+#orderBox, #related {
+	width: 100%;
+}
+
+#addCart, #addWish {
+  margin: 0.5rem 0px 0px 0px;
+  padding: 0.4rem;
+  position:relative;
+  left: 25%;
+}
 
 
 /* PAGE CONTENT STYLES 		------------------------------------*/

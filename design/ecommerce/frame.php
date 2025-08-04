@@ -20,7 +20,7 @@
 
    <!-- start #banner -->
 */ ?>
-     <div id="banner"><img src="/design/ecommerce/images/bannerBg.gif" usemap="#ezmap1" border="0" style="position: relative; width: 400px; height: inherit;" /><map name="ezmap1">
+     <div id="banner"><img src="/design/ecommerce/images/bannerBg.gif" usemap="#ezmap1" border="0" style="position: relative; width: 100%; height: inherit;" /><map name="ezmap1">
 <area shape="poly" alt="FullThrottle.com" coords="155,48, 152,44, 149,44, 145,44, 145,48, 149,53" href="/">
 <area shape="poly" alt="FullThrottle.com" coords="135,44, 127,49, 127,53, 131,53, 140,48, 140,44" href="/">
 <area shape="poly" alt="FullThrottle.com" coords="118,59, 122,59, 124,61, 122,64, 118,66, 113,63" href="/">

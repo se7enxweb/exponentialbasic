@@ -19,8 +19,8 @@
 
 
    <!-- start #banner -->
-*/ ?>
-     <div id="banner"><img src="/design/ecommerce/images/bannerBg.gif" usemap="#ezmap1" border="0" style="position: relative; width: 100%; height: inherit;" /><map name="ezmap1">
+
+<map name="ezmap1">
 <area shape="poly" alt="FullThrottle.com" coords="155,48, 152,44, 149,44, 145,44, 145,48, 149,53" href="/">
 <area shape="poly" alt="FullThrottle.com" coords="135,44, 127,49, 127,53, 131,53, 140,48, 140,44" href="/">
 <area shape="poly" alt="FullThrottle.com" coords="118,59, 122,59, 124,61, 122,64, 118,66, 113,63" href="/">
@@ -28,6 +28,9 @@
 132,71, 133,70, 130,62, 146,55, 147,56, 149,59, 152,64, 134,71, 142,71, 146,73, 150,75, 151,78, 152,76, 156,65, 159,60, 165,59, 168,59, 171,63, 171,67, 170,69, 160,89, 164,96, 164,101, 164,110, 130,110, 127,106, 125,102, 123,96, 122,94, 122,89, 121,84, 123,82, 120,83, 122,99, 121,106, 119,107, 118,107, 111,107, 106,103,
 100,98, 94,86, 85,85, 83,83, 82,78, 83,73, 86,68, 91,62, 93,58, 90,54, 84,50, 82,47, 81,40, 80,41, 80,46, 81,50, 80,53, 80,56, 83,57, 85,57, 85,60, 85,62, 84,63, 82,64, 74,64, 71,61, 70,58, 70,56, 71,52" href="/">
 </map>
+
+*/ ?>
+     <div id="banner"><a href="/"><img class="logoImage" src="/design/ecommerce/images/bannerBg.png" usemap="#ezmap1" border="0" style="position: relative; width: 24rem; height: 98%;" /></a></div>
 <? /*
 
 
@@ -79,8 +82,6 @@
 	echo "<span class=\"cartTopRowRight\"><a href=\"".$GlobalSiteIni->WWWDir.$GlobalSiteIni->Index."/user/new/\">Signup</a></span>";
    
 		  echo "</div>
-          <div class=\"spacer\">&nbsp;
-			</div>
           <div class=\"row\">
             <div id=\"myStuff\">
 				<form method=\"post\" action=\"".$GlobalSiteIni->WWWDir.$GlobalSiteIni->Index."/user/login/login/\">
@@ -231,11 +232,16 @@
        <? /* !-- end #lignt-footer -- */ ?>
 
         <div align="center" style="width: 100%; vertical-align: bottom; margin-top: 0px; padding-top: 4px; padding-bottom: 8px; font-size: 11px; background-color: #c2cfe5;">
-          <span>fullthrottle.com is a <a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/policy/security">secure</a> site that respects your <a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/policy/privacy">privacy</a></span>
-          <br />
-          <?  $SiteCopyright = $ini->read_var( "site", "SiteCopyright" ); ?>
-          <span><? echo $SiteCopyright; ?></span>
-        </div>
+          <div>fullthrottle.com is a <a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/policy/security">secure</a> site that respects your <a href="<? echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/policy/privacy">privacy</a></div>
+
+	  <div class="poweredByLogo">
+	      <div align="center"><a target="" href="/about"><img src="/design/base/images/logo/powered-by-ezpublish-100x35-trans-lgrey.gif" width="90" height="35" border="0" alt="Powered by eZ publish"></a></div>
+              <div class="poweredBy">Powered by <a href="https://basic.ezpublish.one">eZ Publish Basic</a> version <a href="/about"><? echo eZPublish::version(); ?></a></div>
+	  </div>
+          <? $SiteCopyright = $ini->read_var( "site", "SiteCopyright" ); ?>
+          <div class="copyright"><? echo $SiteCopyright; ?></div>
+
+	</div>
  </div></div>
 	  <? /* <!-- end #footerWrap -- */ ?>
     </form>
@@ -257,7 +263,7 @@ if ( $StoreStats == "enabled" )
     // create a random string to prevent browser caching.
     $seed = md5( microtime() );
     // callback for storing the stats
-    $imgSrc = $GlobalSiteIni->WWWDir . "/stats/store/rx$seed-" . $REQUEST_URI . "1x1.gif";
+    $imgSrc = $GlobalSiteIni->WWWDir . "/stats/store/rx$seed-" . $REQUEST_URI . "/1x1.gif";
     print( "\r<img src=\"$imgSrc\" height=\"1\" width=\"1\" border=\"0\" alt=\"\" />" );
 }
 

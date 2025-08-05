@@ -9,8 +9,6 @@ div.body {
 	border-collapse: collapse;
 }
 
-div {}
-
 tdivd.menu-left {
 	min-width: 125px;
 	width: 5.8%;
@@ -53,48 +51,48 @@ div.main-body {
 		display: grid;
 	} */
 
-/* PAGE CONTENT STYLES 		------------------------------------*/
+	/* PAGE CONTENT STYLES 		------------------------------------*/
 
-div#container div#content div#contentWrap form select {
-  width: 100%;
-}
-
-#calendarWrap table table {
-  width: 10%;
-}
-
-div#container.body div.all div.main-body div#content div#calendarWrap table tbody tr th {
-  font-weight: normal;
-  text-align: unset;
-  font-size: x-small;
-}
-
-div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearView table {
-  position: relative;
-}
-
-#productWrap {
-	display: block;
+	div#container div#content div#contentWrap form select {
 	width: 100%;
-}
+	}
 
-#productFloat {
-	float: unset;
-	width: 100%;
-}
-#orderBox, #related {
-	width: 100%;
-}
+	#calendarWrap table table {
+	width: 10%;
+	}
 
-#addCart, #addWish {
-  margin: 0.5rem 0px 0px 0px;
-  padding: 0.4rem;
-  position:relative;
-  left: 25%;
-}
+	div#container.body div.all div.main-body div#content div#calendarWrap table tbody tr th {
+	font-weight: normal;
+	text-align: unset;
+	font-size: x-small;
+	}
+
+	div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearView table {
+	position: relative;
+	}
+
+	#productWrap {
+		display: block;
+		width: 100%;
+	}
+
+	#productFloat {
+		float: unset;
+		width: 100%;
+	}
+	#orderBox, #related {
+		width: 100%;
+	}
+
+	#addCart, #addWish {
+	margin: 0.5rem 0px 0px 0px;
+	padding: 0.4rem;
+	position:relative;
+	left: 25%;
+	}
 
 
-/* PAGE CONTENT STYLES 		------------------------------------*/
+	/* PAGE CONTENT STYLES 		------------------------------------*/
 
 
 	#left {
@@ -161,9 +159,60 @@ div#container.body div.all div.main-body div#content div#calendarWrap.gcalYearVi
 		font-size: 0.75rem;
 	}
 	html body table.body div.all tbody tr td.tdmini a.logo img.logoImage {
-	        padding-bottom: 0.125rem;
+	    padding-bottom: 0.125rem;
 	}
 	html body table.body tbody tr td table.all tbody tr td.tdmini table {
-                margin: 0px;
+        margin: 0px;
 	}
+
+	div.spacer {
+        clear: unset;
+	}
+
+	/* Menu for mobile */
+
+	#myStuff {
+		float: right;
+		padding: 0px 2px 2px;
+		width: 54%;
+		height: unset;
+		font-size: 1.1em;
+	}
+
+	#cartButtons {
+		padding: 2px 6px;
+		position: relative;
+		height: unset;
+		font-size: 1.1em;
+	}
+
+	#cart {
+		position: absolute;
+		top: 0rem;
+		right: 00.25px;
+		margin: 0px;
+		width: 207px;
+		background: #AE2824;
+		color: #fff;
+		font: bold 10px verdana, sans-serif;
+		border: 1px solid #71181E;
+		padding: 0px;
+	}
+	#banner {
+		padding: 0px;
+		margin: 0px;
+		background-color: #e22b0c;
+		height: 118px;
+		z-index: 1;
+	}
+
+	#myStuff form #login {
+		font: bold .85em verdana, sans-serif;
+		border: 1px solid #fff;
+		margin: 2px 2px 1px 2px;
+		color: #101744;
+		background: #FFEB3F;
+		width: 27px;
+		cursor: pointer;
+	}	
 }

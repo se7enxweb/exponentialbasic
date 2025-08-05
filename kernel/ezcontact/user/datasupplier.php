@@ -41,7 +41,7 @@ if ( is_object( $user ) )
     $UserID = $user->id();
 }
 
-if ( $UserID > 0 )
+if ( isset( $UserID ) && $UserID > 0 )
 {
     $Add_User = false;
 }
@@ -417,7 +417,7 @@ switch ( $url_array[2] )
     }
 
     default :
-        print( "<h1>Sorry, This page isn't for you. </h1>" );
+        print( "<h1>Contact</h1><h2>Thank you for your interest.</h2><p>Sorry, This page isn't for you. Please go back and make another selection. <a href='' onclick='history.back()'>Go back</a></p>" );
         break;
 }
 

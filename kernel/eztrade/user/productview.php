@@ -57,7 +57,7 @@ $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enab
 $locale = new eZLocale( $Language );
 
 $AdminSiteURL = $ini->read_var( "site", "AdminSiteURL" );
-$SiteURL = $ini->read_var( "site", "SiteURL" );
+$SiteURL = $ini->read_var( "site", "UserSiteURL" );
 
 if ( isset( $CategoryID ) )
     $categoryID = $CategoryID;

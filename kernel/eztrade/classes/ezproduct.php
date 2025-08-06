@@ -1486,6 +1486,8 @@ class eZProduct
     function addImage( $value, $placement = false )
     {
         $db =& eZDB::globalDatabase();
+        $image_array = array();
+        $res = array();
 
         if( is_a( $value, "eZImage" ) )
             $value = $value->id();
@@ -1500,6 +1502,9 @@ class eZProduct
             if ( is_bool( $placement ) )
             {
                 $db->array_query( $image_array, "SELECT ID, ImageID, Placement, Created FROM eZTrade_ProductImageLink WHERE ProductID='$this->ID' ORDER BY Placement DESC" );
+
+                
+
                 if ( $image_array[0][$db->fieldName("Placement")] == "0" )
                 {
                     $placement=1;
@@ -1766,6 +1771,7 @@ class eZProduct
     {
         $db =& eZDB::globalDatabase();
         $ret = array();
+        $res_array = array();
         
 		if ( $active==FALSE )
 			$activeText="";
@@ -1816,6 +1822,10 @@ class eZProduct
         $nonActiveCode = "";
         $discontinuedCode = "";
 
+        // This looks like hardcoded logic which should be abstracted, tisk tisk.
+        $fetchNonActive = false;
+        $fetchDiscontinued = false;
+
         if ( $fetchNonActive == true && $fetchDiscontinued == true )
         {
             $nonActiveCode = "";
@@ -1841,17 +1851,18 @@ class eZProduct
             $nonActiveCode = "AND ShowProduct='1'";
             $discontinuedCode = "";
         }
-
-        $db->array_query( $res_array, "SELECT ID FROM eZTrade_Product
+        $query = "SELECT ID FROM eZTrade_Product
                                         WHERE
                                         Name LIKE '%$query%' OR
                                         Description LIKE '%$query%' OR
-                                        ProductNumber LIKE '%$query%' ) OR
-                                        CatalogNumber LIKE '%$query%' OR
+                                        ( ProductNumber LIKE '%$query%' ) OR
+                                        ( CatalogNumber LIKE '%$query%' ) OR
                                        ( Keywords LIKE '%$query%' )
                                         $nonActiveCode
                                         $discontinuedCode 
-                                        ORDER BY $OrderBy",
+                                        ORDER BY $OrderBy";
+
+        $db->array_query( $res_array, $query,
                                              array( "Limit" => $limit, "Offset" => $offset ) );
 
         // $db->array_query( $res_array, "SELECT ID FROM eZTrade_Product

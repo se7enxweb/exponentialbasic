@@ -196,7 +196,8 @@ foreach ( $orderArray as $order )
 	
     
     $statusType = $status->type();
-    $statusName = preg_replace( "#intl-#", "", $statusType->name() );
+    $statusTypeName = !is_null( $statusType->name() ) ? $statusType->name() : false;
+    $statusName = preg_replace( "#intl-#", "", $statusTypeName );
 //    $statusName =  $languageINI->read_var( "strings", $statusName );
     $t->set_var( "order_status", $statusName );
 	

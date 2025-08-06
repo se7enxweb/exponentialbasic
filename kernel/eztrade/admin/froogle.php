@@ -45,7 +45,7 @@ ini_set('upload_max_filesize', 5242880); // 5MB
 
 $ini =& INIFile::globalINI();
 
-$SiteURL = $ini->read_var( "site", "SiteURL" );
+$SiteURL = $ini->read_var( "site", "UserSiteURL" );
 $wwwDir = $ini->read_var( "site", "UserSiteURL" );
 $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 $MainImageWidth = $ini->read_var( "eZTradeMain", "MainImageWidth" );

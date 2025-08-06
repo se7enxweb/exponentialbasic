@@ -67,14 +67,14 @@ foreach ( $moduleArray as $module )
 {
     $module = strtolower( $module );
     unset( $SearchResult );
-    if ( eZFile::file_exists( "$module/user/searchsupplier.php" ) )
+    if ( eZFile::file_exists( "kernel/$module/user/searchsupplier.php" ) )
     {
-        include( "$module/user/searchsupplier.php" );
+        include( "kernel/$module/user/searchsupplier.php" );
 
         $t->set_var( "search_item", "" );
         $t->set_var( "module_name", $ModuleName );
         $i = 0;
-        if ( !is_array( $SearchResult[0] ) )
+        if ( isset( $SearchResult[0] ) && !is_array( $SearchResult[0] ) )
         {
             $SearchResult = array( $SearchResult );
         }
@@ -82,7 +82,11 @@ foreach ( $moduleArray as $module )
         $t->set_var( "search_sub_module", "" );
         foreach ( $SearchResult as $Result )
         {
-            if ( count( $Result ) > 0 && count( $Result["Result"] ) > 0 )
+            if ( !is_null( $Result ) && 
+                 !is_int( $Result ) &&
+                 !is_string( $Result ) && count( $Result ) > 0 &&
+                 ( isset( $Result["Result"] ) && !is_null( $Result["Result"] ) ) && 
+                 !is_int( $Result["Result"] ) && count( $Result["Result"] ) > 0 )
             {
                 $ResultArrayDetailViewPath = $Result["DetailViewPath"];
                 $ResultArray = $Result["Result"];
@@ -93,7 +97,7 @@ foreach ( $moduleArray as $module )
                         $t->set_var( "td_class", "bglight" );
                     else
                         $t->set_var( "td_class", "bgdark" );
-                    if ( $Result["SuffixVariable"] )
+                    if ( isset( $Result["SuffixVariable"] ) && $Result["SuffixVariable"] )
 	                    $t->set_var( "search_link", $Result["DetailViewPath"] . $res->id() . $Result["SuffixVariable"]);
 					else
 	                    $t->set_var( "search_link", $Result["DetailViewPath"] . $res->id() );
@@ -103,10 +107,14 @@ foreach ( $moduleArray as $module )
                     $i++;
                 }
             }
-            $t->set_var( "search_more_link", $Result["DetailedSearchPath"] . "?" .
-                         $Result["DetailedSearchVariable"] . "=". urlencode( $SearchText ) );
-            $t->set_var( "search_count", $Result["SearchCount"] ? $Result["SearchCount"] : count( $Result["Result"] ) );
-            if ( isSet( $Result["SubModuleName"] ) )
+
+            $t->set_var( "search_more_link", isset( $Result["DetailedSearchPath"] ) ? $Result["DetailedSearchPath"] . "?" .
+            
+            $Result["DetailedSearchVariable"] . "=". urlencode( $SearchText ) : false );
+
+            $t->set_var( "search_count", isset( $Result["SearchCount"] ) && $Result["SearchCount"] ? $Result["SearchCount"] : count( is_array( $Result ) && !empty( $Result["Result"] ) ? $Result["Result"] : array() ) );
+
+            if ( isset( $Result["SubModuleName"] ) )
             {
                 $t->set_var( "sub_module_name", $Result["SubModuleName"] );
                 $t->parse( "search_sub_module_name", "search_sub_module_name_tpl" );

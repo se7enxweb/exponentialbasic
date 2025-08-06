@@ -1057,7 +1057,8 @@ class eZMail
             $this->add_attachment( $body, "", "text/plain");
         }
 
-        $mime .= "MIME-Version: 1.0" . $this->build_multipart();
+        // Temporary issue avoidance 
+        // $mime .= "MIME-Version: 1.0" . $this->build_multipart();
 
 	if ( isset ( $envelope ) )
 	{

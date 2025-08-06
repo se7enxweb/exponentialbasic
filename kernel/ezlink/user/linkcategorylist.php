@@ -105,7 +105,7 @@ foreach ( $pathArray as $path )
     $t->parse( "path_item", "path_item_tpl", true );
 }
 
-if ( ! $path[1] )
+if ( !isset( $path[1] ) or !$path[1] )
 {
     $t->parse( "headline_item", "headline_tpl" );
     $t->set_var( "category_name_item", "" );

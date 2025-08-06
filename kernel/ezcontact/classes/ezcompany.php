@@ -382,7 +382,7 @@ class eZCompany
     /*!
       Henter ut alle firma i databasen som inneholder s�kestrengen.
     */
-    function &search( $query )
+    public static function &search( $query )
     {
         $db =& eZDB::globalDatabase();
 

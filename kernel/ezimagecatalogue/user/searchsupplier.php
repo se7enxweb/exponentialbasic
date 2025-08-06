@@ -32,16 +32,16 @@
 // you.
 //
 
-$ModuleName = "eZ imagecatalogue";
-$SearchResult["DetailedSearchPath"] = "/imagecatalogue/search/";
-$SearchResult["DetailedSearchVariable"] = "SearchText";
-$SearchResult["DetailViewPath"] = "/imagecatalogue/imageview/";
-$SearchResult["IconPath"] = "/images/document.gif";
-
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 
+$ModuleName = "eZ imagecatalogue";
+$SearchResult[0]["DetailedSearchPath"] = "/imagecatalogue/search/";
+$SearchResult[0]["DetailedSearchVariable"] = "SearchText";
+$SearchResult[0]["DetailViewPath"] = "/imagecatalogue/imageview/";
+$SearchResult[0]["IconPath"] = "/design/base/images/icons/document.gif";
+
 $image = new eZImage();
-$SearchResult["Result"] = $image->search( $SearchText, 0, $Limit );
-$SearchResult["SearchCount"] = $image->searchCount( $SearchText );
+$SearchResult[0]["Result"] = $image->search( $SearchText, 0, $Limit );
+$SearchResult[0]["SearchCount"] = $image->searchCount( $SearchText );
 
 ?>

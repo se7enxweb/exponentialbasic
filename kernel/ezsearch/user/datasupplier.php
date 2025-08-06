@@ -24,11 +24,12 @@
 //
 
 $ini =& INIFile::globalINI();
+
 $GlobalSectionID = $ini->read_var( "eZSearchMain", "DefaultSection" );
 
 switch( $url_array[2] )
 {
-    default  :
+    default:
     {
         include( "kernel/ezsearch/user/search.php" );
     }

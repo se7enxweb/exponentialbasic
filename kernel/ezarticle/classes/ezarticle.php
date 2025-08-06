@@ -2663,7 +2663,7 @@ class eZArticle
       $user is either a userID or an eZUser.
       $article is the articleID
      */
-    static public function isAuthor( $user, $articleID )
+    public static function isAuthor( $user, $articleID )
     {
         if( !is_a( $user, "eZUser" ) )
             return false;
@@ -2680,7 +2680,7 @@ class eZArticle
     /*!
       Returns the article which a forum is connected to.
      */
-    function articleIDFromForum( $ForumID )
+    public static function articleIDFromForum( $ForumID )
     {
         $db =& eZDB::globalDatabase();
 

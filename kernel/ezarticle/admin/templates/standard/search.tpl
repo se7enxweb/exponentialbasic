@@ -34,7 +34,7 @@
 <!-- BEGIN article_item_tpl -->
 <tr>
 	<td class="{td_class}">
-	<img src="{www_dir}/design/admin/images/document.gif" height="16" width="16" border="0" alt="" />&nbsp;
+	<img src="{www_dir}/design/base/images/icons/document.gif" height="16" width="16" border="0" alt="" />&nbsp;
 	<a href="{www_dir}{index}/article/articlepreview/{article_id}/">
 	{article_name}
 	</a>

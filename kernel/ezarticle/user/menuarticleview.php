@@ -124,7 +124,7 @@ else
     $t->parse( "article_header", "article_header_tpl" );
 }
 
-$SiteURL = $ini->read_var( "site", "SiteURL" );
+$SiteURL = $ini->read_var( "site", "UserSiteURL" );
 
 $t->set_var( "article_url", $SiteURL . $REQUEST_URI );
 $t->set_var( "article_url_item", "" );

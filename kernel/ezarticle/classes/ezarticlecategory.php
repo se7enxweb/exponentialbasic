@@ -661,6 +661,8 @@ class eZArticleCategory
     static public function sectionIDStatic($categoryID )
     {
         $db =& eZDB::globalDatabase();
+        $res = array();
+
         $db->query_single( $res, "SELECT SectionID from eZArticle_Category WHERE ID='$categoryID'");
 
         if ( isset( $res[$db->fieldName("SectionID")] ) )

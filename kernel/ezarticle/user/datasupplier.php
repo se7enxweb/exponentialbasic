@@ -308,14 +308,14 @@ switch ( $url_array[2] )
                 $Offset = $url_array[10];
             }
 
-/*
-	echo "<pre>";
-	print_r ( $url_array );
-	echo "</pre>";
-	exit();
-*/			
+            /*
+                echo "<pre>";
+                print_r ( $url_array );
+                echo "</pre>";
+                exit();
+            */			
 			
-            include( "ezarticle/user/search.php" );
+            include( "kernel/ezarticle/user/search.php" );
         }
     }
     break;

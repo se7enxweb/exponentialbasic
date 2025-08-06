@@ -19,7 +19,7 @@
 <tr>
 	<td>
 	{option_level}
-	<img src="{www_dir}/design/admin/images/document.gif" height="16" width="16" border="0" alt="" align="top" />&nbsp;
+	<img src="{www_dir}/design/base/images/icons/document.gif" height="16" width="16" border="0" alt="" align="top" />&nbsp;
 	<a href="{www_dir}{index}/article/{option_value}">{option_name}</a>&nbsp;
 	<a href="{www_dir}{index}/article/articleedit/edit/{article_id}" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ezsmd{article_id}-red','','{www_dir}/design/admin/images/redigerminimrk.gif',1)"><img name="ezsmd{article_id}-red" border="0" src="{www_dir}/design/admin/images/redigermini.gif" width="16" height="16" align="top">
 

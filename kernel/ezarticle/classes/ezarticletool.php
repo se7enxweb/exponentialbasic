@@ -141,7 +141,7 @@ class eZArticleTool
         $PublishNoticeSender = $ini->read_var( "eZArticleMain", "PublishNoticeSender" );
         $PublishNoticePadding = $ini->read_var( "eZArticleMain", "PublishNoticePadding" );
         $PublishSite = $ini->read_var( "site", "SiteTitle" );
-        $SiteURL = $ini->read_var( "site", "SiteURL" );
+        $SiteURL = $ini->read_var( "site", "UserSiteURL" );
         $UserSiteURL = $ini->read_var( "site", "UserSiteURL" );
 
 	//EP - different charsets for the MIME mail ----------------------------

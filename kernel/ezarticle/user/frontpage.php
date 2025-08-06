@@ -845,10 +845,10 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
     {
         $variation =& $thumbnailImage->requestImageVariation( $ThumbnailImageWidth, $ThumbnailImageHeight );
 
-        $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
-        $t->set_var( "thumbnail_image_width", $variation->width() );
-        $t->set_var( "thumbnail_image_height", $variation->height() );
-        $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
+        $t->set_var( "product1_thumbnail_image_uri", "/" . $variation->imagePath() );
+        $t->set_var( "product1_thumbnail_image_width", $variation->width() );
+        $t->set_var( "product1_thumbnail_image_height", $variation->height() );
+        $t->set_var( "product1_thumbnail_image_caption", $thumbnailImage->caption() );
 
         $t->parse( "left_product_image", "left_product_image_tpl" );
     }
@@ -857,30 +857,30 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
         $t->set_var( "left_product_image", "" );
     }
 
-    $t->set_var( "product_name", $product1->name() );
-    $t->set_var( "product_id", $product1->id() );
+    $t->set_var( "product1_name", $product1->name() );
+    $t->set_var( "product1_id", $product1->id() );
 
     // $t->set_var( "product_intro_text", eZTextTool::nl2br( $product1->brief() ) );
-    $t->set_var( "product_intro_text", $product1->brief() );
+    $t->set_var( "product1_intro_text", $product1->brief() );
 
 
     $categoryDefinition = $product1->categoryDefinition();
-    $t->set_var( "category_id", $categoryDefinition->id() );
+    $t->set_var( "product1_category_id", $categoryDefinition->id() );
 
     if ( $product1->showPrice() == true and $product1->hasPrice() )
     {
-        $t->set_var( "product_price", $product1->localePrice( $PricesIncludeVAT ) );
+        $t->set_var( "product1_price", $product1->localePrice( $PricesIncludeVAT ) );
         $priceRange = $product1->correctPriceRange( $PricesIncludeVAT );
 
         if ( ( empty( $priceRange["min"] ) and empty( $priceRange["max"] ) ) and !($product1->correctPrice( $PricesIncludeVAT ) > 0) )
         {
-            $t->set_var( "product_price", "" );
+            $t->set_var( "product1_price", "" );
         }
         $t->parse( "left_price", "left_price_tpl" );
     }
     elseif( $product1->showPrice() == false )
     {
-        $t->set_var( "product_price", "" );
+        $t->set_var( "product1_price", "" );
         $t->parse( "left_price", "left_price_tpl" );
     }
     else
@@ -904,7 +904,7 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
                     $high = max( $priceArray );
                     $low = min( $priceArray );
 
-                    $t->set_var( "product_price", $low . " - " . $high );
+                    $t->set_var( "product1_price", $low . " - " . $high );
 
                     $t->parse( "left_price", "left_price_tpl" );
                 }

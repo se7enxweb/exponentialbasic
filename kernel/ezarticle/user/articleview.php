@@ -179,7 +179,7 @@ if ( $listImageHeightOverride )
 }
 
 
-$SiteURL = $ini->read_var( "site", "SiteURL" );
+$SiteURL = $ini->read_var( "site", "UserSiteURL" );
 
 $t->set_var( "article_url", $SiteURL . $_SERVER['REQUEST_URI'] );
 $t->set_var( "article_url_item", "" );

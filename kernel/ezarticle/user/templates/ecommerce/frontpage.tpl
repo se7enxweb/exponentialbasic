@@ -144,13 +144,13 @@
         <table width="100%" align="left" cellpadding="0" cellspacing="0" border="0">
         <tr>
             <td>
-	    <div class="listproducts"><a class="listheadline" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{product_name}</a></div>
+	    <div class="listproducts"><a class="listheadline" href="{www_dir}{index}/trade/productview/{product1_id}/{product1_category_id}/">{product1_name}</a></div>
             <!-- BEGIN left_product_image_tpl -->
             <table width="1%" align="right">
             <tr>
                 <td>
-	        <a href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">
-	        <img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" alt=""/>
+	        <a href="{www_dir}{index}/trade/productview/{product1_id}/{product1_category_id}/">
+	        <img src="{www_dir}{product1_thumbnail_image_uri}" border="0" width="{product1_thumbnail_image_width}" height="{thumbnail_image_height}" alt=""/>
 	        </a>
 	        </td>
             </tr>
@@ -166,10 +166,10 @@
 
 	    <div class="pris">
 		<!-- BEGIN left_price_tpl -->
-	    {product_price}
+	    {product1_price}
 	    <!-- END left_price_tpl -->
 		<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-		<a class="path" href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">{intl-get_more_info}</a>
+		<a class="path" href="{www_dir}{index}/trade/productview/{product1_id}/{product1_category_id}/">{intl-get_more_info}</a>
 	</div>
 
 	   </td>
@@ -178,7 +178,7 @@
 	<!-- END left_product_tpl -->
 	</td>
 
-	<td width="2%"><img src="{www_dir}/design/base/images/icons/1x1.gif" height="10" width="4" border="0" alt="" /></td>
+	<td width="2%"><img src="{www_dir}/design/base/images/design/1x1.gif" height="10" width="4" border="0" alt="" /></td>
 	
 	<td valign="top" width="49%" class="list">
 	<!-- BEGIN right_product_tpl -->
@@ -237,7 +237,7 @@
             <tr>
                 <td>
 	        <a href="{www_dir}{index}/trade/productview/{product_id}/{category_id}/">
-	        <img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" alt="" />
+	        <img src="{www_dir}{product1_thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{product1_thumbnail_image_height}" alt="" />
 	        </a>
 	        </td>
             </tr>
@@ -286,7 +286,7 @@
 <!-- BEGIN ad_column_tpl -->
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
-	<td class="tdmini"><img src="{www_dir}/design/base/images/icons/1x1.gif" height="4" width="4" border="0" alt="" /></td>
+	<td class="tdmini"><img src="{www_dir}/design/base/images/design/1x1.gif" height="4" width="4" border="0" alt="" /></td>
 </tr>
 
 <tr>
@@ -302,7 +302,7 @@
 	</td>
 </tr>
 <tr>
-	<td class="tdmini"><img src="{www_dir}/design/base/images/icons/1x1.gif" height="3" width="4" border="0" alt="" /></td>
+	<td class="tdmini"><img src="{www_dir}/design/base/images/design/1x1.gif" height="3" width="4" border="0" alt="" /></td>
 </tr>
 </table>
 <!-- END ad_column_tpl -->

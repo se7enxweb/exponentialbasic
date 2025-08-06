@@ -84,7 +84,7 @@ class eZUser
         $this->InfoSubscription = 0;
         $this->SimultaneousLogins = 0;
         $this->GroupString = false;
-	$this->AccountNumber = 0;
+	    $this->AccountNumber = 0;
         $this->HasRoot = -1;
 
         if ( is_array( $id ) )
@@ -513,6 +513,7 @@ class eZUser
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $user_array = array();
 
         $db->array_query( $user_array, "SELECT * FROM eZUser_User
                                                     WHERE Login='$login'" );

@@ -1,6 +1,6 @@
 <?php
 
-require( "ezuser/user/usercheck.php" );
+require( "kernel/ezuser/user/usercheck.php" );
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
@@ -30,14 +30,16 @@ $user =& eZUser::currentUser();
 $form_type = "Account Registration";
 $error = array();
 
-if($next){
+if( isset( $next ) && $next )
+{
   // Report blank errors
   foreach($_POST as $k=>$v){
     $error[$k] = error_check($v);
   }
   
   // Don't change blank passwords for users
-  if($user &! $password1){
+  if( $user && !$password1 )
+  {
     $error['password1'] = 'black';
     $error['password2'] = 'black';
   }
@@ -64,8 +66,8 @@ if($next){
     }
   }
   
-  if(! $errors_ind){
-    
+  if( isset( $errors_ind ) && $errors_ind )
+  {  
     if(! $user){
       $user = new eZUser();
     }
@@ -121,28 +123,28 @@ Complete both Account Registration Steps 1 & 2 to checkout or obtain
 accurate shipping and handling prices for items in your shopping cart.
 </p>
 
-<? if($next): ?>
+<? if( isset( $next ) && $next ): ?>
 <p style="color:red;">
-<?= $all_fields_error ?>
-<?= $password_error ?>
+<?= isset( $all_fields_error ) && $all_fields_error ?>
+<?= isset( $password_error ) && $password_error ?>
 </p>
 <? endif; ?>
 
 <form method="post">
 <table border="0" cellspacing="2" cellpadding="2" class="boxtext" style="font-size=13;">
-<tr><td style="color:<?= $error['first_name'] ?>;">First Name: </td><td><input type="text" name="first_name" value="<?= $first_name ?>"></td>
+<tr><td style="color:<?= isset( $error['first_name'] ) ?>;">First Name: </td><td><input type="text" name="first_name" value="<?= $first_name ?>"></td>
     <td>&nbsp;&nbsp;</td>
-    <td style="color:<?= $error['last_name'] ?>;">Last Name: </td><td><input type="text" name="last_name" value="<?= $last_name ?>"></td>
+    <td style="color:<?= isset( $error['last_name'] ) ?>;">Last Name: </td><td><input type="text" name="last_name" value="<?= $last_name ?>"></td>
 </tr>
 <tr><td colspan="5">&nbsp;</td></tr>
-<tr><td style="color:<?= $error['email'] ?>;">Email: </td><td colspan="3"><input size="30" type="text" name="email" value="<?= $email ?>"></td><td colspan="1"></td></tr>
+<tr><td style="color:<?= isset( $error['email'] ) ?>;">Email: </td><td colspan="3"><input size="30" type="text" name="email" value="<?= $email ?>"></td><td colspan="1"></td></tr>
 <tr><td colspan="5">&nbsp;</td></tr>
 <tr><td colspan="5">&nbsp;</td></tr>
-<tr><td style="color:<?= $error['username'] ?>;">Username: </td><td><input type="text" name="username" value="<?= $username ?>"></td><td colspan="3"></td></tr>
+<tr><td style="color:<?= isset( $error['username'] ) ?>;">Username: </td><td><input type="text" name="username" value="<?= $username ?>"></td><td colspan="3"></td></tr>
 <tr><td colspan="5">&nbsp;</td></tr>
-<tr><td style="color:<?= $error['password1'] ?>;">Password: </td><td><input type="password" name="password1"></td>
+<tr><td style="color:<?= isset( $error['password1'] ) ?>;">Password: </td><td><input type="password" name="password1"></td>
     <td>&nbsp;&nbsp;</td>
-    <td style="color:<?= $error['password2'] ?>;">Repeat Password: </td><td><input type="password" name="password2"></td>
+    <td style="color:<?= isset( $error['password2'] ) ?>;">Repeat Password: </td><td><input type="password" name="password2"></td>
 </tr>
 <tr><td colspan="5">&nbsp;</td></tr>
 </table>

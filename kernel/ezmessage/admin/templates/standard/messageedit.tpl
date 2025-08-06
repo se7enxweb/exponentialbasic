@@ -32,7 +32,7 @@
 {subject}
 
 <p class="boxtext">{intl-description}:</p>
-{show_description}
+{description}
 
 <hr size="4" noshade="noshade" />
 <br />

@@ -30,7 +30,7 @@ switch( $url_array[2] )
     case "view" :
     {
         $MessageID = $url_array[3];
-        include( "ezmessage/user/messageview.php" );
+        include( "kernel/ezmessage/user/messageview.php" );
     }
     break;    
 

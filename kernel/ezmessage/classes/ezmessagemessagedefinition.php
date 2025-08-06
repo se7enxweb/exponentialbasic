@@ -1,5 +1,6 @@
-<?
-include_once( "classes/ezdb.php" );
+<?php
+
+// include_once( "classes/ezdb.php" );
 
 
 class eZMessageDefinition
@@ -43,7 +44,7 @@ class eZMessageDefinition
         else
         {
             $res[] = $db->query( "UPDATE eZMessage_MessageDefinition SET
-            		 MessageID='$this->MessageID',
+            		         MessageID='$this->MessageID',
                          FromUserID='$this->FromUserID',
                          ToUserID='$this->ToUserID'
                          WHERE ID='$this->ID'" );
@@ -196,7 +197,7 @@ class eZMessageDefinition
     */
     function setFromUserID( $user )
     {
-        if ( get_class( $user ) == "ezuser" )
+        if ( get_class( $user ) == "eZUser" )
         {
             $this->FromUserID = $user->id();
         }
@@ -225,7 +226,7 @@ class eZMessageDefinition
     */
     function setToUserID( $user )
     {
-        if ( get_class( $user ) == "ezuser" )
+        if ( get_class( $user ) == "eZUser" )
         {
             $this->ToUserID = $user->id();
         }

@@ -112,6 +112,13 @@ $t->set_block( "message_page_tpl", "message_edit_tpl", "message_edit" );
 
 $t->setAllStrings();
 
+$Receiver = eZHTTPTool::getVar( "Receiver");
+$Subject = eZHTTPTool::getVar( "Subject" );
+$Description = eZHTTPTool::getVar( "Description" );
+$Reply = eZHTTPTool::getVar( "Reply" );
+$Edit = eZHTTPTool::getVar( "Edit" );
+$Preview = eZHTTPTool::getVar( "Preview" );
+
 $t->set_var( "receiver", $Receiver );
 $t->set_var( "subject", $Subject );
 $t->set_var( "description", $Description );
@@ -205,10 +212,9 @@ $Receiver = substr( trim( $Receiver ) , 0, strlen( trim( $Receiver ) ) -1 );
 $t->pparse( "output", "message_page_tpl" );
 
 if ( $MessageSent == true )
-	{
-	echo "<br>";
-	include( "ezmessage/user/messagelist.php" );
-	}
+{
+    include( "kernel/ezmessage/user/messagelist.php" );
+}
 
 ?>
 

@@ -33,21 +33,22 @@
 
 // include_once( "ezmessage/classes/ezmessage.php" );
 
+$usersValid = true;
 $MessageSent = false;
+
 if ( isset( $SendMessage ) )
 {
     $users = explode( ",", $Receiver );
 
     // check for valid users:
-    $usersValid = true;
     foreach ( $users as $user )
     {
         $user = trim( $user );
-        
-        if ( !eZUser::exists( $user ) )            
+        $exists = eZUser::exists( $user );
+        if ( !is_a( $exists, "eZUser" ) )            
             $usersValid = false;
     }
-    
+
     if ( $usersValid == true )
     {
         foreach ( $users as $user )
@@ -115,7 +116,7 @@ if ( isset ( $Reply ) )
     $t->set_var( "receiver", $fromUser->login()  );
 }
 
-if ( $MessageSent == true )
+if ( isset( $MessageSent ) && $MessageSent == true )
 {
     $t->parse( "message_sent", "message_sent_tpl" );
     $t->set_var( "message_verify", "" );

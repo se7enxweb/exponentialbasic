@@ -4,28 +4,36 @@
 <SCRIPT language="JavaScript" type="text/javascript">    
 function checkFields()
 {
-	thetype = document.shareform.type.value;
-	val= "";
-	for (var i = 0; i < document.shareform.elements.length; i++)
-	{
-		var e=document.shareform.elements[i];
-		if (e.checked)
-		{
-			val+=e.value+", ";
+	var thetype = document.shareform.type.value;
+	var values = [];
+
+	// Collect checked elements' values
+	for (var i = 0; i < document.shareform.elements.length; i++) {
+		var e = document.shareform.elements[i];
+		if (e.type === "checkbox" && e.checked) {
+			values.push(e.value);
 		}
 	}
-	
-	if (document.shareform.SelectedReceiver.value) val+=document.SelectedReceiver.Receiver.value;
-	if(thetype=="to")
-	{
 
-		window.opener.document.form.Receiver.value=val;
+	// Add SelectedReceiver if it exists
+	if (document.shareform.SelectedReceiver && document.shareform.SelectedReceiver.value) {
+		values.push(document.shareform.SelectedReceiver.value);
+	} else if (document.SelectedReceiver && document.SelectedReceiver.Receiver && document.SelectedReceiver.Receiver.value) {
+		values.push(document.SelectedReceiver.Receiver.value);
+	}
+
+	// Join values with comma and space
+	var val = values.join(", ");
+
+	// Assign to opener if needed
+	if (thetype === "to" && window.opener && window.opener.document.form && window.opener.document.form.Receiver) {
+		window.opener.document.form.Receiver.value = val;
 	}
 
 	window.close();
 	return false;
 }
-</SCRIPT>
+</script>
 </HEAD>
 
 <BODY>

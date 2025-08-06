@@ -41,6 +41,8 @@ class eZMessage
     */
     function __construct( $id=-1 )
     {
+        $this->IsRead = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -58,7 +60,7 @@ class eZMessage
 
         $subject = $db->escapeString( $this->Subject );
         $description = $db->escapeString( $this->Description );
-        $timeStamp =& eZDateTime::timeStamp( true );
+        $timeStamp = (new eZDateTime())->timeStamp( true );
 
         if ( !isset( $this->ID ) )
         {
@@ -71,7 +73,8 @@ class eZMessage
                          Description,
                          FromUserID,
                          ToUserID,
-                         IsRead )
+                         IsRead,
+                         TimeRead )
                        VALUES
                        ( '$nextID',
 		                 '$subject',
@@ -79,21 +82,21 @@ class eZMessage
                          '$description',
                          '$this->FromUserID',
                          '$this->ToUserID',
-                         '$this->IsRead' )" );
-			$this->ID = $nextID;
+                         '$this->IsRead',
+                         '0' )" );
+			      $this->ID = $nextID;
         }
         else
         {
             $res[] = $db->query( "UPDATE eZMessage_Message SET
-		                 Subject='$subject',
-                         Created=Created, 
-                         Description='$description',
-                         FromUserID='$this->FromUserID',
-                         ToUserID='$this->ToUserID',
-                         IsRead='$this->IsRead',
-                         TimeRead='$timeStamp'
-
-                         WHERE ID='$this->ID'" );
+                    Subject='$subject',
+                    Created=Created, 
+                    Description='$description',
+                    FromUserID='$this->FromUserID',
+                    ToUserID='$this->ToUserID',
+                    IsRead='$this->IsRead',
+                    TimeRead='$timeStamp'
+                    WHERE ID='$this->ID'" );
         }
 
         eZDB::finish( $res, $db );
@@ -226,23 +229,29 @@ $query = "SELECT DISTINCT eZMessage_Message.ID, eZMessage_MessageDefinition.ToUs
     }
 
 function string_tagster($str) { 
+    if( is_null($str) )
+      $str = false;
+
     $str = " ".$str." ";
-    $str = eregi_replace("([[:space:]{()\"'\[~#=;\&?\_])((ftp|http|https|telnet|news|nttp|nntp|file):\/\/[a-z0-9~#%@\&\(\):;=\?\/\.,_-]+(\\[|\\]|[a-z0-9~#%@\*\&:;.,=\?!'\|\/_\+-])+)", "\\1<A HREF=\"\\2\" TARGET=\"_blank\">\\2</A>", $str);
-    $str = eregi_replace("([[:space:]{()\"'\[~#;\&?\_])(www\.[a-z0-9~#%@\&\(\):;=\?!'\/\.,_-]+(\\[|\\]|[a-z0-9~#%@\*\&:;.,=\?!'\|\/_\+-])+)", "\\1<A HREF=\"http://\\2\" TARGET=\"_blank\">\\2</A>", $str);
-    $str = eregi_replace("([[:space:]{()\"'\[~#=;\&?\_])(ftp\.[a-z0-9~#%@\&\(\):;=\?!'\/\.,_-]+(\\[|\\]|[a-z0-9~#%@\&:;.,=\?!'\|\/_\+-])+)", "\\1<A HREF=\"ftp://\\2\" TARGET=\"_blank\">\\2</A>", $str);
-    $str = eregi_replace("(mail:|[[:space:]{()\"'\[~#;\&?])([_\.0-9a-z-]+@([_\.0-9a-z-]+)+\.[a-z]{2,4})","\\1<A HREF=\"mailto:\\2\">\\2</A>", $str);
-    $str = ereg_replace("  ", "&nbsp;&nbsp; ", $str);
+    $str = preg_replace("/([[:space:]{()\"'\[~#=;\&?\_])((ftp|http|https|telnet|news|nttp|nntp|file):\/\/[a-z0-9~#%@\&\(\):;=\?\/\.,_-]+(\\[|\\]|[a-z0-9~#%@\*\&:;.,=\?!'\|\/_\+-])+)/", "\\1<A HREF=\"\\2\" TARGET=\"_blank\">\\2</A>", $str);
+    $str = preg_replace("/([[:space:]{()\"'\[~#;\&?\_])(www\.[a-z0-9~#%@\&\(\):;=\?!'\/\.,_-]+(\\[|\\]|[a-z0-9~#%@\*\&:;.,=\?!'\|\/_\+-])+)/", "\\1<A HREF=\"http://\\2\" TARGET=\"_blank\">\\2</A>", $str);
+    $str = preg_replace("/([[:space:]{()\"'\[~#=;\&?\_])(ftp\.[a-z0-9~#%@\&\(\):;=\?!'\/\.,_-]+(\\[|\\]|[a-z0-9~#%@\&:;.,=\?!'\|\/_\+-])+)/", "\\1<A HREF=\"ftp://\\2\" TARGET=\"_blank\">\\2</A>", $str);
+    $str = preg_replace("/(mail:|[[:space:]{()\"'\[~#;\&?])([_\.0-9a-z-]+@([_\.0-9a-z-]+)+\.[a-z]{2,4})/","\\1<A HREF=\"mailto:\\2\">\\2</A>", $str);
+    $str = preg_replace("/  /", "&nbsp;&nbsp; ", $str);
     $str = str_replace("\\n", "<BR>", $str);    
     return substr($str, 1);
 } 
 
 function format_post2 ($str) {
+    if( is_null($str) )
+      $str = "";
+
     $str = htmlentities($str);
     $str = str_replace("&quot;", "\"", $str);
     $str = $this->string_tagster($str);
-    $str = ereg_replace("'</A>", "</A>'", $str);
-    $str = ereg_replace("'\" TARGET=\"_blank\">", "\" TARGET=\"_blank\">'", $str);
-    $str = ereg_replace("  ", " &nbsp; ", $str);
+    $str = preg_replace("/'<\/A>/", "</A>'", $str);
+    $str = preg_replace("/'\" TARGET=\"_blank\">/", "\" TARGET=\"_blank\">'", $str);
+    $str = preg_replace("/  /", " &nbsp; ", $str);
     $str = str_replace("\\t", "&nbsp;&nbsp;&nbsp; ", $str);
     $str = str_replace("\\r", "", $str);
     $str = str_replace("\\n", "<BR>", $str);
@@ -251,11 +260,12 @@ function format_post2 ($str) {
     return $str;
 } 
  
-function render($str) {
-if ( strlen($str) == 0)
+function render( $str ) {
+if ( !is_null($str) && strlen($str) == 0)
 return "";
 $str =  $this->format_post2($str); 
-$str = ereg_replace(chr(13), "<br>", $str);
+$charPattern = chr(13);
+$str = preg_replace( "/$charPattern/", "<br>", $str);
 $str = stripslashes($str);
   return "".$str;
 }  
@@ -282,7 +292,7 @@ $str = stripslashes($str);
     */
     function setFromUser( $user )
     {
-        if ( get_class( $user ) == "ezuser" )
+        if ( get_class( $user ) == "eZUser" )
         {
             $this->FromUserID = $user->id();
         }
@@ -335,7 +345,7 @@ $str = stripslashes($str);
     */
     function setToUser( $user )
     {
-        if ( get_class( $user ) == "ezuser" )
+        if ( get_class( $user ) == "eZUser" )
         {
             $this->ToUserID = $user->id();
         }
@@ -394,6 +404,7 @@ $str = stripslashes($str);
     var $Subject;
     var $Description;
     var $IsRead;
+    var $TimeRead;
 }
 
 ?>

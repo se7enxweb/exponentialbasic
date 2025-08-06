@@ -81,6 +81,11 @@ class eZTextTool
     */
     static public function addPre( $string, $char=">" )
     {
+        if ( !is_string( $string ) )
+        {
+          $string = "";
+        }
+
         $string =& wordwrap( $string, 60, "\n" );
         return preg_replace( "#^#m", "$char ", $string );
     }

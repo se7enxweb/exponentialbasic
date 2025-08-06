@@ -272,7 +272,13 @@ class eZImage
         $fileArray = array();
         $returnArray = array();
         $queryText = $name;
-        $userID = eZUser::currentUser()->id();
+
+        $user = eZUser::currentUser();
+
+        if( $user )
+            $userID = $user->id();
+        else
+            $userID = 0;
 
         if ( $userID > -1 )
             $user = new eZUser( $userID );

@@ -32,7 +32,7 @@
     <!-- BEGIN forum_item_tpl -->
     <tr>
 	<td class="{td_class}" width="1%">
-	    <img src="{www_dir}/images/forum.gif" width="16" height="16" border="0" alt="Forum" />
+	    <img src="{www_dir}/design/base/images/icons/forum.gif" width="16" height="16" border="0" alt="Forum" />
 	</td>
 	<td class="{td_class}" width="50%">
 	    <a href="{www_dir}{index}/forum/messagelist/{forum_id}/">{name}</a>

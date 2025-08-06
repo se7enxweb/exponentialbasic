@@ -156,6 +156,7 @@ class eZForum
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $category_array = array();
 
         if ( $id != "" )
         {
@@ -493,7 +494,21 @@ class eZForum
     */
     function &name( $html = true )
     {
-        return stripslashes ( $this->Name );
+        if( !is_null( $this->Name ) )
+        {
+            if ( $html )
+            {
+                return htmlspecialchars( stripslashes( $this->Name ) );
+            }
+            else
+            {
+                return stripslashes( $this->Name );
+            }
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /*!

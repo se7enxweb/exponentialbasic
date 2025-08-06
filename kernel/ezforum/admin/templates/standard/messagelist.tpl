@@ -43,7 +43,7 @@
 <!-- BEGIN message_item_tpl -->
 <tr bgcolor="{color}">
 	<td width="1%" class="{td_class}">
-	<img src="{www_dir}/design/admin/images/message.gif" height="16" width="16" border="0" alt="" align="top" />
+	<img src="{www_dir}/design/base/images/icons/message.gif" height="16" width="16" border="0" alt="" align="top" />
 	</td>
      <td width="32%" class="{td_class}">
      {spacer}

@@ -46,6 +46,9 @@ class eZForumMessage
     {
         $this->IsApproved = true;
         $this->IsTemporary = false;
+        $this->ForumID = 0;
+        $this->UserID = 0;
+        $this->EmailNotice = 0;
 
         $this->ParentID = 0;
 
@@ -102,7 +105,7 @@ class eZForumMessage
                 $topic = $db->escapeString( $this->Topic );
                 $body = $db->escapeString( $this->Body );
 
-                $res = $db->query( "INSERT INTO eZForum_Message
+                $query = "INSERT INTO eZForum_Message
 		                         ( ID,
                                    ForumID,
                                    Topic,
@@ -132,9 +135,11 @@ class eZForumMessage
                                    '$this->IsTemporary',
                                    '$timeStamp',
                                    '$this->UserName' )
-                                 " );
+                                 ";
 
-				$this->ID = $nextID;
+                $res = $db->query( $query );
+
+				        $this->ID = $nextID;
             }
             else
             { // child node
@@ -270,6 +275,8 @@ class eZForumMessage
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $message_array = array();
+
         if ( $id != "" )
         {
             $timeStamp = new eZDateTime();
@@ -308,6 +315,7 @@ class eZForumMessage
             else if ( count( $message_array ) == 0 )
             {
                 $this->ID = 0;
+                $this->ForumID = 0;
                 $ret = false;
             }
         }
@@ -321,6 +329,7 @@ class eZForumMessage
     {
         $db =& eZDB::globalDatabase();
         $ret = array();
+        $message_array = array();
 
         $db->array_query( $message_array, "SELECT ID FROM
                                            eZForum_Message" );
@@ -572,7 +581,7 @@ class eZForumMessage
        }
        else
        {
-	   		    $this->Topic = stripslashes($this->Topic);
+	   		    $this->Topic = "";
             return $this->Topic;
        }
     }
@@ -582,8 +591,8 @@ class eZForumMessage
     */
     function name()
     {
-		    $this->topic = stripslashes($this->topic);
-        return $this->topic();
+		    $this->Topic = stripslashes($this->Topic);
+        return $this->Topic();
     }
 
     /*!
@@ -600,7 +609,16 @@ class eZForumMessage
     */
     function &body()
     {
-        return stripslashes($this->Body);
+        if ( !is_null( $this->Body ) )
+        {
+            $this->Body = stripslashes($this->Body);
+            return htmlspecialchars( $this->Body );
+        }
+        else
+        {
+            $this->Body = "";
+            return $this->Body;
+        }
     }
 
     /*!

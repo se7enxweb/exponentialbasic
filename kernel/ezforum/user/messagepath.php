@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-if ( $ShowPath == true )
+if ( isset( $ShowPath ) && $ShowPath == true )
 {
     $t->set_file( "message_path", "messagepath.tpl"  );
     $t->set_block( "message_path", "article_message_tpl", "article_message_item" );
@@ -47,7 +47,7 @@ if ( $ShowPath == true )
     $ForumName = $forum->name();
     $categories = $forum->categories();
 
-    if ( is_object( $categories[0] ) )
+    if ( isset( $categories[0] ) && is_object( $categories[0] ) )
     {
         $ForumCategory = new eZForumCategory( $categories[0]->id() );
         $ForumCategoryID = $ForumCategory->id();
@@ -55,13 +55,13 @@ if ( $ShowPath == true )
         {
             $ForumCategoryName = $ForumCategory->name();
         }
-        $ArticleID = false;
-        $ArticleName = false;
-        $isArticle = false;
-        $doPrint = false;
-        $ReplyToID = false;
-        $PreviewID = false;
-        $OriginalID = false;
+        // $ArticleID = false;
+        // $ArticleName = false;
+        // $isArticle = false;
+        // $doPrint = false;
+        // $ReplyToID = false;
+        // $PreviewID = false;
+        // $OriginalID = false;
         $RedirectURL = '/forum/messagelist/' . $ForumID;
     }
     else
@@ -75,25 +75,25 @@ if ( $ShowPath == true )
         $ArticleName = $article->name();
         $isArticle = true;
     }
+    
+    $t->set_var( "message_topic", isset( $MessageTopic ) ? $MessageTopic : false );
+    $t->set_var( "message_id", isset( $MessageID ) ? $MessageID : false );
 
-    $t->set_var( "message_topic", $MessageTopic );
-    $t->set_var( "message_id", $MessageID );
+    $t->set_var( "category_name", isset( $ForumCategoryName ) ? $ForumCategoryName : false );
+    $t->set_var( "category_id", isset( $ForumCategoryID ) ? $ForumCategoryID : false );
 
-    $t->set_var( "category_name", $ForumCategoryName );
-    $t->set_var( "category_id", $ForumCategoryID );
+    $t->set_var( "forum_id", isset( $ForumID ) ? $ForumID : false );
+    $t->set_var( "forum_name", isset( $ForumName ) ? $ForumName : false );
 
-    $t->set_var( "forum_id", $ForumID );
-    $t->set_var( "forum_name", $ForumName );
-
-    $t->set_var( "article_id", $ArticleID );
-    $t->set_var( "article_name", $ArticleName );
+    $t->set_var( "article_id", isset( $ArticleID ) ? $ArticleID : false );
+    $t->set_var( "article_name", isset( $ArticleName ) ? $ArticleName : false );
 
     $t->set_var( "article_message_item", "" );
     $t->set_var( "article_topic_item", "" );
     $t->set_var( "forum_message_item", "" );
     $t->set_var( "forum_topic_item", "" );
 
-    if ( $isArticle == true )
+    if ( isset( $isArticle ) && $isArticle == true )
     {
         if ( $isPreview == false )
         {
@@ -103,14 +103,14 @@ if ( $ShowPath == true )
     }
     else
     {
-        if ( $isPreview == false )
+        if ( isset( $isPreview ) && $isPreview == false )
         {
             $t->parse( "forum_topic_item", "forum_topic_tpl" );
         }
         $t->parse( "forum_message_item", "forum_message_tpl" );
     }
 
-    if ( $doPrint == true )
+    if ( isset( $doPrint ) && $doPrint == true )
     {
         $t->pparse( "message_path_file", "message_path" );
     }

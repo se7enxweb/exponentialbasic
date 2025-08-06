@@ -92,6 +92,10 @@ if ( isset( $CheckMessageID ) && $CheckMessageID > 0 )
         $MessageRead = true;
         $MessageOwner = true;
     }
+    else
+    {
+        $MessageOwner = false;
+    }
 }
 else
 {
@@ -216,18 +220,18 @@ if ( $CheckMessageDelete && $MessageEdit )
     }
 }
 
+if ( $debugMessagePermissions === true )
+{
+    echo "<hr>\n";
+    // include_once( "classes/eztexttool.php" );
+    echo "UserID = " . $UserID . "<br />\n";
+    echo "MessageOwner = " . eZTextTool::boolText( $MessageOwner ) . "<br />\n";
+    echo "ForumRead = " . eZTextTool::boolText( $ForumRead ) . "<br />\n";
+    echo "ForumPost = " . eZTextTool::boolText( $ForumPost ) . "<br />\n";
+    echo "MessageRead = " . eZTextTool::boolText( $MessageRead ) . "<br />\n";
+    echo "MessageEdit = " . eZTextTool::boolText( $MessageEdit ) . "<br />\n";
+    echo "MessageReply = " . eZTextTool::boolText( $MessageReply ) . "<br />\n";
+    echo "MessageDelete = " . eZTextTool::boolText( $MessageDelete ) . "<br />\n";
+}
 
-
-// if ( true )
-// {
-//     // include_once( "classes/eztexttool.php" );
-//     echo "UserID = " . $UserID . "<br />\n";
-//     echo "MessageOwner = " . eZTextTool::boolText( $MessageOwner ) . "<br />\n";
-//     echo "ForumRead = " . eZTextTool::boolText( $ForumRead ) . "<br />\n";
-//     echo "ForumPost = " . eZTextTool::boolText( $ForumPost ) . "<br />\n";
-//     echo "MessageRead = " . eZTextTool::boolText( $MessageRead ) . "<br />\n";
-//     echo "MessageEdit = " . eZTextTool::boolText( $MessageEdit ) . "<br />\n";
-//     echo "MessageReply = " . eZTextTool::boolText( $MessageReply ) . "<br />\n";
-//     echo "MessageDelete = " . eZTextTool::boolText( $MessageDelete ) . "<br />\n";
-// }
 ?>

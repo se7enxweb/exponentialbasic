@@ -61,10 +61,10 @@
 	<tr>
 		<td width="1%">
 		<!-- BEGIN new_icon_tpl -->
-                <img src="{www_dir}/images/message_new.gif" width="16" height="16" border="0" alt="New message" />
+                <img src="{www_dir}/design/base/images/icons/message_new.gif" width="16" height="16" border="0" alt="New message" />
 		<!-- END new_icon_tpl -->
 		<!-- BEGIN old_icon_tpl -->
-                <img src="{www_dir}/images/message.gif" width="16" height="16" border="0" alt="Message" />
+                <img src="{www_dir}/design/base/images/icons/message.gif" width="16" height="16" border="0" alt="Message" />
 		<!-- END old_icon_tpl -->	
 		</td>
 		<td width="99%">
@@ -78,7 +78,7 @@
 
 	<!-- BEGIN private_message_tpl -->    
 	&nbsp;[<a href="{www_dir}{index}/message/edit/?Subject={intl-re}{PM_topic}&Receiver={username}" 
-	title="{intl-send-msg}&nbsp;{author}" class="small">{intl-PM}</a>]
+	title="{intl-send-msg}&nbsp;{author}" class="small">{intl-postmeridiem}</a>]
 	<!-- END private_message_tpl -->
 
 	</span>

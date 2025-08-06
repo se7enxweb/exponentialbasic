@@ -28,7 +28,7 @@ $ModuleName = "eZ forum";
 $SearchResult[0]["DetailedSearchPath"] = "/forum/search/";
 $SearchResult[0]["DetailedSearchVariable"] = "QueryString";
 $SearchResult[0]["DetailViewPath"] = "/forum/message/";
-$SearchResult[0]["IconPath"] = "/images/message.gif";
+$SearchResult[0]["IconPath"] = "/design/base/images/icons/message.gif";
 
 // include_once( "ezforum/classes/ezforum.php" );
 

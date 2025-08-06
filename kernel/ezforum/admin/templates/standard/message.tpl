@@ -94,7 +94,7 @@
 
 		<td width="1%" valign="top">
 		{spacer}{spacer}
-        <img src="{www_dir}/images/message.gif" width="16" height="16" border="0" alt="Message" />&nbsp;
+        <img src="{www_dir}/design/base/images/icons/message.gif" width="16" height="16" border="0" alt="Message" />&nbsp;
 		</td>
 		<td width="99%" valign="top">
 		<a class="{link_color}" href="{www_dir}{index}/forum/message/{message_id}/">{reply_topic}</a>

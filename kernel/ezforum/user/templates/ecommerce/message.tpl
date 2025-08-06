@@ -27,7 +27,7 @@
     {main-user}
 <!-- BEGIN private_message_tpl -->    
 	&nbsp;[<a href="{www_dir}{index}/message/edit/?Subject={intl-re}{PM_topic}&amp;Receiver={username}" 
-	title="{intl-send-msg}&nbsp;{main-user}" class="small">{intl-PM}</a>]
+	title="{intl-send-msg}&nbsp;{main-user}" class="small">{intl-postmeridiem}</a>]
 <!-- END private_message_tpl -->
 	</td>
 	<td valign="top" width="50%">
@@ -99,10 +99,10 @@
 		<td width="1%">
 		
 		<!-- BEGIN new_icon_tpl -->
-                <img src="{www_dir}/images/message_new.gif" width="16" height="16" border="0" alt="New message" />&nbsp;
+                <img src="{www_dir}/design/base/images/icons/message_new.gif" width="16" height="16" border="0" alt="New message" />&nbsp;
 		<!-- END new_icon_tpl -->
 		<!-- BEGIN old_icon_tpl -->
-                <img src="{www_dir}/images/message.gif" width="16" height="16" border="0" alt="Message" />&nbsp;
+                <img src="{www_dir}/design/base/images/icons/message.gif" width="16" height="16" border="0" alt="Message" />&nbsp;
 		<!-- END old_icon_tpl -->	
 		</td>
 		<td width="99%">
@@ -116,7 +116,7 @@
 	
 	<!-- BEGIN item_private_message_tpl -->    
 	&nbsp;[<a href="{www_dir}{index}/message/edit/?Subject={intl-re}{PM_topic}&amp;Receiver={username}" 
-	title="{intl-send-msg}&nbsp;{user}" class="small">{intl-PM}</a>]
+	title="{intl-send-msg}&nbsp;{user}" class="small">{intl-postmeridiem}</a>]
 	<!-- END item_private_message_tpl -->
 	
 	</span>

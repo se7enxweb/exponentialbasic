@@ -27,13 +27,13 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/eztexttool.php" );
-
+// include_once( "ezuser/classes/ezuser.php" );
 
 $ini =& INIFile::globalINI();
 
 $Language = $ini->read_var( "eZForumMain", "Language" );
 
-// include_once( "ezuser/classes/ezuser.php" );
+
 
 if ( eZUser::currentUser() )
 {
@@ -86,6 +86,7 @@ else
     } 
     else 
     {
+        $AdditionalURLInfo = "";
     	$RedirectURL='';
     }
     
@@ -97,14 +98,19 @@ else
             // include_once( "ezforum/classes/ezforummessage.php" );
 
             $CheckForumID = $ForumID;
+            if( !isset( $AdditionalURLInfo ) )
+            {
+                $AdditionalURLInfo = "";
+            }
            
             include( "kernel/ezforum/user/messagepermissions.php" );
-            
+
             if ( $ForumPost == true )
             {
                 eZHTTPTool::header( "Location: /forum/messageedit/new/$ForumID/$AdditionalURLInfo" );
             }
         }
+        break;
         
         case "reply":
         {
@@ -122,6 +128,7 @@ else
                 eZHTTPTool::header( "Location: /forum/messageedit/reply/$ReplyToID/$AdditionalURLInfo" );
             }
         }
+        break;
     }
     
     if ( $Anonymous == false )

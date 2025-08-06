@@ -36,10 +36,10 @@
 <tr>
     	<td class="{td_class}">
 	<!-- BEGIN new_icon_tpl -->
-        <img src="{www_dir}/images/message_new.gif" width="16" height="16" border="0" />&nbsp;
+        <img src="{www_dir}/design/base/images/icons/message_new.gif" width="16" height="16" border="0" />&nbsp;
 	<!-- END new_icon_tpl -->
 	<!-- BEGIN old_icon_tpl -->
-        <img src="{www_dir}/images/message.gif" width="16" height="16" border="0" />&nbsp;
+        <img src="{www_dir}/design/base/images/icons/message.gif" width="16" height="16" border="0" />&nbsp;
 	<!-- END old_icon_tpl -->	
 	<a href="{www_dir}{index}/forum/message/{message_id}/">
 	{message_topic}

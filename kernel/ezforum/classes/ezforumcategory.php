@@ -78,7 +78,7 @@ class eZForumCategory
                            '$this->IsPrivate',
                            '$this->SectionID')" );
 
-			$this->ID = $nextID;
+			      $this->ID = $nextID;
         }
         else
         {
@@ -129,6 +129,7 @@ class eZForumCategory
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $category_array = array();
 
         if ( $id != "" )
         {
@@ -180,15 +181,18 @@ class eZForumCategory
     {
        $db =& eZDB::globalDatabase();
        $forum_array = array();
-       
-       if ( $this->ID == 1 || $this->ID == 3 ) {
-	         $forumQuery = "SELECT ForumID FROM eZForum_ForumCategoryLink WHERE CategoryID='$this->ID'";
+       $ret = array();
+    
+       // Site specific code feature here rediscovered
+       // if ( $this->ID == 1 || $this->ID == 3 ) {
+	     if( !is_null( $this->ID ) )
+       {
+           $forumQuery = "SELECT ForumID FROM eZForum_ForumCategoryLink WHERE CategoryID='$this->ID'";
        } else {
 	         $forumQuery = "SELECT * FROM ( SELECT eZForum_ForumCategoryLink.ForumID as ForumID, eZForum_ForumCategoryLink.CategoryID FROM eZForum_ForumCategoryLink, eZForum_Forum, eZForum_Message WHERE eZForum_ForumCategoryLink.CategoryID='$this->ID' AND eZForum_Forum.ID = eZForum_ForumCategoryLink.ForumID AND eZForum_Message.ForumID = eZForum_Forum.ID GROUP BY eZForum_ForumCategoryLink.ForumID ) as tmpForumTable ORDER BY ForumID asc";
        }
+    
        $db->array_query( $forum_array, $forumQuery, array( "Limit" => $limit, "Offset" => $offset ) );
-
-       $ret = array();
 
        foreach ( $forum_array as $forum )
        {
@@ -317,7 +321,10 @@ class eZForumCategory
         $db =& eZDB::globalDatabase();
         $db->query_single( $res, "SELECT SectionID from eZForum_Category WHERE ID='$categoryID'");
 
+        if( is_array( $res ) && count( $res ) > 0 )
         $sectionID = $res[ (int) $db->fieldName("SectionID")];
+        else
+        $sectionID = 0;
 
         if ( $sectionID > 0 )
             return $sectionID;
@@ -330,8 +337,12 @@ class eZForumCategory
     */
     function name()
     {
-        $this->Name = htmlspecialchars($this->Name);
-		    return stripslashes ( $this->Name );
+        if ( isset( $this->Name ) )
+        {
+            $this->Name = htmlspecialchars($this->Name);
+            return stripslashes ( $this->Name );
+        }
+        return $this->Name;
     }
 
     /*!

@@ -57,6 +57,7 @@ $t->set_block( "message_item_tpl", "edit_message_item_tpl", "edit_message_item" 
 $t->set_block( "message_item_tpl", "new_icon_tpl", "new_icon" );
 $t->set_block( "message_item_tpl", "old_icon_tpl", "old_icon" );
 $t->set_block( "message_item_tpl", "item_private_message_tpl", "item_private_message" );
+
 $t->set_var( "private_message", "" );
 $t->set_var( "header_list", "" );
 $t->set_var( "edit_current_message_item", "" );
@@ -146,7 +147,7 @@ if ( ( $MessageAuthor != $anonymous) and ($user) )
 //	$user->get( $author->id() );
 	$t->set_var( "username", $author->login() );
 	$t->set_var( "PM_topic", urlencode (": ".$message->topic() ) );
-$t->set_var( "topic", $message->topic() );
+    $t->set_var( "topic", $message->topic() );
 	$t->parse( "private_message", "private_message_tpl" );
 }
 
@@ -253,18 +254,21 @@ foreach ( $messages as $threadmessage )
 
     $t->set_var( "user", $MessageAuthor );
 
-//	$currentUser =& eZUser::currentUser();
-	$t->set_var( "item_private_message", "" );
+    // $currentUser =& eZUser::currentUser();
 	if ( ( $MessageAuthor != $anonymous) and ($user) )
 	{
-//	$user = new eZUser();
-//	$user->get( $author->id() );
-	$t->set_var( "username", $author->login() );
-	$t->set_var( "PM_topic", urlencode (": ".$message->topic() ) );
-	$t->parse( "item_private_message", "item_private_message_tpl" );
+        // $user = new eZUser();
+        // $user->get( $author->id() );
+        $t->set_var( "username", $author->login() );
+        $t->set_var( "PM_topic", urlencode (": ".$message->topic() ) );
+        $t->parse( "item_private_message", "item_private_message_tpl" );
 	}
+    else
+    {
+        $t->set_var( "item_private_message", "" );
+    }
 
-//unset( $user );
+    // unset( $user );
 
     /*
     if ( get_class( $viewer ) == "ezuser" )
@@ -275,6 +279,7 @@ foreach ( $messages as $threadmessage )
         }
     }
     */
+
     $t->parse( "message_item", "message_item_tpl", true );
     $i++;
 }

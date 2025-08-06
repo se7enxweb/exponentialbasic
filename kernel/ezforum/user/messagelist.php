@@ -289,6 +289,9 @@ else
                 $t->set_var( "user", $message[$db->fieldName( "UserName" )] );
                 $messageAuthor = $message[$db->fieldName( "UserName" )];
             }
+
+            $t->set_var( "author", $messageAuthor );
+            $t->set_var( "private_message", "" );
         }
         else
         {
@@ -296,7 +299,7 @@ else
             $t->set_var( "user", $author->firstName() . " " . $author->lastName() );
             if ( $author->firstName()== "" && $author->lastName()=="" )
                 $messageAuthor = $anonymous;
-                
+
                 $t->set_var( "author", $messageAuthor );
                 
                 $currentUser =& eZUser::currentUser();

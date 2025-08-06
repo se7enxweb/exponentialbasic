@@ -68,10 +68,10 @@
 		<nobr>
 		{spacer}{spacer}
 				<!-- BEGIN new_icon_tpl -->
-                <img src="{www_dir}/images/message_new.gif" width="16" height="16" border="0" alt="New message" />&nbsp;
+                <img src="{www_dir}/design/base/images/icons/message_new.gif" width="16" height="16" border="0" alt="New message" />&nbsp;
 		<!-- END new_icon_tpl -->
 		<!-- BEGIN old_icon_tpl -->
-                <img src="{www_dir}/images/message.gif" width="16" height="16" border="0" alt="Message" />&nbsp;
+                <img src="{www_dir}/design/base/images/icons/message.gif" width="16" height="16" border="0" alt="Message" />&nbsp;
 		<!-- END old_icon_tpl -->	
 		</nobr>
 		</td>

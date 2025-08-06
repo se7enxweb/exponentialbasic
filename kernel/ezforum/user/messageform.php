@@ -26,9 +26,11 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztexttool.php" );
 
+$ini = INIFile::globalINI();
 $AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
 $language = $ini->read_var( "eZForumMain", "Language" );
 $AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
+
 $author = eZUser::currentUser();
 
 $locale = new eZLocale( $language );
@@ -224,27 +226,28 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
 
     // include_once( "classes/eztexttool.php" );
 
-    $t->set_var( "message_topic", $MessageTopic );
-    $t->set_var( "new_message_topic", $NewMessageTopic );
-    $t->set_var( "message_body", $MessageBody );
-    $t->set_var( "new_message_body", $NewMessageBody );
-    $t->set_var( "message_posted_at", $MessagePostedAt );
-    $t->set_var( "message_author", $MessageAuthor );
-    $t->set_var( "message_id", $MessageID );
-    $t->set_var( "message_notice_text", $MessageNoticeText );
-    $t->set_var( "message_notice", $MessageNotice );
-    $t->set_var( "new_message_notice", $NewMessageNotice );
+    $t->set_var( "message_topic", isset( $MessageTopic ) ? $MessageTopic : false );
+    $t->set_var( "new_message_topic", isset( $NewMessageTopic ) ? $NewMessageTopic : false );
+    $t->set_var( "message_body", isset( $MessageBody ) ? $MessageBody : false );
+    $t->set_var( "new_message_body", isset( $NewMessageBody ) ? $NewMessageBody : false );
+    $t->set_var( "message_posted_at", isset( $MessagePostedAt ) ? $MessagePostedAt : false );
+    $t->set_var( "message_author", isset( $MessageAuthor ) ? $MessageAuthor : false );
+    $t->set_var( "message_id", isset( $MessageID ) ? $MessageID : false );
+    $t->set_var( "message_notice_text", isset( $MessageNoticeText ) ? $MessageNoticeText : false );
+    $t->set_var( "message_notice", isset( $MessageNotice ) ? $MessageNotice : false );
+    $t->set_var( "new_message_notice", isset( $NewMessageNotice ) ? $NewMessageNotice : false );
 
-    $t->set_var( "reply_to_id", $ReplyToID );
-    $t->set_var( "preview_id", $PreviewID );
-    $t->set_var( "original_id", $OriginalID );
+    $t->set_var( "reply_to_id", isset( $ReplyToID ) ? $ReplyToID : false );
+    $t->set_var( "preview_id", isset( $PreviewID ) ? $PreviewID : false );
+    $t->set_var( "original_id", isset( $OriginalID ) ? $OriginalID : false );
 
-    $t->set_var( "forum_id", $ForumID );
+    $t->set_var( "forum_id", isset( $ForumID ) ? $ForumID : false );
 
-    $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
-    $t->set_var( "end_action", $EndAction );
-    $t->set_var( "start_action", $StartAction );
-    $t->set_var( "action_value", $ActionValue );
+    $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( isset( $RedirectURL ) ? $RedirectURL : false ) );
+    $t->set_var( "end_action", isset( $EndAction ) ? $EndAction : false );
+    $t->set_var( "start_action", isset( $StartAction ) ? $StartAction : false );
+    $t->set_var( "action_value", isset( $ActionValue ) ? $ActionValue : false );
+
 
     $AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
     $t->set_var( "allowed_tags", htmlspecialchars( $AllowedTags ) );
@@ -263,7 +266,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
 
     if ( $ShowHiddenMessageForm )
     {
-        if ( $doPrint )
+        if ( isset( $doPrint ) )
         {
             $t->pparse( "message_hidden_form_file", "hidden_form" );
         }
@@ -275,9 +278,9 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
 
     if ( $ShowVisibleMessageForm )
     {
-        if ( $doPrint )
+        if ( isset( $doPrint ) )
         {
-            $t->pparse( "message_form_file", "form" );
+            $t->parse( "message_form_file", "form" );
         }
         else
         {

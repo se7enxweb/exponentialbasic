@@ -1,0 +1,585 @@
+/*  Calendar Specific Styles :)  */
+.bglight 
+{
+	background-color: #ffffff;
+}
+
+.bgdark
+{
+	background-color: #F2f2f2;
+}
+
+.bgcurrent
+{
+	background-color: #ECDADA;
+}
+
+.bgweekend
+{
+	background-color: #FFFFFF;
+}
+
+.bgselect
+{
+	color: #ffffff;
+	background-color: #787878;
+}
+a.gcalMonthViewNext
+{
+ font-size:16px;
+ text-decoration: none;
+ color: #fff;
+ margin-bottom: 30px;
+}
+a:hover.gcalMonthViewNext
+{
+color: #000;
+text-decoration: none;
+}
+.gcalBoxText 
+{
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+a.gcalMonthViewNames
+{
+ font-weight: bold;
+ font-size: 10px;
+}
+a.gcalMonthViewNamesRecurring
+{
+ font-weight: bold;
+ text-decoration: none;
+ font-size: 10px;
+}
+
+a.gcalAllDay
+{
+ font-weight: bold;
+ font-size: 10px;
+ margin-left: 10px;
+ text-decoration: none;
+
+}
+.gcalAllDay
+{
+ height: 22px;
+ vertical-align: center;
+ text-align: left;
+ cursor: pointer;
+}
+/* Form Stuff */
+.gcalWrapFrm
+{
+	background-color: #aec9e4;
+	width: 100%;
+}
+
+.gcalEventEditMain
+{
+background-color: #aec9e4;
+border: 1px solid gray;
+padding-bottom: 10px;
+}
+.gcalTextFrm
+{
+	background-color: #e1e8f1;
+	outline:none;
+	border: 1px solid black;
+	padding-left: 2px;
+	font-family: tahoma, verdana, arial, sans-serif;
+	font-size: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.gcalTextFocusFrm
+{
+	background-color: #fff;
+	outline:none;
+	border: 1px solid #cc730d;
+	padding-left: 2px;
+	font-family: tahoma, verdana, arial, sans-serif;
+	font-size: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.gcalRCheckFrm
+{
+background-color:#e1e8f1;
+padding: 5px;
+margin-top: 10px;
+}
+.gcalRCheckFocusFrm
+{
+background-color: #ffab02;
+width: 400px;
+padding: 5px;
+border: 2px dotted black;
+margin-top: 10px;
+}
+.olWrapAllDay
+{
+ background-color: #98D17D;
+ color: #000;
+}
+.olListAllDay
+{
+background-color: #4f5f47;
+font-weight: bold;
+height: 18px;
+color: #fff;
+vertical-align: center;
+}
+.olList
+{
+background-color: #c5d9ec;
+font-weight: bold;
+height: 15px;
+vertical-align: middle;
+color: black;
+margin-top: 2px;
+margin-bottom: 2px;
+}
+.gcalSelectFrm
+{
+	background-color: #e1e8f1;
+}
+.gcalCheckFrm
+{
+	background-color: #e1e8f1;
+	border: 1px solid black;
+}
+.gcalCalTextFrm
+{
+	background-color: #d7e7e2;
+	border: 2px solid black;
+	padding: 2px;
+}
+.gcalSubmitFrm
+{
+       background-color: #6699cc;
+       color: white;
+       font-family: verdana, arial, sans-serif;
+       font-size: 12px;
+       font-weight: bold;
+       border: 2px solid black;
+       vertical-align: bottom;
+}
+.gcalSubmitOverFrm
+{
+	background-color: #ffab02;
+	color: black;
+	font-family: verdana, arial, sans-serif;
+        font-size: 12px;
+	font-weight: bold;
+	border: 2px solid black;
+	vertical-align: bottom
+}
+.gcalGroupBoxFrm
+{
+	background-color: #e1e8f1;
+	border: 1px solid #000;
+	margin: 5px;
+	padding: 2px;
+	width: 400px;
+}
+/* End Form Stuff */
+
+a.gcalBoxText			{ text-decoration:	none; }
+a.gcalBoxText:link		{ color: #DA392A; }
+a.gcalBoxText:visited		{ color: #DA392A; }
+a.gcalBoxText:active		{ color: #3366CC; }
+a.gcalBoxText:hover		{ color: #BF2E20; text-decoration: underline; }
+
+.gcalViewLabel { font-weight: bold; text-align: right;  }
+.gcalViewBg {text-align: left; background-color: #F2EAE9; border: 1px solid gray; color: black; vertical-align: top;}
+.gcalViewResult  { height: 24px; background-color: #fff; padding: 3px; border: 1px solid black; }
+.gcalRecurInfo { font-size: 110%; padding-top: 10px; padding-bottom: 10px; font-weight: bold;}
+span.gcalViewResult { margin-left: 10px; }
+.gcalDayEventText		{ font-size: 10px; font-weight: normal;  }
+a.gcalDayEventText		{ text-decoration: none; font-size: 11px; font-weight: bold;}
+a.gcalDayEventText:link		{ color: #fff; }
+a.gcalDayEventText:visited	{ color: #fff; }
+a.gcalDayEventText:active	{ color: yellow; }
+a.gcalDayEventText:hover	{ color: #fff; text-decoration: underline; }
+
+.gcalSmallLink 		{ font-weight: bold; font-size: 8px; }
+a.gcalSmallLink		{ text-decoration: none; }
+a.gcalSmallLink:link	{ color: #DA392A; }
+a.gcalSmallLink:visited	{ color: #DA392A; }
+a.gcalSmallLink:active	{ color: #3366CC; }
+a.gcalSmallLink:hover	{ color: #BF2E20; text-decoration: underline; }
+.gcalEventTopBar		{ background-color: #557CA3;  }
+.gcalBorder			{ border: 1px solid gray; }
+.gcalDayViewTopBar		{ border: 1px solid white; text-align: center; padding-top: 5px; padding-bottom: 5px; background-color: #F2EAE9; cursor: pointer; }
+.gcalDayViewTopBarSelect	{ border: 1px solid white; text-align: center; padding-top: 5px; padding-bottom: 5px; color: white; background-color: #CC6666; cursor: pointer; }
+#gcalBigHeader { border: 1px solid gray; padding: 10px; text-align:center;}
+.gcalBigHeader { font-weight: bold; font-size: 130%; }
+.gcalDayViewBorder 	   { border: 1px solid #3b3030; }
+
+.gcalSwitchBox { text-align: center; padding: 3px; background-color: #F2EAE9; color: black; cursor: pointer;}
+.gcalSwitchBoxSelect { text-align: center; padding: 3px; background-color: #CC6666; color: white; cursor: pointer;}
+a.gcalSwitchBoxSelect { text-align: center; padding: 3px; background-color: #CC6666; color: white; cursor: pointer;}
+input.gcalSwitchBox, input.gcalSwitchBoxSelect { font-size: 10px; border: 1px solid black; height: 20px; }
+#gcalDayViewMonthTable { position:absolute; visibility: hidden;}
+#gcalDayViewMonthTableHeader { position:relative; width: 160px; height: 5px; text-align:  right; background-color: #CC6666; cursor: pointer;}
+.gcalDayViewMonthTableClose { background-color: #CC6666; color: white; cursor: pointer; font-weight: bold; font-variant: small-caps; padding: 5px;
+border-left: 1px solid black;
+border-top: 1px solid black;
+}
+a.gcalDayViewMonthTableHeader { text-decoration: none; color: #fff; font-weight: bold; font-size: 10px; }
+a:hover.gcalDayViewMonthTableHeader { color: #222;  }
+
+.gcalDayViewMonthTableCloseOver { background-color: #ffab02; color: white; cursor: pointer; font-weight: bold; font-variant: small-caps; padding: 5px;
+border-left: 1px solid black;
+border-top: 1px solid black;}
+.gcalDayViewMonthTableDay 
+{
+ height: 21px;
+ border: 1px solid #C23122;
+ background-color: white;
+ text-align: center;
+}
+a.gcalDayViewMonthTableDay
+{
+ font-size: 8px;
+ font-weight: bold;
+ text-align: center;
+ text-decoration: none;
+ border: none;
+ color: #CC1A0D;
+}
+a:hover.gcalDayViewMonthTableDay
+{
+ text-decoration: underline;
+}
+.gcalDayViewMonthTableEmpty
+{
+ height: 21px;
+ border: 1px solid #C23122;
+ background-color: #C2C2C2;
+}
+select.gcalDayViewSelect
+{
+ font-size: 10px;
+ background-color: #b8d0e7;
+}
+input.gcalDayViewButton
+{
+ font-size: 10px;
+ font-weight: bold;
+ border: 1px solid black;
+ padding: 3px;
+}
+.gcalDayViewSortBy
+{
+ font-size: 11px;
+ font-weight: bold;
+ font-color: #CC6666;
+}
+#gcalDayViewSortByHeader
+{
+font-size: 2px;
+height: 12px;
+background-color: #B32215;
+width: 200px;
+text-align: right;
+}
+#gcalDayViewSortBy
+{
+ position: absolute;
+ visibility: hidden;
+ background-color: #F2EAE9;
+ width: 200px;
+ cursor: pointer;
+ border: 2px solid black;
+}
+.gcalYearViewReg
+{
+background-color: #fff;
+color: #0000aa;
+border: 1px solid #C23122;
+padding: 5px;
+}
+
+.gcalYearViewOff
+{
+background-color: #f2f2f2;
+color: #0000aa;
+border: 1px solid #C23122;
+padding: 5px;
+}
+a.gcalYearViewReg { font-size: 10px; padding: 0px; border: 0px; text-decoration: none;  }
+
+.gcalYearViewCur
+{
+text-align: center;
+background-color: #CC6666;
+color: #fff;
+border: 1px solid #C23122;
+/* padding: 1.3%; */
+}
+.gcalYearViewTable
+{
+border: 1px solid #f2f2f2;
+}
+.gcalYearViewHeading
+{
+width: 100%;
+text-align: center;
+}
+a.gcalYearViewMonthName
+{
+text-decoration: none;
+color: black;
+font-weight: bold;
+}
+a:hover.gcalYearViewMonthName { color: #CC6666; }
+#gcalRecurringFormWrap
+{
+	display: none;
+	background-color: #aec9e4;
+	padding: 10px;
+}
+#gcalRecurringWeekly	   { display: none; }
+#gcalRecurringMonthly      { display: none; }
+#gcalRecurringYearly       { display: none; }
+
+
+/* IE Height hack */
+#gcalDayViewEventTimesHeight { height:60px; }
+* html #gcalDayViewEventTimesHeight { height:58px; }
+
+/* Hellstrøm 24.8.2001 */
+/* The main calendar widget.  DIV containing a table. */
+
+div.calendar { position: absolute; }
+
+.calendar, .calendar table {
+  border: 1px solid #556;
+  font-size: 11px;
+  color: #000;
+  cursor: default;
+  background: #eef;
+  font-family: tahoma,verdana,sans-serif;
+}
+
+/* Header part -- contains navigation buttons and day names. */
+
+.calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
+  text-align: center;    /* They are the navigation buttons */
+  padding: 2px;          /* Make the buttons seem like they're pressing */
+}
+
+.calendar .nav {
+  background: #778 url(menuarrow.gif) no-repeat 100% 100%;
+}
+
+.calendar thead .title { /* This holds the current "month, year" */
+  font-weight: bold;      /* Pressing it will take you to the current date */
+  text-align: center;
+  background: #fff;
+  color: #000;
+  padding: 2px;
+}
+
+.calendar thead .headrow { /* Row <TR> containing navigation buttons */
+  background: #778;
+  color: #fff;
+}
+
+.calendar thead .daynames { /* Row <TR> containing the day names */
+  background: #bdf;
+}
+
+.calendar thead .name { /* Cells <TD> containing the day names */
+  border-bottom: 1px solid #556;
+  padding: 2px;
+  text-align: center;
+  color: #000;
+}
+
+.calendar thead .weekend { /* How a weekend day name shows in header */
+  color: #a66;
+}
+
+.calendar thead .hilite { /* How do the buttons in header appear when hover */
+  background-color: #aaf;
+  color: #000;
+  border: 1px solid #04f;
+  padding: 1px;
+}
+
+.calendar thead .active { /* Active (pressed) buttons in header */
+  background-color: #77c;
+  padding: 2px 0px 0px 2px;
+}
+
+/* The body part -- contains all the days in month. */
+
+.calendar tbody .day { /* Cells <TD> containing month days dates */
+  width: 2em;
+  color: #456;
+  text-align: right;
+  padding: 2px 4px 2px 2px;
+}
+.calendar tbody .day.othermonth {
+  font-size: 80%;
+  color: #bbb;
+}
+.calendar tbody .day.othermonth.oweekend {
+  color: #fbb;
+}
+
+.calendar table .wn {
+  padding: 2px 3px 2px 2px;
+  border-right: 1px solid #000;
+  background: #bdf;
+}
+
+.calendar tbody .rowhilite td {
+  background: #def;
+}
+
+.calendar tbody .rowhilite td.wn {
+  background: #eef;
+}
+
+.calendar tbody td.hilite { /* Hovered cells <TD> */
+  background: #def;
+  padding: 1px 3px 1px 1px;
+  border: 1px solid #bbb;
+}
+
+.calendar tbody td.active { /* Active (pressed) cells <TD> */
+  background: #cde;
+  padding: 2px 2px 0px 2px;
+}
+
+.calendar tbody td.selected { /* Cell showing today date */
+  font-weight: bold;
+  border: 1px solid #000;
+  padding: 1px 3px 1px 1px;
+  background: #fff;
+  color: #000;
+}
+
+.calendar tbody td.weekend { /* Cells showing weekend days */
+  color: #a66;
+}
+
+.calendar tbody td.today { /* Cell showing selected date */
+  font-weight: bold;
+  color: #00f;
+}
+
+.calendar tbody .disabled { color: #999; }
+
+.calendar tbody .emptycell { /* Empty cells (the best is to hide them) */
+  visibility: hidden;
+}
+
+.calendar tbody .emptyrow { /* Empty row (some months need less than 6 rows) */
+  display: none;
+}
+
+/* The footer part -- status bar and "Close" button */
+
+.calendar tfoot .footrow { /* The <TR> in footer (only one right now) */
+  text-align: center;
+  background: #556;
+  color: #fff;
+}
+
+.calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
+  background: #fff;
+  color: #445;
+  border-top: 1px solid #556;
+  padding: 1px;
+}
+
+.calendar tfoot .hilite { /* Hover style for buttons in footer */
+  background: #aaf;
+  border: 1px solid #04f;
+  color: #000;
+  padding: 1px;
+}
+
+.calendar tfoot .active { /* Active (pressed) style for buttons in footer */
+  background: #77c;
+  padding: 2px 0px 0px 2px;
+}
+
+/* Combo boxes (menus that display months/years for direct selection) */
+
+.calendar .combo {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  width: 4em;
+  cursor: default;
+  border: 1px solid #655;
+  background: #def;
+  color: #000;
+  font-size: 90%;
+}
+
+.calendar .combo .label,
+.calendar .combo .label-IEfix {
+  text-align: center;
+  padding: 1px;
+}
+
+.calendar .combo .label-IEfix {
+  width: 4em;
+}
+
+.calendar .combo .hilite {
+  background: #acf;
+}
+
+.calendar .combo .active {
+  border-top: 1px solid #46a;
+  border-bottom: 1px solid #46a;
+  background: #eef;
+  font-weight: bold;
+}
+
+.calendar td.time {
+  border-top: 1px solid #000;
+  padding: 1px 0px;
+  text-align: center;
+  background-color: #f4f0e8;
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute,
+.calendar td.time .ampm {
+  padding: 0px 3px 0px 4px;
+  border: 1px solid #889;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.calendar td.time .ampm {
+  text-align: center;
+}
+
+.calendar td.time .colon {
+  padding: 0px 2px 0px 3px;
+  font-weight: bold;
+}
+
+.calendar td.time span.hilite {
+  border-color: #000;
+  background-color: #667;
+  color: #fff;
+}
+
+.calendar td.time span.active {
+  border-color: #f00;
+  background-color: #000;
+  color: #0f0;
+}

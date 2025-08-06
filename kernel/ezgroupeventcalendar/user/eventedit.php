@@ -705,10 +705,10 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
 
 	// now we check to see if the RecurType is month
 	if ($event->RecurType == 'month')
-	  // it is, so let's set RecurMonthlyType
-	  $event->setRecurMonthlyType( $RecurTypeMonth, $datetime );
-	  // if not, we set it to blank
-        else
+	    // it is, so let's set RecurMonthlyType
+	    $event->setRecurMonthlyType( $RecurTypeMonth, $datetime );
+	    // if not, we set it to blank
+	else
 	  $event->setRecurMonthlyType();
 
 	////////////////////////////////////////////
@@ -724,32 +724,29 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
 	  $event->setFinishDateUntil($UntilDate);
 	  //die("what-is: $UntilDate");
 	   //die("what-is-42");
-	
 	} else {// must be forever
 	  //die("what-is-t12");
 	  $event->SetFinishDateForever();
-        }
+	}
 
 	////////////////////////////////////////////
 	//die("what-is-t2");
-	
-
-	
-	  /*
+    /*
             $duration = new eZTime( $stopTime->hour() - $startTime->hour(),
                                     $stopTime->minute() - $startTime->minute() );
-	  */
+    */
+    // formant hour, minute, second : the 1.0 release had a major bug related to the above code mssing the ,0 in duration time span
+	//   $duration = new eZTime( $pStopTimeHour - $pStartTimeHour,
+	// 			  $pStopTimeMinute - $pStartTimeMinute, 0 );
+	// This is working today, sorry for the fishing trips
 
-	  // formant hour, minute, second : the 1.0 release had a major bug related to the above code mssing the ,0 in duration time span
+	$duration = new eZTime( $pStopTimeHour,
+				  $pStopTimeMinute, 0 );
 
-	  $duration = new eZTime( $pStopTimeHour - $pStartTimeHour,
-				  $pStopTimeMinute - $pStartTimeMinute, 0 );
- var_dump( value: $duration );
-            $event->setDuration( $duration );
-	    $adur = $duration->mysqlTime();
+	$event->setDuration( $duration );
+    $adur = $duration->mysqlTime();
 
-
-	    $aa = $pStopTimeMinute - $pStartTimeMinute;
+    $aa = $pStopTimeMinute - $pStartTimeMinute;
 
 	    /*
             print( "dir m: $pStopTimeHour - $pStartTimeHour |  $pStopTimeMinute - $pStartTimeMinute | $aa"  );
@@ -761,9 +758,9 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
 	    die();
 	    */
 	    //  : check to see if this is a recurring event
-       }
+	}
 
-  //die("here!");
+    // die("here!");
 
         if ( !isset( $TitleError) || isset( $TitleError	) && $TitleError == false && $GroupInsertError == false && $StartTimeError == false && $StopTimeError == false )
         {
@@ -867,10 +864,10 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
 			$t->set_var('recur_exception', "<option>$ex</option>");
 			$t->parse( "recur_exceptions", "recur_exceptions_tpl", true );
        }
-      else {
+       else {
            	$t->set_var('recur_exception', '');
-        $t->set_var('recur_exceptions', '');
-      }
+        	$t->set_var('recur_exceptions', '');
+       }
       } // end of recurring events
     
             $t->set_var( "name_value", stripslashes($event->name()) );
@@ -879,12 +876,11 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
             $t->set_var( "location_value", $event->location() );
             $t->set_var( "url_value", $event->url() );
 	    
-	    $t->set_var( "group_name_new", "" );
+	    	$t->set_var( "group_name_new", "" );
 			
 			if ( $user )
 			{
 				// include_once( "ezuser/classes/ezusergroup.php" );
-
 				$t->set_var( "group_item", "" );
 
 				// build the group drop down list
@@ -928,10 +924,10 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
             else
                 $t->set_var( "is_private", "" );
 
-	    if ( $event->isEventAlarmNotice() )
-	      $t->set_var( "is_event_alarm_notice", "checked" );
-	    else
-	      $t->set_var( "is_event_alarm_notice", "" );
+			if ( $event->isEventAlarmNotice() )
+				$t->set_var( "is_event_alarm_notice", "checked" );
+			else
+				$t->set_var( "is_event_alarm_notice", "" );
 
 			/* what we need to store this date. timestamp */
 
@@ -1275,17 +1271,18 @@ if ( isset( $Action ) && $Action == "Edit" && $groupError == false )
 		// echo "<hr>";
         $tmpdate = new eZDate( $year, $month, $day );
 	
-	$startTime   =& $event->dateTime();
+	$startTime   = $event->dateTime();
 	$startHour   = addZero( $startTime->hour() );
 	$startMinute = ( addZero( $startTime->minute() ) );
 
-	$stopTime    =& $event->duration();
+	$stopTime    = $event->duration();
 	$stopHour    = ( addZero( $stopTime->hour() ) );
 	$stopMinute  = ( addZero( $stopTime->minute() ) );
 
 	// $stopMinute = $stopMinute +1 ;
 	print ( "Echo DT:" . $startHour ." / ". $startMinute );
-        print ( "<br />Echo DT:" . $stopHour ." / ". $stopMinute );
+	print ( "<br />Echo DT:" . $stopHour ." / ". $stopMinute );
+	echo "<hr>";
 
 
 

@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS eZGroupEventCalendar_Event;
 CREATE TABLE eZGroupEventCalendar_Event (
    ID int(11) NOT NULL auto_increment,
    GroupID int(11) DEFAULT '0' NOT NULL,
-   Date int(11),
+   Date varchar(25) default NULL,
    Duration time,
    Name varchar(255),
    Description text,
@@ -26,9 +26,9 @@ CREATE TABLE eZGroupEventCalendar_Event (
    RecurMonthlyTypeInfo varchar(64) default NULL,
    RepeatForever int(11) DEFAULT '0' NOT NULL,
    RepeatTimes int(11) DEFAULT '0' NOT NULL,
-   RepeatUntilDate int(11),
+   RepeatUntilDate varchar(25) default NULL,
    RecurExceptions text default NULL,
-   RecurFinishDate int(11),
+   RecurFinishDate varchar(25) default NULL,
    PRIMARY KEY (ID)
 );
 DROP TABLE IF EXISTS eZGroupEventCalendar_EventCategory;

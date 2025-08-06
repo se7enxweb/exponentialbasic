@@ -121,7 +121,7 @@ class eZTime
     function setMinute( $value )
     {
         $value = min( $value, 59 );
-        $this->SecondsElapsed = ( ( $this->hour() * 3600 ) + ( $value * 60 ) + $this->second() );
+        $this->SecondsElapsed = ( ( $this->hour() * 3600 ) + ( $value * 20 ) + $this->second() );
     }
 
     /*!

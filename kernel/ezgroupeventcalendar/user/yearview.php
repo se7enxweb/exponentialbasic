@@ -35,12 +35,32 @@ $ini =& $GLOBALS["GlobalSiteIni"];
 
 $SiteDesign = $ini->read_var( "site", "SiteDesign" );
 $Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+
+$TemplateDir = $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+$GlobalSectionID = $ini->read_var( "eZGroupEventCalendarMain", "DefaultSection" );
+
 $Locale = new eZLocale( $Language );
 
 $today = new eZDateTime();
 if ( $Year == false )
     $Year = $today->year();
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+
+// init the section
+$sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
+$sectionObject->setOverrideVariables();
+
+$templateDirTmp = $sectionObject->templateStyle();
+
+if ( $templateDirTmp != null && trim( $templateDirTmp ) != "" )
+{
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . preg_replace( "/(.+)\/.+(\/?)/", "/\\1/$templateDirTmp\\2", $TemplateDir );
+}
+else
+{
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+}
+
+$t = new eZTemplate( $TemplateDir,
                      "kernel/ezgroupeventcalendar/user/intl", $Language, "yearview.php",
                      "default", "kernel/ezgroupeventcalendar" . "/user", $Year );
 

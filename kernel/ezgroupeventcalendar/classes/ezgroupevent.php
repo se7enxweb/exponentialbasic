@@ -97,6 +97,9 @@ class eZGroupEvent
         $this->EMailNotice = 0;
         $this->EventTypeID = 0;
         $this->GroupID = 0;
+        $this->Date = "";
+        $this->RepeatUntilDate = "";
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -128,8 +131,7 @@ class eZGroupEvent
 
         if ( !isset( $this->ID ) )
         {
-         
-	$this->Database->query( "INSERT INTO eZGroupEventCalendar_Event SET
+            $query = "INSERT INTO eZGroupEventCalendar_Event SET
                              Name='$Name',
                              Description='$Description',
                              Date='$this->Date',
@@ -154,7 +156,9 @@ class eZGroupEvent
                              IsPrivate='$this->IsPrivate',
                              Priority='$this->Priority',
                              EventTypeID='$this->EventTypeID',
- 			                       GroupID='$this->GroupID'" );
+ 			                       GroupID='$this->GroupID'";
+
+	          $this->Database->query( $query );
             $this->ID = $this->Database->insertID();
         }
         else
@@ -571,7 +575,9 @@ class eZGroupEvent
     function &getAllByType( $date, $type, $showPrivate=false, $groupNoShow=true )
     {
         $ret = array();
-var_dump($date, $type, $showPrivate, $groupNoShow);
+        // Advanced debuging
+        // var_dump($date, $type, $showPrivate, $groupNoShow);
+
         if ( ( is_a( $date, "eZDate" ) ) && ( is_a( $type, "eZGroupEventType" ) ) )
         {
             $this->dbInit();
@@ -603,9 +609,8 @@ var_dump($date, $type, $showPrivate, $groupNoShow);
                  WHERE Date LIKE '$stamp%' AND EventTypeID='$typeID'
                  OR ( IsRecurring='1' AND EventTypeID='$typeID' AND RecurFinishDate>='$longstamp' AND Date<='$longstamp')
                  ORDER BY Date ASC";
-                echo $query; die();
-                $this->Database->array_query( $event_array,
-                $query );
+                // echo $query; die();
+                $this->Database->array_query( $event_array, $query );
             }
 
 			// groups not to include
@@ -864,7 +869,7 @@ var_dump($date, $type, $showPrivate, $groupNoShow);
        $time = new eZTime();
        $time->setHour( $date->hour() );
        $time->setMinute( $date->minute() );
-       $time->setSecond( 0 );
+       $time->setSecond( $date->second() );
 
        return $time;
     }
@@ -874,20 +879,19 @@ var_dump($date, $type, $showPrivate, $groupNoShow);
     */
     function &stopTime()
     {
-       if ( $this->State_ == "Dirty" )
+        if ( $this->State_ == "Dirty" )
             $this->get( $this->ID );
 
-       $date = new eZDateTime();
-       if ( !is_null( $this->Date ) || $this->Date != "" )
-       {
-           $date->setMySQLDateTime( date("Y-m-d H:i:s", $this->Date ) );;
-       }
-       //$date->setMySQLTimeStamp( $this->Date );
+        $date = new eZDateTime();
+        $time = new eZTime();
 
-       $start = $this->startTime();
-       $time = $start->add( $this->duration() );
+        $date->setMySQLDateTime( date("Y-m-d H:i:s", $this->Date ) );
 
-       return $time;
+        $time->setHour( $this->duration()->secondsElapsed() / 3600 );
+        $time->setMinute( $date->minute() );
+        $time->setSecond( $this->duration()->secondsElapsed() );
+
+        return $time;
     }
 
     /*!

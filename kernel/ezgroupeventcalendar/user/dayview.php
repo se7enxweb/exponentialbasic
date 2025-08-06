@@ -48,6 +48,10 @@ $SiteDesign = $ini->read_var("site", "SiteDesign");
 $Language = $ini->read_var("eZGroupEventCalendarMain", "Language");
 $StartTimeStr = $ini->read_var("eZGroupEventCalendarMain", "DayStartTime");
 $StopTimeStr = $ini->read_var("eZGroupEventCalendarMain", "DayStopTime");
+
+$TemplateDir = $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+$GlobalSectionID = $ini->read_var( "eZGroupEventCalendarMain", "DefaultSection" );
+
 //$IntervalStr = $ini->read_var( "eZGroupEventCalendarMain", "DayInterval" );
 $IntervalStr = "00:15"; // for future refactoring, this doesn't need to be preg'ed
 $Locale = new eZLocale($Language);
@@ -143,9 +147,25 @@ $session->setVariable("Day", $Day);
 $zMonth = addZero($Month);
 $zDay = addZero($Day);
 $isMyCalendar = $user && $userID == $GetByUserID ? "-private" : "";
-$t = new eZTemplate(
-    "kernel/ezgroupeventcalendar/user/" .
-        $ini->read_var("eZGroupEventCalendarMain", "TemplateDir"),
+
+
+// init the section
+$sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
+$sectionObject->setOverrideVariables();
+
+$templateDirTmp = $sectionObject->templateStyle();
+
+if ( $templateDirTmp != null && trim( $templateDirTmp ) != "" )
+{
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . preg_replace( "/(.+)\/.+(\/?)/", "/\\1/$templateDirTmp\\2", $TemplateDir );
+}
+else
+{
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+}
+
+//$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+$t = new eZTemplate(  $TemplateDir,
     "kernel/ezgroupeventcalendar/user/intl",
     $Language,
     "dayview.php",
@@ -562,7 +582,7 @@ while ($tmpTime->isGreater($stopTime) == true) {
                     }
 
                     if (isset($emptyRows[$col]) && $emptyRows[$col] > 0) {
-                        var_dump($emptyRows[$col]);
+                        // var_dump($emptyRows[$col]);
                         $tableCellsId[$numRows - 1 - $emptyRows[$col]][
                             $col
                         ] = -2;
@@ -696,7 +716,7 @@ while ($tmpTime->isGreater($stopTime, false) == true) {
                         "Read"
                     ))
             ) {
-                var_dump($tableCellsRowSpan[$row][$col]);
+                // var_dump($tableCellsRowSpan[$row][$col]);
                 $t->set_var("td_class", "bgdark");
                 $t->set_var("rowspan_value", $tableCellsRowSpan[$row][$col]);
                 $t->set_var("event_id", $event->id());
@@ -1032,6 +1052,7 @@ function addZero($value)
     }
     return $ret;
 }
+
 /*!
 Calculates and returns height of the event descrip div based on the 1px = 1 minute background image, and a 16 pix heading.
 */
@@ -1040,9 +1061,10 @@ function getEventHeight($event)
     $ret = 0;
     $dur = $event->duration();
     $min = $dur->secondsElapsed() / 60;
-    $ret = $min - 30;
-    $starttime = $event->startTime();
-    $stoptime = $event->stopTime();
+    $ret = $min;
+    
+    // $starttime = $event->startTime();
+    // $stoptime = $event->stopTime();
 
     // if ($starttime->hour() == 0 && $stoptime->hour() == 23 && $starttime->minute() == '00' && $stoptime->minute() == '00')
     // $ret = $ret + 60;

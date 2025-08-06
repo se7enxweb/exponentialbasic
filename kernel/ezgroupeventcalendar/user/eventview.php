@@ -138,7 +138,7 @@ if( $event )
 		$permission = new eZGroupEditor();
 
 		// Determin if has edit permissions, if so, then they are a group member
-		if( $permission->hasEditPermission( $user->id(), $event->groupID() ) == true || $rootAccess == true )
+		if( $permission->hasEditPermission( $user->id(), $event->groupID() ) == true || isset( $rootAccess ) && $rootAccess == true )
 		{
 			$editor      = true;
 			$groupMember = true;

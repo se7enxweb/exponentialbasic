@@ -59,6 +59,10 @@ $Language   = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
 $Sitedesign = $ini->read_var( "site", "SiteDesign" );
 $TruncateTitle = $ini->read_var( "eZGroupEventCalendarMain", "TruncateTitle" );
 $TruncateTitleSize = $ini->read_var( "eZGroupEventCalendarMain", "TruncateTitleSize" );
+
+$TemplateDir = $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+$GlobalSectionID = $ini->read_var( "eZGroupEventCalendarMain", "DefaultSection" );
+
 $Locale     = new eZLocale( $Language );
 
 $user = eZUser::currentUser();
@@ -139,7 +143,23 @@ $session->setVariable( "Month", $Month );
 $zMonth = addZero($Month);
 $isMyCalendar = ( $groupID && $groupID == $GetByGroupID )? "-private" :"";
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+// init the section
+$sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
+$sectionObject->setOverrideVariables();
+
+$templateDirTmp = $sectionObject->templateStyle();
+
+if ( $templateDirTmp != null && trim( $templateDirTmp ) != "" )
+{
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . preg_replace( "/(.+)\/.+(\/?)/", "/\\1/$templateDirTmp\\2", $TemplateDir );
+}
+else
+{
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+}
+
+//$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+$t = new eZTemplate(  $TemplateDir,
                      "kernel/ezgroupeventcalendar/user/intl", $Language, "monthview.php",
                      "default", "kernel/ezgroupeventcalendar" . "/user", "$Year-$zMonth-$GetByGroupID" . $isMyCalendar );
 

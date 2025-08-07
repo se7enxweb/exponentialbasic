@@ -14,11 +14,11 @@
 #
 
 [site]
-SitePath=/home/ezpbasiclatest/doc/
-SiteURL=latest.basic.demo.ezpublish.one
-AdminSiteURL=admin.latest.basic.demo.ezpublish.one
+SitePath=/home/demo/doc/
+SiteURL=basic.demo.ezpublish.one
+AdminSiteURL=admin.basic.demo.ezpublish.one
 AdminSiteProtocol=https
-UserSiteURL=latest.basic.demo.ezpublish.one
+UserSiteURL=basic.demo.ezpublish.one
 UserSiteProtocol=https
 # SiteDesign=standard
 # SiteDesign=ecommerce
@@ -91,6 +91,7 @@ MySQLSocket=disabled
 DefaultPage=/article/frontpage/1/
 
 EnabledModules=eZArticle;eZTrade;eZForum;eZLink;eZPoll;eZAd;eZNewsfeed;eZBug;eZContact;eZTodo;eZCalendar;eZGroupEventCalendar;eZFileManager;eZImageCatalogue;eZMediaCatalogue;eZAddress;eZForm;eZBulkMail;eZMessage;eZQuiz;eZSurvey;eZTip;eZStats;eZURLTranslator;eZSiteManager;eZUser;eZSysInfo
+EnabledAdminModules=eZArticle|ezarticle;eZTrade|eztrade;eZForum|ezforum;eZLink|ezlink;eZPoll|ezpoll;eZAd|ezad;eZNewsfeed|eznewsfeed;eZBug|ezbug;eZContact|ezcontact;eZTodo|eztodo;eZCalendar|ezcalendar;eZGroupEventCalendar|ezgroupeventcalendar;eZFileManager|ezfilemanager;eZImageCatalogue|ezimagecatalogue;eZMediaCatalogue|ezmediacatalogue;eZAddress|ezaddress;eZForm|ezform;eZBulkMail|ezbulkmail;eZMessage|ezmessage;eZQuiz|ezquiz;eZSurvey|ezsurvey;eZTip|eztip;eZStats|ezstats;eZURLTranslator|ezurltranslator;eZSiteManager|ezsitemanager;eZUser|ezuser;eZSysInfo|ezsysinfo
 
 ModuleList=eZArticle;eZTrade;eZForum;eZLink;eZPoll;eZAd;eZNewsfeed;eZBug;eZContact;eZTodo;eZCalendar;eZGroupEventCalendar;eZFileManager;eZImageCatalogue;eZMediaCatalogue;eZAddress;eZForm;eZBulkMail;eZMessage;eZQuiz;eZSurvey;eZTip;eZStats;eZURLTranslator;eZSiteManager;eZUser;eZSysInfo
 
@@ -445,8 +446,8 @@ ListImagesPerRow=3
 DefaultSection=2
 #
 # Failed Image Variation (Creation), File/Dir/System File Permissions / Security
-# DefaultFailedImage=/home/ezpbasiclatest/doc//kernel/ezimagecatalogue/admin/images/failedimage.gif
-# DefaultFailedImage=/home/ezpbasiclatest/doc//kernel/ezimagecatalogue/admin/images/failedimage_missing.gif
+# DefaultFailedImage=/home/ezpbasiclatest/doc/kernel/ezimagecatalogue/admin/images/failedimage.gif
+# DefaultFailedImage=/home/ezpbasiclatest/doc/kernel/ezimagecatalogue/admin/images/failedimage_missing.gif
 DefaultFailedImage=kernel/ezimagecatalogue/admin/images/failedimage_missing.gif
 #
 # bulk image import

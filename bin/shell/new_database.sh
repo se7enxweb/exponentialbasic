@@ -3,9 +3,9 @@
 # by Chris Mason
 
 #vars
-mysqldb='bin/sql/publish_mysql.sql'
-postgresdb='bin/sql/publish_postgresql.sql'
-mysqldata='bin/sql/data_mysql.sql'
+mysqldb='update/generated/publish_mysql.sql'
+postgresdb='update/generated/publish_postgresql.sql'
+mysqldata='update/generated/data_mysql.sql'
 # default_dbname='publish'
 default_dbname='ez_ezp24';
 

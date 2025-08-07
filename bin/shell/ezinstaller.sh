@@ -470,7 +470,7 @@ fi
 if [ $Q_DB_CREATE = 1 ]; then
 	# db structure creation
 	echo -n "Creating data structures... "
-	mysql $DBOPTIONS $C_DBNAME < bin/sql/publish_mysql.sql
+	mysql $DBOPTIONS $C_DBNAME < update/generated/publish_mysql.sql
 	if [ ! $? = 0 ]; then
 		echo "Creating the data structures failed! Abort."
 		exit 1
@@ -485,7 +485,7 @@ if [ $Q_DB_CREATE = 1 ]; then
 	read Q
 	if [ "$Q" = "y" ] || [ "$Q" = "Y" ]; then
 		echo -n "Filling the database... "
-		mysql $DBOPTIONS $C_DBNAME < bin/sql/data_mysql.sql
+		mysql $DBOPTIONS $C_DBNAME < update/generated/data_mysql.sql
 		if [ ! $? = 0 ]; then
 			echo "Filling the database with example data failed! Aborting."
 			exit 1

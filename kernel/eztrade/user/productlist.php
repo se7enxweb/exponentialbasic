@@ -349,7 +349,7 @@ foreach ( $productList as $product )
             $t->set_var( "option_name", $option->name() );
             $t->set_var( "option_description", $option->description() );
             $t->set_var( "option_id", $option->id() );
-            $t->set_var( "product_id", isset( $ProductID ) ? $ProductID : false );
+            // $t->set_var( "product_id", isset( $ProductID ) ? $ProductID : false );
 
             $t->parse( "option", "option_tpl", true );
         }

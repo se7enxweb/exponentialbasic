@@ -20,6 +20,14 @@ AdminSiteURL=admin.basic.demo.ezpublish.one
 AdminSiteProtocol=https
 UserSiteURL=basic.demo.ezpublish.one
 UserSiteProtocol=https
+
+# DebugOutput=enabled
+# DebugOutput=disabled
+DebugOutput=enabled
+DebugTemplate=disabled
+DebugLanguage=disabled
+DebugDatabaseTransactions=disabled
+
 # SiteDesign=standard
 # SiteDesign=ecommerce
 SiteDesign=standard
@@ -804,6 +812,7 @@ StateTaxBilling=enabled
 #StateTaxShipping=enable state tax using shipping address
 StateTaxShipping=enabled
 
++CategoryListProductImages=enabled
 
 [Checkout]
 #PaymentMethods=allowed payment methods, Name1|file1.php;Name2|file2.php

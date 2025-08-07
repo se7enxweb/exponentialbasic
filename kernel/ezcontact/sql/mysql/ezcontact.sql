@@ -1,65 +1,73 @@
 CREATE TABLE eZContact_Company (
-  ID int NOT NULL,
-  CreatorID int DEFAULT '0' NOT NULL,
-  Name varchar(50) DEFAULT '' NOT NULL,
-  Comment text,
-  ContactType int DEFAULT '0' NOT NULL,
-  CompanyNo varchar(20) DEFAULT '' NOT NULL,
-  ContactID int DEFAULT '0',
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  CreatorID int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) NOT NULL DEFAULT '',
+  `Comment` text DEFAULT NULL,
+  ContactType int(11) NOT NULL DEFAULT 0,
+  CompanyNo varchar(20) NOT NULL DEFAULT '',
+  ContactID int(11) DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZContact_CompanyAddressDict (
-  CompanyID int NOT NULL,
-  AddressID int NOT NULL,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  AddressID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (CompanyID,AddressID)
 );
 
 CREATE TABLE eZContact_CompanyImageDefinition (
-  CompanyID int NOT NULL,
-  CompanyImageID int DEFAULT '0' NOT NULL,
-  LogoImageID int DEFAULT '0' NOT NULL,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  CompanyImageID int(11) NOT NULL DEFAULT 0,
+  LogoImageID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (CompanyID)
 );
 
+CREATE TABLE eZContact_CompanyImageDict (
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  ImageID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (CompanyID,ImageID)
+);
+
 CREATE TABLE eZContact_CompanyIndex (
-  CompanyID int(11) NOT NULL default '0',
-  Value varchar(255) NOT NULL default '',
-  Type int(11) NOT NULL default '0',
-  PRIMARY KEY (CompanyID,Value)
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  `Value` varchar(255) NOT NULL DEFAULT '',
+  `Type` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (CompanyID,`Value`)
 );
 
 CREATE TABLE eZContact_CompanyOnlineDict (
-  CompanyID int NOT NULL,
-  OnlineID int NOT NULL,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  OnlineID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (CompanyID,OnlineID)
 );
 
 CREATE TABLE eZContact_CompanyPersonDict (
-  CompanyID int NOT NULL,
-  PersonID int NOT NULL,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  PersonID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (CompanyID,PersonID)
 );
 
 CREATE TABLE eZContact_CompanyPhoneDict (
-  CompanyID int NOT NULL,
-  PhoneID int DEFAULT '0' NOT NULL,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  PhoneID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (CompanyID,PhoneID)
 );
 
 CREATE TABLE eZContact_CompanyProjectDict (
-  CompanyID int NOT NULL,
-  ProjectID int NOT NULL,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  ProjectID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (CompanyID,ProjectID)
 );
 
 CREATE TABLE eZContact_CompanyType (
-  ID int NOT NULL,
-  Name varchar(50) DEFAULT '' NOT NULL,
-  Description text,
-  ParentID int DEFAULT '0' NOT NULL,
-  ImageID int DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) NOT NULL DEFAULT '',
+  Description text DEFAULT NULL,
+  ParentID int(11) NOT NULL DEFAULT 0,
+  ImageID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`),
+  KEY CompanyType_ParentID (ParentID),
+  KEY CompanyType_Name (`Name`)
 );
 
 CREATE INDEX CompanyType_ParentID ON eZContact_CompanyType (ParentID);
@@ -71,144 +79,142 @@ CREATE TABLE eZContact_CompanyTypeDict (
   PRIMARY KEY (CompanyTypeID,CompanyID)
 );
 
+CREATE TABLE eZContact_CompanyView (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  Count int(11) NOT NULL DEFAULT 0,
+  `Date` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`,CompanyID,`Date`)
+);
+
 CREATE TABLE eZContact_Consultation (
-  ID int NOT NULL,
-  ShortDesc varchar(100) DEFAULT '' NOT NULL,
-  Description text NOT NULL,
-  Date int,
-  StateID int DEFAULT '0' NOT NULL,
-  EmailNotifications varchar(255) DEFAULT '' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  ShortDesc varchar(100) NOT NULL DEFAULT '',
+  Description text NOT NULL DEFAULT '',
+  `Date` int(11) DEFAULT NULL,
+  StateID int(11) NOT NULL DEFAULT 0,
+  EmailNotifications varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZContact_ConsultationCompanyDict (
-  ConsultationID int DEFAULT '0' NOT NULL,
-  CompanyID int DEFAULT '0' NOT NULL,
+  ConsultationID int(11) NOT NULL DEFAULT 0,
+  CompanyID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (ConsultationID,CompanyID)
 );
 
 CREATE TABLE eZContact_ConsultationCompanyUserDict (
-  ConsultationID int NOT NULL,
-  CompanyID int DEFAULT '0' NOT NULL,
-  UserID int DEFAULT '0' NOT NULL,
+  ConsultationID int(11) NOT NULL DEFAULT 0,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  UserID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (ConsultationID,CompanyID,UserID)
 );
 
 CREATE TABLE eZContact_ConsultationGroupsDict (
-  ConsultationID int NOT NULL,
-  GroupID int DEFAULT '0' NOT NULL,
+  ConsultationID int(11) NOT NULL DEFAULT 0,
+  GroupID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (ConsultationID,GroupID)
 );
 
 CREATE TABLE eZContact_ConsultationPersonUserDict (
-  ConsultationID int NOT NULL,
-  PersonID int DEFAULT '0' NOT NULL,
-  UserID int DEFAULT '0' NOT NULL,
+  ConsultationID int(11) NOT NULL DEFAULT 0,
+  PersonID int(11) NOT NULL DEFAULT 0,
+  UserID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (ConsultationID,PersonID,UserID)
 );
 
 CREATE TABLE eZContact_ConsultationType (
-  ID int NOT NULL,
-  Name varchar(50),
-  ListOrder int DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) DEFAULT NULL,
+  ListOrder int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZContact_ContactType (
-  ID int NOT NULL,
-  Name varchar(50) DEFAULT '' NOT NULL,
-  Description text,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) NOT NULL DEFAULT '',
+  Description text DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZContact_Person (
-  ID int NOT NULL,
-  FirstName varchar(50),
-  LastName varchar(50),
-  BirthDate int,
-  Comment text,
-  ContactTypeID int,
-  PRIMARY KEY (ID)
-);
-
-CREATE TABLE eZContact_PersonImageDefinition (
-  PersonID int NOT NULL,
-  PersonImageID int DEFAULT '0' NOT NULL,
-  LogoImageID int DEFAULT '0' NOT NULL,
-  PRIMARY KEY (PersonID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  FirstName varchar(50) DEFAULT NULL,
+  LastName varchar(50) DEFAULT NULL,
+  BirthDate int(11) DEFAULT NULL,
+  `Comment` text DEFAULT NULL,
+  ContactTypeID int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZContact_PersonAddressDict (
-  PersonID int NOT NULL,
-  AddressID int NOT NULL,
+  PersonID int(11) NOT NULL DEFAULT 0,
+  AddressID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (PersonID,AddressID)
 );
 
+CREATE TABLE eZContact_PersonImageDefinition (
+  PersonID int(11) NOT NULL,
+  PersonImageID int(11) NOT NULL DEFAULT 0,
+  LogoImageID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (PersonID)
+);
+
 CREATE TABLE eZContact_PersonIndex (
-  PersonID int(11) NOT NULL default '0',
-  Value varchar(255) NOT NULL default '',
-  Type int(11) NOT NULL default '0',
-  PRIMARY KEY (PersonID,Value)
+  PersonID int(11) NOT NULL DEFAULT 0,
+  `Value` varchar(255) NOT NULL DEFAULT '',
+  `Type` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (PersonID,`Value`)
 );
 
 CREATE TABLE eZContact_PersonOnlineDict (
-  PersonID int NOT NULL,
-  OnlineID int NOT NULL,
+  PersonID int(11) NOT NULL DEFAULT 0,
+  OnlineID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (PersonID,OnlineID)
 );
 
 CREATE TABLE eZContact_PersonPhoneDict (
-  PersonID int NOT NULL,
-  PhoneID int NOT NULL,
+  PersonID int(11) NOT NULL DEFAULT 0,
+  PhoneID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (PersonID,PhoneID)
 );
 
 CREATE TABLE eZContact_PersonProjectDict (
-  PersonID int NOT NULL,
-  ProjectID int NOT NULL,
+  PersonID int(11) NOT NULL DEFAULT 0,
+  ProjectID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (PersonID,ProjectID)
 );
 
 CREATE TABLE eZContact_ProjectType (
-  ID int NOT NULL,
-  Name varchar(50) DEFAULT '' NOT NULL,
-  ListOrder int DEFAULT '0' NOT NULL,
-  ExpiryTime int DEFAULT '0' NOT NULL,
-  WarningTime int DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) NOT NULL DEFAULT '',
+  ListOrder int(11) NOT NULL DEFAULT 0,
+  ExpiryTime int(11) NOT NULL DEFAULT 0,
+  WarningTime int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZContact_UserCompanyDict (
-  UserID int NOT NULL,
-  CompanyID int DEFAULT '0' NOT NULL,
-  PRIMARY KEY (UserID,CompanyID)
+ UserID int(11) NOT NULL DEFAULT 0,
+  CompanyID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (UserID,CompanyID),
+  UNIQUE KEY eZContactUserCompanyDictCompanyID (CompanyID),
+  UNIQUE KEY eZContactUserCompanyDictUserID (UserID)
+);
+
+CREATE TABLE eZContact_UserPersonDict (
+  UserID int(11) NOT NULL DEFAULT 0,
+  PersonID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (UserID,PersonID),
+  UNIQUE KEY eZContactUserPersonDictPersonID (PersonID),
+  UNIQUE KEY eZContactUserPersonDictUserID (UserID)
 );
 
 CREATE UNIQUE INDEX eZContactUserCompanyDictCompanyID ON eZContact_UserCompanyDict(CompanyID);
 CREATE UNIQUE INDEX eZContactUserCompanyDictUserID ON eZContact_UserCompanyDict(UserID);
 
-CREATE TABLE eZContact_UserPersonDict (
-  UserID int NOT NULL,
-  PersonID int DEFAULT '0' NOT NULL,
-  PRIMARY KEY (UserID,PersonID)
-);
-
 CREATE UNIQUE INDEX eZContactUserPersonDictPersonID ON eZContact_UserPersonDict(PersonID);
 CREATE UNIQUE INDEX eZContactUserPersonDictUserID ON eZContact_UserPersonDict(UserID);
-
-CREATE TABLE eZContact_CompanyView (
-  ID int NOT NULL,
-  CompanyID int default '0' NOT NULL,
-  Count int default '0' NOT NULL,
-  Date int NOT NULL,
-  PRIMARY KEY (ID,CompanyID,Date)
-);
-
-CREATE TABLE eZContact_CompanyImageDict (
-  CompanyID int DEFAULT '0' NOT NULL,
-  ImageID int DEFAULT '0' NOT NULL,
-  PRIMARY KEY (CompanyID,ImageID)
-);
 
 INSERT INTO `eZContact_ConsultationType` (`ID`, `Name`, `ListOrder`) VALUES ('1', 'Default Consultation Type #1', '0');
 

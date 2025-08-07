@@ -1,102 +1,117 @@
-
-
-CREATE TABLE eZUser_User (
-  ID int NOT NULL,
-  PersonID int NULL, 
-  Login varchar(50) NOT NULL default '',
-  Password varchar(50) NOT NULL default '',
-  Email varchar(50) default NULL,
-  FirstName varchar(50) default NULL,
-  LastName varchar(50) default NULL,
-  InfoSubscription int default '0',
-  Signature text NOT NULL,
-  SimultaneousLogins int NOT NULL default '0',
-  CookieLogin int default '0',
-  AccountNumber int default NULL,
-  PRIMARY KEY (ID)
-);
-
-CREATE TABLE eZUser_UserGroupLink (
-  ID int NOT NULL,
-  UserID int default NULL,
-  GroupID int default NULL,
-  PRIMARY KEY (ID)
-);
-
-CREATE TABLE eZUser_UserAddressLink (
-  ID int NOT NULL,
-  UserID int NOT NULL default '0',
-  AddressID int NOT NULL default '0',
-  PRIMARY KEY (ID)
-);
-
 CREATE TABLE eZUser_Author (
-  ID int NOT NULL,
-  Name varchar(255) default NULL,
-  EMail varchar(255) default NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(255) DEFAULT NULL,
+  EMail varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZUser_Cookie (
-  ID int NOT NULL,
-  UserID int default '0',
-  Hash varchar(33) default NULL,
-  Time int NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  UserID int(11) DEFAULT 0,
+  `Hash` varchar(33) DEFAULT NULL,
+  `Time` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZUser_Forgot (
-  ID int NOT NULL,
-  UserID int NOT NULL default '0',
-  Hash varchar(33) default NULL,
-  Time int NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  UserID int(11) NOT NULL DEFAULT 0,
+  `Hash` varchar(33) DEFAULT NULL,
+  `Time` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZUser_Group (
-  ID int NOT NULL,
-  Name varchar(100) default NULL,
-  Description text,
-  SessionTimeout int default '60',
-  IsRoot int default '0',
-  GroupURL varchar(200) default NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(100) DEFAULT NULL,
+  Description text DEFAULT NULL,
+  SessionTimeout int(11) DEFAULT 60,
+  IsRoot int(11) DEFAULT 0,
+  GroupURL varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZUser_GroupPermissionLink (
-  ID int NOT NULL,
-  GroupID int default NULL,
-  PermissionID int default NULL,
-  IsEnabled int default '0',
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  GroupID int(11) DEFAULT NULL,
+  PermissionID int(11) DEFAULT NULL,
+  IsEnabled int(11) DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZUser_Module (
-  ID int NOT NULL,
-  Name varchar(100) NOT NULL default '',
-  PRIMARY KEY (ID),
-  UNIQUE KEY Name (Name)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Name` (`Name`)
 );
 
 CREATE TABLE eZUser_Permission (
-  ID int NOT NULL,
-  ModuleID int default NULL,
-  Name varchar(100) default NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  ModuleID int(11) DEFAULT NULL,
+  `Name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE eZUser_Photographer (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` char(255) DEFAULT NULL,
+  EMail char(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZUser_Trustees (
-  ID int(11) NOT NULL,
-  OwnerID int(11) NOT NULL,
-  UserID int(11) NOT NULL,
-  PRIMARY KEY (ID)
+ `ID` int(11) NOT NULL DEFAULT 0,
+  OwnerID int(11) NOT NULL DEFAULT 0,
+  UserID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE eZUser_User (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  PersonID int(11) DEFAULT NULL,
+  Login varchar(50) NOT NULL DEFAULT '',
+  `Password` varchar(50) NOT NULL DEFAULT '',
+  Email varchar(50) DEFAULT NULL,
+  FirstName varchar(50) DEFAULT NULL,
+  LastName varchar(50) DEFAULT NULL,
+  InfoSubscription int(11) DEFAULT 0,
+  Signature text NOT NULL DEFAULT '',
+  SimultaneousLogins int(11) NOT NULL DEFAULT 0,
+  CookieLogin int(11) DEFAULT 0,
+  AccountNumber varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY User_Login (Login)
+);
+
+CREATE TABLE eZUser_UserAddressLink (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  UserID int(11) NOT NULL DEFAULT 0,
+  AddressID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE eZUser_UserGroupDefinition (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  UserID int(11) NOT NULL DEFAULT 0,
+  GroupID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
+);
+
+CREATE TABLE eZUser_UserGroupLink (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  UserID int(11) DEFAULT NULL,
+  GroupID int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY UserGroupLink_UserID (UserID),
+  KEY UserGroupLink_GroupID (GroupID)
 );
 
 CREATE TABLE eZUser_UserShippingLink (
-  ID int(11) NOT NULL default '0',
-  UserID int(11) default '0',
-  AddressID int(11) default '0',
-  PRIMARY KEY  (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  UserID int(11) DEFAULT 0,
+  AddressID int(11) DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZUser_Module (ID, Name) VALUES (1,'eZTrade');
@@ -211,13 +226,6 @@ INSERT INTO eZUser_Permission (ID, ModuleID, Name ) VALUES (91, 22, 'WriteToRoot
 INSERT INTO eZUser_Permission (ID, ModuleID, Name ) VALUES (92, 23, 'ModuleEdit');
 INSERT INTO eZUser_Permission (ID, ModuleID, Name ) VALUES (93, 23, 'WriteToRoot');
 
-CREATE TABLE eZUser_UserGroupDefinition (
-  ID int NOT NULL,
-  UserID int NOT NULL default '0',
-  GroupID int NOT NULL default '0',
-  PRIMARY KEY (ID)
-);
-
 INSERT INTO eZUser_User (ID, Login, Password, Email, FirstName, LastName, InfoSubscription, Signature, SimultaneousLogins, CookieLogin, AccountNumber)  
 VALUES (1,'admin','*CCEACE467AAE00A19964031A788144D972033720','postmaster@example.com','admin','user','0','',0,0,0);
 
@@ -225,14 +233,9 @@ INSERT INTO eZUser_Group (ID, Name, Description, SessionTimeout, IsRoot) VALUES 
 INSERT INTO eZUser_Group (ID, Name, Description, SessionTimeout, IsRoot) VALUES (2,'Anonymous','Anonymous users',7200,0);
 INSERT INTO eZUser_UserGroupLink (ID, UserID, GroupID) VALUES (1,1,1);
 
-CREATE TABLE eZUser_Photographer (
-  ID int(11) NOT NULL,
-  Name char(255) default NULL,
-  EMail char(255) default NULL,
-  PRIMARY KEY (ID)
-);
-
 CREATE INDEX UserGroupLink_UserID ON eZUser_UserGroupLink (UserID);
 CREATE INDEX UserGroupLink_GroupID ON eZUser_UserGroupLink (GroupID);
 
 CREATE UNIQUE INDEX User_Login ON eZUser_User (Login);  
+
+

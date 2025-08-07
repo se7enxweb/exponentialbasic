@@ -1,32 +1,32 @@
 CREATE TABLE eZAddress_Address (
-  ID int(11) NOT NULL,
-  Street1 varchar(50),
-  Street2 varchar(50),
-  AddressTypeID int(11),
-  Place varchar(50),
-  Zip varchar(10),
-  RegionID int(11),
-  CountryID int(11),
-  Name varchar(50),
+  `ID` int(11) NOT NULL DEFAULT 0,
+  Street1 varchar(50) DEFAULT NULL,
+  Street2 varchar(50) DEFAULT NULL,
+  AddressTypeID int(11) DEFAULT NULL,
+  Place varchar(50) DEFAULT NULL,
+  Zip varchar(10) DEFAULT NULL,
+  RegionID int(11) DEFAULT NULL,
+  CountryID int(11) DEFAULT NULL,
+  `Name` varchar(50) DEFAULT NULL,
   PhoneID int(11) DEFAULT NULL,
   Phone varchar(32) DEFAULT NULL,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZAddress_Address VALUES (1,'Adminstreet1','Adminstreet2',0,'No Place','42',0,'Default address');
 
 CREATE TABLE eZAddress_AddressDefinition (
-  UserID int(11) DEFAULT '0' NOT NULL,
-  AddressID int(11) DEFAULT '0' NOT NULL,
+  UserID int(11) NOT NULL DEFAULT 0,
+  AddressID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (UserID,AddressID)
 );
 
 CREATE TABLE eZAddress_AddressType (
-  ID int(11) NOT NULL,
-  Name varchar(50),
-  ListOrder int(11) DEFAULT '0' NOT NULL,
-  Removed int(1) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) DEFAULT NULL,
+  ListOrder int(11) NOT NULL DEFAULT 0,
+  Removed int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZAddress_AddressType VALUES (1,'Home address',1,0);
@@ -34,12 +34,12 @@ INSERT INTO eZAddress_AddressType VALUES (2,'Office address',1,0);
 INSERT INTO eZAddress_AddressType VALUES (3,'Offsite address',1,0);
 
 CREATE TABLE eZAddress_Country (
-  ID int(11) NOT NULL,
-  ISO varchar(2),
-  Name varchar(100),
-  HasVAT int(1) DEFAULT '0',
-  Removed int(1) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  ISO varchar(2) DEFAULT NULL,
+  `Name` varchar(100) DEFAULT NULL,
+  HasVAT int(1) DEFAULT 0,
+  Removed int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZAddress_Country VALUES (2,'AF','Afghanistan',0,0);
@@ -287,14 +287,14 @@ INSERT INTO eZAddress_Country VALUES (240,'US','United States of America',0,0);
 #
 
 CREATE TABLE eZAddress_Region (
-  ID int(11) NOT NULL auto_increment,
-  CountryID int(11),
-  Abbreviation char(10),
-  Name char(100),
-  UserAdded int(1) DEFAULT '0' NOT NULL,
-  Removed int(1) DEFAULT '0' NOT NULL,
-  HasTax int(1) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  CountryID int(11) DEFAULT NULL,
+  Abbreviation char(20) DEFAULT NULL,
+  `Name` char(100) DEFAULT NULL,
+  UserAdded int(1) NOT NULL DEFAULT 0,
+  Removed int(1) NOT NULL DEFAULT 0,
+  HasTax int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 #
@@ -353,21 +353,21 @@ INSERT INTO eZAddress_Region VALUES (49,240,'WI','Wisconsin',0, 0, 0);
 INSERT INTO eZAddress_Region VALUES (50,240,'WY','Wyoming',0, 0, 0);
 
 CREATE TABLE eZAddress_Online (
-  ID int(11) NOT NULL,
-  URL varchar(255),
-  OnlineTypeID int(11),
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  URL varchar(255) DEFAULT NULL,
+  OnlineTypeID int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZAddress_OnlineType (
-  ID int(11) NOT NULL,
-  Name varchar(50),
-  ListOrder int(11) DEFAULT '0' NOT NULL,
-  URLPrefix varchar(30) DEFAULT '' NOT NULL,
-  PrefixLink int(1) DEFAULT '0' NOT NULL,
-  PrefixVisual int(1) DEFAULT '0' NOT NULL,
-  Removed int(1) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) DEFAULT NULL,
+  ListOrder int(11) NOT NULL DEFAULT 0,
+  URLPrefix varchar(30) NOT NULL DEFAULT '',
+  PrefixLink int(1) NOT NULL DEFAULT 0,
+  PrefixVisual int(1) NOT NULL DEFAULT 0,
+  Removed int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZAddress_OnlineType VALUES (1,'Email',1,'mailto:',1,0,0);
@@ -376,18 +376,18 @@ INSERT INTO eZAddress_OnlineType VALUES (3,'Website : Personal',1,'',1,0,0);
 INSERT INTO eZAddress_OnlineType VALUES (4,'Website : Office',1,'',1,0,0);
 
 CREATE TABLE eZAddress_Phone (
-  ID int(11) NOT NULL,
-  Number varchar(22),
-  PhoneTypeID int(11),
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Number` varchar(22) DEFAULT NULL,
+  PhoneTypeID int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZAddress_PhoneType (
-  ID int(11) NOT NULL,
-  Name varchar(50),
-  ListOrder int(11) DEFAULT '0' NOT NULL,
-  Removed int(1) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(50) DEFAULT NULL,
+  ListOrder int(11) NOT NULL DEFAULT 0,
+  Removed int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZAddress_PhoneType VALUES (1,'Personal Phone',1,0);

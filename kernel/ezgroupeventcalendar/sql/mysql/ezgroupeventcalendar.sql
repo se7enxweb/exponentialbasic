@@ -3,45 +3,45 @@ DROP TABLE IF EXISTS eZGroupEventCalendar_Event;
 # Table structure for table 'eZGroupEventCalendar_Event'
 #
 CREATE TABLE eZGroupEventCalendar_Event (
-   ID int(11) NOT NULL auto_increment,
-   GroupID int(11) DEFAULT '0' NOT NULL,
-   Date varchar(25) default NULL,
-   Duration time,
-   Name varchar(255),
-   Description text,
-   Location varchar(255) default NULL,
-   Url text default NULL,
-   EMailNotice int(11) DEFAULT '0',
-   EventAlarmNotice int(11) DEFAULT '0' NOT NULL,
-   IsPrivate int(11),
-   Priority int(11) DEFAULT '1' NOT NULL,
-   Status int(11) DEFAULT '1' NOT NULL,
-   EventTypeID int(11) DEFAULT '0' NOT NULL,
-   EventCategoryID int(11) DEFAULT '0' NOT NULL,
-   IsRecurring int default '0',
-   RecurFreq int default NULL,
-   RecurType varchar(255) default NULL,
-   RecurDay varchar(255) default NULL,
-   RecurMonthlyType varchar(32) default NULL,
-   RecurMonthlyTypeInfo varchar(64) default NULL,
-   RepeatForever int(11) DEFAULT '0' NOT NULL,
-   RepeatTimes int(11) DEFAULT '0' NOT NULL,
-   RepeatUntilDate varchar(25) default NULL,
-   RecurExceptions text default NULL,
-   RecurFinishDate varchar(25) default NULL,
-   PRIMARY KEY (ID)
+ `ID` int(11) NOT NULL AUTO_INCREMENT,
+  GroupID int(11) NOT NULL DEFAULT 0,
+  `Date` varchar(14) DEFAULT NULL,
+  Duration time DEFAULT NULL,
+  `Name` varchar(255) DEFAULT NULL,
+  Description text DEFAULT NULL,
+  Location varchar(255) DEFAULT NULL,
+  Url text DEFAULT NULL,
+  EMailNotice int(11) DEFAULT 0,
+  EventAlarmNotice int(11) NOT NULL DEFAULT 0,
+  IsPrivate int(11) DEFAULT NULL,
+  Priority int(11) NOT NULL DEFAULT 1,
+  `Status` int(11) NOT NULL DEFAULT 1,
+  EventTypeID int(11) NOT NULL DEFAULT 0,
+  EventCategoryID int(11) NOT NULL DEFAULT 0,
+  IsRecurring int(11) DEFAULT 0,
+  RecurFreq int(11) DEFAULT NULL,
+  RecurType varchar(255) DEFAULT NULL,
+  RecurDay varchar(255) DEFAULT NULL,
+  RecurMonthlyType varchar(32) DEFAULT NULL,
+  RecurMonthlyTypeInfo varchar(64) DEFAULT NULL,
+  RepeatForever int(11) NOT NULL DEFAULT 0,
+  RepeatTimes int(11) NOT NULL DEFAULT 0,
+  RepeatUntilDate varchar(14) DEFAULT NULL,
+  RecurExceptions text DEFAULT NULL,
+  RecurFinishDate varchar(14) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 DROP TABLE IF EXISTS eZGroupEventCalendar_EventCategory;
 #
 # Table structure for table 'eZGroupEventCalendar_EventCategory'
 #
 CREATE TABLE eZGroupEventCalendar_EventCategory (
-   ID int(11) NOT NULL auto_increment,
-   ParentID int(11) DEFAULT '0' NOT NULL,
-   Description text,
-   Name varchar(255),
-   ExcludeFromSearch int(1) DEFAULT '0' NOT NULL,
-   PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  ParentID int(11) NOT NULL DEFAULT 0,
+  Description text DEFAULT NULL,
+  `Name` varchar(255) DEFAULT NULL,
+  ExcludeFromSearch int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 #
@@ -70,20 +70,43 @@ INSERT INTO eZGroupEventCalendar_EventCategory VALUES (19,5,'Status Events','Sta
 INSERT INTO eZGroupEventCalendar_EventCategory VALUES (20,5,'Suppliers Events','Suppliers',0);
 INSERT INTO eZGroupEventCalendar_EventCategory VALUES (21,5,'Travel Events','Travel',0);
 
+DROP TABLE IF EXISTS eZGroupEventCalendar_EventFileLink;
+#
+# Table structure for table 'eZGroupEventCalendar_EventFileLink'
+#
+
+CREATE TABLE `eZGroupEventCalendar_EventFileLink` (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  EventID int(11) NOT NULL DEFAULT 0,
+  FileID int(11) NOT NULL DEFAULT 0,
+  Created int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
+);
+
+DROP TABLE IF EXISTS eZGroupEventCalendar_EventForumLink;
+#
+# Table structure for table 'eZGroupEventCalendar_EventForumLink'
+#
+
+CREATE TABLE `eZGroupEventCalendar_EventForumLink` (
+  `ID` int(11) NOT NULL DEFAULT 0,
+  EventID int(11) NOT NULL DEFAULT 0,
+  ForumID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
+);
 
 DROP TABLE IF EXISTS eZGroupEventCalendar_EventType;
 #
 # Table structure for table 'eZGroupEventCalendar_EventType'
 #
 CREATE TABLE eZGroupEventCalendar_EventType (
-   ID int(11) NOT NULL auto_increment,
-   ParentID int(11) DEFAULT '0' NOT NULL,
-   Description text,
-   Name varchar(255),
-   ExcludeFromSearch int(1) DEFAULT '0' NOT NULL,
-   PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  ParentID int(11) NOT NULL DEFAULT 0,
+  Description text DEFAULT NULL,
+  `Name` varchar(255) DEFAULT NULL,
+  ExcludeFromSearch int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
-
 
 INSERT INTO eZGroupEventCalendar_EventType VALUES (1,0,'General Event Type','General',0);
 INSERT INTO eZGroupEventCalendar_EventType VALUES (2,0,'Calendar Event Type','Calendar',0);
@@ -99,12 +122,12 @@ DROP TABLE IF EXISTS eZGroupEventCalendar_GroupEditor;
 # Table structure for table 'eZGroupEventCalendar_GroupEditor'
 #
 CREATE TABLE eZGroupEventCalendar_GroupEditor (
-   ID int(11) NOT NULL auto_increment,
-   UserID int(11),
-   GroupID int(11) DEFAULT '0' NOT NULL,
-   PRIMARY KEY (ID),
-   UNIQUE ID (ID),
-   KEY ID_2 (ID)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  UserID int(11) DEFAULT NULL,
+  GroupID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID` (`ID`),
+  KEY ID_2 (`ID`)
 );
 
 DROP TABLE IF EXISTS eZGroupEventCalendar_GroupNoShow;
@@ -112,35 +135,9 @@ DROP TABLE IF EXISTS eZGroupEventCalendar_GroupNoShow;
 # Table structure for table 'eZGroupEventCalendar_GroupNoShow'
 #
 CREATE TABLE eZGroupEventCalendar_GroupNoShow (
-   ID int(11) NOT NULL auto_increment,
-   GroupID int(11) DEFAULT '0' NOT NULL,
-   PRIMARY KEY (ID)
-);
-
-DROP TABLE IF EXISTS eZGroupEventCalendar_EventForumLink;
-#
-# Table structure for table 'eZGroupEventCalendar_EventForumLink'
-#
-
-CREATE TABLE `eZGroupEventCalendar_EventForumLink` (
-  `ID` int(11) NOT NULL default '0',
-  `EventID` int(11) NOT NULL default '0',
-  `ForumID` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`ID`)
-);
-
-
-DROP TABLE IF EXISTS eZGroupEventCalendar_EventFileLink;
-#
-# Table structure for table 'eZGroupEventCalendar_EventFileLink'
-#
-
-CREATE TABLE `eZGroupEventCalendar_EventFileLink` (
-  `ID` int(11) NOT NULL default '0',
-  `EventID` int(11) NOT NULL default '0',
-  `FileID` int(11) NOT NULL default '0',
-  `Created` int(11) NOT NULL,
-  PRIMARY KEY  (`ID`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  GroupID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 # 

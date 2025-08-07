@@ -1,44 +1,44 @@
 CREATE TABLE eZNewsFeed_Category (
-  ID int(11) NOT NULL auto_increment,
-  Name varchar(150) DEFAULT '' NOT NULL,
-  Description text,
-  ParentID int(11) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(150) NOT NULL DEFAULT '',
+  Description text DEFAULT NULL,
+  ParentID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZNewsFeed_Category VALUES (1,'News from freshmeat','',0);
 
 CREATE TABLE eZNewsFeed_News (
-  ID int(11) NOT NULL auto_increment,
-  IsPublished int NOT NULL DEFAULT '0',
-  PublishingDate int NOT NULL,
-  OriginalPublishingDate int NOT NULL,
-  Name varchar(150) DEFAULT '' NOT NULL,
-  Intro text,
-  KeyWords varchar(200),
-  URL varchar(200),
-  Origin varchar(150),
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  IsPublished int(11) NOT NULL DEFAULT 0,
+  PublishingDate int(11) NOT NULL DEFAULT 0,
+  OriginalPublishingDate int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(150) NOT NULL DEFAULT '',
+  Intro text DEFAULT NULL,
+  KeyWords varchar(200) DEFAULT NULL,
+  URL varchar(200) DEFAULT NULL,
+  Origin varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZNewsFeed_NewsCategoryLink (
-  ID int(11) NOT NULL auto_increment,
-  NewsID int(11) DEFAULT '0' NOT NULL,
-  CategoryID int(11) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  NewsID int(11) NOT NULL DEFAULT 0,
+  CategoryID int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZNewsFeed_SourceSite (
-  ID int(11) NOT NULL auto_increment,
-  URL varchar(250),
-  Login varchar(30),
-  Password varchar(30),
-  CategoryID int(11) DEFAULT '0' NOT NULL,
-  Name varchar(100),
-  Decoder varchar(50),
-  IsActive int DEFAULT '0',
-  AutoPublish int(11) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (ID)
+  `ID` int(11) NOT NULL DEFAULT 0,
+  URL varchar(250) DEFAULT NULL,
+  Login varchar(30) DEFAULT NULL,
+  `Password` varchar(30) DEFAULT NULL,
+  CategoryID int(11) NOT NULL DEFAULT 0,
+  `Name` varchar(100) DEFAULT NULL,
+  Decoder varchar(50) DEFAULT NULL,
+  IsActive int(11) DEFAULT 0,
+  AutoPublish int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID`)
 );
 
 INSERT INTO eZNewsFeed_SourceSite VALUES (1,'http://freshmeat.net/backend/fm.rdf','','',1,'Freshmeat','rdf',1,1);

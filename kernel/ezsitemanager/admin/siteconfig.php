@@ -46,14 +46,14 @@ $ini_php_file = "/override/site.ini.php" ;
 
 if ( isset( $Store ) )
 {
-    if ( eZFile::file_exists( "bin/ini/override/site.ini.php" ) )
-      	$fp = eZFile::fopen( "bin/ini/override/site.ini.php", "w+");
-    elseif ( eZFile::file_exists( "bin/ini/override/site.ini" ) )
-      	$fp = eZFile::fopen( "bin/ini/site.ini", "w+");
-    elseif ( eZFile::file_exists( "bin/ini/site.ini.php" ) )
-      	$fp = eZFile::fopen( "bin/ini/site.ini.php", "w+");
-    elseif ( eZFile::file_exists( "bin/ini/site.ini" ) )
-      	$fp = eZFile::fopen( "bin/ini/site.ini", "w+");
+    if ( eZFile::file_exists( "settings/override/site.ini.php" ) )
+      	$fp = eZFile::fopen( "settings/override/site.ini.php", "w+");
+    elseif ( eZFile::file_exists( "settings/override/site.ini" ) )
+      	$fp = eZFile::fopen( "settings/site.ini", "w+");
+    elseif ( eZFile::file_exists( "settings/site.ini.php" ) )
+      	$fp = eZFile::fopen( "settings/site.ini.php", "w+");
+    elseif ( eZFile::file_exists( "settings/site.ini" ) )
+      	$fp = eZFile::fopen( "settings/site.ini", "w+");
 
     $Contents =& str_replace ("\r", "", $Contents );
     fwrite ( $fp, $Contents );
@@ -70,21 +70,21 @@ $t->setAllStrings();
 
 $t->set_file( "site_config_tpl", "siteconfig.tpl" );
 
-if ( eZFile::file_exists( "bin/ini/override/site.ini.php" ) )
+if ( eZFile::file_exists( "settings/override/site.ini.php" ) )
 {
-    $lines = eZFile::file( "bin/ini/override/site.ini.php" );
+    $lines = eZFile::file( "settings/override/site.ini.php" );
 }
-elseif ( eZFile::file_exists( "bin/ini/override/site.ini" ) )
+elseif ( eZFile::file_exists( "settings/override/site.ini" ) )
 {
-        $lines = eZFile::file( "bin/ini/override/site.ini" );
+        $lines = eZFile::file( "settings/override/site.ini" );
 }
-elseif ( eZFile::file_exists( "bin/ini/site.ini.php" ) )
+elseif ( eZFile::file_exists( "settings/site.ini.php" ) )
 {
-    $lines = eZFile::file( "bin/ini/site.ini.php" );
+    $lines = eZFile::file( "settings/site.ini.php" );
 }
-elseif ( eZFile::file_exists( "bin/ini/site.ini" ) )
+elseif ( eZFile::file_exists( "settings/site.ini" ) )
 {
-    $lines = eZFile::file( "bin/ini/site.ini" );
+    $lines = eZFile::file( "settings/site.ini" );
 }
 else
 {

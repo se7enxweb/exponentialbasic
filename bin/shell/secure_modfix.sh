@@ -8,15 +8,15 @@ exit 0
 fi
 
 echo "Creating symbolic links and setting permissions as needed."
-chown $1:$2 bin/ini/site.ini
-chmod 640 bin/ini/site.ini
-if [ -f "bin/ini/override/site.ini" ]; then
-    chown $1:$2 bin/ini/override/site.ini
-    chmod 640 bin/ini/override/site.ini
+chown $1:$2 settings/site.ini
+chmod 640 settings/site.ini
+if [ -f "settings/override/site.ini" ]; then
+    chown $1:$2 settings/override/site.ini
+    chmod 640 settings/override/site.ini
 fi
-if [ -f "bin/ini/override/site.ini.append" ]; then
-    chown $1:$2 bin/ini/override/site.ini.append
-    chmod 640 bin/ini/override/site.ini.append
+if [ -f "settings/override/site.ini.append" ]; then
+    chown $1:$2 settings/override/site.ini.append
+    chmod 640 settings/override/site.ini.append
 fi
 
 touch bin/logs/error.log

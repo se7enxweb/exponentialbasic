@@ -66,8 +66,8 @@ class INIFile
         // check for modifications
         $cacheTime = eZFile::filemtime( $cachedFile );
         $origTime = eZFile::filemtime( $inifilename );
-        $overrideTime = eZFile::filemtime( "bin/ini/override/" . basename($inifilename) );
-        $appendTime = eZFile::filemtime( "bin/ini/override/" . basename($inifilename) . ".append" );
+        $overrideTime = eZFile::filemtime( "settings/override/" . basename($inifilename) );
+        $appendTime = eZFile::filemtime( "settings/override/" . basename($inifilename) . ".append" );
 
         $loadCache = false;
         if ( eZFile::file_exists( $cachedFile ) )
@@ -75,9 +75,9 @@ class INIFile
             $loadCache = true;
             if ( $cacheTime < $origTime )
                 $loadCache = false;
-            if ( eZFile::file_exists( "bin/ini/override/" . basename($inifilename) ) and $cacheTime < $overrideTime )
+            if ( eZFile::file_exists( "settings/override/" . basename($inifilename) ) and $cacheTime < $overrideTime )
                 $loadCache = false;
-            if ( eZFile::file_exists( "bin/ini/override/" . basename($inifilename) . ".append" ) and $cacheTime < $appendTime )
+            if ( eZFile::file_exists( "settings/override/" . basename($inifilename) . ".append" ) and $cacheTime < $appendTime )
                 $loadCache = false;
         }
 
@@ -134,34 +134,34 @@ class INIFile
             }
             else
 	    	{
-				if ( $inifilename == "bin/ini/site.ini" ) 
+				if ( $inifilename == "settings/site.ini" ) 
 				{
 		 	  		$filesiteini = "site.ini";
 
-		   			if ( eZFile::file_exists( "bin/ini/override/$filesiteini" ) ) 
+		   			if ( eZFile::file_exists( "settings/override/$filesiteini" ) ) 
 		   			{
-		       			if ( eZFile::file_exists( "bin/ini/override/$filesiteini" . ".php") ) 
+		       			if ( eZFile::file_exists( "settings/override/$filesiteini" . ".php") ) 
 		       			{
-			   				$this->parse( "bin/ini/override/$filesiteini" . ".php" );
+			   				$this->parse( "settings/override/$filesiteini" . ".php" );
 		       			}
 			       		else 
 			       		{
-				 			$this->parse( "bin/ini/override/$filesiteini" );
-				 			$this->error( "The file \"" . "bin/ini/override/$filesiteini" . "\" or \"" . "bin/ini/override/$filesiteini" . ".php\" does not exist!" );
+				 			$this->parse( "settings/override/$filesiteini" );
+				 			$this->error( "The file \"" . "settings/override/$filesiteini" . "\" or \"" . "settings/override/$filesiteini" . ".php\" does not exist!" );
 			       		}
 			   		} 
 			   		else 
 			   		{
-			     		if ( eZFile::file_exists( "bin/ini/$filesiteini" ) ) 
+			     		if ( eZFile::file_exists( "settings/$filesiteini" ) ) 
 			     		{
-			       			if ( eZFile::file_exists( "bin/ini/$filesiteini" . ".php") )
+			       			if ( eZFile::file_exists( "settings/$filesiteini" . ".php") )
 			       			{
-				 				$this->parse( "bin/ini/$filesiteini" . ".php" );
+				 				$this->parse( "settings/$filesiteini" . ".php" );
 			       			}
 			       			else
 			       			{
-				 				$this->parse( "bin/ini/$filesiteini" );
-				 				$this->error( "The file \"" . "bin/ini/$filesiteini" . "\" or \"" . "bin/ini/$filesiteini" . ".php\" does not exist!" );
+				 				$this->parse( "settings/$filesiteini" );
+				 				$this->error( "The file \"" . "settings/$filesiteini" . "\" or \"" . "settings/$filesiteini" . ".php\" does not exist!" );
 			       			}
 			     		}
 			   		}
@@ -174,7 +174,7 @@ class INIFile
     	}
     	if ( $useoverride ) 
     	{
-    		$this->load_override_data( "bin/ini/override/" . basename($inifilename) );
+    		$this->load_override_data( "settings/override/" . basename($inifilename) );
     	}
     }
     
@@ -477,7 +477,7 @@ class INIFile
       loaded from the site.ini file. This can be overidden by supplying $type and $file.
       If the ini-file object does not exist it is created before returning.
     */
-    static public function &globalINI( $type = "SiteIni", $file = "bin/ini/site.ini" )
+    static public function &globalINI( $type = "SiteIni", $file = "settings/site.ini" )
     {
         $ini =& $GLOBALS["INI_$type"];
 

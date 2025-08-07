@@ -2,16 +2,16 @@
 echo "Creating symbolic links and setting permissions as needed."
 
 # Set permissions for site.ini files
-chmod 666 bin/ini/site.ini
-if [ -f "bin/ini/override/site.ini" ]; then
-    chmod 666 bin/ini/override/site.ini
+chmod 666 settings/site.ini
+if [ -f "settings/override/site.ini" ]; then
+    chmod 666 settings/override/site.ini
 fi
-if [ -f "bin/ini/override/site.ini.php" ]; then
-    chmod 666 bin/ini/override/site.ini.php
+if [ -f "settings/override/site.ini.php" ]; then
+    chmod 666 settings/override/site.ini.php
 fi
 
-if [ -f "bin/ini/override/site.ini.append" ]; then
-    chmod 666 bin/ini/override/site.ini.append
+if [ -f "settings/override/site.ini.append" ]; then
+    chmod 666 settings/override/site.ini.append
 fi
 
 # Set permissions for log dir & files

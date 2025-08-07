@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# ezinstaller - version 1.10 - (c) 2001 Kai Dübbert <kai@duebbert.de>, eZ Systems
+# ezinstaller - version 1.10 - (c) 2001 Kai Dï¿½bbert <kai@duebbert.de>, eZ Systems
 # ===============================================================================
 #
 # This shell script will install eZ publish 2 (http://ezcommunity.net/) on a Linux 
@@ -61,7 +61,7 @@ DEF_INSTALL=1
 DATE="09-25-2004"
 VERSION="1.4.5 [$DATE]"
 
-#echo "ezinstaller.sh - version $VERSION - (c) 2001 Kai Dübbert, eZ Systems"
+#echo "ezinstaller.sh - version $VERSION - (c) 2001 Kai Dï¿½bbert, eZ Systems"
 echo "ezinstaller.sh - version $VERSION "
 echo ""
 echo "This tool will help you install eZ publish 2 on your server."
@@ -588,7 +588,7 @@ fi
 # Fix the owners and permissions. We don't have to be too picky with the new install.
 #
 if [ "$C_INSTALL" = "new" ]; then
-	chmod 640 bin/ini/site.ini
+	chmod 640 settings/site.ini
 fi
 
 
@@ -680,14 +680,14 @@ if [ "$C_INSTALL" = "new" ] && [ $C_WWWDIR != $C_INSTDIR ]; then
 	echo "done."
 
 	echo -n "Moving sitedir.ini to $C_WWWDIR... "
-	mv "bin/ini/sitedir.ini" "$C_WWWDIR/bin/ini/"
+	mv "settings/sitedir.ini" "$C_WWWDIR/settings/"
 	echo "done."
 
 	#
 	# change sitedir.ini
 	#
-	echo -n "Adjusting $C_WWWDIR/bin/ini/sitedir.ini... "
-	sed s:"siteDir = \"\"":"siteDir = \"$C_INSTDIR\"": $C_WWWDIR/bin/ini/sitedir.ini > $C_WWWDIR/bin/ini/sitedir.ini.tmp && mv $C_WWWDIR/bin/ini/sitedir.ini.tmp $C_WWWDIR/bin/ini/sitedir.ini
+	echo -n "Adjusting $C_WWWDIR/settings/sitedir.ini... "
+	sed s:"siteDir = \"\"":"siteDir = \"$C_INSTDIR\"": $C_WWWDIR/settings/sitedir.ini > $C_WWWDIR/settings/sitedir.ini.tmp && mv $C_WWWDIR/settings/sitedir.ini.tmp $C_WWWDIR/settings/sitedir.ini
 	echo "done."
 fi
 
@@ -736,13 +736,13 @@ fi
 echo ""
 echo "#################################################################"
 echo "Changing site.ini with our values."
-echo -n "Adjusting bin/ini/site.ini... "
-echo -n "SiteURL"; sed s:SiteURL=ez.no:"SiteURL=$C_HOSTNAME": $C_INSTDIR/bin/ini/override/site.ini > $C_INSTDIR/bin/ini/override/site.ini.tmp && mv $C_INSTDIR/bin/ini/override/site.ini.tmp $C_INSTDIR/bin/ini/override/site.ini
-echo -n " SiteTitle"; sed s:'SiteTitle=eZ Systems':"SiteTitle=$C_TITLE": $C_INSTDIR/bin/ini/override/site.ini > $C_INSTDIR/bin/ini/override/site.ini.tmp && mv $C_INSTDIR/bin/ini/override/site.ini.tmp $C_INSTDIR/bin/ini/override/site.ini
-echo -n " Server"; sed s:Server=localhost:"Server=$C_DBSERVER": $C_INSTDIR/bin/ini/override/site.ini > $C_INSTDIR/bin/ini/override/site.ini.tmp && mv $C_INSTDIR/bin/ini/override/site.ini.tmp $C_INSTDIR/bin/ini/override/site.ini
-echo -n " Database"; sed s:Database=publish:"Database=$C_DBNAME": $C_INSTDIR/bin/ini/override/site.ini > $C_INSTDIR/bin/ini/override/site.ini.tmp && mv $C_INSTDIR/bin/ini/override/site.ini.tmp $C_INSTDIR/bin/ini/override/site.ini
-echo -n " User"; sed s:User=publish:"User=$C_DBUSER": $C_INSTDIR/bin/ini/override/site.ini > $C_INSTDIR/bin/ini/override/site.ini.tmp && mv $C_INSTDIR/bin/ini/override/site.ini.tmp $C_INSTDIR/bin/ini/override/site.ini
-echo -n " Password"; sed s:Password=publish:"Password=$C_DBPASS": $C_INSTDIR/bin/ini/override/site.ini > $C_INSTDIR/bin/ini/override/site.ini.tmp && mv $C_INSTDIR/bin/ini/override/site.ini.tmp $C_INSTDIR/bin/ini/override/site.ini
+echo -n "Adjusting settings/site.ini... "
+echo -n "SiteURL"; sed s:SiteURL=ez.no:"SiteURL=$C_HOSTNAME": $C_INSTDIR/settings/override/site.ini > $C_INSTDIR/settings/override/site.ini.tmp && mv $C_INSTDIR/settings/override/site.ini.tmp $C_INSTDIR/settings/override/site.ini
+echo -n " SiteTitle"; sed s:'SiteTitle=eZ Systems':"SiteTitle=$C_TITLE": $C_INSTDIR/settings/override/site.ini > $C_INSTDIR/settings/override/site.ini.tmp && mv $C_INSTDIR/settings/override/site.ini.tmp $C_INSTDIR/settings/override/site.ini
+echo -n " Server"; sed s:Server=localhost:"Server=$C_DBSERVER": $C_INSTDIR/settings/override/site.ini > $C_INSTDIR/settings/override/site.ini.tmp && mv $C_INSTDIR/settings/override/site.ini.tmp $C_INSTDIR/settings/override/site.ini
+echo -n " Database"; sed s:Database=publish:"Database=$C_DBNAME": $C_INSTDIR/settings/override/site.ini > $C_INSTDIR/settings/override/site.ini.tmp && mv $C_INSTDIR/settings/override/site.ini.tmp $C_INSTDIR/settings/override/site.ini
+echo -n " User"; sed s:User=publish:"User=$C_DBUSER": $C_INSTDIR/settings/override/site.ini > $C_INSTDIR/settings/override/site.ini.tmp && mv $C_INSTDIR/settings/override/site.ini.tmp $C_INSTDIR/settings/override/site.ini
+echo -n " Password"; sed s:Password=publish:"Password=$C_DBPASS": $C_INSTDIR/settings/override/site.ini > $C_INSTDIR/settings/override/site.ini.tmp && mv $C_INSTDIR/settings/override/site.ini.tmp $C_INSTDIR/settings/override/site.ini
 echo " ...done."
 
 

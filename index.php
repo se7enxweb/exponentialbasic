@@ -94,6 +94,8 @@ $_SERVER['REQUEST_URI'] = $regs[1];
 
 date_default_timezone_set( 'America/Los_Angeles' );
 
+// 7x: Convert the following to ini settings
+
 $GLOBALS["DEBUG"] = false;
 $GLOBALS["DDD"] = '';
 $UsePHPSessions = false;

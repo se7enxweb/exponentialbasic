@@ -136,7 +136,7 @@ require __DIR__ . '/vendor/autoload.php';
 // include_once( "classes/ezfile.php" );
 */
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance('site.ini');
 $GlobalSiteIni =& $ini;
 
 // Set the global nVH variables.
@@ -158,7 +158,9 @@ $GlobalSiteDesign = $siteDesign;
 
 $SiteDesign =& $ini->variable( "site", "SiteStyle" );
 
+// Convert into clean settings for portability
 $GLOBALS["DEBUG"] = true;
+$GLOBALS["DEBUG_EZTEMPLATE"] = false;
 
 $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
 $url_array_count = count( $url_array );
@@ -206,7 +208,7 @@ if ( $user )
         // // include_once( "kernel/ezsession/classes/ezpreferences.php" );
         $preferences = new eZPreferences();
 
-        $site_modules = $ini->read_array( "site", "EnabledModules" );
+        $site_modules = $ini->variable( "site", "EnabledModules" );
         $modules =& eZModuleHandler::active();
 
         $uri = $_SERVER["REQUEST_URI"];
@@ -262,7 +264,7 @@ if ( $user )
                     unset( $menuItems );
                     include( "$module_dir/admin/menubox.php" );
                     if ( isset( $menuItems ) )
-                        eZMenuBox::createBox( strtolower( $module ),  $module_dir, "admin",
+                        eZMenuBox::createBox(  $module,  $module_dir, "admin",
                         $siteDesign, $menuItems, true, false,
                         "kernel/$module_dir/admin/menubox.php", false, true );
                     unset( $module_dir );

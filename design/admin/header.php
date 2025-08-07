@@ -30,7 +30,7 @@
 //include_once( "kernel/classes/ezlocale.php" );
 //include_once( "kernel/classes/ezpublish.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance('site.ini');
 $Language =& $ini->variable( "eZUserMain", "Language" );
 $Locale = new eZLocale( $Language );
 //$iso = $Locale->languageISO();

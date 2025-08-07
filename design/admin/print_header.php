@@ -27,7 +27,7 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance('site.ini');
 $Language =& $ini->variable( "eZUserMain", "Language" );
 $Locale = new eZLocale( $Language );
 $iso = $Locale->languageISO();

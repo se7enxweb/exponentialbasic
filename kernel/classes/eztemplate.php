@@ -191,6 +191,14 @@ class eZTemplate
         {
             $this->languageFile = $intlDir . "/" . $language . "/" . $phpFile . ".ini";
             $this->Ini = eZINI::instance( 'site.ini' );
+
+            // 7x: Add a setting for this debug output statement to be encouraged durring debugging.
+            // Add a setting to enable this statement.
+            if( $GLOBALS["DEBUG"] == true && $GLOBALS["DEBUG_EZTEMPLATE"] == true )
+            {
+                echo "<hr>"; echo $this->languageFile; echo "<hr>";
+            }
+            
             if ( file_exists( $this->languageFile ) )
             {
                 $this->Ini = eZINI::instance( $this->languageFile, false );

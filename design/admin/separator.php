@@ -29,7 +29,7 @@ $single_module = $preferences->variable( "SingleModule" ) == "enabled";
 // include_once( "kernel/ezmodule/classes/ezmodulehandler.php" );
 
 // include_once( "kernel/classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance('site.ini');
 
 $Language = $ini->variable( "eZ" . ucfirst( $moduleName ) . "Main", "Language" );
 

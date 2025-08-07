@@ -121,7 +121,7 @@ class eZModuleHandler
     {
         $return_array = array();
         $ini =& eZINI::instance( 'site.ini' );
-        $allModules = $ini->read_array( "site", "EnabledModules" );
+        $allModules = explode(";", $ini->variable( "site", "EnabledModules" ) );
         $user =& eZUser::currentUser();
         foreach ( $allModules as $moduleItem )
         {

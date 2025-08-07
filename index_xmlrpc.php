@@ -123,7 +123,7 @@ define( "EZERROR_WRONG_VERSION", 10 );
 
 // site information
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance('site.ini');
 $GlobalSiteIni =& $ini;
 
 // Set the global nVH variables.
@@ -271,7 +271,7 @@ function Call( $args )
 
     // Charset and language
         // include_once( "classes/ezlocale.php" );
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance('site.ini');
         if ( $ini->hasVariable( "site", "Language" ) )
         {
             $Language = $ini->variable( "site", "Language" );

@@ -199,9 +199,8 @@ if ( $user )
             include( "design/admin/header.php" );
         }
     }
-              
-    
-//    require( "kernel/ezuser/admin/admincheck.php" );
+
+    // require( "kernel/ezuser/admin/admincheck.php" );
     
     if ( $HelpMode != "enabled" ) 
     {
@@ -209,6 +208,7 @@ if ( $user )
         $preferences = new eZPreferences();
 
         $site_modules = $ini->variable( "site", "EnabledModules" );
+        $admin_modules = explode( ";", $ini->variable( "site", "EnabledAdminModules" ) );
         $modules =& eZModuleHandler::active();
 
         $uri = $_SERVER["REQUEST_URI"];
@@ -321,12 +321,24 @@ if ( $user )
 
         // parse the URI
         $page = "";
-    
-    
+
         // send the URI to the right decoder
         $page = "kernel/ez" . $url_array[1] . "/admin/datasupplier.php";
+
         // set the module logo
         $moduleName =& $url_array[1];
+
+        foreach ( $admin_modules as $moduleString )
+        {
+            $moduleArray = explode( "|", $moduleString );
+
+            if( $moduleArray[1] == "ez" . $moduleName )
+            {
+                $moduleNameMixedCase = $moduleArray[0];
+                $moduleSettingsGroupName = $moduleArray[0] . "Main";
+                break;
+            }
+        }
 
         if ( $moduleName == "" )
             $moduleName = "user";

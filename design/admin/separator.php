@@ -24,21 +24,17 @@
 //
 
 // include_once( "kernel/ezsession/classes/ezpreferences.php" );
+// include_once( "kernel/ezmodule/classes/ezmodulehandler.php" );
+// include_once( "kernel/classes/eztemplate.php" );
+// include_once( "kernel/classes/INIFile.php" );
+
 $single_module = $preferences->variable( "SingleModule" ) == "enabled";
 
-// include_once( "kernel/ezmodule/classes/ezmodulehandler.php" );
-
-// include_once( "kernel/classes/INIFile.php" );
 $ini =& eZINI::instance('site.ini');
+$Language = $ini->variable( $moduleSettingsGroupName, "Language" );
 
-$Language = $ini->variable( "eZ" . ucfirst( $moduleName ) . "Main", "Language" );
-
-// include_once( "kernel/classes/eztemplate.php" );
-//$ini->variable( "eZArticleMain", "AdminTemplateDir" ),
 $t = new eZTemplate( "design/admin/templates/" . $siteDesign,
                      "kernel/ez" . $moduleName . "/admin/intl/", $Language, "menubox.php" );
-
-
 $t->set_file( array(
     "separator_tpl" => "separator.tpl"
     ) );

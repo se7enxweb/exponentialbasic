@@ -1,0 +1,47 @@
+This file contains all changes in intl files between version 2.1 Beta2 and 2.1 Beta3
+Example:
+mod: bug/user, fileedit.php.ini
+change: added user_edit=Some text
+--------------------------------------------------------------------
+mod: ezcontact/admin, consultationdetaillist.php.ini
+change: added
+delete_consultations=Delete consultations
+
+mod: ezbulkmail/admin categorylist.php.ini
+change: added next, previous
+
+mod: ezmail/user maillist.php.ini
+change: added next, previous
+
+mod: ezmail/user/ mailview.php.ini, folderedit.php.ini
+change: added cancel
+
+mod: ezarticle/admin sitemap.php.ini, menubox.php.ini
+change: new file, added menu item
+
+mod: ezuser/admin groupedit.php.ini
+change: added root_permission, module_permissions
+
+mod: classes/admin, linklist.php.ini
+changed: added
+name=Name
+type=Type
+delete=Delete?
+
+mod: classes/admin, linkselect.php.ini
+changed: added
+root=Root
+link_type=Link type
+url_type=URL
+browse=Change type
+
+mod: ezuser/admin, sessioninfo.php.ini
+changed: added
+idle=Idle
+
+mod: ezbug/user, search.php.ini
+change: added previous, next
+
+mod: ezpoll/user, votepage.php.ini
+change: added
+no_items_found=No poll items found.

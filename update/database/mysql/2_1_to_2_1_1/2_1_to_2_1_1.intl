@@ -1,0 +1,13 @@
+This file contains all changes in intl files between version 2.1  and 2.1.1
+Example:
+mod: bug/user, fileedit.php.ini
+change: added user_edit=Some text
+--------------------------------------------------------------------
+mod: eztrade/admin, productedit.php.ini
+change: added add_item
+
+mod: ezarticle/admin, articleedit.php.ini
+change: added add_item, forms
+
+mod ezmail/user, folderlist.php.ini
+change: added trash, inbox, sent, drafts

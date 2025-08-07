@@ -1,0 +1,54 @@
+This file contains all changes in intl files between version 2.1 Beta1 and 2.1 Beta2
+Example:
+mod: bug/user, fileedit.php.ini
+change: added user_edit=Some text
+--------------------------------------------------------------------
+mod: ezbulkmail/admin categorylist.php.ini
+change: added yes, no, category_is_public, ok,single_list_select
+multi_list_site=Use multilist
+
+mod: ezbulkmail/admin categoryedit.php.ini
+change: added subscibed_usergroups and public_list,select_categories
+
+mod: ezbug/user bugreport.php.ini
+change: added program_version=Program version
+
+mod: ezbug/user bugview.php.ini
+change: added program_version=Program version
+
+mod: ezbug/admin bugedit.php.ini
+change: added program_version=Program version
+
+mod: ezerror/admin error.php.ini
+change: added file
+
+mod: ezmail/user, mailedit.php.ini
+change: added address_error
+
+mod: ezbulkmail/user
+change:added subscriptionlogin.php.ini usermessages.php.ini
+
+mod: ezarticle/user, extendedsearch.php.ini
+change: new file
+head_line=Extended article search
+category=Category
+text=Search text
+search=Search
+all=All
+next=Next
+previous=Previous
+
+mod: ezarticle/user, menubox.php.ini
+change: added
+index=Index
+
+mod: ezarticle/user, index.php.ini
+change: new file
+head_line=Keyword index
+
+mod: ezarticle/admin categoryedit.php.ini
+change: added bulkmail_category_select, no_bulkmail>>>>>>> 1.11
+
+mod: ezcontact/admin, consultationdetaillist.php.ini
+change: added
+delete_consultations=Delete consultations

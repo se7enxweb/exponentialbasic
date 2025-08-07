@@ -64,7 +64,7 @@ Follow these steps to set up eZ Publish Basic via Composer:
 
 2.1 Install Default Content Database Data and Image File Content
 - Then load the SQL file from: ```mysql -u user databaseName -p < ./update/data_mysql.sql;```
-- Then uncompress the tar.gz file from: ```tar -vzxf ./bin/data/data.tar.gz;```
+- Then uncompress the tar.gz file from: ```tar -vzxf ./share/data/data.tar.gz;```
 - Then finally run the script from: ```./bin/shell/modfix.sh;```
 
 3. Update settings files

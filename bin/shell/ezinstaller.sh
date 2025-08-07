@@ -499,9 +499,9 @@ fi
 # Extracting the examples
 #
 echo -n "Extracting the data for the example site... "
-tar xzfp bin/data/data.tar.gz
+tar xzfp share/data/data.tar.gz
 if [ ! $? = 0 ]; then
-	echo "Failed to extract the example data (bin/data/data.tar.gz)! Aborting."
+	echo "Failed to extract the example data (share/data/data.tar.gz)! Aborting."
 	exit 1
 else
 	echo "done."

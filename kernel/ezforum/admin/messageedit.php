@@ -28,7 +28,7 @@
 $ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZForumMain", "Language" );
-$error = new INIFIle( "kernel/ezforum/admin/intl/" . $Language . "/messageedit.php.ini", false );
+$error = new eZINI( "kernel/ezforum/admin/intl/" . $Language . "/messageedit.php.ini", false );
 
 // include_once( "ezforum/classes/ezforummessage.php" );
 // include_once( "ezforum/classes/ezforum.php" );

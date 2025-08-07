@@ -29,7 +29,7 @@
 // include_once( "classes/INIFile.php" );
 $ini = eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZBugMain", "Language" );
-$LanguageIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/categorylist.php.ini", false );
+$LanguageIni = new eZINI( "kernel/ezbug/admin/intl/" . $Language . "/categorylist.php.ini", false );
 
 
 // include_once( "classes/eztemplate.php" );

@@ -39,7 +39,7 @@ $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZArticleMain", "Language" );
 $Locale = new eZLocale( $Language );
 $AdminListLimit = $ini->variable( "eZArticleMain", "AdminListLimit" );
-$languageIni = new INIFIle( "kernel/ezarticle/admin/intl/" . $Language . "/unpublishedlist.php.ini", false );
+$languageIni = new eZINI( "kernel/ezarticle/admin/intl/" . $Language . "/unpublishedlist.php.ini", false );
 
 
 

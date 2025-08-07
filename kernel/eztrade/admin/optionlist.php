@@ -56,7 +56,7 @@ $options = $product->options();
 
 if ( !$options )
 {
-    $noitem = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/optionlist.php.ini", false );
+    $noitem = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/optionlist.php.ini", false );
     $t->set_var( "option", $noitem->variable( "strings", "no_option" ) );
 
 }

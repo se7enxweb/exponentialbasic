@@ -28,7 +28,7 @@
 
 $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZLinkMain", "Language" );
-$error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
+$error = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 $error_msg = false;
 
 // include_once( "classes/eztemplate.php" );
@@ -272,7 +272,7 @@ $t->set_file( array(
     "category_edit" => "categoryedit.tpl"
     ));
 
-$languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/categoryedit.php.ini", false );
+$languageIni = new eZINI( "kernel/ezlink/admin/intl/" . $Language . "/categoryedit.php.ini", false );
 $headline = $languageIni->variable( "strings", "headline_insert" );
 
 $t->set_block( "category_edit", "section_item_tpl", "section_item" );
@@ -307,7 +307,7 @@ if ( $Action == "new" )
 // Modifing a category.
 if ( $Action == "edit" )
 {
-    $languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/categoryedit.php.ini", false );
+    $languageIni = new eZINI( "kernel/ezlink/admin/intl/" . $Language . "/categoryedit.php.ini", false );
     $headline = $languageIni->variable( "strings", "headline_edit" );
 
     if ( !eZPermission::checkPermission( $user, "eZLink", "LinkCategoryModify" ) )

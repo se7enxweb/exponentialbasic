@@ -30,7 +30,7 @@
 $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZUserMain", "Language" );
 $DOC_ROOT = $ini->variable( "eZUserMain", "DocumentRoot" );
-$errorIni = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/passwordchange.php.ini", false );
+$errorIni = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/passwordchange.php.ini", false );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );

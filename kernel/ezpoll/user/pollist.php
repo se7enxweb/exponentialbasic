@@ -30,7 +30,7 @@ $ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZPollMain", "Language" );
 $DOC_ROOT = $ini->variable( "eZPollMain", "DocumentRoot" );
-$errorIni = new INIFIle( "kernel/ezpoll/user/intl/" . $Language . "/pollist.php.ini", false );
+$errorIni = new eZINI( "kernel/ezpoll/user/intl/" . $Language . "/pollist.php.ini", false );
 
 $noItem = $errorIni->variable( "strings", "noitem" );
 

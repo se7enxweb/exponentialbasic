@@ -42,7 +42,7 @@ $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZTradeMain", "Language" );
 $ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
 
-$languageINI = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/orderedit.php.ini", false );
+$languageINI = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/orderedit.php.ini", false );
 
 $PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" );
 // Unclear: $PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" && $total["shiptax"] ? true : false;

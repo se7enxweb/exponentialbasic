@@ -27,7 +27,7 @@
 
 // include_once( "ezmail/classes/ezmail.php" );
 
-$ini =& INIFIle::globalINI();
+$ini =& eZINI::globalINI();
 $Language = $ini->variable( "eZMailMain", "Language" );
 
 $t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),

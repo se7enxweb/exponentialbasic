@@ -52,7 +52,7 @@ $checkups=0;
 else
 $checkups=1;
 
-$languageINI = new INIFIle( "kernel/eztrade/user/intl/" . $Language . "/orderview.php.ini", false );
+$languageINI = new eZINI( "kernel/eztrade/user/intl/" . $Language . "/orderview.php.ini", false );
 
 
 // include_once( "eztrade/classes/ezproductcategory.php" );

@@ -30,7 +30,7 @@ $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZUserMain", "Language" );
 $headersInfo = getallheaders();
 
-$languageIni = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/forgot.php.ini", false );
+$languageIni = new eZINI( "kernel/ezuser/user/intl/" . $Language . "/forgot.php.ini", false );
 
 // Get the user.
 if ( isset( $Login ) && $Login )

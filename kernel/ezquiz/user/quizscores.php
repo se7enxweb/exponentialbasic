@@ -45,7 +45,7 @@ $ScoreCurrent = $ini->variable( "eZQuizMain", "ScoreCurrent" );
 $t = new eZTemplate( "kernel/ezquiz/user/" . $ini->variable( "eZQuizMain", "TemplateDir" ),
                      "kernel/ezquiz/user/intl/", $Language, "quiz.php" );
 
-$intl = new INIFIle( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
+$intl = new eZINI( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
 
 $t->setAllStrings();
 

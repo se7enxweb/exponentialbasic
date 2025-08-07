@@ -33,7 +33,7 @@ $t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain
 
 $t->setAllStrings();
 $t->set_file( array( "message" => "usermessages.tpl" ) );
-$languageIni = new INIFIle( "kernel/ezbulkmail/user/intl/" . $Language . "/usermessages.php.ini", false );
+$languageIni = new eZINI( "kernel/ezbulkmail/user/intl/" . $Language . "/usermessages.php.ini", false );
 
 
 if( isset( $mailConfirm ) )

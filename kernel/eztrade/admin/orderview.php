@@ -42,7 +42,7 @@ $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZTradeMain", "Language" );
 $ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
 
-$languageINI = new INIFIle( "kernel/eztrade/user/intl/" . $Language . "/orderview.php.ini", false );
+$languageINI = new eZINI( "kernel/eztrade/user/intl/" . $Language . "/orderview.php.ini", false );
 
 
 // include_once( "eztrade/classes/ezproductcategory.php" );

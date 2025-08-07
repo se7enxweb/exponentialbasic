@@ -34,7 +34,7 @@
 
 $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZContactMain", "Language" );
-$errorIni = new INIFIle( "kernel/ezcontact/user/intl/" . $Language . "/personsearch.php.ini", false );
+$errorIni = new eZINI( "kernel/ezcontact/user/intl/" . $Language . "/personsearch.php.ini", false );
 
 $t = new eZTemplate( "kernel/ezcontact/user/" . $ini->variable( "eZContactMain", "TemplateDir" ),
                      "kernel/ezcontact/user/intl/", $Language, "personsearch.php" );

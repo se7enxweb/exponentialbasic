@@ -222,7 +222,7 @@ if ( !isset( $ModuleName ) )
 if ( !isset( $ModuleUserNew ) )
     $ModuleUserNew = "user";
 
-$headline = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/useredit.php.ini", false );
+$headline = new eZINI( "kernel/ezuser/user/intl/" . $Language . "/useredit.php.ini", false );
 $t->set_var( "head_line", $headline->variable( "strings", "head_line_insert" ) );
 
 if ($Action == "New") {
@@ -282,7 +282,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     $VerifyPassword = "dummy";
     $t->set_var( "read_only", "readonly=readonly" );
     $actionValue = "update";
-    $headline = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/useredit.php.ini", false );
+    $headline = new eZINI( "kernel/ezuser/user/intl/" . $Language . "/useredit.php.ini", false );
     $t->set_var( "head_line", $headline->variable( "strings", "head_line_edit" ) );
 }
 

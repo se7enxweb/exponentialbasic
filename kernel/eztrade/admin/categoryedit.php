@@ -353,7 +353,7 @@ $t->set_block( "category_edit_tpl", "write_group_item_tpl", "write_group_item" )
 $t->set_block( "category_edit_tpl", "section_item_tpl", "section_item" );
 
 
-$headline = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/categoryedit.php.ini", false );
+$headline = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/categoryedit.php.ini", false );
 $t->set_var( "head_line", $headline->variable( "strings", "head_line_insert" ) );
 
 $category = new eZProductCategory();
@@ -441,7 +441,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     $writeGroupsID = eZObjectPermission::getGroups( $CategoryID, "trade_category", 'w' , false );
     $readGroupsID = eZObjectPermission::getGroups( $CategoryID, "trade_category", 'r', false );
 
-    $headline = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/categoryedit.php.ini", false );
+    $headline = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/categoryedit.php.ini", false );
     $t->set_var( "head_line", $headline->variable( "strings", "head_line_edit" ) );
 }
 

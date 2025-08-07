@@ -29,7 +29,7 @@
 $ini =& eZINI::instance( 'site.ini' );
 $DOC_ROOT = $ini->variable( "eZUserMain", "DocumentRoot" );
 $Language = $ini->variable( "eZUserMain", "Language" );
-$errorIni = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/norights.php.ini", false );
+$errorIni = new eZINI( "kernel/ezuser/user/intl/" . $Language . "/norights.php.ini", false );
 
 // include_once( "classes/ezdb.php" );
 // include_once( "classes/eztemplate.php" );

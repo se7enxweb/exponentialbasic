@@ -37,7 +37,7 @@ if ( isset( $Cancel ) )
 
 $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
-$LanguageIni = new INIFIle( "kernel/ezgroupeventcalendar/admin/intl/" . $Language . "/categoryedit.php.ini", false );
+$LanguageIni = new eZINI( "kernel/ezgroupeventcalendar/admin/intl/" . $Language . "/categoryedit.php.ini", false );
 
 // include_once( "kernel/ezgroupeventcalendar/classes/ezgroupevent.php" );
 // include_once( "kernel/ezgroupeventcalendar/classes/ezgroupeventcategory.php" );

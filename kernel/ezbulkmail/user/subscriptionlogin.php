@@ -32,7 +32,7 @@
 // check hash from mail, validate the correct email address...
 $Language = $ini->variable( "eZBulkMailMain", "Language" ); 
 $TemplateDir = $ini->variable( "eZBulkMailMain", "TemplateDir" ); 
-$languageIni = new INIFIle( "kernel/ezbulkmail/user/intl/" . $Language . "/subscriptionlogin.php.ini", false );
+$languageIni = new eZINI( "kernel/ezbulkmail/user/intl/" . $Language . "/subscriptionlogin.php.ini", false );
 
 if( isset( $Hash ) )
 {

@@ -53,7 +53,7 @@ if ( isset ( $Cancel ) )
 $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZSiteManagerMain", "Language" );
 $move_item = true;
-$languageINI = new INIFIle( "kernel/ezsitemanager/admin/intl/" . $Language . "/sectionedit.php.ini", false );
+$languageINI = new eZINI( "kernel/ezsitemanager/admin/intl/" . $Language . "/sectionedit.php.ini", false );
 
 $t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "sectionedit.php" );

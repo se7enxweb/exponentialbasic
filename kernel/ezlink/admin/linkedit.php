@@ -509,7 +509,7 @@ $t->set_block( "link_edit", "attribute_list_tpl", "attribute_list" );
 $t->set_block( "attribute_list_tpl", "attribute_tpl", "attribute" );
 
 
-$languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/linkedit.php.ini", false );
+$languageIni = new eZINI( "kernel/ezlink/admin/intl/" . $Language . "/linkedit.php.ini", false );
 $headline = $languageIni->variable( "strings", "headline_insert" );
 
 $linkselect = new eZLinkCategory();
@@ -532,7 +532,7 @@ $t->set_var( "no_image_item", "" );
 if ( $Action == "edit" )
 {
 
-    $languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/linkedit.php.ini", false );
+    $languageIni = new eZINI( "kernel/ezlink/admin/intl/" . $Language . "/linkedit.php.ini", false );
     $headline =  $languageIni->variable( "strings", "headline_edit" );
 
     if ( !eZPermission::checkPermission( $user, "eZLink", "LinkModify" ) )

@@ -30,7 +30,7 @@
 $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZPollMain", "Language" );
 $PageCaching = $ini->variable( "eZPollMain", "PageCaching" );
-$errorIni = new INIFIle( "kernel/ezpoll/user/intl/" . $Language . "/votebox.php.ini", false );
+$errorIni = new eZINI( "kernel/ezpoll/user/intl/" . $Language . "/votebox.php.ini", false );
 
 $noItem = $errorIni->variable( "strings", "noitem" );
 

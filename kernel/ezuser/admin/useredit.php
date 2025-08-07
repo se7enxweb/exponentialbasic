@@ -30,7 +30,7 @@
 $ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZUserMain", "Language" );
 $error_msg = false;
-$error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
+$error = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 
 // include_once( "ezmail/classes/ezmail.php" );
 // include_once( "classes/ezlog.php" );
@@ -361,7 +361,7 @@ if ( $Action == "update" )
     $ActionValue = "update";
 }
 
-$headline = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
+$headline = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 $t->set_var( "head_line", $headline->variable( "strings", "head_line_insert" ) );
 
 $group = new eZUserGroup();

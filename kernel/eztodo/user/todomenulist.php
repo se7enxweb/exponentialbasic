@@ -26,7 +26,7 @@
 
 // include_once( "classes/INIFile.php" );
 
-//$ini = new INIFIle( "site.ini");
+//$ini = new eZINI( "site.ini");
 $ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZTodoMain", "Language" );

@@ -33,7 +33,7 @@ $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
 $Language = $ini->variable( "eZBulkMailMain", "Language" );
-$languageIni = new INIFIle( "kernel/ezbulkmail/user/intl/" . $Language . "/subscriptionlogin.php.ini", false );
+$languageIni = new eZINI( "kernel/ezbulkmail/user/intl/" . $Language . "/subscriptionlogin.php.ini", false );
 $category = eZBulkMailCategory::singleList();
 
 if( isset( $Hash ) && is_object( $category ) )

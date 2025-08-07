@@ -32,9 +32,9 @@
 // include_once( "ezcontact/classes/ezcompanytype.php" );
 // include_once( "ezuser/classes/ezpermission.php" );
 
-$ini =& INIFIle::globalINI();
+$ini =& eZINI::globalINI();
 $Language = $ini->variable( "eZContactMain", "Language" );
-$errorIni = new INIFIle( "kernel/ezcontact/user/intl/" . $Language . "/companysearch.php.ini", false );
+$errorIni = new eZINI( "kernel/ezcontact/user/intl/" . $Language . "/companysearch.php.ini", false );
 
 $t = new eZTemplate( "kernel/ezcontact/user/" . $ini->variable( "eZContactMain", "TemplateDir" ),
                      "kernel/ezcontact/user/intl/", $Language, "companysearch.php" );

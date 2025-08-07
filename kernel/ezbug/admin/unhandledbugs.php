@@ -34,7 +34,7 @@
 
 $t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "unhandledbugs.php" );
-$errorIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/unhandledbugs.php.ini", false );
+$errorIni = new eZINI( "kernel/ezbug/admin/intl/" . $Language . "/unhandledbugs.php.ini", false );
 
 $t->set_file( array(
     "unhandled_bugs_tpl" => "unhandledbugs.tpl"

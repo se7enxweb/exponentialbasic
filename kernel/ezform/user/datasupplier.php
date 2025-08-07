@@ -33,7 +33,7 @@ $eZFormAction = $url_array[3];
 
 function &errorPage( $PrimaryName, $PrimaryURL, $type )
 {
-//    $ini =& $GLOBALS["GlobalSiteIni"];
+//    $ini =& eZINI::instance( 'site.ini' );
     $ini =& eZINI::instance( 'site.ini' );
     
 

@@ -34,7 +34,7 @@
 // include_once( "eztodo/classes/eztodo.php" );
 // include_once( "eztodo/classes/ezcategory.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZTodoMain", "Language" );
 
 $t = new eZTemplate( "kernel/eztodo/admin/" . $ini->variable( "eZTodoMain", "AdminTemplateDir" ),

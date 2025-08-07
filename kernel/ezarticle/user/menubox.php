@@ -27,26 +27,23 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezcachefile.php" );
-
-$ini =& eZINI::instance( 'site.ini' );
-
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
+$ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZArticleMain", "Language" );
-
 $PageCaching = $ini->variable( "eZArticleMain", "PageCaching" );
 
-if ( !(function_exists('createArticleMenu') ) )
+function createArticleMenu( $menuCacheFile = false, $ini = null, 
+            $Language = null, $GlobalSiteDesign = null,
+            $GlobalSectionID = null, $CategoryID = null, $url_array = null )
 {
-    function createArticleMenu( $menuCacheFile=false )
-        {
-            global $ini;
-            global $Language;
-            global $GenerateStaticPage;
-            global $GlobalSiteDesign;
-            global $GlobalSectionID;
-            global $CategoryID;
-			global $url_array;
+            // global $ini;
+            // global $Language;
+            // global $GenerateStaticPage;
+            // global $GlobalSiteDesign;
+            // global $GlobalSectionID;
+            // global $CategoryID;
+			// global $url_array;
 
             // include_once( "classes/eztemplate.php" );
 
@@ -136,7 +133,7 @@ if ( !(function_exists('createArticleMenu') ) )
             }
 
         }
-}
+
 
 // do the caching
 if ( $PageCaching == "enabled" )
@@ -168,14 +165,13 @@ if ( $PageCaching == "enabled" )
     {
         print( $menuCacheFile->contents() );
     }
-    else
-    {
-        createArticleMenu( $menuCacheFile );
+    else{
+        createArticleMenu( $menuCacheFile, $ini, $Language, $GlobalSiteDesign, $GlobalSectionID, $CategoryID, $url_array );
     }
 }
 else
 {
-    createArticleMenu();
+    createArticleMenu( false, $ini, $Language, $GlobalSiteDesign, $GlobalSectionID, $CategoryID, $url_array );
 }
 
 ?>

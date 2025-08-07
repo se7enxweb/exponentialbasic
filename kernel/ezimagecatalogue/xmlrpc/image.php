@@ -191,7 +191,7 @@ else if ( $Command == "storedata" )
             {
                 $image_data = $Data["Image"]->value();
                 $orig_file = $Data["ImageFileName"]->value();
-                $image_file = new eZImageFile();
+                $image_file = new eZPBImageFile();
                 $image_file->dumpDataToFile( $image_data, $orig_file );
                 if ( !$image->setImage( $image_file ) )
                 {

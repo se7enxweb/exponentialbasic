@@ -183,7 +183,7 @@ if ( $Action == "Insert" || $Action == "Update" )
 
     if ( $fileCheck )
     {
-        $file = new eZImageFile();
+        $file = new eZPBImageFile();
         if ( $file->getUploadedFile( "userfile" ) )
         {
             $imageTest = new eZImage();
@@ -295,7 +295,7 @@ if ( $Action == "Insert" && $error == false )
             eZImageCategory::addImage( $image, $categoryItem );
     }
 
-    eZLog::writeNotice( "Picture added to catalogue: $image->name() from IP: $REMOTE_ADDR" );
+    eZPBLog::writeNotice( "Picture added to catalogue: $image->name() from IP: $REMOTE_ADDR" );
 
     eZHTTPTool::header( "Location: /imagecatalogue/image/list/" . $CategoryID . "/" );
     exit();

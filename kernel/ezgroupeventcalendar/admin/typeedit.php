@@ -86,7 +86,7 @@ if ( $Action == "Delete" )
 
             $type->delete();
 
-            eZLog::writeNotice( "Appointment Type deleted: $typeName from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Appointment Type deleted: $typeName from IP: $REMOTE_ADDR" );
         }
         eZHTTPTool::header( "Location: /groupeventcalendar/typelist/" );
         exit();

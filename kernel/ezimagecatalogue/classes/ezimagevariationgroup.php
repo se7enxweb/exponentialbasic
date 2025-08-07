@@ -40,6 +40,9 @@ class eZImageVariationGroup
     */
     function __construct( $id="" )
     {
+        $this->ImageVariationGroup = 0;
+        $this ->ID = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;
@@ -83,7 +86,7 @@ class eZImageVariationGroup
             $db->array_query( $image_variation_array, "SELECT * FROM eZImageCatalogue_ImageVariationGroup WHERE ID='$id'" );
             if ( count( $image_variation_array ) > 1 )
             {
-                die( "Error: ImageVariations's with the same ID was found in the database. This shouldent happen." );
+                die( "Error: ImageVariations's with the same ID was found in the database. This should not happen." );
             }
             else if( count( $image_variation_array ) == 1 )
             {

@@ -25,10 +25,10 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
-
+$ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZTradeMain", "Language" );
-    
+$CategoryListProductImages = $ini->variable( "eZTradeMain", "CategoryListProductImages" ) == "enabled" ? true : false;
+
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
@@ -38,14 +38,47 @@ $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "Te
 
 $t->setAllStrings();
 
-$t->set_file( "menu_box_tpl", "menubox.tpl" );
-$t->set_block( "menu_box_tpl", "category_tpl", "category" );
+$t->set_file( "category_list_page_tpl", "menubox.tpl" );
+$t->set_block( "category_list_page_tpl", "category_tpl", "category" );
+
+$t->set_block( "category_list_tpl",'category_image_hot_deals_tpl', "category_image_hot_deals" );
+$t->set_block( "category_list_tpl", "category_image_list_tpl", "category_image_list" );
+$t->set_block( "category_image_list_tpl", "category_image_tpl", "category_image" );
 
 $t->set_var( "sitedesign", $GlobalSiteDesign );
 
-$categories = eZForumCategory::getAll( false, true, true );
+$category = new eZProductCategory(  );
+$category->get( $CategoryID );
 
-foreach ( $categories as $category )
+$categoryList = $category->getByParent( $category );
+
+if ( $CategoryListProductImages == true )
+{
+    foreach ( $categoryList as $category )
+    {
+        $t_category_name = $category->id().".gif";
+        $t->set_var( "category_id", $category->id() );
+        $t->set_var( "category_image_name", $t_category_name );
+
+        if ( $CategoryListProductImages == true ) {
+            $t->parse( "category_image_hot_deals", "category_image_hot_deals_tpl", true);
+            $t->parse( "category_image_list", "category_image_list_tpl", true);
+            $t->parse( "category_image", "category_image_tpl", true);
+
+            $t->set_var( "category", "");
+            $t->set_var( "category_hot_deals","");
+        }
+        else 
+        {
+            $t->set_var( "category_image_list", "");
+            $t->set_var( "category_image_hot_deals", "");
+        }
+    }
+    
+    $t->parse( "category_image_list", "category_image_list_tpl", true);
+}
+
+foreach ( $categoryList as $category )
 {
     $t->set_var( "id", $category->id() );
     $t->set_var( "name", $category->name() );
@@ -53,6 +86,6 @@ foreach ( $categories as $category )
 }
 //$t->set_var( "category", "" );
 
-$t->pparse( "output", "menu_box_tpl" );
+$t->pparse( "output", "category_list_page_tpl" );
 		
 ?>

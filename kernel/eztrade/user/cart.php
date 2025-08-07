@@ -73,7 +73,7 @@ $ShowSavingsColumn = false;
 
 if ( isset( $DeleteSelected ) )
 {
-    if ( count( $CartSelectArray ) > 0 )
+    if ( isset( $CartSelectArray ) && count( $CartSelectArray ) > 0 )
     foreach ( $CartSelectArray as $cartID )
     {
         $cartItem = new eZCartItem( $cartID );
@@ -349,7 +349,7 @@ if ( isset( $Action ) && $Action == "AddToBasket" )
 }
 
 // Load the template
-
+global $t;
 $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "cart.php" );
 
@@ -394,6 +394,8 @@ $t->set_block( "tax_specification_tpl", "tax_item_tpl", "tax_item" );
 
 $t->set_block( "cart_page_tpl", "cart_checkout_tpl", "cart_checkout" );
 $t->set_block( "cart_checkout_tpl", "cart_checkout_button_tpl", "cart_checkout_button" );
+
+global $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn;
 
 function turnColumnsOnOff( $rowName )
 {

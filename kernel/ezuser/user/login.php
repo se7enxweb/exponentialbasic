@@ -100,7 +100,7 @@ if ( isset( $Action ) && $Action == "login" )
             
             if ( ( $MaxLogins  == "0" ) || ( $logins < $MaxLogins ) )
             {
-                eZLog::writeNotice( "User login: $Username from IP: $REMOTE_ADDR" );
+                eZPBLog::writeNotice( "User login: $Username from IP: $REMOTE_ADDR" );
                 eZUser::loginUser( $user );
                 
                 if ( $user->cookieLogin() == true )
@@ -142,21 +142,21 @@ if ( isset( $Action ) && $Action == "login" )
             }
             else
             {
-                eZLog::writeWarning( "Max limit reached: $Username from IP: $REMOTE_ADDR" );
+                eZPBLog::writeWarning( "Max limit reached: $Username from IP: $REMOTE_ADDR" );
                 eZHTTPTool::header( "Location: /user/norights/?Error=MaxLogins&RedirectURL=$RedirectURL" );
                 exit();
             }
         }
         else
         {
-            eZLog::writeError( "Couldn't recieve userinformastion on : $Username from IP: $REMOTE_ADDR" );
+            eZPBLog::writeError( "Couldn't recieve userinformastion on : $Username from IP: $REMOTE_ADDR" );
             eZHTTPTool::header( "Location: /user/norights/?Error=UnknownError&RedirectURL=$RedirectURL" );
             exit();
         }
     }
     else
     {
-        eZLog::writeWarning( "Bad login: $Username from IP: $REMOTE_ADDR" );
+        eZPBLog::writeWarning( "Bad login: $Username from IP: $REMOTE_ADDR" );
         eZHTTPTool::header( "Location: /user/norights/?Error=WrongPassword&RedirectURL=$RedirectURL" );
         exit();
     }

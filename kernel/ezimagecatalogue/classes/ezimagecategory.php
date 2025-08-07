@@ -212,7 +212,7 @@ class eZImageCategory
             $db->array_query( $category_array, "SELECT * FROM eZImageCatalogue_Category WHERE ID='$id'" );
             if ( count( $category_array ) > 1 )
             {
-                eZLog::writeNotice( "Error: Category's with the same ID was found in the database. This shouldent happen." );
+                eZPBLog::writeNotice( "Error: Category's with the same ID was found in the database. This shouldent happen." );
                 return false;
             }
             else if ( count( $category_array ) == 1 )
@@ -700,7 +700,7 @@ class eZImageCategory
                       AND eZImageCatalogue_ImageCategoryLink.CategoryID='$this->ID'
                       $having_str";
 
-//         eZLog::writeNotice( "Count sql: $sql" );
+//         eZPBLog::writeNotice( "Count sql: $sql" );
 
         if ( $usePermission and $check_write )
         {
@@ -803,7 +803,7 @@ class eZImageCategory
                GROUP BY Image.ID, Image.OriginalFileName
                $having_str
                ORDER BY Image.OriginalFileName";
-//         eZLog::writeNotice( "List sql: $sql" );
+//         eZPBLog::writeNotice( "List sql: $sql" );
 
        $db->array_query( $file_array, $sql,
        array( "Limit" => $limit,

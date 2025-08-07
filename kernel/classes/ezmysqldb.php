@@ -111,7 +111,7 @@ class eZMySQLDB
             $result =& mysqli_query( $this->Database, $sql );
         }
 
-//          eZLog::writeNotice( $sql );
+//          eZPBLog::writeNotice( $sql );
 
         $errorMsg = mysqli_error( $this->Database );
         $errorNum = mysqli_errno( $this->Database );
@@ -205,7 +205,7 @@ class eZMySQLDB
         if ( $result == false )
         {
 //            print( $this->Error );
-            eZLog::writeWarning( $this->Error );
+            eZPBLog::writeWarning( $this->Error );
             return false;
         }
 

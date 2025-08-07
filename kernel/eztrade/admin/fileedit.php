@@ -65,7 +65,7 @@ if ( $Action == "Insert" )
 		
         $product->addFile( $uploadedFile );
 
-        eZLog::writeNotice( "File added to product $ProductID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "File added to product $ProductID  from IP: $REMOTE_ADDR" );
     }
     else
     {

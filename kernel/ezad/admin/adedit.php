@@ -113,7 +113,7 @@ if ( $Action == "Insert" )
     $ad->setClickPrice( $ClickPrice );
     $ad->setViewPrice( $ViewPrice );
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     if ( $file->getUploadedFile( "AdImage" ) )
     { 
@@ -127,7 +127,7 @@ if ( $Action == "Insert" )
         
         $ad->setImage( $image );
 
-        eZLog::writeNotice( "Picture added to ad: $AdID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "Picture added to ad: $AdID  from IP: $REMOTE_ADDR" );
     }
 
 //      $dateTime = new eZDateTime( 2000, 11, 13, 14, 0, 15 );
@@ -214,7 +214,7 @@ if ( $Action == "Update" )
 //      $dateTime = new eZDateTime( 2000, 11, 13, 14, 0, 15 );
 //      $ad->setOriginalPublishingDate( $dateTime );
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     if ( $file->getUploadedFile( "AdImage" ) )
     { 
@@ -228,7 +228,7 @@ if ( $Action == "Update" )
 
         $ad->setImage( $image );
 
-        eZLog::writeNotice( "Picture added to ad: $AdID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "Picture added to ad: $AdID  from IP: $REMOTE_ADDR" );
     }
 
     $ad->store();

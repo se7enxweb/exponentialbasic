@@ -63,7 +63,7 @@ if ( $Command == "data" ) // return all the data in the category
 }
 else if ( $Command == "storedata" )
 {
-    eZLog::writeNotice( "file: $ID" );
+    eZPBLog::writeNotice( "file: $ID" );
     if ( isset( $Data["Name"] ) and isset( $Data["Description"] ) )
     {
         $name = $Data["Name"]->value();

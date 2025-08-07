@@ -643,7 +643,7 @@ class eZTechRenderer
             }
             else
             {
-                eZLog::writeError( "Image nr: $imageID not found in article: $articleID from IP: $REMOTE_ADDR" );
+                eZPBLog::writeError( "Image nr: $imageID not found in article: $articleID from IP: $REMOTE_ADDR" );
             }
         }
         return $pageContent;

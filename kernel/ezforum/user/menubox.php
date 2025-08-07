@@ -26,13 +26,12 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& eZINI::instance( 'site.ini' );
-
+$ini = eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZForumMain", "Language" );
-
 $PageCaching = $ini->variable( "eZForumMain", "PageCaching" );
 
 unset( $menuCachedFile );
+
 // do the caching
 if ( $PageCaching == "enabled" )
 {
@@ -46,20 +45,20 @@ if ( $PageCaching == "enabled" )
     }
     else
     {
-        createPage( $menuCacheFile );
+        createPage( $menuCacheFile, $ini, $Language, $GlobalSiteDesign );
     }
 }
 else
 {
-    createPage();
+    createPage( false, $ini, $Language, $GlobalSiteDesign );
 }
 
-function createPage( $menuCacheFile = false )
+function createPage( $menuCacheFile = false, $ini = null, $Language = null, $GlobalSiteDesign = null)
 {
-    global $ini;
-    global $Language;
-   	global $GlobalSiteDesign;
-
+    // global $ini;
+    // global $Language;
+   	// global $GlobalSiteDesign;
+    ;
     // include_once( "classes/eztemplate.php" );
     // include_once( "classes/ezdb.php" );
     // include_once( "ezforum/classes/ezforumcategory.php" );

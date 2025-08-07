@@ -35,7 +35,7 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZBugMain", "Language" );
 

@@ -2,7 +2,7 @@
 // 
 // $Id: ezimagefile.php 6304 2001-07-29 23:31:17Z kaid $
 //
-// Definition of eZImageFile class
+// Definition of eZPBImageFile class
 //
 // Created on: <21-Sep-2000 11:22:21 bf>
 //
@@ -26,7 +26,7 @@
 //
 
 //!! eZCommon
-//! The eZImageFile class handles fileuploads, and image specific functions like scale.
+//! The eZPBImageFile class handles fileuploads, and image specific functions like scale.
 /*!
   <b>NOTE:</b> this class requires the ImageMagic convert program. You can
   get it from: http://www.wizards.dupont.com/cristy/ImageMagick.html
@@ -44,7 +44,7 @@
 
     And in the script_url you put code like:
   
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     // note: userfile is not a variable it's a "text" string. The value
     // must be the same as the one used in the input.
@@ -66,10 +66,10 @@
 //include_once( "kernel/classes/ezfile.php" );
     
 
-class eZImageFile extends eZFile
+class eZPBImageFile extends eZPBFile
 {
     /*!
-      Constructs a new eZImageFile object.
+      Constructs a new eZPBImageFile object.
     */
     function __construct()
     {
@@ -139,7 +139,7 @@ class eZImageFile extends eZFile
             $ret["supported"] = false;
         }
         if ( isset( $ret["supported"] ) and !$ret["supported"] and $use_default )
-            return eZImageFile::defaultInformation();
+            return eZPBImageFile::defaultInformation();
         return $ret;
     }
 
@@ -250,8 +250,8 @@ class eZImageFile extends eZFile
 
                 // some lame error handling
                 if (!is_file($watermark_image_br)) {
-                  // ezlog: new eZLog
-                  eZLog::writeNotice( "User Site: Could not locate watermark image file." );
+                  // ezlog: new eZPBLog
+                  eZPBLog::writeNotice( "User Site: Could not locate watermark image file." );
                   echo ('Could not locate watermark image file.');
                   print ('Could not locate watermark image file.');
                 }

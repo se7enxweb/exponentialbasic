@@ -26,7 +26,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZLinkMain", "Language" );
 $DOC_ROOT = $ini->variable( "eZLinkMain", "DocumentRoot" );

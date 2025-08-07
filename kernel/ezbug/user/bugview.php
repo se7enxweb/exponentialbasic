@@ -30,7 +30,7 @@
 // include_once( "classes/eztexttool.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZBugMain", "Language" );
 

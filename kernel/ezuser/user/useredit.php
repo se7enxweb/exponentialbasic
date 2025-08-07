@@ -99,8 +99,8 @@ if ( $Action == "Insert" )
                     // log in the user
                     $user->loginUser( $user );
 
-                    eZLog::writeNotice( "Anonyous user created: $FirstName $LastName ($Login) $Email from IP: $REMOTE_ADDR" );                    
-                    eZLog::writeNotice( "User login: $Login from IP: $REMOTE_ADDR" );
+                    eZPBLog::writeNotice( "Anonyous user created: $FirstName $LastName ($Login) $Email from IP: $REMOTE_ADDR" );                    
+                    eZPBLog::writeNotice( "User login: $Login from IP: $REMOTE_ADDR" );
 
 		            $RedirectURL="/user/withaddress/";  
 		    

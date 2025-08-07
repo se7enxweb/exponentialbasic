@@ -98,7 +98,7 @@ if ( $Action == "insert" )
                             $user->setInfoSubscription( false );
                         
                         $user->store();
-                        eZLog::writeNotice( "User created: " . $_POST['FirstName'] . " " . $_POST['LastName'] ." (" . $_POST['Login'] .") ". $_POST['Email'] . " " . $_POST['SimultaneousLogins'] . " from IP: " . $_SERVER['REMOTE_ADDR'] );
+                        eZPBLog::writeNotice( "User created: " . $_POST['FirstName'] . " " . $_POST['LastName'] ." (" . $_POST['Login'] .") ". $_POST['Email'] . " " . $_POST['SimultaneousLogins'] . " from IP: " . $_SERVER['REMOTE_ADDR'] );
                         
                         // Add user to groups
                         $GroupArray = array_unique( array_merge( $_POST['GroupArray'], $_POST['MainGroup'] ) );
@@ -115,7 +115,7 @@ if ( $Action == "insert" )
                             {
                                 $group->adduser( $user );
                                 $groupname = $group->name();
-                                eZLog::writeNotice( "User added to group: $groupname from IP: " . $_SERVER['REMOTE_ADDR'] );
+                                eZPBLog::writeNotice( "User added to group: $groupname from IP: " . $_SERVER['REMOTE_ADDR'] );
                             }
                         }
                         
@@ -213,7 +213,7 @@ if ( $Action == "update" )
                         }
                             
                         $user->store();
-                        eZLog::writeNotice( "User updated: $FirstName $LastName ($Login) $Email from IP: " . $_SERVER['REMOTE_ADDR'] );
+                        eZPBLog::writeNotice( "User updated: $FirstName $LastName ($Login) $Email from IP: " . $_SERVER['REMOTE_ADDR'] );
 
                         // Remove user from groups
                         $user->removeGroups();
@@ -239,7 +239,7 @@ if ( $Action == "update" )
                             {
                                 $group->adduser( $user );
                                 $groupname = $group->name();
-                                eZLog::writeNotice( "User added to group: $groupname from IP: " . $_SERVER['REMOTE_ADDR'] );
+                                eZPBLog::writeNotice( "User added to group: $groupname from IP: " . $_SERVER['REMOTE_ADDR'] );
                             }
                         }
 
@@ -286,7 +286,7 @@ if ( $Action == "delete" )
         
         $user->delete();
         
-        eZLog::writeNotice( "User deleted: $firstname $lastname ($login) $email $simultaneousLogins from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "User deleted: $firstname $lastname ($login) $email $simultaneousLogins from IP: $REMOTE_ADDR" );
         eZHTTPTool::header( "Location: /user/userlist/" );
         exit();
     }
@@ -309,7 +309,7 @@ if ( $Action == "DeleteUsers" )
                 if( $user->hasRootAccess() && !$currentUser->hasRootAccess() )
                 {
                     $currentLogin = $currentUser->login();
-                    eZLog::writeNotice( "$currentLogin failed to delete user $login since he can't delete users with root privelidges." );
+                    eZPBLog::writeNotice( "$currentLogin failed to delete user $login since he can't delete users with root privelidges." );
                 }
                 else
                 {
@@ -321,7 +321,7 @@ if ( $Action == "DeleteUsers" )
                 
                     $user->delete();
             
-                    eZLog::writeNotice( "User deleted: $firstname $lastname ($login) $email $simultaneousLogins from IP: $REMOTE_ADDR" );
+                    eZPBLog::writeNotice( "User deleted: $firstname $lastname ($login) $email $simultaneousLogins from IP: $REMOTE_ADDR" );
                 }
             }
         }

@@ -39,7 +39,7 @@ $Language = $ini->variable( "eZTradeMain", "Language" );
 
 if ( $Action == "Insert" )
 {
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     if ( $file->getUploadedFile( "userfile" ) )
     { 
@@ -64,7 +64,7 @@ if ( $Action == "Insert" )
 		eZObjectPermission::setPermission( -1, $image->id(), "imagecatalogue_image", "r" );
 		eZObjectPermission::setPermission( 1, $image->id(), "imagecatalogue_image", "w" );
 
-        eZLog::writeNotice( "Picture added to product: $ProductID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "Picture added to product: $ProductID  from IP: $REMOTE_ADDR" );
     }
     else
     {
@@ -78,7 +78,7 @@ if ( $Action == "Insert" )
 
 if ( $Action == "Update" )
 {
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     
     if ( $file->getUploadedFile( "userfile" ) )
     {

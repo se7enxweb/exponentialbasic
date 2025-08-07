@@ -264,7 +264,7 @@ if ( isset( $Action ) && $Action == "Insert" && !$error )
 
     $folder->addFile( $uploadedFile );
 
-    eZLog::writeNotice( "File added to file manager from IP: $REMOTE_ADDR" );
+    eZPBLog::writeNotice( "File added to file manager from IP: $REMOTE_ADDR" );
     eZHTTPTool::header( "Location: /filemanager/list/$FolderID/" );
     exit();
 }
@@ -293,7 +293,7 @@ if ( isset( $Action ) && $Action == "Update" && $error == false )
     
     $folder->addFile( $uploadedFile );
 
-    eZLog::writeNotice( "File added to file manager from IP: $REMOTE_ADDR" );
+    eZPBLog::writeNotice( "File added to file manager from IP: $REMOTE_ADDR" );
     eZHTTPTool::header( "Location: /filemanager/list/$FolderID/" );
 }
 

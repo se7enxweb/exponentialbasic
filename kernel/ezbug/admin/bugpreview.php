@@ -29,7 +29,7 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $Language =& $ini->variable( "eZBugMain", "Language" );
 

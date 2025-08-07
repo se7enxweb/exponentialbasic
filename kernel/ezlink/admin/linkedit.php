@@ -30,7 +30,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZLinkMain", "Language" );
 $error = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 $error_msg = false;
@@ -243,7 +243,7 @@ if ( $Action == "update" )
 
             $link->setUrl( $Url );
 
-            $file = new eZImageFile();
+            $file = new eZPBImageFile();
             if ( $file->getUploadedFile( "ImageFile" ) )
             {
                 $image = new eZImage();
@@ -399,7 +399,7 @@ if ( $Action == "insert" )
                 $tkeywords = $Keywords;
                 $tdescription = $Description;
             }
-            $file = new eZImageFile();
+            $file = new eZPBImageFile();
             if ( $file->getUploadedFile( "ImageFile" ) )
             {
                 $image = new eZImage( );

@@ -65,7 +65,7 @@ if ( $Action == "Insert" )
 		
         $event->addFile( $uploadedFile );
 
-        eZLog::writeNotice( "File added to event $EventID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "File added to event $EventID  from IP: $REMOTE_ADDR" );
     }
     else
     {

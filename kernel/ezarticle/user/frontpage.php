@@ -259,7 +259,7 @@ foreach ( $page_elements as $element )
             $article =& $articleList[$articleOffset];
 
             if ( is_a( $article, "eZArticle" ) )
-                $pageContents .= renderFrontpageArticle( $t, $locale, $article );
+                $pageContents .= renderFrontpageArticle( $t, $locale, $article, $ini, $counter, $rows, $GrayScaleImageList );
 
             $articleOffset++;
         }break;
@@ -271,7 +271,7 @@ foreach ( $page_elements as $element )
             $article2 =& $articleList[$articleOffset];
 
             if ( is_a( $article1, "eZArticle" ) && is_a( $article2, "eZArticle" ) )
-                $pageContents .= renderFrontpageArticleDouble( $t, $locale, $article1, $article2 );
+                $pageContents .= renderFrontpageArticleDouble( $t, $locale, $article1, $article2, $ini, $counter, $rows, $GrayScaleImageList );
 
             $articleOffset++;
         }break;
@@ -281,7 +281,7 @@ foreach ( $page_elements as $element )
             $article =& $articleList[$articleOffset];
 
             if ( is_a( $article, "eZArticle" ) )
-                $pageContents .= renderShortSingleArticle( $t, $locale, $article );
+                $pageContents .= renderShortSingleArticle( $t, $locale, $article, $ini, $counter, $rows, $GrayScaleImageList );
 
             $articleOffset++;
         }break;
@@ -290,7 +290,7 @@ foreach ( $page_elements as $element )
         {
             $ad =& $adList[$adOffset];
             if ( is_a( $ad, "eZAd" ) )
-                $pageContents .= renderAd( $t, $locale, $ad );
+                $pageContents .= renderAd( $t, $locale, $ad, $ini, $counter, $rows, $GrayScaleImageList );
 
             $adOffset++;
         }break;
@@ -299,7 +299,7 @@ foreach ( $page_elements as $element )
         {
             $product =& $productList[$productOffset];
             if ( is_a( $product, "eZProduct" ) )
-                $pageContents .= renderFrontpageProduct( $t, $locale, $product );
+                $pageContents .= renderFrontpageProduct( $t, $locale, $product, $ini, $counter, $rows, $GrayScaleImageList );
 
             $productOffset++;
         }break;
@@ -311,7 +311,7 @@ foreach ( $page_elements as $element )
             $product2 =& $productList[$productOffset];
 
             if ( is_a( $product1, "eZProduct" ) && is_a( $product2, "eZProduct" ) )
-                $pageContents .= renderFrontpageProductDouble( $t, $locale, $product1, $product2 );
+                $pageContents .= renderFrontpageProductDouble( $t, $locale, $product1, $product2, $ini, $counter, $rows, $GrayScaleImageList );
 
             $productOffset++;
         }break;
@@ -322,9 +322,9 @@ foreach ( $page_elements as $element )
 $t->set_var( "element_list", $pageContents );
 
 
-function &renderFrontpageArticle( &$t, &$locale, &$article )
+function &renderFrontpageArticle( &$t, &$locale, &$article, &$ini = null, $counter = 0, $rows = null, $GrayScaleImageList = null )
 {
-    global $ini, $counter, $rows, $GrayScaleImageList;
+    // global $ini, $counter, $rows, $GrayScaleImageList;
 
     $DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
 
@@ -435,9 +435,9 @@ function &renderFrontpageArticle( &$t, &$locale, &$article )
     return $t->parse( "output", "one_column_article_tpl" );
 }
 
-function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
+function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2, &$ini = null, $counter = 0, $rows = null, $GrayScaleImageList = null )
 {
-    global $ini, $counter, $rows, $GrayScaleImageList;
+    // global $ini, $counter, $rows, $GrayScaleImageList;
     $aid = $article1->id();
 
     $DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
@@ -640,9 +640,9 @@ function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
     return $t->parse( "output", "two_column_article_tpl" );
 }
 
-function &renderShortSingleArticle( &$t, &$locale, &$article )
+function &renderShortSingleArticle( &$t, &$locale, &$article, &$ini = null, $counter = 0, $rows = null, $GrayScaleImageList = null )
 {
-    global $ini, $counter, $rows, $GrayScaleImageList;
+    // global $ini, $counter, $rows, $GrayScaleImageList;
 
     $aid = $article->id();
 
@@ -692,9 +692,9 @@ function &renderShortSingleArticle( &$t, &$locale, &$article )
     return $t->parse( "output", "one_short_article_tpl" );
 }
 
-function &renderAd( &$t, &$locale, &$ad )
+function &renderAd( &$t, &$locale, &$ad, &$ini = null )
 {
-    global $ini;
+    // global $ini;
 
     if ( $ad->useHTML() )
     {
@@ -728,9 +728,9 @@ function &renderAd( &$t, &$locale, &$ad )
 }
 
 
-function &renderFrontpageProduct( &$t, &$locale, &$product )
+function &renderFrontpageProduct( &$t, &$locale, &$product, &$ini = null )
 {
-    global $ini;
+    // global $ini;
     $i=0;
     $pid = $product->id();
 
@@ -828,9 +828,9 @@ function &renderFrontpageProduct( &$t, &$locale, &$product )
 }
 
 
-function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
+function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2, &$ini = null )
 {
-    global $ini;
+    // global $ini;
     $pid = $product1->id();
 
     $PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" );

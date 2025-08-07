@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZLinkMain", "Language" );
 $UserLimit = $ini->variable( "eZLinkMain", "UserSearchLimit" );
 

@@ -65,7 +65,7 @@ class eZFreeTradeImport
                     if ( file_exists( $imageFromFS ) )
                     {
                         $image = new eZImage();
-                        $file = new eZImageFile();
+                        $file = new eZPBImageFile();
                         if ( $file->getFile( $imageFromFS ) )
                         {
                             $image->setName( "Image" );
@@ -158,7 +158,7 @@ class eZFreeTradeImport
                     if ( file_exists( $imageFromFS ) )
                     {
                         $image = new eZImage();
-                        $file = new eZImageFile();
+                        $file = new eZPBImageFile();
                         if ( $file->getFile( $imageFromFS ) )
                         {
                             $image->setName( "Image" );

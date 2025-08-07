@@ -607,6 +607,24 @@ class eZSession
         return $session;
     }
 
+    /**
+     * Writes session data and stops the session, if not already stopped.
+     *
+     * @since 4.1
+     * @return bool Depending on if session was stopped.
+     */
+    static public function stop()
+    {
+        // if ( !self::$hasStarted )
+        // {
+        //      return false;
+        // }
+        session_write_close();
+        //self::$hasStarted = false;
+        //self::$handlerInstance = null;
+        return true;
+    }
+
     var $ID;
     var $Hash;
     var $Modified;

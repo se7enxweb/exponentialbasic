@@ -49,7 +49,7 @@ if( isset( $Ok ) )
 
         $mail->addFile( $uploadedFile );
 
-        eZLog::writeNotice( "File added to mail $MailID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "File added to mail $MailID  from IP: $REMOTE_ADDR" );
     }
     else
     {

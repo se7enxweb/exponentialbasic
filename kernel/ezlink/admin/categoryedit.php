@@ -89,7 +89,7 @@ if ( isset( $Action ) && $Action == "insert" )
             $category->setParent( $ParentCategory );
             $ttile = "";
 
-            $file = new eZImageFile();
+            $file = new eZPBImageFile();
             if ( $file->getUploadedFile( "ImageFile" ) )
             {
                 $image = new eZImage( );
@@ -220,7 +220,7 @@ if ( isset( $Action ) && $Action == "update" )
             $category->setSectionID( $SectionID );
             $category->setParent( $ParentCategory );
 
-            $file = new eZImageFile();
+            $file = new eZPBImageFile();
             if ( $file->getUploadedFile( "ImageFile" ) )
             {
                 $image = new eZImage( );

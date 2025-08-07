@@ -84,14 +84,14 @@ if ( $Action == "insert" )
 
             $category = new eZForumCategory( $CategorySelectID );
             $category->addForum( $forum );
-            eZLog::writeNotice( "Forum created: $Name from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Forum created: $Name from IP: $REMOTE_ADDR" );
 
             eZHTTPTool::header( "Location: /forum/forumlist/$CategorySelectID" );
             exit();
         }
         else
         {
-            eZLog::writeWarning( "Forum not created: missing data from IP: $REMOTE_ADDR" );
+            eZPBLog::writeWarning( "Forum not created: missing data from IP: $REMOTE_ADDR" );
 
             $error_msg = $error->variable( "strings", "error_missingdata" );
         }
@@ -147,14 +147,14 @@ if ( $Action == "update" )
             $category = new eZForumCategory( $CategorySelectID );
             $category->addForum( $forum );
 
-            eZLog::writeNotice( "Forum updated: $Name from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Forum updated: $Name from IP: $REMOTE_ADDR" );
 
             eZHTTPTool::header( "Location: /forum/forumlist/$CategorySelectID" );
             exit();
         }
         else
         {
-            eZLog::writeWarning( "Forum not updated: missing data from IP: $REMOTE_ADDR" );
+            eZPBLog::writeWarning( "Forum not updated: missing data from IP: $REMOTE_ADDR" );
             $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
@@ -176,14 +176,14 @@ if ( $Action == "delete" )
             $forumName = $forum->name();
 
             $forum->delete();
-            eZLog::writeNotice( "Forum deleted: $forumName from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Forum deleted: $forumName from IP: $REMOTE_ADDR" );
 
             eZHTTPTool::header( "Location: /forum/forumlist/" );
             exit();
         }
         else
         {
-            eZLog::writeWarning( "Forum not deleted: id not found from IP: $REMOTE_ADDR" );
+            eZPBLog::writeWarning( "Forum not deleted: id not found from IP: $REMOTE_ADDR" );
             $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
@@ -208,7 +208,7 @@ if ( $Action == "DeleteForums" )
 
             $forum->delete();
 
-            eZLog::writeNotice( "Forum deleted: $forumName from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Forum deleted: $forumName from IP: $REMOTE_ADDR" );
 
         }
         eZHTTPTool::header( "Location: /forum/forumlist/$categoryID/" );

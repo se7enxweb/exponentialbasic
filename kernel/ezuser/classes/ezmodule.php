@@ -251,6 +251,7 @@ class eZModule
 
     var $ID;
     var $Name;
+    static $useExceptions;
 }
 
 ?>

@@ -31,7 +31,7 @@ $GlobalSectionID = $ini->variable( "eZForumMain", "DefaultSection" );
 
 function &errorPage( $PrimaryName, $PrimaryURL, $type )
 {
-    $ini =& $GLOBALS["GlobalSiteIni"];
+    $ini =& eZINI::instance( 'site.ini' );
 
     $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                          "kernel/ezforum/user/intl", $ini->variable( "eZForumMain", "Language" ), "message.php" );

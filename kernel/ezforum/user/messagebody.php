@@ -26,7 +26,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezlocale.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZCalendarMain", "Language" );
 $Locale = new eZLocale( $Language );
 

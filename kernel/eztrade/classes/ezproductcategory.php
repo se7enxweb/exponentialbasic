@@ -708,6 +708,7 @@ class eZProductCategory
            }
            break;
 
+           case "alphanumeric_asc" :
            case "alpha" :
            {
                $OrderBy = "eZTrade_Product.Name ASC";

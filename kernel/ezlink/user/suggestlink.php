@@ -190,7 +190,7 @@ if ( isset( $Action ) && $Action == "update" )
 
         $link->setUrl( $Url );
 
-        $file = new eZImageFile();
+        $file = new eZPBImageFile();
         if ( $file->getUploadedFile( "ImageFile" ) )
         {
      	    $image = new eZImage( );
@@ -273,7 +273,7 @@ if ( isset( $Action ) && $Action == "insert" )
             $tdescription = $Description;
         }
 
-        $file = new eZImageFile();
+        $file = new eZPBImageFile();
         if ( $file->getUploadedFile( "ImageFile" ) )
         {
             $image = new eZImage( );

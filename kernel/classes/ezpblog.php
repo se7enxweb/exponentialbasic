@@ -1,8 +1,8 @@
 <?php
 // 
-// $Id: ezlog.php 6304 2001-07-29 23:31:17Z kaid $
+// $Id: eZPBLog.php 6304 2001-07-29 23:31:17Z kaid $
 //
-// Definition of eZLog class
+// Definition of eZPBLog class
 //
 // Created on: <15-Oct-2000 13:28:44 bf>
 //
@@ -26,9 +26,9 @@
 //
 
 //!! eZCommon
-//! The eZLog class handles streaming of information to a log file.
+//! The eZPBLog class handles streaming of information to a log file.
 /*!
-  The eZLog class enables simple logging of information to a log file.
+  The eZPBLog class enables simple logging of information to a log file.
   It enables you to have your error/warning messages in one place, so you
   can analyze later.
 
@@ -41,12 +41,12 @@
   Example
   \code
   // include the class
-  include_once( "kernel/classes/ezlog.php" );
+  include_once( "kernel/classes/eZPBLog.php" );
 
   // Create a new log object.
   // Since we do not provide an argument the LogFile is read
   // from site.ini
-  $log = new eZLog();
+  $log = new eZPBLog();
 
   // write out some notice, warning and error information.
   $log->notice( "This is a notice." );
@@ -57,24 +57,24 @@
   $log->close();
 
   // A convenient function for simple use
-  eZLog::write( "A notice" );
-  eZLog::write( "A warning", "warning" );
-  eZLog::write( "An error", "error" );
+  eZPBLog::write( "A notice" );
+  eZPBLog::write( "A warning", "warning" );
+  eZPBLog::write( "An error", "error" );
 
   // And three direct calls, you decide which is simpler to use
-  eZLog::writeNotice( "A notice" );
-  eZLog::writeWarning( "A warning" );
-  eZLog::writeError( "An error" );
+  eZPBLog::writeNotice( "A notice" );
+  eZPBLog::writeWarning( "A warning" );
+  eZPBLog::writeError( "An error" );
 
   
   \endcode
   
 */
 
-class eZLog
+class eZPBLog
 {
     /*!
-      Creates a new eZLog object. Opens the log file in append mode. If
+      Creates a new eZPBLog object. Opens the log file in append mode. If
       no valid filename is given as argument the log file is read from
       the site.ini file.
     */
@@ -166,7 +166,7 @@ class eZLog
      */
     static public function writeNotice( $notice )
     {
-        $log = new eZLog();
+        $log = new eZPBLog();
         $log->notice( $notice );
         $log->close();
     }
@@ -177,7 +177,7 @@ class eZLog
      */
     static public function writeWarning( $warning )
     {
-        $log = new eZLog();
+        $log = new eZPBLog();
         $log->warning( $warning );
         $log->close();
     }
@@ -188,7 +188,7 @@ class eZLog
      */
     function writeError( $error )
     {
-        $log = new eZLog();
+        $log = new eZPBLog();
         $log->error( $error );
         $log->close();
     }
@@ -200,13 +200,13 @@ class eZLog
 
       This function defaults to notice if no type argument is given.
     */
-    function write( $message, $type="" )
+    public static function write( $message, $type="" )
     {
         switch ( $type )
         {
             case "warning" :
             {
-                $log = new eZLog();
+                $log = new eZPBLog();
                 $log->warning( $message );
                 $log->close();
             }
@@ -214,7 +214,7 @@ class eZLog
 
             case "error" :
             {
-                $log = new eZLog();
+                $log = new eZPBLog();
                 $log->error( $message );
                 $log->close();
             }
@@ -222,7 +222,7 @@ class eZLog
 
             case "notice" :
             {
-                $log = new eZLog();
+                $log = new eZPBLog();
                 $log->notice( $message );
                 $log->close();
             }
@@ -230,7 +230,7 @@ class eZLog
 
             default :
             {
-                $log = new eZLog();
+                $log = new eZPBLog();
                 $log->notice( $message );
                 $log->close();
             }

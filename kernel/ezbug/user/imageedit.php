@@ -43,7 +43,7 @@ $session = new eZSession();
 
 if ( $Action == "Insert" )
 {
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     if ( $file->getUploadedFile( "userfile" ) )
     {
@@ -57,7 +57,7 @@ if ( $Action == "Insert" )
             $image->store();
         
             $bug->addImage( $image );
-            eZLog::writeNotice( "Picture added to bug: $BugID  from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Picture added to bug: $BugID  from IP: $REMOTE_ADDR" );
         }
     }
     else
@@ -72,7 +72,7 @@ if ( $Action == "Insert" )
 
 if ( $Action == "Update" )
 {
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     
     if ( $file->getUploadedFile( "userfile" ) )
     {

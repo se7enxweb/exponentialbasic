@@ -344,7 +344,7 @@ class eZGroupEvent
             $stamp   = $date->year() . $month . $day;
             $longstamp = $stamp . '235959';
 			//include_once( "classes/INIFile.php" );
-			$ini =& $GLOBALS["GlobalSiteIni"];
+			$ini =& eZINI::instance( 'site.ini' );
 			
 			if( $ini->variable( "eZGroupEventCalendarMain", "SubGroupSelect" ) == "enabled" )
 			{
@@ -425,7 +425,7 @@ class eZGroupEvent
             $groupID = $group->id();
 
 			//include_once( "classes/INIFile.php" );
-			$ini =& $GLOBALS["GlobalSiteIni"];
+			$ini =& eZINI::instance( 'site.ini' );
 			
 			if( $ini->variable( "eZGroupEventCalendarMain", "SubGroupSelect" ) == "enabled" )
 			{
@@ -1186,7 +1186,7 @@ class eZGroupEvent
   	 
     $ret = false;  	 
     // include_once( "classes/INIFile.php" );
-    $ini =& $GLOBALS["GlobalSiteIni"];
+    $ini =& eZINI::instance( 'site.ini' );
     // site variables
     $siteName = $ini->variable( "site", "SiteURL" ); 
     $siteAdministrator = $ini->variable( "eZUserMain", "ReminderMailFromAddress" );

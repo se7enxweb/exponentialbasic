@@ -114,7 +114,7 @@ if ( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action == "
     }
     $type->setParentID( $SelectParentID );
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     if ( $file->getUploadedFile( "ImageFile" ) )
     {
         $image = new eZImage( );

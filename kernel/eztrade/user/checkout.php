@@ -350,7 +350,7 @@ if(empty($currentTypeID[0]))
 
     if ( !is_a( $user, "eZUser" ) )
     {
-        eZLog::writeWarning( "user/payment.php: Got paymentSuccess without user logged in" );
+        eZPBLog::writeWarning( "user/payment.php: Got paymentSuccess without user logged in" );
         eZHTTPTool::header( "Location: /trade/cart/" );
         exit();
     }

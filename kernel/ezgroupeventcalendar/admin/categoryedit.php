@@ -88,7 +88,7 @@ if ( $Action == "Delete" )
 
             $category->delete();
 
-            eZLog::writeNotice( "Appointment Category deleted: $categoryName from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Appointment Category deleted: $categoryName from IP: $REMOTE_ADDR" );
         }
         eZHTTPTool::header( "Location: /groupeventcalendar/categorylist/" );
         exit();

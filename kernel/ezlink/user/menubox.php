@@ -45,20 +45,20 @@ if ( $PageCaching == "enabled" )
     }
     else
     {
-        createLinkMenu( $menuCacheFile );
+        createLinkMenu( $menuCacheFile, $ini, $Language, $GlobalSiteDesign );
     }
 }
 else
 {
-    createLinkMenu();
+    createLinkMenu( false, $ini, $Language, $GlobalSiteDesign );
 }
 
-function createLinkMenu( $menuCacheFile=false )
+function createLinkMenu( $menuCacheFile = false, $ini = null, $Language = null, $GlobalSiteDesign = null)
 {
-    global $ini;
-    global $Language;
-    global $menuCachedFile;
-    global $GlobalSiteDesign;
+    // global $ini;
+    // global $Language;
+    // global $menuCachedFile;
+    // global $GlobalSiteDesign;
 
     // include_once( "classes/eztemplate.php" );
 

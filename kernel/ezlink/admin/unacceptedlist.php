@@ -28,7 +28,7 @@
 // include_once( "classes/ezlist.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZLinkMain", "Language" );
 $AdminLimit = $ini->variable( "eZLinkMain", "AdminAcceptLimit" );

@@ -72,7 +72,7 @@ if ( $Action == "Insert" )
             // add the address to the user.
             $user->addAddress( $address );
 
-            eZLog::writeNotice( "Anonyous user added address:  (" . $user->login() . ") from IP: $REMOTE_ADDR" );                    
+            eZPBLog::writeNotice( "Anonyous user added address:  (" . $user->login() . ") from IP: $REMOTE_ADDR" );                    
             
             if ( ( isset( $RedirectURL ) ) && ( $RedirectURL != "" ) )
             {

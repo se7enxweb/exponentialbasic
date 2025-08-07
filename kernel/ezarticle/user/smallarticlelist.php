@@ -51,25 +51,26 @@ if ( $PageCaching == "enabled" )
     }
     else
     {
-        createSmallArticleList( true );
+        createSmallArticleList( true, $menuCachedFile, $ini, $Language, $GlobalSiteDesign, $GlobalSectionID, $CategoryID, $Offset, $Limit, $noItem, $DefaultLinkText );
     }            
 }
 else
 {
-    createSmallArticleList();
+    createSmallArticleList(false, false, $ini, $Language, $GlobalSiteDesign, $GlobalSectionID, $CategoryID, $Offset, $Limit, $noItem, $DefaultLinkText );
 }
 
-function createSmallArticleList( $generateStaticPage = false )
+function createSmallArticleList( $generateStaticPage = false, $menuCachedFile = false, $ini = null, $Language = null, $GlobalSiteDesign = null,
+            $GlobalSectionID = null, $CategoryID = null, $Offset = null, $Limit = null, $noItem = null, $DefaultLinkText = null )
 {
-    global $ini;
-    global $menuCachedFile;
-    global $noItem;
-	global $GlobalSiteDesign;
-    global $CategoryID;
-    global $Offset;
-    global $Limit;
-    global $Language;
-	global $DefaultLinkText;
+    // global $ini;
+    // global $menuCachedFile;
+    // global $noItem;
+	// global $GlobalSiteDesign;
+    // global $CategoryID;
+    // global $Offset;
+    // global $Limit;
+    // global $Language;
+	// global $DefaultLinkText;
 
     $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                          "kernel/ezarticle/user/intl/", $Language, "smallarticlelist.php" );

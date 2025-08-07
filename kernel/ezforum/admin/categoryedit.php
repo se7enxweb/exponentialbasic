@@ -71,12 +71,12 @@ if ( $Action == "insert" )
             $cat->setSectionID( $SectionID );
    
             $cat->store();
-            eZLog::writeNotice( "Forum category created: $Name from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Forum category created: $Name from IP: $REMOTE_ADDR" );
             eZHTTPTool::header( "Location: /forum/categorylist/" );
         }
         else
         {
-            eZLog::writeWarning( "Forum category not created: missing data from IP: $REMOTE_ADDR" );
+            eZPBLog::writeWarning( "Forum category not created: missing data from IP: $REMOTE_ADDR" );
             $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
@@ -107,12 +107,12 @@ if ( $Action == "delete" )
             $cat->get( $CategoryID );
             $categoryName = $cat->name();
             $cat->delete( );
-            eZLog::writeNotice( "Forum category deleted: $categoryName from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Forum category deleted: $categoryName from IP: $REMOTE_ADDR" );
             eZHTTPTool::header( "Location: /forum/categorylist/" );
         }
         else
         {
-            eZLog::writeWarning( "Forum category not deleted: id not found from IP: $REMOTE_ADDR" );
+            eZPBLog::writeWarning( "Forum category not deleted: id not found from IP: $REMOTE_ADDR" );
             $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
@@ -144,7 +144,7 @@ if ( $Action == "DeleteCategories" )
                 $cat = new eZForumCategory( $CategoryID );
                 $categoryName = $cat->name();
                 $cat->delete( );
-                eZLog::writeNotice( "Forum category deleted: $categoryName from IP: $REMOTE_ADDR" );
+                eZPBLog::writeNotice( "Forum category deleted: $categoryName from IP: $REMOTE_ADDR" );
             }
             eZHTTPTool::header( "Location: /forum/categorylist/" );
             exit();
@@ -181,12 +181,12 @@ if ( $Action == "update" )
             $cat->setDescription( $Description );
             $cat->setSectionID( $SectionID );
             $cat->store();
-            eZLog::writeNotice( "Forum category updated: $Name from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Forum category updated: $Name from IP: $REMOTE_ADDR" );
             eZHTTPTool::header( "Location: /forum/categorylist/" );
         }
         else
         {
-            eZLog::writeWarning( "Forum category not updated: missing data from IP: $REMOTE_ADDR" );
+            eZPBLog::writeWarning( "Forum category not updated: missing data from IP: $REMOTE_ADDR" );
             $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }

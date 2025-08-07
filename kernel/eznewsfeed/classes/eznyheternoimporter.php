@@ -74,7 +74,7 @@ class eZNyheterNOImporter
 
         if (!($fp = @fopen($site, "r"))) {
           // include_once( "classes/ezlog.php" );
-	  eZLog::writeWarning( "RSS read failure: ".$this->Site."\n" );
+	  eZPBLog::writeWarning( "RSS read failure: ".$this->Site."\n" );
           return false;
         }
         

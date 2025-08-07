@@ -34,7 +34,7 @@
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZBugMain", "Language" );
 

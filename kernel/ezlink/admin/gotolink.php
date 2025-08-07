@@ -24,7 +24,7 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 // include_once( "ezlink/classes/ezlinkgroup.php" );
 // include_once( "ezlink/classes/ezlink.php" );

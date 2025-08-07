@@ -92,7 +92,7 @@ $URL .= '&no_shipping=1';
 
 //include_once( "classes/ezlog.php" );
 //$writeURL = print_r($URL, true);
-//eZLog::writeNotice( $writeURL."\n" );	
+//eZPBLog::writeNotice( $writeURL."\n" );	
 
 eZHTTPTool::header("Location: $URL");
 

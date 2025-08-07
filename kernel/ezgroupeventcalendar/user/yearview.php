@@ -31,7 +31,7 @@
 // include_once( "classes/ezdatetime.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $SiteDesign = $ini->variable( "site", "SiteDesign" );
 $Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );

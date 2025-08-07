@@ -35,7 +35,7 @@
 
 $ini =& eZINI::instance( 'site.ini' );
 
-if( strstr( $_SERVER['HTTP_REFERER'], $ini->variable( "eZFormMain", "FromURL" )) || strstr($_SERVER['HTTP_REFERER, $ini->variable( "eZFormMain", "FromURL" )) || strstr($HTTP_REFERER, $ini->variable( "eZFormMain", "FromURL2" )) )
+if( strstr( $_SERVER['HTTP_REFERER'], $ini->variable( "eZFormMain", "FromURL" )) || strstr($_SERVER['HTTP_REFERER'], $ini->variable( "eZFormMain", "FromURL" )) || strstr($HTTP_REFERER, $ini->variable( "eZFormMain", "FromURL2" )) )
 {
   //pass-through
 } else {
@@ -95,13 +95,13 @@ $t->set_var( "form_name", $form->name() );
 $t->set_var( "form_completed_page", $form->completedPage() );
 $t->set_var( "form_instruction_page", $form->instructionPage() );
 
-$renderer =& new eZFormRenderer( $form );
+$renderer = new eZFormRenderer( $form );
 $output =& $renderer->renderForm( $form );
 $t->set_var( "form", $output );
 
 if ( isset( $OK ) )
 {
-    $output =& $renderer->verifyForm();
+    $output = $renderer->verifyForm();
     if ( $output == "" )
     {
         $renderer->sendForm();

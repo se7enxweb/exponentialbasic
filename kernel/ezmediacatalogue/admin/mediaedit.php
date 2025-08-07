@@ -341,7 +341,7 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
         {
             eZMediaCategory::addMedia( $media, $categoryItem );
         }
-        eZLog::writeNotice( "Video added to catalogue: $media->name() from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "Video added to catalogue: $media->name() from IP: $REMOTE_ADDR" );
     }
     elseif ( isset( $Action ) && $Action == "Update" )
     {

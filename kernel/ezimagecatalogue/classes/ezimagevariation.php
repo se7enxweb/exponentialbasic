@@ -197,11 +197,11 @@ class eZImageVariation
                 if ( !$image->fileExists( true ) )
                     return $allow_error ? false : eZImageVariation::createErrorImage();
 
-                $imageFile = new eZImageFile();
+                $imageFile = new eZPBImageFile();
                 $imageFile->getFile( $image->filePath( true ) );
                 $imageFile->setType( "image/jpeg" );
 
-                $info = eZImageFile::information( $image->originalFileName(), true );
+                $info = eZPBImageFile::information( $image->originalFileName(), true );
                 $suffix = $info["suffix"];
                 $postfix = $info["dot-suffix"];
                 $imageFile->setType( $info["image-type"] );

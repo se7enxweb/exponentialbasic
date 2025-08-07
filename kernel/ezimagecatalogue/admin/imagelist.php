@@ -129,7 +129,7 @@ function syncDir( $root, $category )
              $author = new eZAuthor( 1 );
              $image->setPhotographer( $author );
              //print( "adding image: " . $root . $entry . "<br>" );
-             $file = new eZImageFile();
+             $file = new eZPBImageFile();
              $file->getFile( $root . $entry );
              $image->store();
              $image->setImage( $file, $image->id() );

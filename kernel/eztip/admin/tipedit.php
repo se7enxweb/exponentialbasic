@@ -107,7 +107,7 @@ if ( $Action == "Insert" )
     
     $tip->setURL( $real_url );
     
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     if ( $file->getUploadedFile( "TipImage" ) )
     { 
@@ -121,7 +121,7 @@ if ( $Action == "Insert" )
         
         $tip->setImage( $image );
 
-        eZLog::writeNotice( "Picture added to ad: $TipID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "Picture added to ad: $TipID  from IP: $REMOTE_ADDR" );
     }
 
 //      $dateTime = new eZDateTime( 2000, 11, 13, 14, 0, 15 );
@@ -208,7 +208,7 @@ if ( $Action == "Update" )
 //      $dateTime = new eZDateTime( 2000, 11, 13, 14, 0, 15 );
 //      $tip->setOriginalPublishingDate( $dateTime );
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     if ( $file->getUploadedFile( "TipImage" ) )
     { 
@@ -222,7 +222,7 @@ if ( $Action == "Update" )
 
         $tip->setImage( $image );
 
-        eZLog::writeNotice( "Picture added to ad: $TipID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "Picture added to ad: $TipID  from IP: $REMOTE_ADDR" );
     }
 	if (!isSet($Cancel))
 	{

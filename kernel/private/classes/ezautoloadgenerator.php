@@ -661,7 +661,11 @@ class eZAutoloadGenerator
                                 $this->incrementProgressStat( self::OUTPUT_PROGRESS_PHASE2, 'classCount' );
 
                                 // CLASS_TOKEN - WHITESPACE_TOKEN - TEXT_TOKEN (containing class name)
-                                $className = $tokens[$key+2][1];
+                                if( isset( $tokens[$key+2] ) && is_array( $tokens[$key+2] ) )
+                                    $className = $tokens[$key+2][1];
+                                else
+                                    $className = $tokens[$key+1][1];
+                                
                                 if ( $namespace !== null )
                                 {
                                     $className = "$namespace\\\\$className";

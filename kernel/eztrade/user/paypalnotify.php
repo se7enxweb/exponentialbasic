@@ -303,7 +303,7 @@ $mail->setSubject( "Paypal payment warning from ".$SiteURL );
 $mail->setBody( $warningMail );
 $mail->send();
 // write same error data to error.log file
-eZLog::writeWarning( "Paypal IPN failure!\n".$warningMail."\n" );
+eZPBLog::writeWarning( "Paypal IPN failure!\n".$warningMail."\n" );
 }
 // localize Paypal variables
 $paypal->setInvoice($_PAYPAL['invoice']);
@@ -339,7 +339,7 @@ $paypal->store();
 
 	/* if ($confirmation)
 	if ($result)
-		eZLog::writeNotice( "Paypal IPN success!  OrderID: ".$orderID."  SessionID: ".$sessionID."\n" );	
+		eZPBLog::writeNotice( "Paypal IPN success!  OrderID: ".$orderID."  SessionID: ".$sessionID."\n" );	
 	*/
 
 
@@ -384,7 +384,7 @@ $paypal->store();
 	$mail->setBody( $warningMail );
 	$mail->send();
 	// write same error data to error.log file
-	eZLog::writeWarning( "Paypal IPN failure!\n".$warningMail."\n" );
+	eZPBLog::writeWarning( "Paypal IPN failure!\n".$warningMail."\n" );
 
 			}
 

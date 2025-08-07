@@ -46,21 +46,22 @@ if ( $PageCaching == "enabled" )
     }
     else
     {
-        createPollMenu( true );
-    }            
+        createPollMenu( true, $menuCachedFile, $ini, $GlobalSiteDesign, $PollID, $noItem );
+    }
 }
 else
 {
-    createPollMenu();
+    createPollMenu(false, false, $ini, $GlobalSiteDesign, $PollID, $noItem );
 }
 
-function createPollMenu( $generateStaticPage = false )
+function createPollMenu( $generateStaticPage = false, $menuCachedFile = false, $ini = null, $GlobalSiteDesign = null,
+            $PollID = null, $noItem = null )
 {
-    global $ini;
-    global $menuCachedFile;
-    global $noItem;
-    global $GlobalSiteDesign;
-    global $PollID;
+    // global $ini;
+    // global $menuCachedFile;
+    // global $noItem;
+    // global $GlobalSiteDesign;
+    // global $PollID;
 
     $Language = $ini->variable( "eZPollMain", "Language" );
     

@@ -23,20 +23,20 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-include_once( "classes/INIFile.php" );
-include_once( "classes/eztemplate.php" );
-include_once( "classes/ezlocale.php" );
-include_once( "classes/ezcurrency.php" );
-include_once( "classes/eztexttool.php" );
-include_once( "classes/ezcachefile.php" );
-include_once( "classes/ezlist.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "classes/eztemplate.php" );
+// include_once( "classes/ezlocale.php" );
+// include_once( "classes/ezcurrency.php" );
+// include_once( "classes/eztexttool.php" );
+// include_once( "classes/ezcachefile.php" );
+// include_once( "classes/ezlist.php" );
 
-include_once( "eztrade/classes/ezproduct.php" );
-include_once( "eztrade/classes/ezproductcategory.php" );
-include_once( "eztrade/classes/ezpricegroup.php" );
+// include_once( "eztrade/classes/ezproduct.php" );
+// include_once( "eztrade/classes/ezproductcategory.php" );
+// include_once( "eztrade/classes/ezpricegroup.php" );
 
-// sections
-include_once( "ezsitemanager/classes/ezsection.php" );
+// // sections
+// include_once( "ezsitemanager/classes/ezsection.php" );
 
 
 if ( $CategoryID != 0 )
@@ -63,14 +63,12 @@ $ThumbnailImageWidth = $ini->variable( "eZTradeMain", "ThumbnailImageWidth" );
 $ThumbnailImageHeight = $ini->variable( "eZTradeMain", "ThumbnailImageHeight" );
 
 
-$t = new eZTemplate( "eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
-                     "eztrade/user/intl/", $Language, "productgallery.php" );
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
+                     "kernel/eztrade/user/intl/", $Language, "productgallery.php" );
 
 $t->set_file( "product_gallery_page_tpl", "productgallery.tpl" );
 
-
-$t->set_block( "product_gallery_page_tpl", "product_catalog_number_tpl", "product_catalog_number" );
-
+//$t->set_block( "product_gallery_page_tpl", "product_catalog_number_tpl", "product_catalog_number" );
 //$t->set_block( "product_tpl", "product_catalog_number_tpl", "product_catalog_number" );
 
 $t->set_block( "product_gallery_page_tpl", "price_tpl", "price" );
@@ -175,7 +173,7 @@ if ( !isSet( $Offset ) or !is_numeric( $Offset ) )
 $category->setSortMode(5);
 $TotalTypes =& $category->productCount( $category->sortMode(), false );
 //$productgallery =& $category->activeProducts( $category->sortMode(), $Offset, $Limit );
-$productgallery =& $category->activeProducts( "alphanumeric_asc", $Offset, $Limit );
+$productgallery =& $category->activeProducts( "alphanumeric_asc", $Offset, $Limit, $category->id() );
 
 $locale = new eZLocale( $Language );
 $i = 0;
@@ -334,14 +332,13 @@ if ( count( $productgallery ) > 0 )
 }
 else
 {
-    $t->set_var( "product_gallery", "" );
+    $t->set_var( "product_gallery", "<div>No Products</div>" );
 }
-
-
 
 eZList::drawNavigator( $t, $TotalTypes, $Limit, $Offset, "product_gallery_page_tpl" );
 
-if ( $GenerateStaticPage == "true" )
+
+if ( $GenerateStaticPage == true )
 {
     if ( $user )
         $CategoryArray =& $user->groups( false );

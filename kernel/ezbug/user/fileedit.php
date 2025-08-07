@@ -58,7 +58,7 @@ if ( $Action == "Insert" )
 
         $bug->addFile( $uploadedFile );
 
-        eZLog::writeNotice( "File added to bug $BugID  from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "File added to bug $BugID  from IP: $REMOTE_ADDR" );
     }
     else
     {

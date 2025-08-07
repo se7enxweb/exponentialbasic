@@ -31,7 +31,7 @@
   Example code:
   \code
   // Fetch an uploaded file and store it in the imagecatalogue.
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     // userfile is the name of the input in the html form
     if ( $file->getUploadedFile( "userfile" ) )
@@ -72,7 +72,7 @@
     }
 
     \endcode
-  \sa eZImageVariation eZImageVariationGroup eZImageFile
+  \sa eZImageVariation eZImageVariationGroup eZPBImageFile
 */
 /*!TODO
     $t in the example just pops out of nowhere, giving us no indication
@@ -864,8 +864,8 @@ class eZImage
 
 		// some lame error handling
 		if (!is_file($watermark_image_br)) {
-		  // ezlog: new eZLog
-		  eZLog::writeNotice( "User Site: Could not locate watermark image file." );
+		  // ezlog: new eZPBLog
+		  eZPBLog::writeNotice( "User Site: Could not locate watermark image file." );
 		  echo ('Could not locate watermark image file.');
 		  print ('Could not locate watermark image file.');
 		}
@@ -1044,7 +1044,7 @@ class eZImage
     */
     function checkImage( &$file )
     {
-       if ( is_a( $file, "eZImageFile" ) )
+       if ( is_a( $file, "eZPBImageFile" ) )
        {
            $name = $file->tmpName();
            if ( !file_exists( $name ) or !is_file( $name ) )
@@ -1061,14 +1061,14 @@ class eZImage
     */
     function setImage( &$file )
     {
-       if ( is_a( $file, "eZImageFile" ) )
+       if ( is_a( $file, "eZPBImageFile" ) )
        {
            $this->OriginalFileName = $file->name();
            $tmpname = $file->tmpName();
            if ( !file_exists( $tmpname ) or !is_file( $tmpname ) )
                return false;
 
-           $info = eZImageFile::information( $this->OriginalFileName );
+           $info = eZPBImageFile::information( $this->OriginalFileName );
            $suffix = $info["suffix"];
            $postfix = $info["dot-suffix"];
 

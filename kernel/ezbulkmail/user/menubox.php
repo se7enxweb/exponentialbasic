@@ -26,7 +26,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZBulkMailMain", "Language" );
     
 // include_once( "classes/eztemplate.php" );

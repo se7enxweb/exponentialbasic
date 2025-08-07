@@ -198,7 +198,7 @@ class eZXMLRPCCall
 
 //        $rawResponse = eZXMLRPCResponse::stripHTTPHeader( $rawResponse );
 
-//        eZLog::writeNotice( "empty?: " . $rawResponse . "<-" );
+//        eZPBLog::writeNotice( "empty?: " . $rawResponse . "<-" );
 //        $domTree =& qdom_tree( $rawResponse );
 //        $domTree =& xmltree( $rawResponse );
 

@@ -133,7 +133,7 @@ if ( $Action == "insert" && !$error )
         $category->setExcludeFromSearch( false );
     }
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     if ( $file->getUploadedFile( "ImageFile" ) )
     {
         $image = new eZImage();
@@ -273,7 +273,7 @@ if ( isset( $Action ) && $Action == "update" && !$error )
 
     $category->setSortMode( $SortMode );
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     if ( $file->getUploadedFile( "ImageFile" ) )
     {
         $image = new eZImage( );

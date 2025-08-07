@@ -74,7 +74,7 @@ if ( isset( $Action ) && $Action == "Insert" )
     $category->setSectionID( $SectionID );
     $category->setSortMode( $SortMode );
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     if ( $file->getUploadedFile( "ImageFile" ) )
     {
         $image = new eZImage( );
@@ -176,7 +176,7 @@ if ( isset( $Action ) && $Action == "Update" )
     $category->setSectionID( $SectionID );
     $category->setSortMode( $SortMode );
 
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     if ( $file->getUploadedFile( "ImageFile" ) )
     {
         $image = new eZImage( );

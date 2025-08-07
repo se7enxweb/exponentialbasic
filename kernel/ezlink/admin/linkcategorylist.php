@@ -27,7 +27,7 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZLinkMain", "Language" );
 $AdminLimit = $ini->variable( "eZLinkMain", "AdminLinkLimit" );

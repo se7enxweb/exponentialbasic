@@ -962,7 +962,7 @@ class eZTemplate
         {
             print( $err_msg );
         }
-        eZLog::writeNotice( $err_msg );
+        eZPBLog::writeNotice( $err_msg );
     }
 
     var $TextStrings;

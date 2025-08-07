@@ -40,7 +40,7 @@ $Language = $ini->variable( "eZArticleMain", "Language" );
 
 if ( $Action == "Insert" )
 {
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
 
     if ( $file->getUploadedFile( "userfile" ) )
     { 
@@ -71,7 +71,7 @@ if ( $Action == "Insert" )
             {
                 $article->setThumbnailImage( $image );
             }
-            eZLog::writeNotice( "Picture added to article: $ArticleID  from IP: $REMOTE_ADDR" );
+            eZPBLog::writeNotice( "Picture added to article: $ArticleID  from IP: $REMOTE_ADDR" );
         }
     }
     else
@@ -86,7 +86,7 @@ if ( $Action == "Insert" )
 
 if ( $Action == "Update" )
 {
-    $file = new eZImageFile();
+    $file = new eZPBImageFile();
     $image = new eZImage( $ImageID );
     
     if ( trim( $NewPhotographerName ) != "" &&

@@ -501,7 +501,7 @@ if ( !$confirm )
         }
 
         // Check uploaded logo image
-        $file = new eZImageFile();
+        $file = new eZPBImageFile();
         if ( $file->getUploadedFile( "logo" ) )
         {
             $logo = new eZImage();
@@ -513,7 +513,7 @@ if ( !$confirm )
         }
 
         // Check uploaded image
-        $file = new eZImageFile();
+        $file = new eZPBImageFile();
         if ( $file->getUploadedFile( "image" ) )
         {
             $image = new eZImage();
@@ -596,7 +596,7 @@ if ( !$confirm )
             $item_cat_id = $CompanyCategoryID[0];
 
             // Upload images
-            $file = new eZImageFile();
+            $file = new eZPBImageFile();
             if ( $file->getUploadedFile( "logo" ) )
             {
                 $logo = new eZImage();
@@ -617,7 +617,7 @@ if ( !$confirm )
             }
 
             // Upload images
-            $file = new eZImageFile();
+            $file = new eZPBImageFile();
             if ( $file->getUploadedFile( "image" ) )
             {
                 $image = new eZImage( );
@@ -662,7 +662,7 @@ if ( !$confirm )
             $person->store();
 
             // Upload images
-            $file = new eZImageFile();
+            $file = new eZPBImageFile();
             if ( $file->getUploadedFile( "ImageFile" ) )
             {
                 $image = new eZImage( );

@@ -58,7 +58,7 @@ if ( $Action == "Insert" )
 
         $article->addFile( $uploadedFile );
 
-        eZLog::writeNotice( "File added to article $ArticleID from IP: $REMOTE_ADDR" );
+        eZPBLog::writeNotice( "File added to article $ArticleID from IP: $REMOTE_ADDR" );
     }
     else
     {

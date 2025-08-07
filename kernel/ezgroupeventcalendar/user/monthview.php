@@ -52,7 +52,7 @@ function shortenText($text, $chars=25) {
   return $text;
 }
 
-$ini =& $GLOBALS["GlobalSiteIni"];
+$ini =& eZINI::instance( 'site.ini' );
 
 $SiteDesign = $ini->variable( "site", "SiteDesign" );
 $Language   = $ini->variable( "eZGroupEventCalendarMain", "Language" );

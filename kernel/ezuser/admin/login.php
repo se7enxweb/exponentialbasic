@@ -78,7 +78,7 @@ if ( isset( $Action ) && $Action == "login" )
 
             if ( ( $logins < $MaxLogins ) || ( $MaxLogins == 0 ) )
             {
-                eZLog::writeNotice( "Admin login: $Username from IP: $remoteAddress" );
+                eZPBLog::writeNotice( "Admin login: $Username from IP: $remoteAddress" );
 
                 eZUser::loginUser( $user );
                 if ( !isset( $RefererURL ) )
@@ -95,7 +95,7 @@ if ( isset( $Action ) && $Action == "login" )
             }
             else
             {
-                eZLog::writeWarning( "Max limit reached: $Username from IP: $remoteAddress" );
+                eZPBLog::writeWarning( "Max limit reached: $Username from IP: $remoteAddress" );
         
                 $maxerror = true;    
             }
@@ -109,7 +109,7 @@ if ( isset( $Action ) && $Action == "login" )
     }
     else
     {
-        eZLog::writeWarning( "Bad admin login: $Username from IP: $remoteAddress" );
+        eZPBLog::writeWarning( "Bad admin login: $Username from IP: $remoteAddress" );
         
         $error = true;
     }

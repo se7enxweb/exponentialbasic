@@ -114,7 +114,7 @@ class eZPostgreSQLDB
             {
                 print( $this->Error );
             }
-            eZLog::writeWarning( $this->Error );
+            eZPBLog::writeWarning( $this->Error );
             return false;
         }
 

@@ -29,19 +29,19 @@
 // include_once( "classes/ezcachefile.php" );
 
 $ini =& eZINI::instance( 'site.ini' );
-
 $Language = $ini->variable( "eZArticleMain", "Language" );
 $ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
 
 if ( !function_exists( "createHeadlinesMenu" )  )
 {
-    function createHeadlinesMenu( $menuCacheFile=false )
+    function createHeadlinesMenu( $menuCacheFile=false, $ini = null, $Language = null, $GlobalSiteDesign = null,
+            $GlobalSectionID = null, $CategoryID = null, $Limit = null )
         {
-            global $ini;
-            global $Language;
-            global $GlobalSiteDesign;
-            global $CategoryID;
-            global $Limit;
+            // global $ini;
+            // global $Language;
+            // global $GlobalSiteDesign;
+            // global $CategoryID;
+            // global $Limit;
 
             $ImageDir = '';
 
@@ -65,7 +65,7 @@ if ( !function_exists( "createHeadlinesMenu" )  )
             $t->set_block( "article_item_tpl", "current_image_item_tpl", "current_image_item" );
 
 
-// image dir
+            // image dir
             $t->set_var( "image_dir", $ImageDir );
 
             if ( !isset( $Limit ) )
@@ -95,8 +95,8 @@ if ( !function_exists( "createHeadlinesMenu" )  )
             }
 
 
-// should we allow currentuser to go get articles with permissions or should we not??
-//$articleList = $category->articles( $SortMode, false, true, 0, 5 );
+            // should we allow currentuser to go get articles with permissions or should we not??
+            //$articleList = $category->articles( $SortMode, false, true, 0, 5 );
 
             $locale = new eZLocale( $Language );
             $i=0;
@@ -215,12 +215,12 @@ if ( $PageCaching == "enabled" )
     }
     else
     {
-        createHeadlinesMenu( $menuCacheFile );
+        createHeadlinesMenu( $menuCacheFile, $ini, $Language, $GlobalSiteDesign, $GlobalSectionID, $CategoryID, $Limit );
     }
 }
 else
 {
-    createHeadlinesMenu();
+    createHeadlinesMenu(false, $ini, $Language, $GlobalSiteDesign, $GlobalSectionID, $CategoryID, $Limit );
 }
 
 ?>

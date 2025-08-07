@@ -1,34 +1,9 @@
 ################################################################################
 # PHP : Required php configuration variable changes required 
-#       for eZ publish 2 && php version > 4.3.2? / 4.2.0
+#       for eZ publish 2 && php version > 8.1
 
 ################################################################################
-#  eZ publish 2 : Runs best with 'magic_quotes' off 
-
-# php_flag magic_quotes_gpc off
-
-################################################################################
-# eZ publish 2 : Requires Old World Global Variables
-
-#php_flag register_globals off
-
-################################################################################
-# eZ publish 2 : Requires Large Array Support
-
-#php_flag register_long_arrays on
-
-################################################################################
-# eZ publish 2 : Call-tim pass-by-reference
-
-# Call-time pass-by-reference has been deprecated - argument passed by value; 
-# If you would like to pass it by reference, modify the declaration of [runtime function name]().  
-# If you would like to enable call-time pass-by-reference, you can 
-# set allow_call_time_pass_reference to true in your INI file.  
-# However, future versions may not support this any longer.  
-
-
-#php_flag allow_call_time_pass_reference on
-
+#  eZ publish 2 : Runs best with 'mod_rewrite' On
 ################################################################################
 # .htaccess : mod_rewrite : Url Rewrite Rules, for users who do not have access 
 # to their apache web server  configuration
@@ -40,8 +15,36 @@
       # mod_rewrite is not required for operation of eZ publish, per say.
       RewriteEngine On
 
-      RewriteRule ^/stats/store/(.*).gif$ ezstats/user/storestats.php [L]
+      RewriteRule ^stats/store/([^/]+)-(.*)/1x1\.gif$ ezstats/user/storestats.php [L]
       RewriteRule ^/filemanager/filedownload/([^/]+)/(.*)$ ezfilemanager/files/$1 [T="application/oct-stream",L]
+
+    #
+    #   By DNS Name : example.org
+    #
+
+    RewriteCond %{HTTP_HOST} ^latest\.basic\.demo\.ezpublish\.one$
+    # eZ publish Installation Test : The following line allows access test page.
+    #RewriteCond %{REQUEST_URI} !^/index_verify.php*
+    RewriteCond %{REQUEST_URI} !^/documentation*
+    RewriteCond %{REQUEST_URI} !^/design*
+    RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf)$ index.php
+
+    #   By DNS Name (Long) : www.example.org
+    #
+
+    RewriteCond %{HTTP_HOST} ^www\.ec2\.localhost$
+    # eZ publish Installation Test : The following line allows access test page.
+    # RewriteCond %{REQUEST_URI} !^/index_verify.php*
+    RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf)$ index.php
+
+
+    #   By DNS Name (Admin Site) :  admin.example.org  or  my.example.org
+    #
+    RewriteCond %{HTTP_HOST} ^admin\.latest\.basic\.demo\.ezpublish\.one$
+    # eZ publish Installation Test : The following line allows access test page.
+    # RewriteCond %{REQUEST_URI} !^/index_verify.php*
+    RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf) index_admin.php
+
 
 #    By IP Address:
 #
@@ -50,32 +53,7 @@
 #    RewriteCond %{REQUEST_URI} !^/index_verify.php*
 #    RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf)$ index.php
 
-
-#   By DNS Name : example.org
-#
-
-    RewriteCond %{HTTP_HOST} ^version\.demo\.se7enx\.com$
-    # eZ publish Installation Test : The following line allows access test page.
-    #RewriteCond %{REQUEST_URI} !^/index_verify.php*
-    RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf)$ index.php
-
-
-#   By DNS Name (Long) : www.example.org
-#
-    RewriteCond %{HTTP_HOST} ^www\.ec2\.localhost$
-    # eZ publish Installation Test : The following line allows access test page.
-    # RewriteCond %{REQUEST_URI} !^/index_verify.php*
-    RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf)$ index.php
-
-
-#   By DNS Name (Admin Site) :  admin.example.org  or  my.example.org
-#
-     RewriteCond %{HTTP_HOST} ^admin\.version\.demo\.se7enx\.com$
-     # eZ publish Installation Test : The following line allows access test page.
-     # RewriteCond %{REQUEST_URI} !^/index_verify.php*
-     RewriteRule !\.(ico|png|css|jpg|jpeg|gif|js|jar|swf|rm|rmm|ram|rpm|mp3|mp4|wma|asx|asf|wmv|mov|mpg|mpeg|ogg|wav|au|aiff|midi|mid|pdf) index_admin.php
-
-#</IfModule>
+</IfModule>
 
 ################################################################################
 

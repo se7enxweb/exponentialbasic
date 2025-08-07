@@ -176,6 +176,10 @@ $user_groupID = "-1";
 $groupsList   = "-1";
 
 $rootAccess = false;
+$new_event_link = false;
+
+$permission = new eZGroupEditor();
+
 
 // retreive all the groups the user is a member of
 if( $user )
@@ -190,8 +194,6 @@ if( $user )
 	else
 		$groupsList = $user->groups();
 }
-
-$permission = new eZGroupEditor();
 
 // Determin if the user get the time stamps as "new event" links or not
 if( $user )

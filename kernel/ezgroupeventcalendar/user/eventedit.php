@@ -373,6 +373,10 @@ if ( $user == true )
 		}
 	}
 }
+else
+{
+	$groupsList = array();
+}
 
 
 if ( ( isset( $Action ) && $Action == "New" || isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action == "Update" || isset( $Action ) && $Action == "Edit" ) && $groupsList )

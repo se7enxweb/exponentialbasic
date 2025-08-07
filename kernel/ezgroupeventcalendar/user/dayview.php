@@ -63,9 +63,13 @@ $curMonth = $curDate->month();
 $curDay = $curDate->day();
 
 $user = eZUser::currentUser();
-$userID = $user->id();
 
-if (!$user) {
+if( $user )
+{
+    $userID = $user->id();
+}
+elseif (!$user)
+{
     $userID = 0;
 }
 

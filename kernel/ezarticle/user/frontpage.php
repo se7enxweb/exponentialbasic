@@ -747,10 +747,10 @@ function &renderFrontpageProduct( &$t, &$locale, &$product )
     {
         $variation =& $thumbnailImage->requestImageVariation( $ThumbnailImageWidth, $ThumbnailImageHeight );
 
-        $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
-        $t->set_var( "thumbnail_image_width", $variation->width() );
-        $t->set_var( "thumbnail_image_height", $variation->height() );
-        $t->set_var( "thumbnail_image_caption", $thumbnailImage->caption() );
+        $t->set_var( "product1_thumbnail_image_uri", "/" . $variation->imagePath() );
+        $t->set_var( "product1_thumbnail_image_width", $variation->width() );
+        $t->set_var( "product1_thumbnail_image_height", $variation->height() );
+        $t->set_var( "product1_thumbnail_image_caption", $thumbnailImage->caption() );
 
         $t->parse( "product_image", "product_image_tpl" );
     }

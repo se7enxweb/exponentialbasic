@@ -155,7 +155,7 @@
    */ ?>
            <?  
             $CategoryID = 0;
-            include( "kernel/eztrade/user/categorylist.php" ); 	
+            include( "kernel/eztrade/user/menubox.php" ); 	
             include( "kernel/ezforum/user/menubox.php" );
             /* include( "kernel/ezforum/user/latestmessages.php" ); */
             include( "kernel/ezlink/user/menubox.php" );

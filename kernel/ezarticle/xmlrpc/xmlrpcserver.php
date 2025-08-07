@@ -28,7 +28,7 @@ ob_start();
 
 // site information
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $GlobalSiteIni =& $ini;
 
 

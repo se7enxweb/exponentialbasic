@@ -27,13 +27,13 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZQuizMain", "Language" );
-$Limit = $ini->read_var( "eZQuizMain", "AdminListLimit" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZQuizMain", "Language" );
+$Limit = $ini->variable( "eZQuizMain", "AdminListLimit" );
 
 // include_once( "ezquiz/classes/ezquizgame.php" );
 
-$t = new eZTemplate( "kernel/ezquiz/admin/" . $ini->read_var( "eZQuizMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezquiz/admin/" . $ini->variable( "eZQuizMain", "AdminTemplateDir" ),
                      "kernel/ezquiz/admin/" . "/intl", $Language, "gamelist.php" );
 $t->setAllStrings();
 

@@ -37,13 +37,13 @@
 // include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
-$SyncDir = $ini->read_var( "eZMediaCatalogueMain", "SyncDir" );
-$ImageDir = $ini->read_var( "eZMediaCatalogueMain", "ImageDir" );
+$Language = $ini->variable( "eZMediaCatalogueMain", "Language" );
+$SyncDir = $ini->variable( "eZMediaCatalogueMain", "SyncDir" );
+$ImageDir = $ini->variable( "eZMediaCatalogueMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->variable( "eZMediaCatalogueMain", "TemplateDir" ),
                      "kernel/ezmediacatalogue/admin/intl/", $Language, "medialist.php" );
 
 $t->set_file( "media_list_page_tpl", "medialist.tpl" );
@@ -138,7 +138,7 @@ foreach ( $pathArray as $path )
 function syncDir( $root, $category )
 {
   global $user;
-  $dir = eZFile::dir( $root, false );
+  $dir = eZPBFile::dir( $root, false );
   while ( $entry = $dir->read() )
     {
       if ( $entry != "." && $entry != ".." )
@@ -287,7 +287,7 @@ else
     $t->set_var( "category_list", "" );
 }
 
-$limit = $ini->read_var( "eZMediaCatalogueMain", "ListMediaPerPage" );
+$limit = $ini->variable( "eZMediaCatalogueMain", "ListMediaPerPage" );
 
 // Print out all the media
 $mediaList =& $category->media( "time", $Offset, $limit );
@@ -320,14 +320,14 @@ foreach ( $mediaList as $media )
     if ( $media->fileExists( true ) )
     {
         $mediaPath =& $media->filePath( true );
-        $size = eZFile::filesize( $mediaPath );
+        $size = eZPBFile::filesize( $mediaPath );
     }
     else
     {
         $size = 0;
     }
 
-    $size = eZFile::siFileSize( $size );
+    $size = eZPBFile::siFileSize( $size );
 
     $t->set_var( "media_size", $size["size-string"] );
     $t->set_var( "media_unit", $size["unit"] );

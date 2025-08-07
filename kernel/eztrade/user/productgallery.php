@@ -49,21 +49,21 @@ $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$Limit = $ini->read_var( "eZTradeMain", "ProductGalleryLimit" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$RequireUserLogin = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "true";
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$Limit = $ini->variable( "eZTradeMain", "ProductGalleryLimit" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$RequireUserLogin = $ini->variable( "eZTradeMain", "RequireUserLogin" ) == "true";
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
 
-$ThumbnailImageWidth = $ini->read_var( "eZTradeMain", "ThumbnailImageWidth" );
-$ThumbnailImageHeight = $ini->read_var( "eZTradeMain", "ThumbnailImageHeight" );
+$ThumbnailImageWidth = $ini->variable( "eZTradeMain", "ThumbnailImageWidth" );
+$ThumbnailImageHeight = $ini->variable( "eZTradeMain", "ThumbnailImageHeight" );
 
 
-$t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "eztrade/user/intl/", $Language, "productgallery.php" );
 
 $t->set_file( "product_gallery_page_tpl", "productgallery.tpl" );

@@ -29,15 +29,15 @@
 // include_once( "classes/ezcurrency.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 // include_once( "ezarticle/classes/ezarticlecategory.php" );
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "ezarticle/classes/ezarticletool.php" );
 
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "imagelist.php" );
 
 $t->setAllStrings();

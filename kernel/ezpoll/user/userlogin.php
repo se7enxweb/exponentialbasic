@@ -31,7 +31,7 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZPollMain", "Language" );
+$Language = $ini->variable( "eZPollMain", "Language" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 
@@ -45,7 +45,7 @@ if ( !$poll->anonymous() )
     }
     else
     {
-        $t = new eZTemplate( "kernel/ezpoll/user/" . $ini->read_var( "eZPollMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/ezpoll/user/" . $ini->variable( "eZPollMain", "TemplateDir" ),
                              "kernel/ezpoll/user/intl/", $Language, "userlogin.php" );
         
         $t->setAllStrings();

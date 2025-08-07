@@ -30,11 +30,11 @@
 // include_once( "eztrade/classes/ezvoucher.php" );
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "vouchermain.php" );
 
 $t->set_file( "vouchermain_tpl", "vouchermain.tpl" );

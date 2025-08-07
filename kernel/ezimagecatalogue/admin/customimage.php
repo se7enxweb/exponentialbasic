@@ -38,7 +38,7 @@ if ( $image->get( $ImageID ) )
 
         $fp = fopen( $variation->imagePath(), "r");
 
-        $fileSize = eZFile::filesize( $variation->imagePath() );
+        $fileSize = eZPBFile::filesize( $variation->imagePath() );
         $originalFileName = $image->originalFileName();
 
         ob_end_clean();

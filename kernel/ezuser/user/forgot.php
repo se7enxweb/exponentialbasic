@@ -26,8 +26,8 @@
 // include_once( "ezuser/classes/ezforgot.php" );
 // include_once( "ezmail/classes/ezmail.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
 $headersInfo = getallheaders();
 
 $languageIni = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/forgot.php.ini", false );
@@ -54,11 +54,11 @@ if ( $user )
         exit();
     }
 
-    $subjectText = ( $languageIni->read_var( "strings", "subject_text" ) . " " . $headersInfo["Host"] );
-    $bodyText = $languageIni->read_var( "strings", "body_text" );
+    $subjectText = ( $languageIni->variable( "strings", "subject_text" ) . " " . $headersInfo["Host"] );
+    $bodyText = $languageIni->variable( "strings", "body_text" );
 
-    $bodyFooter = $languageIni->read_var( "strings", "body_footer" );                      //SF
-    $reminderMailFromAddress = $ini->read_var( "eZUserMain", "ReminderMailFromAddress" );  //SF
+    $bodyFooter = $languageIni->variable( "strings", "body_footer" );                      //SF
+    $reminderMailFromAddress = $ini->variable( "eZUserMain", "ReminderMailFromAddress" );  //SF
 
     $forgot = new eZForgot();
     $forgot->setUserID( $user->id() );
@@ -90,13 +90,13 @@ if ( $Action == "change" )
     if ( $change->check( $Hash ) )
     {
         $change->get( $change->check( $Hash ) );
-        $subjectNewPassword = $languageIni->read_var( "strings", "subject_text_password" );
+        $subjectNewPassword = $languageIni->variable( "strings", "subject_text_password" );
 
-        $reminderMailFromAddress = $ini->read_var( "eZUserMain", "ReminderMailFromAddress" );  //SF
-        $bodyFooter = $languageIni->read_var( "strings", "body_footer" );                      //SF
+        $reminderMailFromAddress = $ini->variable( "eZUserMain", "ReminderMailFromAddress" );  //SF
+        $bodyFooter = $languageIni->variable( "strings", "body_footer" );                      //SF
 
-        $bodyNewPassword = $languageIni->read_var( "strings", "body_text_password" );
-        $passwordText = $languageIni->read_var( "strings", "password" );
+        $bodyNewPassword = $languageIni->variable( "strings", "body_text_password" );
+        $passwordText = $languageIni->variable( "strings", "password" );
         $userID = $change->userID();
         $user = new eZUser( $userID );
         $password = substr( md5( microtime() ), 0, 7 );
@@ -125,7 +125,7 @@ if ( $Action == "change" )
 }
 
 // Template
-$t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ), "kernel/ezuser/user/intl", $Language, "forgot.php" );
+$t = new eZTemplate( "kernel/ezuser/user/" . $ini->variable( "eZUserMain", "TemplateDir" ), "kernel/ezuser/user/intl", $Language, "forgot.php" );
 $t->setAllStrings();
 
 $t->set_file( array( "login" => "forgot.tpl" ) );

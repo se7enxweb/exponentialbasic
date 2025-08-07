@@ -94,10 +94,10 @@ if ( isset( $Action ) && $Action == "Edit" )
 // include_once( "ezmediacatalogue/classes/ezmedia.php" );
 // include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMediaCatalogueMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->variable( "eZMediaCatalogueMain", "TemplateDir" ),
                      "kernel/ezmediacatalogue/admin/intl/", $Language, "mediaedit.php" );
 
 $t->setAllStrings();

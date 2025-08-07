@@ -169,11 +169,11 @@ class eZImageFile extends eZFile
         $ret = false;
         $lock_file = $dest . ".lock";
         
-        if ( eZFile::file_exists( $lock_file ) )
+        if ( file_exists( $lock_file ) )
         {
             // If image file is locked we need to wait until it's finished
             $i = 0;
-            while( eZFile::file_exists( $lock_file ) and $i < 5*5 ) // Wait max 5 seconds
+            while( file_exists( $lock_file ) and $i < 5*5 ) // Wait max 5 seconds
             {
                 usleep( 200000 ); // Sleep 1/5 of a second
                 clearstatcache();
@@ -182,10 +182,10 @@ class eZImageFile extends eZFile
             return "locked";
         }
         touch( $lock_file );
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $image_prog = "convert";
-        if ( $ini->has_var( "classes", "ImageConversionProgram" ) )
-            $image_prog = $ini->read_var( "classes", "ImageConversionProgram" );
+        if ( $ini->hasVariable( "classes", "ImageConversionProgram" ) )
+            $image_prog = $ini->variable( "classes", "ImageConversionProgram" );
         $grayCode = "";
         if ( $convertToGray == true )
             $grayCode = " -colorspace GRAY ";
@@ -196,7 +196,7 @@ class eZImageFile extends eZFile
 
         if ( $ret_code == 0 )
         {
-            @eZFile::chmod( $dest, 0644 );
+            @eZPBFile::chmod( $dest, 0644 );
             $ret = true;
         }
         else
@@ -214,25 +214,25 @@ class eZImageFile extends eZFile
           $watermark_position = "south";
           // $watermark_image = "ttwater.gif";
 
-            if ( $ini->has_var( "watermark", "watermarkEnabled" ) )
-                  $watermark_enabled = $ini->read_var( "watermark", "watermarkEnabled" );
+            if ( $ini->hasVariable( "watermark", "watermarkEnabled" ) )
+                  $watermark_enabled = $ini->variable( "watermark", "watermarkEnabled" );
 
             
-            if ( $ini->has_var( "watermark", "watermarkImage" ) )
-                  $watermark_image = $ini->read_var( "watermark", "watermarkImage" );
-            if ( $ini->has_var( "watermark", "watermarkImageBr" ) )
-                  $watermark_image_br = $ini->read_var( "watermark", "watermarkImageBr" );
-            if ( $ini->has_var( "watermark", "watermarkImageBrSmall" ) )
-                  $watermark_image_br_small = $ini->read_var( "watermark", "watermarkImageBrSmall" );
+            if ( $ini->hasVariable( "watermark", "watermarkImage" ) )
+                  $watermark_image = $ini->variable( "watermark", "watermarkImage" );
+            if ( $ini->hasVariable( "watermark", "watermarkImageBr" ) )
+                  $watermark_image_br = $ini->variable( "watermark", "watermarkImageBr" );
+            if ( $ini->hasVariable( "watermark", "watermarkImageBrSmall" ) )
+                  $watermark_image_br_small = $ini->variable( "watermark", "watermarkImageBrSmall" );
 
           if ( $watermark_enabled == "true" )
           {
-            if ( $ini->has_var( "watermark", "minWidth" ) )
-              $watermark_width = $ini->read_var( "watermark", "minWidth" );
-            if ( $ini->has_var( "watermark", "minHeight" ) )
-              $watermark_height = $ini->read_var( "watermark", "minHeight" );
-            if ( $ini->has_var( "watermark", "position" ) )
-              $watermark_position = $ini->read_var( "watermark", "position" );
+            if ( $ini->hasVariable( "watermark", "minWidth" ) )
+              $watermark_width = $ini->variable( "watermark", "minWidth" );
+            if ( $ini->hasVariable( "watermark", "minHeight" ) )
+              $watermark_height = $ini->variable( "watermark", "minHeight" );
+            if ( $ini->hasVariable( "watermark", "position" ) )
+              $watermark_position = $ini->variable( "watermark", "position" );
             {                
                 // static for now while we get the scaling thing figured out
                 $actualsize = getimagesize($dest);
@@ -280,7 +280,7 @@ class eZImageFile extends eZFile
               $err_water = system( $watermarkCodeBR, $ret_code_water );
               if ( $ret_code_water == 0 )
               {
-                @eZFile::chmod( $dest, 0644 );
+                @eZPBFile::chmod( $dest, 0644 );
                 $re2 = true;
               }
               else
@@ -290,23 +290,23 @@ class eZImageFile extends eZFile
             }
 
             // Check for animated gif/png
-            if ( eZFile::file_exists( "$dest" . ".0" ) )
+            if ( file_exists( "$dest" . ".0" ) )
             {
                 // TODO: not sure
               // copy( $this->TmpFileName, $dest );
-              eZFile::copy( $dest );
-                @eZFile::chmod( $dest, 0644 );
+              eZPBFile::copy( $dest );
+                @eZPBFile::chmod( $dest, 0644 );
                 $i = 0;
-                while( eZFile::file_exists( "$dest.$i" ) )
+                while( file_exists( "$dest.$i" ) )
                 {
-                    eZFile::unlink( "$dest.$i" );
+                    eZPBFile::unlink( "$dest.$i" );
                     $i++;
                 }
                 $ret = true;
             }
           }
 
-        eZFile::unlink( $lock_file );
+        eZPBFile::unlink( $lock_file );
 
         if ((isset($ret2) && $ret2 == false) || $ret == false ) return false;
 
@@ -319,10 +319,10 @@ class eZImageFile extends eZFile
     function convertCopy( $dest )
     {
         $ret = false;
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $image_prog = "convert";
-        if ( $ini->has_var( "classes", "ImageConversionProgram" ) )
-            $image_prog = $ini->read_var( "classes", "ImageConversionProgram" );
+        if ( $ini->hasVariable( "classes", "ImageConversionProgram" ) )
+            $image_prog = $ini->variable( "classes", "ImageConversionProgram" );
         $execstr = "$image_prog -colorspace Transparent -quality 95 " . $this->TmpFileName . " " . $dest;
         // print( "<br><b>$execstr</b><br>" );
 
@@ -333,7 +333,7 @@ class eZImageFile extends eZFile
             $ret = false;
         }
         else
-            @eZFile::chmod( $dest, 0644 );
+            @eZPBFile::chmod( $dest, 0644 );
         
         return $ret;
     }

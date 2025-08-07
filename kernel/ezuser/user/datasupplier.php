@@ -24,14 +24,14 @@
 //
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 if ( isset( $GlobalSectionIDOverride ) )
 {
     $GlobalSectionID = $GlobalSectionIDOverride;
 }
 else
 {
-    $GlobalSectionID = $ini->read_var( "eZUserMain", "DefaultSection" );
+    $GlobalSectionID = $ini->variable( "eZUserMain", "DefaultSection" );
 }
 
 switch ( $url_array[2] )
@@ -141,8 +141,8 @@ switch ( $url_array[2] )
 
 	$OverrideUserWithAddress = "";
 
-	if( $ini->read_var( "eZUserMain", "OverrideUserWithAddress" ) != "disabled" ){ 
-	  $OverrideUserWithAddress = $ini->read_var( "eZUserMain", "OverrideUserWithAddress" );
+	if( $ini->variable( "eZUserMain", "OverrideUserWithAddress" ) != "disabled" ){ 
+	  $OverrideUserWithAddress = $ini->variable( "eZUserMain", "OverrideUserWithAddress" );
 	}
 
         if ( empty( $OverrideUserWithAddress ) )
@@ -199,7 +199,7 @@ switch ( $url_array[2] )
         if ( $url_array[3] == "insert" )
             $Action = "Insert";
 
-        $OverrideUserWithAddress = $ini->read_var( "eZUserMain", "OverrideUserWithAddress" );
+        $OverrideUserWithAddress = $ini->variable( "eZUserMain", "OverrideUserWithAddress" );
 
         if ( empty( $OverrideUserWithAddress ) )
         {
@@ -285,8 +285,8 @@ switch ( $url_array[2] )
 
     case "passwordchange" :
     {
-        $ini =& INIFile::globalINI();
-        $DemoSite = $ini->read_var( "site", "DemoSite" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $DemoSite = $ini->variable( "site", "DemoSite" );
 
         if ( $DemoSite == "enabled" ) {
             print("<div align='center'>This is a demosite only. You are not allowed to change the admin password!</div>\n");

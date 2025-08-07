@@ -36,13 +36,13 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 // include_once( "ezbug/classes/ezbug.php" );
 // include_once( "ezbug/classes/ezbugcategory.php" );
 // include_once( "ezbug/classes/ezbugmodule.php" );
 
-$t = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                      "kernel/ezbug/user/intl", $Language, "bugreport.php" );
 $t->setAllStrings();
 $t->set_var( "sitedesign", $GlobalSiteDesign );
@@ -436,7 +436,7 @@ function send_email( $bug, $ini, $Language )
     else
         $mail->setFrom( $bug->userEmail() );
 
-    $mailTemplate = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+    $mailTemplate = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                                     "kernel/ezbug/user/intl", $Language, "mailnewbug.php" );
     $headerInfo = getallheaders();
 

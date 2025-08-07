@@ -128,7 +128,7 @@ $index = "";
 // include_once( "classes/ezdb.php" );
 // include_once( "classes/ezhttptool.php" );
 */
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $GlobalSiteIni =& $ini;
 
 
@@ -151,15 +151,15 @@ $session =& eZSession::globalSession();
 //
 unset( $siteDesign );
 unset( $GlobalSiteDesign );
-$SiteStyle = $ini->read_var( "site", "SiteDesign" );
-$siteDesign =& $ini->read_var( "site", "SiteDesign" );
+$SiteStyle = $ini->variable( "site", "SiteDesign" );
+$siteDesign =& $ini->variable( "site", "SiteDesign" );
 
 
 // Store the site design in a global variable
 $GlobalSiteDesign = $siteDesign;
 
 
-$StoreStats = $ini->read_var( "eZStatsMain", "StoreStats" );
+$StoreStats = $ini->variable( "eZStatsMain", "StoreStats" );
 
 if ( $StoreStats == "enabled" and $GlobalSiteIni->Index != "" )
 {
@@ -183,12 +183,12 @@ $content_page = "";
 // Check if userlogin is required
 $user =& eZUser::currentUser();
 
-$requireUserLogin =& $ini->read_var( "eZUserMain", "RequireUserLogin" );
+$requireUserLogin =& $ini->variable( "eZUserMain", "RequireUserLogin" );
 
 // Cookie auto login.
 if ( isset( $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] ) and $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] != false )
 {
-    if ( ( !$user ) && ( $ini->read_var( "eZUserMain", "AutoCookieLogin" ) == "enabled" ) )
+    if ( ( !$user ) && ( $ini->variable( "eZUserMain", "AutoCookieLogin" ) == "enabled" ) )
     {
         eZUser::autoCookieLogin( $HTTP_COOKIE_VARS["eZUser_AutoCookieLogin"] );
     }
@@ -207,7 +207,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
 {
 
     // do url translation if needed
-    $URLTranslationKeyword = $ini->read_var( "site", "URLTranslationKeyword" );
+    $URLTranslationKeyword = $ini->variable( "site", "URLTranslationKeyword" );
 
     $urlTranslatorArray = explode( ";", $URLTranslationKeyword );
 
@@ -225,13 +225,13 @@ if ( ( $requireUserLogin == "disabled" ) ||
     // if uri == / show default page or article list
     if ( $_SERVER['REQUEST_URI'] == "/" )
     {
-        if ( $ini->read_var( "site", "DefaultPage" ) == "disabled" )
+        if ( $ini->variable( "site", "DefaultPage" ) == "disabled" )
         {
             $_SERVER['REQUEST_URI'] = "/article/archive/0/";
         }
         else
         {
-            $_SERVER['REQUEST_URI'] = $ini->read_var( "site", "DefaultPage" );
+            $_SERVER['REQUEST_URI'] = $ini->variable( "site", "DefaultPage" );
         }
 
         if ( $user )
@@ -297,7 +297,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
 
     // site cache check
     $SiteCacheFile = "kernel/classes/cache/" . md5( $_SERVER['REQUEST_URI'] ) . ".php";
-    $SiteCache = $ini->read_var( "site", "SiteCache" );
+    $SiteCache = $ini->variable( "site", "SiteCache" );
 
     //This is horrible!!
     if ( $_SERVER['REQUEST_METHOD'] == "POST" ||
@@ -311,7 +311,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
     }
 
     // check to use site cache
-    if ( ( $SiteCache == "enabled" ) and !eZFile::file_exists( $SiteCacheFile ) )
+    if ( ( $SiteCache == "enabled" ) and !file_exists( $SiteCacheFile ) )
     {
         $StoreSiteCache = true;
     }
@@ -319,9 +319,9 @@ if ( ( $requireUserLogin == "disabled" ) ||
     {
         $StoreSiteCache = false;
 
-        if ( $SiteCache == "enabled" and eZFile::file_exists( $SiteCacheFile ) )
+        if ( $SiteCache == "enabled" and file_exists( $SiteCacheFile ) )
         {
-            $timeout = $ini->read_var( "site", "SiteCacheTimeout" );
+            $timeout = $ini->variable( "site", "SiteCacheTimeout" );
             $SiteCacheTime = eZFile::filemtime( $SiteCacheFile );
             if ( ( time() - $SiteCacheTime ) < ( $timeout * 60 ) )
             {
@@ -345,7 +345,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
         ob_start();
 
         // fetch the module printout
-        if ( eZFile::file_exists( $content_page ) )
+        if ( file_exists( $content_page ) )
         {
             // the page with the real contents
             include( $content_page );
@@ -358,13 +358,13 @@ if ( ( $requireUserLogin == "disabled" ) ||
         else
         {
             // the default page to load
-            if ( file_exists( $ini->read_var( "site", "DefaultPage" ) ) )
+            if ( file_exists( $ini->variable( "site", "DefaultPage" ) ) )
             {
-                include( $ini->read_var( "site", "DefaultPage" ) );
+                include( $ini->variable( "site", "DefaultPage" ) );
             }
-            else if ( $ini->read_var( "site", "DefaultPage" ) != "disabled" )
+            else if ( $ini->variable( "site", "DefaultPage" ) != "disabled" )
             {
-                $_SERVER['REQUEST_URI'] = $ini->read_var( "site", "DefaultPage" );
+                $_SERVER['REQUEST_URI'] = $ini->variable( "site", "DefaultPage" );
                 $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
                 $content_page = "kernel/ez" . $url_array[1] . "/user/datasupplier.php";
                 include( $content_page );
@@ -377,13 +377,13 @@ if ( ( $requireUserLogin == "disabled" ) ||
         {
             $Language = $GLOBALS["eZLanguageOverride"];
         }
-        else if ( $ini->has_var( "site", "Language" ) )
+        else if ( $ini->hasVariable( "site", "Language" ) )
         {
-            $Language = $ini->read_var( "site", "Language" );
+            $Language = $ini->variable( "site", "Language" );
         }
         else
         {
-            $Language = $ini->read_var( "eZCalendarMain", "Language" );
+            $Language = $ini->variable( "eZCalendarMain", "Language" );
         }
         $Locale = new eZLocale( $Language );
         $iso =& $Locale->languageISO();
@@ -399,11 +399,11 @@ if ( ( $requireUserLogin == "disabled" ) ||
         print( $buffer );
 
         // set the sitedesign from the section
-        if ( $ini->read_var( "site", "Sections" ) == "enabled" )
+        if ( $ini->variable( "site", "Sections" ) == "enabled" )
         {
             if ( !isset( $GlobalSectionID ) )
             {
-                $GlobalSectionID = $ini->read_var( "site", "DefaultSection" );
+                $GlobalSectionID = $ini->variable( "site", "DefaultSection" );
             }
 
             // // include_once( "ezsitemanager/classes/ezsection.php" );
@@ -436,7 +436,7 @@ if ( ( $requireUserLogin == "disabled" ) ||
         }
 
         // include some html
-        $Title = $ini->read_var( "site", "SiteTitle" );
+        $Title = $ini->variable( "site", "SiteTitle" );
 
         // Main contents
         // handled by the sitedesign/$design/frame.php file now..
@@ -477,7 +477,7 @@ else
 
     // send the URI to the right decoder
     $page = "kernel/ezuser/user/datasupplier.php";
-    if ( eZFile::file_exists( $page ) )
+    if ( file_exists( $page ) )
     {
         include( $page );
     }

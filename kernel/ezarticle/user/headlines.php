@@ -28,10 +28,10 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ImageDir = $ini->read_var( "eZArticleMain", "ImageDir" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
 
 if ( !function_exists( "createHeadlinesMenu" )  )
 {
@@ -49,7 +49,7 @@ if ( !function_exists( "createHeadlinesMenu" )  )
             // include_once( "ezarticle/classes/ezarticle.php" );
             // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-            $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+            $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                                  "kernel/ezarticle/user/intl/", $Language, "headlines.php" );
 
             $t->setAllStrings();
@@ -117,8 +117,8 @@ if ( !function_exists( "createHeadlinesMenu" )  )
 
                 if ( ( is_a( $image, "eZImage" ) ) && ( $image->id() != 0 ) )
                 {
-                    $imageWidth =& $ini->read_var( "eZArticleMain", "CategoryImageWidth" );
-                    $imageHeight =& $ini->read_var( "eZArticleMain", "CategoryImageHeight" );
+                    $imageWidth =& $ini->variable( "eZArticleMain", "CategoryImageWidth" );
+                    $imageHeight =& $ini->variable( "eZArticleMain", "CategoryImageHeight" );
 
                     $variation =& $image;
 

@@ -27,7 +27,7 @@
 
 if ( isset( $Store ) )
 {
-    $fp = eZFile::fopen( $FileName, "w+");
+    $fp = eZPBFile::fopen( $FileName, "w+");
     $Contents =& str_replace ("\r", "", $Contents );
     fwrite ( $fp, $Contents );
     fclose( $fp );
@@ -39,16 +39,16 @@ else
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "templateedit.php" );
 $t->setAllStrings();
 
 $t->set_file( "site_config_tpl", "templateedit.tpl" );
 
-$lines = eZFile::file( $realPath );
+$lines = eZPBFile::file( $realPath );
 $contents = "";
 foreach ( $lines as $line )
 {

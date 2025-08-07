@@ -33,9 +33,9 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
-$Language= $ini->read_var("eZBugMain","Language");
-$t = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+$ini =& eZINI::instance( 'site.ini' );
+$Language= $ini->variable("eZBugMain","Language");
+$t = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                      "kernel/ezbug/user/intl", $Language, "unhandledbugs.php" );
 $errorIni = new INIFIle( "kernel/ezbug/user/intl/" . $Language . "/unhandledbugs.php.ini", false );
 
@@ -90,7 +90,7 @@ foreach ( $unhandleBugs as $bug )
         }
         else
         {
-            $errorMsg = $errorIni->read_var( "strings", "unknown" );
+            $errorMsg = $errorIni->variable( "strings", "unknown" );
             $t->set_var( "bug_submitter", $errorMsg );
         }
 

@@ -30,9 +30,9 @@
 // include_once( "classes/ezdatetime.php" );
 // include_once( "classes/ezlocale.php" );
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsfeedMain", "Language" );
 
 if( isset( $DeleteCategories ) && count( $CategoryArrayID ) > 0 )
 {
@@ -52,7 +52,7 @@ if( isset( $DeleteNews ) && count( $NewsArrayID ) > 0)
     }
 }
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->read_var( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "newsarchive.php" );
 
 $t->setAllStrings();

@@ -29,10 +29,10 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$AdminLimit = $ini->read_var( "eZLinkMain", "AdminLinkLimit" );
-$DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
-$languageIni = new INIFile( "kernel/ezlink/admin/intl/" . $Language . "/linkcategorylist.php.ini", false );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$AdminLimit = $ini->variable( "eZLinkMain", "AdminLinkLimit" );
+$DOC_ROOT = $ini->variable( "eZLinkMain", "DocumentRoot" );
+$languageIni = new eZINI( "kernel/ezlink/admin/intl/" . $Language . "/linkcategorylist.php.ini", false );
 
 // include_once( "ezlink/classes/ezlinkcategory.php" );
 // include_once( "ezlink/classes/ezlink.php" );
@@ -47,7 +47,7 @@ $languageIni = new INIFile( "kernel/ezlink/admin/intl/" . $Language . "/linkcate
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->variable( "eZLinkMain", "AdminTemplateDir" ),
 "kernel/ezlink/admin/intl/", $Language, "linkcategorylist.php" );
 $t->setAllStrings();
 
@@ -145,8 +145,8 @@ else
 
         if ( is_a( $image, "eZImage" ) )
         {
-            $imageWidth =& $ini->read_var( "eZLinkMain", "CategoryImageWidth" );
-            $imageHeight =& $ini->read_var( "eZLinkMain", "CategoryImageHeight" );
+            $imageWidth =& $ini->variable( "eZLinkMain", "CategoryImageWidth" );
+            $imageHeight =& $ini->variable( "eZLinkMain", "CategoryImageHeight" );
 
             $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 
@@ -168,7 +168,7 @@ else
             $t->set_var( "image_item", "" );
         }
 
-        $categories = $languageIni->read_var( "strings", "categories" );
+        $categories = $languageIni->variable( "strings", "categories" );
 
         $t->parse( "category_item", "category_item_tpl", true );
         $i++;
@@ -219,8 +219,8 @@ else
 
         if ( $image )
         {
-            $imageWidth =& $ini->read_var( "eZLinkMain", "LinkImageWidth" );
-            $imageHeight =& $ini->read_var( "eZLinkMain", "LinkImageHeight" );
+            $imageWidth =& $ini->variable( "eZLinkMain", "LinkImageWidth" );
+            $imageHeight =& $ini->variable( "eZLinkMain", "LinkImageHeight" );
 
             $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 
@@ -247,7 +247,7 @@ else
 
         $t->set_var( "link_hits", $hits );
 
-        $links = $languageIni->read_var( "strings", "links" );
+        $links = $languageIni->variable( "strings", "links" );
 
         $t->parse( "link_item", "link_item_tpl", true );
         $i++;

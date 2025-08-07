@@ -33,9 +33,9 @@ require( "kernel/ezuser/user/usercheck.php" );
 // include_once( "classes/eztexttool.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$AnonymousUserGroup = $ini->read_var( "eZUserMain", "AnonymousUserGroup" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$AnonymousUserGroup = $ini->variable( "eZUserMain", "AnonymousUserGroup" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -111,7 +111,7 @@ if ( $Action == "Insert" )
                     }
                     else
                     {
-                        $redirect = $ini->read_var( "eZUserMain", "DefaultRedirect" );
+                        $redirect = $ini->variable( "eZUserMain", "DefaultRedirect" );
                         eZHTTPTool::header( "Location: $redirect" );
                         exit();
                     }
@@ -192,7 +192,7 @@ if ( $Action == "Update" )
         }
         else
         {
-            $redirect = $ini->read_var( "eZUserMain", "DefaultRedirect" );
+            $redirect = $ini->variable( "eZUserMain", "DefaultRedirect" );
             eZHTTPTool::header( "Location: $redirect" );
             exit();
         }
@@ -203,7 +203,7 @@ if ( $Action == "Update" )
       }
     }
 }        
-$t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/user/" . $ini->variable( "eZUserMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl/", $Language, "useredit.php" );
 
 $t->setAllStrings();
@@ -223,10 +223,10 @@ if ( !isset( $ModuleUserNew ) )
     $ModuleUserNew = "user";
 
 $headline = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/useredit.php.ini", false );
-$t->set_var( "head_line", $headline->read_var( "strings", "head_line_insert" ) );
+$t->set_var( "head_line", $headline->variable( "strings", "head_line_insert" ) );
 
 if ($Action == "New") {
- $t->set_var( "user_alert_message", $headline->read_var( "strings", "user_alert_message" ) );
+ $t->set_var( "user_alert_message", $headline->variable( "strings", "user_alert_message" ) );
  $t->set_var( "user_address_alert_message", "" );
  $t->set_var( "skip_link", "" );
 } else {
@@ -283,7 +283,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     $t->set_var( "read_only", "readonly=readonly" );
     $actionValue = "update";
     $headline = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/useredit.php.ini", false );
-    $t->set_var( "head_line", $headline->read_var( "strings", "head_line_edit" ) );
+    $t->set_var( "head_line", $headline->variable( "strings", "head_line_edit" ) );
 }
 
 $t->set_block( "user_edit_tpl", "required_fields_error_tpl", "required_fields_error" );
@@ -360,7 +360,7 @@ if ( isset( $RedirectURL ) && ( $RedirectURL != "" ) )
 }
 else
 {
-    $RedirectURL = $ini->read_var( "eZUserMain", "DefaultRedirect" );
+    $RedirectURL = $ini->variable( "eZUserMain", "DefaultRedirect" );
     $t->set_var( "redirect_url", eZTextTool::htmlspecialchars( $RedirectURL ) );
 }   
 

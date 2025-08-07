@@ -28,14 +28,14 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezproductcategory.php" );
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezoption.php" );
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "optionlist.php" );
 
 $t->setAllStrings();
@@ -57,7 +57,7 @@ $options = $product->options();
 if ( !$options )
 {
     $noitem = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/optionlist.php.ini", false );
-    $t->set_var( "option", $noitem->read_var( "strings", "no_option" ) );
+    $t->set_var( "option", $noitem->variable( "strings", "no_option" ) );
 
 }
 

@@ -24,10 +24,10 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$UnapprovdLimit = $ini->read_var( "eZForumMain", "UnApprovdLimit" );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$UnapprovdLimit = $ini->variable( "eZForumMain", "UnApprovdLimit" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
@@ -39,7 +39,7 @@ $UnapprovdLimit = $ini->read_var( "eZForumMain", "UnApprovdLimit" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
                      "kernel/ezforum/admin/" . "/intl", $Language, "unapprovedlist.php" );
 $t->setAllStrings();
 
@@ -55,13 +55,13 @@ $message = new eZForumMessage();
 $messages = $message->getAllUnApproved( $Offset, $UnapprovdLimit );
 $messageCount = $message->unApprovedCount();
 
-$languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/unapprovedlist.php.ini", false );
-$true =  $languageIni->read_var( "strings", "true" );
-$false =  $languageIni->read_var( "strings", "false" );
+$languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/unapprovedlist.php.ini", false );
+$true =  $languageIni->variable( "strings", "true" );
+$false =  $languageIni->variable( "strings", "false" );
 
 if ( !$messages )
 {
-    $noitem = $languageIni->read_var( "strings", "noitem" );
+    $noitem = $languageIni->variable( "strings", "noitem" );
     $t->set_var( "message_item", $noitem );
 }
 else
@@ -85,7 +85,7 @@ else
         $t->set_var( "category_id", $category->id() );
         $t->set_var( "message_topic", $msg->topic() );
         $t->set_var( "message_body", $msg->body() );
-        $t->set_var( "reject_message", $languageIni->read_var( "strings", "reject_message" ) );
+        $t->set_var( "reject_message", $languageIni->variable( "strings", "reject_message" ) );
         $t->set_var( "message_postingtime", $locale->format( $msg->postingTime() ) );
         $t->set_var( "message_id", $msg->id() );
 

@@ -35,12 +35,12 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFileManagerMain", "Language" );
-$ImageDir = $ini->read_var( "eZFileManagerMain", "ImageDir" );
+$Language = $ini->variable( "eZFileManagerMain", "Language" );
+$ImageDir = $ini->variable( "eZFileManagerMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->read_var( "eZFileManagerMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->variable( "eZFileManagerMain", "TemplateDir" ),
                      "kernel/ezfilemanager/user/intl/", $Language, "menufolderlist.php" );
 
 $t->set_file( "folder_list_page_tpl", "menufolderlist.tpl" );

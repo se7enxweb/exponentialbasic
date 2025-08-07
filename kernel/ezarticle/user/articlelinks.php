@@ -27,7 +27,7 @@
 // this just shuts of the hundreds of thousands of error log entries (performance)
 $DefaultLinkText = "";
 
-$ArticlePageCaching =& $ini->read_var( "eZArticleMain", "PageCaching");
+$ArticlePageCaching =& $ini->variable( "eZArticleMain", "PageCaching");
 $PageCaching = "disabled";
 
 $PureStatic = "false";
@@ -63,11 +63,11 @@ if ( $PureStatic != "true" )
     // include_once( "ezarticle/classes/ezarticle.php" );
     // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-    $ini =& INIFile::globalINI();
-    $Language = $ini->read_var( "eZArticleMain", "Language" );
-    $ImageDir = $ini->read_var( "eZArticleMain", "ImageDir" );
+    $ini =& eZINI::instance( 'site.ini' );
+    $Language = $ini->variable( "eZArticleMain", "Language" );
+    $ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
 
-    $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                          "kernel/ezarticle/user/intl/", $Language, "articlelinks.php" );
 
     $t->setAllStrings();

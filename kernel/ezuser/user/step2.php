@@ -8,11 +8,11 @@ include_once( "classes/ezhttptool.php" );
 include_once( "ezsession/classes/ezsession.php" );
 include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$SelectCountry = $ini->read_var( "eZUserMain", "SelectCountry" );
-$SelectRegion = $ini->read_var( "eZUserMain", "SelectRegion" );
-$AnonymousUserGroup = $ini->read_var( "eZUserMain", "AnonymousUserGroup" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$SelectCountry = $ini->variable( "eZUserMain", "SelectCountry" );
+$SelectRegion = $ini->variable( "eZUserMain", "SelectRegion" );
+$AnonymousUserGroup = $ini->variable( "eZUserMain", "AnonymousUserGroup" );
 
 $AutoCookieLogin = eZHTTPTool::getVar( "AutoCookieLogin" );
 

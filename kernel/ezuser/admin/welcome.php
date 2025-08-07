@@ -26,8 +26,8 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -37,7 +37,7 @@ $Language = $ini->read_var( "eZUserMain", "Language" );
 
 
 // Template
-$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
                      "kernel/ezuser/admin/intl", $Language, "welcome.php" );
 $t->setAllStrings();
 
@@ -65,7 +65,7 @@ if ( $user )
     $t->set_var( "last_name", $user->lastName() );
 }
 
-if ( $ini->read_var( "site", "CheckDependence" ) == "enabled" )
+if ( $ini->variable( "site", "CheckDependence" ) == "enabled" )
 {
 	$error = false;
 
@@ -76,8 +76,8 @@ if ( $ini->read_var( "site", "CheckDependence" ) == "enabled" )
         // $error = true;
     }
     $image_prog = "convert";    
-    if ( $ini->has_var( "classes", "ImageConversionProgram" ) )
-        $image_prog = $ini->read_var( "classes", "ImageConversionProgram" );
+    if ( $ini->hasVariable( "classes", "ImageConversionProgram" ) )
+        $image_prog = $ini->variable( "classes", "ImageConversionProgram" );
     
     $check = system( "$image_prog > /dev/null", $ret );
 

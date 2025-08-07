@@ -30,15 +30,15 @@
 
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
-$ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
-$RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true";
-$ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
-$TinyImageWidth = $ini->read_var( "eZImageCatalogueMain", "TinyImageWidth" );
-$TinyImageHeight = $ini->read_var( "eZImageCatalogueMain", "TinyImageHeight" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
+$ShowNamedQuantity = $ini->variable( "eZTradeMain", "ShowNamedQuantity" ) == "true";
+$RequireQuantity = $ini->variable( "eZTradeMain", "RequireQuantity" ) == "true";
+$ShowOptionQuantity = $ini->variable( "eZTradeMain", "ShowOptionQuantity" ) == "true";
+$TinyImageWidth = $ini->variable( "eZImageCatalogueMain", "TinyImageWidth" );
+$TinyImageHeight = $ini->variable( "eZImageCatalogueMain", "TinyImageHeight" );
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezoption.php" );
@@ -267,7 +267,7 @@ if ( isset( $Action ) && $Action == "MoveToCart" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "wishlist.php" );
 
 $t->setAllStrings();

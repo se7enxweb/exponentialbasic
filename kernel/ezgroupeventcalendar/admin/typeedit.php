@@ -34,8 +34,8 @@ if ( isset( $Cancel ) )
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/ezlog.php" );
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
 $LanguageIni = new INIFIle( "kernel/ezgroupeventcalendar/admin/intl/" . $Language . "/typeedit.php.ini", false );
 
 // include_once( "ezgroupeventcalendar/classes/ezgroupevent.php" );
@@ -94,7 +94,7 @@ if ( $Action == "Delete" )
 }
 
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->read_var( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->variable( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
                      "kernel/ezgroupeventcalendar/admin/intl/", $Language, "typeedit.php" );
 
 $t->setAllStrings();
@@ -146,7 +146,7 @@ foreach ( $typeList as $typeSubList )
 
 if ( $Action == "Edit" )
 {
-    $t->set_var( "header", $LanguageIni->read_var( "strings", "edit_appointment_type" ) );
+    $t->set_var( "header", $LanguageIni->variable( "strings", "edit_appointment_type" ) );
     $t->set_var( "name_value", $type->name() );
     $t->set_var( "description_value", $type->description() );
     $t->set_var( "type_id", $type->id() );
@@ -154,7 +154,7 @@ if ( $Action == "Edit" )
 }
 else
 {
-    $t->set_var( "header", $LanguageIni->read_var( "strings", "new_appointment_type" ) );
+    $t->set_var( "header", $LanguageIni->variable( "strings", "new_appointment_type" ) );
     $t->set_var( "description_value", "" );
     $t->set_var( "name_value", "" );
     $t->set_var( "type_id", "" );

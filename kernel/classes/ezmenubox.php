@@ -64,9 +64,9 @@ class eZMenuBox
         // include_once( "kernel/ezsession/classes/ezpreferences.php" );
         $preferences = new eZPreferences();
         
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
-        $Language = $ini->read_var( $ModuleName . "Main", "Language" );
+        $Language = $ini->variable( $ModuleName . "Main", "Language" );
 
         $menuStatus =& $preferences->variable( $module_dir . "_status" );
 
@@ -89,16 +89,16 @@ class eZMenuBox
         $modified = false;
         if ( $phpfile )
         {
-            $modified = eZFile::filemtime( $phpfile );
+            $modified = eZPBFile::filemtime( $phpfile );
         }
 
         $template_dir = "design/admin/templates/" . $SiteDesign;
         if ( $allow_module_template )
         {
-            $mod_dir = $ini->read_var( $ModuleName . "Main", "AdminTemplateDir" );
+            $mod_dir = $ini->variable( $ModuleName . "Main", "AdminTemplateDir" );
             $mod_dir = "kernel/$module_dir/admin/$mod_dir";
-            if ( eZFile::file_exists( "$mod_dir/menubox.tpl" ) and
-                 eZFile::file_exists( "$mod_dir/menubox_closed.tpl" ) )
+            if ( file_exists( "$mod_dir/menubox.tpl" ) and
+                 file_exists( "$mod_dir/menubox_closed.tpl" ) )
             {
                 $template_dir = $mod_dir;
             }

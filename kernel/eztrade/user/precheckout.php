@@ -29,9 +29,9 @@
 // include_once( "classes/ezhttptool.php" );
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
-$ForceSSL = $ini->read_var( "eZTradeMain", "ForceSSL" );
+$ForceSSL = $ini->variable( "eZTradeMain", "ForceSSL" );
 
 $index = $ini->Index;
 
@@ -74,10 +74,10 @@ elseif ( $ForceSSL == "choose" )
 
     }
 
-    $Language = $ini->read_var( "eZTradeMain", "Language" );
+    $Language = $ini->variable( "eZTradeMain", "Language" );
 
 
-    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                          "kernel/eztrade/user/intl/", $Language, "precheckout.php" );
 
     $t->setAllStrings();

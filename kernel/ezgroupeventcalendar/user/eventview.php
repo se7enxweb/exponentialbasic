@@ -43,13 +43,13 @@
 // include_once( "ezforum/classes/ezforum.php" );
 // include_once( "ezforum/classes/ezforumcategory.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$SiteDesign = $ini->read_var( "site", "SiteDesign" );
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+$SiteDesign = $ini->variable( "site", "SiteDesign" );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
 $locale = new eZLocale( $Language );
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" ),
                      "kernel/ezgroupeventcalendar/user/intl/", $Language, "eventview.php" );
 
 $t->set_file( "event_view_tpl", "eventview.tpl" );

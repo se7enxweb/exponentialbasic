@@ -35,9 +35,9 @@
 // include_once( "ezforum/classes/ezforumcategory.php" );
 // include_once( "ezforum/classes/ezforum.php" );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$Limit = $ini->read_var( "eZForumMain", "ShowMessageLimit" );
-$t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+$Language = $ini->variable( "eZForumMain", "Language" );
+$Limit = $ini->variable( "eZForumMain", "ShowMessageLimit" );
+$t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "latestmessages.php" );
 
 $t->set_file( "latest_messages_tpl", "latestmessages.tpl"  );

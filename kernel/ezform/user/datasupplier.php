@@ -34,20 +34,20 @@ $eZFormAction = $url_array[3];
 function &errorPage( $PrimaryName, $PrimaryURL, $type )
 {
 //    $ini =& $GLOBALS["GlobalSiteIni"];
-    $ini =& INIFile::globalINI();
+    $ini =& eZINI::instance( 'site.ini' );
     
 
-    $t = new eZTemplate( "kernel/ezform/admin/" . $ini->read_var( "eZFormMain", "TemplateDir" ),
-                         "kernel/ezform/admin/intl", $ini->read_var( "eZFormMain", "Language" ), "errors.php" );
+    $t = new eZTemplate( "kernel/ezform/admin/" . $ini->variable( "eZFormMain", "TemplateDir" ),
+                         "kernel/ezform/admin/intl", $ini->variable( "eZFormMain", "Language" ), "errors.php" );
 
     $t->set_file( "page", "errormessage.tpl"  );
     $t->set_var( "primary_url", $PrimaryURL  );
-    $t->set_var( "primary_url_name", $t->Ini->read_var( "strings", $PrimaryName  ) );
+    $t->set_var( "primary_url_name", $t->Ini->variable( "strings", $PrimaryName  ) );
 
-    $t->set_var( "error_header", $t->Ini->read_var( "strings", error_ . $type . _header ) );
-    $t->set_var( "error_1", $t->Ini->read_var( "strings", error_ . $type . _1 ) );
-    $t->set_var( "error_2", $t->Ini->read_var( "strings", error_ . $type . _2 ) );
-    $t->set_var( "error_3", $t->Ini->read_var( "strings", error_ . $type . _3 ) );
+    $t->set_var( "error_header", $t->Ini->variable( "strings", error_ . $type . _header ) );
+    $t->set_var( "error_1", $t->Ini->variable( "strings", error_ . $type . _1 ) );
+    $t->set_var( "error_2", $t->Ini->variable( "strings", error_ . $type . _2 ) );
+    $t->set_var( "error_3", $t->Ini->variable( "strings", error_ . $type . _3 ) );
 
     $t->setAllStrings();
 

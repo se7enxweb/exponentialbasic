@@ -33,14 +33,14 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$ShowOriginal = $ini->read_var( "eZImageCatalogueMain", "ShowOriginal" );
+$ShowOriginal = $ini->variable( "eZImageCatalogueMain", "ShowOriginal" );
 
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->read_var( "eZImageCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->variable( "eZImageCatalogueMain", "TemplateDir" ),
                      "kernel/ezimagecatalogue/user/intl/", $Language, "imageview.php" );
 
 $t->set_file( "image_view_tpl", "imageview.tpl" );
@@ -70,7 +70,7 @@ if ( $parent_category != 0 )
 }
 
 if ( !$GlobalSectionID )
-    $GlobalSectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
+    $GlobalSectionID = $ini->variable( "eZImageCatalogueMain", "DefaultSection" );
 
 // init the section
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
@@ -84,8 +84,8 @@ $sectionObject->setOverrideVariables();
 
 if ( $ShowOriginal != "enabled" && !isset( $VariationID ) )
 {
-    $variation =& $image->requestImageVariation( $ini->read_var( "eZImageCatalogueMain", "ImageViewWidth" ),
-    $ini->read_var( "eZImageCatalogueMain", "ImageViewHeight" ) );
+    $variation =& $image->requestImageVariation( $ini->variable( "eZImageCatalogueMain", "ImageViewWidth" ),
+    $ini->variable( "eZImageCatalogueMain", "ImageViewHeight" ) );
 }
 else if ( isset( $VariationID ) )
 {
@@ -93,8 +93,8 @@ else if ( isset( $VariationID ) )
     if ( $variation->imageID() != $ImageID )
     {
         
-        $variation =& $image->requestImageVariation( $ini->read_var( "eZImageCatalogueMain", "ImageViewWidth" ),
-        $ini->read_var( "eZImageCatalogueMain", "ImageViewHeight" ) );
+        $variation =& $image->requestImageVariation( $ini->variable( "eZImageCatalogueMain", "ImageViewWidth" ),
+        $ini->variable( "eZImageCatalogueMain", "ImageViewHeight" ) );
     }
 }
 
@@ -155,7 +155,7 @@ $t->set_var( "product_item", "" );
     if ( $image->fileExists( true ) )
     {
         $imagePath =& $image->filePath( true );
-        $size = eZFile::filesize( $imagePath );
+        $size = eZPBFile::filesize( $imagePath );
 	$t->set_var( "image_path", $imagePath );
     }
     else
@@ -164,12 +164,12 @@ $t->set_var( "product_item", "" );
 	$t->set_var( "image_path", "" );
     }
 
-$size = eZFile::siFileSize( $size );
+$size = eZPBFile::siFileSize( $size );
 
-$width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
-$height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
+$width =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewWidth" );
+$height =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewHight" );
 $thumbnail =& $image->requestImageVariation( $width, $height );
-$SiteURL = $ini->read_var( "site", "UserSiteURL" );
+$SiteURL = $ini->variable( "site", "UserSiteURL" );
 
 $t->set_var( "orig_width", $image->width() );
 $t->set_var( "orig_height", $image->height() );

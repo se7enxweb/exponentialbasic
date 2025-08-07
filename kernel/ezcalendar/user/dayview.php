@@ -32,12 +32,12 @@
 
 // include_once( "ezcalendar/classes/ezappointment.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
-$StartTimeStr = $ini->read_var( "eZCalendarMain", "DayStartTime" );
-$StopTimeStr = $ini->read_var( "eZCalendarMain", "DayStopTime" );
-$IntervalStr = $ini->read_var( "eZCalendarMain", "DayInterval" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
+$StartTimeStr = $ini->variable( "eZCalendarMain", "DayStartTime" );
+$StopTimeStr = $ini->variable( "eZCalendarMain", "DayStopTime" );
+$IntervalStr = $ini->variable( "eZCalendarMain", "DayInterval" );
 
 $Locale = new eZLocale( $Language );
 
@@ -97,7 +97,7 @@ $session->setVariable( "Day", $Day );
 $zMonth = addZero( $Month );
 $zDay = addZero( $Day );
 $isMyCalendar = ( $user && $user->id() == $userID ) ? "-private" : "";
-$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->variable( "eZCalendarMain", "TemplateDir" ),
                      "kernel/ezcalendar/user/intl", $Language, "dayview.php",
                      "default", "ezcalendar" . "/user", "$Year-$zMonth-$zDay-$userID" . $isMyCalendar );
 

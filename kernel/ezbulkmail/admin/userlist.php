@@ -30,10 +30,10 @@
 // include_once( "ezbulkmail/classes/ezbulkmailsubscriptionaddress.php" );
 // include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl/", $Language, "userlist.php" );
 
 $t->setAllStrings();

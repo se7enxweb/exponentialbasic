@@ -40,8 +40,8 @@ if ( isset ( $DeleteCategories ) )
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTipMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTipMain", "Language" );
 
 // include_once( "eztip/classes/eztip.php" );
 // include_once( "eztip/classes/eztipcategory.php" );
@@ -128,7 +128,7 @@ if ( $Action == "DeleteCategories" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztip/admin/" . $ini->read_var( "eZTipMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztip/admin/" . $ini->variable( "eZTipMain", "AdminTemplateDir" ),
                      "kernel/eztip/admin/intl/", $Language, "categoryedit.php" );
 
 $t->setAllStrings();
@@ -237,7 +237,7 @@ if ( $Action == "Edit" || $Action == "New")
 	}
 
 	// Location selector
-	$TipLocations = $ini->read_var( "eZTipMain", "TipLocations" );
+	$TipLocations = $ini->variable( "eZTipMain", "TipLocations" );
 	//$LocationList = array();
 	$LocationList = explode(";" , $TipLocations);
 	$category = new eZTipCategory();

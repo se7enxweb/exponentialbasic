@@ -34,7 +34,7 @@
 // include_once( "ezmail/classes/ezmail.php" );
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 if( isset( $Cancel ) )
 {
@@ -57,9 +57,9 @@ $form = new eZForm( $FormID );
 
 $errorMessages = array();
 
-$Language = $ini->read_var( "eZFormMain", "Language" );
+$Language = $ini->variable( "eZFormMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezform/admin/" . $ini->read_var( "eZFormMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezform/admin/" . $ini->variable( "eZFormMain", "AdminTemplateDir" ),
                      "kernel/ezform/admin/intl/", $Language, "form.php" );
 
 $t->setAllStrings();

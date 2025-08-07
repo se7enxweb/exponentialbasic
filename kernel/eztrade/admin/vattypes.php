@@ -28,9 +28,9 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezvattype.php" );
 
@@ -65,7 +65,7 @@ if ( isset( $Action ) && $Action == "Delete" )
     }
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "vattypes.php" );
 
 $t->setAllStrings();

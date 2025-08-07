@@ -24,8 +24,8 @@
 
 // include_once( "ezaddress/classes/ezregion.php" );
 
-$ini =& INIFile::globalINI();
-$Max = $ini->read_var( "eZAddressMain", "MaxRegionList" );
+$ini =& eZINI::instance( 'site.ini' );
+$Max = $ini->variable( "eZAddressMain", "MaxRegionList" );
 
 include( "kernel/ezaddress/admin/typelist_pre.php" );
 

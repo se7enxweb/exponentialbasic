@@ -55,15 +55,15 @@ function deleteCache( $ProductID, $CategoryID, $CategoryArray )
 }
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$Limit = $ini->read_var( "eZTradeMain", "ProductLimit" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$Limit = $ini->variable( "eZTradeMain", "ProductLimit" );
 
 // include_once( "eztrade/classes/ezproductcategory.php" );
 // include_once( "eztrade/classes/ezproduct.php" );
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "simplecategorylist.php" );
 
 $t->setAllStrings();
@@ -168,7 +168,7 @@ foreach ( $categoryList as $categoryItem )
 }
 
 if ( count( $categoryList ) > 0 )
-     $t->set_var( "csv_dir", $ini->read_var( "eZTradeMain", "CSVImportPath" ) );
+     $t->set_var( "csv_dir", $ini->variable( "eZTradeMain", "CSVImportPath" ) );
 
 if ( count( $categoryList ) > 0 )
     $t->parse( "category_list", "category_list_tpl" );

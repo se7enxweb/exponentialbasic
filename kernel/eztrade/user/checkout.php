@@ -32,36 +32,36 @@
 // include_once( "classes/ezcurrency.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 $shippingname = eZHTTPTool::getVar( "shippname" );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$OrderSenderEmail = $ini->read_var( "eZTradeMain", "OrderSenderEmail" );
-$OrderReceiverEmail = $ini->read_var( "eZTradeMain", "OrderReceiverEmail" );
-$ForceSSL = $ini->read_var( "eZTradeMain", "ForceSSL" );
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
-$RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true";
-$ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
-$ShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
-$ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
-$ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
-$ShowTaxBasis = $ini->read_var( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
-$ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
-$StateTaxBilling = $ini->read_var( "eZTradeMain", "StateTaxBilling" ) == "enabled" ? true : false;
-$StateTaxShipping = $ini->read_var( "eZTradeMain", "StateTaxShipping" ) == "enabled" ? true : false;
-$CountryVATDiscrimination = $ini->read_var( "eZTradeMain", "CountryVATDiscrimination" ) == "enabled" ? true : false;
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$OrderSenderEmail = $ini->variable( "eZTradeMain", "OrderSenderEmail" );
+$OrderReceiverEmail = $ini->variable( "eZTradeMain", "OrderReceiverEmail" );
+$ForceSSL = $ini->variable( "eZTradeMain", "ForceSSL" );
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$ShowNamedQuantity = $ini->variable( "eZTradeMain", "ShowNamedQuantity" ) == "true";
+$RequireQuantity = $ini->variable( "eZTradeMain", "RequireQuantity" ) == "true";
+$ShowOptionQuantity = $ini->variable( "eZTradeMain", "ShowOptionQuantity" ) == "true";
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$ShowExTaxColumn = $ini->variable( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
+$ShowIncTaxColumn = $ini->variable( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
+$ShowExTaxTotal = $ini->variable( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
+$ShowTaxBasis = $ini->variable( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
+$ColSpanSizeTotals = $ini->variable( "eZTradeMain", "ColSpanSizeTotals" );
+$StateTaxBilling = $ini->variable( "eZTradeMain", "StateTaxBilling" ) == "enabled" ? true : false;
+$StateTaxShipping = $ini->variable( "eZTradeMain", "StateTaxShipping" ) == "enabled" ? true : false;
+$CountryVATDiscrimination = $ini->variable( "eZTradeMain", "CountryVATDiscrimination" ) == "enabled" ? true : false;
 
-$OrderDisclaimer = $ini->read_var( "eZTradeMain", "OrderDisclaimer" ) == "enabled" ? true : false;
-$OrderDisclaimerText = $ini->read_var( "eZTradeMain", "OrderDisclaimerText" );
-$ShippingDisclaimerText = $ini->read_var( "eZTradeMain", "ShippingDisclaimerText" );
+$OrderDisclaimer = $ini->variable( "eZTradeMain", "OrderDisclaimer" ) == "enabled" ? true : false;
+$OrderDisclaimerText = $ini->variable( "eZTradeMain", "OrderDisclaimerText" );
+$ShippingDisclaimerText = $ini->variable( "eZTradeMain", "ShippingDisclaimerText" );
 
-//Depricated ? $checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
-$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )=="enabled"?1:0;
-$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )=="enabled"?1:0;
+//Depricated ? $checkups = $ini->variable( "eZTradeMain", "UPSOFF" );
+$upscheck = $ini->variable( "eZTradeMain", "UPSXMLShipping" )=="enabled"?1:0;
+$uspscheck = $ini->variable( "eZTradeMain", "USPSXMLShipping" )=="enabled"?1:0;
 
 if(($upscheck==0)&&($uspscheck==0))
 $checkups=0;
@@ -135,7 +135,7 @@ if ( !$cart || !$cart->items() )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language , "checkout.php" );
 
 $t->setAllStrings();
@@ -361,7 +361,7 @@ if(empty($currentTypeID[0]))
 
     $order->setUser( $user );
 
-    if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) != "enabled" )
+    if ( $ini->variable( "eZTradeMain", "ShowBillingAddress" ) != "enabled" )
     {
         $billingAddressID = $shippingAddressID;
     }
@@ -1242,7 +1242,7 @@ foreach ( $addressArray as $address )
         $country = ", " . $country->name();
     }
 
-    if ( $ini->read_var( "eZUserMain", "SelectCountry" ) == "enabled" )
+    if ( $ini->variable( "eZUserMain", "SelectCountry" ) == "enabled" )
         $t->set_var( "country", $country );
     else
         $t->set_var( "country", "" );
@@ -1258,7 +1258,7 @@ foreach ( $addressArray as $address )
         $region = ", " . $region->name();
     }
 
-    if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+    if ( $ini->variable( "eZUserMain", "SelectRegion" ) == "enabled" )
         $t->set_var( "region", $region );
     else
         $t->set_var( "region", "" );
@@ -1284,7 +1284,7 @@ foreach ( $addressArray as $address )
     }
 */
 
-    if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
+    if ( $ini->variable( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
         {
 			if ( isset( $BillingAddressID ) && (int)$BillingAddressID == $address->id() )
 				$t->set_var( "billing_selected", "selected" );
@@ -1318,7 +1318,7 @@ foreach ( $addressArray as $address )
 }
 
 
-if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
+if ( $ini->variable( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
     $t->parse( "billing_address", "billing_address_tpl", true );
 else
     $t->set_var( "billing_address", "" );

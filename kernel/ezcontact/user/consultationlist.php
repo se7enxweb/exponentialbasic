@@ -27,7 +27,7 @@
 // include_once( "ezuser/classes/ezusergroup.php" );
 // include_once( "ezuser/classes/ezpermission.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 $user =& eZUser::currentUser();
 if ( is_a( $user, "eZUser" ) &&
@@ -38,7 +38,7 @@ if ( is_a( $user, "eZUser" ) &&
     // include_once( "ezcontact/classes/ezperson.php" );
 
     // include_once( "classes/INIFile.php" );
-    $max = $ini->read_var( "eZContactMain", "LastConsultations" );
+    $max = $ini->variable( "eZContactMain", "LastConsultations" );
     if ( !is_numeric( $max ) )
     {
         $max = 5;
@@ -49,11 +49,11 @@ if ( is_a( $user, "eZUser" ) &&
 
     // include_once( "classes/INIFile.php" );
 
-    $Language = $ini->read_var( "eZContactMain", "Language" );
+    $Language = $ini->variable( "eZContactMain", "Language" );
 
     // include_once( "classes/eztemplate.php" );
 
-    $t = new eZTemplate( "kernel/ezcontact/user/" . $ini->read_var( "eZContactMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezcontact/user/" . $ini->variable( "eZContactMain", "TemplateDir" ),
                          "kernel/ezcontact/user/intl", $Language, "menubox.php" );
 
     $t->setAllStrings();
@@ -71,16 +71,16 @@ if ( is_a( $user, "eZUser" ) &&
     $t->set_var( "consultation_item", "" );
     $t->set_var( "last_consultations_item", "" );
 
-    if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+    if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
     {
-        if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+        if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
             $consultations = eZConsultation::findLatestConsultations( -1, $max, "ID", true, 0, -1, true );
         else
             $consultations = eZConsultation::findLatestConsultations( -1, $max );
     }
     else
     {
-        if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+        if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
             $consultations = eZConsultation::findLatestConsultations( $user->id(), $max, "ID", true, 0, -1, true );
         else
             $consultations = eZConsultation::findLatestConsultations( $user->id(), $max );

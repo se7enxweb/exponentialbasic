@@ -30,8 +30,8 @@ ob_end_clean();
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
-$watermarkToggle = $ini->read_var( "watermark", "watermarkEnabled" ) == "true" ? true : false;
+$ini =& eZINI::instance( 'site.ini' );
+$watermarkToggle = $ini->variable( "watermark", "watermarkEnabled" ) == "true" ? true : false;
 
 $file = new eZImage( $ImageID );
 
@@ -43,7 +43,7 @@ $filePath = $file->filePath( true );
 if ( $watermarkToggle == true )
 {
   $watermarkPath = $file->watermarkPath(true);
-  $watermarkFileSize = eZFile::filesize( $watermarkPath );
+  $watermarkFileSize = eZPBFile::filesize( $watermarkPath );
 }
 
 $user =& eZUser::currentUser();
@@ -57,8 +57,8 @@ if ( eZObjectPermission::hasPermission( $image->id(), "imagecatalogue_image", "r
 //  print( $filePath );
 
 //  # the file may be a local file with full path. 
-$fileSize = eZFile::filesize( $filePath );
-$fp = eZFile::fopen( $filePath, "r" );
+$fileSize = eZPBFile::filesize( $filePath );
+$fp = eZPBFile::fopen( $filePath, "r" );
 $content =& fread( $fp, $fileSize );
 
 //Header("Content-type: application/oct-stream"); 
@@ -79,7 +79,7 @@ if ( $watermarkToggle == true ) {
     header( "Content-Length: $watermarkFileSize" );
     header( "Content-disposition: attachment; filename=\"$originalFileName\"" );
 
-    $fh = eZFile::fopen( "$watermarkPath", "rb" );
+    $fh = eZPBFile::fopen( "$watermarkPath", "rb" );
     fpassthru( $fh );
     exit();
 } else {
@@ -89,12 +89,12 @@ if ( $watermarkToggle == true ) {
     header( "Content-disposition: attachment; filename=\"$originalFileName\"" );
     //header( "Content-Transfer-Encoding: binary" );
 
-    $fh = eZFile::fopen( "$filePath", "rb" );
+    $fh = eZPBFile::fopen( "$filePath", "rb" );
     fpassthru( $fh );
     exit();
 }
 
-//$fh = eZFile::fopen( "../ezimagecatalogue/catalogue/$fileName", "rb" );
+//$fh = eZPBFile::fopen( "../ezimagecatalogue/catalogue/$fileName", "rb" );
 //fpassthru( $fh );
 //exit();
 

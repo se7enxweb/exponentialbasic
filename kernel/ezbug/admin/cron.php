@@ -29,18 +29,18 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/INIFile.php" );
 
-$ini = new INIFile( "site.ini", false );
+$ini = new eZINI( "site.ini", false );
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
-$MailUser = $ini->read_var( "eZBugMain", "MailAccount" );
-$MailPassword = $ini->read_var( "eZBugMain", "MailPassword" );
-$MailServer = $ini->read_var( "eZBugMain", "MailServer" );
-$MailServerPort = $ini->read_var( "eZBugMain", "MailServerPort" );
-$MailReplyTo = $ini->read_var( "eZBugMain", "MailReplyToAddress" );
+$Language = $ini->variable( "eZBugMain", "Language" );
+$MailUser = $ini->variable( "eZBugMain", "MailAccount" );
+$MailPassword = $ini->variable( "eZBugMain", "MailPassword" );
+$MailServer = $ini->variable( "eZBugMain", "MailServer" );
+$MailServerPort = $ini->variable( "eZBugMain", "MailServerPort" );
+$MailReplyTo = $ini->variable( "eZBugMain", "MailReplyToAddress" );
 
 $mail_array = eZMailAccount::getNewMail( $MailUser, $MailPassword, $MailServer, $MailServerPort );
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "confirmationmail.php" );
 
 $t->setAllStrings();
@@ -70,7 +70,7 @@ foreach ( $mail_array as $mail )
         $log->setBug( $bug );
         $log->store();
         $makebug = false;
-        $t->set_var( "prefix", $ini->read_var( "eZMailMain", "ReplyPrefix" ) );
+        $t->set_var( "prefix", $ini->variable( "eZMailMain", "ReplyPrefix" ) );
         $mailSubject = $mail->subject();
         $mailBody = $t->parse( "dummy", "reply_body_tpl" );
     }

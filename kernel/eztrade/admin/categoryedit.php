@@ -40,8 +40,8 @@ if ( isset ( $DeleteCategories ) )
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezproductcategory.php" );
 
@@ -269,8 +269,8 @@ if ( isset( $Action ) && $Action == "Delete" )
     $category = new eZProductCategory();
     $category->get( $CategoryID );
 
-    if ( eZFile::file_exists( "kernel/ezarticle/cache/menubox.cache" ) )
-        eZFile::unlink( "kernel/ezarticle/cache/menubox.cache" );
+    if ( file_exists( "kernel/ezarticle/cache/menubox.cache" ) )
+        eZPBFile::unlink( "kernel/ezarticle/cache/menubox.cache" );
 
     // include_once( "classes/ezcachefile.php" );
 
@@ -297,8 +297,8 @@ if ( isset( $Action ) && $Action == "DeleteCategories" )
 {
     if ( count ( $CategoryArrayID ) != 0 )
     {
-        if ( eZFile::file_exists( "kernel/ezarticle/cache/menubox.cache" ) )
-            eZFile::unlink( "kernel/ezarticle/cache/menubox.cache" );
+        if ( file_exists( "kernel/ezarticle/cache/menubox.cache" ) )
+            eZPBFile::unlink( "kernel/ezarticle/cache/menubox.cache" );
 
         // include_once( "classes/ezcachefile.php" );
         foreach( $CategoryArrayID as $ID )
@@ -337,7 +337,7 @@ if ( isset( $Action ) && $Action == "CopyCategoires" )
     }
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "categoryedit.php" );
 
 $t->setAllStrings();
@@ -354,7 +354,7 @@ $t->set_block( "category_edit_tpl", "section_item_tpl", "section_item" );
 
 
 $headline = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/categoryedit.php.ini", false );
-$t->set_var( "head_line", $headline->read_var( "strings", "head_line_insert" ) );
+$t->set_var( "head_line", $headline->variable( "strings", "head_line_insert" ) );
 
 $category = new eZProductCategory();
 
@@ -417,8 +417,8 @@ if ( isset( $Action ) && $Action == "Edit" )
     $image =& $category->image( true );
     if ( is_a( $image, "eZImage" ) && $image->id() != 0 )
     {
-        $imageWidth =& $ini->read_var( "eZTradeMain", "CategoryImageWidth" );
-        $imageHeight =& $ini->read_var( "eZTradeMain", "CategoryImageHeight" );
+        $imageWidth =& $ini->variable( "eZTradeMain", "CategoryImageWidth" );
+        $imageHeight =& $ini->variable( "eZTradeMain", "CategoryImageHeight" );
 
         $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 
@@ -442,7 +442,7 @@ if ( isset( $Action ) && $Action == "Edit" )
     $readGroupsID = eZObjectPermission::getGroups( $CategoryID, "trade_category", 'r', false );
 
     $headline = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/categoryedit.php.ini", false );
-    $t->set_var( "head_line", $headline->read_var( "strings", "head_line_edit" ) );
+    $t->set_var( "head_line", $headline->variable( "strings", "head_line_edit" ) );
 }
 
 foreach ( $categoryArray as $catItem )

@@ -31,10 +31,10 @@
 
 if ( isset( $Store ) )
 {
-    if ( eZFile::file_exists( "design/standard/style.css" ) )
-        $fp = eZFile::fopen( "design/standard/style.css", "w+");
+    if ( file_exists( "design/standard/style.css" ) )
+        $fp = eZPBFile::fopen( "design/standard/style.css", "w+");
     else
-        $fp = eZFile::fopen( "design/ecommerce/style.css", "w+");
+        $fp = eZPBFile::fopen( "design/ecommerce/style.css", "w+");
 
     $Contents =& str_replace ("\r", "", $Contents );
     fwrite ( $fp, $Contents );
@@ -42,19 +42,19 @@ if ( isset( $Store ) )
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "csseditor.php" );
 $t->setAllStrings();
 
 $t->set_file( "site_config_tpl", "csseditor.tpl" );
 
-if ( eZFile::file_exists( "design/standard/style.css" ) )
-    $lines = eZFile::file( "design/standard/style.css" );
+if ( file_exists( "design/standard/style.css" ) )
+    $lines = eZPBFile::file( "design/standard/style.css" );
 else
-    $lines = eZFile::file( filename: "design/ecommerce/style.css" );
+    $lines = eZPBFile::file( filename: "design/ecommerce/style.css" );
 
 $contents = "";
 foreach ( $lines as $line )

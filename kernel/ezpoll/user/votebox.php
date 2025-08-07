@@ -27,12 +27,12 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZPollMain", "Language" );
-$PageCaching = $ini->read_var( "eZPollMain", "PageCaching" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZPollMain", "Language" );
+$PageCaching = $ini->variable( "eZPollMain", "PageCaching" );
 $errorIni = new INIFIle( "kernel/ezpoll/user/intl/" . $Language . "/votebox.php.ini", false );
 
-$noItem = $errorIni->read_var( "strings", "noitem" );
+$noItem = $errorIni->variable( "strings", "noitem" );
 
 unset( $menuCachedFile );
 // do the caching
@@ -40,7 +40,7 @@ if ( $PageCaching == "enabled" )
 {
     $menuCachedFile = "kernel/ezpoll/cache/menubox,". $GlobalSiteDesign .".cache";
     
-    if ( eZFile::file_exists( $menuCachedFile ) )
+    if ( file_exists( $menuCachedFile ) )
     {
         include( $menuCachedFile );
     }
@@ -62,12 +62,12 @@ function createPollMenu( $generateStaticPage = false )
     global $GlobalSiteDesign;
     global $PollID;
 
-    $Language = $ini->read_var( "eZPollMain", "Language" );
+    $Language = $ini->variable( "eZPollMain", "Language" );
     
     // include_once( "ezpoll/classes/ezpoll.php" );
     // include_once( "ezpoll/classes/ezpollchoice.php" );
 
-    $t = new eZTemplate( "kernel/ezpoll/user/" . $ini->read_var( "eZPollMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezpoll/user/" . $ini->variable( "eZPollMain", "TemplateDir" ),
                          "kernel/ezpoll/user/intl/", $Language, "votebox.php" );
 
     $t->setAllStrings();
@@ -132,7 +132,7 @@ function createPollMenu( $generateStaticPage = false )
     }
     if ( $generateStaticPage == true )
     {
-        $fp = eZFile::fopen( $menuCachedFile, "w+");
+        $fp = eZPBFile::fopen( $menuCachedFile, "w+");
 
         $output = $t->parse( "output", "vote_box" );
         // print the output the first time while printing the cache file.

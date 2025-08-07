@@ -26,10 +26,10 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$PageCaching = $ini->read_var( "eZQuizMain", "PageCaching" );
-$GlobalSectionID = $ini->read_var( "eZQuizMain", "DefaultSection" );
+$PageCaching = $ini->variable( "eZQuizMain", "PageCaching" );
+$GlobalSectionID = $ini->variable( "eZQuizMain", "DefaultSection" );
 
 switch ( $url_array[2] )
 {

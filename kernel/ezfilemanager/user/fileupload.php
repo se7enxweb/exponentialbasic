@@ -80,7 +80,7 @@ if ( isset( $Download ) )
 {
     $file = new eZVirtualFile( $FileID );
 
-    if ( $ini->read_var( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
+    if ( $ini->variable( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
         $fileName = $file->originalFileName();
     else
         $fileName = $file->name();
@@ -97,12 +97,12 @@ if ( !$user )
     exit();
 }
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFileManagerMain", "Language" );
+$Language = $ini->variable( "eZFileManagerMain", "Language" );
 
 
-$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->read_var( "eZFileManagerMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->variable( "eZFileManagerMain", "TemplateDir" ),
                      "kernel/ezfilemanager/user/intl/", $Language, "fileupload.php" );
 
 $t->set_file( "file_upload_tpl", "fileupload.tpl" );
@@ -232,7 +232,7 @@ if ( isset( $Action ) && $Action == "Insert" && !$error )
     if ( empty( $Name ) )
         $Name = $uploadedFile->originalFileName();
 
-    if ( !$ini->read_var( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
+    if ( !$ini->variable( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
     {
         $extension = strrchr( $uploadedFile->originalFileName(), "." );
         if ( strrchr( $Name, "." ) != $extension )

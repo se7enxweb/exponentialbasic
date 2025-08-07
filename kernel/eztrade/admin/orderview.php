@@ -38,9 +38,9 @@ if ( isset( $Cancel ) )
 // include_once( "ezuser/classes/ezuser.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
 
 $languageINI = new INIFIle( "kernel/eztrade/user/intl/" . $Language . "/orderview.php.ini", false );
 
@@ -53,7 +53,7 @@ $languageINI = new INIFIle( "kernel/eztrade/user/intl/" . $Language . "/ordervie
 
 // include_once( "eztrade/classes/ezorderstatustype.php" );
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "orderview.php" );
 
 $t->setAllStrings();

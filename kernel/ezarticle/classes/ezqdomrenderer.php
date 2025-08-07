@@ -151,12 +151,12 @@ class eZQDomRenderer
         $UsedImageList = array();
         $RollOverCount = 0;
 
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
-        $this->Template = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+        $this->Template = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", "en_GB", "articleview.php" );
 
-        if ( file_exists( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ) . "articletags_$template.tpl" ) )
+        if ( file_exists( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ) . "articletags_$template.tpl" ) )
         {
             $this->Template->set_file( "articletags_tpl", "articletags_$template.tpl"  );
         }
@@ -217,7 +217,7 @@ class eZQDomRenderer
         $this->Template->set_block( "tr_tpl", "td_tpl", "td"  );
 
         // user defined tags
-        $customTags = $ini->read_var( "eZArticleMain", "CustomTags" );
+        $customTags = $ini->variable( "eZArticleMain", "CustomTags" );
 
         $this->CustomTagsArray = explode( ";", $customTags );
 
@@ -676,7 +676,7 @@ class eZQDomRenderer
             // add image if a valid image was found, else report an error in the log.
             if ( is_a( $image, "eZImage" ) )
             {
-                $ini =& INIFile::globalINI();
+                $ini =& eZINI::instance( 'site.ini' );
 
                 // store the relative ID to the image
                 $this->UsedImageList[] = $imageID;
@@ -687,20 +687,20 @@ class eZQDomRenderer
                     {
                         case "small" :
                         {
-                            $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "SmallImageWidth" ),
-                            $ini->read_var( "eZArticleMain", "SmallImageHeight" ) );
+                            $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "SmallImageWidth" ),
+                            $ini->variable( "eZArticleMain", "SmallImageHeight" ) );
                         }
                         break;
                         case "medium" :
                         {
-                            $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "MediumImageWidth" ),
-                            $ini->read_var( "eZArticleMain", "MediumImageHeight" ) );
+                            $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "MediumImageWidth" ),
+                            $ini->variable( "eZArticleMain", "MediumImageHeight" ) );
                         }
                         break;
                         case "large" :
                         {
-                            $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "LargeImageWidth" ),
-                            $ini->read_var( "eZArticleMain", "LargeImageHeight" ) );
+                            $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "LargeImageWidth" ),
+                            $ini->variable( "eZArticleMain", "LargeImageHeight" ) );
                         }
                         break;
 
@@ -712,8 +712,8 @@ class eZQDomRenderer
 
                         default :
                         {
-                            $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "MediumImageWidth" ),
-                            $ini->read_var( "eZArticleMain", "MediumImageHeight" ) );
+                            $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "MediumImageWidth" ),
+                            $ini->variable( "eZArticleMain", "MediumImageHeight" ) );
                         }
                     }
                 }
@@ -902,7 +902,7 @@ class eZQDomRenderer
             // add media if a valid media was found, else report an error in the log.
             if ( is_a( $media, "eZMedia" ) )
             {
-                $ini =& INIFile::globalINI();
+                $ini =& eZINI::instance( 'site.ini' );
 
                 $mediaURL = $media->mediaPath();
 
@@ -965,7 +965,7 @@ class eZQDomRenderer
             {
                 $fileID = $file->id();
 
-                $ini =& INIFile::globalINI();
+                $ini =& eZINI::instance( 'site.ini' );
 
                 $fileName = str_replace( " ", "%20", $file->originalFileName() );
                 $this->Template->set_var( "file_uri", $GlobalSiteIni->Index . "/filemanager/download/" . $fileID . "/" . $fileName );

@@ -42,17 +42,17 @@ include_once( "ezgroupeventcalendar/classes/ezgroupnoshow.php" );
 include_once( "ezgroupeventcalendar/classes/ezgroupeditor.php" );
 */
 
-$ini = &INIFile::globalINI();
-$SiteDesign = $ini->read_var("site", "SiteDesign");
+$ini = &eZINI::instance( 'site.ini' );
+$SiteDesign = $ini->variable("site", "SiteDesign");
 
-$Language = $ini->read_var("eZGroupEventCalendarMain", "Language");
-$StartTimeStr = $ini->read_var("eZGroupEventCalendarMain", "DayStartTime");
-$StopTimeStr = $ini->read_var("eZGroupEventCalendarMain", "DayStopTime");
+$Language = $ini->variable("eZGroupEventCalendarMain", "Language");
+$StartTimeStr = $ini->variable("eZGroupEventCalendarMain", "DayStartTime");
+$StopTimeStr = $ini->variable("eZGroupEventCalendarMain", "DayStopTime");
 
-$TemplateDir = $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
-$GlobalSectionID = $ini->read_var( "eZGroupEventCalendarMain", "DefaultSection" );
+$TemplateDir = $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" );
+$GlobalSectionID = $ini->variable( "eZGroupEventCalendarMain", "DefaultSection" );
 
-//$IntervalStr = $ini->read_var( "eZGroupEventCalendarMain", "DayInterval" );
+//$IntervalStr = $ini->variable( "eZGroupEventCalendarMain", "DayInterval" );
 $IntervalStr = "00:15"; // for future refactoring, this doesn't need to be preg'ed
 $Locale = new eZLocale($Language);
 $curDate = new eZDate();
@@ -161,10 +161,10 @@ if ( $templateDirTmp != null && trim( $templateDirTmp ) != "" )
 }
 else
 {
-    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" );
 }
 
-//$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+//$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" ),
 $t = new eZTemplate(  $TemplateDir,
     "kernel/ezgroupeventcalendar/user/intl",
     $Language,

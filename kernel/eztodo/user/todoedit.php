@@ -30,10 +30,10 @@
 // deletes the dayview cache file for a given day
 function deleteCache( $SiteDesign, $language, $year, $month, $day, $userID )
 {
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID.cache" );
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID.cache" );
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID-private.cache" );
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID-private.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID-private.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID-private.cache" );
 }
 
 //Adds a "0" in front of the value if it's below 10.
@@ -70,12 +70,12 @@ if ( isset( $Cancel ) )
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTodoMain", "Language" );
-$NotDoneID = $ini->read_var( "eZTodoMain", "NotDoneID" );
+$Language = $ini->variable( "eZTodoMain", "Language" );
+$NotDoneID = $ini->variable( "eZTodoMain", "NotDoneID" );
 
-$iniLanguage = new INIFile( "kernel/eztodo/user/intl/" . $Language . "/todoedit.php.ini", false );
+$iniLanguage = new eZINI( "kernel/eztodo/user/intl/" . $Language . "/todoedit.php.ini", false );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdatetime.php" );
@@ -123,7 +123,7 @@ $Name = eZHTTPTool::getVar( "Name", true );
 $Description = eZHTTPTool::getVar( "Description", true );
 $StatusID = eZHTTPTool::getVar( "StatusID", true );
 
-$t = new eZTemplate( "kernel/eztodo/user/" . $ini->read_var( "eZTodoMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/user/" . $ini->variable( "eZTodoMain", "TemplateDir" ),
                      "kernel/eztodo/user/intl", $Language, "todoedit.php" );
 $t->setAllStrings();
 
@@ -251,7 +251,7 @@ if ( isset( $Action ) && $Action == "insert" && $error == false )
     deleteCache( "default", $Language, $Due->year(), addZero( $Due->month() ) , addZero( $Due->day() ), $UserID );
     if ( $SendMail == "on" )
     {
-        $mailTemplate = new eZTemplate( "kernel/eztodo/user/" . $ini->read_var( "eZTodoMain", "TemplateDir" ),
+        $mailTemplate = new eZTemplate( "kernel/eztodo/user/" . $ini->variable( "eZTodoMain", "TemplateDir" ),
                                         "kernel/eztodo/user/intl", $Language, "sendmail.php" );
 
         $mailTemplate->setAllStrings();
@@ -334,7 +334,7 @@ if ( isset( $Action ) && $Action == "update" && $error == false )
 
     if ( ( $MailLog ) && ( is_a( $log, "eZTodoLog" ) ) )
     {
-        $mailTemplate = new eZTemplate( "kernel/eztodo/user/" . $ini->read_var( "eZTodoMain", "TemplateDir" ),
+        $mailTemplate = new eZTemplate( "kernel/eztodo/user/" . $ini->variable( "eZTodoMain", "TemplateDir" ),
                                         "kernel/eztodo/user/intl", $Language, "maillog.php" );
 
         $mailTemplate->setAllStrings();

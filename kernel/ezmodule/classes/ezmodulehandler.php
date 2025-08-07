@@ -79,8 +79,8 @@ class eZModuleHandler
     */
     static public function hasTab()
     {
-        $ini =& INIFile::globalINI();
-        $module_tab = $ini->read_var( "site", "ModuleTab" ) == "enabled";
+        $ini =& eZINI::instance( 'site.ini' );
+        $module_tab = $ini->variable( "site", "ModuleTab" ) == "enabled";
         return $module_tab;
     }
 
@@ -120,7 +120,7 @@ class eZModuleHandler
     static public function all()
     {
         $return_array = array();
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $allModules = $ini->read_array( "site", "EnabledModules" );
         $user =& eZUser::currentUser();
         foreach ( $allModules as $moduleItem )
@@ -137,7 +137,7 @@ class eZModuleHandler
     */
     static public function active()
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $preferences = new eZPreferences();
         if ( !eZModuleHandler::activeTab() )
         {

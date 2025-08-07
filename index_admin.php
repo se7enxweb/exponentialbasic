@@ -150,13 +150,13 @@ unset( $wwwDir );
 //  $session->fetch();
 //  print( "<pre>" . $session->hash() . "</pre>" );
 
-$siteDesign = & $ini->read_var( "site", "SiteStyle" );
+$siteDesign = & $ini->variable( "site", "SiteStyle" );
 $GlobalSiteDesign = $siteDesign;
 
 // do the statistics
 // // include_once( "ezstats/classes/ezpageview.php" );
 
-$SiteDesign =& $ini->read_var( "site", "SiteStyle" );
+$SiteDesign =& $ini->variable( "site", "SiteStyle" );
 
 $GLOBALS["DEBUG"] = true;
 
@@ -336,7 +336,7 @@ if ( $user )
             include( "design/admin/separator.php" );
         }
 
-        if ( eZFile::file_exists( $page ) )
+        if ( file_exists( $page ) )
         {
             include( $page );
         }
@@ -351,7 +351,7 @@ if ( $user )
 
         $helpFile = "kernel/ez" . $url_array[2] . "/admin/help/". $Language . "/" . $url_array[3] . "_" . $url_array[4] . ".hlp";
 
-        if ( eZFile::file_exists( $helpFile ) )
+        if ( file_exists( $helpFile ) )
         {
             include( $helpFile );
         }
@@ -363,7 +363,7 @@ if ( $user )
         	{
                 $page = "ez" . $url_array[1] . "/admin/datasupplier.php";
         
-                if ( eZFile::file_exists( $page ) )
+                if ( file_exists( $page ) )
 	        	{
                     include( $page );
 	        	}
@@ -414,7 +414,7 @@ else
     // send the URI to the right decoder
     $page = "kernel/ezuser/admin/datasupplier.php";
 
-    if ( eZFile::file_exists( $page ) )
+    if ( file_exists( $page ) )
     {
         include( $page );
     }

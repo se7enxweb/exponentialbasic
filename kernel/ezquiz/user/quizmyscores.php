@@ -37,16 +37,16 @@
 // include_once( "ezquiz/classes/ezquizanswer.php" );
 // include_once( "ezquiz/classes/ezquizscore.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Limit = $ini->read_var( "eZQuizMain", "ScoreLimit" );
-$Language = $ini->read_var( "eZQuizMain", "Language" );
-$ScoreCurrent = $ini->read_var( "eZQuizMain", "ScoreCurrent" );
+$Limit = $ini->variable( "eZQuizMain", "ScoreLimit" );
+$Language = $ini->variable( "eZQuizMain", "Language" );
+$ScoreCurrent = $ini->variable( "eZQuizMain", "ScoreCurrent" );
 
-$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->read_var( "eZQuizMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->variable( "eZQuizMain", "TemplateDir" ),
                      "kernel/ezquiz/user/intl/", $Language, "quiz.php" );
 
-$intl = new INIFile( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
+$intl = new eZINI( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
 
 $t->setAllStrings();
 
@@ -168,14 +168,14 @@ if ( $error )
     {
         case "login":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_login" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_login" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
 
         default:
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_undefined" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_undefined" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;

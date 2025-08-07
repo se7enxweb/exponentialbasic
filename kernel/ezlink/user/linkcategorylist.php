@@ -56,13 +56,13 @@ if ( is_numeric( $linkCategory->sectionID() ) )
 
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$UserLimit = $ini->read_var( "eZLinkMain", "UserLinkLimit" );
-$languageIni = new INIFile( "kernel/ezlink/user/intl/". $Language . "/linkcategorylist.php.ini", false );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$UserLimit = $ini->variable( "eZLinkMain", "UserLinkLimit" );
+$languageIni = new eZINI( "kernel/ezlink/user/intl/". $Language . "/linkcategorylist.php.ini", false );
 
 
-$t = new eZTemplate( "kernel/ezlink/user/" . $ini->read_var( "eZLinkMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/user/" . $ini->variable( "eZLinkMain", "TemplateDir" ),
                      "kernel/ezlink/user/intl", $Language, "linkcategorylist.php" );
 
 $t->setAllStrings();
@@ -142,8 +142,8 @@ else
         
         if ( $image )
         {
-            $imageWidth =& $ini->read_var( "eZLinkMain", "CategoryImageWidth" );
-            $imageHeight =& $ini->read_var( "eZLinkMain", "CategoryImageHeight" );
+            $imageWidth =& $ini->variable( "eZLinkMain", "CategoryImageWidth" );
+            $imageHeight =& $ini->variable( "eZLinkMain", "CategoryImageHeight" );
 
             $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
             
@@ -165,7 +165,7 @@ else
             $t->set_var( "image_item", "" );
         }
 
-        $categories = $languageIni->read_var( "strings", "categories" );
+        $categories = $languageIni->variable( "strings", "categories" );
 
         $t->set_var( "categories", $categories );
         
@@ -220,8 +220,8 @@ else
         
         if ( $image )
         {
-            $imageWidth =& $ini->read_var( "eZLinkMain", "LinkImageWidth" );
-            $imageHeight =& $ini->read_var( "eZLinkMain", "LinkImageHeight" );
+            $imageWidth =& $ini->variable( "eZLinkMain", "LinkImageWidth" );
+            $imageHeight =& $ini->variable( "eZLinkMain", "LinkImageHeight" );
             
             $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
             
@@ -242,7 +242,7 @@ else
         $hits = $hit->getLinkHits( $linkItem->id() );
         $t->set_var( "link_hits", $hits );
 
-        $links = $languageIni->read_var( "strings", "links" );
+        $links = $languageIni->variable( "strings", "links" );
         $t->set_var( "links", $links );
         $i++;
         $t->set_var( "attribute", "" );

@@ -31,10 +31,10 @@
 // include_once( "ezform/classes/ezform.php" );
 
 $ActionValue = "list";
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFormMain", "Language" );
-$Limit = $ini->read_var( "eZFormMain", "AdminFormListLimit" );
+$Language = $ini->variable( "eZFormMain", "Language" );
+$Limit = $ini->variable( "eZFormMain", "AdminFormListLimit" );
 
 if ( !$Offset )
     $Offset = 0;
@@ -50,7 +50,7 @@ if( isset( $DeleteSelected ) )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezform/admin/" . $ini->read_var( "eZFormMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezform/admin/" . $ini->variable( "eZFormMain", "AdminTemplateDir" ),
                      "kernel/ezform/admin/intl/", $Language, "form.php" );
 $t->setAllStrings();
 

@@ -25,8 +25,8 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
 
 // include_once( "classes/ezlocale.php" );
 $locale = new eZLocale( $Language );
@@ -34,7 +34,7 @@ $locale = new eZLocale( $Language );
 // include_once( "classes/eztemplate.php" );
 // include_once( "ezcontact/classes/ezcompany.php" );
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl/", $Language, "companystats.php" );
 $t->setAllStrings();
 

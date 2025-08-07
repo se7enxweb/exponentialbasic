@@ -25,8 +25,8 @@
 
 // include_once( "classes/ezuritool.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZContactMain", "DefaultSection" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZContactMain", "DefaultSection" );
 
 $url_array = eZURITool::split($_SERVER["REQUEST_URI"] );
 $url_array_count = count( $url_array );

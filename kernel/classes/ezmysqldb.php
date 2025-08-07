@@ -41,9 +41,9 @@ class eZMySQLDB
         $this->User = $user;
         $this->Password = $password;
 
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
-        $socketPath =& $ini->read_var( "site", "MySQLSocket" );
+        $socketPath =& $ini->variable( "site", "MySQLSocket" );
 
         if ( trim( $socketPath != "" ) && $socketPath != "disabled" )
         {

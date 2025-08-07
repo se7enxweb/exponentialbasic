@@ -29,14 +29,14 @@
 // include_once( "ezforum/classes/ezforummessage.php" );
 // include_once( "ezforum/classes/ezforumcategory.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 $wwwDir = $ini->WWWDir;
 $index = $ini->Index;
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
-$AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$AllowedTags = $ini->variable( "eZForumMain", "AllowedTags" );
+$AllowHTML = $ini->variable( "eZForumMain", "AllowHTML" );
 
 // Migrate the debug variable into a Module Specific Process DebugOutput Variable
 // Module View Data Context Debug Output
@@ -77,7 +77,7 @@ switch ( $Action )
     case "new":
     case "edit":
     {
-        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                              "kernel/ezforum/user/intl", $Language, "message.php" );
 
         $t->set_file( "page", "messageedit.tpl"  );
@@ -88,7 +88,7 @@ switch ( $Action )
 
     case "delete":
     {
-        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                              "kernel/ezforum/user/intl", $Language, "message.php" );
 
         $t->set_file( "page", "messagedelete.tpl"  );
@@ -97,7 +97,7 @@ switch ( $Action )
 
     case "preview":
     {
-        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                              "kernel/ezforum/user/intl", $Language, "message.php" );
 
         $t->set_file( "page", "messagepreview.tpl"  );
@@ -109,7 +109,7 @@ switch ( $Action )
     /*
     case "preview":
     {
-        $t = new eZTemplate( "ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+        $t = new eZTemplate( "ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                              "ezforum/user/intl", $Language, "message.php" );
 
         $t->set_file( "page", "messagepreview.tpl"  );
@@ -119,7 +119,7 @@ switch ( $Action )
 
     case "completed":
     {
-        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                              "kernel/ezforum/user/intl", $Language, "message.php" );
 
         $t->set_file( "page", "messageposted.tpl"  );
@@ -259,7 +259,7 @@ switch ( $Action )
             eZHTTPTool::header( "Location: /error/403?Info=" . errorPage( "forum_main", "/forum/categorylist/", 403 ) );
         }
 
-		$linkModules = $ini->read_var( "eZForumMain", "LinkModules" );
+		$linkModules = $ini->variable( "eZForumMain", "LinkModules" );
 		$module_array = explode(',', $linkModules );
 		unset ($linkModules);
 		foreach ( $module_array as $module)
@@ -297,15 +297,15 @@ switch ( $Action )
 			( $messageCount == 0 ) )
 
 		{   
-	        $mailTemplateIni = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/message.php.ini", false );
-//			$Topic = $mailTemplateIni->read_var( "strings", "auto_topic" )
-			$body_prefix = $mailTemplateIni->read_var( "strings", "auto_body" );
+	        $mailTemplateIni = new eZINI( "kernel/ezforum/user/intl/" . $Language . "/message.php.ini", false );
+//			$Topic = $mailTemplateIni->variable( "strings", "auto_topic" )
+			$body_prefix = $mailTemplateIni->variable( "strings", "auto_body" );
 
 			// graham : the old index.php way (re: update db content please)
 			//			$new_body = "<p>".$body_prefix." "."<a href=\"http://".$HTTP_HOST.$wwwDir.$index.$RedirectURL."\">".$forum->name()."</a>.<br/></br>".$msg->body();
 			$new_body = "<p>".$body_prefix." "."<a href=\"http://".$HTTP_HOST.$RedirectURL."\">".$forum->name()."</a>.<br/></br>".$msg->body();
 			$msg->setBody( $new_body );
-			//$UserName = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+			//$UserName = $ini->variable( "eZForumMain", "AnonymousPoster" );
 			//$auto_msg = new eZForumMessage();
 	        //$auto_msg->setIsTemporary( false );
     	    //$auto_msg->setForumID( $ForumID );
@@ -339,11 +339,11 @@ switch ( $Action )
 
             // include_once( "ezmail/classes/ezmail.php" );
             $mail = new eZMail();
-            $replyAddress = $ini->read_var( "eZForumMain", "ReplyAddress" );
+            $replyAddress = $ini->variable( "eZForumMain", "ReplyAddress" );
 
             $locale = new eZLocale( $Language );
 
-            $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+            $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                                             "kernel/ezforum/user/intl", $Language, "mailreply.php" );
 
             $mailTemplate->set_file( "mailreply", "mailreply.tpl" );
@@ -356,7 +356,7 @@ switch ( $Action )
 
             if ( $author->id() == 0 )
             {
-                $mailTemplate->set_var( "author", $ini->read_var( "eZForumMain", "AnonymousPoster" ) );
+                $mailTemplate->set_var( "author", $ini->variable( "eZForumMain", "AnonymousPoster" ) );
             }
             else
             {
@@ -364,7 +364,7 @@ switch ( $Action )
             }
             $mailTemplate->set_var( "posted_at", $locale->format( $msg->postingTime() ) );
 
-            $subject_line = $mailTemplate->Ini->read_var( "strings", "admin_subject" );
+            $subject_line = $mailTemplate->Ini->variable( "strings", "admin_subject" );
 
 
             $mailTemplate->set_var( "link_1", "http://" . $headersInfo["Host"] . $wwwDir. $index. "/forum/message/" . $msg->id() );
@@ -376,11 +376,11 @@ switch ( $Action )
                 $forum = new eZForum( $ForumID );
                 $mailTemplate->set_var( "forum_name", $forum->name() );
                 $mailTemplate->set_var( "forum_link", "http://"  . $headersInfo["Host"] . $wwwDir . $index. "/forum/messagelist/" . $forum->id() );
-                $mailTemplate->set_var( "link_2", "http://" . $ini->read_var( "site", "AdminSiteURL" ) . "/forum/messageedit/edit/" . $msg->id() );
-                $mailTemplate->set_var( "intl-info_message_1", $mailTemplate->Ini->read_var( "strings", "admin_info_message_1" ) );
-                $mailTemplate->set_var( "intl-info_message_2", $mailTemplate->Ini->read_var( "strings", "admin_info_message_2" ) );
-                $mailTemplate->set_var( "intl-info_message_3", $mailTemplate->Ini->read_var( "strings", "admin_info_message_3" ) );
-                $mailTemplate->set_var( "intl-info_message_4", $mailTemplate->Ini->read_var( "strings", "admin_info_message_4" ) );
+                $mailTemplate->set_var( "link_2", "http://" . $ini->variable( "site", "AdminSiteURL" ) . "/forum/messageedit/edit/" . $msg->id() );
+                $mailTemplate->set_var( "intl-info_message_1", $mailTemplate->Ini->variable( "strings", "admin_info_message_1" ) );
+                $mailTemplate->set_var( "intl-info_message_2", $mailTemplate->Ini->variable( "strings", "admin_info_message_2" ) );
+                $mailTemplate->set_var( "intl-info_message_3", $mailTemplate->Ini->variable( "strings", "admin_info_message_3" ) );
+                $mailTemplate->set_var( "intl-info_message_4", $mailTemplate->Ini->variable( "strings", "admin_info_message_4" ) );
 
                 $bodyText = ( $mailTemplate->parse( "dummy", "mailreply" ) );
 
@@ -408,7 +408,7 @@ switch ( $Action )
 
                         $locale = new eZLocale( $Language );
 
-                        $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+                        $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                                                        "kernel/ezforum/user/intl", $Language, "mailreply.php" );
 
                         $mailTemplate->set_file( "mailreply", "mailreply.tpl" );
@@ -423,7 +423,7 @@ switch ( $Action )
                             if ( $msg->userName() )
                                 $mailTemplate->set_var( "author", $msg->userName() );
                             else
-                                $mailTemplate->set_var( "author", $ini->read_var( "eZForumMain", "AnonymousPoster" ) );
+                                $mailTemplate->set_var( "author", $ini->variable( "eZForumMain", "AnonymousPoster" ) );
                         }
                         else
                         {
@@ -431,7 +431,7 @@ switch ( $Action )
                         }
                         $mailTemplate->set_var( "posted_at", $locale->format( $msg->postingTime() ) );
 
-                        $subject_line = $mailTemplate->Ini->read_var( "strings", "moderator_subject" );
+                        $subject_line = $mailTemplate->Ini->variable( "strings", "moderator_subject" );
 
                         $mailTemplate->set_var( "topic", $msg->topic() );
                         $mailTemplate->set_var( "body", $msg->body() );
@@ -449,11 +449,11 @@ switch ( $Action )
                             $mailTemplate->set_var( "link_1", "http://" . $headersInfo["Host"] . "/forum/message/" . $msg->id() );
                             $mailTemplate->parse( "link", "link_tpl" );
                         }
-                        $mailTemplate->set_var( "link_2", "http://" . $ini->read_var( "site", "AdminSiteURL" ) . "/forum/messageedit/edit/" . $msg->id() );
-                        $mailTemplate->set_var( "intl-info_message_1", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_1" ) );
-                        $mailTemplate->set_var( "intl-info_message_2", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_2" ) );
-                        $mailTemplate->set_var( "intl-info_message_3", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_3" ) );
-                        $mailTemplate->set_var( "intl-info_message_4", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_4" ) );
+                        $mailTemplate->set_var( "link_2", "http://" . $ini->variable( "site", "AdminSiteURL" ) . "/forum/messageedit/edit/" . $msg->id() );
+                        $mailTemplate->set_var( "intl-info_message_1", $mailTemplate->Ini->variable( "strings", "moderator_info_message_1" ) );
+                        $mailTemplate->set_var( "intl-info_message_2", $mailTemplate->Ini->variable( "strings", "moderator_info_message_2" ) );
+                        $mailTemplate->set_var( "intl-info_message_3", $mailTemplate->Ini->variable( "strings", "moderator_info_message_3" ) );
+                        $mailTemplate->set_var( "intl-info_message_4", $mailTemplate->Ini->variable( "strings", "moderator_info_message_4" ) );
 
                         $bodyText = $mailTemplate->parse( "dummy", "mailreply" );
 
@@ -524,7 +524,7 @@ switch ( $Action )
         $StartAction = "new";
         $EndAction = "insert";
         $ActionValue = "preview";
-        $NewMessagePostedAt = htmlspecialchars( $ini->read_var( "eZForumMain", "FutureDate" ) );
+        $NewMessagePostedAt = htmlspecialchars( $ini->variable( "eZForumMain", "FutureDate" ) );
 
         $ShowMessage = false;
         include_once( "kernel/ezforum/user/messagebody.php" );
@@ -571,7 +571,7 @@ switch ( $Action )
         unset( $NewMessageAuthor );
         unset( $NewMessagePostedAt );
 
-        $NewMessagePostedAt = htmlspecialchars( $ini->read_var( "eZForumMain", "FutureDate" ) );
+        $NewMessagePostedAt = htmlspecialchars( $ini->variable( "eZForumMain", "FutureDate" ) );
 
         $msg = new eZForumMessage( $MessageID );
 
@@ -619,10 +619,10 @@ switch ( $Action )
         $EndAction = "insert";
 
         $MessageID = $ReplyToID;
-        $NewMessagePostedAt = htmlspecialchars( $ini->read_var( "eZForumMain", "FutureDate" ) );
-        $ReplyTags = $ini->read_var( "eZForumMain", "ReplyTags" );
-        $ReplyStartTag = $ini->read_var( "eZForumMain", "ReplyStartTag" );
-        $ReplyEndTag = $ini->read_var( "eZForumMain", "ReplyEndTag" );
+        $NewMessagePostedAt = htmlspecialchars( $ini->variable( "eZForumMain", "FutureDate" ) );
+        $ReplyTags = $ini->variable( "eZForumMain", "ReplyTags" );
+        $ReplyStartTag = $ini->variable( "eZForumMain", "ReplyStartTag" );
+        $ReplyEndTag = $ini->variable( "eZForumMain", "ReplyEndTag" );
 
         $msg = new eZForumMessage( $MessageID );
         $forum = new eZForum( $msg->forumID() );
@@ -654,7 +654,7 @@ switch ( $Action )
 
         $NewMessageTopic = $msg->topic();
 
-        $ReplyPrefix = $ini->read_var( "eZForumMain", "ReplyPrefix" );
+        $ReplyPrefix = $ini->variable( "eZForumMain", "ReplyPrefix" );
 
         if ( !is_null( $NewMessageTopic) && !preg_match( "/^$ReplyPrefix/", $NewMessageTopic ) )
         {
@@ -760,8 +760,8 @@ switch ( $Action )
                 $msg->disableEmailNotice();
             }
 
-            $AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
-            $AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
+            $AllowedTags = $ini->variable( "eZForumMain", "AllowedTags" );
+            $AllowHTML = $ini->variable( "eZForumMain", "AllowHTML" );
             
             if ( isset( $AllowHTML ) && (string)$AllowHTML == "enabled" )
             {

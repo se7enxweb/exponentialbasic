@@ -35,13 +35,13 @@
 // include_once( "eztrade/classes/ezvoucherused.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "customerview.php" );
 
-$languageINI = new INIFile( "kernel/eztrade/admin/intl/" . $Language . "/customerview.php.ini", false );
+$languageINI = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/customerview.php.ini", false );
 
 $t->set_file( "customer_view_tpl", "customerview.tpl" );
 $t->set_block( "customer_view_tpl", "customer_account_number_box_tpl", "customer_account_number_box" );
@@ -127,7 +127,7 @@ foreach ( $orders as $order )
 
     $statusType = $status->type();
     $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-//    $statusName =  $languageINI->read_var( "strings", $statusName );
+//    $statusName =  $languageINI->variable( "strings", $statusName );
     $t->set_var( "order_status", $statusName );
 
     $currency->setValue( $order->totalPrice() );

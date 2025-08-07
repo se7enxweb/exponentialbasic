@@ -5,7 +5,7 @@
 <title><?php
 // set the site title
 
-$SiteTitle = $ini->read_var( "site", "SiteTitle" );
+$SiteTitle = $ini->variable( "site", "SiteTitle" );
 
 if ( isset( $SiteTitleAppend ) )
     print( $SiteTitle . " : " . $SiteTitleAppend );
@@ -107,13 +107,13 @@ function init() {
 
 <meta name="author" content="<?php
 
-    $SiteAuthor = $ini->read_var( "site", "SiteAuthor" );
+    $SiteAuthor = $ini->variable( "site", "SiteAuthor" );
     print( $SiteAuthor );
 
 ?>" />
 <meta name="copyright" content="<?php
 
-    $SiteCopyright = $ini->read_var( "site", "SiteCopyright" );
+    $SiteCopyright = $ini->variable( "site", "SiteCopyright" );
     print( $SiteCopyright );
 
 ?>" />
@@ -125,7 +125,7 @@ if ( isset( $SiteDescriptionOverride ) )
 }
 else
 {
-    $SiteDescription = $ini->read_var( "site", "SiteDescription" );
+    $SiteDescription = $ini->variable( "site", "SiteDescription" );
     print( $SiteDescription );
 }
 
@@ -137,7 +137,7 @@ if ( isset( $SiteKeywordsOverride ) )
 }
 else
 {
-    $SiteKeywords = $ini->read_var( "site", "SiteKeywords" );
+    $SiteKeywords = $ini->variable( "site", "SiteKeywords" );
     print( $SiteKeywords );
 }
 
@@ -478,7 +478,7 @@ t="20" width="20" border="0" alt="" /><br />
 // It will be no overhead with this method for storing stats
 //
 
-$StoreStats = $ini->read_var( "eZStatsMain", "StoreStats" );
+$StoreStats = $ini->variable( "eZStatsMain", "StoreStats" );
 
 if ( $StoreStats == "enabled" )
 {

@@ -25,15 +25,15 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 // include_once( "ezforum/classes/ezforumcategory.php" );
 
-$t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "categorylist.php" );
 $t->setAllStrings();
 
@@ -45,8 +45,8 @@ $category = new eZForumCategory();
 $categoryList = $category->getAllCategories();
 if ( !$categoryList )
 {
-    $languageIni = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
-    $noitem =  $languageIni->read_var( "strings", "noitem" );
+    $languageIni = new eZINI( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
+    $noitem =  $languageIni->variable( "strings", "noitem" );
 
     $t->set_var( "next", "" );
     $t->set_var( "previous", "" );

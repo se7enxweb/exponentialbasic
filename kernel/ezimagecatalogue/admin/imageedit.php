@@ -89,10 +89,10 @@ if (isset( $Action ) && $Action == "New" )
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 // include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->read_var( "eZImageCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->variable( "eZImageCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezimagecatalogue/admin/intl/", $Language, "imageedit.php" );
 
 $t->setAllStrings();

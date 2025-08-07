@@ -32,18 +32,18 @@
 // sections
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$SlideShowHeaderFooter = $ini->read_var( "eZImageCatalogueMain", "SlideShowHeaderFooter" );
-$SlideShowOriginalImage = $ini->read_var( "eZImageCatalogueMain", "SlideShowOriginalImage" );
+$SlideShowHeaderFooter = $ini->variable( "eZImageCatalogueMain", "SlideShowHeaderFooter" );
+$SlideShowOriginalImage = $ini->variable( "eZImageCatalogueMain", "SlideShowOriginalImage" );
 
 if ( $SlideShowHeaderFooter == "disabled" )
 {
     $PrintableVersion = "enabled";
 }
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->read_var( "eZImageCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->variable( "eZImageCatalogueMain", "TemplateDir" ),
                      "kernel/ezimagecatalogue/user/intl/", $Language, "slideshow.php" );
 
 $t->setAllStrings();
@@ -56,10 +56,10 @@ $t->set_block( "slideshow_tpl", "next_tpl", "next" );
 
 
 if ( $CategoryID == 0 )
-    $GlobalSectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
+    $GlobalSectionID = $ini->variable( "eZImageCatalogueMain", "DefaultSection" );
 
 if ( !$GlobalSectionID )
-    $GlobalSectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
+    $GlobalSectionID = $ini->variable( "eZImageCatalogueMain", "DefaultSection" );
 
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
@@ -82,8 +82,8 @@ else
     }
     else
     {        
-        $variation =& $image->requestImageVariation( $ini->read_var( "eZImageCatalogueMain", "ImageViewWidth" ),
-        $ini->read_var( "eZImageCatalogueMain", "ImageViewHeight" ) );
+        $variation =& $image->requestImageVariation( $ini->variable( "eZImageCatalogueMain", "ImageViewWidth" ),
+        $ini->variable( "eZImageCatalogueMain", "ImageViewHeight" ) );
     }
 
     $t->set_var( "image_uri", "/" . $variation->imagePath( true ) );

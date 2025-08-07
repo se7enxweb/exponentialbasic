@@ -29,8 +29,8 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
 
 // include_once( "ezuser/classes/ezusergroup.php" );
 // include_once( "ezuser/classes/ezpermission.php" );
@@ -38,10 +38,10 @@ $Language = $ini->read_var( "eZContactMain", "Language" );
 // deletes the dayview cache file for a given day
 function deleteCache( $SiteDesign, $language, $year, $month, $day, $userID )
 {
-    eZFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID.cache" );
-    eZFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID.cache" );
-    eZFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID-private.cache" );
-    eZFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID-private.cache" );
+    eZPBFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID.cache" );
+    eZPBFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID.cache" );
+    eZPBFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID-private.cache" );
+    eZPBFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID-private.cache" );
 }
 
 //Adds a "0" in front of the value if it's below 10.
@@ -143,7 +143,7 @@ if ( isset( $Action ) && $Action == "delete" or isset( $Delete ) )
 
 $error = false;
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, "consultationedit.php" );
 $t->setAllStrings();
 
@@ -361,7 +361,7 @@ if ( ( isset( $Action ) && $Action == "insert" || isset( $Action ) && $Action ==
         $consult_id .= "-" . $PersonContact;
     }
 
-    $mail_t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+    $mail_t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                               "kernel/ezcontact/admin/intl", $Language, "consultationmail" );
     $mail_t->setAllStrings();
 

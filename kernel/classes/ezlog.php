@@ -80,17 +80,17 @@ class eZLog
     */
     function __construct( $fileName="" )
     {
-        if ( eZFile::file_exists( $fileName ) )
+        if ( file_exists( $fileName ) )
         {
-            $this->LogFile = eZFile::fopen( $fileName, "a" );
+            $this->LogFile = eZPBFile::fopen( $fileName, "a" );
         }
         else
         {
             //include_once( "kernel/classes/INIFile.php" );
-            $ini =& INIFile::globalINI();
+            $ini =& eZINI::instance( 'site.ini' );
 
-            $fileName = $ini->read_var( "site", "LogFileName" );
-	    $logDir = $ini->read_var( "site", "LogDir" );
+            $fileName = $ini->variable( "site", "LogFileName" );
+	    $logDir = $ini->variable( "site", "LogDir" );
 
 	    // build timestamp for today's date 	    
 	    //include_once( "kernel/classes/ezdate.php" );
@@ -105,13 +105,13 @@ class eZLog
 
             $fileName = $logDir . $fileName ."_". $timestamp .".log";
 
-	    if ( eZFile::file_exists( $fileName ) )
+	    if ( file_exists( $fileName ) )
             {	
-	       $this->LogFile = eZFile::fopen( $fileName, "a" );
+	       $this->LogFile = eZPBFile::fopen( $fileName, "a" );
             } 
 	    else
             {
-               $this->LogFile = eZFile::fopen( $fileName, "a+" );
+               $this->LogFile = eZPBFile::fopen( $fileName, "a+" );
             }
     
             if ( !$this->LogFile )

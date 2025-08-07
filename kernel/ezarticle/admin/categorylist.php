@@ -59,18 +59,18 @@ function deleteCache( $ProductID, $CategoryID, $CategoryArray )
 }
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$Limit = $ini->read_var( "eZTradeMain", "ProductLimit" );
-$hotDealImageWidth  = $ini->read_var( "eZTradeMain", "HotDealImageWidth" );
-$hotDealImageHeight  = $ini->read_var( "eZTradeMain", "HotDealImageHeight" );
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$Limit = $ini->variable( "eZTradeMain", "ProductLimit" );
+$hotDealImageWidth  = $ini->variable( "eZTradeMain", "HotDealImageWidth" );
+$hotDealImageHeight  = $ini->variable( "eZTradeMain", "HotDealImageHeight" );
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
 
 include_once( "eztrade/classes/ezproductcategory.php" );
 include_once( "eztrade/classes/ezproduct.php" );
 
-$t = new eZTemplate( "eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "eztrade/admin/intl/", $Language, "categorylist.php" );
 
 // Set detail or normal mode
@@ -229,7 +229,7 @@ foreach ( $categoryList as $categoryItem )
 }
 
 if ( count( $categoryList ) > 0 )
-	$t->set_var( "csv_dir", $ini->read_var( "eZTradeMain", "CSVImportPath" ) );
+	$t->set_var( "csv_dir", $ini->variable( "eZTradeMain", "CSVImportPath" ) );
 
 if ( count( $categoryList ) > 0 )
     $t->parse( "category_list", "category_list_tpl" );

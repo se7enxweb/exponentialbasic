@@ -128,9 +128,9 @@ class eZImageVariation
         }
 
         // Delete from the filesystem
-        if ( eZFile::file_exists( $this->imagePath( true ) ) )
+        if ( file_exists( $this->imagePath( true ) ) )
         {
-            eZFile::unlink( $this->imagePath( true ) );
+            eZPBFile::unlink( $this->imagePath( true ) );
         }
     }
 
@@ -162,7 +162,7 @@ class eZImageVariation
                 $ret = true;
             }
 
-            if ( !eZFile::file_exists( $this->ImagePath ) or !is_file( $this->ImagePath ) )
+            if ( !file_exists( $this->ImagePath ) or !is_file( $this->ImagePath ) )
             {
                 $ret = false;
             }
@@ -218,7 +218,7 @@ class eZImageVariation
                         $ret =& $variation;
                     }
                     else {
-                        if (eZFile::file_exists($dest) or is_file($dest))
+                        if (file_exists($dest) or is_file($dest))
                         {
                             $variation->setImagePath($dest);
                             $variation->store();
@@ -232,7 +232,7 @@ class eZImageVariation
                 }
                 else if ( $result )
                 {
-                    if ( !eZFile::file_exists( $dest ) or !is_file( $dest ) )
+                    if ( !file_exists( $dest ) or !is_file( $dest ) )
                         return $allow_error ? false : eZImageVariation::createErrorImage();
                     $size = GetImageSize( $dest );
                     if ( !$size )

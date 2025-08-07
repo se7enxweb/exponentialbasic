@@ -32,7 +32,7 @@
 $session =& eZSession::globalSession();
 $orderID = $session->variable( "OrderID" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 

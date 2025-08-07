@@ -31,12 +31,12 @@ require( "kernel/ezuser/user/usercheck.php" );
 // include_once( "ezsession/classes/ezsession.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$SelectCountry = $ini->read_var( "eZUserMain", "SelectCountry" );
-$SelectRegion = $ini->read_var( "eZUserMain", "SelectRegion" );
-$AnonymousUserGroup = $ini->read_var( "eZUserMain", "AnonymousUserGroup" );
-$ForceSSL = $ini->read_var( "eZUserMain", "ForceSSL" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$SelectCountry = $ini->variable( "eZUserMain", "SelectCountry" );
+$SelectRegion = $ini->variable( "eZUserMain", "SelectRegion" );
+$AnonymousUserGroup = $ini->variable( "eZUserMain", "AnonymousUserGroup" );
+$ForceSSL = $ini->variable( "eZUserMain", "ForceSSL" );
 $AutoCookieLogin = eZHTTPTool::getVar( "AutoCookieLogin" );
 
 $session =& eZSession::globalSession();
@@ -79,7 +79,7 @@ $Login = eZHTTPTool::getVar( "Login" );
 $FirstName = eZHTTPTool::getVar( "FirstName" );
 $LastName = eZHTTPTool::getVar( "LastName" );
 
-$t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/user/" . $ini->variable( "eZUserMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl/", $Language, "userwithaddress.php" );
 
 $t->setAllStrings();
@@ -337,7 +337,7 @@ if ( isset( $OK ) or isset( $OK_x ) )
 
         for( $i=0; $i < count ( $AddressID ); $i++ )
         {
-            if ( $ini->read_var( "eZUserMain", "RequireAddress" ) == "enabled" )
+            if ( $ini->variable( "eZUserMain", "RequireAddress" ) == "enabled" )
             {
                 if ( count( $AddressID ) == 0 )
                 {
@@ -416,13 +416,13 @@ if ( isset( $NewAddress ) )
     $Zip[] = "";
     $Phone[] = "";
     $Place[] = "";
-    $country_id = $ini->read_var( "eZUserMain", "DefaultCountry" );
+    $country_id = $ini->variable( "eZUserMain", "DefaultCountry" );
     if ( count( $CountryID ) > 0 and is_numeric( $CountryID[count( $CountryID ) - 1] ) )
         $CountryID[] = $CountryID[count( $CountryID ) - 1];
     else
         $CountryID[] = $country_id;
 
-    $region_id = $ini->read_var( "eZUserMain", "DefaultRegion" );
+    $region_id = $ini->variable( "eZUserMain", "DefaultRegion" );
 
     if ( count( $RegionID ) > 0 and is_numeric( $RegionID[count($RegionID)-1] ) )
         $RegionID[] = $RegionID[count($RegionID)-1];
@@ -521,7 +521,7 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
         }
         else
         {
-            $CountryID = $ini->read_var( "eZUserMain", "DefaultCountry" );
+            $CountryID = $ini->variable( "eZUserMain", "DefaultCountry" );
             $address->setCountry( $CountryID );
         }
 
@@ -531,7 +531,7 @@ if ( ( isset( $OK ) or isset( $OK_x ) ) and $error == false )
         }
         else
         {
-            $RegionID = $ini->read_var( "eZUserMain", "DefaultRegion" );
+            $RegionID = $ini->variable( "eZUserMain", "DefaultRegion" );
             $address->setRegion( $RegionID );
         }
 
@@ -715,7 +715,7 @@ else
     // $Login = false;
     // $Email = false;
     
-    if ( $ini->read_var( "eZUserMain", "RequireFirstAddress" ) == "enabled" )
+    if ( $ini->variable( "eZUserMain", "RequireFirstAddress" ) == "enabled" )
     {
         if ( !isset( $AddressID ) )
             $AddressID = array( 1 );
@@ -728,9 +728,9 @@ else
         if ( !isset( $Place ) )
             $Place = array( "" );
         if ( !isset( $CountryID ) )
-            $CountryID = array( $ini->read_var( "eZUserMain", "DefaultCountry" ) );
+            $CountryID = array( $ini->variable( "eZUserMain", "DefaultCountry" ) );
         if ( !isset( $RegionID ) )
-            $RegionID = array( $ini->read_var( "eZUserMain", "DefaultRegion" ) );
+            $RegionID = array( $ini->variable( "eZUserMain", "DefaultRegion" ) );
         if ( !isset( $MainAddressID ) )
         {
             $MainAddressID = 1;
@@ -844,7 +844,7 @@ if ( count( $DeleteAddressArrayID ) )
 }
 
 // Render addresses
-if ( $ini->read_var( "eZUserMain", "UserWithAddress" ) == "enabled" )
+if ( $ini->variable( "eZUserMain", "UserWithAddress" ) == "enabled" )
 {
     for ( $i = 0; $i < count( $AddressID ); ++$i )
     {

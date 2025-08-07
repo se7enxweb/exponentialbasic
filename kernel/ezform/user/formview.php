@@ -33,9 +33,9 @@
 // include_once( "ezform/classes/ezformrenderer.php" );
 // include_once( "ezmail/classes/ezmail.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-if( strstr( $_SERVER['HTTP_REFERER'], $ini->read_var( "eZFormMain", "FromURL" )) || strstr($_SERVER['HTTP_REFERER, $ini->read_var( "eZFormMain", "FromURL" )) || strstr($HTTP_REFERER, $ini->read_var( "eZFormMain", "FromURL2" )) )
+if( strstr( $_SERVER['HTTP_REFERER'], $ini->variable( "eZFormMain", "FromURL" )) || strstr($_SERVER['HTTP_REFERER, $ini->variable( "eZFormMain", "FromURL" )) || strstr($HTTP_REFERER, $ini->variable( "eZFormMain", "FromURL2" )) )
 {
   //pass-through
 } else {
@@ -67,7 +67,7 @@ if ( !( $form->id() > 0 ) )
 
 $errorMessages = array();
 
-$Language = $ini->read_var( "eZFormMain", "Language" );
+$Language = $ini->variable( "eZFormMain", "Language" );
 
 // init the section
 if ( isset( $SectionIDOverride ) )
@@ -78,7 +78,7 @@ if ( isset( $SectionIDOverride ) )
     $sectionObject->setOverrideVariables();
 }
 
-$t = new eZTemplate( "kernel/ezform/user/" . $ini->read_var( "eZFormMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezform/user/" . $ini->variable( "eZFormMain", "AdminTemplateDir" ),
                      "kernel/ezform/user/intl/", $Language, "form.php" );
 
 $t->setAllStrings();

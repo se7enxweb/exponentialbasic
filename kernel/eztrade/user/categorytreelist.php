@@ -28,13 +28,13 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezproductcategory.php" );
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "categorytreelist.php" );
 
 $t->set_file( "category_list_page_tpl", "categorytreelist.tpl" );

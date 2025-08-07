@@ -24,8 +24,8 @@
 //
 
 
-$ini =& INIFile::globalINI();
-$PageCaching =& $ini->read_var( "eZTradeMain", "PageCaching");
+$ini =& eZINI::instance( 'site.ini' );
+$PageCaching =& $ini->variable( "eZTradeMain", "PageCaching");
 
 $PureStatic = "false";
 //$PureStatic = "true";
@@ -64,15 +64,15 @@ if ( $PureStatic == "false" )
     // include_once( "ezuser/classes/ezpermission.php" );
     // include_once( "ezuser/classes/ezobjectpermission.php" );
     
-    $ini =& INIFile::globalINI();
-    $Language = $ini->read_var( "eZTradeMain", "Language" );
-    $CategoryListProductImages = $ini->read_var( "eZTradeMain", "CategoryListProductImages" ) == "enabled" ? true : false;
+    $ini =& eZINI::instance( 'site.ini' );
+    $Language = $ini->variable( "eZTradeMain", "Language" );
+    $CategoryListProductImages = $ini->variable( "eZTradeMain", "CategoryListProductImages" ) == "enabled" ? true : false;
  
 
     // include_once( "eztrade/classes/ezproduct.php" );
     // include_once( "eztrade/classes/ezproductcategory.php" );
 
-    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                          "kernel/eztrade/user/intl/", $Language, "categorylist.php" );
 
     $t->set_file( "category_list_page_tpl", "categorylist.tpl" );

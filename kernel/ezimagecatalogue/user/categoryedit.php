@@ -52,11 +52,11 @@ if ( !$user )
     exit();
 }
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->read_var( "eZImageCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->variable( "eZImageCatalogueMain", "TemplateDir" ),
                      "kernel/ezimagecatalogue/user/intl/", $Language, "categoryedit.php" );
 
 $t->set_file( "category_edit_tpl", "categoryedit.tpl" );
@@ -188,7 +188,7 @@ if ( ( $Action == "Insert" || $Action == "Update" ) && $error == false )
     }
     else
     {
-        $sectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
+        $sectionID = $ini->variable( "eZImageCatalogueMain", "DefaultSection" );
     }
     $category->setSectionID( $sectionID );
 
@@ -387,7 +387,7 @@ foreach ( $categoryList as $categoryItem )
 }
 
 if ( !$sectionID )
-    $sectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
+    $sectionID = $ini->variable( "eZImageCatalogueMain", "DefaultSection" );
 
 $section = new eZSection( $sectionID );
 $t->set_var( "section_name", $section->name() );

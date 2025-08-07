@@ -26,7 +26,7 @@
 // include_once( "classes/INIFile.php" );
 
 $ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 //kracker: is this resource template.inc still required / used?
 // include_once( "classes/template.inc" );

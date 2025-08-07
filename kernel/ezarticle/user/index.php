@@ -31,10 +31,10 @@
 // include_once( "ezarticle/classes/ezarticlecategory.php" );
 // include_once( "ezarticle/classes/ezarticle.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "index.php" );
 
 $t->setAllStrings();
@@ -90,7 +90,7 @@ foreach( $indexes as $indexKeyword )
 
 if ( $GenerateStaticPage == "true" and $cachedFile != "" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
     $output = $t->parse( "output", "index_tpl" );
     
     // print the output the first time while printing the cache file.

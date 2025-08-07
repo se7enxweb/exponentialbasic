@@ -30,9 +30,9 @@
 // include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
-$UserComments = $ini->read_var( "eZImageCatalogueMain", "UserComments" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZImageCatalogueMain", "DefaultSection" );
+$UserComments = $ini->variable( "eZImageCatalogueMain", "UserComments" );
 
 function writeAtAll()
 {

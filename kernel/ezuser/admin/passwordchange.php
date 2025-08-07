@@ -27,8 +27,8 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
 $errorIni = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/passwordchange.php.ini", false );
 
 // include_once( "ezuser/classes/ezuser.php" );
@@ -45,7 +45,7 @@ if ( isset( $Cancel ) )
 }
 
 // Template
-$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
                      "kernel/ezuser/admin/" . "/intl", $Language, "passwordchange.php" );
 $t->setAllStrings();
 
@@ -66,17 +66,17 @@ if ( isset( $Action ) && $Action == "update" )
     
     if ( !$checkuser )
     {
-        $error_msg = $errorIni->read_var( "strings", "error_wrong" );
+        $error_msg = $errorIni->variable( "strings", "error_wrong" );
     }
     else if ( $NewPassword != $VerifyPassword )
     {
-        $error_msg = $errorIni->read_var( "strings", "error_nomach" );
+        $error_msg = $errorIni->variable( "strings", "error_nomach" );
     }
     else if ( isset( $OldPassword ) && isset( $NewPassword ) && $OldPassword != $NewPassword )
     {
         $user->setPassword( $NewPassword );
         $user->store();
-        $error_msg = $errorIni->read_var( "strings", "password_update" );
+        $error_msg = $errorIni->variable( "strings", "password_update" );
 
     }
 }

@@ -30,11 +30,11 @@
 // include_once( "classes/ezdatetime.php" );
 // include_once( "classes/ezlocale.php" );
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsfeedMain", "Language" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->read_var( "eZNewsfeedMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "newssearch.php" );
 
 $t->setAllStrings();

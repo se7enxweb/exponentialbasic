@@ -35,8 +35,8 @@
 // include_once( "eztodo/classes/ezcategory.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
-$Language = $ini->read_var( "eZTodoMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZTodoMain", "DocumentRoot" );
+$Language = $ini->variable( "eZTodoMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZTodoMain", "DocumentRoot" );
 
 if ( isset( $Cancel ) )
 {
@@ -78,7 +78,7 @@ if ( isset( $Action ) && $Action == "delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->read_var( "eZTodoMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->variable( "eZTodoMain", "AdminTemplateDir" ),
                      "kernel/eztodo/admin/intl", $Language, "categorytypeedit.php" );
 $t->set_file( array(
     "categorytypeedit" => "categorytypeedit.tpl"

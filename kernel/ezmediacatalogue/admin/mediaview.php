@@ -32,11 +32,11 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
+$Language = $ini->variable( "eZMediaCatalogueMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->variable( "eZMediaCatalogueMain", "TemplateDir" ),
                      "kernel/ezmediacatalogue/admin/intl/", $Language, "mediaview.php" );
 
 $t->set_file( "media_view_tpl", "mediaview.tpl" );

@@ -27,13 +27,13 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZTodoMain", "Language" );
+$Language = $ini->variable( "eZTodoMain", "Language" );
 
     
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 
-$t = new eZTemplate( "kernel/eztodo/user/" . $ini->read_var( "eZTodoMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/user/" . $ini->variable( "eZTodoMain", "TemplateDir" ),
                      "kernel/eztodo/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();

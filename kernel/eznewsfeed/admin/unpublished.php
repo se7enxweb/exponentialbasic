@@ -57,7 +57,7 @@ if ( isset( $Action ) && $Action == "Publish" )
     }
     
     // delete the cache
-    $dir = eZFile::dir( "eznewsfeed/cache/" );
+    $dir = eZPBFile::dir( "eznewsfeed/cache/" );
     $files = array();
     while( $entry = $dir->read() )
     { 
@@ -67,7 +67,7 @@ if ( isset( $Action ) && $Action == "Publish" )
             {
                 if ( $regArray[1] == $CategoryID )
                 {
-                    eZFile::unlink( "eznewsfeed/cache/" . $entry );
+                    eZPBFile::unlink( "eznewsfeed/cache/" . $entry );
                 }
             }
             
@@ -75,7 +75,7 @@ if ( isset( $Action ) && $Action == "Publish" )
             {
                 if ( $regArray[1] == $CategoryID )
                 {
-                    eZFile::unlink( "eznewsfeed/cache/" . $entry );
+                    eZPBFile::unlink( "eznewsfeed/cache/" . $entry );
                 }
             }
         }
@@ -108,11 +108,11 @@ if( isset( $Action ) && $Action == "DeleteCat" )
     }
 }
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsfeedMain", "Language" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->read_var( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "unpublished.php" );
 
 $t->setAllStrings();

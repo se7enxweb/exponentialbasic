@@ -34,12 +34,12 @@
 
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
-$UserLimit = $ini->read_var( "eZBugMain", "UserSearchLimit" );
+$Language = $ini->variable( "eZBugMain", "Language" );
+$UserLimit = $ini->variable( "eZBugMain", "UserSearchLimit" );
 
-$t = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                      "kernel/ezbug/user/intl/", $Language, "search.php" );
 
 $t->setAllStrings();

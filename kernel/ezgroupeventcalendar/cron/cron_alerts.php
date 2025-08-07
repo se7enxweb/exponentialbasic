@@ -63,7 +63,7 @@ ini_set( "include_path", $includePath );
 //------------------------------------------------
 
  include_once( "classes/INIFile.php" );
- $ini = new INIFile( "site.ini" );
+ $ini = new eZINI( "site.ini" );
  $GlobalSiteIni =& $ini;
 
 //------------------------------------------------

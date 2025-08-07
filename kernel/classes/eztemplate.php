@@ -157,16 +157,17 @@ class eZTemplate
         if ( is_array( $phpFile ) and is_array( $intlDir ) )
         {
             $this->languageFile = array();
-            $this->Ini = INIFile::globalINI();
-            
+            $this->Ini = eZINI::instance( 'site.ini' );
+
             foreach ( $phpFile as $php_file )
             {
                 $lang_file = $intlDir[1] . "/" . $language . "/" . $php_file . ".ini";
                 $this->languageFile[] = $lang_file;
-                if ( INIFile::file_exists( $lang_file ) )
+
+                if ( file_exists( $lang_file ) )
                 {
-                    $this->Ini->load_data( $lang_file, false );
-                    $this->TextStrings = array_merge( $this->TextStrings, $this->Ini->read_group( "strings" ) );
+                    $this->Ini->instance( $lang_file, false );
+                    $this->TextStrings = array_merge( $this->TextStrings, $this->Ini->groups( "strings" ) );
                 }
                 else
                 {
@@ -189,11 +190,11 @@ class eZTemplate
         if ( !is_array( $phpFile ) and !is_array( $intlDir ) )
         {
             $this->languageFile = $intlDir . "/" . $language . "/" . $phpFile . ".ini";
-            $this->Ini = INIFile::globalINI();
-            if ( INIFile::file_exists( $this->languageFile ) )
+            $this->Ini = eZINI::instance( 'site.ini' );
+            if ( file_exists( $this->languageFile ) )
             {
-                $this->Ini = new INIFile( $this->languageFile, false );
-                $this->TextStrings = $this->Ini->read_group( "strings" );
+                $this->Ini = eZINI::instance( $this->languageFile, false );
+                $this->TextStrings = $this->Ini->groups( "strings" );
             }
             else
             {
@@ -234,13 +235,13 @@ class eZTemplate
         if ( isset( $this->TextStrings ) and is_array( $this->TextStrings ) )
         {
             reset( $this->TextStrings );
-
-	    foreach ($this->TextStrings as $i => $tmp)
-	    {
-		$tmp_key = "intl-" . strtolower($i);
-		$this->set_var_internal( $tmp_key, $tmp );
-                //echo '<hr>';var_dump($tmp); echo '<hr>';
-	    }
+            foreach ($this->TextStrings["strings"] as $i => $tmp)
+            {
+                $tmp_key = "intl-" . strtolower($i);
+                $this->set_var_internal( $tmp_key, $tmp );
+                // Debug pro tools
+                // echo '<hr>';var_dump($tmp_key); echo '<hr>';
+            }
         }
     }
 
@@ -304,22 +305,22 @@ class eZTemplate
         if ( empty( $this->files[0] ) )
             return false;
         $CacheFile =& $this->cacheFile();
-        if ( eZFile::file_exists( $CacheFile ) )
+        if ( file_exists( $CacheFile ) )
         {
-            $template_m = eZFile::filemtime( $this->filename( $this->files[0] ) );
+            $template_m = eZPBFile::filemtime( $this->filename( $this->files[0] ) );
             if ( is_array( $this->languageFile ) )
             {
                 $lang_m = 0;
                 foreach ( $this->languageFile as $lang )
                 {
-                    $modtime = eZFile::filemtime( $lang );
+                    $modtime = eZPBFile::filemtime( $lang );
                     if ( $modtime > $lang_m )
                         $lang_m = $modtime;
                 }
             }
             else
-                $lang_m = eZFile::filemtime( $this->languageFile );
-            $cache_m = eZFile::filemtime( $CacheFile );
+                $lang_m = eZPBFile::filemtime( $this->languageFile );
+            $cache_m = eZPBFile::filemtime( $CacheFile );
             if ( $template_m <= $cache_m && $lang_m <= $cache_m )
             {
                 if ( isset($this->ExternModtime) or $this->ExternModTime <= $cache_m )
@@ -341,10 +342,10 @@ class eZTemplate
         if ( empty( $this->files[0] ) )
             return false;
         $CacheFile =& $this->cacheFile();
-        if ( eZFile::file_exists( $CacheFile ) )
+        if ( file_exists( $CacheFile ) )
         {
-            $fd = eZFile::fopen( $CacheFile, "r" );
-            $str =& fread( $fd, eZFile::filesize( $CacheFile ) );
+            $fd = eZPBFile::fopen( $CacheFile, "r" );
+            $str =& fread( $fd, eZPBFile::filesize( $CacheFile ) );
             fclose( $fd );
             return $str;
         }
@@ -362,7 +363,7 @@ class eZTemplate
             return false;
         $str =& $this->parse( $target, $handle );
         $CacheFile =& $this->cacheFile();
-        if ( !eZFile::file_exists( $this->CacheDir ) )
+        if ( !file_exists( $this->CacheDir ) )
         {
             if ( $GLOBALS["DEBUG"] == true )
             {                    
@@ -371,7 +372,7 @@ class eZTemplate
         }
         else
         {
-            $fd = eZFile::fopen( $CacheFile, "w" );
+            $fd = eZPBFile::fopen( $CacheFile, "w" );
             fwrite( $fd, $str );
             fclose( $fd );
         }
@@ -390,7 +391,7 @@ class eZTemplate
         if ( empty( $this->CacheSuffix ) )
             return false;
         $CacheFile =& $this->cacheFile();
-        if ( !eZFile::file_exists( $this->CacheDir ) )
+        if ( !file_exists( $this->CacheDir ) )
         {
             if ( $GLOBALS["DEBUG"] == true )
             {
@@ -399,8 +400,8 @@ class eZTemplate
         }
         else
         {
-            if ( eZFile::file_exists( $this->CacheFile ) )
-                return eZFile::unlink( $CacheFile );
+            if ( file_exists( $this->CacheFile ) )
+                return eZPBFile::unlink( $CacheFile );
             else
                 return true;
         }
@@ -744,7 +745,7 @@ class eZTemplate
             {
                 return $err;
             }
-//              return $this->varkeys[$varname];
+            // return $this->varkeys[$varname];
         }
         else
         {
@@ -754,6 +755,7 @@ class eZTemplate
                 $result[$k] =& $this->varvals[$k];
 //                  $result[$k] =& $this->varkeys[$k];
             }
+
             return $result;
         }
     }
@@ -888,9 +890,10 @@ class eZTemplate
     {
         if ( isset( $this->varkeys[$handle] ) and !empty( $this->varvals[$handle] ) )
             return true;
-//          if (isset($this->varkeys[$handle]) and !empty($this->varkeys[$handle]))
-//              return true;
 
+        // if (isset($this->varkeys[$handle]) and !empty($this->varkeys[$handle]))
+        // return true;
+        // var_dump( $this->file );
         if ( !isset( $this->file[$handle] ) )
         {
             $this->halt( "loadfile: $handle is not a valid handle." );

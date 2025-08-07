@@ -146,13 +146,13 @@ if ( isSet( $AddFile ) )
 // include_once( "ezgroupeventcalendar/classes/ezgroupeditor.php" );
 // include_once( "ezgroupeventcalendar/classes/ezgroupnoshow.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$SiteDesign = $ini->read_var( "site", "SiteDesign" );
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
-$StartTimeStr = $ini->read_var( "eZGroupEventCalendarMain", "DayStartTime" );
-$StopTimeStr = $ini->read_var( "eZGroupEventCalendarMain", "DayStopTime" );
-$timeSelect = $ini->read_var( "eZGroupEventCalendarMain", "TwelveHourSelect" );
+$SiteDesign = $ini->variable( "site", "SiteDesign" );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
+$StartTimeStr = $ini->variable( "eZGroupEventCalendarMain", "DayStartTime" );
+$StopTimeStr = $ini->variable( "eZGroupEventCalendarMain", "DayStopTime" );
+$timeSelect = $ini->variable( "eZGroupEventCalendarMain", "TwelveHourSelect" );
 
 $Locale = new eZLocale( $Language );
 
@@ -190,7 +190,7 @@ else
 // We don't need to record this
 // $session->setVariable( "ShowOtherCalenderGroups", $groupID );
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" ),
                      "kernel/ezgroupeventcalendar/user/intl/", $Language, "eventedit.php" );
 
 $t->set_file( "event_edit_tpl", "eventedit.tpl" );
@@ -955,7 +955,7 @@ if ( ( isset( $Action ) && $Action == "Insert" || isset( $Action ) && $Action ==
 			if( $startHour = $dayStarthour && $startMinute == $dayStartMin && $stopHour == $dayStopHour && $stopMinute == $dayStopMin )
 			$t->set_var( "is_all_day", "checked" );
 
-			$minuteInterval = $ini->read_var( "eZGroupEventCalendarMain", "MinutesSelectInterval" );
+			$minuteInterval = $ini->variable( "eZGroupEventCalendarMain", "MinutesSelectInterval" );
 			$minute_array    = array();
 
 			for( $i=0; $i<60; $i = $i + $minuteInterval )
@@ -1320,7 +1320,7 @@ if ( isset( $Action ) && $Action == "Edit" && $groupError == false )
 		$t->set_var( "is_all_day", "checked" );
 	}
 
-	$minuteInterval = $ini->read_var( "eZGroupEventCalendarMain", "MinutesSelectInterval" );
+	$minuteInterval = $ini->variable( "eZGroupEventCalendarMain", "MinutesSelectInterval" );
 
 	$minute_array    = array();
 	for( $i=0; $i<60; $i = $i + $minuteInterval )
@@ -1452,7 +1452,7 @@ var_dump($startMinute, $stopMinute);
 
 	$tempYear = addZero( $today->year() );
         //$tempYear = $tmpdate->year();
-	$yearsPrint = $ini->read_var( "eZGroupEventCalendarMain", "YearsPrint" );
+	$yearsPrint = $ini->variable( "eZGroupEventCalendarMain", "YearsPrint" );
 
 	// : setting new day time in template
 	$t->set_var( "date_calendar", "$year-$month-$day");
@@ -1625,7 +1625,7 @@ if ( isset( $Action ) && $Action == "New" && $groupError == false )
     $t->set_var( "5_selected", "" );
     $t->set_var( "6_selected", "" );
 
-    $priority = $ini->read_var( "eZGroupEventCalendarMain", "Priority" );
+    $priority = $ini->variable( "eZGroupEventCalendarMain", "Priority" );
 
     if ( $priority== 0 )
         $t->set_var( "0_selected", "selected" );
@@ -1647,7 +1647,7 @@ if ( isset( $Action ) && $Action == "New" && $groupError == false )
     $t->set_var( "1_status_selected", "" );
     $t->set_var( "2_status_selected", "" );
 
-    $status = $ini->read_var( "eZGroupEventCalendarMain", "Status" );
+    $status = $ini->variable( "eZGroupEventCalendarMain", "Status" );
 
     if ( $status == 0 )
       $t->set_var( "0_status_selected", "selected" );
@@ -1675,7 +1675,7 @@ $t->set_var( "date_calendar", "$year-$month-$day" );
 	
     $tmpdate = new eZDate( $year, $month, $day );
 
-	$minuteInterval = $ini->read_var( "eZGroupEventCalendarMain", "MinutesSelectInterval" );
+	$minuteInterval = $ini->variable( "eZGroupEventCalendarMain", "MinutesSelectInterval" );
 
 	$minute_array    = array();
 	for( $i=0; $i<60; $i = $i + $minuteInterval )
@@ -1906,7 +1906,7 @@ if ( isset( $Action ) && $Action != "Edit" )
     $t->set_var( "year_value", $tmpdate->year() );
 	$t->set_var( "is_year_selected", "selected" );
 	$t->parse( "year", "year_tpl", true );
-	$yearsPrint = $ini->read_var( "eZGroupEventCalendarMain", "YearsPrint" );
+	$yearsPrint = $ini->variable( "eZGroupEventCalendarMain", "YearsPrint" );
 	for( $i=1; $i<=$yearsPrint; $i++ )
 	{
 		$t->set_var( "year_value", $tmpdate->year() + $i );

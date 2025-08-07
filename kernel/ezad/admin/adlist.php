@@ -30,10 +30,10 @@
 // include_once( "ezad/classes/ezad.php" );
 // include_once( "ezad/classes/ezadcategory.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZAdMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZAdMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezad/admin/" . $ini->read_var( "eZAdMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezad/admin/" . $ini->variable( "eZAdMain", "AdminTemplateDir" ),
                      "kernel/ezad/admin/intl/", $Language, "adlist.php" );
 
 $t->setAllStrings();

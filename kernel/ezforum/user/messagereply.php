@@ -26,10 +26,10 @@
 // include_once( "ezmail/classes/ezmail.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $index = $ini->Index;
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 if ( $StartAction == "reply" )
 {
@@ -52,12 +52,12 @@ if ( $StartAction == "reply" )
 
     $messages = $forum->messageThreadTree( $msg->threadID() );
 
-    $replyAddress = $ini->read_var( "eZForumMain", "ReplyAddress" );
+    $replyAddress = $ini->variable( "eZForumMain", "ReplyAddress" );
     $mail->setFrom( $replyAddress );
 
     $locale = new eZLocale( $Language );
 
-    $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+    $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                                     "kernel/ezforum/user/intl", $Language, "mailreply.php" );
 
     $mailTemplate->set_file( "mailreply", "mailreply.tpl" );
@@ -80,7 +80,7 @@ if ( $StartAction == "reply" )
 
                 if ( $author->id() == 0 )
                 {
-                    $mailTemplate->set_var( "author", $ini->read_var( "eZForumMain", "AnonymousPoster" ) );
+                    $mailTemplate->set_var( "author", $ini->variable( "eZForumMain", "AnonymousPoster" ) );
                 }
                 else
                 {
@@ -88,7 +88,7 @@ if ( $StartAction == "reply" )
                 }
                 $mailTemplate->set_var( "posted_at", $locale->format( $msg->postingTime() ) );
 
-                $subject_line = $mailTemplate->Ini->read_var( "strings", "moderator_subject" );
+                $subject_line = $mailTemplate->Ini->variable( "strings", "moderator_subject" );
 
                 if ( $forum->isModerated() )
                 {
@@ -105,10 +105,10 @@ if ( $StartAction == "reply" )
                 $mailTemplate->set_var( "forum_name", $forum->name() );
                 $mailTemplate->set_var( "forum_link", "https://"  . $headersInfo["Host"] . $wwwDir . $index. "/forum/messagelist/" . $forum->id() );
                 $mailTemplate->set_var( "link_2", "https://admin." . $headersInfo["Host"] . $wwwDir . $index. "/forum/messageedit/edit/" . $msg->id() );
-                $mailTemplate->set_var( "intl-info_message_1", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_1" ) );
-                $mailTemplate->set_var( "intl-info_message_2", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_2" ) );
-                $mailTemplate->set_var( "intl-info_message_3", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_3" ) );
-                $mailTemplate->set_var( "intl-info_message_4", $mailTemplate->Ini->read_var( "strings", "moderator_info_message_4" ) );
+                $mailTemplate->set_var( "intl-info_message_1", $mailTemplate->Ini->variable( "strings", "moderator_info_message_1" ) );
+                $mailTemplate->set_var( "intl-info_message_2", $mailTemplate->Ini->variable( "strings", "moderator_info_message_2" ) );
+                $mailTemplate->set_var( "intl-info_message_3", $mailTemplate->Ini->variable( "strings", "moderator_info_message_3" ) );
+                $mailTemplate->set_var( "intl-info_message_4", $mailTemplate->Ini->variable( "strings", "moderator_info_message_4" ) );
 
                 $bodyText = ( $mailTemplate->parse( "dummy", "mailreply" ) );
 
@@ -129,7 +129,7 @@ if ( $StartAction == "reply" )
     if ( $msg->isApproved() ) 
     {
         $mail = new eZMail();
-        $replyAddress = $ini->read_var( "eZForumMain", "ReplyAddress" );
+        $replyAddress = $ini->variable( "eZForumMain", "ReplyAddress" );
         $mail->setFrom( $replyAddress );
     
         foreach ( $messages as $message )
@@ -153,9 +153,9 @@ if ( $StartAction == "reply" )
 
                     $mailTemplate->set_var( "posted_at", $locale->format( $msg->postingTime() ) );
 
-                    $subject_line = $mailTemplate->Ini->read_var( "strings", "subject_prepend" );
+                    $subject_line = $mailTemplate->Ini->variable( "strings", "subject_prepend" );
                     $subject_line = $subject_line . $message->topic();
-                    $subject_line = $subject_line . $mailTemplate->Ini->read_var( "strings", "subject_append" );
+                    $subject_line = $subject_line . $mailTemplate->Ini->variable( "strings", "subject_append" );
 
                     $mailTemplate->set_var( "topic", $msg->topic() );
                     $mailTemplate->set_var( "body", $msg->body() );
@@ -205,7 +205,7 @@ if ( $StartAction == "moderatorapprove" )
 
     $locale = new eZLocale( $Language );
 
-    $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+    $mailTemplate = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                                     "kernel/ezforum/user/intl", $Language, "mailreply.php" );
 
     $mailTemplate->set_file( "mailreply", "mailreply.tpl" );
@@ -218,7 +218,7 @@ if ( $StartAction == "moderatorapprove" )
     if ( $msg->isApproved() ) 
     {
         $mail = new eZMail();
-        $replyAddress = $ini->read_var( "eZForumMain", "ReplyAddress" );
+        $replyAddress = $ini->variable( "eZForumMain", "ReplyAddress" );
         $mail->setFrom( $replyAddress );
     
         foreach ( $messages as $message )
@@ -242,9 +242,9 @@ if ( $StartAction == "moderatorapprove" )
 
                     $mailTemplate->set_var( "posted_at", $locale->format( $msg->postingTime() ) );
 
-                    $subject_line = $mailTemplate->Ini->read_var( "strings", "subject_prepend" );
+                    $subject_line = $mailTemplate->Ini->variable( "strings", "subject_prepend" );
                     $subject_line = $subject_line . $message->topic();
-                    $subject_line = $subject_line . $mailTemplate->Ini->read_var( "strings", "subject_append" );
+                    $subject_line = $subject_line . $mailTemplate->Ini->variable( "strings", "subject_append" );
 
                     $mailTemplate->set_var( "topic", $msg->topic() );
                     $mailTemplate->set_var( "body", $msg->body() );

@@ -72,10 +72,10 @@ if ( isset( $DeleteCategories ) )
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 // include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->read_var( "eZImageCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->variable( "eZImageCatalogueMain", "TemplateDir" ),
                      "kernel/ezimagecatalogue/user/intl/", $Language, "imageedit.php" );
 
 $t->setAllStrings();

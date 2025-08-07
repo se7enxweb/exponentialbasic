@@ -26,8 +26,8 @@
 // include_once( "classes/INIFile.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$UserLimit = $ini->read_var( "eZLinkMain", "UserSearchLimit" );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$UserLimit = $ini->variable( "eZLinkMain", "UserSearchLimit" );
 
 // include_once( "classes/eztemplate.php" );
 
@@ -36,7 +36,7 @@ $UserLimit = $ini->read_var( "eZLinkMain", "UserSearchLimit" );
 // include_once( "classes/ezlist.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$t = new eZTemplate( "kernel/ezlink/user/" . $ini->read_var( "eZLinkMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/user/" . $ini->variable( "eZLinkMain", "TemplateDir" ),
                      "kernel/ezlink/user/intl", $Language, "search.php" );
 
 $t->setAllStrings();

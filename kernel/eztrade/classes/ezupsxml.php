@@ -186,13 +186,13 @@ class upsRate
 
     function construct_request_xml(){
       include_once( "classes/INIFile.php" );
-      $ini =& INIFile::globalINI();
+      $ini =& eZINI::instance( 'site.ini' );
 
       $xml="<?xml version=\"1.0\"?>
 <AccessRequest xml:lang=\"en-US\">
-   <AccessLicenseNumber>".$ini->read_var( "eZTradeMain", "UPSAccessKey" )."</AccessLicenseNumber>
-   <UserId>".$ini->read_var( "eZTradeMain", "UPSUserID" )."</UserId>
-   <Password>".$ini->read_var( "eZTradeMain", "UPSPassword" )."</Password>
+   <AccessLicenseNumber>".$ini->variable( "eZTradeMain", "UPSAccessKey" )."</AccessLicenseNumber>
+   <UserId>".$ini->variable( "eZTradeMain", "UPSUserID" )."</UserId>
+   <Password>".$ini->variable( "eZTradeMain", "UPSPassword" )."</Password>
 </AccessRequest>
 <?xml version=\"1.0\"?>
 <RatingServiceSelectionRequest xml:lang=\"en-US\">
@@ -313,11 +313,11 @@ $xml .=
      	// echo $y;
 
 	include_once( "classes/INIFile.php" );
-	$ini =& INIFile::globalINI();
+	$ini =& eZINI::instance( 'site.ini' );
 
         $ch = curl_init(); 
 
-        curl_setopt ($ch, CURLOPT_URL,$ini->read_var( "eZTradeMain", "UPSServer" )); /// set the post-to url (do not include the ?query+string here!) 
+        curl_setopt ($ch, CURLOPT_URL,$ini->variable( "eZTradeMain", "UPSServer" )); /// set the post-to url (do not include the ?query+string here!) 
         curl_setopt ($ch, CURLOPT_HEADER, 0); /// Header control 
         curl_setopt ($ch, CURLOPT_POST, 1);  /// tell it to make a POST, not a GET 
         curl_setopt ($ch, CURLOPT_POSTFIELDS, "$y");  /// put the querystring here starting with "?" 

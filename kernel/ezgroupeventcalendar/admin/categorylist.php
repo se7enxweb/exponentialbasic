@@ -29,13 +29,13 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
 /*
 include_once( "ezgroupeventcalendar/classes/ezgroupevent.php" );
 include_once( "ezgroupeventcalendar/classes/ezgroupeventcategory.php" );
 */
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->read_var( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->variable( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
                      "kernel/ezgroupeventcalendar/admin/intl/", $Language, "categorylist.php" );
 
 $t->setAllStrings();

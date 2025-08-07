@@ -36,13 +36,13 @@
 // include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
+$Language = $ini->variable( "eZMediaCatalogueMain", "Language" );
 
-$MediaDir = $ini->read_var( "eZMediaCatalogueMain", "ImageDir" );
+$MediaDir = $ini->variable( "eZMediaCatalogueMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->variable( "eZMediaCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezmediacatalogue/admin/intl/", $Language, "browse.php" );
 
 $t->set_file( "media_list_page_tpl", "browse.tpl" );

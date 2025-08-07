@@ -414,8 +414,8 @@ class eZOptionValue
     */
     function &localePrice( $calcVAT, $inProduct )
     {
-        $ini =& INIFile::globalINI();
-        $inLanguage = $ini->read_var( "eZTradeMain", "Language" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $inLanguage = $ini->variable( "eZTradeMain", "Language" );
 
         $locale = new eZLocale( $inLanguage );
         $currency = new eZCurrency();
@@ -473,8 +473,8 @@ class eZOptionValue
     */
     function &localeSavings( $calcVAT, $inProduct )
     {
-        $ini =& INIFile::globalINI();
-        $inLanguage = $ini->read_var( "eZTradeMain", "Language" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $inLanguage = $ini->variable( "eZTradeMain", "Language" );
 
         $locale = new eZLocale( $inLanguage );
         $currency = new eZCurrency();

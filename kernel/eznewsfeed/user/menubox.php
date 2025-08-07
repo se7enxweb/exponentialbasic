@@ -27,14 +27,14 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsfeedMain", "Language" );
 
     
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->read_var( "eZNewsfeedMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
                      "kernel/eznewsfeed/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();

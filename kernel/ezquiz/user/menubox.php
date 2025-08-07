@@ -27,9 +27,9 @@
 // include_once( "classes/ezcachefile.php" );
 // include_once( "classes/ezlocale.php" );
 
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZQuizMain", "Language" );
-$PageCaching = $ini->read_var( "eZQuizMain", "PageCaching" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZQuizMain", "Language" );
+$PageCaching = $ini->variable( "eZQuizMain", "PageCaching" );
 
 createQuizMenu();
 
@@ -45,7 +45,7 @@ function createQuizMenu()
     // include_once( "ezquiz/classes/ezquizgame.php" );
     // include_once( "ezquiz/classes/ezquizscore.php" );
 
-    $t = new eZTemplate( "kernel/ezquiz/user/" . $ini->read_var( "eZQuizMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezquiz/user/" . $ini->variable( "eZQuizMain", "TemplateDir" ),
                          "kernel/ezquiz/user/intl", $Language, "menubox.php" );
 
     $t->setAllStrings();

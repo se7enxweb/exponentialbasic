@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-$PageCaching = $ini->read_var( "eZTradeMain", "PageCaching");
+$PageCaching = $ini->variable( "eZTradeMain", "PageCaching");
 
 
 // include_once( "ezuser/classes/ezuser.php" );
@@ -31,11 +31,12 @@ $PageCaching = $ini->read_var( "eZTradeMain", "PageCaching");
 // include_once( "classes/ezhttptool.php" );
 
 $user =& eZUser::currentUser();
-$SiteDesign = $ini->read_var( "site", "SiteDesign" );
+$ini =& eZINI::instance( 'site.ini' );
+$SiteDesign = $ini->variable( "site", "SiteDesign" );
 
-$RequireUser = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
+$RequireUser = $ini->variable( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
 $ShowPrice = $RequireUser ? is_a( $user, "eZUser" ) : true;
-$UserReviews = $ini->read_var( "eZTradeMain", "UserReviews" );
+$UserReviews = $ini->variable( "eZTradeMain", "UserReviews" );
 
 $PriceGroup = 0;
 if ( is_a( $user, "eZUser" ) )
@@ -45,8 +46,7 @@ if ( is_a( $user, "eZUser" ) )
 if ( !$ShowPrice )
     $PriceGroup = -1;
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZTradeMain", "DefaultSection" );
+$GlobalSectionID = $ini->variable( "eZTradeMain", "DefaultSection" );
 
 if ( $user )
 {

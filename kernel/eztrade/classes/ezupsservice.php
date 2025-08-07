@@ -33,14 +33,14 @@ class ezups {
     function ezupsser($id = "", $service = 01, $state = false, $zip = false, $country = false, $totarr = false)
     {
         if ($id != "") {
-            $ini = &INIFile::globalINI();
-            $this->adminstate = $ini->read_var("eZTradeMain", "Adminstate");
-            $this->adminzip = $ini->read_var("eZTradeMain", "Adminzip");
-            $this->admincountry = $ini->read_var("eZTradeMain", "Admincountry");
-            $this->userups = $ini->read_var("site", "UserUPS");
-            $this->accessups = $ini->read_var("site", "AccessUPS");
-            $this->passups = $ini->read_var("site", "PassUPS");
-            $this->flatservice = $ini->read_var("eZTradeMain", "FlatUPSService");
+            $ini = &eZINI::instance( 'site.ini' );
+            $this->adminstate = $ini->variable("eZTradeMain", "Adminstate");
+            $this->adminzip = $ini->variable("eZTradeMain", "Adminzip");
+            $this->admincountry = $ini->variable("eZTradeMain", "Admincountry");
+            $this->userups = $ini->variable("site", "UserUPS");
+            $this->accessups = $ini->variable("site", "AccessUPS");
+            $this->passups = $ini->variable("site", "PassUPS");
+            $this->flatservice = $ini->variable("eZTradeMain", "FlatUPSService");
             $this->totalarr = $totarr;
             $this->ID = $id;
             $this->service = $service;
@@ -71,13 +71,13 @@ class ezups {
 
     function getservices($sta, $cou)
     {
-        $ini = &INIFile::globalINI();
+        $ini = &eZINI::instance( 'site.ini' );
         $emptyarr = array();
         if (strtolower($cou) == "us") {
             if (($sta != "AF") && ($sta != "AA") && ($sta != "AC") && ($sta != "AE") && ($sta != "AM") && ($sta != "AP")) {
                 if (($sta != "AK") && ($sta != "HI")) {
                     // $servicearr =array ( '02','03','12');
-                    $serviceprearr = $ini->read_var("eZTradeMain", "USExcept");
+                    $serviceprearr = $ini->variable("eZTradeMain", "USExcept");
 
                     $splsitearr = explode(";", $serviceprearr);
                     for($sitecount = 0;$sitecount < count($splsitearr);$sitecount++) {
@@ -85,7 +85,7 @@ class ezups {
                     } 
                 } else {
                     // $servicearr = array ('01','02');
-                    $serviceprearr = $ini->read_var("eZTradeMain", "USInclude");
+                    $serviceprearr = $ini->variable("eZTradeMain", "USInclude");
 
                     $splsitearr = explode(";", $serviceprearr);
                     for($sitecount = 0;$sitecount < count($splsitearr);$sitecount++) {
@@ -98,7 +98,7 @@ class ezups {
             } 
         } else {
             $jointcountry = $cou . "ups";
-            $serviceprearr = $ini->read_var("eZTradeMain", "$jointcountry");
+            $serviceprearr = $ini->variable("eZTradeMain", "$jointcountry");
             if (!empty($serviceprearr)) {
                 $splsitearr = explode(";", $serviceprearr);
                 for($sitecount = 0;$sitecount < count($splsitearr);$sitecount++) {
@@ -106,7 +106,7 @@ class ezups {
                 } 
                 // $servicearr = array('11');
             } else {
-                $serviceprearr = $ini->read_var("eZTradeMain", "Defaultups");
+                $serviceprearr = $ini->variable("eZTradeMain", "Defaultups");
                 $splsitearr = explode(';', $serviceprearr);
                 for($sitecount = 0;$sitecount < count($splsitearr);$sitecount++) {
                     $servicearr[] = $splsitearr[$sitecount];

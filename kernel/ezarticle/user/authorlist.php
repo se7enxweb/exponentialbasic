@@ -28,12 +28,12 @@
 
 // include_once( "ezarticle/classes/ezarticle.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$Limit = $ini->read_var( "eZArticleMain", "AuthorLimit" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$Limit = $ini->variable( "eZArticleMain", "AuthorLimit" );
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "authorlist.php" );
 
 $t->setAllStrings();

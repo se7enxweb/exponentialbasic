@@ -29,7 +29,7 @@
 // include_once( "classes/ezfile.php" );
 
 
-if ( !eZFile::file_exists( "ezsitemanager/staticfiles/$fileName" ) )
+if ( !file_exists( "ezsitemanager/staticfiles/$fileName" ) )
 {
      eZHTTPTool::header( "Location: /error/404/" );
      exit();
@@ -37,22 +37,22 @@ if ( !eZFile::file_exists( "ezsitemanager/staticfiles/$fileName" ) )
 
 if ( isset( $Store ) )
 {
-    $fp = eZFile::fopen( "ezsitemanager/staticfiles/$fileName", "w+");
+    $fp = eZPBFile::fopen( "ezsitemanager/staticfiles/$fileName", "w+");
     fwrite ( $fp, $Contents );
     fclose( $fp );
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "fileedit.php" );
 $t->setAllStrings();
 
 $t->set_file( "file_edit_tpl", "fileedit.tpl" );
 
-$lines = eZFile::file( "ezsitemanager/staticfiles/$fileName" );
+$lines = eZPBFile::file( "ezsitemanager/staticfiles/$fileName" );
 $contents = "";
 foreach ( $lines as $line )
 {

@@ -33,15 +33,15 @@
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ImageDir = $ini->read_var( "eZArticleMain", "ImageDir" );
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
-$DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
-$GrayScaleImageList = $ini->read_var( "eZArticleMain", "GrayScaleImageList" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
+$DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
+$GrayScaleImageList = $ini->variable( "eZArticleMain", "GrayScaleImageList" );
 
-$TemplateDir = $ini->read_var( "eZArticleMain", "TemplateDir" );
+$TemplateDir = $ini->variable( "eZArticleMain", "TemplateDir" );
 
 $t = new eZTemplate( "kernel/ezarticle/user/" . $TemplateDir,
                      "kernel/ezarticle/user/intl/", $Language, "newsgroup.php" );
@@ -56,7 +56,7 @@ $GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
 // override template for the current category
 $override = "_override_$CategoryID";
 
-if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/newsgroup" . $override  . ".tpl" ) )
+if ( file_exists( "kernel/ezarticle/user/$TemplateDir/newsgroup" . $override  . ".tpl" ) )
 {
     $t->set_file( "news_group_tpl", "newsgroup" . $override  . ".tpl"  );
 }
@@ -142,8 +142,8 @@ foreach( $categoryList as $category )
                 else
                     $convertToGray = false;
                 
-                $variation =& $thumbnailImage->requestImageVariation( $ini->read_var( "eZArticleMain", "ThumbnailGroupImageWidth" ),
-                $ini->read_var( "eZArticleMain", "ThumbnailGroupImageHeight" ), $convertToGray );
+                $variation =& $thumbnailImage->requestImageVariation( $ini->variable( "eZArticleMain", "ThumbnailGroupImageWidth" ),
+                $ini->variable( "eZArticleMain", "ThumbnailGroupImageHeight" ), $convertToGray );
                 
                 $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
                 $t->set_var( "thumbnail_image_width", $variation->width() );
@@ -174,7 +174,7 @@ foreach( $categoryList as $category )
 
 if ( isset( $GenerateStaticPage ) and $GenerateStaticPage == "true" and $cachedFile != "" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     $output = $t->parse( "output", "news_group_tpl" );
     

@@ -104,7 +104,7 @@ if ( $Design == 3 )
 // It will be no overhead with this method for storing stats
 //
 
-$StoreStats = $ini->read_var( "eZStatsMain", "StoreStats" );
+$StoreStats = $ini->variable( "eZStatsMain", "StoreStats" );
 
 if ( $StoreStats == "enabled" )
 {

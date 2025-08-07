@@ -33,9 +33,9 @@
 // include_once( "ezcalendar/classes/ezappointment.php" );
 // include_once( "eztodo/classes/eztodo.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
 $Locale = new eZLocale( $Language );
 
 $user =& eZUser::currentUser();
@@ -77,7 +77,7 @@ $session->setVariable( "Month", $Month );
 
 $zMonth = addZero( $Month );
 $isMyCalendar = ( $user && $user->id() == $userID ) ? "-private" : "";
-$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->variable( "eZCalendarMain", "TemplateDir" ),
                      "kernel/ezcalendar/user/intl", $Language, "monthview.php",
                      "default", "ezcalendar" . "/user", "$Year-$zMonth-$userID" . $isMyCalendar );
 
@@ -166,8 +166,8 @@ else
                         $t->set_var( "appointment_id", $appointment->id() );
                         if ( $appointment->allDay() )
                         {
-                            $t->set_var( "start_time", $ini->read_var( "eZCalendarMain", "DayStartTime" ) );
-                            $t->set_var( "stop_time", $ini->read_var( "eZCalendarMain", "DayStopTime" ) );
+                            $t->set_var( "start_time", $ini->variable( "eZCalendarMain", "DayStartTime" ) );
+                            $t->set_var( "stop_time", $ini->variable( "eZCalendarMain", "DayStopTime" ) );
                         }
                         else
                         {
@@ -296,7 +296,7 @@ else
     $t->parse( "month", "month_tpl", true );
 
     // User list
-    if ( $ini->read_var( "eZCalendarMain", "OnlyShowTrustees" ) == "enabled" )
+    if ( $ini->variable( "eZCalendarMain", "OnlyShowTrustees" ) == "enabled" )
     {
         $user_array = array_merge( array( $appOwnerUser ), $appOwnerUser->getByTrustee( -1, true ) );
     }

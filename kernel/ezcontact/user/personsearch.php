@@ -32,11 +32,11 @@
 //// include_once( "ezcontact/classes/ezpersontype.php" );
 // include_once( "ezuser/classes/ezpermission.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
 $errorIni = new INIFIle( "kernel/ezcontact/user/intl/" . $Language . "/personsearch.php.ini", false );
 
-$t = new eZTemplate( "kernel/ezcontact/user/" . $ini->read_var( "eZContactMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/user/" . $ini->variable( "eZContactMain", "TemplateDir" ),
                      "kernel/ezcontact/user/intl/", $Language, "personsearch.php" );
 
 $t->set_file( "search", "personsearch.tpl" );

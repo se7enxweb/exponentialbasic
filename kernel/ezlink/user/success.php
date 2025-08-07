@@ -28,15 +28,15 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZLinkMain", "DocumentRoot" );
 
 // include_once( "ezlink/classes/ezlinkgroup.php" );
 // include_once( "ezlink/classes/ezlink.php" );
 // include_once( "ezlink/classes/ezhit.php" );
 
 
-$t = new eZTemplate( "kernel/ezlink/user/" . $ini->read_var( "eZLinkMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/user/" . $ini->variable( "eZLinkMain", "TemplateDir" ),
 "kernel/ezlink/user/intl", $Language, "success.php" );
 $t->setAllStrings();
 

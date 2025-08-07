@@ -26,10 +26,10 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini = INIFile::globalINI();
-$AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
-$language = $ini->read_var( "eZForumMain", "Language" );
-$AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
+$ini = eZINI::instance( 'site.ini' );
+$AllowHTML = $ini->variable( "eZForumMain", "AllowHTML" );
+$language = $ini->variable( "eZForumMain", "Language" );
+$AllowedTags = $ini->variable( "eZForumMain", "AllowedTags" );
 
 $author = eZUser::currentUser();
 
@@ -51,7 +51,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
         $t->set_var( "message_reply_info_item", "" );
         $t->set_var( "message_notice_checkbox", "" );
 	    $t->set_var( "allowed_tags", htmlspecialchars( $AllowedTags ) );  
-        $t->set_var( "headline", $t->Ini->read_var( "strings", $Action . "_headline" ) );
+        $t->set_var( "headline", $t->Ini->variable( "strings", $Action . "_headline" ) );
     }
 
     if ( isset( $ShowHiddenMessageForm ) && $ShowHiddenMessageForm )
@@ -186,7 +186,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
     }
     else
     {
-        $MessageAuthor = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+        $MessageAuthor = $ini->variable( "eZForumMain", "AnonymousPoster" );
     }
 
     switch ( $MessageNotice )
@@ -197,7 +197,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
         case 1:
         case true:
         {
-            $MessageNoticeText = $t->Ini->read_var( "strings", "notice_yes" );
+            $MessageNoticeText = $t->Ini->variable( "strings", "notice_yes" );
             $MessageNotice = "checked";
             $NewMessageNotice = "checked";
         }
@@ -209,7 +209,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
         case 0:
         case false:
         {
-            $MessageNoticeText = $t->Ini->read_var( "strings", "notice_no" );
+            $MessageNoticeText = $t->Ini->variable( "strings", "notice_no" );
             $MessageNotice = "";
             $NewMessageNotice = "";
         }
@@ -249,7 +249,7 @@ if ( isset( $ShowMessageForm ) && $ShowMessageForm )
     $t->set_var( "action_value", isset( $ActionValue ) ? $ActionValue : false );
 
 
-    $AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
+    $AllowedTags = $ini->variable( "eZForumMain", "AllowedTags" );
     $t->set_var( "allowed_tags", htmlspecialchars( $AllowedTags ) );
 
     if ( $ShowVisibleMessageForm )

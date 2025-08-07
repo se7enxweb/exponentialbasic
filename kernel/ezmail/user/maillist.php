@@ -57,7 +57,7 @@ if ( isset( $Move ) && $FolderSelectID != -1 && count( $MailArrayID ) > 0 ) // r
         $folder->addMail( $mailitemID );
 }
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 if( isset( $NumMessages ) )
 {
     eZPreferences::setVariable( "eZMail_MessagesPerPage", $NumMessages );
@@ -67,14 +67,14 @@ else
     $NumMessages = eZPreferences::variable( "eZMail_MessagesPerPage" );
     if( !$NumMessages )
     {
-        $NumMessages = $ini->read_var( "eZMailMain", "MailPerPageDefault" );
+        $NumMessages = $ini->variable( "eZMailMain", "MailPerPageDefault" );
         if( !$NumMessages )
             $NumMessages = 20; // hardcoded default in case all other fails.
     }
 }
 
-$Language = $ini->read_var( "eZMailMain", "Language" ); 
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$Language = $ini->variable( "eZMailMain", "Language" ); 
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl/", $Language, "maillist.php" );
 $t->setAllStrings();
 

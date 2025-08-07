@@ -30,9 +30,9 @@
 //include_once( "classes/ezhttptool.php" );
 //include_once( "classes/ezcctool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 $PaymentSuccess = false;
 
 if ( isset( $Action ) && $Action == "Verify" )
@@ -44,7 +44,7 @@ if ( isset( $Action ) && $Action == "Verify" )
     $PaymentSuccess = "true";    
 }
 
-$t = new eZTemplate( "kernel/eztrade/user/payment/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/payment/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/payment/intl/", $Language, "visa.php" );
 
 $t->set_file( "visa_tpl", "visa.tpl" );

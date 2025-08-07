@@ -3,10 +3,10 @@
     // include_once( "ezsitemanager/classes/ezsection.php" );
     // include_once( "ezuser/classes/ezpermission.php" ); 
     
-    $ini = INIFile::globalINI();
+    $ini = eZINI::instance( 'site.ini' );
     $user = eZUser::currentUser();
 
-    $GlobalSectionID = $ini->read_var( "eZSurveyMain", "DefaultSection" );
+    $GlobalSectionID = $ini->variable( "eZSurveyMain", "DefaultSection" );
     $currentSiteDesign = (new eZSection())->siteDesign( $GlobalSectionID );
     $hasPermission = ( eZPermission::checkPermission( $user, "eZSurvey", "ModuleAnswer" ) );
     

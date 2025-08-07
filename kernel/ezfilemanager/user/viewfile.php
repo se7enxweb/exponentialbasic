@@ -30,11 +30,11 @@
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 // include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZFileManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZFileManagerMain", "Language" );
 
 
-$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->read_var( "eZFileManagerMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->variable( "eZFileManagerMain", "TemplateDir" ),
                      "kernel/ezfilemanager/user/intl/", $Language, "fileview.php" );
 
 $t->set_file( "file_view", "fileview.tpl" );

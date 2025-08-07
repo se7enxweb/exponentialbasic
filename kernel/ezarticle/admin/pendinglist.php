@@ -34,11 +34,11 @@
 // include_once( "classes/ezcachefile.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 $Locale = new eZLocale( $Language );
-$AdminListLimit = $ini->read_var( "eZArticleMain", "AdminListLimit" );
+$AdminListLimit = $ini->variable( "eZArticleMain", "AdminListLimit" );
 $languageIni = new INIFIle( "kernel/ezarticle/admin/intl/" . $Language . "/pendinglist.php.ini", false );
 
 if( isset( $DeleteArticles ) )
@@ -72,7 +72,7 @@ if( isset( $DeleteArticles ) )
     }
 }
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "pendinglist.php" );
 
 $t->setAllStrings();

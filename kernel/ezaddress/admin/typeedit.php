@@ -37,9 +37,9 @@
   reading and writing extra information not available from the standard template.
 */
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZAddressMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZAddressMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZAddressMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 
@@ -49,7 +49,7 @@ $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 // include_once( "ezuser/classes/ezpermission.php" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
-$t =new eZTemplate( "kernel/ezaddress/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ), "kernel/ezaddress/admin/" . "/intl", $Language, $language_file );
+$t =new eZTemplate( "kernel/ezaddress/admin/" . $ini->variable( "eZAddressMain", "AdminTemplateDir" ), "kernel/ezaddress/admin/" . "/intl", $Language, $language_file );
 
 $t->setAllStrings();
 

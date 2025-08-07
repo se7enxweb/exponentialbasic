@@ -43,10 +43,10 @@ if ( isset ( $Cancel ) )
     exit();
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "menuedit.php" );
 $t->setAllStrings();
 

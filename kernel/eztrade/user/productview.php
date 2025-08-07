@@ -42,22 +42,22 @@
 // include_once( "classes/ezlinksection.php" );
 // include_once( "classes/ezlinkitem.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$RequireUserLogin = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "true";
-$SimpleOptionHeaders = $ini->read_var( "eZTradeMain", "SimpleOptionHeaders" ) == "true";
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
-$ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
-$RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true" ;
-$ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
-$PurchaseProduct = $ini->read_var( "eZTradeMain", "PurchaseProduct" ) == "true" ? true : false;
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$RequireUserLogin = $ini->variable( "eZTradeMain", "RequireUserLogin" ) == "true";
+$SimpleOptionHeaders = $ini->variable( "eZTradeMain", "SimpleOptionHeaders" ) == "true";
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
+$ShowNamedQuantity = $ini->variable( "eZTradeMain", "ShowNamedQuantity" ) == "true";
+$RequireQuantity = $ini->variable( "eZTradeMain", "RequireQuantity" ) == "true" ;
+$ShowOptionQuantity = $ini->variable( "eZTradeMain", "ShowOptionQuantity" ) == "true";
+$PurchaseProduct = $ini->variable( "eZTradeMain", "PurchaseProduct" ) == "true" ? true : false;
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 $locale = new eZLocale( $Language );
 
-$AdminSiteURL = $ini->read_var( "site", "AdminSiteURL" );
-$SiteURL = $ini->read_var( "site", "UserSiteURL" );
+$AdminSiteURL = $ini->variable( "site", "AdminSiteURL" );
+$SiteURL = $ini->variable( "site", "UserSiteURL" );
 
 if ( isset( $CategoryID ) )
     $categoryID = $CategoryID;
@@ -89,13 +89,13 @@ else
     $category->get( $CategoryID );
 }
 
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
 
-$MainImageWidth = $ini->read_var( "eZTradeMain", "MainImageWidth" );
-$MainImageHeight = $ini->read_var( "eZTradeMain", "MainImageHeight" );
+$MainImageWidth = $ini->variable( "eZTradeMain", "MainImageWidth" );
+$MainImageHeight = $ini->variable( "eZTradeMain", "MainImageHeight" );
 
-$SmallImageWidth = $ini->read_var( "eZTradeMain", "SmallImageWidth" );
-$SmallImageHeight = $ini->read_var( "eZTradeMain", "SmallImageHeight" );
+$SmallImageWidth = $ini->variable( "eZTradeMain", "SmallImageWidth" );
+$SmallImageHeight = $ini->variable( "eZTradeMain", "SmallImageHeight" );
 
 
 // sections
@@ -122,7 +122,7 @@ if ( !isset( $IntlDir ) )
 if ( !isset( $IniFile ) )
     $IniFile = "productview.php";
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      $IntlDir, $Language, $IniFile );
 
 $t->setAllStrings();
@@ -154,13 +154,13 @@ $t->set_block( "product_view_tpl", "user_login_tpl", "user_login" );
 $t->set_var( "admin_site", "http://$AdminSiteURL" );
 
 if ( $user && ( eZPermission::checkPermission( $user, "eZTrade", "WriteToRoot" ) ) )
-	{
-    		$t->parse( "user_login", "user_login_tpl" );
-	}
-	else
-	{
-    		$t->set_var( "user_login", "" );
-	}
+{
+    $t->parse( "user_login", "user_login_tpl" );
+}
+else
+{
+    $t->set_var( "user_login", "" );
+}
 //end inline edit mod RBS
 
 //  $t->set_file( array(

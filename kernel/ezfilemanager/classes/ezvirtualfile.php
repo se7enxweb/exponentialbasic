@@ -127,9 +127,9 @@ class eZVirtualFile
         }
 
         // Delete from the filesystem
-        if ( ( eZFile::file_exists( $this->filePath( true ) ) ) && $commit )
+        if ( ( file_exists( $this->filePath( true ) ) ) && $commit )
         {
-            eZFile::unlink( $this->filePath( true ) );
+            eZPBFile::unlink( $this->filePath( true ) );
         }
     }
 
@@ -412,7 +412,7 @@ class eZVirtualFile
     function &fileSize()
     {
         $filepath =& $this->filePath( true );
-        $size = eZFile::filesize( $filepath );
+        $size = eZPBFile::filesize( $filepath );
 
         return $size;
     }
@@ -429,7 +429,7 @@ class eZVirtualFile
     function &siFileSize()
     {
         $size = $this->fileSize();
-        return eZFile::siFileSize( $size );
+        return eZPBFile::siFileSize( $size );
     }
 
     /*!
@@ -480,9 +480,9 @@ class eZVirtualFile
         if ( is_a( $file, "eZFile" ) )
         {
 			$this->FileName = basename( $file->tmpName() );
-            if ( eZFile::file_exists( $this->filePath( true ) ) )
+            if ( file_exists( $this->filePath( true ) ) )
             {
-                eZFile::unlink( $this->filePath( true ) );
+                eZPBFile::unlink( $this->filePath( true ) );
             }
 
             $this->OriginalFileName = $file->name();

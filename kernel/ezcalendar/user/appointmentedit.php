@@ -91,11 +91,11 @@ else if ( isset( $GoToday ) )
 // include_once( "ezcalendar/classes/ezappointment.php" );
 // include_once( "ezcalendar/classes/ezappointmenttype.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
-$StartTimeStr = $ini->read_var( "eZCalendarMain", "DayStartTime" );
-$StopTimeStr = $ini->read_var( "eZCalendarMain", "DayStopTime" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
+$StartTimeStr = $ini->variable( "eZCalendarMain", "DayStartTime" );
+$StopTimeStr = $ini->variable( "eZCalendarMain", "DayStopTime" );
 
 $Locale = new eZLocale( $Language );
 
@@ -129,7 +129,7 @@ else
 if ( isset( $TrusteeUser ) && count( $TrusteeUser ) > 0 )
     $session->setVariable( "ShowOtherCalendarUsers", $TrusteeUser[0] );
 
-$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->variable( "eZCalendarMain", "TemplateDir" ),
                      "kernel/ezcalendar/user/intl/", $Language, "appointmentedit.php" );
 
 $t->set_file( "appointment_edit_tpl", "appointmentedit.tpl" );
@@ -895,10 +895,10 @@ $t->pparse("output", "appointment_edit_tpl");
 // deletes the dayview cache file for a given day
 function deleteCache( $SiteDesign, $language, $year, $month, $day, $userID )
 {
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID.cache" );
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID.cache" );
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID-private.cache" );
-    @eZFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID-private.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/dayview.tpl-$SiteDesign-$language-$year-$month-$day-$userID-private.cache" );
+    @eZPBFile::unlink( "kernel/ezcalendar/user/cache/monthview.tpl-$SiteDesign-$language-$year-$month-$userID-private.cache" );
 }
 
 //Adds a "0" in front of the value if it's below 10.

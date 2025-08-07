@@ -518,8 +518,8 @@ class eZProduct
     function localeSavings( $calcVAT )
     {
         $inUser =& eZUser::currentUser();
-        $ini =& INIFile::globalINI();
-        $inLanguage = $ini->read_var( "eZTradeMain", "Language" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $inLanguage = $ini->variable( "eZTradeMain", "Language" );
 
         $locale = new eZLocale( $inLanguage );
         $currency = new eZCurrency();
@@ -689,8 +689,8 @@ class eZProduct
     function &localePrice( $calcVAT, $withPriceGroups = true )
     {
         $inUser =& eZUser::currentUser();
-        $ini =& INIFile::globalINI();
-        $inLanguage = $ini->read_var( "eZTradeMain", "Language" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $inLanguage = $ini->variable( "eZTradeMain", "Language" );
 
         $locale = new eZLocale( $inLanguage );
         $currency = new eZCurrency();
@@ -1228,10 +1228,10 @@ class eZProduct
     */
     function weight()
     {
-		$ini =& INIFile::globalINI();
+		$ini =& eZINI::instance( 'site.ini' );
 		if ( $this->Weight != 0 )
 		       return $this->Weight;
-		else return $ini->read_var( "eZTradeMain", "DefaultWeight" );
+		else return $ini->variable( "eZTradeMain", "DefaultWeight" );
     }
 
     /*!
@@ -2448,13 +2448,13 @@ class eZProduct
         $user =& eZUser::currentUser();
         $ret = new eZVATType();
 
-        $ini =& INIFile::globalINI();
-        if ( $ini->read_var( "eZTradeMain", "PricesIncVATBeforeLogin" ) == "enabled" )
+        $ini =& eZINI::instance( 'site.ini' );
+        if ( $ini->variable( "eZTradeMain", "PricesIncVATBeforeLogin" ) == "enabled" )
             $useVAT = true;
         else
             $useVAT = false;
 
-        if ( $ini->read_var( "eZTradeMain", "CountryVATDiscrimination" ) == "enabled" )
+        if ( $ini->variable( "eZTradeMain", "CountryVATDiscrimination" ) == "enabled" )
             $CountryDisc = true;
         else
             $CountryDisc = false;
@@ -2828,7 +2828,7 @@ class eZProduct
     */
     function forum( $as_object = true )
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $db =& eZDB::globalDatabase();
 
         $db->array_query( $res, "SELECT ForumID FROM
@@ -2853,8 +2853,8 @@ class eZProduct
 
             $forum->store();
 			
-			$ini =& INIFile::globalINI();
-			$linkModules = $ini->read_var( "eZForumMain", "LinkModules" );
+			$ini =& eZINI::instance( 'site.ini' );
+			$linkModules = $ini->variable( "eZForumMain", "LinkModules" );
 			$module_array = explode(',', $linkModules );
 			unset ($linkModules);
 			foreach ( $module_array as $module)
@@ -2894,14 +2894,14 @@ class eZProduct
                 $forum = $forumID;
 /*				
 			//insert reverse-link post
-			$postTemplate = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+			$postTemplate = new eZTemplate( "eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                                         "eztrade/user/intl", $this->Language, "posttemplate.php" );
 
-	        $postTemplateIni = new INIFile( "eztrade/user/intl/" . $this->Language . "/posttemplate.php.ini", false );
+	        $postTemplateIni = new eZINI( "eztrade/user/intl/" . $this->Language . "/posttemplate.php.ini", false );
     	    $postTemplate->set_file( "post_template_tpl", "posttemplate.tpl" );
         	$postTemplate->setAllStrings();
 			
-			$NewMessagePostedAt = htmlspecialchars( $ini->read_var( "eZForumMain", "FutureDate" ) );
+			$NewMessagePostedAt = htmlspecialchars( $ini->variable( "eZForumMain", "FutureDate" ) );
 			$msg = new eZForumMessage();
             $msg->setForumID( $forumID );
 */			

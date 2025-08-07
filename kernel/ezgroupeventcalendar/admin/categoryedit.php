@@ -35,8 +35,8 @@ if ( isset( $Cancel ) )
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/ezlog.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
 $LanguageIni = new INIFIle( "kernel/ezgroupeventcalendar/admin/intl/" . $Language . "/categoryedit.php.ini", false );
 
 // include_once( "kernel/ezgroupeventcalendar/classes/ezgroupevent.php" );
@@ -96,7 +96,7 @@ if ( $Action == "Delete" )
 }
 
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->read_var( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->variable( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
                      "kernel/ezgroupeventcalendar/admin/intl/", $Language, "categoryedit.php" );
 
 $t->setAllStrings();
@@ -148,7 +148,7 @@ foreach ( $categoryList as $categorySubList )
 
 if ( $Action == "Edit" )
 {
-    $t->set_var( "header", $LanguageIni->read_var( "strings", "edit_appointment_category" ) );
+    $t->set_var( "header", $LanguageIni->variable( "strings", "edit_appointment_category" ) );
     $t->set_var( "name_value", $category->name() );
     $t->set_var( "description_value", $category->description() );
     $t->set_var( "category_id", $category->id() );
@@ -156,7 +156,7 @@ if ( $Action == "Edit" )
 }
 else
 {
-    $t->set_var( "header", $LanguageIni->read_var( "strings", "new_appointment_category" ) );
+    $t->set_var( "header", $LanguageIni->variable( "strings", "new_appointment_category" ) );
     $t->set_var( "description_value", "" );
     $t->set_var( "name_value", "" );
     $t->set_var( "category_id", "" );

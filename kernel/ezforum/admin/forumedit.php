@@ -26,9 +26,9 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 $error = new INIFIle( "kernel/ezforum/admin/intl/" . $Language . "/forumedit.php.ini", false );
 
 // include_once( "classes/eztemplate.php" );
@@ -93,7 +93,7 @@ if ( $Action == "insert" )
         {
             eZLog::writeWarning( "Forum not created: missing data from IP: $REMOTE_ADDR" );
 
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -155,7 +155,7 @@ if ( $Action == "update" )
         else
         {
             eZLog::writeWarning( "Forum not updated: missing data from IP: $REMOTE_ADDR" );
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -184,7 +184,7 @@ if ( $Action == "delete" )
         else
         {
             eZLog::writeWarning( "Forum not deleted: id not found from IP: $REMOTE_ADDR" );
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -216,7 +216,7 @@ if ( $Action == "DeleteForums" )
     }
 }
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
                      "kernel/ezforum/admin/" . "/intl", $Language, "forumedit.php" );
 $t->setAllStrings();
 
@@ -226,8 +226,8 @@ $t->set_block( "forum_page", "category_item_tpl", "category_item" );
 $t->set_block( "forum_page", "moderator_item_tpl", "moderator_item" );
 $t->set_block( "forum_page", "group_item_tpl", "group_item" );
 
-$languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/forumedit.php.ini", false );
-$headline =  $languageIni->read_var( "strings", "head_line_insert" );
+$languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/forumedit.php.ini", false );
+$headline =  $languageIni->variable( "strings", "head_line_insert" );
 
 $t->set_var( "forum_name", "" );
 $t->set_var( "forum_description", "" );
@@ -256,8 +256,8 @@ if ( $Action == "edit" )
     $forum = new eZForum( $ForumID );
     $categories = $forum->categories();
 
-    $languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/forumedit.php.ini", false );
-    $headline =  $languageIni->read_var( "strings", "head_line_edit" );
+    $languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/forumedit.php.ini", false );
+    $headline =  $languageIni->variable( "strings", "head_line_edit" );
 
     if ( !eZPermission::checkPermission( $user, "eZForum", "ForumModify" ) )
     {
@@ -329,7 +329,7 @@ $groupList = $group->getAll();
 
 $t->set_var( "user_id", 0 );
 $t->set_var( "user_name", "testing" );
-$noModeratorString = $t->Ini->read_var( "strings", "no_moderator" );
+$noModeratorString = $t->Ini->variable( "strings", "no_moderator" );
 $t->set_var( "user_name", $noModeratorString );
 
 $t->set_var( "is_selected", "" );

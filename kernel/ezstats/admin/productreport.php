@@ -24,8 +24,8 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZStatsMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZStatsMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdate.php" );
@@ -36,7 +36,7 @@ $Language = $ini->read_var( "eZStatsMain", "Language" );
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezorder.php" );
 
-$t = new eZTemplate( "kernel/ezstats/admin/" . $ini->read_var( "eZStatsMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezstats/admin/" . $ini->variable( "eZStatsMain", "AdminTemplateDir" ),
                      "kernel/ezstats/admin/intl", $Language, "productreport.php" );
 
 $t->setAllStrings();

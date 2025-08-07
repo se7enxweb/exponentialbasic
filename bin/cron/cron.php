@@ -48,7 +48,7 @@ ini_set( "include_path", $includePath );
 
 // site information
 include_once( "classes/INIFile.php" );
-$ini = new INIFile( "site.ini" );
+$ini = new eZINI( "site.ini" );
 $GlobalSiteIni =& $ini;
 
 // index articles

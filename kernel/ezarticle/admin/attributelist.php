@@ -74,11 +74,11 @@ if( isset( $NewType ) )
      } 
 }
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "attribute.php" );
 
 $t->setAllStrings();

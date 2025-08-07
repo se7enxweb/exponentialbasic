@@ -30,14 +30,14 @@
 
 // include_once( "ezquiz/classes/ezquizgame.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZQuizMain", "Language" );
-$ListLimit = $ini->read_var( "eZQuizMain", "ListLimit" );
+$Language = $ini->variable( "eZQuizMain", "Language" );
+$ListLimit = $ini->variable( "eZQuizMain", "ListLimit" );
 
 $Limit = $ListLimit;
 
-$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->read_var( "eZQuizMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->variable( "eZQuizMain", "TemplateDir" ),
                      "kernel/ezquiz/user/intl/", $Language, "quiz.php" );
 
 $t->setAllStrings();

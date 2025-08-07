@@ -27,11 +27,11 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZPollMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZPollMain", "DocumentRoot" );
-if ( $ini->read_var( "eZPollMain", "AllowDoubleVotes" ) == "enabled" )
+$Language = $ini->variable( "eZPollMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZPollMain", "DocumentRoot" );
+if ( $ini->variable( "eZPollMain", "AllowDoubleVotes" ) == "enabled" )
    $AllowDoubleVotes = true;
 
 
@@ -76,7 +76,7 @@ else
     }
     else
     {
-        if ( $ini->read_var( "eZPollMain", "DoubleVoteCheck" ) == "ip" )
+        if ( $ini->variable( "eZPollMain", "DoubleVoteCheck" ) == "ip" )
         {
             if ( $vote->ipHasVoted( $REMOTE_ADDR, $PollID ) == true )
             {

@@ -32,9 +32,9 @@
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "classes/ezlist.php" );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$Limit = $ini->read_var( "eZArticleMain", "SearchListLimit" );
-$SearchWithinSections = $ini->read_var( "eZArticleMain", "SearchWithinSections" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$Limit = $ini->variable( "eZArticleMain", "SearchListLimit" );
+$SearchWithinSections = $ini->variable( "eZArticleMain", "SearchWithinSections" );
 
 // init the section
 if ( isset ($SectionIDOverride) )
@@ -50,7 +50,7 @@ else
     $SectionIDOverride = false;
 }
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "search.php" );
 
 $t->setAllStrings();

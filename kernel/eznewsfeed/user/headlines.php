@@ -41,12 +41,12 @@ if( !function_exists( 'printNewsHeaderList' ) )
     
             $news = new eZNews( );
     
-            $ini = INIFile::globalINI();
+            $ini = eZINI::instance( 'site.ini' );
     
-            $Language = $ini->read_var( "eZNewsfeedMain", "Language" );
-            $ImageDir = $ini->read_var( "eZNewsfeedMain", "ImageDir" );
+            $Language = $ini->variable( "eZNewsfeedMain", "Language" );
+            $ImageDir = $ini->variable( "eZNewsfeedMain", "ImageDir" );
     
-            $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->read_var( "eZNewsfeedMain", "TemplateDir" ),
+            $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
                                  "kernel/eznewsfeed/user/intl/", $Language, "headlines.php" );
     
             $t->setAllStrings();
@@ -88,7 +88,7 @@ if( !function_exists( 'printNewsHeaderList' ) )
     
             if ( $GenerateStaticPage == "true" )
             {
-                $fp = eZFile::fopen( $cachedFile, "w+");
+                $fp = eZPBFile::fopen( $cachedFile, "w+");
         
                 $output = $t->parse( "output", "headlines_page_tpl" );
     
@@ -104,12 +104,12 @@ if( !function_exists( 'printNewsHeaderList' ) )
         }
 }
 
-$PageCaching = $ini->read_var( "eZNewsfeedMain", "PageCaching" );
+$PageCaching = $ini->variable( "eZNewsfeedMain", "PageCaching" );
 $cachedFile = "kernel/eznewsfeed/cache/headlines," . $CategoryID . ".cache";
 
 if ( $PageCaching == "enabled" )
 {
-    if ( eZFile::file_exists( $cachedFile ) )
+    if ( file_exists( $cachedFile ) )
     {
         include( $cachedFile );
     }

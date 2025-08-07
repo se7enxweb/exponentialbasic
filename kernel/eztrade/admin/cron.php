@@ -32,11 +32,11 @@
 
 // include_once( "ezmail/classes/ezmail.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
-$expireTime = $ini->read_var( "eZTradeMain", "EmailBeforeExpire" );
+$expireTime = $ini->variable( "eZTradeMain", "EmailBeforeExpire" );
 
 $locale = new eZLocale();
 
@@ -54,7 +54,7 @@ if ( $expireTime > -1 )
         $mail = new eZMail();
 
         // Setup the template for email
-        $mailTemplate = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+        $mailTemplate = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                                         "kernel/eztrade/admin/intl", $Language, "productexpire.php" );
         
         $mailTemplate->set_file( "product_expires_tpl", "productexpire.tpl" );

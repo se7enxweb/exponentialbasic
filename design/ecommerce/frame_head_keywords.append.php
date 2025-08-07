@@ -5,13 +5,13 @@
 <? /* <!-- set the content meta information -->  */ ?>
 <meta name="author" content="<?php
 
-    $SiteAuthor = $ini->read_var( "site", "SiteAuthor" );
+    $SiteAuthor = $ini->variable( "site", "SiteAuthor" );
     print( $SiteAuthor );
 
 ?>" />
 <meta name="copyright" content="<?php
 
-    $SiteCopyright = $ini->read_var( "site", "SiteCopyright" );
+    $SiteCopyright = $ini->variable( "site", "SiteCopyright" );
     $SiteCopyright = htmlspecialchars($SiteCopyright);
     $SiteCopyright = strip_tags( $SiteCopyright );
     
@@ -26,7 +26,7 @@ if ( isset( $SiteDescriptionOverride ) )
 }
 else
 {
-    $SiteDescription = $ini->read_var( "site", "SiteDescription" );
+    $SiteDescription = $ini->variable( "site", "SiteDescription" );
     print( $SiteDescription );
 }
 
@@ -39,7 +39,7 @@ if ( isset( $SiteKeywordsOverride ) )
 }
 else
 {
-    $SiteKeywords = $ini->read_var( "site", "SiteKeywords" );
+    $SiteKeywords = $ini->variable( "site", "SiteKeywords" );
     print( $SiteKeywords );
 }
 

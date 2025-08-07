@@ -33,10 +33,10 @@
 // include_once( "classes/ezhttptool.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZBulkMailMain", "Language" ); 
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBulkMailMain", "Language" ); 
 
-$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                      "kernel/ezbulkmail/user/intl/", $Language, "mailview.php" );
 $t->setAllStrings();
 

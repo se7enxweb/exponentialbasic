@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 $tags = array();
 

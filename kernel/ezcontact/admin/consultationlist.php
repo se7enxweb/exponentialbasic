@@ -25,8 +25,8 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 
@@ -59,7 +59,7 @@ else
     $languagefile = "consultationlist.php";
 }
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, $languagefile );
 $t->setAllStrings();
 
@@ -126,16 +126,16 @@ if ( isset( $ConsultationList ) )
 
     if ( isset( $CompanyID ) )
     {
-        if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+        if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, -1, $OrderBy, false, 0, -1, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, -1, $OrderBy, false );
         }
         else
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, $user->id(), $OrderBy, false, 0, -1, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, $user->id(), $OrderBy, false );
@@ -148,16 +148,16 @@ if ( isset( $ConsultationList ) )
     }
     else if ( isset( $PersonID ) )
     {
-        if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+        if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, -1, $OrderBy, true, 0, -1, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, -1, $OrderBy, true );
         }
         else
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, $user->id(), $OrderBy, true, 0, -1, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, $user->id(), $OrderBy, true );
@@ -214,7 +214,7 @@ if ( isset( $ConsultationList ) )
 else
 {
     // Find companies which the user has consulted with
-    if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+    if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         $companies = eZConsultation::findConsultedCompanies( -1 );
     else
         $companies = eZConsultation::findConsultedCompanies( $user->id() );
@@ -238,7 +238,7 @@ else
 
         $t->set_var( "company_id", $companies[$i]->id() );
         $t->set_var( "company_name", $companies[$i]->name() );
-        if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+        if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
             $t->set_var( "consultation_count", eZConsultation::companyConsultationCount( $companies[$i]->id(), -1 ) );
         else
             $t->set_var( "consultation_count", eZConsultation::companyConsultationCount( $companies[$i]->id(), $user->id() ) );
@@ -256,7 +256,7 @@ else
 
     // Find persons which the user has consulted with
 
-    if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+    if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         $persons = eZConsultation::findConsultedPersons( -1 );
     else
         $persons = eZConsultation::findConsultedPersons( $user->id() );
@@ -282,7 +282,7 @@ else
         $t->set_var( "person_id", $persons[$i]->id() );
         $t->set_var( "person_firstname", $persons[$i]->firstName() );
         $t->set_var( "person_lastname", $persons[$i]->lastName() );
-        if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+        if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
             $t->set_var( "consultation_count", (new eZConsultation())->personConsultationCount( $persons[$i]->id(), -1 ) );
         else
             $t->set_var( "consultation_count", (new eZConsultation())->personConsultationCount( $persons[$i]->id(), $user->id() ) );

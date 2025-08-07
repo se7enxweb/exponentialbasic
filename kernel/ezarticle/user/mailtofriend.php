@@ -30,16 +30,16 @@
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$Sender = $ini->read_var( "ezArticleMain", "MailToFriendSender" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$Sender = $ini->variable( "ezArticleMain", "MailToFriendSender" );
 
 // sections
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
 $CategoryID = $url_array[5];
 
-if ( !strstr( $HTTP_REFERER, $ini->read_var( "eZArticleMain", "FromURL" ) ) )
+if ( !strstr( $HTTP_REFERER, $ini->variable( "eZArticleMain", "FromURL" ) ) )
 {
   die( "SendToFriend is not configured correctly. Please check your site.ini file" );
 } 
@@ -54,7 +54,7 @@ if ( ($CategoryID != 0) )
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
-$tpl = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$tpl = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                        "kernel/ezarticle/user/" . "intl", $Language, "mailtofriend.php" );
 
 $tpl->set_file( "mailtofriend_tpl" ,"mailtofriend.tpl" );
@@ -79,7 +79,7 @@ $tpl->set_var( "section_id", $GlobalSectionID );
 
 // Own eZTemplate object for create the mail.message to send.
 
-$sendmail_tpl = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$sendmail_tpl = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                        "kernel/ezarticle/user/" . "intl", $Language, "sendmailtofriend.php" );
 $sendmail_tpl->setAllStrings();
 $sendmail_tpl->set_file( "sendmailtofriend_tpl", "sendmailtofriend.tpl" );
@@ -156,8 +156,8 @@ function sendmail ( $article_id, $CategoryID, $tpl, $sendmail_tpl, $real_name, $
     // $server_name = $_SERVER["SERVER_NAME"];
     // $server_name = $GLOBALS["HTTP_HOST"];
 
-    $ini =& INIFile::globalINI();
-	$server_name = $ini->read_var( "site", "SiteURL" );
+    $ini =& eZINI::instance( 'site.ini' );
+	$server_name = $ini->variable( "site", "SiteURL" );
     
 // Build up the mail to send from the template.
     

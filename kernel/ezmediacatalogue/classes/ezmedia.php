@@ -166,9 +166,9 @@ class eZMedia
             $db->query( "DELETE FROM eZMediaCatalogue_TypeLink WHERE MediaID='$this->ID'" );
 
             // Delete from the filesystem
-            if ( eZFile::file_exists( $this->filePath( true ) ) )
+            if ( file_exists( $this->filePath( true ) ) )
             {
-                eZFile::unlink( $this->filePath( true ) );
+                eZPBFile::unlink( $this->filePath( true ) );
             }
         }
     }
@@ -426,7 +426,7 @@ class eZMedia
 
        $relPath = "ezmediacatalogue/catalogue/" . $this->FileName;
 
-       return eZFile::file_exists( $relPath ) and is_file( $relPath );
+       return file_exists( $relPath ) and is_file( $relPath );
     }
 
     /*!
@@ -444,7 +444,7 @@ class eZMedia
            $path = '/' . $path;
        }
        
-       if ( !eZFile::file_exists( $path ) or !eZFile::is_file( $path ) )
+       if ( !file_exists( $path ) or !eZPBFile::is_file( $path ) )
        {
            $path = "kernel/ezmediacatalogue/admin/medias/failedmedia.gif";
            if ( !$relative )

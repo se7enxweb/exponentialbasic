@@ -26,8 +26,8 @@
 // include_once( "classes/eztemplate.php" );
 
 $ini =& $GlobalSiteIni;
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$Language = $ini->variable( "eZContactMain", "Language" );
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, "nopermission.php" );
 $t->setAllStrings();
 

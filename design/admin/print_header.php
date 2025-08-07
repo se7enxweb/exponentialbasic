@@ -28,10 +28,10 @@
 // include_once( "classes/ezhttptool.php" );
 
 $ini =& INIFile::globalINI();
-$Language =& $ini->read_var( "eZUserMain", "Language" );
+$Language =& $ini->variable( "eZUserMain", "Language" );
 $Locale = new eZLocale( $Language );
 $iso = $Locale->languageISO();
-$SiteURL =& $ini->read_var( "site", "SiteURL" );
+$SiteURL =& $ini->variable( "site", "SiteURL" );
 
 $t = new eZTemplate( "design/admin/templates/" . $SiteDesign,
                      "design/admin/intl/", $Language, "print_header.php" );

@@ -39,12 +39,12 @@ if ( !isset( $CategoryID ) )
 $GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ForceCategoryDefinition = $ini->read_var( "eZArticleMain", "ForceCategoryDefinition" );
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
-$TemplateDir = $ini->read_var( "eZArticleMain", "TemplateDir" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ForceCategoryDefinition = $ini->variable( "eZArticleMain", "ForceCategoryDefinition" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
+$TemplateDir = $ini->variable( "eZArticleMain", "TemplateDir" );
 
 if ( $ForceCategoryDefinition == "enabled" )
 {
@@ -68,7 +68,7 @@ $override = "_override_$CategoryID";
 
 if ( $StaticPage == true )
 {
-    if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/articlestatic" . $override  . ".tpl" ) )
+    if ( file_exists( "kernel/ezarticle/user/$TemplateDir/articlestatic" . $override  . ".tpl" ) )
         $t->set_file( "article_view_page_tpl", "articlestatic" . $override  . ".tpl"  );
     else
         $t->set_file( "article_view_page_tpl", "articlestatic.tpl"  );
@@ -81,7 +81,7 @@ else
     }
     else
     {
-        if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/articleview" . $override  . ".tpl" ) )
+        if ( file_exists( "kernel/ezarticle/user/$TemplateDir/articleview" . $override  . ".tpl" ) )
             $t->set_file( "article_view_page_tpl", "articleview" . $override  . ".tpl"  );
         else
             $t->set_file( "article_view_page_tpl", "menuarticleview.tpl"  );
@@ -124,7 +124,7 @@ else
     $t->parse( "article_header", "article_header_tpl" );
 }
 
-$SiteURL = $ini->read_var( "site", "UserSiteURL" );
+$SiteURL = $ini->variable( "site", "UserSiteURL" );
 
 $t->set_var( "article_url", $SiteURL . $REQUEST_URI );
 $t->set_var( "article_url_item", "" );
@@ -454,7 +454,7 @@ $SiteDescriptionOverride = str_replace( "\"", "", strip_tags( $articleContents[0
 
 if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     // add PHP code in the cache file to store variables
     $output = "<?php\n";

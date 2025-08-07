@@ -47,11 +47,11 @@ if ( isset( $Action ) && (string) $Action == "Delete" && count( $SessionArrayID 
     exit();
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
 
 
-$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
                      "kernel/ezuser/admin/" . "/intl", $Language, "sessioninfo.php" );
 $t->setAllStrings();
 

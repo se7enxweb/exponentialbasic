@@ -23,8 +23,8 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-$ini =& INIFile::globalINI();
-$PageCaching =& $ini->read_var( "eZTradeMain", "PageCaching");
+$ini =& eZINI::instance( 'site.ini' );
+$PageCaching =& $ini->variable( "eZTradeMain", "PageCaching");
 
 $PureStatic = "false";
 
@@ -59,13 +59,13 @@ if ( $PureStatic != "true" )
     // include_once( "ezuser/classes/ezpermission.php" );
     // include_once( "ezuser/classes/ezobjectpermission.php" );
     
-    $ini =& INIFile::globalINI();
-    $Language = $ini->read_var( "eZTradeMain", "Language" );
+    $ini =& eZINI::instance( 'site.ini' );
+    $Language = $ini->variable( "eZTradeMain", "Language" );
 
     // include_once( "eztrade/classes/ezproduct.php" );
     // include_once( "eztrade/classes/ezproductcategory.php" );
 
-    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                          "kernel/eztrade/user/intl/", $Language, "smallproductlist.php" );
 
     $t->set_file( "product_list_page_tpl", "smallproductlist.tpl" );

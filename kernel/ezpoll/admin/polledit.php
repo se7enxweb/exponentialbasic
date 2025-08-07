@@ -28,9 +28,9 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZPollMain", "Language" );
+$Language = $ini->variable( "eZPollMain", "Language" );
 $errorIni = new INIFIle( "kernel/ezpoll/admin/intl/" . $Language . "/polledit.php.ini", false );
 
 // include_once( "ezpoll/classes/ezpoll.php" );
@@ -95,8 +95,8 @@ if ( isset( $Action ) && $Action == "Insert" )
         
         if ( !$Description )
         {
-            $languageIni = new INIFile( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
-            $Description =  $languageIni->read_var( "strings", "description_default" );
+            $languageIni = new eZINI( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
+            $Description =  $languageIni->variable( "strings", "description_default" );
         }
         
         $poll->setName( $Name );
@@ -106,8 +106,8 @@ if ( isset( $Action ) && $Action == "Insert" )
         $PollID = $poll->id();
         
         // clear the menu cache
-        if ( eZFile::file_exists("ezpoll/cache/menubox.cache" )  )
-            eZFile::unlink( "ezpoll/cache/menubox.cache" );
+        if ( file_exists("ezpoll/cache/menubox.cache" )  )
+            eZPBFile::unlink( "ezpoll/cache/menubox.cache" );
         
         if ( isset( $Choice ) == true  )
         {
@@ -121,14 +121,14 @@ if ( isset( $Action ) && $Action == "Insert" )
     }
     else
     {
-        $errorMsg = $errorIni->read_var( "strings", "noname" );
+        $errorMsg = $errorIni->variable( "strings", "noname" );
     }
 }
 
 if ( isset ( $Choice ) )
 {
     $item = new eZPollChoice();
-    $item->setName( $errorIni->read_var( "strings", "newitem") );
+    $item->setName( $errorIni->variable( "strings", "newitem") );
     $item->setPollID( $PollID );
     $item->store();
     
@@ -205,8 +205,8 @@ if ( isset( $Action ) && $Action == "Update" )
         }
     }
     // clear the menu cache
-    if ( eZFile::file_exists("ezpoll/cache/menubox.cache" )  )
-        eZFile::unlink( "ezpoll/cache/menubox.cache" );
+    if ( file_exists("ezpoll/cache/menubox.cache" )  )
+        eZPBFile::unlink( "ezpoll/cache/menubox.cache" );
 
     if( isset( $Ok ) )
     {
@@ -226,14 +226,14 @@ if ( isset( $Action ) && $Action == "Delete" )
     $poll->delete();
 
     // clear the menu cache
-    if ( eZFile::file_exists("ezpoll/cache/menubox.cache" )  )
-        eZFile::unlink( "ezpoll/cache/menubox.cache" );
+    if ( file_exists("ezpoll/cache/menubox.cache" )  )
+        eZPBFile::unlink( "ezpoll/cache/menubox.cache" );
     
     eZHTTPTool::header( "Location: /poll/pollist/" );
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezpoll/admin/" . $ini->read_var( "eZPollMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezpoll/admin/" . $ini->variable( "eZPollMain", "AdminTemplateDir" ),
                      "kernel/ezpoll/admin/intl/", $Language, "polledit.php" );
 
 $t->setAllStrings();
@@ -282,8 +282,8 @@ if ( isset( $Action ) && $Action == "Edit" )
     }
 
     $Action_value = "update";
-    $languageIni = new INIFile( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
-    $headline =  $languageIni->read_var( "strings", "head_line_edit" );
+    $languageIni = new eZINI( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
+    $headline =  $languageIni->variable( "strings", "head_line_edit" );
 }
 
 // Poll choice list
@@ -293,8 +293,8 @@ $pollChoiceList = $pollChoice->getAll( $PollID );
 
 if ( !$pollChoiceList )
 {
-    $languageIni = new INIFile( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
-    $nopolls =  $languageIni->read_var( "strings", "nopolls" );
+    $languageIni = new eZINI( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
+    $nopolls =  $languageIni->variable( "strings", "nopolls" );
     $t->set_var( "poll_choice", "" );
     
 }
@@ -331,8 +331,8 @@ $t->set_var( "nopolls", $nopolls );
 
 if ( !isset ( $headline ) )
 {
-    $languageIni = new INIFile( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
-    $headline =  $languageIni->read_var( "strings", "head_line_insert" );
+    $languageIni = new eZINI( "kernel/ezpoll/admin/" . "intl/" . $Language . "/polledit.php.ini", false );
+    $headline =  $languageIni->variable( "strings", "head_line_insert" );
 }
 $t->set_var( "head_line", $headline );
 $t->set_var( "error_msg", isset( $errorMsg ) ? $errorMsg : false );

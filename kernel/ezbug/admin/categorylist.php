@@ -27,8 +27,8 @@
   Viser liste over prioriteringer
 */
 // include_once( "classes/INIFile.php" );
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBugMain", "Language" );
 $LanguageIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/categorylist.php.ini", false );
 
 
@@ -36,7 +36,7 @@ $LanguageIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/categoryl
 
 // include_once( "ezbug/classes/ezbugcategory.php" );
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "categorylist.php" );
 $t->setAllStrings();
 
@@ -66,7 +66,7 @@ if( isset( $Ok ) || isset( $AddCategory ) )
 if( isset( $AddCategory ) )
 {
     $newItem = new eZBugCategory();
-    $newName = $LanguageIni->read_var( "strings", "newcategory" );
+    $newName = $LanguageIni->variable( "strings", "newcategory" );
     $newItem->setName($newName);
     $newItem->store();
 }

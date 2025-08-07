@@ -27,8 +27,8 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZPollMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZPollMain", "Language" );
 $errorIni = new INIFIle( "kernel/ezpoll/admin/intl/" . $Language . "/pollist.php.ini", false );
 
 // include_once( "ezpoll/classes/ezpoll.php" );
@@ -36,11 +36,11 @@ $errorIni = new INIFIle( "kernel/ezpoll/admin/intl/" . $Language . "/pollist.php
 require( "kernel/ezuser/admin/admincheck.php" );
 
 // Language
-$LangaugeIni = new INIFile( "kernel/ezpoll/admin/" . "intl/" . $Language . "/pollist.php.ini", false );
-$yes = $LangaugeIni->read_var( "strings", "yes" );
-$no = $LangaugeIni->read_var( "strings", "no" );
-$closed = $LangaugeIni->read_var( "strings", "closed" );
-$notClosed = $LangaugeIni->read_var( "strings", "not_closed" );
+$LangaugeIni = new eZINI( "kernel/ezpoll/admin/" . "intl/" . $Language . "/pollist.php.ini", false );
+$yes = $LangaugeIni->variable( "strings", "yes" );
+$no = $LangaugeIni->variable( "strings", "no" );
+$closed = $LangaugeIni->variable( "strings", "closed" );
+$notClosed = $LangaugeIni->variable( "strings", "not_closed" );
 
 if ( isset( $Action ) && $Action == "StoreMainPoll" )
 {
@@ -58,11 +58,11 @@ if ( isset( $Action ) && $Action == "StoreMainPoll" )
     $mainPoll = new eZPoll( $MainPollID );
     if ( $mainPoll->isClosed() )
     {
-        $errorMsg = $errorIni->read_var( "strings", "poll_closed" );
+        $errorMsg = $errorIni->variable( "strings", "poll_closed" );
     }
     else if ( !$mainPoll->isEnabled() )
     {
-        $errorMsg = $errorIni->read_var( "strings", "poll_not_enabled" );
+        $errorMsg = $errorIni->variable( "strings", "poll_not_enabled" );
     }
     else
     {
@@ -91,11 +91,11 @@ if ( isset( $Action ) && $Action == "Delete" )
         }
     }
     // clear the menu cache
-    if ( eZFile::file_exists("kernel/ezpoll/cache/menubox.cache" )  )
-        eZFile::unlink( "kernel/ezpoll/cache/menubox.cache" );
+    if ( file_exists("kernel/ezpoll/cache/menubox.cache" )  )
+        eZPBFile::unlink( "kernel/ezpoll/cache/menubox.cache" );
 }
 
-$t = new eZTemplate( "kernel/ezpoll/admin/" . $ini->read_var( "eZPollMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezpoll/admin/" . $ini->variable( "eZPollMain", "AdminTemplateDir" ),
                      "kernel/ezpoll/admin/intl/", $Language, "pollist.php" );
 
 $t->setAllStrings();
@@ -116,8 +116,8 @@ $pollList = $poll->getAll( );
 
 if ( !$pollList )
 {
-    $languageIni = new INIFile( "kernel/ezpoll/" . "/admin/" . "intl/" . $Language . "/pollist.php.ini", false );
-    $nopolls =  $languageIni->read_var( "strings", "nopolls" );
+    $languageIni = new eZINI( "kernel/ezpoll/" . "/admin/" . "intl/" . $Language . "/pollist.php.ini", false );
+    $nopolls =  $languageIni->variable( "strings", "nopolls" );
     $t->set_var( "poll_item", "" );
 }
 

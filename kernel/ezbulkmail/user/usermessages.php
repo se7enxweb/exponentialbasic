@@ -25,10 +25,10 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                      "kernel/ezbulkmail/user/intl/", $Language, "usermessages.php" );
 
 $t->setAllStrings();
@@ -38,8 +38,8 @@ $languageIni = new INIFIle( "kernel/ezbulkmail/user/intl/" . $Language . "/userm
 
 if( isset( $mailConfirm ) )
 {
-    $t->set_var( "header", $languageIni->read_var( "strings", "mail_sent_header" ) );
-    $t->set_var( "body",  $languageIni->read_var( "strings", "mail_sent_message" ) );
+    $t->set_var( "header", $languageIni->variable( "strings", "mail_sent_header" ) );
+    $t->set_var( "body",  $languageIni->variable( "strings", "mail_sent_message" ) );
 }
 if( isset( $unsuccessfull ) )
 {
@@ -48,28 +48,28 @@ if( isset( $unsuccessfull ) )
 }
 if( isset( $unsubscribemail ) )
 {
-    $t->set_var( "header", $languageIni->read_var( "strings", "unsubscribe_mail_header" ) );
-    $t->set_var( "body", $languageIni->read_var( "strings", "unsubscribe_mail_message" ) );
+    $t->set_var( "header", $languageIni->variable( "strings", "unsubscribe_mail_header" ) );
+    $t->set_var( "body", $languageIni->variable( "strings", "unsubscribe_mail_message" ) );
 }
 if( isset( $unsubscribed ) )
 {
-    $t->set_var( "header", $languageIni->read_var( "strings", "unsubscribed_header" ) );
-    $t->set_var( "body", $languageIni->read_var( "strings", "unsubscribed_message" ) );
+    $t->set_var( "header", $languageIni->variable( "strings", "unsubscribed_header" ) );
+    $t->set_var( "body", $languageIni->variable( "strings", "unsubscribed_message" ) );
 }
 if( isset( $subscribed ) )
 {
-    $t->set_var( "header", $languageIni->read_var( "strings", "subscribed_header" ) );
-    $t->set_var( "body", $languageIni->read_var( "strings", "subscribed_message" ) );
+    $t->set_var( "header", $languageIni->variable( "strings", "subscribed_header" ) );
+    $t->set_var( "body", $languageIni->variable( "strings", "subscribed_message" ) );
 }
 if( isset( $hasherror ) )
 {
-    $t->set_var( "header", $languageIni->read_var( "strings", "unvalid_hash_header" ) );
-    $t->set_var( "body", $languageIni->read_var( "strings", "unvalid_hash_message" ) );
+    $t->set_var( "header", $languageIni->variable( "strings", "unvalid_hash_header" ) );
+    $t->set_var( "body", $languageIni->variable( "strings", "unvalid_hash_message" ) );
 }
 if( isset( $subscriptionerror ) )
 {
-    $t->set_var( "header", $languageIni->read_var( "strings", "address_allready_subscribed_header" ) );
-    $t->set_var( "body", $languageIni->read_var( "strings", "address_allready_subscribed_message" ) );
+    $t->set_var( "header", $languageIni->variable( "strings", "address_allready_subscribed_header" ) );
+    $t->set_var( "body", $languageIni->variable( "strings", "address_allready_subscribed_message" ) );
 }
 
 $t->pparse( "output", "message" );

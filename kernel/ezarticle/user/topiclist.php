@@ -29,9 +29,9 @@
 // include_once( "classes/INIFile.php" );
 
 // include_once( "ezarticle/classes/eztopic.php" );
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl", $Language, "topiclist.php" );
 
 $locale = new eZLocale( $Language );

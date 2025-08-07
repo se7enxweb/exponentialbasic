@@ -34,12 +34,12 @@
 // include_once( "ezcalendar/classes/ezappointment.php" );
 // include_once( "ezcalendar/classes/ezappointmenttype.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
 $locale = new eZLocale( $Language );
 
-$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->variable( "eZCalendarMain", "TemplateDir" ),
                      "kernel/ezcalendar/user/intl/", $Language, "appointmentview.php" );
 
 $t->set_file( "appointment_view_tpl", "appointmentview.tpl" );

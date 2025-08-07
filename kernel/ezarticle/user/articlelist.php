@@ -42,17 +42,17 @@ $GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ImageDir = $ini->read_var( "eZArticleMain", "ImageDir" );
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
-$DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
-$UserListLimit = $ini->read_var( "eZArticleMain", "UserListLimit" );
-$GrayScaleImageList = $ini->read_var( "eZArticleMain", "GrayScaleImageList" );
-$ForceCategoryDefinition = $ini->read_var( "eZArticleMain", "ForceCategoryDefinition" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
+$DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
+$UserListLimit = $ini->variable( "eZArticleMain", "UserListLimit" );
+$GrayScaleImageList = $ini->variable( "eZArticleMain", "GrayScaleImageList" );
+$ForceCategoryDefinition = $ini->variable( "eZArticleMain", "ForceCategoryDefinition" );
 $NoArticleHeader = false;
-$TemplateDir = $ini->read_var( "eZArticleMain", "TemplateDir" );
+$TemplateDir = $ini->variable( "eZArticleMain", "TemplateDir" );
 
 if ( isset( $CategoryID ) )
 {
@@ -70,7 +70,7 @@ if ( !is_null( $templateDirTmp) && trim( $templateDirTmp ) != "" )
 }
 
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "articlelist.php" );
 
 $t->setAllStrings();
@@ -82,13 +82,13 @@ $override = "_override_$CategoryID";
 $sectionOverride = "_sectionoverride_$GlobalSectionID";
 
 
-if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/articlelist" . $override . ".tpl" ) )
+if ( file_exists( "kernel/ezarticle/user/$TemplateDir/articlelist" . $override . ".tpl" ) )
 {
     $t->set_file( "article_list_page_tpl", "articlelist" . $override  . ".tpl"  );
 }
 else
 {
-    if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/articlelist" . $sectionOverride  . ".tpl" ) )
+    if ( file_exists( "kernel/ezarticle/user/$TemplateDir/articlelist" . $sectionOverride  . ".tpl" ) )
     {
         $t->set_file( "article_list_page_tpl", "articlelist" . $sectionOverride  . ".tpl"  );
     }
@@ -148,8 +148,8 @@ else
 }
 
 // read user override variables for image size
-$ThumbnailImageWidth = $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" );
-$ThumbnailImageHeight = $ini->read_var( "eZArticleMain", "ThumbnailImageHeight" );
+$ThumbnailImageWidth = $ini->variable( "eZArticleMain", "ThumbnailImageWidth" );
+$ThumbnailImageHeight = $ini->variable( "eZArticleMain", "ThumbnailImageHeight" );
 
 $thumbnailImageWidthOverride =& $t->get_user_variable( "article_list_page_tpl",  "ThumbnailImageWidth" );
 if ( $thumbnailImageWidthOverride )
@@ -175,7 +175,7 @@ $category = new eZArticleCategory( $CategoryID );
 $t->set_var( "current_category_name", $category->name() );
 
 //EP: CategoryDescriptionXML=enabled, description go in XML -------------------
-if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
+if ( $ini->variable( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
 {
     if ($CategoryID)
     {
@@ -244,8 +244,8 @@ $t->set_var( "current_image_item", "" );
 
 if ( ( is_a( $image, "eZImage" ) ) && ( $image->id() != 0 ) )
 {
-    $imageWidth =& $ini->read_var( "eZArticleMain", "CategoryImageWidth" );
-    $imageHeight =& $ini->read_var( "eZArticleMain", "CategoryImageHeight" );
+    $imageWidth =& $ini->variable( "eZArticleMain", "CategoryImageWidth" );
+    $imageHeight =& $ini->variable( "eZArticleMain", "CategoryImageHeight" );
 
     $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 
@@ -286,8 +286,8 @@ foreach ( $categoryList as $categoryItem )
 
     if ( ( is_a( $image, "eZImage" ) ) && ( $image->id() != 0 ) )
     {
-        $imageWidth =& $ini->read_var( "eZArticleMain", "CategoryImageWidth" );
-        $imageHeight =& $ini->read_var( "eZArticleMain", "CategoryImageHeight" );
+        $imageWidth =& $ini->variable( "eZArticleMain", "CategoryImageWidth" );
+        $imageHeight =& $ini->variable( "eZArticleMain", "CategoryImageHeight" );
 
         $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 
@@ -322,7 +322,7 @@ foreach ( $categoryList as $categoryItem )
     }
 
     //EP: CategoryDescriptionXML=enabled, description go in XML -------------------
-    if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
+    if ( $ini->variable( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
     {
 	// include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
@@ -545,7 +545,7 @@ else
 
 if ( isset( $GenerateStaticPage ) and $GenerateStaticPage == "true" and $cachedFile != "" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     // add PHP code in the cache file to store variables
     $output = "<?php\n";

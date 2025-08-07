@@ -23,9 +23,9 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "ezforum/classes/ezforumcategory.php" );
@@ -33,7 +33,7 @@ $Language = $ini->read_var( "eZForumMain", "Language" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
 "kernel/ezforum/admin/" . "/intl", $Language, "forumlist.php" );
 
 $t->setAllStrings();
@@ -58,8 +58,8 @@ $t->set_var( "category_name", $category->name() );
 
 if ( !$forumList )
 {
-    $languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/forumlist.php.ini", false );
-    $noitem =  $languageIni->read_var( "strings", "noitem" );
+    $languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/forumlist.php.ini", false );
+    $noitem =  $languageIni->variable( "strings", "noitem" );
 
     $t->set_var( "forum_item", $noitem );
 }

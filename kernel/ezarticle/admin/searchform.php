@@ -32,10 +32,10 @@
 
 // include_once( "ezuser/classes/ezauthor.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "searchform.php" );
 
 $t->setAllStrings();

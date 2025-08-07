@@ -29,8 +29,8 @@
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZMediaCatalogueMain", "DefaultSection" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZMediaCatalogueMain", "DefaultSection" );
 
 function writeAtAll()
 {

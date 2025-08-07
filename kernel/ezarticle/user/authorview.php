@@ -32,13 +32,13 @@
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "ezuser/classes/ezauthor.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$Limit = $ini->read_var( "eZArticleMain", "AuthorArticleLimit" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$Limit = $ini->variable( "eZArticleMain", "AuthorArticleLimit" );
 $locale = new eZLocale( $Language );
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "authorview.php" );
 
 $t->setAllStrings();

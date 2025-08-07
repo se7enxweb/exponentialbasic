@@ -25,10 +25,10 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZLinkMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "ezlink/classes/ezlinkcategory.php" );
@@ -36,7 +36,7 @@ $DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
 // include_once( "ezlink/classes/ezhit.php" );
 
 
-$t = new eZTemplate( "kernel/ezlink/user/" . $ini->read_var( "eZLinkMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/user/" . $ini->variable( "eZLinkMain", "TemplateDir" ),
 "kernel/ezlink/user/intl", $Language, "linklist.php" );
 $t->setAllStrings();
 

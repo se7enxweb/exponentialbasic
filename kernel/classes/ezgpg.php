@@ -64,11 +64,11 @@ class eZGPG
       //  pclose( $pp );
 
 
-      $fp = eZFile::fopen( "/var/www/" . $boundary, r );
-      $this->body = fread( $fp, eZFile::filesize( "/var/www/" . $boundary ) );
+      $fp = eZPBFile::fopen( "/var/www/" . $boundary, r );
+      $this->body = fread( $fp, eZPBFile::filesize( "/var/www/" . $boundary ) );
       fclose( $fp );
 
-      eZFile::unlink( "/var/www/" . $boundary );
+      eZPBFile::unlink( "/var/www/" . $boundary );
     }
 
     /*!

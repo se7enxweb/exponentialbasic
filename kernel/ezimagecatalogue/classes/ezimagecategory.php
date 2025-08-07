@@ -625,8 +625,8 @@ class eZImageCategory
     {
         if ( !isset( $limit ) or $limit == 0 )
         {
-            $ini =& INIFile::globalINI();
-            $limit = $ini->read_var( "eZImageCatalogueMain", "ListImagesPerPage" );
+            $ini =& eZINI::instance( 'site.ini' );
+            $limit = $ini->variable( "eZImageCatalogueMain", "ListImagesPerPage" );
         }
 
         $db =& eZDB::globalDatabase();

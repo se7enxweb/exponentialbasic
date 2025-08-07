@@ -25,9 +25,9 @@
 //include( "ezforum/dbsettings.php" );
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "ezforum/classes/ezforumcategory.php" );
@@ -36,7 +36,7 @@ require( "kernel/ezuser/admin/admincheck.php" );
   
 $cat = new eZForumCategory();
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
 "kernel/ezforum/admin/" . "/intl", $Language, "categorylist.php" );
 $t->setAllStrings();
 
@@ -51,8 +51,8 @@ $categoryList = $category->getAll();
 
 if ( !$categoryList )
 {
-    $languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/categorylist.php.ini", false );
-    $noitem =  $languageIni->read_var( "strings", "noitem" );
+    $languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/categorylist.php.ini", false );
+    $noitem =  $languageIni->variable( "strings", "noitem" );
 
     $t->set_var( "category_item", $noitem );
 }

@@ -29,14 +29,14 @@
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$Limit = $ini->read_var( "eZForumMain", "SearchAdminLimit" );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$Limit = $ini->variable( "eZForumMain", "SearchAdminLimit" );
 
 // include_once( "classes/eztemplate.php" );
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
                      "kernel/ezforum/admin/intl", $Language, "search.php" );
 
 $t->setAllStrings();
@@ -73,7 +73,7 @@ if ( $QueryString != "" )
     $level = 0;
     $i = 0;
 
-    $AnonymousPoster = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+    $AnonymousPoster = $ini->variable( "eZForumMain", "AnonymousPoster" );
 
     if ( count( $messages ) > 0 )
     foreach ( $messages as $message )

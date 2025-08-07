@@ -33,13 +33,13 @@
 
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$NewMessageLimit = $ini->read_var( "eZForumMain", "NewMessageLimit" );
-$Limit = $ini->read_var( "eZForumMain", "SearchUserLimit" );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$NewMessageLimit = $ini->variable( "eZForumMain", "NewMessageLimit" );
+$Limit = $ini->variable( "eZForumMain", "SearchUserLimit" );
 
-$t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "search.php" );
 
 $t->setAllStrings();
@@ -111,7 +111,7 @@ if ( $QueryString != "" )
             
             if ( $author->id() == 0 )
             {
-                $t->set_var( "user", $ini->read_var( "eZForumMain", "AnonymousPoster" ) );
+                $t->set_var( "user", $ini->variable( "eZForumMain", "AnonymousPoster" ) );
             }
             else
             {

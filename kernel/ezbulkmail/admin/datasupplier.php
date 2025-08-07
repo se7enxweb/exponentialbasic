@@ -103,7 +103,7 @@ switch ( $url_array[2] )
 
     case "masssubscribe":
     {
-        if ( $ini->read_var( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
+        if ( $ini->variable( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
         {
             eZHTTPTool::header( "Location: /error/404" );
             exit();

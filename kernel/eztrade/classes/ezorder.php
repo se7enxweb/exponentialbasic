@@ -66,8 +66,8 @@ class eZOrder
             $this->ID = $id;
             $this->get( $this->ID );
         }
-	    $ini =& INIFile::globalINI();
-	    $this->checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
+	    $ini =& eZINI::instance( 'site.ini' );
+	    $this->checkups = $ini->variable( "eZTradeMain", "UPSOFF" );
     }
 
     /*!

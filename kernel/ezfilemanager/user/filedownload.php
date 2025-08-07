@@ -27,7 +27,7 @@
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 $user =& eZUser::currentUser();
 
@@ -41,7 +41,7 @@ if ( eZObjectPermission::hasPermission( $file->id(), "filemanager_file", "r", $u
 
 $fileName = $file->name();
 
-if ( $ini->read_var( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
+if ( $ini->variable( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
     $originalFileName = $file->originalFileName();
 else
     $originalFileName = $file->name();
@@ -160,7 +160,7 @@ if ( ( $userID == '' ) && ($userID == 0 ) )
 //###################################################
 
 // Rewrote to be compatible with virtualhost-less install
-$size = eZFile::filesize( "kernel/ezfilemanager/files/$filePath" );
+$size = eZPBFile::filesize( "kernel/ezfilemanager/files/$filePath" );
 
 $nameParts = explode( ".", $editedFileName );
 $suffix = $nameParts[count( $nameParts ) - 1];
@@ -245,7 +245,7 @@ if(!$download_style_inline){
 }
 
 // include the file's contents to browser ... 
-$fh = eZFile::fopen( "kernel/ezfilemanager/files/$filePath", "rb" );
+$fh = eZPBFile::fopen( "kernel/ezfilemanager/files/$filePath", "rb" );
 fpassthru( $fh );
 exit();
 

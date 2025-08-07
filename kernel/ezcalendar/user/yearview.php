@@ -31,15 +31,15 @@
 // include_once( "classes/ezdatetime.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
 $Locale = new eZLocale( $Language );
 
 $today = new eZDateTime();
 if ( $Year == false )
     $Year = $today->year();
-$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->variable( "eZCalendarMain", "TemplateDir" ),
                      "kernel/ezcalendar/user/intl", $Language, "yearview.php",
                      "default", "ezcalendar" . "/user", $Year );
 

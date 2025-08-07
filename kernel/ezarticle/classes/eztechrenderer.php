@@ -474,7 +474,7 @@ class eZTechRenderer
 
             $localModuleFile = "modules/" . $name . ".php";
 
-            if ( eZFile::file_exists( $localModuleFile ) )
+            if ( file_exists( $localModuleFile ) )
             {
                 $moduleFile = $localModuleFile;
             }
@@ -483,7 +483,7 @@ class eZTechRenderer
                 $moduleFile = "ezarticle/modules/" . $name . ".php";
             }
 
-            if ( eZFile::file_exists( $moduleFile ) )
+            if ( file_exists( $moduleFile ) )
             {
                 // save the buffer contents
                 $buffer =& ob_get_contents();
@@ -556,7 +556,7 @@ class eZTechRenderer
             // add image if a valid image was found, else report an error in the log.
             if ( is_a( $image, "eZImage" ) )
             {
-                $ini =& INIFile::globalINI();
+                $ini =& eZINI::instance( 'site.ini' );
 
                                 // store the relative ID to the image
                 $this->UsedImageList[] = $imageID;
@@ -565,20 +565,20 @@ class eZTechRenderer
                 {
                     case "small" :
                     {
-                        $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "SmallImageWidth" ),
-                        $ini->read_var( "eZArticleMain", "SmallImageHeight" ) );
+                        $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "SmallImageWidth" ),
+                        $ini->variable( "eZArticleMain", "SmallImageHeight" ) );
                     }
                     break;
                     case "medium" :
                     {
-                        $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "MediumImageWidth" ),
-                        $ini->read_var( "eZArticleMain", "MediumImageHeight" ) );
+                        $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "MediumImageWidth" ),
+                        $ini->variable( "eZArticleMain", "MediumImageHeight" ) );
                     }
                     break;
                     case "large" :
                     {
-                        $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "LargeImageWidth" ),
-                        $ini->read_var( "eZArticleMain", "LargeImageHeight" ) );
+                        $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "LargeImageWidth" ),
+                        $ini->variable( "eZArticleMain", "LargeImageHeight" ) );
                     }
                     break;
 
@@ -590,8 +590,8 @@ class eZTechRenderer
 
                     default :
                     {
-                        $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "MediumImageWidth" ),
-                        $ini->read_var( "eZArticleMain", "MediumImageHeight" ) );
+                        $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "MediumImageWidth" ),
+                        $ini->variable( "eZArticleMain", "MediumImageHeight" ) );
                     }
                 }
 

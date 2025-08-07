@@ -25,10 +25,10 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$AllowHTML = $ini->variable( "eZForumMain", "AllowHTML" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztemplate.php" );
@@ -39,7 +39,7 @@ $Language = $ini->read_var( "eZForumMain", "Language" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
                      "kernel/ezforum/admin/intl", $Language, "message.php" );
 $t->setAllStrings();
 
@@ -69,7 +69,7 @@ $author = $message->user();
 if ( $message->userName() )
     $anonymous = $message->userName();
 else
-    $anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+    $anonymous = $ini->variable( "eZForumMain", "AnonymousPoster" );
 
 if ( $author->id() == 0 )
 {
@@ -128,7 +128,7 @@ foreach ( $messages as $message )
     if ( $message->userName() )
         $anonymous = $message->userName();
     else
-        $anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+        $anonymous = $ini->variable( "eZForumMain", "AnonymousPoster" );
     
     if ( $author->id() == 0 )
     {
@@ -148,7 +148,7 @@ foreach ( $messages as $message )
 $t->set_var( "message_id", $MessageID );
 if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     $output = $t->parse( "output", "message_tpl" );
     // print the output the first time while printing the cache file.

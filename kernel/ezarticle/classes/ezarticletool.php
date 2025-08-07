@@ -135,14 +135,14 @@ class eZArticleTool
     static public function notificationMessage( &$article )
     {
         // include_once( "classes/eztexttool.php" );
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
-        $PublishNoticeReceiver = $ini->read_var( "eZArticleMain", "PublishNoticeReceiver" );
-        $PublishNoticeSender = $ini->read_var( "eZArticleMain", "PublishNoticeSender" );
-        $PublishNoticePadding = $ini->read_var( "eZArticleMain", "PublishNoticePadding" );
-        $PublishSite = $ini->read_var( "site", "SiteTitle" );
-        $SiteURL = $ini->read_var( "site", "UserSiteURL" );
-        $UserSiteURL = $ini->read_var( "site", "UserSiteURL" );
+        $PublishNoticeReceiver = $ini->variable( "eZArticleMain", "PublishNoticeReceiver" );
+        $PublishNoticeSender = $ini->variable( "eZArticleMain", "PublishNoticeSender" );
+        $PublishNoticePadding = $ini->variable( "eZArticleMain", "PublishNoticePadding" );
+        $PublishSite = $ini->variable( "site", "SiteTitle" );
+        $SiteURL = $ini->variable( "site", "UserSiteURL" );
+        $UserSiteURL = $ini->variable( "site", "UserSiteURL" );
 
 	//EP - different charsets for the MIME mail ----------------------------
 	global $GlobalSectionID;
@@ -162,15 +162,15 @@ class eZArticleTool
 
 	//EP -------------------------------------------------------------------
 					      
-        $mailTemplate = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
-                                        "kernel/ezarticle/admin/intl", $ini->read_var( "eZArticleMain", "Language" ), "mailtemplate.php" );
+        $mailTemplate = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
+                                        "kernel/ezarticle/admin/intl", $ini->variable( "eZArticleMain", "Language" ), "mailtemplate.php" );
     
         $mailTemplate->set_file( "mailtemplate", "mailtemplate.tpl" );
         $mailTemplate->setAllStrings();
 
         $renderer = new eZArticleRenderer( $article );
 
-        $subjectLine = $mailTemplate->Ini->read_var( "strings", "subject" );
+        $subjectLine = $mailTemplate->Ini->variable( "strings", "subject" );
         $subjectLine = $subjectLine . " " . $PublishSite;
 
         $intro = eZTextTool::linesplit( strip_tags( $renderer->renderIntro() ), $PublishNoticePadding, 76 );

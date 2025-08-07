@@ -28,16 +28,16 @@ include_once( "classes/eztemplate.php" );
 include_once( "classes/ezlocale.php" );
 include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$SiteStyle = $ini->read_var( "site", "SiteStyle" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$SiteStyle = $ini->variable( "site", "SiteStyle" );
 
 include_once( "eztrade/classes/ezproductcategory.php" );
 include_once( "eztrade/classes/ezproduct.php" );
 
 
-$t = new eZTemplate( "eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "eztrade/admin/intl/", $Language, "filelist.php" );
 
 $t->setAllStrings();

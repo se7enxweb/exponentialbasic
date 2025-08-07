@@ -30,10 +30,10 @@
 // include_once( "eztip/classes/eztip.php" );
 // include_once( "eztip/classes/eztipcategory.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTipMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTipMain", "Language" );
 
-$t = new eZTemplate( "kernel/eztip/admin/" . $ini->read_var( "eZTipMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztip/admin/" . $ini->variable( "eZTipMain", "AdminTemplateDir" ),
                      "kernel/eztip/admin/intl/", $Language, "tiplist.php" );
 
 $t->setAllStrings();

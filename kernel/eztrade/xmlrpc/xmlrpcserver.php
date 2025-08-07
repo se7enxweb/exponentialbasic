@@ -82,9 +82,9 @@ function &newOrders( $args )
 
     if ( ( is_a( $user, "eZUser" ) ) and eZPermission::checkPermission( $user, "eZUser", "AdminLogin" ) )
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
-        $Language = $ini->read_var( "eZTradeMain", "Language" );
+        $Language = $ini->variable( "eZTradeMain", "Language" );
         $locale = new eZLocale( $Language );
 
         $orders = array();

@@ -24,10 +24,10 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$AdminLimit = $ini->read_var( "eZForumMain", "MessageAdminLimit" );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$AdminLimit = $ini->variable( "eZForumMain", "MessageAdminLimit" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
@@ -39,7 +39,7 @@ $AdminLimit = $ini->read_var( "eZForumMain", "MessageAdminLimit" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
                      "kernel/ezforum/admin/" . "/intl", $Language, "messagelist.php" );
 $t->setAllStrings();
 
@@ -68,16 +68,16 @@ $locale = new eZLocale( $Language );
 $messages = $forum->messageTree( $Offset, $AdminLimit );
 $messageCount = $forum->messageCount();
 
-$languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/messagelist.php.ini", false );
+$languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/messagelist.php.ini", false );
 
-$true =  $languageIni->read_var( "strings", "true" );
-$false =  $languageIni->read_var( "strings", "false" );
+$true =  $languageIni->variable( "strings", "true" );
+$false =  $languageIni->variable( "strings", "false" );
 
-$AnonymousPoster = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+$AnonymousPoster = $ini->variable( "eZForumMain", "AnonymousPoster" );
 
 if ( !$messages )
 {
-    $noitem = $languageIni->read_var( "strings", "noitem" );
+    $noitem = $languageIni->variable( "strings", "noitem" );
     $t->set_var( "message_item", $noitem );
 }
 else
@@ -109,7 +109,7 @@ else
         if ( $message->userName() )
             $anonymous = $message->userName();
         else
-            $anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+            $anonymous = $ini->variable( "eZForumMain", "AnonymousPoster" );
         
         if ( $author->id() == 0 )
         {

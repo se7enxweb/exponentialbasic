@@ -1,7 +1,7 @@
 <?php
-// $Id: ezfile.php 9329 2002-03-04 12:55:56Z ce $
+// $Id: ezpbfile.php 9329 2002-03-04 12:55:56Z ce $
 //
-// Definition of eZCompany class
+// Definition of eZPBFile class
 //
 // Created on: <21-Sep-2000 11:22:21 bf>
 //
@@ -25,11 +25,11 @@
 //
 
 //!! eZCommon
-//! The eZFile class handles fileuploads, and other file functions.
+//! The eZPBFile class handles fileuploads, and other file functions.
 /*!
   Example:
   \code
-    $file = new eZFile();
+    $file = new eZPBFile();
 
     if ( $file->getFile( "userfile" ) )
     {
@@ -42,10 +42,18 @@
   \endcode
 
 */
-include_once( "classes/INIFile.php" );
+//include_once( "kernel/classes/INIFile.php" );
 
-class eZFile
+class eZPBFile
 {
+    /*!
+      Constructs a new eZPBFile object
+    */
+    function __construct()
+    {
+
+
+    }
 
     /*!
       Fetches the uploaded file information.
@@ -56,9 +64,9 @@ class eZFile
     */
     function getUploadedFile( $name_var )
     {
-        global $HTTP_POST_FILES;
+        global $_FILES;
 
-        $name_var = $HTTP_POST_FILES[ $name_var ];
+        $name_var = $_FILES[ $name_var ];
         $ret = true;
 
         $this->FileName = $name_var['name'];
@@ -80,8 +88,8 @@ class eZFile
     function dumpDataToFile( $data, $fileName )
     {
         $this->FileName = $fileName;
-        $ini =& INIFile::globalINI();
-        $tmpDir = $ini->read_var( "site", "SiteTmpDir" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $tmpDir = $ini->variable( "site", "SiteTmpDir" );
         $tmpfileName = tempnam( $tmpDir, "att" );
         $this->TmpFileName = $tmpfileName;
         $fh = fopen( $tmpfileName, 'wb' );
@@ -89,13 +97,45 @@ class eZFile
         fclose( $fh );
     }
 
+
+  /*!
+     Dumps the data to a temporary file. Sets the variables in this file.
+  */
+  function dumpFroogleDataToFile( $data, $fileName )
+  {
+        $this->FileName = $fileName;
+        $ini =& eZINI::instance( 'site.ini' );
+        $tmpDir = $ini->variable( "site", "SiteFroogleExportDir" );
+        $tmpfileName = tempnam( $tmpDir, "att" );
+        $this->TmpFileName = $tmpfileName;
+        $fh = fopen( $tmpfileName, 'wb' );
+        fwrite( $fh, $data );
+        fclose( $fh );
+    }
+
+  /*!
+     Dumps the data to a temporary file. Sets the variables in this file.
+  */
+  function dumpYahooDataToFile( $data, $fileName )
+  {
+    $this->FileName = $fileName;
+    $ini =& eZINI::instance( 'site.ini' );
+    $tmpDir = $ini->variable( "site", "SiteYahooExportDir" );
+    $tmpfileName = tempnam( $tmpDir, "att" );
+    $this->TmpFileName = $tmpfileName;
+    $fh = fopen( $tmpfileName, 'wb' );
+    fwrite( $fh, $data );
+    fclose( $fh );
+  }
+
+
     /*!
 
     */
     function getFile( $fileName )
     {
         $this->FileName = $fileName;
-        $this->FileSize = eZFile::filesize( $fileName );
+        $this->FileSize = eZPBFile::filesize( $fileName );
         $this->TmpFileName = $fileName;
 
         $ret = true;
@@ -228,10 +268,11 @@ class eZFile
 		global $GlobalSiteIni;
     	if ( $filename != "")
         {
-        	if ($GlobalSiteIni)
+        	if ( $GlobalSiteIni )
         	{
     			$filename = $GlobalSiteIni->SiteDir . $filename;
         	}
+            // echo $filename ."<hr>";
             return file_exists( $filename );
         } else
         {
@@ -314,7 +355,13 @@ class eZFile
         {
     		$filename = $GlobalSiteIni->SiteDir . $filename;
         }
-        return unlink( $filename );
+
+        if( file_exists( $filename ) )
+        {
+            return @unlink( $filename );
+        }
+        else
+            return true;
     }
 
     /*!
@@ -336,6 +383,7 @@ class eZFile
     public static function dir( $dir, $add_sitedir = true )
     {
 		global $GlobalSiteIni;
+        $ret = false;
     	if ( $add_sitedir )
         {
             if ( $dir != "" && $GlobalSiteIni)
@@ -343,7 +391,8 @@ class eZFile
                 $dir = $GlobalSiteIni->SiteDir . $dir;
             }
         }
-        return dir( $dir );
+        $ret = dir( $dir );
+        return $ret;
     }
 
     /*!
@@ -377,9 +426,9 @@ class eZFile
     */
     public static function file( $filename )
     {
-        if (file_exists( "sitedir.ini" ) &&  $filename != "" )
+        if (file_exists( "kernel/sitedir.ini" ) &&  $filename != "" )
         {
-            include( "sitedir.ini" );
+            include( "kernel/sitedir.ini" );
             $filename = $siteDir . $filename;
         }
         return file( $filename );
@@ -390,3 +439,5 @@ class eZFile
     var $FileType;
     var $FileSize;
 }
+
+?>

@@ -25,7 +25,7 @@
 
 ////////////////////////////////////////////
 // Set Redirect (Keep Site Errors Clean by Redirecting Away from It After 7 Seconds
-$MetaRedirectLocation = "http://". $ini->read_var( "site", "UserSiteURL" ) ."/";
+$MetaRedirectLocation = "http://". $ini->variable( "site", "UserSiteURL" ) ."/";
 $MetaRedirectTimer = "5";
 
 

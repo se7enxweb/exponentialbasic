@@ -28,8 +28,8 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "ezarticle/classes/ezimagemap.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 $map = new eZImageMap( $ImageID );
 
@@ -37,7 +37,7 @@ switch ( $Action )
 {
     case "Edit" :
     {
-        $t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+        $t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                              "kernel/ezarticle/admin/intl/", $Language, "imagemap.php" );
         
         $t->setAllStrings();

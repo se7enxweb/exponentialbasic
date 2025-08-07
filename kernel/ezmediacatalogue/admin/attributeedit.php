@@ -36,8 +36,8 @@ if ( isset( $Cancel ) )
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMediaMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMediaMain", "Language" );
 
 // include_once( "ezmedia/classes/ezmediacategory.php" );
 // include_once( "ezmedia/classes/ezmedia.php" );
@@ -78,7 +78,7 @@ if ( $Action == "Update" )
     }
 }
 
-$t = new eZTemplate( "kernel/ezmedia/admin/" . $ini->read_var( "eZMediaMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezmedia/admin/" . $ini->variable( "eZMediaMain", "AdminTemplateDir" ),
                      "kernel/ezmedia/admin/intl/", $Language, "attributeedit.php" );
 
 $t->setAllStrings();

@@ -38,24 +38,24 @@ if ( isset( $Cancel ) )
 // include_once( "ezcontact/classes/ezcompany.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
 
 $languageINI = new INIFIle( "kernel/eztrade/admin/intl/" . $Language . "/orderedit.php.ini", false );
 
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" );
-// Unclear: $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" && $total["shiptax"] ? true : false;
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" );
+// Unclear: $PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" && $total["shiptax"] ? true : false;
 
-$ShowExTaxColumn = $ini->read_var( "eZTradeMain", "AdminShowExTaxColumn" ) == "enabled" ? true : false;
-//$ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "AdminShowIncTaxColumn" ) == "enabled" && $total["shiptax"]  ? true : false;
+$ShowExTaxColumn = $ini->variable( "eZTradeMain", "AdminShowExTaxColumn" ) == "enabled" ? true : false;
+//$ShowIncTaxColumn = $ini->variable( "eZTradeMain", "AdminShowIncTaxColumn" ) == "enabled" && $total["shiptax"]  ? true : false;
 // Unclear:$ShowIncTaxColumn = $total["shiptax"] ? true : false;
-$ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
-$ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
-$wwwDir = $ini->read_var( "site", "UserSiteURL" );
-$adminEmail = $ini->read_var( "eZTradeMain", "mailToAdmin" );
-$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" )=="enabled"?1:0;
-$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" )=="enabled"?1:0;
+$ShowExTaxTotal = $ini->variable( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
+$ColSpanSizeTotals = $ini->variable( "eZTradeMain", "ColSpanSizeTotals" );
+$wwwDir = $ini->variable( "site", "UserSiteURL" );
+$adminEmail = $ini->variable( "eZTradeMain", "mailToAdmin" );
+$upscheck = $ini->variable( "eZTradeMain", "UPSXMLShipping" )=="enabled"?1:0;
+$uspscheck = $ini->variable( "eZTradeMain", "USPSXMLShipping" )=="enabled"?1:0;
 if(($upscheck==0)&&($uspscheck==0))
 $checkups=0;
 else
@@ -83,17 +83,17 @@ if ( $Action == "newstatus" )
 	//send customer email notice of status change
 	if ( $MailNotice == "on" )
 	{
-		$mailTemplate = new eZTemplate( "eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+		$mailTemplate = new eZTemplate( "eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "eztrade/admin/intl/", $Language, "orderedit.php" );
 					 
         $mailTemplate->setAllStrings();
 
-        $subjectLine = $mailTemplate->Ini->read_var( "strings", "subject" );
+        $subjectLine = $mailTemplate->Ini->variable( "strings", "subject" );
         $subjectLine = $subjectLine . " #" . $OrderID;
 		
 	    $statusName = preg_replace( "#intl-#", "", $statusType->Name() );
-		$statusName = $mailTemplate->Ini->read_var( "strings", "reason" ).": ".$statusName;
-		$StatusComment = $mailTemplate->Ini->read_var( "strings", "comment" ).": ".$StatusComment;
+		$statusName = $mailTemplate->Ini->variable( "strings", "reason" ).": ".$statusName;
+		$StatusComment = $mailTemplate->Ini->variable( "strings", "comment" ).": ".$StatusComment;
 				
 		$MailBody = "$MailBody\n";
 		$MailBody .= "========================================\n";
@@ -131,7 +131,7 @@ if ( $Action == "delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "orderedit.php" );
 
 $t->setAllStrings();
@@ -622,7 +622,7 @@ $statusTypeArray = $statusType->getAll();
 foreach ( $statusTypeArray as $status )
 {
     $statusName = preg_replace( "#intl-#", "", $status->name() );
-//    $statusName =  $languageINI->read_var( "strings", $statusName );
+//    $statusName =  $languageINI->variable( "strings", $statusName );
     
     $t->set_var( "option_name", $statusName );
     $t->set_var( "option_id", $status->id() );
@@ -646,12 +646,12 @@ foreach ( $historyArray as $status )
     if ( is_object( $statusType ) && $statusType->name() != "" )
     {    
         $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-        //    $statusName =  $languageINI->read_var( "strings", $statusName );
+        //    $statusName =  $languageINI->variable( "strings", $statusName );
     }
     else
     {
         $statusName = preg_replace( "#intl-#", "", "Pending" );
-        // $statusName =  $languageINI->read_var( "strings", $statusName );
+        // $statusName =  $languageINI->variable( "strings", $statusName );
     }
     
     

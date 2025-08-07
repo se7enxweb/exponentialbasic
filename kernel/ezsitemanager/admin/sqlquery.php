@@ -39,9 +39,9 @@
 
 // include_once( "classes/ezdb.php" );
 
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/intl", $Language, "sqlquery.php" );
 
 $t->set_file( "sql_query_tpl", "sqlquery.tpl" );

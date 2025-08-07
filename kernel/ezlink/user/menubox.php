@@ -25,11 +25,11 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezcachefile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZLinkMain", "Language" );
+$Language = $ini->variable( "eZLinkMain", "Language" );
 
-$PageCaching = $ini->read_var( "eZLinkMain", "PageCaching");
+$PageCaching = $ini->variable( "eZLinkMain", "PageCaching");
 
 unset( $menuCachedFile );
 // do the caching
@@ -66,7 +66,7 @@ function createLinkMenu( $menuCacheFile=false )
     // include_once( "ezlink/classes/ezlink.php" );
     // include_once( "ezlink/classes/ezhit.php" );
 
-    $t = new eZTemplate( "kernel/ezlink/user/" . $ini->read_var( "eZLinkMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezlink/user/" . $ini->variable( "eZLinkMain", "TemplateDir" ),
                          "kernel/ezlink/user/intl", $Language, "categorylist.php" );
 
     $t->setAllStrings();

@@ -27,10 +27,10 @@
 
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZExampleMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZExampleMain", "Language" );
 
-$tpl = new eZTemplate( "kernel/ezexample/admin/" . $ini->read_var( "eZExampleMain", "AdminTemplateDir" ),
+$tpl = new eZTemplate( "kernel/ezexample/admin/" . $ini->variable( "eZExampleMain", "AdminTemplateDir" ),
                        "ezexample/admin"  . "/intl", $Language, "page3.php" );
 $tpl->setAllStrings();
 

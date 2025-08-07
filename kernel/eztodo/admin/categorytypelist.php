@@ -35,9 +35,9 @@
 // include_once( "eztodo/classes/ezcategory.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
-$Language = $ini->read_var( "eZTodoMain", "Language" );
+$Language = $ini->variable( "eZTodoMain", "Language" );
 
-$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->read_var( "eZTodoMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->variable( "eZTodoMain", "AdminTemplateDir" ),
                      "kernel/eztodo/admin/intl", $Language, "categorytypelist.php" );
 $t->setAllStrings();
 

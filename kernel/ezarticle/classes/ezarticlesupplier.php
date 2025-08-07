@@ -58,7 +58,7 @@ class eZArticleSupplier
     */
     function &urlList( $type, $category = 0, $offset = 0 )
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $ret = false;
         switch( $type )
         {
@@ -66,7 +66,7 @@ class eZArticleSupplier
             {
                 // include_once( "ezarticle/classes/ezarticle.php" );
                 // include_once( "ezarticle/classes/ezarticlecategory.php" );
-                $limit = $ini->read_var( "eZArticleMain", "AdminListLimit" );
+                $limit = $ini->variable( "eZArticleMain", "AdminListLimit" );
                 $cat = new eZArticleCategory( $category );
                 $categories = $cat->getByParent( $cat, false, "name" );
                 $articles = $cat->articles( "alpha", false, true, $offset, $limit );

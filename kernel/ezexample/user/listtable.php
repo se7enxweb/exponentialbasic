@@ -29,9 +29,9 @@
 // include_once( "ezexample/classes/ezexample.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$tpl = new eZTemplate( "kernel/ezexample/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$tpl = new eZTemplate( "kernel/ezexample/user/" . $ini->variable( "eZUserMain", "TemplateDir" ),
                        "kernel/ezexample/user/" . "intl", $Language, "listtable.php" );
 $tpl->setAllStrings();
 

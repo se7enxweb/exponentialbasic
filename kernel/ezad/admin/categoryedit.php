@@ -39,8 +39,8 @@ if ( isset ( $DeleteCategories ) )
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZAdMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZAdMain", "Language" );
 
 // include_once( "ezad/classes/ezad.php" );
 // include_once( "ezad/classes/ezadcategory.php" );
@@ -119,7 +119,7 @@ if ( isset( $Action ) && $Action == "New" )
    $parentID = false;
 }
 
-$t = new eZTemplate( "kernel/ezad/admin/" . $ini->read_var( "eZAdMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezad/admin/" . $ini->variable( "eZAdMain", "AdminTemplateDir" ),
                      "kernel/ezad/admin/intl/", $Language, "categoryedit.php" );
 
 $t->setAllStrings();

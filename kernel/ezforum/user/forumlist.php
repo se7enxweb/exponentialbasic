@@ -32,13 +32,13 @@
 // include_once( "ezuser/classes/ezusergroup.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 
 if( isset( $CategoryID ) && $CategoryID != 0 )
 {
-    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir"),
+    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir"),
                         "kernel/ezforum/user/intl", $Language, "forumlist.php" );
 
     $t->setAllStrings();
@@ -85,14 +85,14 @@ if( isset( $CategoryID ) && $CategoryID != 0 )
 
     if ( !$forumList )
     {
-        $languageIni = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
-        $noitem =  $languageIni->read_var( "strings", "noitem" );
+        $languageIni = new eZINI( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
+        $noitem =  $languageIni->variable( "strings", "noitem" );
 
         $t->set_var( "forum_item", $noitem );
     }
 
-        // $linkModules = $ini->read_var( "eZForumMain", "LinkModules" );
-        $module_array = explode(',', $ini->read_var( "eZForumMain", "LinkModules") );
+        // $linkModules = $ini->variable( "eZForumMain", "LinkModules" );
+        $module_array = explode(',', $ini->variable( "eZForumMain", "LinkModules") );
         
         $showForum = true;
         foreach ($module_array as $module)
@@ -150,11 +150,11 @@ if( isset( $CategoryID ) && $CategoryID != 0 )
 
     if ( $j == 0 && $i > 0 )
     {
-        $t->set_var( "view_forums", $t->Ini->read_var( "strings", "no_forums_for_you" ) );
+        $t->set_var( "view_forums", $t->Ini->variable( "strings", "no_forums_for_you" ) );
     }
     else if ( $j == 0 && $i == 0 )
     {
-        $t->set_var( "view_forums", $t->Ini->read_var( "strings", "no_forums" ) );
+        $t->set_var( "view_forums", $t->Ini->variable( "strings", "no_forums" ) );
     }
     else
     {
@@ -169,7 +169,7 @@ if( isset( $CategoryID ) && $CategoryID != 0 )
 }
 else
 {
-    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                         "kernel/ezforum/user/intl", $Language, "categorylist.php" );
     $t->setAllStrings();
 
@@ -181,8 +181,8 @@ else
     $categoryList = $category->getAllCategories();
     if ( !$categoryList )
     {
-        $languageIni = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
-        $noitem =  $languageIni->read_var( "strings", "noitem" );
+        $languageIni = new eZINI( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
+        $noitem =  $languageIni->variable( "strings", "noitem" );
 
         $t->set_var( "next", "" );
         $t->set_var( "previous", "" );

@@ -47,7 +47,7 @@
 
 // include_once( "ezxml/classes/ezxml.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 $CategoryID = isset($_POST["CategoryID"]) ? $_POST["CategoryID"] : false;
 
@@ -158,7 +158,7 @@ if ( isset( $Action ) && $Action == "Update" || ( isset( $Action ) && $Action ==
             $category = new eZArticleCategory( $CategoryID );
             $article->setCategoryDefinition( $category );
 
-            $iniVar = $ini->read_var( "eZArticleMain", "LowerCaseManualKeywords" );
+            $iniVar = $ini->variable( "eZArticleMain", "LowerCaseManualKeywords" );
 
             if ( $iniVar == "enabled" )
                 $toLower = true;
@@ -495,10 +495,10 @@ elseif ( isset( $Action ) && $Action == "Edit" )
     if( !isset( $StopHour ) )
     $StopHour = '';
 }
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ShowModuleLinker = $ini->read_var( "eZArticleMain", "ShowModuleLinker" ) == "true";
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ShowModuleLinker = $ini->variable( "eZArticleMain", "ShowModuleLinker" ) == "true";
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "articleedit.php" );
 
 $t->setAllStrings();
@@ -539,7 +539,7 @@ $t->set_var( "article_name", stripslashes( $Name ) );
 
 //EP: URL translation : new article -------------------------------------------
 
-if ( $ini->read_var( "eZArticleMain", "AdminURLTranslator" ) == "enabled" )
+if ( $ini->variable( "eZArticleMain", "AdminURLTranslator" ) == "enabled" )
 {
     $t->set_var( "article_url", "" );
     $t->set_var( "article_urltranslator", "" );
@@ -696,7 +696,7 @@ if ( isset( $Action ) && $Action == "Edit" || $Action == "Insert" )
 
     //EP: URL translation: article edit get translation
 
-    if ( $ini->read_var( "eZArticleMain", "AdminURLTranslator" ) == "enabled" )
+    if ( $ini->variable( "eZArticleMain", "AdminURLTranslator" ) == "enabled" )
     {
 
         $category = $article->categoryDefinition();

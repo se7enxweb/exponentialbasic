@@ -38,11 +38,11 @@ if( isset( $Ok ) || isset( $New ) )
     exit();
 }
 
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
-$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
+$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                      "kernel/ezbulkmail/user/intl", $Language, "bulklist.php" );
 
-$iniLanguage = new INIFile( "kernel/ezbulkmail/user/intl/" . $Language . "/bulklist.php.ini", false );
+$iniLanguage = new eZINI( "kernel/ezbulkmail/user/intl/" . $Language . "/bulklist.php.ini", false );
 
 $locale = new eZLocale( $Language ); 
 $t->set_file( array(
@@ -79,7 +79,7 @@ if( is_numeric( $CategoryID ) && $CategoryID > 0 )
         }
         else
         {
-            $t->set_var( "sent_date", $iniLanguage->read_var( "strings", "not_sent" ) );
+            $t->set_var( "sent_date", $iniLanguage->variable( "strings", "not_sent" ) );
         }
         ( $i % 2 ) ? $t->set_var( "td_class", "bgdark" ) : $t->set_var( "td_class", "bglight" );
     

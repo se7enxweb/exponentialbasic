@@ -32,10 +32,10 @@ require( "kernel/ezuser/user/usercheck.php" );
 // include_once( "classes/eztexttool.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$SelectCountry = $ini->read_var( "eZUserMain", "SelectCountry" );
-$AnonymousUserGroup = $ini->read_var( "eZUserMain", "AnonymousUserGroup" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$SelectCountry = $ini->variable( "eZUserMain", "SelectCountry" );
+$AnonymousUserGroup = $ini->variable( "eZUserMain", "AnonymousUserGroup" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -157,7 +157,7 @@ if ( $Action == "Update" )
 
 
 
-$t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl/", $Language, "addressedit.php" );
 
 $t->setAllStrings();

@@ -35,8 +35,8 @@ if ( isset( $Cancel ) )
 // include_once( "classes/eztemplate.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 $move_item = true;
 
 // include_once( "eztrade/classes/ezproducttype.php" );
@@ -141,7 +141,7 @@ if ( $Action == "Delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "typeedit.php" );
 
 $t->setAllStrings();

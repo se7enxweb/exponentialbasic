@@ -41,9 +41,9 @@ class eZArticleGenerator
     {
         if ( $generatorType == "" )
         {
-            $ini =& INIFile::globalINI();
+            $ini =& eZINI::instance( 'site.ini' );
 
-            $Generator = $ini->read_var( "eZArticleMain", "Generator" );
+            $Generator = $ini->variable( "eZArticleMain", "Generator" );
             $generatorType = $Generator;
         }
 

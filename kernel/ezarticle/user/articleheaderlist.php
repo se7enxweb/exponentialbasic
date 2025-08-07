@@ -33,9 +33,9 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ImageDir = $ini->read_var( "eZArticleMain", "ImageDir" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
 
 if ( !is_numeric( $CategoryID ) )
 {
@@ -48,7 +48,7 @@ $GlobalSectionID = eZArticleCategory::sectionIDStatic( $CategoryID );
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "articleheaderlist.php" );
 
 $t->setAllStrings();

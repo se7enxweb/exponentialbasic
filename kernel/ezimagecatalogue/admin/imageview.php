@@ -33,14 +33,14 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$ShowOriginal = $ini->read_var( "eZImageCatalogueMain", "ShowOriginal" );
+$ShowOriginal = $ini->variable( "eZImageCatalogueMain", "ShowOriginal" );
 
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->read_var( "eZImageCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->variable( "eZImageCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezimagecatalogue/admin/intl/", $Language, "imageview.php" );
 
 $t->set_file( "image_view_tpl", "imageview.tpl" );
@@ -62,8 +62,8 @@ $parent_category = $image->categories();
 
 if ( $ShowOriginal != "enabled" && !isset( $VariationID ) )
 {
-    $variation =& $image->requestImageVariation( $ini->read_var( "eZImageCatalogueMain", "ImageViewWidth" ),
-    $ini->read_var( "eZImageCatalogueMain", "ImageViewHeight" ) );
+    $variation =& $image->requestImageVariation( $ini->variable( "eZImageCatalogueMain", "ImageViewWidth" ),
+    $ini->variable( "eZImageCatalogueMain", "ImageViewHeight" ) );
 }
 else if ( isset( $VariationID ) )
 {
@@ -71,8 +71,8 @@ else if ( isset( $VariationID ) )
     if ( $variation->imageID() != $ImageID )
     {
         
-        $variation =& $image->requestImageVariation( $ini->read_var( "eZImageCatalogueMain", "ImageViewWidth" ),
-        $ini->read_var( "eZImageCatalogueMain", "ImageViewHeight" ) );
+        $variation =& $image->requestImageVariation( $ini->variable( "eZImageCatalogueMain", "ImageViewWidth" ),
+        $ini->variable( "eZImageCatalogueMain", "ImageViewHeight" ) );
     }
 }
 

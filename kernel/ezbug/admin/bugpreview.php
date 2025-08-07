@@ -31,7 +31,7 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language =& $ini->read_var( "eZBugMain", "Language" );
+$Language =& $ini->variable( "eZBugMain", "Language" );
 
 // include_once( "ezbug/classes/ezbug.php" );
 // include_once( "ezbug/classes/ezbugcategory.php" );
@@ -40,7 +40,7 @@ $Language =& $ini->read_var( "eZBugMain", "Language" );
 // include_once( "ezbug/classes/ezbugstatus.php" );
 // include_once( "ezbug/classes/ezbuglog.php" );
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "bugpreview.php" );
 $t->setAllStrings();
 

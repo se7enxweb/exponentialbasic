@@ -131,9 +131,9 @@ $GlobalSiteIni->Index = $index;
 $GlobalSiteIni->UserIndex = "";
 if ( $index != "" )
 {
-    if ( $GlobalSiteIni->has_var( "eZXMLRPC", "UserIndex" ) )
+    if ( $GlobalSiteIni->hasVariable( "eZXMLRPC", "UserIndex" ) )
     {
-        $GlobalSiteIni->UserIndex = $GlobalSiteIni->read_var( "eZXMLRPC", "UserIndex" );
+        $GlobalSiteIni->UserIndex = $GlobalSiteIni->variable( "eZXMLRPC", "UserIndex" );
     }
     else
     {
@@ -272,12 +272,12 @@ function Call( $args )
     // Charset and language
         // include_once( "classes/ezlocale.php" );
         $ini =& INIFile::globalINI();
-        if ( $ini->has_var( "site", "Language" ) )
+        if ( $ini->hasVariable( "site", "Language" ) )
         {
-            $Language = $ini->read_var( "site", "Language" );
+            $Language = $ini->variable( "site", "Language" );
         }
         else
-            $Language = $ini->read_var( "eZCalendarMain", "Language" );
+            $Language = $ini->variable( "eZCalendarMain", "Language" );
         $Locale = new eZLocale( $Language );
         $iso =& $Locale->languageISO();
         $ret_arr = array( "Session" => new eZXMLRPCString( $hash ),
@@ -375,7 +375,7 @@ function Call( $args )
         $GLOBALS["ret"] =& $ret;
         $datasupplier = $Module . "/xmlrpc/datasupplier.php";
         if ( ( $Command == "search" && $Module == "" && $RequestType == "" ) ||
-             eZFile::file_exists( $datasupplier )  ||
+             file_exists( $datasupplier )  ||
              ( $Module == "ezpublish" && $RequestType == "modules" ) ||
              $Command == "logout" )
         {
@@ -387,7 +387,7 @@ function Call( $args )
                 foreach( $modules as $module )
                 {
                     $search_file = $module . "/xmlrpc/search.php";
-                    if ( eZFile::file_exists( $search_file ) )
+                    if ( file_exists( $search_file ) )
                     {
                         include( $search_file );
                     }
@@ -407,7 +407,7 @@ function Call( $args )
                 {
                     if ( preg_match( "/ez.*/", $entry ) )
                     {
-                        if ( eZFile::file_exists( $entry . "/xmlrpc/datasupplier.php" ) )
+                        if ( file_exists( $entry . "/xmlrpc/datasupplier.php" ) )
                         {
                             $ReturnCatalogues = true;
                             include( $entry . "/xmlrpc/datasupplier.php" );

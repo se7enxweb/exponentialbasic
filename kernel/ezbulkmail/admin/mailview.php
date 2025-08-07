@@ -70,10 +70,10 @@ if ( isset( $Send ) )
     }
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl/", $Language, "mailview.php" );
 $t->setAllStrings();
 

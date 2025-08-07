@@ -29,9 +29,9 @@
 
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezwishlist.php" );
 // include_once( "ezsession/classes/ezsession.php" );
@@ -39,7 +39,7 @@ $Language = $ini->read_var( "eZTradeMain", "Language" );
 
 
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "findwishlist.php" );
 
 $t->setAllStrings();

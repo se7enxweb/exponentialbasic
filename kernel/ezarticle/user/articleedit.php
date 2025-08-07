@@ -43,10 +43,10 @@
 // include_once( "ezbulkmail/classes/ezbulkmail.php" );
 // include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$PublishNoticeReceiver = $ini->read_var( "eZArticleMain", "PublishNoticeReceiver" );
-$PublishNoticeSender = $ini->read_var( "eZArticleMain", "PublishNoticeSender" );
+$PublishNoticeReceiver = $ini->variable( "eZArticleMain", "PublishNoticeReceiver" );
+$PublishNoticeSender = $ini->variable( "eZArticleMain", "PublishNoticeSender" );
 
 $session =& eZSession::globalSession();
 
@@ -150,7 +150,7 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) )
             }
         }
 
-        if ( $ini->read_var( "eZArticleMain", "CanUserPublish" ) == "enabled" )
+        if ( $ini->variable( "eZArticleMain", "CanUserPublish" ) == "enabled" )
         {
             $article->setIsPublished( true );
 
@@ -192,7 +192,7 @@ if ( $Action == "Cancel" )
 }
 
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 // init the section
 if ( isset ($SectionIDOverride) )
@@ -203,7 +203,7 @@ if ( isset ($SectionIDOverride) )
     $sectionObject->setOverrideVariables();
 }
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "articleedit.php" );
 
 $t->setAllStrings();
@@ -287,7 +287,7 @@ if ( $Action == "Edit" )
     //as can be done through the admin interface
     //If there is no match, the scripts dies which is still al little harch
     
-    $editOwnArticle=$ini->read_var( "eZArticleMain", "UserEditOwnArticle" );
+    $editOwnArticle=$ini->variable( "eZArticleMain", "UserEditOwnArticle" );
     if (!eZArticle::isAuthor($user, $article->id()) || $editOwnArticle != "enabled" )
     {
     	echo "You " . $user->id() . " are not the author" . $article->author(false) . " or user side editing is disabled , bye!<br />";

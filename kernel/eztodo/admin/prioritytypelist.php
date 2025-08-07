@@ -34,11 +34,11 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTodoMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTodoMain", "Language" );
 
  
-$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->read_var( "eZTodoMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->variable( "eZTodoMain", "AdminTemplateDir" ),
                      "kernel/eztodo/admin/intl", $Language, "prioritytypelist.php" );
 $t->setAllStrings();
 

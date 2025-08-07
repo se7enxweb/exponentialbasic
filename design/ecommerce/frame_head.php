@@ -29,7 +29,7 @@
     elseif ( isset($SiteTitleAppend ) )
        print( "$Title : $SiteTitleAppend");
     else
-       print( $ini->read_var( "site", "SiteTitle" ) );
+       print( $ini->variable( "site", "SiteTitle" ) );
 ?></title>
 <link rel="stylesheet" type="text/css" 
 href="<? print $GlobalSiteIni->WWWDir; ?>/design/<?

@@ -28,11 +28,11 @@
 // include_once( "ezbulkmail/classes/ezbulkmailforgot.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
 $languageIni = new INIFIle( "kernel/ezbulkmail/user/intl/" . $Language . "/subscriptionlogin.php.ini", false );
 $category = eZBulkMailCategory::singleList();
 
@@ -85,8 +85,8 @@ if( isset( $SubscribeButton ) )
         if( $subscriptionaddress->setEMail( $Email ) && !$subscriptionaddress->addressExists( $Email ) )
         {
             $headersInfo = getallheaders();
-            $subjectText = ( $languageIni->read_var( "strings", "subject_text" ) . " " . $headersInfo["Host"] );
-            $bodyText = $languageIni->read_var( "strings", "body_text" );
+            $subjectText = ( $languageIni->variable( "strings", "subject_text" ) . " " . $headersInfo["Host"] );
+            $bodyText = $languageIni->variable( "strings", "body_text" );
 
             $forgot = eZBulkMailForgot::getByEmail( $Email );
             $forgot->store();
@@ -94,8 +94,8 @@ if( isset( $SubscribeButton ) )
             $mailconfirmation = new eZMail();
             $mailconfirmation->setTo( $Email );
             $mailconfirmation->setSubject( $subjectText );
-            $mailconfirmation->setFrom( $ini->read_var( "eZBulkMailMain", "BulkmailSenderAddress" ) );
-            $mailconfirmation->setFromName( $ini->read_var( "eZBulkMailMain", "BulkMailSenderName" ) );
+            $mailconfirmation->setFrom( $ini->variable( "eZBulkMailMain", "BulkmailSenderAddress" ) );
+            $mailconfirmation->setFromName( $ini->variable( "eZBulkMailMain", "BulkMailSenderName" ) );
             $body = ( $bodyText . "\n");
             $body .= ( "http://" . $headersInfo["Host"] . "/bulkmail/singlelistsubscribe/" . $forgot->Hash() );
 
@@ -119,8 +119,8 @@ if( isset( $UnSubscribeButton ) )
     if( $subscriptionaddress->addressExists( $Email ) )
     {
         $headersInfo = getallheaders();
-        $subjectText = ( $languageIni->read_var( "strings", "subject_text_unsubscribe" ) . " " . $headersInfo["Host"] );
-        $bodyText = $languageIni->read_var( "strings", "body_text_unsubscribe" );
+        $subjectText = ( $languageIni->variable( "strings", "subject_text_unsubscribe" ) . " " . $headersInfo["Host"] );
+        $bodyText = $languageIni->variable( "strings", "body_text_unsubscribe" );
 
         $forgot = new eZBulkMailForgot();
         $forgot->get( $Email );
@@ -130,8 +130,8 @@ if( isset( $UnSubscribeButton ) )
         $mailconfirmation = new eZMail();
         $mailconfirmation->setTo( $Email );
         $mailconfirmation->setSubject( $subjectText );
-        $mailconfirmation->setFrom( $ini->read_var( "eZBulkMailMain", "BulkmailSenderAddress" ) );
-        $mailconfirmation->setFromName( $ini->read_var( "eZBulkMailMain", "BulkMailSenderName" ) );
+        $mailconfirmation->setFrom( $ini->variable( "eZBulkMailMain", "BulkmailSenderAddress" ) );
+        $mailconfirmation->setFromName( $ini->variable( "eZBulkMailMain", "BulkMailSenderName" ) );
 
         $body = ( $bodyText . "\n");
         $body .= ( "http://" . $headersInfo["Host"] . "/bulkmail/singlelistunsubscribe/" . $forgot->Hash() );

@@ -29,8 +29,8 @@
 // include_once( "classes/ezcurrency.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezproductcategory.php" );
 // include_once( "eztrade/classes/ezproduct.php" );
@@ -76,12 +76,12 @@ if( isset( $Delete ) && count( $OrderArrayID ) > 0 )
     }
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "orderlist.php" );
 
-$languageINI = new INIFile( "kernel/eztrade/admin/intl/" . $Language . "/orderlist.php.ini", false );
+$languageINI = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/orderlist.php.ini", false );
 
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "AdminShowIncTaxColumn" ) == "enabled" ? true : false;
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "AdminShowIncTaxColumn" ) == "enabled" ? true : false;
 
 
 $t->setAllStrings();
@@ -198,7 +198,7 @@ foreach ( $orderArray as $order )
     $statusType = $status->type();
     $statusTypeName = !is_null( $statusType->name() ) ? $statusType->name() : false;
     $statusName = preg_replace( "#intl-#", "", $statusTypeName );
-//    $statusName =  $languageINI->read_var( "strings", $statusName );
+//    $statusName =  $languageINI->variable( "strings", $statusName );
     $t->set_var( "order_status", $statusName );
 	
 	$user = $order->user();

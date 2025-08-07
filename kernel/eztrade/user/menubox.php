@@ -27,13 +27,13 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
     
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();

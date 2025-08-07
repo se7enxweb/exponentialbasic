@@ -28,8 +28,8 @@
 // include_once( "classes/ezlog.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -39,7 +39,7 @@ $Language = $ini->read_var( "eZUserMain", "Language" );
 
 
 // Template
-$t = new eZTemplate( "kernel/ezuser/admin/" .  $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" .  $ini->variable( "eZUserMain", "AdminTemplateDir" ),
                      "kernel/ezuser/admin/" . "/intl", $Language, "login.php" );
 $t->setAllStrings();
 
@@ -65,7 +65,7 @@ if ( isset( $Action ) && $Action == "login" )
         if ( $user->get( $user->ID ) )
         {
             $logins = $user->getLogins( $user->ID );
-            $AllowSimultaneousLogins =  $ini->read_var( "eZUserMain", "SimultaneousLogins" );
+            $AllowSimultaneousLogins =  $ini->variable( "eZUserMain", "SimultaneousLogins" );
 
             if ( $AllowSimultaneousLogins == "disabled" )
             {

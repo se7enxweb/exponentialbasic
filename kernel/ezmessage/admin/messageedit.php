@@ -88,7 +88,7 @@ $messageDefinition->store();
     }    
 }
 
-$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->read_var( "eZMessageMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->variable( "eZMessageMain", "AdminTemplateDir" ),
                      "kernel/ezmessage/admin/intl", $Language, "messageedit.php" );
 
 $locale = new eZLocale( $Language );

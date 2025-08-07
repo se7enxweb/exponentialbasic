@@ -63,9 +63,9 @@ if ( isset( $Store ) )
 
 }
 
-$Language = $ini->read_var( "eZURLTranslatorMain", "Language" );
+$Language = $ini->variable( "eZURLTranslatorMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezurltranslator/admin/" . $ini->read_var( "eZURLTranslatorMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezurltranslator/admin/" . $ini->variable( "eZURLTranslatorMain", "AdminTemplateDir" ),
                      "kernel/ezurltranslator/admin/intl", $Language, "urledit.php" );
 
 $locale = new eZLocale( $Language ); 

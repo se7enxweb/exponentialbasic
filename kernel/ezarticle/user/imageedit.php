@@ -32,8 +32,8 @@
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 // include_once( "ezuser/classes/ezauthor.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 // include_once( "ezarticle/classes/ezarticlecategory.php" );
 // include_once( "ezarticle/classes/ezarticle.php" );
@@ -194,7 +194,7 @@ if ( $Action == "StoreDef" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "imageedit.php" );
 
 $t->setAllStrings();

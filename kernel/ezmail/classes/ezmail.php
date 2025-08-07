@@ -885,7 +885,7 @@ class eZMail
      */
     function &copyMail( $copyType = "normal", $attachments = false )
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $copy = new eZMail();
         $copy->UserID = $this->UserID;
 
@@ -918,7 +918,7 @@ class eZMail
         else if ( $copyType == "reply" || $copyType == "replyall" )
         {
             $copy->To = $this->From;
-            $copy->Subject = $ini->read_var( "eZMailMain", "ReplyPrefix" ) . $this->Subject;
+            $copy->Subject = $ini->variable( "eZMailMain", "ReplyPrefix" ) . $this->Subject;
             $copy->References = $this->MessageID;
             $copy->ReplyTo = $this->To;
 
@@ -974,7 +974,7 @@ class eZMail
                 {
                     echo "Added attachment";
                     $filename = "ezfilemanager/files/" . $file->fileName();
-                    $attachment = fread( eZFile::fopen( $filename, "r" ), eZFile::filesize( $filename ) );
+                    $attachment = fread( eZPBFile::fopen( $filename, "r" ), eZPBFile::filesize( $filename ) );
                     // get the correct mime type.
                     $suffix = strtolower( preg_replace( "/^.+\.(.+)$/", "\\1", $file->originalFileName() ) );
                     $mimeType = "";

@@ -30,8 +30,8 @@
 // include_once( "ezbug/classes/ezbug.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZBugMain", "DefaultSection" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZBugMain", "DefaultSection" );
 
 function hasPermission( $bugID )
 {

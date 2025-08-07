@@ -1962,8 +1962,8 @@ class eZArticle
            $permissionSQL = "";
 
         // stop word frequency
-        $ini =& INIFile::globalINI();
-        $StopWordFrequency = $ini->read_var( "eZArticleMain", "StopWordFrequency" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $StopWordFrequency = $ini->variable( "eZArticleMain", "StopWordFrequency" );
 
 
         $query = new eZQuery( "eZArticle_Word.Word", $queryText );
@@ -2241,11 +2241,11 @@ class eZArticle
         //    break;
         //}
 
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $ExcludeCategories = "";
-        if ( $ini->has_var( "eZArticleMain", "ExcludeCategories" ) )
+        if ( $ini->hasVariable( "eZArticleMain", "ExcludeCategories" ) )
         {
-            $ExcludeCategories = $ini->read_var( "eZArticleMain", "ExcludeCategories" );
+            $ExcludeCategories = $ini->variable( "eZArticleMain", "ExcludeCategories" );
         }
 
 
@@ -2360,11 +2360,11 @@ class eZArticle
             break;
         }
 
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $ExcludeCategories = "";
-        if ( $ini->has_var( "eZArticleMain", "ExcludeCategories" ) )
+        if ( $ini->hasVariable( "eZArticleMain", "ExcludeCategories" ) )
         {
-            $ExcludeCategories = $ini->read_var( "eZArticleMain", "ExcludeCategories" );
+            $ExcludeCategories = $ini->variable( "eZArticleMain", "ExcludeCategories" );
         }
 
 
@@ -2620,8 +2620,8 @@ class eZArticle
             $forum = new eZForum();
             $forum->setName( $db->escapeString( $this->Name ) );
 
-			$ini =& INIFile::globalINI();
-        	$RequireUserLogin = $ini->read_var( "eZArticleMain", "RequireUserLogin" );
+			$ini =& eZINI::instance( 'site.ini' );
+        	$RequireUserLogin = $ini->variable( "eZArticleMain", "RequireUserLogin" );
 			if ($RequireUserLogin == "disabled")			
 				$forum->setIsAnonymous('true');			
 			
@@ -3061,9 +3061,9 @@ eZUser_Author as Author
     */
     function sendPendingMail()
     {
-        $ini =& INIFile::globalINI();
-        $Language = $ini->read_var( "eZArticleMain", "Language" );
-        $adminSiteURL = $ini->read_var( "site", "AdminSiteURL" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $Language = $ini->variable( "eZArticleMain", "Language" );
+        $adminSiteURL = $ini->variable( "site", "AdminSiteURL" );
         $index = $ini->Index;
         $wwwDir = $ini->WWWDir;
         global $HTTP_HOST;
@@ -3073,7 +3073,7 @@ eZUser_Author as Author
         $editorGroup = $definition->editorGroup();
 
 
-        $mailTemplate = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+        $mailTemplate = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                                         "kernel/ezarticle/admin/intl", $Language, "pendingmail.php" );
 
         $mailTemplate->set_file( "pending_mail_tpl", "pendingmail.tpl" );

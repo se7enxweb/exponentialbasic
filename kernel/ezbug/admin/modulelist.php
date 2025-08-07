@@ -27,14 +27,14 @@
   Viser liste over prioriteringer
 */
 // include_once( "classes/INIFile.php" );
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 
 // include_once( "ezbug/classes/ezbugmodule.php" );
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "modulelist.php" );
 $t->setAllStrings();
 

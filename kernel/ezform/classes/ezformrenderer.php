@@ -53,14 +53,14 @@ class eZFormRenderer
     */
     function __construct( $form = "" )
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         if ( is_a( $form, "eZForm" ) )
         {
             $this->Form = $form;
         }
-        $Language = $ini->read_var( "eZFormMain", "Language" );
+        $Language = $ini->variable( "eZFormMain", "Language" );
 
-        $this->Template = new eZTemplate( "kernel/ezform/admin/" . $ini->read_var( "eZFormMain", "AdminTemplateDir" ),
+        $this->Template = new eZTemplate( "kernel/ezform/admin/" . $ini->variable( "eZFormMain", "AdminTemplateDir" ),
                                           "kernel/ezform/admin/intl/", $Language, "form.php" );
 
         $this->Template->setAllStrings();
@@ -346,7 +346,7 @@ class eZFormRenderer
         $target = false;
         $errorMessages = array();
         $errorMessagesAdditionalInfo = array();
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
         $this->Form = new eZForm( $FormID );
 
@@ -392,7 +392,7 @@ class eZFormRenderer
             $i = 0;
             foreach ( $errorMessages as $errorMessage )
             {
-                $errorMessage = $this->Template->Ini->read_var( "strings", $errorMessage );
+                $errorMessage = $this->Template->Ini->variable( "strings", $errorMessage );
                 $this->Template->set_var( "error_message", $errorMessage );
                 $this->Template->set_var( "error_value", $errorMessagesAdditionalInfo[$i] );
                 $this->Template->parse( "error_item", "error_item_tpl", true );
@@ -419,12 +419,12 @@ class eZFormRenderer
 
         $form = new eZForm( $FormID );
 
-        $ini =& INIFile::globalINI();
-        $Language = $ini->read_var( "eZFormMain", "Language" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $Language = $ini->variable( "eZFormMain", "Language" );
 
         $emailDefaults = false;
 
-        if ( $ini->read_var( "eZFormMain", "CreateEmailDefaults" ) == "enabled" )
+        if ( $ini->variable( "eZFormMain", "CreateEmailDefaults" ) == "enabled" )
         {
             $emailDefaults = true;
         }
@@ -456,7 +456,7 @@ class eZFormRenderer
 
             if ( $emailDefaults == true )
             {
-                if ( $element->name() == $this->Template->Ini->read_var( "strings", "subject_label" ) )
+                if ( $element->name() == $this->Template->Ini->variable( "strings", "subject_label" ) )
                 {
                     $mail->setSubject( $value );
                 }
@@ -476,7 +476,7 @@ class eZFormRenderer
             $mail->setSubject( $form->name() );
         }
 
-        $t = new eZTemplate( "kernel/ezform/user/" . $ini->read_var( "eZFormMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/ezform/user/" . $ini->variable( "eZFormMain", "TemplateDir" ),
                      "kernel/ezform/user/intl/", $Language, "form.php" );
 
         $t->set_file( array(

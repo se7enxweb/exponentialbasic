@@ -28,15 +28,15 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
-$SiteStyle = $ini->read_var( "site", "SiteStyle" );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
+$SiteStyle = $ini->variable( "site", "SiteStyle" );
 
 // include_once( "eztrade/classes/ezgroupeventcalendarcategory.php" );
 //include_once( "kernel/ezgroupeventcalendar/classes/ezgroupevent.php" );
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
                      "kernel/ezgroupeventcalendar/user/intl/", $Language, "filelist.php" );
 
 $t->setAllStrings();

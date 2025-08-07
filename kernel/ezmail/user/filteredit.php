@@ -61,10 +61,10 @@ if( isset( $Cancel ) )
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMailMain", "Language" ); 
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMailMain", "Language" ); 
 
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl/", $Language, "filteredit.php" );
 $t->setAllStrings();
 
@@ -91,20 +91,20 @@ if( $FilterID != 0 ) // someone set us up the bomb
     $folderid = $filter->folderID();
 }
 
-$localINI = new INIFile( "kernel/ezmail/user/intl/" . $Language . "/filteredit.php.ini" );
+$localINI = new eZINI( "kernel/ezmail/user/intl/" . $Language . "/filteredit.php.ini" );
 foreach( array( 0, 1, 2, 3, 4, 5, 6, 7 ) as $headerID )
 {
     $headerName = "";
     switch( $headerID )
     {
-        case 0: $headerName = $localINI->read_var( "strings", "message"); break;
-        case 1: $headerName = $localINI->read_var( "strings", "body"); break;
-        case 2: $headerName = $localINI->read_var( "strings", "any_header"); break;
-        case 3: $headerName = $localINI->read_var( "strings", "tocc"); break;
-        case 4: $headerName = $localINI->read_var( "strings", "subject"); break;
-        case 5: $headerName = $localINI->read_var( "strings", "from"); break;
-        case 6: $headerName = $localINI->read_var( "strings", "to"); break;
-        case 7: $headerName = $localINI->read_var( "strings", "cc"); break;
+        case 0: $headerName = $localINI->variable( "strings", "message"); break;
+        case 1: $headerName = $localINI->variable( "strings", "body"); break;
+        case 2: $headerName = $localINI->variable( "strings", "any_header"); break;
+        case 3: $headerName = $localINI->variable( "strings", "tocc"); break;
+        case 4: $headerName = $localINI->variable( "strings", "subject"); break;
+        case 5: $headerName = $localINI->variable( "strings", "from"); break;
+        case 6: $headerName = $localINI->variable( "strings", "to"); break;
+        case 7: $headerName = $localINI->variable( "strings", "cc"); break;
     }
     $t->set_var( "header_id", $headerID );
     $t->set_var( "header_name", $headerName  );
@@ -121,11 +121,11 @@ foreach( array( 0, 1, 2, 3, 4  ) as $checkID )
     $checkName = "";
     switch( $checkID )
     {
-        case 0: $checkName = $localINI->read_var( "strings", "equals"); break;
-        case 1: $checkName = $localINI->read_var( "strings", "nequals"); break;
-        case 2: $checkName = $localINI->read_var( "strings", "contains"); break;
-        case 3: $checkName = $localINI->read_var( "strings", "ncontains"); break;
-        case 4: $checkName = $localINI->read_var( "strings", "regexp"); break;
+        case 0: $checkName = $localINI->variable( "strings", "equals"); break;
+        case 1: $checkName = $localINI->variable( "strings", "nequals"); break;
+        case 2: $checkName = $localINI->variable( "strings", "contains"); break;
+        case 3: $checkName = $localINI->variable( "strings", "ncontains"); break;
+        case 4: $checkName = $localINI->variable( "strings", "regexp"); break;
     }
     $t->set_var( "check_id", $checkID );
     $t->set_var( "check_name", $checkName  );

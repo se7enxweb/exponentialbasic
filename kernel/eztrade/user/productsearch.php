@@ -29,15 +29,15 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$RequireUserLogin = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "true";
-$MaxSearchForProducts = $ini->read_var( "eZTradeMain", "MaxSearchForProducts" );
-$SmallImageWidth = $ini->read_var( "eZTradeMain", "SmallImageWidth" );
-$SmallImageHeight = $ini->read_var( "eZTradeMain", "SmallImageHeight" );
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$RequireUserLogin = $ini->variable( "eZTradeMain", "RequireUserLogin" ) == "true";
+$MaxSearchForProducts = $ini->variable( "eZTradeMain", "MaxSearchForProducts" );
+$SmallImageWidth = $ini->variable( "eZTradeMain", "SmallImageWidth" );
+$SmallImageHeight = $ini->variable( "eZTradeMain", "SmallImageHeight" );
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezproductcategory.php" );
@@ -49,7 +49,7 @@ $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enab
 
 $user =& eZUser::currentUser();
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ) ,
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ) ,
                      "kernel/eztrade/user/intl/", $Language, "productsearch.php" );
 
 $t->setAllStrings();

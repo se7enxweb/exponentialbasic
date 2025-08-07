@@ -29,8 +29,8 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlog.php" );
@@ -52,12 +52,12 @@ function deleteCache( $SiteDesign )
 
 function unlinkWild( $dir, $rege )
 {
-    $d = eZFile::dir( $dir );
+    $d = eZPBFile::dir( $dir );
     while ( $f = $d->read() )
     {
         if ( preg_match( $rege, $f ) )
         {
-            eZFile::unlink( $dir . $f );
+            eZPBFile::unlink( $dir . $f );
         }
     }
 }
@@ -237,7 +237,7 @@ else
     $language_file = "personedit.php";
 }
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, $language_file );
 $t->setAllStrings();
 
@@ -811,8 +811,8 @@ if ( !$confirm )
             $image =& $person->image( $person->id() );
             if ( get_class( $image ) == "ezimage" && $image->id() != 0 )
             {
-                $imageWidth =& $ini->read_var( "eZContactMain", "PersonImageWidth" );
-     	        $imageHeight =& $ini->read_var( "eZContactMain", "PersonImageHeight" );
+                $imageWidth =& $ini->variable( "eZContactMain", "PersonImageWidth" );
+     	        $imageHeight =& $ini->variable( "eZContactMain", "PersonImageHeight" );
                 $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
                 $imageURL = "/" . $variation->imagePath();
                 $imageWidth = $variation->width();
@@ -1049,12 +1049,12 @@ if ( !$confirm )
             $AddressDelete = array();
         }
 
-        $AddressMinimum = $ini->read_var( "eZContactMain", "AddressMinimum" );
-        $PhoneMinimum = $ini->read_var( "eZContactMain", "PhoneMinimum" );
-        $OnlineMinimum = $ini->read_var( "eZContactMain", "OnlineMinimum" );
-        $AddressWidth = $ini->read_var( "eZContactMain", "AddressWidth" );
-        $PhoneWidth = $ini->read_var( "eZContactMain", "PhoneWidth" );
-        $OnlineWidth = $ini->read_var( "eZContactMain", "OnlineWidth" );
+        $AddressMinimum = $ini->variable( "eZContactMain", "AddressMinimum" );
+        $PhoneMinimum = $ini->variable( "eZContactMain", "PhoneMinimum" );
+        $OnlineMinimum = $ini->variable( "eZContactMain", "OnlineMinimum" );
+        $AddressWidth = $ini->variable( "eZContactMain", "AddressWidth" );
+        $PhoneWidth = $ini->variable( "eZContactMain", "PhoneWidth" );
+        $OnlineWidth = $ini->variable( "eZContactMain", "OnlineWidth" );
 
         if ( isset( $NewAddress ) )
         {

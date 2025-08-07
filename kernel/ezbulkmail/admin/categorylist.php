@@ -67,11 +67,11 @@ if ( isset( $Delete ) )
     }
 }
 
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl", $Language, "categorylist.php" );
 
-$iniLanguage = new INIFile( "kernel/ezbulkmail/admin/intl/" . $Language . "/categorylist.php.ini", false );
+$iniLanguage = new eZINI( "kernel/ezbulkmail/admin/intl/" . $Language . "/categorylist.php.ini", false );
 
 $locale = new eZLocale( $Language ); 
 $t->set_file( "category_list_tpl", "categorylist.tpl" );
@@ -108,9 +108,9 @@ foreach ( $categories as $categoryitem )
     $t->set_var( "subscription_count", $categoryitem->subscriberCount() );
     $t->set_var( "category_id", $categoryitem->id() );
     if ( $categoryitem->isPublic() )
-        $t->set_var( "category_is_public", $iniLanguage->read_var( "strings", "yes" ) );
+        $t->set_var( "category_is_public", $iniLanguage->variable( "strings", "yes" ) );
     else
-        $t->set_var( "category_is_public", $iniLanguage->read_var( "strings", "no" ) );
+        $t->set_var( "category_is_public", $iniLanguage->variable( "strings", "no" ) );
     
     ( $i % 2 ) ? $t->set_var( "td_class", "bgdark" ) : $t->set_var( "td_class", "bglight" );
     
@@ -148,7 +148,7 @@ if ( is_numeric( $CategoryID ) && $CategoryID > 0 )
         }
         else
         {
-            $t->set_var( "sent_date", $iniLanguage->read_var( "strings", "not_sent" ) );
+            $t->set_var( "sent_date", $iniLanguage->variable( "strings", "not_sent" ) );
         }
         
         ( $i % 2 ) ? $t->set_var( "td_class", "bgdark" ) : $t->set_var( "td_class", "bglight" );

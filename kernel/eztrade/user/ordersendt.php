@@ -36,16 +36,16 @@
 // include_once( "eztrade/classes/ezcheckout.php" );
 
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" );
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
-$ShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
-$ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
-$ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
-$ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
-$checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
-$ShowTaxBasis = $ini->read_var( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" );
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$ShowExTaxColumn = $ini->variable( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
+$ShowIncTaxColumn = $ini->variable( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
+$ShowExTaxTotal = $ini->variable( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
+$ColSpanSizeTotals = $ini->variable( "eZTradeMain", "ColSpanSizeTotals" );
+$checkups = $ini->variable( "eZTradeMain", "UPSOFF" );
+$ShowTaxBasis = $ini->variable( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
 
 $locale = new eZLocale( $Language );
 $currency = new eZCurrency();
@@ -55,10 +55,10 @@ $currency = new eZCurrency();
 $ShowCart = false;
 $ShowSavingsColumn = false;
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "ordersendt.php" );
 
-$translation = new INIFile( "kernel/eztrade/user/intl/" . $Language . "/ordersendt.php.ini", false );
+$translation = new eZINI( "kernel/eztrade/user/intl/" . $Language . "/ordersendt.php.ini", false );
 
 $t->setAllStrings();
 
@@ -175,7 +175,7 @@ if ( $user )
 
     if ( $country )
     {
-        if ( $ini->read_var( "eZUserMain", "SelectCountry" ) == "enabled" )
+        if ( $ini->variable( "eZUserMain", "SelectCountry" ) == "enabled" )
             $t->set_var( "billing_country", $country->name() );
         else
             $t->set_var( "billing_country", "" );
@@ -189,7 +189,7 @@ if ( $user )
 
     if ( $region )
     {
-        if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+        if ( $ini->variable( "eZUserMain", "SelectRegion" ) == "enabled" )
             $t->set_var( "billing_region", $region->name() );
         else
             $t->set_var( "billing_region", "" );
@@ -199,7 +199,7 @@ if ( $user )
             $t->set_var( "billing_region", "" );
     }
     
-    if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
+    if ( $ini->variable( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
         $t->parse( "billing_address", "billing_address_tpl" );
     else
         $t->set_var( "billing_address", "" );
@@ -242,7 +242,7 @@ if ( $user )
 
     if ( $country )
     {
-        if ( $ini->read_var( "eZUserMain", "SelectCountry" ) == "enabled" )
+        if ( $ini->variable( "eZUserMain", "SelectCountry" ) == "enabled" )
             $t->set_var( "shipping_country", $country->name() );
         else
             $t->set_var( "shipping_country", "" );
@@ -262,7 +262,7 @@ if ( $user )
 
     if ( $region )
     {
-        if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+        if ( $ini->variable( "eZUserMain", "SelectRegion" ) == "enabled" )
             $t->set_var( "shipping_region", $region->name() );
         else
             $t->set_var( "shipping_region", "" );
@@ -770,7 +770,7 @@ $t->set_var( "order_id", $OrderID );
 // graham@brookinsconsulting.com - 12-19-2001:11:45
 // idea to turn off feature . . .
 
-// if ( $ini->read_var( "eZTradeMain", "ShowPrintableRecieptLink" ) == "enabled" )
+// if ( $ini->variable( "eZTradeMain", "ShowPrintableRecieptLink" ) == "enabled" )
 //     printable_reciept_enabled_tpl   printable_reciept_disabled_tpl
 //    else
 //        $t->set_var( "billing_address", "" );
@@ -779,20 +779,20 @@ $t->set_var( "order_id", $OrderID );
 // graham@brookinsconsulting.com - 12-19-2001:11:45
 // dynamic internal printable reciept link
 
-if ( $PrintableVersion = $ini->read_var( "eZTradeMain", "ShowPrintableRecieptLink" ) )
+if ( $PrintableVersion = $ini->variable( "eZTradeMain", "ShowPrintableRecieptLink" ) )
 {
 switch ($PrintableVersion) {
     case "enabled":
         $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=disabled";
-        $printable_reciept_text = $translation->read_var( "Strings", "web_reciept" );
+        $printable_reciept_text = $translation->variable( "Strings", "web_reciept" );
         break;
     case "disabled":
         $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=enabled";
-        $printable_reciept_text = $translation->read_var( "Strings", "printable_reciept" );
+        $printable_reciept_text = $translation->variable( "Strings", "printable_reciept" );
         break;
     case "":
         $printable_reciept_link = "http://$HTTP_HOST/trade/ordersendt/$OrderID/?PrintableVersion=enabled";
-        $printable_reciept_text = $translation->read_var( "Strings", "printable_reciept" );
+        $printable_reciept_text = $translation->variable( "Strings", "printable_reciept" );
         break;
     }
 

@@ -29,9 +29,9 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-// $DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+// $DOC_ROOT = $ini->variable( "eZUserMain", "DocumentRoot" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -41,7 +41,7 @@ $Language = $ini->read_var( "eZUserMain", "Language" );
 
 
 // Template
-$t = new eZTemplate( "kernel/ezuser" . $ini->read_var( "eZUserMain", "TemplateDir" ). "/login/",
+$t = new eZTemplate( "kernel/ezuser" . $ini->variable( "eZUserMain", "TemplateDir" ). "/login/",
                      "kernel/ezuser/admin". "/intl", $Language, "success.php" );
 $t->setAllStrings();
 

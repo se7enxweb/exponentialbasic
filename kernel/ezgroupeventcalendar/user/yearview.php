@@ -33,11 +33,11 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$SiteDesign = $ini->read_var( "site", "SiteDesign" );
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+$SiteDesign = $ini->variable( "site", "SiteDesign" );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
 
-$TemplateDir = $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
-$GlobalSectionID = $ini->read_var( "eZGroupEventCalendarMain", "DefaultSection" );
+$TemplateDir = $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" );
+$GlobalSectionID = $ini->variable( "eZGroupEventCalendarMain", "DefaultSection" );
 
 $Locale = new eZLocale( $Language );
 
@@ -57,7 +57,7 @@ if ( $templateDirTmp != null && trim( $templateDirTmp ) != "" )
 }
 else
 {
-    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" );
 }
 
 $t = new eZTemplate( $TemplateDir,

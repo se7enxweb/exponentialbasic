@@ -99,7 +99,7 @@ class eZCacheFile
     function exists()
     {
         $file =& $this->filename( true );
-        return eZFile::file_exists( $file );
+        return file_exists( $file );
     }
 
     /*!
@@ -109,7 +109,7 @@ class eZCacheFile
     {
 //        print( $this->filename( true ) . "<br>" );
         if ( $this->exists() )
-            eZFile::unlink( $this->filename( true ) );
+            eZPBFile::unlink( $this->filename( true ) );
     }
 
     /*!
@@ -120,7 +120,7 @@ class eZCacheFile
     {
         if ( $this->exists() )
         {
-            $mod = eZFile::filemtime( $this->filename( true ) );
+            $mod = eZPBFile::filemtime( $this->filename( true ) );
             return $modtime <= $mod;
         }
         return false;
@@ -133,7 +133,7 @@ class eZCacheFile
     {
         if ( $this->exists() )
         {
-            $mod = eZFile::filemtime( $this->filename( true ) );
+            $mod = eZPBFile::filemtime( $this->filename( true ) );
             $datetime = new eZDateTime();
 
             $datetime->setYear( date( "Y", $mod ) );
@@ -157,11 +157,11 @@ class eZCacheFile
             print( "<br><b>Cache: File \"" . $this->filename( true ) . "\" does not exist</b><br>" );
         else
         {
-            $file = eZFile::fopen( $this->filename( true ), "r" );
+            $file = eZPBFile::fopen( $this->filename( true ), "r" );
             if ( $file )
             {
-		$fileSize = eZFile::filesize( $this->filename( true ) );
-		if( $fileSize != 0 )
+		        $fileSize = eZPBFile::filesize( $this->filename( true ) );
+		        if( $fileSize != 0 )
                     $content =& fread( $file, $fileSize );
                 fclose( $file );
             }
@@ -178,7 +178,7 @@ class eZCacheFile
     */
     function store( $content )
     {
-        $file = eZFile::fopen( $this->filename( true ), "w" );
+        $file = eZPBFile::fopen( $this->filename( true ), "w" );
         if ( $file )
         {
             fwrite( $file, $content );
@@ -257,7 +257,7 @@ class eZCacheFile
             ++$i;
         }
         $reg = "/$reg/";
-        $dir = eZFile::dir( $root );
+        $dir = eZPBFile::dir( $root );
         $ret = array();
         while ( $entry = $dir->read() )
         {

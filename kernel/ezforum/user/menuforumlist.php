@@ -34,9 +34,9 @@
 // include_once( "ezforum/classes/ezforumcategory.php" );
 // include_once( "ezforum/classes/ezforum.php" );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "menuforumlist.php" );
 
 $t->set_file( "menuforum_list_tpl", "menuforumlist.tpl"  );

@@ -27,13 +27,13 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZPollMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZPollMain", "Language" );
 
 // include_once( "ezpoll/classes/ezpoll.php" );
 // include_once( "ezpoll/classes/ezpollchoice.php" );
 
-$t = new eZTemplate( "kernel/ezpoll/user/" . $ini->read_var( "eZPollMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezpoll/user/" . $ini->variable( "eZPollMain", "TemplateDir" ),
                      "kernel/ezpoll/user/intl/", $Language, "votepage.php" );
 
 $t->setAllStrings();

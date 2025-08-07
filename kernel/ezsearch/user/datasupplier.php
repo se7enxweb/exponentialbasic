@@ -23,9 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$GlobalSectionID = $ini->read_var( "eZSearchMain", "DefaultSection" );
+$GlobalSectionID = $ini->variable( "eZSearchMain", "DefaultSection" );
 
 switch( $url_array[2] )
 {

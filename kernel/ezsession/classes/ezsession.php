@@ -236,7 +236,7 @@ class eZSession
                 }
             }
 
-			if ( isset( $hash ) )
+			if ( isset( $hash ) && $hash !== null )
 			{
 	            // escape the hash value.
 	            $hash = $db->escapeString( $hash );

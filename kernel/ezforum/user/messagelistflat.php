@@ -25,7 +25,7 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
@@ -38,11 +38,11 @@ $ini =& INIFile::globalINI();
 // include_once( "ezforum/classes/ezforumcategory.php" );
 // include_once( "ezforum/classes/ezforum.php" );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$UserLimit = $ini->read_var( "eZForumMain", "MessageUserLimit" );
-$NewMessageLimit = $ini->read_var( "eZForumMain", "NewMessageLimit" );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$UserLimit = $ini->variable( "eZForumMain", "MessageUserLimit" );
+$NewMessageLimit = $ini->variable( "eZForumMain", "NewMessageLimit" );
 
-$t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "messagelistflat.php" );
 
 $t->set_file( "messagelist_tpl", "messagelistflat.tpl"  );
@@ -104,8 +104,8 @@ $messageCount =& $forum->messageCount( false, true );
 
 if ( !$messageList )
 {
-    $languageIni = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/messagelistflat.php.ini", false );
-    $noitem =  $languageIni->read_var( "strings", "noitem" );
+    $languageIni = new eZINI( "kernel/ezforum/user/intl/" . $Language . "/messagelistflat.php.ini", false );
+    $noitem =  $languageIni->variable( "strings", "noitem" );
 
     $t->set_var( "message_item", $noitem );
 }
@@ -162,7 +162,7 @@ else
 
         if ( $author->id() == 0 )
         {
-            $t->set_var( "user", $ini->read_var( "eZForumMain", "AnonymousPoster" ) );
+            $t->set_var( "user", $ini->variable( "eZForumMain", "AnonymousPoster" ) );
         }
         else
         {

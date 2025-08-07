@@ -26,16 +26,16 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZPollMain", "Language" );
+$Language = $ini->variable( "eZPollMain", "Language" );
 
 // include_once( "ezpoll/classes/ezpoll.php" );
 // include_once( "ezpoll/classes/ezvote.php" );
 // include_once( "ezpoll/classes/ezpollchoice.php" );
 
 
-$t = new eZTemplate( "kernel/ezpoll/user/" . $ini->read_var( "eZPollMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezpoll/user/" . $ini->variable( "eZPollMain", "TemplateDir" ),
                      "kernel/ezpoll/user/intl/", $Language, "result.php" );
 
 $t->setAllStrings();
@@ -121,8 +121,8 @@ foreach ( $pollArray as $poll )
     }
     else
     {
-        $languageIni = new INIFile( "kernel/ezpoll/user/intl/" . $Language . "/result.php.ini", false );
-        $result = $languageIni->read_var( "strings", "no_result" );
+        $languageIni = new eZINI( "kernel/ezpoll/user/intl/" . $Language . "/result.php.ini", false );
+        $result = $languageIni->variable( "strings", "no_result" );
 
         $t->set_var( "result_list", $result );
     }

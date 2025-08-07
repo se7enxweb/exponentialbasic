@@ -30,8 +30,8 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$AdminLimit = $ini->read_var( "eZLinkMain", "AdminAcceptLimit" );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$AdminLimit = $ini->variable( "eZLinkMain", "AdminAcceptLimit" );
 
 // include_once( "ezlink/classes/ezlinkcategory.php" );
 // include_once( "ezlink/classes/ezlink.php" );
@@ -44,7 +44,7 @@ $AdminLimit = $ini->read_var( "eZLinkMain", "AdminAcceptLimit" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->variable( "eZLinkMain", "AdminTemplateDir" ),
 "kernel/ezlink/admin/intl/", $Language, "unacceptedlist.php" );
 $t->setAllStrings();
 

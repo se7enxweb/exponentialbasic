@@ -2,7 +2,7 @@
 // 
 // $Id: invoice.php,v 1.2 2001/02/20 16:12:48 bf Exp $
 //
-// Bård Farstad <bf@ez.no>
+// Bï¿½rd Farstad <bf@ez.no>
 // Created on: <02-Feb-2001 18:28:36 bf>
 //
 // This source file is part of eZ publish, publishing software.
@@ -31,13 +31,13 @@ include_once( "ezaddress/classes/ezaddress.php" );
 // retrieve site.ini config variables
 $indexFile = $ini->Index;
 $wwwDir = $ini->WWWDir;
-$PaypalEmail = $ini->read_var( "Checkout", "PaypalEmail" );
-$ShopName = $ini->read_var( "site", "SiteTitle" );
-$CurrencyCode = $ini->read_var( "Checkout", "CurrencyCode" );
-$SiteLogo = $ini->read_var( "Checkout", "SiteLogo" );
-$PageStyle = $ini->read_var( "Checkout", "PageStyle" );
-$LanguageCode = $ini->read_var( "Checkout", "LanguageCode" );
-$PaypalMode = $ini->read_var( "Checkout", "PaypalMode" );
+$PaypalEmail = $ini->variable( "Checkout", "PaypalEmail" );
+$ShopName = $ini->variable( "site", "SiteTitle" );
+$CurrencyCode = $ini->variable( "Checkout", "CurrencyCode" );
+$SiteLogo = $ini->variable( "Checkout", "SiteLogo" );
+$PageStyle = $ini->variable( "Checkout", "PageStyle" );
+$LanguageCode = $ini->variable( "Checkout", "LanguageCode" );
+$PaypalMode = $ini->variable( "Checkout", "PaypalMode" );
 
 // get billing address
 $billingAddress = new eZAddress( $session->variable( "BillingAddressID" ) );

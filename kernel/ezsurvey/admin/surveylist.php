@@ -6,10 +6,10 @@
     // include_once( "ezsurvey/classes/ezsurvey.php" );
     // include_once( "classes/ezlist.php" );
     
-    $ini =& INIFile::globalINI();
-    $Language = $ini->read_var( "eZSurveyMain", "Language" );
+    $ini =& eZINI::instance( 'site.ini' );
+    $Language = $ini->variable( "eZSurveyMain", "Language" );
     
-    $t = new eZTemplate( "kernel/ezsurvey/admin/" . $ini->read_var( "eZSurveyMain", "AdminTemplateDir" ),
+    $t = new eZTemplate( "kernel/ezsurvey/admin/" . $ini->variable( "eZSurveyMain", "AdminTemplateDir" ),
                          "kernel/ezsurvey/admin/intl", $Language, "surveylist.php" );
     $t->setAllStrings();
     
@@ -20,7 +20,7 @@
     
     $t->set_var( "survey_list", "" );
     
-    $surveyListLimit = $ini->read_var( "eZSurveyMain", "SurveyListLimit" );
+    $surveyListLimit = $ini->variable( "eZSurveyMain", "SurveyListLimit" );
 
     $offset = $url_array[4];
     

@@ -50,12 +50,12 @@ if ( isset ( $Cancel ) )
     exit();
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 $move_item = true;
 $languageINI = new INIFIle( "kernel/ezsitemanager/admin/intl/" . $Language . "/sectionedit.php.ini", false );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "sectionedit.php" );
 $t->setAllStrings();
 
@@ -136,7 +136,7 @@ if ( ( $Action == "Insert" ) || ( $Action == "Update" ) && ( $user ) )
 {
     if ( $warning )
     {
-        if ( eZFile::is_dir( "design/" . $Name ) == false );
+        if ( eZPBFile::is_dir( "design/" . $Name ) == false );
         {
             $session =& eZSession::globalSession();
             $session->setVariable( "DirNotExists", "true" );
@@ -371,7 +371,7 @@ if ( isset( $rows ) && count ( $rows ) > 0 )
         $t->set_var( "settings", "" );
         foreach ( $settingNames as $name )
         {
-            $t->set_var( "setting_name", $languageINI->read_var( "strings", $name["Name"] ) );
+            $t->set_var( "setting_name", $languageINI->variable( "strings", $name["Name"] ) );
             $t->set_var( "setting_id", $name["ID"] );
 
             if ( $row->settingID() == $name["ID"] )

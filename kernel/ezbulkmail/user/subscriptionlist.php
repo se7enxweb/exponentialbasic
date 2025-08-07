@@ -32,10 +32,10 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/INIFile.php" );
 
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
-$TemplateDir = $ini->read_var( "eZBulkMailMain", "TemplateDir" );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
+$TemplateDir = $ini->variable( "eZBulkMailMain", "TemplateDir" );
 
-if ( $ini->read_var( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
+if ( $ini->variable( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
 {
     $user = eZUser::currentUser();
     $subscriptionaddress = new eZBulkMailUserSubscripter( $user );
@@ -77,7 +77,7 @@ if( isset ( $Ok ) )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                      "kernel/ezbulkmail/user/intl", $Language, "subscriptionlist.php" );
 
 $t->set_file( array(

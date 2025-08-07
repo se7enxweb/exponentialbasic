@@ -31,8 +31,8 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -118,7 +118,7 @@ if ( isset( $Action ) && $Action == "delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "moduleedit.php" );
 $t->setAllStrings();
 

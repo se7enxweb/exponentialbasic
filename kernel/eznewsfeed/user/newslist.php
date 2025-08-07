@@ -31,11 +31,11 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsfeedMain", "Language" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->read_var( "eZNewsfeedMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
                      "kernel/eznewsfeed/user/intl/", $Language, "newslist.php" );
 
 $t->setAllStrings();
@@ -138,7 +138,7 @@ else
 
 if ( $GenerateStaticPage == "true" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     $output = $t->parse( "output", "news_archive_page_tpl" );
     

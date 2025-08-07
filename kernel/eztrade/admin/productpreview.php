@@ -41,29 +41,29 @@
 
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 $PriceGroup = 1;
 $ShowPrice = true;
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$RequireUserLogin = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "true";
-$SimpleOptionHeaders = $ini->read_var( "eZTradeMain", "SimpleOptionHeaders" ) == "true";
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
-$ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
-$RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true";
-$ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$RequireUserLogin = $ini->variable( "eZTradeMain", "RequireUserLogin" ) == "true";
+$SimpleOptionHeaders = $ini->variable( "eZTradeMain", "SimpleOptionHeaders" ) == "true";
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
+$ShowNamedQuantity = $ini->variable( "eZTradeMain", "ShowNamedQuantity" ) == "true";
+$RequireQuantity = $ini->variable( "eZTradeMain", "RequireQuantity" ) == "true";
+$ShowOptionQuantity = $ini->variable( "eZTradeMain", "ShowOptionQuantity" ) == "true";
 $locale = new eZLocale( $Language );
 
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
 
-$MainImageWidth = $ini->read_var( "eZTradeMain", "MainImageWidth" );
-$MainImageHeight = $ini->read_var( "eZTradeMain", "MainImageHeight" );
+$MainImageWidth = $ini->variable( "eZTradeMain", "MainImageWidth" );
+$MainImageHeight = $ini->variable( "eZTradeMain", "MainImageHeight" );
 
-$SmallImageWidth = $ini->read_var( "eZTradeMain", "SmallImageWidth" );
-$SmallImageHeight = $ini->read_var( "eZTradeMain", "SmallImageHeight" );
+$SmallImageWidth = $ini->variable( "eZTradeMain", "SmallImageWidth" );
+$SmallImageHeight = $ini->variable( "eZTradeMain", "SmallImageHeight" );
 
-$t = new eZTemplate( "kernel/eztrade/admin/". $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/". $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "productpreview.php" );
 
 $t->setAllStrings();

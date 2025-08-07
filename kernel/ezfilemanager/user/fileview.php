@@ -35,12 +35,12 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFileManagerMain", "Language" );
+$Language = $ini->variable( "eZFileManagerMain", "Language" );
 
 
-$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->read_var( "eZFileManagerMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->variable( "eZFileManagerMain", "TemplateDir" ),
                      "kernel/ezfilemanager/user/intl/", $Language, "fileview.php" );
 
 $t->set_file( "file_view", "fileview.tpl" );

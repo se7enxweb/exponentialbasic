@@ -29,9 +29,9 @@
 // include_once( "classes/ezcurrency.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 $locale = new eZLocale( $Language );
 
 // include_once( "ezuser/classes/ezuser.php" );
@@ -43,7 +43,7 @@ $locale = new eZLocale( $Language );
 // include_once( "eztrade/classes/ezproductpricerange.php" );
 // include_once( "ezsession/classes/ezsession.php" );
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "voucherinformation.php" );
 
 $t->setAllStrings();

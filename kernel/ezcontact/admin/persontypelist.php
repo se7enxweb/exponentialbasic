@@ -29,8 +29,8 @@
 // include_once( "classes/INIFile.php" );
 
 $ini =& $GlobalSiteIni;
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
+$Language = $ini->variable( "eZContactMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZContactMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "common/ezphputils.php" );
@@ -45,7 +45,7 @@ $DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( $DOC_ROOT . "/" . $ini->read_var( "eZContactMain", "TemplateDir" ), $DOC_ROOT . "/intl", $Language, "persontypelist.php" );
+$t = new eZTemplate( $DOC_ROOT . "/" . $ini->variable( "eZContactMain", "TemplateDir" ), $DOC_ROOT . "/intl", $Language, "persontypelist.php" );
 $t->setAllStrings();
 
 $t->set_file( array(

@@ -32,7 +32,7 @@
 
 $ini =& INIFile::globalINI();
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 if ( isset( $Action ) && $Action == "Verify" )
 {
@@ -42,7 +42,7 @@ if ( isset( $Action ) && $Action == "Verify" )
     $PaymentSuccess = "true";    
 }
 
-$t = new eZTemplate( "kernel/classes/checkout/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/classes/checkout/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/classes/checkout/user/intl/", $Language, "visa.php" );
 
 $t->set_file( "visa_tpl", "visa.tpl" );

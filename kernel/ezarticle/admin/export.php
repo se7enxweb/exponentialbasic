@@ -33,8 +33,8 @@
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$TemplateDir = $ini->read_var( "eZArticleMain", "TemplateDir" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$TemplateDir = $ini->variable( "eZArticleMain", "TemplateDir" );
 
 $t = new eZTemplate( "kernel/ezarticle/user/" . $TemplateDir,                     
                      "kernel/ezarticle/user/intl/", $Language, "articleview.php" );
@@ -93,7 +93,7 @@ $doc =& $t->parse( "output", "article_view_tex_tpl" );
 
 $outputFile = "ezarticle/cache/article.tex";
 
-$fp = eZFile::fopen( $outputFile, "w+");
+$fp = eZPBFile::fopen( $outputFile, "w+");
 
 fwrite ( $fp, $doc );
 fclose( $fp );

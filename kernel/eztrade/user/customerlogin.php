@@ -32,8 +32,8 @@
 
 // include_once( "ezsession/classes/ezsession.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 
@@ -81,7 +81,7 @@ if ( $user  )
 }
 else
 {
-    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                          "kernel/eztrade/user/intl/", $Language, "customerlogin.php" );
 
     $t->setAllStrings();

@@ -25,8 +25,8 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZForumMain", "Language" );
 $locale = new eZLocale( $Language );
 
 require( "kernel/ezuser/admin/admincheck.php" );
@@ -59,10 +59,10 @@ if( isset( $ActionValueArray ) )
         if ( $ActionValueArray[$i] == "Reject" )
         {
             $mail = new eZMail();
-            $mailTemplate = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+            $mailTemplate = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
                                             "kernel/ezforum/admin/intl", $Language, "mailreject.php" );
 
-            $languageIni = new INIFile( "kernel/ezforum/admin/intl/" . $Language . "/mailreject.php.ini", false );
+            $languageIni = new eZINI( "kernel/ezforum/admin/intl/" . $Language . "/mailreject.php.ini", false );
 
             $mailTemplate->set_file( "mail_reject_tpl", "mailreject.tpl" );
             $mailTemplate->setAllStrings();
@@ -74,7 +74,7 @@ if( isset( $ActionValueArray ) )
 
             $body =& $mailTemplate->parse( "dummy", "mail_reject_tpl" );
 
-            $mail->setSubject( $languageIni->read_var( "strings", "mail_subject" ) . " " . $message->topic() );
+            $mail->setSubject( $languageIni->variable( "strings", "mail_subject" ) . " " . $message->topic() );
 
             $messageUser =& $message->user();
 

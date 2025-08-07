@@ -49,8 +49,8 @@ ob_end_clean();
 // $filePath = "design/base/images/design/1x1.png";
 
 $filePath = "design/base/images/design/1x1.gif";
-$fileSize = eZFile::filesize( $filePath );
-$fp = eZFile::fopen( $filePath, "r" );
+$fileSize = eZPBFile::filesize( $filePath );
+$fp = eZPBFile::fopen( $filePath, "r" );
 $content =& fread( $fp, $fileSize );
 
 $originalFileName = "1x1.gif";

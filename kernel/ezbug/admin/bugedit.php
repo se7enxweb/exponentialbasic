@@ -36,7 +36,7 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 // include_once( "ezbug/classes/ezbug.php" );
 // include_once( "ezbug/classes/ezbugcategory.php" );
@@ -63,7 +63,7 @@ if ( isset( $Cancel ) )
     }
 }
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "bugedit.php" );
 $t->setAllStrings();
 
@@ -211,7 +211,7 @@ if ( $Action == "Update" )
 
                 $locale = new eZLocale( $Language );
 
-                $mailTemplate = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+                $mailTemplate = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                                                 "kernel/ezbug/admin/intl", $Language, "mailreply.php" );
 
                 $headerInfo = getallheaders();
@@ -220,7 +220,7 @@ if ( $Action == "Update" )
                 $mailTemplate->setAllStrings();
 
 //                $host = preg_replace( "/^admin\./", "", $headerInfo["Host"] );
-                $host = $ini->read_var( "site", "UserSiteURL" );
+                $host = $ini->variable( "site", "UserSiteURL" );
 
                 $mailTemplate->set_var( "bug_url", "http://" . $host . "/bug/bugview/" . $bug->id() );
                 $mailTemplate->set_var( "log_message", $LogMessage );
@@ -230,8 +230,8 @@ if ( $Action == "Update" )
 
                 $bodyText = ( $mailTemplate->parse( "dummy", "mailreply" ) );
 
-                $languageIni = new INIFile( "kernel/ezbug/admin/" . "intl/" . $Language . "/mailreply.php.ini", false );
-                $msg =  $languageIni->read_var( "strings", "bug_handled" );
+                $languageIni = new eZINI( "kernel/ezbug/admin/" . "intl/" . $Language . "/mailreply.php.ini", false );
+                $msg =  $languageIni->variable( "strings", "bug_handled" );
 
                 $mail->setSubject( "[" . $msg . "]" . $bug->name( false ) );
                 $mail->setTo( $reporter_email );
@@ -604,17 +604,17 @@ function sendAssignedMail( $bug, $userEmail, $ini, $Language )
         $reporter = $bug->userEmail();
 
     $mail = new eZMail();
-    $from = $ini->read_var( "eZBugMain", "MailReplyToAddress" );
+    $from = $ini->variable( "eZBugMain", "MailReplyToAddress" );
     $mail->setFrom( $from );
 
-    $mailTemplate = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+    $mailTemplate = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                                     "kernel/ezbug/admin/intl", $Language, "mailgotbug.php" );
     $headerInfo = getallheaders();
 
     $mailTemplate->set_file( "mailgotbug", "mailgotbug.tpl" );
     $mailTemplate->setAllStrings();
 
-    $Language = $ini->read_var( "eZBugMain", "Language" );
+    $Language = $ini->variable( "eZBugMain", "Language" );
     $host = preg_replace( "/^admin\./", "", $headerInfo["Host"] );
 
     $mailTemplate->set_var( "bug_url", "http://" . $host . $GlobalSiteIni->WWWDir . $GlobalSiteIni->Index . "/bug/bugview/" . $bug->id() );
@@ -624,8 +624,8 @@ function sendAssignedMail( $bug, $userEmail, $ini, $Language )
     $mailTemplate->set_var( "bug_reporter", $reporter );
     $mailTemplate->set_var( "bug_description", $bug->description( false ) );
 
-    $languageIni = new INIFile( "kernel/ezbug/admin/" . "intl/" . $Language . "/mailgotbug.php.ini", false );
-    $msg =  $languageIni->read_var( "strings", "assigned_to_you" );
+    $languageIni = new eZINI( "kernel/ezbug/admin/" . "intl/" . $Language . "/mailgotbug.php.ini", false );
+    $msg =  $languageIni->variable( "strings", "assigned_to_you" );
 
     $mail->setSubject( "[". $msg ."][" . $bug->id() ."] " . $bug->name( false ) );
 

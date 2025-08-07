@@ -31,15 +31,15 @@
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-$ini =& INIFile::globalINI();
-$Title = htmlspecialchars($ini->read_var( "eZArticleRSS", "Title" ));
-$Link = $ini->read_var( "eZArticleRSS", "Link" );
-$Description = htmlspecialchars($ini->read_var( "eZArticleRSS", "Description" ));
-$Language = $ini->read_var( "eZArticleRSS", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Title = htmlspecialchars($ini->variable( "eZArticleRSS", "Title" ));
+$Link = $ini->variable( "eZArticleRSS", "Link" );
+$Description = htmlspecialchars($ini->variable( "eZArticleRSS", "Description" ));
+$Language = $ini->variable( "eZArticleRSS", "Language" );
 
-$Image = $ini->read_var( "eZArticleRSS", "Image" );
-$CategoryID = $ini->read_var( "eZArticleRSS", "CategoryID" );
-$Limit = $ini->read_var( "eZArticleRSS", "Limit" );
+$Image = $ini->variable( "eZArticleRSS", "Image" );
+$CategoryID = $ini->variable( "eZArticleRSS", "CategoryID" );
+$Limit = $ini->variable( "eZArticleRSS", "Limit" );
 
 $headerInfo = ( getallheaders() );
 $Host =  $headerInfo["Host"] ;

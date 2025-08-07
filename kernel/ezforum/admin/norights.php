@@ -24,15 +24,15 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$DOC_ROOT = $ini->read_var( "eZForumMain", "DocumentRoot" );
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZForumMain", "DocumentRoot" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 // include_once( "classes/ezdb.php" );
 // include_once( "classes/eztemplate.php" );
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
 "kernel/ezforum/admin/" . "/intl", $Language, "noright.php" );
 $t->setAllStrings();
 

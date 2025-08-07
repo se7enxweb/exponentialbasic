@@ -35,11 +35,11 @@
 // include_once( "ezad/classes/ezadcategory.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZAdMain", "Language" );
-$ImageDir = $ini->read_var( "eZAdMain", "ImageDir" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZAdMain", "Language" );
+$ImageDir = $ini->variable( "eZAdMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/ezad/admin/" . $ini->read_var( "eZAdMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezad/admin/" . $ini->variable( "eZAdMain", "AdminTemplateDir" ),
                      "kernel/ezad/admin/intl/", $Language, "adstatistics.php" );
 
 $t->setAllStrings();

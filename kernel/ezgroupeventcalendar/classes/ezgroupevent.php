@@ -346,7 +346,7 @@ class eZGroupEvent
 			//include_once( "classes/INIFile.php" );
 			$ini =& $GLOBALS["GlobalSiteIni"];
 			
-			if( $ini->read_var( "eZGroupEventCalendarMain", "SubGroupSelect" ) == "enabled" )
+			if( $ini->variable( "eZGroupEventCalendarMain", "SubGroupSelect" ) == "enabled" )
 			{
 				$i = 0;
 				$groupTree = $group->getTree( $groupID );
@@ -427,7 +427,7 @@ class eZGroupEvent
 			//include_once( "classes/INIFile.php" );
 			$ini =& $GLOBALS["GlobalSiteIni"];
 			
-			if( $ini->read_var( "eZGroupEventCalendarMain", "SubGroupSelect" ) == "enabled" )
+			if( $ini->variable( "eZGroupEventCalendarMain", "SubGroupSelect" ) == "enabled" )
 			{
 				$i = 0;
 				$groupTree = $group->getTree( $groupID );
@@ -1188,8 +1188,8 @@ class eZGroupEvent
     // include_once( "classes/INIFile.php" );
     $ini =& $GLOBALS["GlobalSiteIni"];
     // site variables
-    $siteName = $ini->read_var( "site", "SiteURL" ); 
-    $siteAdministrator = $ini->read_var( "eZUserMain", "ReminderMailFromAddress" );
+    $siteName = $ini->variable( "site", "SiteURL" ); 
+    $siteAdministrator = $ini->variable( "eZUserMain", "ReminderMailFromAddress" );
 
     $db =& eZDB::globalDatabase(); 	 
     $event_array = new eZGroupEvent(); 	 
@@ -1522,8 +1522,8 @@ class eZGroupEvent
 	    //            $forum->setModerator( $moderatorgroup );
 
             $forum->store();
-	    $ini =& INIFile::globalINI();
-	    $linkModules = $ini->read_var( "eZGroupEventCalendarMain", "LinkModules" );
+	    $ini =& eZINI::instance( 'site.ini' );
+	    $linkModules = $ini->variable( "eZGroupEventCalendarMain", "LinkModules" );
 	    $module_array = explode(',', $linkModules );
 	    unset ($linkModules);
 	    foreach ( $module_array as $module)

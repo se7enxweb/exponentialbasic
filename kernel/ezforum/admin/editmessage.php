@@ -29,9 +29,9 @@
 */
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$DOC_ROOT = $ini->read_var( "eZForumMain", "DocumentRoot" );
+$DOC_ROOT = $ini->variable( "eZForumMain", "DocumentRoot" );
 
 // include_once( "classes/template.inc" );
 //// include_once( "$DOC_ROOT/classes/ezdb.php" );

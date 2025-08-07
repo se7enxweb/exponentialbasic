@@ -33,9 +33,9 @@ $item_type = new eZOnlineType();
 $item_type_array = $item_type->getAll();
 $move_item = true;
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZAddressMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZAddressMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZAddressMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 
@@ -46,7 +46,7 @@ $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezaddress/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezaddress/admin/" . $ini->variable( "eZAddressMain", "AdminTemplateDir" ),
                      "kernel/ezaddress/admin/" . "/intl", $Language, $language_file );
 $t->setAllStrings();
 

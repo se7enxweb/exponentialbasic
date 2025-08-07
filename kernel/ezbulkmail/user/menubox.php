@@ -27,12 +27,12 @@
 // include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
     
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 
-$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                      "kernel/ezbulkmail/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();

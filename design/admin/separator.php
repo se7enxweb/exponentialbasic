@@ -31,10 +31,10 @@ $single_module = $preferences->variable( "SingleModule" ) == "enabled";
 // include_once( "kernel/classes/INIFile.php" );
 $ini =& INIFile::globalINI();
 
-$Language = $ini->read_var( "eZ" . ucfirst( $moduleName ) . "Main", "Language" );
+$Language = $ini->variable( "eZ" . ucfirst( $moduleName ) . "Main", "Language" );
 
 // include_once( "kernel/classes/eztemplate.php" );
-//$ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+//$ini->variable( "eZArticleMain", "AdminTemplateDir" ),
 $t = new eZTemplate( "design/admin/templates/" . $siteDesign,
                      "kernel/ez" . $moduleName . "/admin/intl/", $Language, "menubox.php" );
 
@@ -64,7 +64,7 @@ else {
 }
 $t->set_var( "help", "" );
 
-if ( eZFile::file_exists( $helpFile ) )
+if ( file_exists( $helpFile ) )
 {
     $t->set_var( "help_url", "/help/" . $moduleName . "/" . $url_array[1] . "/" . $url_array[2]. "/" );
     $t->parse( "help", "help_tpl" );
@@ -75,7 +75,7 @@ $t->setAllStrings();
 $t->set_var( "module_count", count ( $modules ) );
 $t->set_var( "left_spacer_item", "" );
 
-$moduletab = $ini->read_var( "site", "ModuleTab" );
+$moduletab = $ini->variable( "site", "ModuleTab" );
 
 if ( ( $moduletab == "enabled" ) && ( count ( $modules ) != 0 ) )
 {

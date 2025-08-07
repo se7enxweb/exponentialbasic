@@ -36,11 +36,11 @@
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 // include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
-$ImageDir = $ini->read_var( "eZImageCatalogueMain", "ImageDir" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
+$ImageDir = $ini->variable( "eZImageCatalogueMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->read_var( "eZImageCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->variable( "eZImageCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezimagecatalogue/admin/intl/", $Language, "unassigned.php" );
 
 $t->set_file( "image_list_page_tpl", "unassigned.tpl" );
@@ -69,7 +69,7 @@ $t->set_var( "default_delete" , "" );
 if ( !( $Offset > 0 ) )
     $Offset = 0;
 if ( !( $Limit > 0 ) )
-    $Limit = $ini->read_var( "eZImageCatalogueMain", "ListImagesPerPage" );
+    $Limit = $ini->variable( "eZImageCatalogueMain", "ListImagesPerPage" );
 
 
 if ( isset( $Update ) )
@@ -116,9 +116,9 @@ if ( !is_null( $imageList ) && count ( $imageList ) > 0 )
         $t->set_var( "image_caption", $image->name() );
         $t->set_var( "image_url", $image->name() );
         
-        $width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
+        $width =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewWidth" );
         
-        $height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
+        $height =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewHight" );
         
         $variation =& $image->requestImageVariation( $width, $height );
         
@@ -132,7 +132,7 @@ if ( !is_null( $imageList ) && count ( $imageList ) > 0 )
         if ( $image->fileExists( true ) )
         {
             $imagePath =& $image->filePath( true );
-            $size = eZFile::filesize( $imagePath );
+            $size = eZPBFile::filesize( $imagePath );
         }
         else
         {
@@ -148,7 +148,7 @@ if ( !is_null( $imageList ) && count ( $imageList ) > 0 )
             $t->set_var( "td_class", "bgdark" );
         }
     
-        $size = eZFile::siFileSize( $size );
+        $size = eZPBFile::siFileSize( $size );
 
         $t->set_var( "image_size", $size["size-string"] );
         $t->set_var( "image_unit", $size["unit"] );

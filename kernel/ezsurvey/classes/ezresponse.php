@@ -115,7 +115,7 @@
         function sendMail()
         {
             $survey = new eZSurvey( $this->SurveyID );
-            $ini =& INIFile::globalINI();
+            $ini =& eZINI::instance( 'site.ini' );
             
             if ( trim($survey->email()) != "" )
             {
@@ -127,7 +127,7 @@
                     $body .= $questionResponse->report() . "\n";
                 }
                 
-                $TemplateID = $ini->read_var( "eZSurveyMain", "ReportTemplateID" );
+                $TemplateID = $ini->variable( "eZSurveyMain", "ReportTemplateID" );
                 $mailTemplate = new eZBulkMailTemplate($TemplateID);
                 
                 $subjectMail = str_replace ( "%SURVEY%", $survey->title(), $mailTemplate->name() );

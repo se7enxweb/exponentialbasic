@@ -29,10 +29,10 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$SiteURL = $ini->read_var( "Site", "SiteURL" );
-$AdminSiteURL = $ini->read_var( "Site", "AdminSiteURL" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
+$SiteURL = $ini->variable( "Site", "SiteURL" );
+$AdminSiteURL = $ini->variable( "Site", "AdminSiteURL" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
@@ -73,9 +73,9 @@ if ( !eZPermission::checkPermission( $user, "eZContact", "PersonView" ) )
 
 $error = false;
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, "personview.php" );
-$intl = new INIFile( "kernel/ezcontact/admin/intl/$Language/personview.php.ini", false );
+$intl = new eZINI( "kernel/ezcontact/admin/intl/$Language/personview.php.ini", false );
 $t->setAllStrings();
 
 $t->set_file( "person_view", "personview.tpl" );
@@ -180,7 +180,7 @@ if ( $Action == "view" )
             $phoneType = $phoneList[$i]->phoneType();
 
             $t->set_var( "phone_type_id", $phoneType->id() );
-//              $t->set_var( "phone_type_name", $intl->read_var( "strings", "phone_" . $phoneType->name() ) );
+//              $t->set_var( "phone_type_name", $intl->variable( "strings", "phone_" . $phoneType->name() ) );
             $t->set_var( "phone_type_name", eZTextTool::htmlspecialchars( $phoneType->name() ) );
 
             $t->parse( "phone_line", "phone_line_tpl", true );
@@ -330,8 +330,8 @@ if ( $Action == "view" )
     $image =& $person->image();
     if ( get_class( $image ) == "ezimage" && $image->id() != 0 )
     {
-        $imageWidth =& $ini->read_var( "eZContactMain", "PersonImageWidth" );
-        $imageHeight =& $ini->read_var( "eZContactMain", "PersonImageHeight" );
+        $imageWidth =& $ini->variable( "eZContactMain", "PersonImageWidth" );
+        $imageHeight =& $ini->variable( "eZContactMain", "PersonImageHeight" );
         $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
         $imageURL = "/" . $variation->imagePath();
         $imageWidth = $variation->width();
@@ -352,17 +352,17 @@ if ( $Action == "view" )
     $user =& eZUser::currentUser();
     if ( eZPermission::checkPermission( $user, "eZContact", "consultation" ) )
     {
-        $max = $ini->read_var( "eZContactMain", "MaxPersonConsultationList" );
-        if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+        $max = $ini->variable( "eZContactMain", "MaxPersonConsultationList" );
+        if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, -1, "Date", true, 0, $max, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, -1, "Date", true, 0, $max );
         }
         else
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, $user->id(), "Date", true, 0, $max, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $PersonID, $user->id(), "Date", true, 0, $max );
@@ -418,7 +418,7 @@ if ( $Action == "view" )
 // Order list
 if ( is_a( $user, "eZUser" ) and eZPermission::checkPermission( $user, "eZContact", "buy" ) )
 {
-    $max = $ini->read_var( "eZContactMain", "MaxCompanyConsultationList" );
+    $max = $ini->variable( "eZContactMain", "MaxCompanyConsultationList" );
     if ( isset( $CompanyEdit ) && $CompanyEdit )
         $orders = eZOrder::getByContact( $CompanyID, false, 0, $max );
     else
@@ -427,7 +427,7 @@ if ( is_a( $user, "eZUser" ) and eZPermission::checkPermission( $user, "eZContac
     $locale = new eZLocale( $Language );
     $i = 0;
     $currency = new eZCurrency();
-    $languageINI = new INIFile( "kernel/eztrade/admin/intl/" . $Language . "/orderlist.php.ini", false );
+    $languageINI = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/orderlist.php.ini", false );
     $t->set_var( "admin_dir", $AdminSiteURL );
     foreach ( $orders as $order )
     {
@@ -443,7 +443,7 @@ if ( is_a( $user, "eZUser" ) and eZPermission::checkPermission( $user, "eZContac
 
         $statusType = $status->type();
         $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-        $statusName =  $languageINI->read_var( "strings", $statusName );
+        $statusName =  $languageINI->variable( "strings", $statusName );
 
         $t->set_var( "order_status", $statusName );
 

@@ -1,8 +1,8 @@
 <?
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$UserSiteURL = $ini->read_var( "site", "UserSiteURL" );
+$ini =& eZINI::instance( 'site.ini' );
+$UserSiteURL = $ini->variable( "site", "UserSiteURL" );
 
 $referer = $_SERVER["HTTP_REFERER"];
 $referer = stristr ( $referer, '/user/withaddress' );

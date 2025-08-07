@@ -108,10 +108,10 @@ if( isset( $DeleteAccounts ) && isset( $FilterArrayID ) && count( $FilterArrayID
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMailMain", "Language" ); 
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMailMain", "Language" ); 
 
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl/", $Language, "configure.php" );
 $t->setAllStrings();
 
@@ -183,30 +183,30 @@ $t->pparse( "output", "mail_configure_page_tpl" );
 
 function buildFilterName( &$filter, $Language )
 {
-    $localINI = new INIFile( "kernel/ezmail/user/intl/" . $Language . "/configure.php.ini" );
-    $if = $localINI->read_var( "strings", "if" );
-    $move = $localINI->read_var( "strings", "move" );
+    $localINI = new eZINI( "kernel/ezmail/user/intl/" . $Language . "/configure.php.ini" );
+    $if = $localINI->variable( "strings", "if" );
+    $move = $localINI->variable( "strings", "move" );
     $headerName = "";
     switch( $filter->headerType() )
     {
-        case FILTER_MESSAGE: $headerName = $localINI->read_var( "strings", "message"); break;
-        case FILTER_BODY: $headerName = $localINI->read_var( "strings", "body"); break;
-        case FILTER_ANY: $headerName = $localINI->read_var( "strings", "any_header"); break;
-        case FILTER_TOCC: $headerName = $localINI->read_var( "strings", "tocc"); break;
-        case FILTER_SUBJECT: $headerName = $localINI->read_var( "strings", "subject"); break;
-        case FILTER_FROM: $headerName = $localINI->read_var( "strings", "from"); break;
-        case FILTER_TO: $headerName = $localINI->read_var( "strings", "to"); break;
-        case FILTER_CC: $headerName = $localINI->read_var( "strings", "cc"); break;
+        case FILTER_MESSAGE: $headerName = $localINI->variable( "strings", "message"); break;
+        case FILTER_BODY: $headerName = $localINI->variable( "strings", "body"); break;
+        case FILTER_ANY: $headerName = $localINI->variable( "strings", "any_header"); break;
+        case FILTER_TOCC: $headerName = $localINI->variable( "strings", "tocc"); break;
+        case FILTER_SUBJECT: $headerName = $localINI->variable( "strings", "subject"); break;
+        case FILTER_FROM: $headerName = $localINI->variable( "strings", "from"); break;
+        case FILTER_TO: $headerName = $localINI->variable( "strings", "to"); break;
+        case FILTER_CC: $headerName = $localINI->variable( "strings", "cc"); break;
     }
 
     $checkName = "";
     switch( $filter->checkType() )
     {
-        case FILTER_EQUALS: $checkName = $localINI->read_var( "strings", "equals"); break;
-        case FILTER_NEQUALS: $checkName = $localINI->read_var( "strings", "nequals"); break;
-        case FILTER_CONTAINS: $checkName = $localINI->read_var( "strings", "contains"); break;
-        case FILTER_NCONTAINS: $checkName = $localINI->read_var( "strings", "ncontains"); break;
-        case FILTER_REGEXP: $checkName = $localINI->read_var( "strings", "regexp"); break;
+        case FILTER_EQUALS: $checkName = $localINI->variable( "strings", "equals"); break;
+        case FILTER_NEQUALS: $checkName = $localINI->variable( "strings", "nequals"); break;
+        case FILTER_CONTAINS: $checkName = $localINI->variable( "strings", "contains"); break;
+        case FILTER_NCONTAINS: $checkName = $localINI->variable( "strings", "ncontains"); break;
+        case FILTER_REGEXP: $checkName = $localINI->variable( "strings", "regexp"); break;
     }
     $folder = new eZMailFolder( $filter->folderID() );
 

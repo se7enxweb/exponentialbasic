@@ -355,17 +355,17 @@ if ( count( $cartshipoptions_array ) == 1 )
 
     function cartTotals( &$tax, &$total, $voucher=false,$checkout=false, $calcVAT=false)
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 	
-        // $checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
-        $upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == 'enabled'?1:0;
-        $uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == 'enabled'?1:0;
+        // $checkups = $ini->variable( "eZTradeMain", "UPSOFF" );
+        $upscheck = $ini->variable( "eZTradeMain", "UPSXMLShipping" ) == 'enabled'?1:0;
+        $uspscheck = $ini->variable( "eZTradeMain", "USPSXMLShipping" ) == 'enabled'?1:0;
 
-        $this->userFreeShipping = $ini->read_var( "eZTradeMain", "FreeShippingUser" );
-        $this->dealerFreeShipping = $ini->read_var( "eZTradeMain", "FreeShippingDealer" );
-        $this->singleBoxMaxWeight = $ini->read_var( "eZTradeMain", "SingleBoxMaxWeight" );
-        $this->shippingMarkupPct = $ini->read_var( "eZTradeMain", "ShippingMarkupPct" );
-        $this->shippingMarkupFlat = $ini->read_var( "eZTradeMain", "ShippingMarkupFlat" );
+        $this->userFreeShipping = $ini->variable( "eZTradeMain", "FreeShippingUser" );
+        $this->dealerFreeShipping = $ini->variable( "eZTradeMain", "FreeShippingDealer" );
+        $this->singleBoxMaxWeight = $ini->variable( "eZTradeMain", "SingleBoxMaxWeight" );
+        $this->shippingMarkupPct = $ini->variable( "eZTradeMain", "ShippingMarkupPct" );
+        $this->shippingMarkupFlat = $ini->variable( "eZTradeMain", "ShippingMarkupFlat" );
               
         $tax = array();
         $total = array();
@@ -547,9 +547,9 @@ if ( count( $cartshipoptions_array ) == 1 )
           
           // Depricated: $uspsserver = "http://production.shippingapis.com/ShippingAPI.dll";
 
-          $uspsserver = $ini->read_var( "site", "UserUSPSServer" );
-          $uspsuser = $ini->read_var( "site", "UserUSPS" );
-          $uspspass = $ini->read_var( "site", "PassUSPS" );
+          $uspsserver = $ini->variable( "site", "UserUSPSServer" );
+          $uspsuser = $ini->variable( "site", "UserUSPS" );
+          $uspspass = $ini->variable( "site", "PassUSPS" );
           
           $user =& eZUser::currentUser();
 

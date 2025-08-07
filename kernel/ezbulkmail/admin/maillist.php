@@ -42,7 +42,7 @@ if( isset( $Delete ) )
         eZBulkMail::delete( $mailID );
 }
 
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl", $Language, "maillist.php" );
 
 $t->set_file( array(

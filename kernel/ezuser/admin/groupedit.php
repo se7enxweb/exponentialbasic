@@ -27,9 +27,9 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$Language = $ini->variable( "eZUserMain", "Language" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -86,8 +86,8 @@ if ( isset( $Action ) && $Action == "insert" )
     {
 		if ( $Name == "" || $Description == "" )
 		{
-			$error = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
-			$error_msg =  $error->read_var( "strings", "error_msg" );
+			$error = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
+			$error_msg =  $error->variable( "strings", "error_msg" );
 		}
 		else
 		{
@@ -196,7 +196,7 @@ if ( isset( $Action ) && $Action == "update" )
 }
 
 // Template
-$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
 "kernel/ezuser/admin/" . "/intl", $Language, "groupedit.php" );
 $t->setAllStrings();
 
@@ -206,8 +206,8 @@ $t->set_block( "group_edit", "module_list_header_tpl", "module_header" );
 $t->set_block( "module_list_header_tpl", "permission_list_tpl", "permission_item" );
 $t->set_block( "permission_list_tpl", "permission_enabled_tpl", "is_enabled_item" );
 
-$headline = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
-$t->set_var( "head_line", $headline->read_var( "strings", "head_line_insert" ) );
+$headline = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
+$t->set_var( "head_line", $headline->variable( "strings", "head_line_insert" ) );
 
 if ( isset( $Action ) && $Action == "new" )
 {
@@ -230,8 +230,8 @@ if ( isset( $Action ) && $Action == "edit" )
     $IsRoot = $group->isRoot();
     $ActionValue = "update";
 
-    $headline = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
-    $t->set_var( "head_line", $headline->read_var( "strings", "head_line_edit" ) );
+    $headline = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/groupedit.php.ini", false );
+    $t->set_var( "head_line", $headline->variable( "strings", "head_line_edit" ) );
 }
 
 // List over all modules.

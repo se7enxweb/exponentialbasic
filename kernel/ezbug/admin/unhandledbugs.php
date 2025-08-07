@@ -32,7 +32,7 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/INIFile.php" );
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "unhandledbugs.php" );
 $errorIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/unhandledbugs.php.ini", false );
 
@@ -85,7 +85,7 @@ foreach ( $unhandleBugs as $bug )
     }
     else
     {
-        $errorMsg = $errorIni->read_var( "strings", "unknown" );
+        $errorMsg = $errorIni->variable( "strings", "unknown" );
         $t->set_var( "bug_submitter", $errorMsg );
     }
 

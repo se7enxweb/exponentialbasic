@@ -40,18 +40,18 @@
 // $CategoryID = $url_array[3];
 global $CategoryID;
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ImageDir = $ini->read_var( "eZArticleMain", "ImageDir" );
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
-$DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
-$GrayScaleImageList = $ini->read_var( "eZArticleMain", "GrayScaleImageList" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
+$DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
+$GrayScaleImageList = $ini->variable( "eZArticleMain", "GrayScaleImageList" );
 
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "frontpage.php" );
 
 $t->setAllStrings();
@@ -326,7 +326,7 @@ function &renderFrontpageArticle( &$t, &$locale, &$article )
 {
     global $ini, $counter, $rows, $GrayScaleImageList;
 
-    $DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
+    $DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
 
     $aid = $article->id();
 
@@ -359,8 +359,8 @@ function &renderFrontpageArticle( &$t, &$locale, &$article )
         else
             $convertToGray = false;
 
-        $variation =& $thumbnailImage->requestImageVariation( $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" ),
-        $ini->read_var( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
+        $variation =& $thumbnailImage->requestImageVariation( $ini->variable( "eZArticleMain", "ThumbnailImageWidth" ),
+        $ini->variable( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
 
 //        $t->set_var( "thumbnail_image_uri", $variation->imagePath() );
 
@@ -440,7 +440,7 @@ function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
     global $ini, $counter, $rows, $GrayScaleImageList;
     $aid = $article1->id();
 
-    $DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
+    $DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
 
     $CategoryID = $rows[$counter]->CategoryID;
 
@@ -469,8 +469,8 @@ function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
         else
             $convertToGray = false;
 
-        $variation =& $thumbnailImage->requestImageVariation( $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" ),
-        $ini->read_var( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
+        $variation =& $thumbnailImage->requestImageVariation( $ini->variable( "eZArticleMain", "ThumbnailImageWidth" ),
+        $ini->variable( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
 
         if( is_object( $variation ) ) {
             $t->set_var("thumbnail_image_uri", "/" . $variation->imagePath());
@@ -568,8 +568,8 @@ function &renderFrontpageArticleDouble( &$t, &$locale, &$article1, &$article2 )
         else
             $convertToGray = false;
 
-        $variation =& $thumbnailImage->requestImageVariation( $ini->read_var( "eZArticleMain", "ThumbnailImageWidth" ),
-        $ini->read_var( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
+        $variation =& $thumbnailImage->requestImageVariation( $ini->variable( "eZArticleMain", "ThumbnailImageWidth" ),
+        $ini->variable( "eZArticleMain", "ThumbnailImageHeight" ), $convertToGray );
 
         $t->set_var( "thumbnail_image_uri", "/" . $variation->imagePath() );
         $t->set_var( "thumbnail_image_width", $variation->width() );
@@ -646,7 +646,7 @@ function &renderShortSingleArticle( &$t, &$locale, &$article )
 
     $aid = $article->id();
 
-    $DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
+    $DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
 
     $CategoryID = $rows[$counter]->CategoryID;
 
@@ -734,10 +734,10 @@ function &renderFrontpageProduct( &$t, &$locale, &$product )
     $i=0;
     $pid = $product->id();
 
-    $ThumbnailImageWidth = $ini->read_var( "eZTradeMain", "ThumbnailImageWidth" );
-    $ThumbnailImageHeight = $ini->read_var( "eZTradeMain", "ThumbnailImageHeight" );
+    $ThumbnailImageWidth = $ini->variable( "eZTradeMain", "ThumbnailImageWidth" );
+    $ThumbnailImageHeight = $ini->variable( "eZTradeMain", "ThumbnailImageHeight" );
 
-    $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" );
+    $PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" );
 
     // preview image
     $thumbnailImage = $product->thumbnailImage();
@@ -833,10 +833,10 @@ function &renderFrontpageProductDouble( &$t, &$locale, &$product1, &$product2 )
     global $ini;
     $pid = $product1->id();
 
-    $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" );
+    $PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" );
 
-    $ThumbnailImageWidth = $ini->read_var( "eZTradeMain", "ThumbnailImageWidth" );
-    $ThumbnailImageHeight = $ini->read_var( "eZTradeMain", "ThumbnailImageHeight" );
+    $ThumbnailImageWidth = $ini->variable( "eZTradeMain", "ThumbnailImageWidth" );
+    $ThumbnailImageHeight = $ini->variable( "eZTradeMain", "ThumbnailImageHeight" );
 
     // preview image
     $thumbnailImage = $product1->thumbnailImage();
@@ -1058,7 +1058,7 @@ $eZLanguageOverride = '';
 
 if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     // add PHP code in the cache file to store variables
     $output = "<?php\n";

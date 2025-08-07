@@ -55,6 +55,48 @@
 <span class="pris">{product_price}</span><br />
 <!-- END price_tpl -->
 <a href="{www_dir}{index}/{module}/{module_view}/{product_id}/{category_id}/" class="smallbold">More Info &raquo;</a></td>
+<td>
+<!-- BEGIN option_tpl -->
+<div class="desc" style="width: 50%;"><small>{option_name}: {option_description}</small></div>
+
+<input type="hidden" name="OptionIDArray[]" value="{option_id}" />
+<!-- BEGIN value_price_header_tpl -->
+<!-- BEGIN value_description_header_tpl -->
+<!-- END value_description_header_tpl -->
+<!-- BEGIN value_price_header_item_tpl -->
+<!-- END value_price_header_item_tpl -->
+<!-- BEGIN value_currency_header_item_tpl -->
+<!-- END value_currency_header_item_tpl -->
+<!-- END value_price_header_tpl -->
+
+		<select name="OptionValueArray[]">
+<!-- BEGIN value_tpl -->
+<!-- BEGIN value_description_tpl -->
+<option value="{value_id}">{value_name}
+<!-- END value_description_tpl -->
+<!-- BEGIN value_price_item_tpl -->
+{value_price}
+<!-- END value_price_item_tpl -->
+<!-- BEGIN value_availability_item_tpl -->
+({value_availability})
+<!-- END value_availability_item_tpl -->
+</option>
+<!-- BEGIN value_price_currency_list_tpl -->
+<!-- BEGIN value_price_currency_item_tpl -->
+<!-- END value_price_currency_item_tpl -->
+<!-- END value_price_currency_list_tpl -->
+<!-- END value_tpl -->
+		</select><br />
+<!-- END option_tpl -->
+<!-- BEGIN add_to_cart_tpl -->
+<form action="{www_dir}{index}/{module}/{action_url}/{product_id}/{category_id}">
+<div class="productListBtns">
+<div class="btnAddToCart" style="padding-top: 1.75rem;"><input class="okbutton" type="submit" name="Cart" value="{intl-add_to_cart}" /></div>
+<div class="btnAddToWishlist"><input class="okbutton" type="submit" name="WishList" value="{intl-wishlist}" /></div>
+</div>
+</form>
+<!-- END add_to_cart_tpl -->
+</td>
 </tr>
 <!-- END product_tpl -->
 </table>

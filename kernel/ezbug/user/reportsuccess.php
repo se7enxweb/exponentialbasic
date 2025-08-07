@@ -24,13 +24,13 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 
-$t = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                      "kernel/ezbug/user/intl", $Language, "reportsuccess.php" );
 
 $t->setAllStrings();

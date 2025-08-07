@@ -81,10 +81,10 @@ if ( isset( $Delete ) )
     $Action = "";
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZQuizMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZQuizMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezquiz/admin/" . $ini->read_var( "eZQuizMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezquiz/admin/" . $ini->variable( "eZQuizMain", "AdminTemplateDir" ),
                      "kernel/ezquiz/admin/" . "/intl", $Language, "questionedit.php" );
 $t->setAllStrings();
 
@@ -211,7 +211,7 @@ if ( count( $errorMessages ) > 0 )
 {
     foreach ( $errorMessages as $errorMessage )
     {
-        $errorMessage =& $t->Ini->read_var( "strings", $errorMessage );
+        $errorMessage =& $t->Ini->variable( "strings", $errorMessage );
         $t->set_var( "error_message", $errorMessage );
         $t->parse( "error_item", "error_item_tpl", true );
     }

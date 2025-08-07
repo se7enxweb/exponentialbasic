@@ -27,8 +27,8 @@
   Viser liste over prioriteringer
 */
 // include_once( "classes/INIFile.php" );
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBugMain", "Language" );
 $LanguageIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/statuslist.php.ini", false );
 
 
@@ -36,7 +36,7 @@ $LanguageIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/statuslis
 
 // include_once( "ezbug/classes/ezbugstatus.php" );
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "statuslist.php" );
 $t->setAllStrings();
 
@@ -66,7 +66,7 @@ if( isset( $Ok ) || isset( $AddStatus ) )
 if( isset( $AddStatus ) )
 {
     $newItem = new eZBugStatus();
-    $newName = $LanguageIni->read_var( "strings", "newstatus" );
+    $newName = $LanguageIni->variable( "strings", "newstatus" );
     $newItem->setName($newName);
     $newItem->store();
 }

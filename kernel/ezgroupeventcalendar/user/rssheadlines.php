@@ -38,19 +38,19 @@ include_once( "classes/ezdatetime.php" );
 include_once( "classes/ezvardump.php" );
 
 // get ini variables
-$ini =& INIFile::globalINI();
-$Title = htmlspecialchars($ini->read_var( "eZGroupEventCalendarRSS", "Title" ));
-$Link = $ini->read_var( "eZGroupEventCalendarRSS", "Link" );
-$Description = htmlspecialchars($ini->read_var( "eZGroupEventCalendarRSS", "Description" ));
-$Language = $ini->read_var( "eZGroupEventCalendarRSS", "Language" );
-$Encoding = $ini->read_var( "eZGroupEventCalendarRSS", "Encoding" );
+$ini =& eZINI::instance( 'site.ini' );
+$Title = htmlspecialchars($ini->variable( "eZGroupEventCalendarRSS", "Title" ));
+$Link = $ini->variable( "eZGroupEventCalendarRSS", "Link" );
+$Description = htmlspecialchars($ini->variable( "eZGroupEventCalendarRSS", "Description" ));
+$Language = $ini->variable( "eZGroupEventCalendarRSS", "Language" );
+$Encoding = $ini->variable( "eZGroupEventCalendarRSS", "Encoding" );
 
-$Image = $ini->read_var( "eZGroupEventCalendarRSS", "Image" );
-// $CategoryID = $ini->read_var( "eZGroupEventCalendarRSS", "CategoryID" );
-$GroupID = $ini->read_var( "eZGroupEventCalendarRSS", "GroupID" );
-$Limit = $ini->read_var( "eZGroupEventCalendarRSS", "Limit" );
+$Image = $ini->variable( "eZGroupEventCalendarRSS", "Image" );
+// $CategoryID = $ini->variable( "eZGroupEventCalendarRSS", "CategoryID" );
+$GroupID = $ini->variable( "eZGroupEventCalendarRSS", "GroupID" );
+$Limit = $ini->variable( "eZGroupEventCalendarRSS", "Limit" );
 $LimitDirectionForward = true;
-$RssVersion = $ini->read_var( "eZGroupEventCalendarRSS", "RssVersion" );
+$RssVersion = $ini->variable( "eZGroupEventCalendarRSS", "RssVersion" );
 
 $headerInfo = ( getallheaders() );
 $Host =  $headerInfo["Host"] ;

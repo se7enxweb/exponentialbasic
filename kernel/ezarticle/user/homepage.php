@@ -41,34 +41,34 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezdatetime.php" );
 		
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
-$Dealer = $ini->read_var( "homepage", "DealerDescription" );
-$Distributor = $ini->read_var( "homepage", "DistributorDescription" );
-$DistProdCats = $ini->read_var( "homepage", "DistProdCats" );
-$DistThumbWidth = $ini->read_var( "homepage", "DistThumbWidth" );
-$DistThumbHeight = $ini->read_var( "homepage", "DistThumbHeight" );
-$DealerProdCats = $ini->read_var( "homepage", "DealerProdCats" );
-$DealerThumbWidth = $ini->read_var( "homepage", "DealerThumbWidth" );
-$DealerThumbHeight = $ini->read_var( "homepage", "DealerThumbHeight" );
-$ArticleLimit = $ini->read_var( "homepage", "ArticleLimit" );
-$ArticleThumbWidth = $ini->read_var( "homepage", "ArticleThumbWidth" );
-$ArticleThumbHeight = $ini->read_var( "homepage", "ArticleThumbHeight" );
-$HotDealsLimit = $ini->read_var( "homepage", "HotDealsLimit" );
-$HotDealsThumbWidth = $ini->read_var( "homepage", "HotDealsThumbWidth" );
-$HotDealsThumbHeight = $ini->read_var( "homepage", "HotDealsThumbHeight" );
-$GalleryLimit = $ini->read_var( "homepage", "GalleryLimit" );
-$CommentLimit = $ini->read_var( "homepage", "CommentLimit" );
-$CommentLetterLimit = $ini->read_var( "homepage", "CommentLetterLimit" );
-$Anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" ); 
-$GalleryThumbWidth = $ini->read_var( "homepage", "GalleryThumbWidth" );
-$GalleryThumbHeight = $ini->read_var( "homepage", "GalleryThumbHeight" );
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$Dealer = $ini->variable( "homepage", "DealerDescription" );
+$Distributor = $ini->variable( "homepage", "DistributorDescription" );
+$DistProdCats = $ini->variable( "homepage", "DistProdCats" );
+$DistThumbWidth = $ini->variable( "homepage", "DistThumbWidth" );
+$DistThumbHeight = $ini->variable( "homepage", "DistThumbHeight" );
+$DealerProdCats = $ini->variable( "homepage", "DealerProdCats" );
+$DealerThumbWidth = $ini->variable( "homepage", "DealerThumbWidth" );
+$DealerThumbHeight = $ini->variable( "homepage", "DealerThumbHeight" );
+$ArticleLimit = $ini->variable( "homepage", "ArticleLimit" );
+$ArticleThumbWidth = $ini->variable( "homepage", "ArticleThumbWidth" );
+$ArticleThumbHeight = $ini->variable( "homepage", "ArticleThumbHeight" );
+$HotDealsLimit = $ini->variable( "homepage", "HotDealsLimit" );
+$HotDealsThumbWidth = $ini->variable( "homepage", "HotDealsThumbWidth" );
+$HotDealsThumbHeight = $ini->variable( "homepage", "HotDealsThumbHeight" );
+$GalleryLimit = $ini->variable( "homepage", "GalleryLimit" );
+$CommentLimit = $ini->variable( "homepage", "CommentLimit" );
+$CommentLetterLimit = $ini->variable( "homepage", "CommentLetterLimit" );
+$Anonymous = $ini->variable( "eZForumMain", "AnonymousPoster" ); 
+$GalleryThumbWidth = $ini->variable( "homepage", "GalleryThumbWidth" );
+$GalleryThumbHeight = $ini->variable( "homepage", "GalleryThumbHeight" );
+$Language = $ini->variable( "eZUserMain", "Language" );
 
 $locale = new eZLocale( $Language );
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                        "kernel/ezarticle/user/intl", $Language, "homepage.php" );
 $t->setAllStrings();
 
@@ -420,7 +420,7 @@ $t->parse( "article_list", "article_list_tpl", true );
 
 if ( isset( $GenerateStaticPage ) and $GenerateStaticPage == "true" and $cachedFile != "" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     // add PHP code in the cache file to store variables
     $output = "<?php\n";

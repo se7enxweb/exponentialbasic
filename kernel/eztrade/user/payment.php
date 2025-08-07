@@ -32,7 +32,7 @@ unset( $PaymentSuccess );
 // include_once( "eztrade/classes/ezcart.php" );
 // include_once( "eztrade/classes/ezcheckout.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
@@ -43,7 +43,7 @@ $cart = new eZCart();
 $cart = $cart->getBySession( $session, "Cart" );
 $RequireUserLogin = true;
 
-$Language =& $ini->read_var( "eZTradeMain", "Language" );
+$Language =& $ini->variable( "eZTradeMain", "Language" );
 $locale = new eZLocale( $Language );
 
 function deleteCache($ProductID, $CategoryID, $CategoryArray, $Hotdeal )
@@ -168,7 +168,7 @@ if ( $PaymentSuccess == true )
     $user =& eZUser::currentUser();
     $order->setUser( $user );
 
-    if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) != "enabled" )
+    if ( $ini->variable( "eZTradeMain", "ShowBillingAddress" ) != "enabled" )
     {
         $billingAddressID = $shippingAddressID;
     }
@@ -272,10 +272,10 @@ if ( $PaymentSuccess == true )
     //
     // Send mail confirmation
     //      
-    $mailTemplate = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+    $mailTemplate = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                                     "kernel/eztrade/user/intl", $Language, "/mailorder.php" );
 
-    $mailTemplateIni = new INIFile( "kernel/eztrade/user/intl/" . $Language . "/ordersendt.php.ini", false );
+    $mailTemplateIni = new eZINI( "kernel/eztrade/user/intl/" . $Language . "/ordersendt.php.ini", false );
     $mailTemplate->set_file( "order_sendt_tpl", "mailorder.tpl" );
     $mailTemplate->setAllStrings();
 
@@ -352,7 +352,7 @@ if ( $PaymentSuccess == true )
 
         if ( $country )
         {
-            if ( $ini->read_var( "eZUserMain", "SelectCountry" ) == "enabled" )
+            if ( $ini->variable( "eZUserMain", "SelectCountry" ) == "enabled" )
                 $mailTemplate->set_var( "billing_country", $country->name() );
             else
                 $mailTemplate->set_var( "billing_country", "" );
@@ -366,13 +366,13 @@ if ( $PaymentSuccess == true )
 
         if ( ( get_class( $region ) == "ezregion" ) )
         {
-            if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+            if ( $ini->variable( "eZUserMain", "SelectRegion" ) == "enabled" )
                 $mailTemplate->set_var( "billing_region", $region->name() );
             else
                 $mailTemplate->set_var( "billing_region", "" );
         }
 
-        if ( $ini->read_var( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
+        if ( $ini->variable( "eZTradeMain", "ShowBillingAddress" ) == "enabled" )
             $mailTemplate->parse( "billing_address", "billing_address_tpl" );
         else
             $mailTemplate->set_var( "billing_address", "" );
@@ -414,7 +414,7 @@ if ( $PaymentSuccess == true )
 
         if ( $country )
         {
-            if ( $ini->read_var( "eZUserMain", "SelectCountry" ) == "enabled" )
+            if ( $ini->variable( "eZUserMain", "SelectCountry" ) == "enabled" )
                 $mailTemplate->set_var( "shipping_country", $country->name() );
             else
                 $mailTemplate->set_var( "shipping_country", "" );
@@ -428,7 +428,7 @@ if ( $PaymentSuccess == true )
 
         if ( ( get_class( $region ) == "ezregion" ) )
         {
-            if ( $ini->read_var( "eZUserMain", "SelectRegion" ) == "enabled" )
+            if ( $ini->variable( "eZUserMain", "SelectRegion" ) == "enabled" )
                 $mailTemplate->set_var( "shipping_region", $region->name() );
             else
                 $mailTemplate->set_var( "shipping_region", "" );
@@ -454,14 +454,14 @@ if ( $PaymentSuccess == true )
 
     // Add headers!
 
-    $productsForEmail[$i]["product_id"] = trim( $mailTemplateIni->read_var( "strings", "product_id" ) );
-    $productsForEmail[$i]["product_name"] = trim( $mailTemplateIni->read_var( "strings", "product_name" ) );
-    $productsForEmail[$i]["product_number"] = trim( $mailTemplateIni->read_var( "strings", "product_number" ) );
-    $productsForEmail[$i]["product_price"] = trim( $mailTemplateIni->read_var( "strings", "product_price" ) );
-    $productsForEmail[$i]["product_count"] = trim( $mailTemplateIni->read_var( "strings", "product_qty" ) );
-    $productsForEmail[$i]["product_savings"] = trim( $mailTemplateIni->read_var( "strings", "product_savings" ) );
-    $productsForEmail[$i]["product_total_ex_tax"] = trim( $mailTemplateIni->read_var( "strings", "product_total_ex_tax" ) );
-    $productsForEmail[$i]["product_total_inc_tax"] = trim( $mailTemplateIni->read_var( "strings", "product_total_inc_tax" ) );
+    $productsForEmail[$i]["product_id"] = trim( $mailTemplateIni->variable( "strings", "product_id" ) );
+    $productsForEmail[$i]["product_name"] = trim( $mailTemplateIni->variable( "strings", "product_name" ) );
+    $productsForEmail[$i]["product_number"] = trim( $mailTemplateIni->variable( "strings", "product_number" ) );
+    $productsForEmail[$i]["product_price"] = trim( $mailTemplateIni->variable( "strings", "product_price" ) );
+    $productsForEmail[$i]["product_count"] = trim( $mailTemplateIni->variable( "strings", "product_qty" ) );
+    $productsForEmail[$i]["product_savings"] = trim( $mailTemplateIni->variable( "strings", "product_savings" ) );
+    $productsForEmail[$i]["product_total_ex_tax"] = trim( $mailTemplateIni->variable( "strings", "product_total_ex_tax" ) );
+    $productsForEmail[$i]["product_total_inc_tax"] = trim( $mailTemplateIni->variable( "strings", "product_total_inc_tax" ) );
 
     foreach ( $items as $item )
     {
@@ -682,9 +682,9 @@ if ( $PaymentSuccess == true )
             $totalsLen += $len_product_savings;
         }
 
-        $mailTemplate->set_var( "intl-confirming-order", trim( $mailTemplateIni->read_var( "strings", "confirming-order" ) ) );
-        $mailTemplate->set_var( "intl-thanks_for_shopping", trim( $mailTemplateIni->read_var( "strings", "thanks_for_shopping" ) ) );;
-        $mailTemplate->set_var( "intl-goods_list", trim( $mailTemplateIni->read_var( "strings", "goods_list" ) ) );;
+        $mailTemplate->set_var( "intl-confirming-order", trim( $mailTemplateIni->variable( "strings", "confirming-order" ) ) );
+        $mailTemplate->set_var( "intl-thanks_for_shopping", trim( $mailTemplateIni->variable( "strings", "thanks_for_shopping" ) ) );;
+        $mailTemplate->set_var( "intl-goods_list", trim( $mailTemplateIni->variable( "strings", "goods_list" ) ) );;
 
         $mailTemplate->set_var( "subtotal_inc_tax", str_pad( $subinctax, $len_product_total_inc_tax, " ", STR_PAD_LEFT ) );
         $mailTemplate->set_var( "total_inc_tax", str_pad( $inctax, $len_product_total_inc_tax, " ", STR_PAD_LEFT ) );
@@ -694,16 +694,16 @@ if ( $PaymentSuccess == true )
         $mailTemplate->set_var( "total_ex_tax", str_pad( $extax, $len_product_total_ex_tax, " ", STR_PAD_LEFT ) );
         $mailTemplate->set_var( "shipping_ex_tax", str_pad( $shipextax, $len_product_total_ex_tax, " ", STR_PAD_LEFT ) );
 
-        $mailTemplate->set_var( "intl-subtotal", str_pad( trim( $mailTemplateIni->read_var( "strings", "subtotal" ) ), $totalsLen , " ", STR_PAD_LEFT ) );
-        $mailTemplate->set_var( "intl-shipping", str_pad( trim( $mailTemplateIni->read_var( "strings", "shipping" ) ), $totalsLen , " ", STR_PAD_LEFT ) );
-        $mailTemplate->set_var( "intl-total", str_pad( trim( $mailTemplateIni->read_var( "strings", "total" ) ), $totalsLen , " ", STR_PAD_LEFT ) );
+        $mailTemplate->set_var( "intl-subtotal", str_pad( trim( $mailTemplateIni->variable( "strings", "subtotal" ) ), $totalsLen , " ", STR_PAD_LEFT ) );
+        $mailTemplate->set_var( "intl-shipping", str_pad( trim( $mailTemplateIni->variable( "strings", "shipping" ) ), $totalsLen , " ", STR_PAD_LEFT ) );
+        $mailTemplate->set_var( "intl-total", str_pad( trim( $mailTemplateIni->variable( "strings", "total" ) ), $totalsLen , " ", STR_PAD_LEFT ) );
 
         $mailTemplate->parse( "cart_item_list", "cart_item_list_tpl" );
         $mailTemplate->parse( "full_cart", "full_cart_tpl" );
 
-        $taxBasisLen = strlen( trim( $mailTemplateIni->read_var( "strings", "tax_basis" ) ) );
-        $taxPercentageLen = strlen( trim( $mailTemplateIni->read_var( "strings", "tax_percentage" ) ) );
-        $taxLen = strlen( trim( $mailTemplateIni->read_var( "strings", "tax" ) ) );
+        $taxBasisLen = strlen( trim( $mailTemplateIni->variable( "strings", "tax_basis" ) ) );
+        $taxPercentageLen = strlen( trim( $mailTemplateIni->variable( "strings", "tax_percentage" ) ) );
+        $taxLen = strlen( trim( $mailTemplateIni->variable( "strings", "tax" ) ) );
 
         $currency->setValue( $total["tax"] );    
         $taxValue = preg_replace( $search, $replace, $locale->format( $currency ) );
@@ -742,9 +742,9 @@ if ( $PaymentSuccess == true )
         }
 
 
-        $mailTemplate->set_var( "intl-tax_basis", str_pad( trim( $mailTemplateIni->read_var( "strings", "tax_basis" ) ), $taxBasisLen, " ", STR_PAD_RIGHT ) );;
-        $mailTemplate->set_var( "intl-tax_percentage", str_pad( trim( $mailTemplateIni->read_var( "strings", "tax_percentage" ) ), $taxPercentageLen, " ", STR_PAD_LEFT ) );;
-        $mailTemplate->set_var( "intl-tax", str_pad( trim( $mailTemplateIni->read_var( "strings", "tax" ) ), $taxLen, " ", STR_PAD_LEFT ) );;
+        $mailTemplate->set_var( "intl-tax_basis", str_pad( trim( $mailTemplateIni->variable( "strings", "tax_basis" ) ), $taxBasisLen, " ", STR_PAD_RIGHT ) );;
+        $mailTemplate->set_var( "intl-tax_percentage", str_pad( trim( $mailTemplateIni->variable( "strings", "tax_percentage" ) ), $taxPercentageLen, " ", STR_PAD_LEFT ) );;
+        $mailTemplate->set_var( "intl-tax", str_pad( trim( $mailTemplateIni->variable( "strings", "tax" ) ), $taxLen, " ", STR_PAD_LEFT ) );;
 
         $mailTemplate->set_var( "tax", str_pad( $taxValue, $taxBasisLen + $taxLen + $taxPercentageLen, " ", STR_PAD_LEFT ) );
         $mailTemplate->set_var( "tax_hyphen_line", str_pad( "", $taxBasisLen + $taxLen + $taxPercentageLen, "-", STR_PAD_LEFT ) );
@@ -755,10 +755,10 @@ if ( $PaymentSuccess == true )
 
         $mailTemplate->set_var( "site_url", $SiteURL );
         $mailBody = $mailTemplate->parse( "dummy", "full_cart_tpl" );
-        $subjectINI = new INIFile( "kernel/eztrade/user/intl/" . $Language . "/mailorder.php.ini", false );
+        $subjectINI = new eZINI( "kernel/eztrade/user/intl/" . $Language . "/mailorder.php.ini", false );
 
-        $mailSubjectUser = $subjectINI->read_var( "strings", "mail_subject_user" ) . " " . $ini->read_var( "site", "SiteURL" );
-        $mailSubject = $subjectINI->read_var( "strings", "mail_subject_admin" ) . " " . $ini->read_var( "site", "SiteURL" );
+        $mailSubjectUser = $subjectINI->variable( "strings", "mail_subject_user" ) . " " . $ini->variable( "site", "SiteURL" );
+        $mailSubject = $subjectINI->variable( "strings", "mail_subject_admin" ) . " " . $ini->variable( "site", "SiteURL" );
 
     $checkout = new eZCheckout();
     $instance =& $checkout->instance();
@@ -813,7 +813,7 @@ if ( $PaymentSuccess == true )
    
     // admin email
     // check to see if the email should be encrypted for the administrator
-    $mailEncrypt = $ini->read_var( "eZTradeMain", "MailEncrypt" );
+    $mailEncrypt = $ini->variable( "eZTradeMain", "MailEncrypt" );
 
     // load user account number 
     $AccountNumber = $user->accountNumber();
@@ -823,12 +823,12 @@ if ( $PaymentSuccess == true )
 	// initialize GPG class 
         $mailBody = "";
 		// gpg site ini variables
-        $mailKeyname = $ini->read_var( "eZTradeMain", "RecipientGPGKey" );
-        $wwwUser = $ini->read_var( "eZTradeMain", "ApacheUser" );
+        $mailKeyname = $ini->variable( "eZTradeMain", "RecipientGPGKey" );
+        $wwwUser = $ini->variable( "eZTradeMain", "ApacheUser" );
 
-        $gpgSystem = $ini->read_var( "eZTradeMain", "RecipientGPGSystem" );
-        $gpgUserHomeDir = $ini->read_var( "eZTradeMain", "ApacheUserHome" );
-        $dotGnuPGDir = $ini->read_var( "eZTradeMain", "ApacheUserGPGDir" );
+        $gpgSystem = $ini->variable( "eZTradeMain", "RecipientGPGSystem" );
+        $gpgUserHomeDir = $ini->variable( "eZTradeMain", "ApacheUserHome" );
+        $dotGnuPGDir = $ini->variable( "eZTradeMain", "ApacheUserGPGDir" );
 
         // At this point you can add any information to the template as needed
         // remember to provide a variable in the template for it.

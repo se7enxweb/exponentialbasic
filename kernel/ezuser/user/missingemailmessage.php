@@ -26,9 +26,9 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 $ini =& $GLOBALS["GlobalSiteIni"];
-$Language = $ini->read_var( "eZUserMain", "Language" ); //SF eZUserMain was eZErrorMain ?? 
+$Language = $ini->variable( "eZUserMain", "Language" ); //SF eZUserMain was eZErrorMain ?? 
 
-$t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/user/" . $ini->variable( "eZUserMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl/", $Language, "missingemailmessage.php" );
 
 $t->setAllStrings();

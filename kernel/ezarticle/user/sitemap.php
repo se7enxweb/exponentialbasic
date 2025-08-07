@@ -38,7 +38,7 @@
 // include_once( "ezarticle/classes/ezarticlegenerator.php" );
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 // sections
 // include_once( "ezsitemanager/classes/ezsection.php" );
@@ -52,7 +52,7 @@ if ( isset( $CategoryID ) )
 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
 $sectionObject->setOverrideVariables();
 
-$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                      "kernel/ezarticle/user/intl/", $Language, "sitemap.php" );
 
 $t->setAllStrings();

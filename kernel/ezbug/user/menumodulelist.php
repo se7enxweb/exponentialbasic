@@ -24,13 +24,13 @@
 //
 
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 // include_once( "classes/eztemplate.php" );
 
 // include_once( "ezbug/classes/ezbugmodule.php" );
 
-$t = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                      "kernel/ezbug/user/intl", $Language, "menumodulelist.php" );
 $t->setAllStrings();
 

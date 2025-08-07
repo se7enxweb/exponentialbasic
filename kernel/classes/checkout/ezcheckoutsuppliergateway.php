@@ -39,8 +39,8 @@ class eZCheckoutSupplierGateway
     function __construct()
     {
 		
-		$ini =& INIFile::globalINI();
-		$PaymentMethods = $ini->read_var( "Checkout", "PaymentMethods" );
+		$ini =& eZINI::instance( 'site.ini' );
+		$PaymentMethods = $ini->variable( "Checkout", "PaymentMethods" );
 		$paymentArray = explode(';',$PaymentMethods);
 		$i=1;
 		foreach($paymentArray as $paymentItem)
@@ -87,8 +87,8 @@ class eZCheckoutSupplierGateway
     */
     function &paymentFile( $id )
     {
-		$ini =& INIFile::globalINI();
-		$PaymentMethods = $ini->read_var( "Checkout", "PaymentMethods" );
+		$ini =& eZINI::instance( 'site.ini' );
+		$PaymentMethods = $ini->variable( "Checkout", "PaymentMethods" );
 		$paymentArray = explode(';',$PaymentMethods);
 		$i=1;
 		foreach ($paymentArray as $paymentArrayItem)

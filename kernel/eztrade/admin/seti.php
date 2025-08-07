@@ -12,14 +12,14 @@
 include_once( "classes/INIFile.php" );
 include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
-$UserName = $ini->read_var( "eZTradeMain", "SetiUser" );
-$Password = $ini->read_var( "eZTradeMain", "SetiPassword" );
-$Code = $ini->read_var( "eZTradeMain", "Code" );
-$AdminSite = $ini->read_var( "site", "AdminSiteURL" );
+$UserName = $ini->variable( "eZTradeMain", "SetiUser" );
+$Password = $ini->variable( "eZTradeMain", "SetiPassword" );
+$Code = $ini->variable( "eZTradeMain", "Code" );
+$AdminSite = $ini->variable( "site", "AdminSiteURL" );
 
 if( ($_SERVER['HTTP_PORT'] != 443) || ($_SERVER['HTTPS'] != 'on') ) 
 { 

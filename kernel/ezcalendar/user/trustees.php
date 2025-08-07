@@ -27,9 +27,9 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
 $locale = new eZLocale( $Language );
 
 $user =& eZUser::currentUser();
@@ -64,7 +64,7 @@ if ( isset( $Action ) && $Action == "edit" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->variable( "eZCalendarMain", "TemplateDir" ),
                      "kernel/ezcalendar/user/intl/", $Language, "trustees.php" );
 
 $t->set_file( "trustees_tpl", "trustees.tpl" );

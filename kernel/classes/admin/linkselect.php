@@ -52,10 +52,10 @@ if ( isset( $Back ) )
 }
 // include_once( "kernel/classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( $INIGroup, "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( $INIGroup, "Language" );
 $Modules = $ini->read_array( $INIGroup, "ModuleList" );
-$DefaultSection = $ini->read_var( $INIGroup, "DefaultSectionName" );
+$DefaultSection = $ini->variable( $INIGroup, "DefaultSectionName" );
 $DefaultSections = $ini->read_array( $INIGroup, $DefaultSectionsName );
 
 if ( isset( $ModuleType ) )
@@ -170,14 +170,14 @@ foreach( $Modules as $module )
 {
     $dir = strtolower( $module ) . "/user/intl/";
     $file = strtolower( $module ) . "/user/urlsupplier.php";
-    if ( eZFile::file_exists( $file ) )
+    if ( file_exists( $file ) )
     {
         $intl_dirs[] = $dir;
         $php_files[] = "urlsupplier.php";
     }
 }
 
-$t = new eZTemplate( $ClientRoot . $ini->read_var( $INIGroup, "AdminTemplateDir" ),
+$t = new eZTemplate( $ClientRoot . $ini->variable( $INIGroup, "AdminTemplateDir" ),
                      $intl_dirs, $Language, $php_files );
 
 $t->set_file( "link_select_tpl", "linkselect.tpl" );
@@ -257,7 +257,7 @@ switch( $module )
                 {
                     $module_lower = strtolower( $module );
                     $file = $module_lower . "/user/urlsupplier.php";
-                    if ( eZFile::file_exists( $file ) )
+                    if ( file_exists( $file ) )
                     {
                         unset( $Supplier );
                         include( $file );
@@ -316,7 +316,7 @@ switch( $module )
                 {
                     $module_lower = strtolower( $file_module );
                     $file = $module_lower . "/user/urlsupplier.php";
-                    if ( eZFile::file_exists( $file ) )
+                    if ( file_exists( $file ) )
                     {
                         unset( $Supplier );
                         include( $file );
@@ -345,7 +345,7 @@ switch( $module )
                 $t->parse( "module_selector", "module_selector_tpl" );
             }
             $file = strtolower( $module ) . "/user/urlsupplier.php";
-            if ( eZFile::file_exists( $file ) )
+            if ( file_exists( $file ) )
             {
                 unset( $Supplier );
                 include( $file );
@@ -376,7 +376,7 @@ switch( $module )
                 {
                     $module_lower = strtolower( $file_module );
                     $file = $module_lower . "/user/urlsupplier.php";
-                    if ( eZFile::file_exists( $file ) )
+                    if ( file_exists( $file ) )
                     {
                         unset( $Supplier );
                         include( $file );
@@ -406,7 +406,7 @@ switch( $module )
             }
             $module_lower = strtolower( $module );
             $file = strtolower( $module ) . "/user/urlsupplier.php";
-            if ( eZFile::file_exists( $file ) )
+            if ( file_exists( $file ) )
             {
                 unset( $Supplier );
                 include( $file );

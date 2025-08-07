@@ -28,13 +28,13 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
-$PageCaching = $ini->read_var( "eZArticleMain", "PageCaching" );
+$PageCaching = $ini->variable( "eZArticleMain", "PageCaching" );
 
 if ( !(function_exists('createArticleMenu') ) )
 {
@@ -53,7 +53,7 @@ if ( !(function_exists('createArticleMenu') ) )
             // include_once( "ezarticle/classes/ezarticlecategory.php" );
             // include_once( "ezarticle/classes/ezarticle.php" );
 
-            $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+            $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                                  "kernel/ezarticle/user/intl", $Language, "menubox.php" );
 
             $t->setAllStrings();
@@ -119,7 +119,7 @@ if ( !(function_exists('createArticleMenu') ) )
             // include_once( "ezuser/classes/ezuser.php" );
 
             if ( eZUser::currentUser() != false &&
-                 $ini->read_var( "eZArticleMain", "UserSubmitArticles" ) == "enabled" )
+                 $ini->variable( "eZArticleMain", "UserSubmitArticles" ) == "enabled" )
             {
                 $t->parse( "submit_article", "submit_article_tpl", true );
             }

@@ -30,9 +30,9 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$UserWithAddress = $ini->read_var( "eZUserMain", "UserWithAddress" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$UserWithAddress = $ini->variable( "eZUserMain", "UserWithAddress" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -53,7 +53,7 @@ if ( !$user )
     else if ( is_array( $IniFile ) )
         $IniFile[] = "userbox.php";
 
-    $t = new eZTemplate( "kernel/ezuser/user/" .  $ini->read_var( "eZUserMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezuser/user/" .  $ini->variable( "eZUserMain", "TemplateDir" ),
                          "kernel/ezuser/user/intl/", $Language, "/userbox.php" );
 
     $t->setAllStrings();
@@ -124,7 +124,7 @@ if ( !$user )
 }
 else
 {
-    $t = new eZTemplate( "kernel/ezuser/user/" .  $ini->read_var( "eZUserMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezuser/user/" .  $ini->variable( "eZUserMain", "TemplateDir" ),
     "kernel/ezuser/user/intl", $Language, "userbox.php" );
     $t->setAllStrings();
 
@@ -172,7 +172,7 @@ else
         //$t->set_var( "user_edit_url", "/user/user/edit/" );
         $t->set_var( "user_edit_url", "/user/step1/" );
     }
-    $adminSiteAccessHostNameURL = $ini->read_var( "site", "AdminSiteURL" );
+    $adminSiteAccessHostNameURL = $ini->variable( "site", "AdminSiteURL" );
     $isAdminShowLinkMarkup = "<tr><td width='1%' valign='top'><img src='/design/intranet/images/dot.gif' width='10' height='12' border='0' alt=''><br></td>
         <td width='99%'><a target='_blank' class='menu' href='https://$adminSiteAccessHostNameURL'>Administrator</a></td></tr>
     ";

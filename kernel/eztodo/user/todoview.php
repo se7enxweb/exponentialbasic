@@ -27,10 +27,10 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZTodoMain", "Language" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTodoMain", "Language" );
 
-$lanugageIni = new INIFile( "kernel/eztodo/user/intl/" . $Language . "/todoview.php.ini", false );
+$lanugageIni = new eZINI( "kernel/eztodo/user/intl/" . $Language . "/todoview.php.ini", false );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "eztodo/classes/eztodo.php" );
@@ -46,7 +46,7 @@ $lanugageIni = new INIFile( "kernel/eztodo/user/intl/" . $Language . "/todoview.
 $locale = new eZLocale( $Language );
 
 // Setup template.
-$t = new eZTemplate( "kernel/eztodo/user/" . $ini->read_var( "eZTodoMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/user/" . $ini->variable( "eZTodoMain", "TemplateDir" ),
                      "kernel/eztodo/user/intl", $Language, "todoview.php" );
 $t->setAllStrings();
 

@@ -47,8 +47,8 @@ if ( eZObjectPermission::hasPermission( $image->id(), "imagecatalogue_image", "r
 //  print( $filePath );
 
 //  # the file may be a local file with full path. 
-$fileSize = eZFile::filesize( $filePath );
-$fp = eZFile::fopen( $filePath, "r" );
+$fileSize = eZPBFile::filesize( $filePath );
+$fp = eZPBFile::fopen( $filePath, "r" );
 $content =& fread( $fp, $fileSize );
 
 Header("Content-type: application/oct-stream"); 

@@ -27,12 +27,12 @@
 
 $ini =& $GlobalSiteIni;
 
-$Language = $ini->read_var( "eZSearchMain", "Language" );
+$Language = $ini->variable( "eZSearchMain", "Language" );
     
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 
-$t = new eZTemplate( "kernel/ezsearch/user/" . $ini->read_var( "eZSearchMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezsearch/user/" . $ini->variable( "eZSearchMain", "TemplateDir" ),
                      "kernel/ezsearch/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();

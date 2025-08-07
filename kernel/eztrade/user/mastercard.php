@@ -30,9 +30,9 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/ezcctool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 if ( $Action == "Verify" )
 {
@@ -40,7 +40,7 @@ if ( $Action == "Verify" )
     $PaymentSuccess = true;        
 }
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "mastercard.php" );
 
 $t->set_file( "mastercard_tpl", "mastercard.tpl" );

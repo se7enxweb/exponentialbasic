@@ -34,14 +34,14 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFileManagerMain", "Language" );
+$Language = $ini->variable( "eZFileManagerMain", "Language" );
 
-$ImageDir = $ini->read_var( "eZFileManagerMain", "ImageDir" );
+$ImageDir = $ini->variable( "eZFileManagerMain", "ImageDir" );
 
 
-$t = new eZTemplate( "kernel/ezfilemanager/admin/" . $ini->read_var( "eZFileManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezfilemanager/admin/" . $ini->variable( "eZFileManagerMain", "AdminTemplateDir" ),
                      "kernel/ezfilemanager/admin/intl/", $Language, "unassigned.php" );
 
 $t->set_file( "unassigned_page_tpl", "unassigned.tpl" );

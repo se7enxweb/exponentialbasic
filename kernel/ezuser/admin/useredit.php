@@ -27,8 +27,8 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
 $error_msg = false;
 $error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 
@@ -126,28 +126,28 @@ if ( $Action == "insert" )
                     }
                     else
                     {
-                        $error_msg = $error->read_var( "strings", "error_email" );
+                        $error_msg = $error->variable( "strings", "error_email" );
                     }
                 }
                 else
                 {
-                    $error_msg = $error->read_var( "strings", "error_user_exists" );
+                    $error_msg = $error->variable( "strings", "error_user_exists" );
                 }
                 
             }
             else
             {
-                $error_msg = $error->read_var( "strings", "error_password" );
+                $error_msg = $error->variable( "strings", "error_password" );
             }
         }
         else
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
     {
-        $error_msg = $error->read_var( "strings", "error_norights" );
+        $error_msg = $error->variable( "strings", "error_norights" );
     }
 }
 
@@ -249,24 +249,24 @@ if ( $Action == "update" )
                     }
                     else
                     {
-                        $error_msg = $error->read_var( "strings", "error_email" );
+                        $error_msg = $error->variable( "strings", "error_email" );
                     }
                 }
                 
             }
             else
             {
-                $error_msg = $error->read_var( "strings", "error_password" );
+                $error_msg = $error->variable( "strings", "error_password" );
             }
         }
         else
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
     {
-        $error_msg = $error->read_var( "strings", "error_norights" );
+        $error_msg = $error->variable( "strings", "error_norights" );
     }
     $ActionValue = "update";
 }
@@ -292,7 +292,7 @@ if ( $Action == "delete" )
     }
     else
     {
-        $error_msg = $error->read_var( "strings", "error_norights" );
+        $error_msg = $error->variable( "strings", "error_norights" );
     }
 }
 $currentUser = eZUser::currentUser();
@@ -330,7 +330,7 @@ if ( $Action == "DeleteUsers" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
  "kernel/ezuser/admin/" . "/intl", $Language, "useredit.php" );
 $t->setAllStrings();
 
@@ -351,7 +351,7 @@ if ( $Action == "new" )
     $Signature = "";
     $UserID = eZUser::currentUser()->ID;
     $AccountNumber = "";
-    $SimultaneousLogins = $ini->read_var( "eZUserMain", "DefaultSimultaneousLogins" );
+    $SimultaneousLogins = $ini->variable( "eZUserMain", "DefaultSimultaneousLogins" );
 }
 
 $ActionValue = "insert";
@@ -362,7 +362,7 @@ if ( $Action == "update" )
 }
 
 $headline = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
-$t->set_var( "head_line", $headline->read_var( "strings", "head_line_insert" ) );
+$t->set_var( "head_line", $headline->variable( "strings", "head_line_insert" ) );
 
 $group = new eZUserGroup();
 
@@ -400,8 +400,8 @@ exit;
     $Signature = $user->signature();
     $SimultaneousLogins = $user->simultaneousLogins();
     
-    $headline = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
-    $t->set_var( "head_line", $headline->read_var( "strings", "head_line_edit" ) );
+    $headline = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
+    $t->set_var( "head_line", $headline->variable( "strings", "head_line_edit" ) );
 
     $t->set_var( "read_only", "readonly=readonly" );
 

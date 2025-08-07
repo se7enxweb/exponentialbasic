@@ -40,13 +40,13 @@ if ( isSet ( $Back ) )
 }
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 $session->setVariable( "PayWithVocuher", "" );
 
-$t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "eztrade/user/intl/", $Language, "corporate_account.php" );
 
 $t->set_file( "voucher_tpl", "corporate_account.tpl" );

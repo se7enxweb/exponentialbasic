@@ -25,10 +25,10 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$NewMessageLimit = $ini->read_var( "eZForumMain", "NewMessageLimit" );
-$AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$NewMessageLimit = $ini->variable( "eZForumMain", "NewMessageLimit" );
+$AllowHTML = $ini->variable( "eZForumMain", "AllowHTML" );
 
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztexttool.php" );
@@ -40,7 +40,7 @@ $AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
 
 $locale = new eZLocale( $Language );
 
-$t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "message.php" );
 $t->setAllStrings();
 
@@ -123,7 +123,7 @@ $author = $message->user();
 if ( $message->userName() )
     $anonymous = $message->userName();
 else
-    $anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+    $anonymous = $ini->variable( "eZForumMain", "AnonymousPoster" );
 
 if ( $author->id() == 0 )
 {

@@ -30,9 +30,9 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZContactMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "common/ezphputils.php" );
@@ -102,7 +102,7 @@ if ( isset( $Action ) && $Action == "delete" )
     }
 }
 
-$t = new eZTemplate( $DOC_ROOT . "/" . $ini->read_var( "eZContactMain", "TemplateDir" ), $DOC_ROOT . "/intl", $Language, "persontypeedit.php" );
+$t = new eZTemplate( $DOC_ROOT . "/" . $ini->variable( "eZContactMain", "TemplateDir" ), $DOC_ROOT . "/intl", $Language, "persontypeedit.php" );
 $t->setAllStrings();
 
 $t->set_file( array(

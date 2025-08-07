@@ -29,9 +29,9 @@
 // include_once( "classes/ezcurrency.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowOrderStatusToUser = $ini->read_var( "eZTradeMain", "ShowOrderStatusToUser" ) == "true";
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowOrderStatusToUser = $ini->variable( "eZTradeMain", "ShowOrderStatusToUser" ) == "true";
 
 // include_once( "eztrade/classes/ezproductcategory.php" );
 // include_once( "eztrade/classes/ezproduct.php" );
@@ -39,10 +39,10 @@ $ShowOrderStatusToUser = $ini->read_var( "eZTradeMain", "ShowOrderStatusToUser" 
 
 // include_once( "eztrade/classes/ezorderstatustype.php" );
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "orderlist.php" );
 
-$languageINI = new INIFile( "kernel/eztrade/user/intl/" . $Language . "/orderlist.php.ini", false );
+$languageINI = new eZINI( "kernel/eztrade/user/intl/" . $Language . "/orderlist.php.ini", false );
 
 $t->setAllStrings();
 
@@ -112,7 +112,7 @@ foreach ( $orderArray as $order )
             $statusName = preg_replace( "#intl-#", "", $statusType->name() );
         else
             $statusName = "Pending";
-        // $statusName =  $languageINI->read_var( "strings", $statusName );
+        // $statusName =  $languageINI->variable( "strings", $statusName );
         $t->set_var( "order_status", $statusName );
 
         $t->parse( "order_status", "order_status_tpl" );

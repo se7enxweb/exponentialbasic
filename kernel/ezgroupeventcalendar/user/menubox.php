@@ -28,10 +28,10 @@
 // include_once( "classes/ezdb.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" ),
                      "kernel/ezgroupeventcalendar/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();

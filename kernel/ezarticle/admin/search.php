@@ -32,9 +32,9 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$Limit = $ini->read_var( "eZArticleMain", "AdminListLimit" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$Limit = $ini->variable( "eZArticleMain", "AdminListLimit" );
 
 
 if( isset( $Delete ) && count( $ArticleArrayID ) > 0 )
@@ -49,7 +49,7 @@ if( isset( $Delete ) && count( $ArticleArrayID ) > 0 )
     }
 }
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "search.php" );
 
 $t->setAllStrings();

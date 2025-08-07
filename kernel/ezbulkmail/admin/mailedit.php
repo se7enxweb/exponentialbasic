@@ -65,11 +65,11 @@ if ( isset( $Send ) )
     }
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
 $templateID = 0;
 
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl/", $Language, "mailedit.php" );
 $t->setAllStrings();
 
@@ -96,12 +96,12 @@ if ( $MailID == 0 )
 {
     // put signature stuff here...
 }
-$useDefaults = $ini->read_var( "eZBulkMailMain", "UseBulkmailSenderDefaults" );
+$useDefaults = $ini->variable( "eZBulkMailMain", "UseBulkmailSenderDefaults" );
 
 if ( $useDefaults == "enabled" && empty( $From ) && empty( $FromName ) )
 {
-    $t->set_var( "from_value", $ini->read_var( "eZBulkMailMain", "BulkmailSenderAddress" ) );
-    $t->set_var( "from_name_value", $ini->read_var( "eZBulkMailMain", "BulkmailSenderName" ) );
+    $t->set_var( "from_value", $ini->variable( "eZBulkMailMain", "BulkmailSenderAddress" ) );
+    $t->set_var( "from_name_value", $ini->variable( "eZBulkMailMain", "BulkmailSenderName" ) );
 }
 else
 {

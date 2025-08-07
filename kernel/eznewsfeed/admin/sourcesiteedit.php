@@ -26,10 +26,10 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZNewsfeedMain", "Language" );
-$ImageDir = $ini->read_var( "eZNewsfeedMain", "ImageDir" );
+$Language = $ini->variable( "eZNewsfeedMain", "Language" );
+$ImageDir = $ini->variable( "eZNewsfeedMain", "ImageDir" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
@@ -114,7 +114,7 @@ if ( $Action == "Update" )
 }
 
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->read_var( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "sourcesiteedit.php" );
 
 $t->setAllStrings();

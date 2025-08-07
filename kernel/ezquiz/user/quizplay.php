@@ -36,12 +36,12 @@
 // include_once( "ezquiz/classes/ezquizscore.php" );
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZQuizMain", "Language" ); 
-$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->read_var( "eZQuizMain", "TemplateDir" ),
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZQuizMain", "Language" ); 
+$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->variable( "eZQuizMain", "TemplateDir" ),
                      "kernel/ezquiz/user/intl/", $Language, "quiz.php" );
 
-$intl = new INIFile( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
+$intl = new eZINI( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
 
 if ( isset( $SaveButton ) )
 {
@@ -121,13 +121,13 @@ if ( isset( $NextButton ) )
         }
         else
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_no_such_alternative" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_no_such_alternative" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
     }
     else
     {
-        $t->set_var( "error_message", $intl->read_var( "strings", "error_differing_user_ids" ) );
+        $t->set_var( "error_message", $intl->variable( "strings", "error_differing_user_ids" ) );
         $t->parse( "error_item", "error_item_tpl" );
     }
 }
@@ -201,7 +201,7 @@ elseif ( empty( $error ) )
 
     if ( $questionCount <= 0 )
     {
-        $t->set_var( "error_message", $intl->read_var( "strings", "error_no_questions" ) );
+        $t->set_var( "error_message", $intl->variable( "strings", "error_no_questions" ) );
         $t->parse( "error_item", "error_item_tpl" );
     }
     else if ( $QuestionNum <= $questionCount )
@@ -221,7 +221,7 @@ elseif ( empty( $error ) )
         
         if ( $count == 0 )
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_no_alternatives" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_no_alternatives" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         else
@@ -256,21 +256,21 @@ if ( $error )
     {
         case "unopened":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_unopened" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_unopened" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
 
         case "closed":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_closed" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_closed" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
 
         default:
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_undefined" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_undefined" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;

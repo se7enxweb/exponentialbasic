@@ -37,18 +37,18 @@
 // include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$ImageDir = $ini->read_var( "eZImageCatalogueMain", "ImageDir" );
-$PicCat = $ini->read_var( "eZImageCatalogueMain", "PicCat" );
-$SyncDir = $ini->read_var( "eZImageCatalogueMain", "SyncDir" );
-$SectionID = $ini->read_var( "eZImageCatalogueMain", "DefaultSection" );
+$ImageDir = $ini->variable( "eZImageCatalogueMain", "ImageDir" );
+$PicCat = $ini->variable( "eZImageCatalogueMain", "PicCat" );
+$SyncDir = $ini->variable( "eZImageCatalogueMain", "SyncDir" );
+$SectionID = $ini->variable( "eZImageCatalogueMain", "DefaultSection" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->read_var( "eZImageCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->variable( "eZImageCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezimagecatalogue/admin/intl/", $Language, "imagelist.php" );
 
 $t->set_file( "image_list_page_tpl", "imagelist.tpl" );
@@ -73,7 +73,7 @@ if ( isset ( $NormalView ) )
 function syncDir( $root, $category )
 	{
     	global $user;
-	    $dir = eZFile::dir( $root, false );
+	    $dir = eZPBFile::dir( $root, false );
 	    while ( $entry = $dir->read() )
 	    {
     	    if ( $entry != "." && $entry != ".." )
@@ -308,7 +308,7 @@ else
     $t->set_var( "category_list", "" );
 }
 
-$limit = $ini->read_var( "eZImageCatalogueMain", "ListImagesPerPage" );
+$limit = $ini->variable( "eZImageCatalogueMain", "ListImagesPerPage" );
 
 // Print out all the images
 if ( isset( $SearchText )  )
@@ -360,8 +360,8 @@ foreach ( $imageList as $image )
     $t->set_var( "image_caption", $image->name() );
     $t->set_var( "image_url", $image->name() );
 
-    $width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
-    $height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
+    $width =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewWidth" );
+    $height =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewHight" );
     
     $variation =& $image->requestImageVariation( $width, $height );
     
@@ -375,14 +375,14 @@ foreach ( $imageList as $image )
     if ( $image->fileExists( true ) )
     {
         $imagePath =& $image->filePath( true );
-        $size = eZFile::filesize( $imagePath );
+        $size = eZPBFile::filesize( $imagePath );
     }
     else
     {
         $size = 0;
     }
 
-    $size = eZFile::siFileSize( $size );
+    $size = eZPBFile::siFileSize( $size );
 
     $t->set_var( "image_size", $size["size-string"] );
     $t->set_var( "image_unit", $size["unit"] );
@@ -392,7 +392,7 @@ foreach ( $imageList as $image )
     $t->set_var( "write", "" );
 
     $t->set_var( "read_span", "" );
-    $imagesPerRow = $ini->read_var( "eZImageCatalogueMain", "ListImagesPerRow" );
+    $imagesPerRow = $ini->variable( "eZImageCatalogueMain", "ListImagesPerRow" );
     if ( count( $imageList ) == $counter + 1 )
     {
         $colspan = ( $imagesPerRow-1 ) - ($imagesPerRow % 4);

@@ -4,10 +4,10 @@
     // include_once( "classes/eztemplate.php" );
     // include_once( "ezsurvey/classes/ezsurvey.php" );
     
-    $ini =& INIFile::globalINI();
-    $Language = $ini->read_var( "eZSurveyMain", "Language" );
+    $ini =& eZINI::instance( 'site.ini' );
+    $Language = $ini->variable( "eZSurveyMain", "Language" );
     
-    $t = new eZTemplate( "kernel/ezsurvey/user/" . $ini->read_var( "eZSurveyMain", "AdminTemplateDir" ),
+    $t = new eZTemplate( "kernel/ezsurvey/user/" . $ini->variable( "eZSurveyMain", "AdminTemplateDir" ),
                          "kernel/ezsurvey/user/intl", $Language, "thanks.php" );
                          
     $t->set_file( "thanks_tpl", "thanks.tpl" );

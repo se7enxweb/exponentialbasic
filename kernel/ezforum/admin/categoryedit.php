@@ -25,9 +25,9 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 $error = new INIFIle( "kernel/ezforum/admin/intl/" . $Language . "/categoryedit.php.ini", false );
 
 // include_once( "classes/ezdb.php" );
@@ -77,7 +77,7 @@ if ( $Action == "insert" )
         else
         {
             eZLog::writeWarning( "Forum category not created: missing data from IP: $REMOTE_ADDR" );
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -113,7 +113,7 @@ if ( $Action == "delete" )
         else
         {
             eZLog::writeWarning( "Forum category not deleted: id not found from IP: $REMOTE_ADDR" );
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -187,7 +187,7 @@ if ( $Action == "update" )
         else
         {
             eZLog::writeWarning( "Forum category not updated: missing data from IP: $REMOTE_ADDR" );
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -197,7 +197,7 @@ if ( $Action == "update" )
     }
 }
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
                      "kernel/ezforum/admin/" . "/intl", $Language, "categoryedit.php" );
 $t->setAllStrings();
 
@@ -220,13 +220,13 @@ if ( $Action == "new" )
     $action_value = "insert";
 }
 
-$languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/categoryedit.php.ini", false );
-$headline =  $languageIni->read_var( "strings", "head_line_insert" );
+$languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/categoryedit.php.ini", false );
+$headline =  $languageIni->variable( "strings", "head_line_insert" );
 
 if ( $Action == "edit" )
 {
-    $languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/categoryedit.php.ini", false );
-    $headline =  $languageIni->read_var( "strings", "head_line_edit" );
+    $languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/categoryedit.php.ini", false );
+    $headline =  $languageIni->variable( "strings", "head_line_edit" );
 
     if ( !eZPermission::checkPermission( $user, "eZForum", "CategoryAdd" ) )
     {

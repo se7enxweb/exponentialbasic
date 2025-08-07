@@ -490,22 +490,22 @@ class eZMailFolder
         if ( $res && $res[$db->fieldName( "ID" )] != "" )
             return new eZMailFolder(  $res[$db->fieldName( "ID" )] );
 
-        $ini =& INIFile::globalINI();
-        $Language = $ini->read_var( "eZMailMain", "Language" );
-        $folderNameIni = new INIFile( "kernel/ezmail/user/intl/" . $Language . "/folderlist.php.ini" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $Language = $ini->variable( "eZMailMain", "Language" );
+        $folderNameIni = new eZINI( "kernel/ezmail/user/intl/" . $Language . "/folderlist.php.ini" );
         switch( $specialType )
         {
             case 1 :
-                $folderName = $folderNameIni->read_var( "strings", "inbox" );
+                $folderName = $folderNameIni->variable( "strings", "inbox" );
                 break;
             case 2 :
-                $folderName =  $folderNameIni->read_var( "strings", "sent" );
+                $folderName =  $folderNameIni->variable( "strings", "sent" );
                 break;
             case 3 :
-                $folderName =  $folderNameIni->read_var( "strings", "drafts" );
+                $folderName =  $folderNameIni->variable( "strings", "drafts" );
                 break;
             case 4 :
-                $folderName =  $folderNameIni->read_var( "strings", "trash" );
+                $folderName =  $folderNameIni->variable( "strings", "trash" );
                 break;
             default:
                 return false;

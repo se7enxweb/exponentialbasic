@@ -339,8 +339,8 @@ class eZOrderItem
     */
     function localePrice( $calcCount=true, $withOptions=true, $calcVAT=true )
     {
-        $ini =& INIFile::globalINI();
-        $Language = $ini->read_var( "eZTradeMain", "Language" );
+        $ini =& eZINI::instance( 'site.ini' );
+        $Language = $ini->variable( "eZTradeMain", "Language" );
         $locale = new eZLocale( $Language );
         $currency = new eZCurrency();
 

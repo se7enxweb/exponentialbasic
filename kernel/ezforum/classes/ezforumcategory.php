@@ -259,9 +259,9 @@ class eZForumCategory
     function getAllCategories()
     {
         $db =& eZDB::globalDatabase();
-        $ini = INIFile::globalINI();
-        $ExcludeFeatureForums = $ini->read_var( "eZForumMain", "ExcludeFeatureForums" );
-        // $ExcludeFeatureForums = $ini->read_var( "eZForumMain", "ExcludeFeatureForums" ); 
+        $ini = eZINI::instance( 'site.ini' );
+        $ExcludeFeatureForums = $ini->variable( "eZForumMain", "ExcludeFeatureForums" );
+        // $ExcludeFeatureForums = $ini->variable( "eZForumMain", "ExcludeFeatureForums" ); 
         // consider : (Array of IDS to loop over to exclude instead of static code
 
         if ( $ExcludeFeatureForums == "enabled" ) { 

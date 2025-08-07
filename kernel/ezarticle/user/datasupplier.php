@@ -29,10 +29,10 @@
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$PageCaching = $ini->read_var( "eZArticleMain", "PageCaching" );
-$UserComments = $ini->read_var( "eZArticleMain", "UserComments" );
+$PageCaching = $ini->variable( "eZArticleMain", "PageCaching" );
+$UserComments = $ini->variable( "eZArticleMain", "UserComments" );
 
-$GlobalSectionID = $ini->read_var( "eZArticleMain", "DefaultSection" );
+$GlobalSectionID = $ini->variable( "eZArticleMain", "DefaultSection" );
 
 switch ( $url_array[2] )
 {
@@ -418,7 +418,7 @@ switch ( $url_array[2] )
         if ( $PageCaching == "enabled" )
         {
             $cachedFile = "kernel/ezarticle/cache/articleview," . $ArticleID . ",". $PageNumber . "," . $CategoryID . "," . ( isset( $PrintableVersion ) && $PrintableVersion == "enabled" )  . "," . $groupstr  .".cache";
-            if ( eZFile::file_exists( $cachedFile ) )
+            if ( file_exists( $cachedFile ) )
             {
                 include( $cachedFile );
                 $showComments = true;
@@ -537,7 +537,7 @@ switch ( $url_array[2] )
         if ( $PageCaching == "enabled" )
         {
              $cachedFile = "kernel/ezarticle/cache/articleprint," . $ArticleID . ",". $PageNumber . "," . $CategoryID . "," . $groupstr  .".cache";
-            if ( eZFile::file_exists( $cachedFile ) )
+            if ( file_exists( $cachedFile ) )
             {
                 include( $cachedFile );
             }
@@ -602,7 +602,7 @@ switch ( $url_array[2] )
         if ( $PageCaching == "enabled" )
         {
             $cachedFile = "kernel/ezarticle/cache/articleview," . $ArticleID . ",". $PageNumber . "," . $CategoryID . "," . $groupstr  .".cache";
-            if ( eZFile::file_exists( $cachedFile ) )
+            if ( file_exists( $cachedFile ) )
             {
                 include( $cachedFile );
             }
@@ -633,7 +633,7 @@ switch ( $url_array[2] )
     case "articleedit":
     {
         if ( eZUser::currentUser() != false &&
-             $ini->read_var( "eZArticleMain", "UserSubmitArticles" ) == "enabled" )
+             $ini->variable( "eZArticleMain", "UserSubmitArticles" ) == "enabled" )
         {
             switch ( $url_array[3] )
             {

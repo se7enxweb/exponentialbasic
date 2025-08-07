@@ -383,10 +383,10 @@ class eZSection
     function setOverrideVariables()
     {
 	global $GLOBALS;
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 	
         // set the sitedesign from the section
-        if ( $ini->read_var( "site", "Sections" ) == "enabled" )
+        if ( $ini->variable( "site", "Sections" ) == "enabled" )
         {
             if ( !is_null( $this->TemplateStyle ) && trim( $this->TemplateStyle ) != "" )
             {

@@ -30,19 +30,19 @@
 
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true";
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
-$ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
-$hotDealImageWidth  = $ini->read_var( "eZTradeMain", "HotDealImageWidth" );
-$hotDealImageHeight  = $ini->read_var( "eZTradeMain", "HotDealImageHeight" );
-$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == "enabled" ? 1 : 0;
-$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == "enabled" ? 1 : 0;
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$RequireQuantity = $ini->variable( "eZTradeMain", "RequireQuantity" ) == "true";
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$ShowNamedQuantity = $ini->variable( "eZTradeMain", "ShowNamedQuantity" ) == "true";
+$ShowOptionQuantity = $ini->variable( "eZTradeMain", "ShowOptionQuantity" ) == "true";
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$hotDealImageWidth  = $ini->variable( "eZTradeMain", "HotDealImageWidth" );
+$hotDealImageHeight  = $ini->variable( "eZTradeMain", "HotDealImageHeight" );
+$upscheck = $ini->variable( "eZTradeMain", "UPSXMLShipping" ) == "enabled" ? 1 : 0;
+$uspscheck = $ini->variable( "eZTradeMain", "USPSXMLShipping" ) == "enabled" ? 1 : 0;
 
 if(($upscheck==0)&&($uspscheck==0))
 $checkups=0;
@@ -81,7 +81,7 @@ if ( !$cart )
 }
 
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "smallcart.php" );
 
 

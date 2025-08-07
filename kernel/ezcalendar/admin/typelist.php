@@ -27,13 +27,13 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
 
 // include_once( "ezcalendar/classes/ezappointment.php" );
 // include_once( "ezcalendar/classes/ezappointmenttype.php" );
 
-$t = new eZTemplate( "kernel/ezcalendar/admin/" . $ini->read_var( "eZCalendarMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/admin/" . $ini->variable( "eZCalendarMain", "AdminTemplateDir" ),
                      "kernel/ezcalendar/admin/intl/", $Language, "typelist.php" );
 
 $t->setAllStrings();

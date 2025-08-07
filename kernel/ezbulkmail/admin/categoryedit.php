@@ -69,7 +69,7 @@ if( isset( $Ok ) ) // cancel pressed, redirect to categorylist page...
 }
 
 
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl", $Language, "categoryedit.php" );
 $t->set_file( array(
     "category_edit_tpl" => "categoryedit.tpl"

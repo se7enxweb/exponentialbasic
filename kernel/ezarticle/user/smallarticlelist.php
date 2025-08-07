@@ -31,13 +31,13 @@
 // include_once( "ezarticle/classes/ezarticle.php" );
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ImageDir = $ini->read_var( "eZArticleMain", "ImageDir" );
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
-$DefaultLinkText =  $ini->read_var( "eZArticleMain", "DefaultLinkText" );
-$PageCaching = $ini->read_var( "eZArticleMain", "PageCaching" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ImageDir = $ini->variable( "eZArticleMain", "ImageDir" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
+$DefaultLinkText =  $ini->variable( "eZArticleMain", "DefaultLinkText" );
+$PageCaching = $ini->variable( "eZArticleMain", "PageCaching" );
 
 unset( $menuCachedFile );
 // do the caching
@@ -45,7 +45,7 @@ if ( $PageCaching == "enabled" )
 {
     $menuCachedFile = "kernel/ezarticle/cache/smallarticlelist,". $GlobalSiteDesign .".cache";
 
-    if ( eZFile::file_exists( $menuCachedFile ) )
+    if ( file_exists( $menuCachedFile ) )
     {
         include( $menuCachedFile );
     }
@@ -71,7 +71,7 @@ function createSmallArticleList( $generateStaticPage = false )
     global $Language;
 	global $DefaultLinkText;
 
-    $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                          "kernel/ezarticle/user/intl/", $Language, "smallarticlelist.php" );
 
     $t->setAllStrings();
@@ -142,7 +142,7 @@ function createSmallArticleList( $generateStaticPage = false )
 
     if ( $generateStaticPage )
     {
-        $fp = eZFile::fopen( $menuCachedFile, "w+");
+        $fp = eZPBFile::fopen( $menuCachedFile, "w+");
 
         $output = $t->parse( "output", "article_list_page_tpl" );
         // print the output the first time while printing the cache file.

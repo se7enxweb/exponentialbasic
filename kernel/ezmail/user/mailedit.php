@@ -139,13 +139,13 @@ if ( isset( $CcButton ) )
 if ( isset( $BccButton ) )
     $showbcc = true;
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMailMain", "Language" ); 
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMailMain", "Language" ); 
 
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl/", $Language, "mailedit.php" );
 
-$languageIni = new INIFile( "kernel/ezmail/user/intl/" . $Language . "/mailedit.php.ini", false );
+$languageIni = new eZINI( "kernel/ezmail/user/intl/" . $Language . "/mailedit.php.ini", false );
 $t->setAllStrings();
 
 $t->set_file( "mail_edit_page_tpl", "mailedit.tpl" );
@@ -296,7 +296,7 @@ else if ( isset( $MailID ) && $MailID == 0 && ( isset( $showcc ) && $showcc || i
 // check if we have any errors... if yes. show them to the user
 if ( isset( $error ) )
 {
-    $t->set_var( "mail_error_message", $languageIni->read_var( "strings", "address_error" ) );
+    $t->set_var( "mail_error_message", $languageIni->variable( "strings", "address_error" ) );
     $t->parse( "error_message", "error_message_tpl", true );
 }
 

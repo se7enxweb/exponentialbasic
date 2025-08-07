@@ -31,14 +31,14 @@
 //include_once( "kernel/classes/ezpublish.php" );
 
 $ini =& INIFile::globalINI();
-$Language =& $ini->read_var( "eZUserMain", "Language" );
+$Language =& $ini->variable( "eZUserMain", "Language" );
 $Locale = new eZLocale( $Language );
 //$iso = $Locale->languageISO();
 
-$SiteURL =& $ini->read_var( "site", "SiteURL" );
-$AdminSiteURL =& $ini->read_var( "site", "AdminSiteURL" );
-$AdminSiteProtocol =& $ini->read_var( "site", "AdminSiteProtocol" );
-$UserSiteProtocol =& $ini->read_var( "site", "UserSiteProtocol" );
+$SiteURL =& $ini->variable( "site", "SiteURL" );
+$AdminSiteURL =& $ini->variable( "site", "AdminSiteURL" );
+$AdminSiteProtocol =& $ini->variable( "site", "AdminSiteProtocol" );
+$UserSiteProtocol =& $ini->variable( "site", "UserSiteProtocol" );
 
 //$site_modules = $ini->read_array( "site", "EnabledModules" );
 $site_modules = eZModuleHandler::all();
@@ -113,7 +113,7 @@ else if ( isset($url_array[2]) && ($url_array[2] == "image" && ( $url_array[3] =
 
 if ( $charsetLanguage == "" )
 {
-    $charsetLanguage =& $ini->read_var( "eZUserMain", "Language" );
+    $charsetLanguage =& $ini->variable( "eZUserMain", "Language" );
 }
 
 $charsetLocale = new eZLocale( $charsetLanguage );
@@ -157,12 +157,12 @@ $t->set_var( "charset_switch", "" );
 
 // The following is the charset switch - to view languages with different charsets
 
-$CharsetSwitch =& $ini->read_var( "site", "CharsetSwitch" );
+$CharsetSwitch =& $ini->variable( "site", "CharsetSwitch" );
 
 if ( $CharsetSwitch == "enabled" )
 {
 
-    $charsets =& $ini->read_var( "site", "Charsets" );
+    $charsets =& $ini->variable( "site", "Charsets" );
     $charsets_array = explode( ";", $charsets );
 
     foreach ( $charsets_array as $charset_item )
@@ -211,7 +211,7 @@ if ( $ModuleTab == true )
     foreach( $site_modules as $site_module )
     {
         $module = strtolower( $site_module );
-        if ( eZFile::file_exists( "kernel/" . $module ) )
+        if ( file_exists( "kernel/" . $module ) )
         {
             if ( $single_module )
             {
@@ -224,11 +224,11 @@ if ( $ModuleTab == true )
             $t->set_var( "ez_module_name", $site_module );
             $t->set_var( "ez_dir_name", $module );
             $moduleSettingName = $site_module . "Main";
-            $moduleLanguage = $ini->read_var( $moduleSettingName, "Language" );
+            $moduleLanguage = $ini->variable( $moduleSettingName, "Language" );
             if ( !$moduleLanguage )
                 $moduleLanguage = $Language;
-            $lang_file = new INIFile( "kernel/$module/admin/intl/$moduleLanguage/menubox.php.ini" );
-            $mod_name = $lang_file->read_var( "strings", "module_name" );
+            $lang_file = new eZINI( "kernel/$module/admin/intl/$moduleLanguage/menubox.php.ini" );
+            $mod_name = $lang_file->variable( "strings", "module_name" );
             $t->set_var( "module_name", $mod_name );
             $t->parse( "module_item", "module_item_tpl", true );
         }
@@ -252,7 +252,7 @@ $t->set_var( "user_site_host", $SiteURL );
 
 $t->set_var( "menu_item", "" );
 
-$moduletab = $ini->read_var( "site", "ModuleTab" );
+$moduletab = $ini->variable( "site", "ModuleTab" );
 
 if ( ( $moduletab == "enabled" ) && ( count ( $modules ) != 0 ) )
 {

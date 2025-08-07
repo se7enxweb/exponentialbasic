@@ -29,14 +29,14 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$CompanyViewLogin = $ini->read_var( "eZContactMain", "CompanyViewLogin" ) == "true";
-$CompanyEditLogin = $ini->read_var( "eZContactMain", "CompanyEditLogin" ) == "true";
-$ShowCompanyContact = $ini->read_var( "eZContactMain", "ShowCompanyContact" ) == "true";
-$ShowCompanyStatus = $ini->read_var( "eZContactMain", "ShowCompanyStatus" ) == "true";
-$SiteURL = $ini->read_var( "Site", "SiteURL" );
-$AdminSiteURL = $ini->read_var( "Site", "AdminSiteURL" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
+$CompanyViewLogin = $ini->variable( "eZContactMain", "CompanyViewLogin" ) == "true";
+$CompanyEditLogin = $ini->variable( "eZContactMain", "CompanyEditLogin" ) == "true";
+$ShowCompanyContact = $ini->variable( "eZContactMain", "ShowCompanyContact" ) == "true";
+$ShowCompanyStatus = $ini->variable( "eZContactMain", "ShowCompanyStatus" ) == "true";
+$SiteURL = $ini->variable( "Site", "SiteURL" );
+$AdminSiteURL = $ini->variable( "Site", "AdminSiteURL" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
@@ -83,9 +83,9 @@ if ( $CompanyViewLogin and !eZPermission::checkPermission( $user, "eZContact", "
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, "companyview.php" );
-$intl = new INIFile( "kernel/ezcontact/admin/intl/$Language/companyview.php.ini", false );
+$intl = new eZINI( "kernel/ezcontact/admin/intl/$Language/companyview.php.ini", false );
 $t->setAllStrings();
 
 $t->set_file( "company_edit", "companyview.tpl" );
@@ -411,18 +411,18 @@ else
         if ( !isset( $OrderBy ) )
             $OrderBy = "Date";
 
-        $max = $ini->read_var( "eZContactMain", "MaxCompanyConsultationList" );
+        $max = $ini->variable( "eZContactMain", "MaxCompanyConsultationList" );
 
-        if ( $ini->read_var( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
+        if ( $ini->variable( "eZContactMain", "ShowAllConsultations" ) == "enabled" )
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, -1, $OrderBy, false, 0, $max, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, -1, $OrderBy, false, 0, $max );
         }
         else
         {
-            if ( $ini->read_var( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
+            if ( $ini->variable( "eZContactMain", "ShowRelatedConsultations" ) == "enabled" )
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, $user->id(), $OrderBy, false, 0, $max, true );
             else
                 $consultations = eZConsultation::findConsultationsByContact( $CompanyID, $user->id(), $OrderBy, false, 0, $max );
@@ -474,13 +474,13 @@ else
 // Order list
     if ( is_a( $user, "eZUser" ) and eZPermission::checkPermission( $user, "eZContact", "buy" ) )
     {
-        $max = $ini->read_var( "eZContactMain", "MaxCompanyConsultationList" );
+        $max = $ini->variable( "eZContactMain", "MaxCompanyConsultationList" );
         $orders = eZOrder::getByContact( $CompanyID, false, 0, $max );
 
         $locale = new eZLocale( $Language );
         $i = 0;
         $currency = new eZCurrency();
-        $languageINI = new INIFile( "kernel/eztrade/admin/intl/" . $Language . "/orderlist.php.ini", false );
+        $languageINI = new eZINI( "kernel/eztrade/admin/intl/" . $Language . "/orderlist.php.ini", false );
         $t->set_var( "admin_dir", $AdminSiteURL );
         foreach ( $orders as $order )
         {
@@ -496,7 +496,7 @@ else
 
             $statusType = $status->type();
             $statusName = preg_replace( "#intl-#", "", $statusType->name() );
-            $statusName =  $languageINI->read_var( "strings", $statusName );
+            $statusName =  $languageINI->variable( "strings", $statusName );
 
             $t->set_var( "order_status", $statusName );
 

@@ -29,9 +29,9 @@
 // include_once( "classes/eztexttool.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 // include_once( "eztrade/classes/ezpricegroup.php" );
 
@@ -64,7 +64,7 @@ else if ( isset( $PriceID ) and is_numeric( $PriceID ) )
     $Action = "edit";
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "pricegroupedit.php" );
 
 $t->setAllStrings();

@@ -26,30 +26,30 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZForumMain", "DefaultSection" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZForumMain", "DefaultSection" );
 
 function &errorPage( $PrimaryName, $PrimaryURL, $type )
 {
     $ini =& $GLOBALS["GlobalSiteIni"];
 
-    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
-                         "kernel/ezforum/user/intl", $ini->read_var( "eZForumMain", "Language" ), "message.php" );
+    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
+                         "kernel/ezforum/user/intl", $ini->variable( "eZForumMain", "Language" ), "message.php" );
 
     $t->set_file( "page", "messageerror.tpl"  );
     $t->set_var( "primary_url", $PrimaryURL  );
-    $t->set_var( "primary_url_name", $t->Ini->read_var( "strings", $PrimaryName  ) );
+    $t->set_var( "primary_url_name", $t->Ini->variable( "strings", $PrimaryName  ) );
     if ( $type == 404 )
     {
-        $t->set_var( "error_1", $t->Ini->read_var( "strings", 'error_missing_page_1'  ) );
-        $t->set_var( "error_2", $t->Ini->read_var( "strings", 'error_missing_page_2'  ) );
-        $t->set_var( "error_3", $t->Ini->read_var( "strings", 'error_missing_page_3'  ) );
+        $t->set_var( "error_1", $t->Ini->variable( "strings", 'error_missing_page_1'  ) );
+        $t->set_var( "error_2", $t->Ini->variable( "strings", 'error_missing_page_2'  ) );
+        $t->set_var( "error_3", $t->Ini->variable( "strings", 'error_missing_page_3'  ) );
     }
     else
     {
-        $t->set_var( "error_1", $t->Ini->read_var( "strings", 'error_forbidden_page_1'  ) );
-        $t->set_var( "error_2", $t->Ini->read_var( "strings", 'error_forbidden_page_2'  ) );
-        $t->set_var( "error_3", $t->Ini->read_var( "strings", 'error_forbidden_page_3'  ) );
+        $t->set_var( "error_1", $t->Ini->variable( "strings", 'error_forbidden_page_1'  ) );
+        $t->set_var( "error_2", $t->Ini->variable( "strings", 'error_forbidden_page_2'  ) );
+        $t->set_var( "error_3", $t->Ini->variable( "strings", 'error_forbidden_page_3'  ) );
     }
     $t->setAllStrings();
 

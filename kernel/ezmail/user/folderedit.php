@@ -34,8 +34,8 @@ if ( $FolderID != 0 && !eZMailFolder::isOwner( eZUser::currentUser(), $FolderID 
     exit();
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMailMain", "Language" ); 
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMailMain", "Language" ); 
 
 if( isset( $Cancel ) )
 {
@@ -70,7 +70,7 @@ if( isset( $Ok ) && $Name != "" )
 }
 
 
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl/", $Language, "folderedit.php" );
 $t->setAllStrings();
 

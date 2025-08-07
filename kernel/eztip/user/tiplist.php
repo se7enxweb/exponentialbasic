@@ -32,7 +32,7 @@ include_once( "ezsitemanager/classes/ezsection.php" );
 // site information
 include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $GlobalSiteIni =& $ini;
 $category = new eZTipCategory( $CategoryID );
 
@@ -59,9 +59,9 @@ exit ();
 
 if (count($tiplist_tpl) != 0) {
 
-$Language = $ini->read_var( "eZTipMain", "Language" );
+$Language = $ini->variable( "eZTipMain", "Language" );
 unset($t);
-$t = new eZTemplate( "eztip/user/" . $ini->read_var( "eZTipMain", "TemplateDir" ), "eztip/user/intl", $Language, "tiplist.php" );
+$t = new eZTemplate( "eztip/user/" . $ini->variable( "eZTipMain", "TemplateDir" ), "eztip/user/intl", $Language, "tiplist.php" );
 
 $t->setAllStrings();
 $t->set_file( array(

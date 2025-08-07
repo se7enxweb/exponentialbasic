@@ -5,11 +5,11 @@ include_once( "classes/eztemplate.php" );
 
 include_once( "eztrade/classes/ezproductcategory.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
-$t = new eZTemplate( "eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
 		     "eztrade/user/intl/", $Language, "sitemap.php" );
 
 $t->set_file( "sitemap_page_tpl", "sitemap.tpl" );

@@ -92,9 +92,9 @@ $messageDefinition->store();
     }    
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMessageMain", "Language" );
-$t = new eZTemplate( "kernel/ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMessageMain", "Language" );
+$t = new eZTemplate( "kernel/ezmessage/user/" . $ini->variable( "eZMessageMain", "TemplateDir" ),
                      "kernel/ezmessage/user/intl", $Language, "messageedit.php" );
 
 $locale = new eZLocale( $Language );

@@ -29,9 +29,9 @@
 // include_once( "classes/eztexttool.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
 
 
@@ -133,7 +133,7 @@ else
     
     if ( $Anonymous == false )
     {
-        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                              "kernel/ezforum/user/intl/", $Language, "userlogin.php" );
 
         $t->setAllStrings();

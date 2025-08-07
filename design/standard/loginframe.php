@@ -5,7 +5,7 @@
 <title><?php
 // set the site title
 
-$SiteTitle = $ini->read_var( "site", "SiteTitle" );
+$SiteTitle = $ini->variable( "site", "SiteTitle" );
 
 if ( isset( $SiteTitleAppend ) )
     print( $SiteTitle . " - " . $SiteTitleAppend );
@@ -70,7 +70,7 @@ if ( isset( $SiteDescriptionOverride ) )
 }
 else
 {
-    $SiteDescription = $ini->read_var( "site", "SiteDescription" );
+    $SiteDescription = $ini->variable( "site", "SiteDescription" );
     print( $SiteDescription );
 }
 

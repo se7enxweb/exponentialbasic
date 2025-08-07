@@ -30,8 +30,8 @@
 // include_once( "classes/eztemplate.php" );
 
 // check hash from mail, validate the correct email address...
-$Language = $ini->read_var( "eZBulkMailMain", "Language" ); 
-$TemplateDir = $ini->read_var( "eZBulkMailMain", "TemplateDir" ); 
+$Language = $ini->variable( "eZBulkMailMain", "Language" ); 
+$TemplateDir = $ini->variable( "eZBulkMailMain", "TemplateDir" ); 
 $languageIni = new INIFIle( "kernel/ezbulkmail/user/intl/" . $Language . "/subscriptionlogin.php.ini", false );
 
 if( isset( $Hash ) )
@@ -74,8 +74,8 @@ if( isset( $Ok ) )
         {
             $headersInfo = getallheaders();
             // send an email to the new address asking to confirm it..
-            $subjectText = ( $languageIni->read_var( "strings", "subject_text" ) . " " . $headersInfo["Host"] );
-            $bodyText = $languageIni->read_var( "strings", "body_text" );
+            $subjectText = ( $languageIni->variable( "strings", "subject_text" ) . " " . $headersInfo["Host"] );
+            $bodyText = $languageIni->variable( "strings", "body_text" );
 
             $forgot = new eZBulkMailForgot();
             $forgot->get( $Email );
@@ -83,7 +83,7 @@ if( isset( $Ok ) )
             $forgot->setPassword( $Password );
             $forgot->store();
 
-            $mailTemplate = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+            $mailTemplate = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                                         "kernel/ezbulkmail/user/intl", $Language, "subscriptionmail.php" );
             $mailTemplate->setAllStrings();
             $mailTemplate->set_file( "subscription_mail_tpl", "subscriptionmail.tpl" );
@@ -95,7 +95,7 @@ if( isset( $Ok ) )
             $mailTemplate->set_var( "activation_link",  "http://" . $headersInfo["Host"] . "/bulkmail/confirmsubscription/" . $forgot->Hash() );
             $mailTemplate->set_var( "host", "http://" . $headersInfo["Host"] );
             $mailpassword->setBody( $mailTemplate->parse( "dummy", "subscription_mail_tpl" ) );
-            $mailpassword->setFrom( $GlobalSiteIni->read_var( "eZBulkMailMain", "BulkmailSenderAddress" ) );
+            $mailpassword->setFrom( $GlobalSiteIni->variable( "eZBulkMailMain", "BulkmailSenderAddress" ) );
             $mailpassword->send();
 
             eZHTTPTool::header( "Location: /bulkmail/successfull/" );
@@ -116,7 +116,7 @@ if( isset( $Ok ) )
     }
 }
 
-$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/user/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                      "kernel/ezbulkmail/user/intl", $Language, "subscriptionlogin.php" );
 
 $t->set_file( array(
@@ -151,15 +151,15 @@ if( isset( $error ) ) // parse the errors
 {
     if( $error == "emailerror" )
     {
-        $t->set_var( "error_message", $languageIni->read_var( "strings", "email_error" ) );
+        $t->set_var( "error_message", $languageIni->variable( "strings", "email_error" ) );
     }
     if( $error == "zeropassword")
     {
-        $t->set_var( "error_message", $languageIni->read_var( "strings", "zero_password_error" ) );
+        $t->set_var( "error_message", $languageIni->variable( "strings", "zero_password_error" ) );
     }
     else
     {
-        $t->set_var( $languageIni->read_var( "strings", "unlike_passwords" ) );
+        $t->set_var( $languageIni->variable( "strings", "unlike_passwords" ) );
     }
     $t->parse( "error_message", "error_message_tpl" );
 }

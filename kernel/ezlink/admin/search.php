@@ -29,9 +29,9 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$AdminLimit = $ini->read_var( "eZLinkMain", "AdminSearchLimit" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$AdminLimit = $ini->variable( "eZLinkMain", "AdminSearchLimit" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlist.php" );
@@ -43,7 +43,7 @@ $AdminLimit = $ini->read_var( "eZLinkMain", "AdminSearchLimit" );
 //  // include_once( "classes/ezquery.php" );
 
 // setter template filer
-$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->variable( "eZLinkMain", "AdminTemplateDir" ),
                      "kernel/ezlink/admin/intl", $Language, "search.php" );
 
 $t->setAllStrings();

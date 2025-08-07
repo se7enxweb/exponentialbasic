@@ -195,8 +195,8 @@ if ( is_a( $user, "eZUser" )  and eZPermission::checkPermission( $user, "eZUser"
 
         case "passwordchange" :
         {
-            $ini =& INIFile::globalINI();
-            $DemoSite = $ini->read_var( "site", "DemoSite" );
+            $ini =& eZINI::instance( 'site.ini' );
+            $DemoSite = $ini->variable( "site", "DemoSite" );
 
             if ( $DemoSite == "enabled" ) {
                 print("<div align='center'>This is a demosite only. You are not allowed to change the admin password!</div>\n");

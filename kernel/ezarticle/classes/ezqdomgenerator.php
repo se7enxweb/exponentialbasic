@@ -49,9 +49,9 @@ class eZQDomGenerator
         $this->Contents = $contents;
 
         // user defined tags
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
-        $customTags = $ini->read_var( "eZArticleMain", "CustomTags" );
+        $customTags = $ini->variable( "eZArticleMain", "CustomTags" );
 
         $this->CustomTagsArray = explode( ";", $customTags );        
     }

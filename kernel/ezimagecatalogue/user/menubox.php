@@ -25,9 +25,9 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
     
 // include_once( "classes/eztemplate.php" );
@@ -35,7 +35,7 @@ $Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->read_var( "eZImageCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->variable( "eZImageCatalogueMain", "TemplateDir" ),
                      "kernel/ezimagecatalogue/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();
@@ -47,9 +47,9 @@ $t->set_file( array(
 ////////////////
 // BEGIN random image block added by admin [at] riderhaus [dot] com
 
-$RandImageCategory =& $ini->read_var( "eZImageCatalogueMain", "RandImageCategory" );
-$width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
-$height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
+$RandImageCategory =& $ini->variable( "eZImageCatalogueMain", "RandImageCategory" );
+$width =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewWidth" );
+$height =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewHight" );
 $randimage = eZImage::randomImage( $RandImageCategory );
 $variation =& $randimage->requestImageVariation( $width, $height );
 $t->set_var( "image_src", "/" . $variation->imagePath() );

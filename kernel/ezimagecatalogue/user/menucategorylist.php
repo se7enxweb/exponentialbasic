@@ -35,12 +35,12 @@
 // include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
-$ImageDir = $ini->read_var( "eZImageCatalogueMain", "ImageDir" );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
+$ImageDir = $ini->variable( "eZImageCatalogueMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->read_var( "eZImageCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/user/" . $ini->variable( "eZImageCatalogueMain", "TemplateDir" ),
                      "kernel/ezimagecatalogue/user/intl/", $Language, "menucategorylist.php" );
 
 $t->set_file( "menu_category_list_tpl", "menucategorylist.tpl" );

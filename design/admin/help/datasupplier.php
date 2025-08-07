@@ -24,7 +24,7 @@
 //
 
 
-$HelpLanguage = $ini->read_var( "site", "HelpLanguage");
+$HelpLanguage = $ini->variable( "site", "HelpLanguage");
 
 switch ( $url_array[2] )
 {

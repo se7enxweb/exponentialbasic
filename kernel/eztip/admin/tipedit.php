@@ -281,11 +281,11 @@ if ( $Action == "DeleteTips" )
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTipMain", "Language" );
-$ImageDir = $ini->read_var( "eZTipMain", "ImageDir" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTipMain", "Language" );
+$ImageDir = $ini->variable( "eZTipMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/eztip/admin/" . $ini->read_var( "eZTipMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztip/admin/" . $ini->variable( "eZTipMain", "AdminTemplateDir" ),
                      "kernel/eztip/admin/intl/", $Language, "tipedit.php" );
 
 $t->setAllStrings();

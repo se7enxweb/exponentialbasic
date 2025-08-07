@@ -31,9 +31,9 @@
 
 // include_once( "eztrade/classes/ezproductcurrency.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 if ( isset( $Action ) && $Action == "Store" )
 {
@@ -83,7 +83,7 @@ if ( isset( $Action ) && $Action == "DeleteSelected" )
     }
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "currency.php" );
 
 $t->setAllStrings();

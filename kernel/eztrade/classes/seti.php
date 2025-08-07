@@ -20,15 +20,15 @@ include_once( "eztrade/classes/ezcheckout.php" );
 include_once( "eztrade/classes/ezproduct.php" );
 include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
-$UserName = $ini->read_var( "eZTradeMain", "SetiUser" );
-$Password = $ini->read_var( "eZTradeMain", "SetiPassword" );
-$Code = $ini->read_var( "eZTradeMain", "Code" );
-$Version = $ini->read_var( "eZTradeMain", "Version" );
-$AdminSite = $ini->read_var( "site", "AdminSiteURL" );
+$UserName = $ini->variable( "eZTradeMain", "SetiUser" );
+$Password = $ini->variable( "eZTradeMain", "SetiPassword" );
+$Code = $ini->variable( "eZTradeMain", "Code" );
+$Version = $ini->variable( "eZTradeMain", "Version" );
+$AdminSite = $ini->variable( "site", "AdminSiteURL" );
 
 //print_r($_SERVER); exit();
 /*
@@ -257,17 +257,17 @@ switch ( $setifunction )
 			$currency = new eZCurrency();
 		    $eachOrder->orderTotals( $tax, $total );
 			$currency->setValue( $total["subextax"] );
-			echo str_replace( "£&nbsp;", "", $locale->format( $currency ) )."\t";
+			echo str_replace( "ï¿½&nbsp;", "", $locale->format( $currency ) )."\t";
 			// print small order fee
 			echo "\t";
 			// print shipping charges
 		    $currency->setValue( $total["shipextax"] );
-			echo str_replace( "£&nbsp;", "", $locale->format( $currency ) )."\t";
+			echo str_replace( "ï¿½&nbsp;", "", $locale->format( $currency ) )."\t";
 			// print shipping insurance
 			echo "\t";
 			// print sales tax
 		    $currency->setValue( $total["inctax"]-$total["shipextax"]-$total["subextax"] );
-			echo str_replace( "£&nbsp;", "", $locale->format( $currency ) )."\t";
+			echo str_replace( "ï¿½&nbsp;", "", $locale->format( $currency ) )."\t";
 			// 	print discount message
 			echo "\t";
 			// print discount percentage
@@ -284,7 +284,7 @@ switch ( $setifunction )
 			echo "\t";
 			// print grand total
 		    $currency->setValue( $total["inctax"] );
-			echo str_replace( "£&nbsp;", "", $locale->format( $currency ) )."\t";
+			echo str_replace( "ï¿½&nbsp;", "", $locale->format( $currency ) )."\t";
 			// print shipping method
 			$shippingType = $eachOrder->shippingType();
 			echo $shippingType->name()."\t";

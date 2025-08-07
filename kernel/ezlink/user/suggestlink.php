@@ -28,10 +28,10 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$error = new INIFile( "kernel/ezlink/user/intl/" . $Language . "/suggestlink.php.ini", false );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$error = new eZINI( "kernel/ezlink/user/intl/" . $Language . "/suggestlink.php.ini", false );
 
 // include_once( "classes/eztemplate.php" );
 // include( "ezlink/classes/ezlinkcategory.php" );
@@ -72,7 +72,7 @@ if ( isset( $Back ) )
     }
 }
 
-$Accepted = $ini->read_var( "eZLinkMain", "AcceptSuggestedLinks" );
+$Accepted = $ini->variable( "eZLinkMain", "AcceptSuggestedLinks" );
 
 // Get images from the image browse function.
 if ( ( isset( $AddImages ) ) and ( is_numeric( $LinkID ) ) and ( is_numeric( $LinkID ) ) )
@@ -99,11 +99,11 @@ if ( isset( $GetSite ) && $GetSite )
 
         if ( $metaList == false )
         {
-            $error_msg = $error->read_var( "strings", "error_nosite" );
+            $error_msg = $error->variable( "strings", "error_nosite" );
         }
         else if ( count( $metaList ) == 0 )
         {
-            $error_msg = $error->read_var( "strings", "error_nometa" );
+            $error_msg = $error->variable( "strings", "error_nometa" );
         }
 
         if ( isset( $metaList["description"] ) && $metaList["description"] )
@@ -238,7 +238,7 @@ if ( isset( $Action ) && $Action == "update" )
     }
     else
     {
-        $error_msg = $error->read_var( "strings", "error_missingdata" );
+        $error_msg = $error->variable( "strings", "error_missingdata" );
     }
 }
 //else
@@ -327,7 +327,7 @@ if ( isset( $Action ) && $Action == "insert" )
     }
     else if ( !isset( $Update ) )
     {
-        $error_msg = $error->read_var( "strings", "error_missingdata" );
+        $error_msg = $error->variable( "strings", "error_missingdata" );
     }
 }
 else
@@ -344,7 +344,7 @@ else
 
 // set the template files.
 
-$t = new eZTemplate( "kernel/ezlink/user/" . $ini->read_var( "eZLinkMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/user/" . $ini->variable( "eZLinkMain", "TemplateDir" ),
                      "kernel/ezlink/user/" . "/intl", $Language, "suggestlink.php" );
 $t->setAllStrings();
 
@@ -362,8 +362,8 @@ $t->set_block( "link_edit", "attribute_list_tpl", "attribute_list" );
 $t->set_block( "attribute_list_tpl", "attribute_tpl", "attribute" );
 
 
-$languageIni = new INIFile( "kernel/ezlink/user/intl/" . $Language . "/suggestlink.php.ini", false );
-$headline = $languageIni->read_var( "strings", "headline_insert" );
+$languageIni = new eZINI( "kernel/ezlink/user/intl/" . $Language . "/suggestlink.php.ini", false );
+$headline = $languageIni->variable( "strings", "headline_insert" );
 
 $linkselect = new eZLinkCategory();
 

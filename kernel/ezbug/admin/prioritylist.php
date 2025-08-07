@@ -27,15 +27,15 @@
   Shows a list of priorities, and lets the user edit and add new priorities.
 */
 // include_once( "classes/INIFile.php" );
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBugMain", "Language" );
 $LanguageIni = new INIFIle( "kernel/ezbug/admin/intl/" . $Language . "/prioritylist.php.ini", false );
 
 // include_once( "classes/eztemplate.php" );
 
 // include_once( "ezbug/classes/ezbugpriority.php" );
 
-$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->read_var( "eZBugMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/admin/" . $ini->variable( "eZBugMain", "AdminTemplateDir" ),
                      "kernel/ezbug/admin/intl", $Language, "prioritylist.php" );
 $t->setAllStrings();
 
@@ -83,7 +83,7 @@ if( isset( $Ok ) || isset( $AddPriority ) )
 if( isset( $AddPriority ) )
 {
     $newItem = new eZBugPriority();
-    $newName = $LanguageIni->read_var( "strings", "new_priority" );
+    $newName = $LanguageIni->variable( "strings", "new_priority" );
     $newItem->setName($newName);
     $newItem->store();
 }

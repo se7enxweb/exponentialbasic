@@ -32,8 +32,8 @@ include_once( "classes/ezfile.php" );
 include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
 include_once( "eztrade/classes/ezproductcategory.php" );
 include_once( "eztrade/classes/ezproduct.php" );
@@ -130,7 +130,7 @@ if ( $Action == "Delete" )
     exit();    
 }
 
-$t = new eZTemplate( "eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "eztrade/admin/intl/", $Language, "fileedit.php" );
 
 $t->setAllStrings();

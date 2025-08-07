@@ -34,19 +34,19 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $wwwDir = $ini->WWWDir;
 $indexFile = $ini->Index;
 
-$Language = $ini->read_var( "eZFileManagerMain", "Language" );
-$ImageDir = $ini->read_var( "eZFileManagerMain", "ImageDir" );
-$FileCat = $ini->read_var( "eZFileManagerMain", "FileCat" );
-$SyncDir = $ini->read_var( "eZFileManagerMain", "SyncDir" );
-$SectionID = $ini->read_var( "eZFileManagerMain", "DefaultSection" );
-$Limit = $ini->read_var( "eZFileManagerMain", "Limit" );
-$ShowUpFolder = $ini->read_var( "eZFileManagerMain", "ShowUpFolder" ) == "enabled";
+$Language = $ini->variable( "eZFileManagerMain", "Language" );
+$ImageDir = $ini->variable( "eZFileManagerMain", "ImageDir" );
+$FileCat = $ini->variable( "eZFileManagerMain", "FileCat" );
+$SyncDir = $ini->variable( "eZFileManagerMain", "SyncDir" );
+$SectionID = $ini->variable( "eZFileManagerMain", "DefaultSection" );
+$Limit = $ini->variable( "eZFileManagerMain", "Limit" );
+$ShowUpFolder = $ini->variable( "eZFileManagerMain", "ShowUpFolder" ) == "enabled";
 
-$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->read_var( "eZFileManagerMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->variable( "eZFileManagerMain", "TemplateDir" ),
                      "kernel/ezfilemanager/user/intl/", $Language, "filelist.php" );
 
 $t->set_file( "file_list_page_tpl", "filelist.tpl" );
@@ -95,7 +95,7 @@ $user =& eZUser::currentUser();
 function syncDir( $root, $category )
 {
     global $user;
-    $dir = eZFile::dir( $root, false );
+    $dir = eZPBFile::dir( $root, false );
 
     while ( $entry = $dir->read() )
 
@@ -201,7 +201,7 @@ $folder = new eZVirtualFolder( $FolderID );
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
 if ( $FolderID == 0 )
-    $GlobalSectionID = $ini->read_var( "eZFileManagerMain", "DefaultSection" );
+    $GlobalSectionID = $ini->variable( "eZFileManagerMain", "DefaultSection" );
 else
     $GlobalSectionID = eZVirtualFolder::sectionIDstatic ( $FolderID );
 // init the section
@@ -339,7 +339,7 @@ $deleteFiles = false;
 foreach ( $fileList as $file )
 {
     $filename = $file->name();
-    if ( $ini->read_var( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
+    if ( $ini->variable( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
         $originalfilename = $file->originalFileName();
     else
         $originalfilename = $filename;

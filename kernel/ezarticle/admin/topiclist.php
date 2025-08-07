@@ -75,7 +75,7 @@ if ( isset( $Store ) )
     }
 }
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl", $Language, "topiclist.php" );
 
 $locale = new eZLocale( $Language ); 

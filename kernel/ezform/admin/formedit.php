@@ -32,7 +32,7 @@
 // include_once( "ezform/classes/ezformelementtype.php" );
 // include_once( "ezmail/classes/ezmail.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 if ( isset( $Cancel ) )
 {
@@ -152,7 +152,7 @@ if ( isset( $OK ) || isset( $Update ) || isset( $Preview ) || isset( $NewElement
         
         if ( isset( $NewElement ) )
         {
-            $newElementName =& $ini->read_var( "eZFormMain", "DefaultElementName" );
+            $newElementName =& $ini->variable( "eZFormMain", "DefaultElementName" );
             $newElementName = $newElementName . " " . $existingElementCount;
             $element = new eZFormElement();
             $element->setName( $newElementName );
@@ -238,9 +238,9 @@ if ( isset( $OK ) || isset( $Update ) || isset( $Preview ) || isset( $NewElement
     }
 }
 
-$Language = $ini->read_var( "eZFormMain", "Language" );
+$Language = $ini->variable( "eZFormMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezform/admin/" . $ini->read_var( "eZFormMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezform/admin/" . $ini->variable( "eZFormMain", "AdminTemplateDir" ),
                      "kernel/ezform/admin/intl/", $Language, "form.php" );
 
 $t->set_file( "form_edit_page_tpl", "formedit.tpl" );
@@ -282,9 +282,9 @@ if ( $form->completedPage() )
 }
 else
 {
-    if ( $ini->read_var( "eZFormMain", "UseDefaultRedirectPage" ) == "enabled" )
+    if ( $ini->variable( "eZFormMain", "UseDefaultRedirectPage" ) == "enabled" )
     {
-        $t->set_var( "form_completed_page", $ini->read_var( "eZFormMain", "DefaultRedirectPage" ) );
+        $t->set_var( "form_completed_page", $ini->variable( "eZFormMain", "DefaultRedirectPage" ) );
     }
 }
 
@@ -294,9 +294,9 @@ if ( $form->instructionPage() )
 }
 else
 {
-    if ( $ini->read_var( "eZFormMain", "UseDefaultInstructionPage" ) == "enabled" )
+    if ( $ini->variable( "eZFormMain", "UseDefaultInstructionPage" ) == "enabled" )
     {
-        $t->set_var( "form_instruction_page", $ini->read_var( "eZFormMain", "DefaultInstructionPage" ) );
+        $t->set_var( "form_instruction_page", $ini->variable( "eZFormMain", "DefaultInstructionPage" ) );
     }
 }
 
@@ -307,7 +307,7 @@ if ( isset( $Action ) && $Action != "new" && $form->numberOfTypes() == 0 && !iss
 
 if ( $form->numberOfElements() == 0 )
 {
-    if ( $ini->read_var( "eZFormMain", "CreateEmailDefaults" ) == "enabled" )
+    if ( $ini->variable( "eZFormMain", "CreateEmailDefaults" ) == "enabled" )
     {
         $form->store();
         $FormID = $form->id();
@@ -315,8 +315,8 @@ if ( $form->numberOfElements() == 0 )
         $elementTypeB = new eZFormElementType( 2 );
         $elementA = new eZFormElement();
         $elementB = new eZFormElement();
-        $name = $t->Ini->read_var( "strings", "subject_label" );
-        $name = $t->Ini->read_var( "strings", "content_label" );
+        $name = $t->Ini->variable( "strings", "subject_label" );
+        $name = $t->Ini->variable( "strings", "content_label" );
         $elementA->setName( $name );
         $elementB->setName( $name );
         $elementA->setElementType( $elementTypeA );
@@ -469,7 +469,7 @@ if ( count( $errorMessages ) > 0 && !isset( $NewElement ) && !isset( $DeleteSele
 {
     foreach ( $errorMessages as $errorMessage )
     {
-        $errorMessage =& $t->Ini->read_var( "strings", $errorMessage );
+        $errorMessage =& $t->Ini->variable( "strings", $errorMessage );
         $t->set_var( "error_message", $errorMessage );
         $t->parse( "error_item", "error_item_tpl", true );
     }

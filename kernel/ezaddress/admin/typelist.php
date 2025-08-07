@@ -40,9 +40,9 @@
   list with extra information.
 */
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZAddressMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZAddressMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZAddressMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlist.php" );
@@ -54,7 +54,7 @@ $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezaddress/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezaddress/admin/" . $ini->variable( "eZAddressMain", "AdminTemplateDir" ),
                      "kernel/ezaddress/admin/" . "/intl", $Language, $language_file );
 
 $t->setAllStrings();

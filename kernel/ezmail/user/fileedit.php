@@ -68,10 +68,10 @@ if( isset( $Cancel ) )
     exit();
 }
 
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZMailMain", "Language" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMailMain", "Language" );
 $session = new eZSession();
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl", $Language, "fileedit.php" );
 
 $t->setAllStrings();

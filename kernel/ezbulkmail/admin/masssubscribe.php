@@ -31,10 +31,10 @@
 // include_once( "ezbulkmail/classes/ezbulkmailcategory.php" );
 // include_once( "ezmail/classes/ezmail.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZBulkMailMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZBulkMailMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl/", $Language, "masssubscribe.php" );
 
 $t->setAllStrings();
@@ -67,10 +67,10 @@ if ( isset ( $OK ) && ( count ( $CategoryArrayID ) > 0 ) )
 
     if ( count ( $addresses ) > 0 )
     {
-        $mailTemplate = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "TemplateDir" ),
+        $mailTemplate = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "TemplateDir" ),
                                         "kernel/ezbulkmail/admin/intl", $Language, "sendmail.php" );
         
-        $languageIni = new INIFile( "kernel/ezbulkmail/admin/intl/$Language/sendmail.php.ini" );
+        $languageIni = new eZINI( "kernel/ezbulkmail/admin/intl/$Language/sendmail.php.ini" );
         $mailTemplate->setAllStrings();
         $mailTemplate->set_file( "send_mail_tpl", "sendmail.tpl" );
         $mailTemplate->set_block( "send_mail_tpl", "mail_password_tpl", "mail_password" );
@@ -110,10 +110,10 @@ if ( isset ( $OK ) && ( count ( $CategoryArrayID ) > 0 ) )
                             }
                             
                             $mail = new eZMail();
-                            $mail->setSubject( $languageIni->read_var( "strings", "mail_subject" ) );
+                            $mail->setSubject( $languageIni->variable( "strings", "mail_subject" ) );
                             $mail->setTo( $email );
                             $mail->setBody( $mailTemplate->parse( "dummy", "send_mail_tpl" ) );
-                            $mail->setFrom( $GlobalSiteIni->read_var( "eZBulkMailMain", "BulkmailSenderAddress" ) );
+                            $mail->setFrom( $GlobalSiteIni->variable( "eZBulkMailMain", "BulkmailSenderAddress" ) );
                            
                             $mail->send();
                         }

@@ -1,9 +1,9 @@
 <?
 include_once( "kernel/ezgroupeventcalendar/classes/ezgroupevent.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZGroupEventCalendarMain", "DefaultSection" );
-$UserComments = $ini->read_var( "eZGroupEventCalendarMain", "UserComments" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZGroupEventCalendarMain", "DefaultSection" );
+$UserComments = $ini->variable( "eZGroupEventCalendarMain", "UserComments" );
 
 $Title = "Calendar";
 

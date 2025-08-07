@@ -30,9 +30,9 @@
 
 $textfield = new eZExample( );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZExampleMain", "Language" );
-$tpl = new eZTemplate( "kernel/ezexample/admin/" . $ini->read_var( "eZExampleMain", "AdminTemplateDir" ),
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZExampleMain", "Language" );
+$tpl = new eZTemplate( "kernel/ezexample/admin/" . $ini->variable( "eZExampleMain", "AdminTemplateDir" ),
                        "kernel/ezexample/admin/" . "intl", $Language, "page4.php" );
 $tpl->setAllStrings();
 

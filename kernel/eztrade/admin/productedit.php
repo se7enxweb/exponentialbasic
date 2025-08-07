@@ -81,15 +81,15 @@ function deleteCache( $ProductID, $CategoryID, $CategoryArray, $Hotdeal )
 
 }
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
-$ShowModuleLinker = $ini->read_var( "eZTradeMain", "ShowModuleLinker" ) == "true";
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
+$ShowModuleLinker = $ini->variable( "eZTradeMain", "ShowModuleLinker" ) == "true";
 
-$CSVDelimiter = $ini->read_var( "eZTradeMain", "CSVDelimiter" );
-$DefaultDealerPriceGroup = $ini->read_var( "eZTradeMain", "DefaultDealerPriceGroup" );
+$CSVDelimiter = $ini->variable( "eZTradeMain", "CSVDelimiter" );
+$DefaultDealerPriceGroup = $ini->variable( "eZTradeMain", "DefaultDealerPriceGroup" );
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezproductcategory.php" );
@@ -103,7 +103,7 @@ if ( isset($CSVImport) )
 {
 	// include_once( "eztrade/classes/ezcsvimport.php" );
 	//get default target category ID
-	$CategoryID = $ini->read_var( "eZTradeMain", "CSVImportCat" );
+	$CategoryID = $ini->variable( "eZTradeMain", "CSVImportCat" );
 	//read CSV file
 	$ProductImport = new eZCSVImport();
 	$csvArray =  $ProductImport->csvFileToArray($ImportCSVDir, $CSVDelimiter, 'none', TRUE, TRUE, FALSE);
@@ -1007,7 +1007,7 @@ if ( isset( $Action ) && $Action == "Delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "productedit.php" );
 
 $t->set_file( "product_edit_tpl", "productedit.tpl" );

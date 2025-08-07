@@ -32,10 +32,10 @@
 
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
-$Language = $ini->read_var( "eZFileManagerMain", "Language" );
-$Limit = $ini->read_var( "eZFileManagerMain", "SearchListLimit" );
+$Language = $ini->variable( "eZFileManagerMain", "Language" );
+$Limit = $ini->variable( "eZFileManagerMain", "SearchListLimit" );
 
-$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->read_var( "eZFileManagerMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezfilemanager/user/" . $ini->variable( "eZFileManagerMain", "TemplateDir" ),
                      "kernel/ezfilemanager/user/intl/", $Language, "search.php" );
 
 $t->setAllStrings();

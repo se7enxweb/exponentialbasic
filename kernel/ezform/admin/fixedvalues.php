@@ -34,9 +34,9 @@
 // include_once( "ezform/classes/ezformelementfixedvalue.php" );
 
 $ActionValue = "list";
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFormMain", "Language" );
+$Language = $ini->variable( "eZFormMain", "Language" );
 
 $element = new eZFormElement( $ElementID );
 
@@ -78,7 +78,7 @@ if( isset( $OK ) )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezform/admin/" . $ini->read_var( "eZFormMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezform/admin/" . $ini->variable( "eZFormMain", "AdminTemplateDir" ),
                      "kernel/ezform/admin/intl/", $Language, "fixedvalues.php" );
 $t->setAllStrings();
 

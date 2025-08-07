@@ -579,8 +579,8 @@ class eZMediaCategory
     {
         if ( !isset($limit) || isset($limit) && $limit == 0 )
         {
-            $ini =& INIFile::globalINI();
-            $limit = $ini->read_var( "eZMediaCatalogueMain", "ListMediaPerPage" );
+            $ini =& eZINI::instance( 'site.ini' );
+            $limit = $ini->variable( "eZMediaCatalogueMain", "ListMediaPerPage" );
         }
 
         $db =& eZDB::globalDatabase();

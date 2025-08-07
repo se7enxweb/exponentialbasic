@@ -27,7 +27,7 @@
 // include_once( "ezlink/classes/ezlink.php" );
 // include_once( "ezlink/classes/ezhit.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 if ( $Action == "addhit" )
 {

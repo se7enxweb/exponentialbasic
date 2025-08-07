@@ -72,11 +72,11 @@ if ( !$user )
     exit();
 }
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
+$Language = $ini->variable( "eZMediaCatalogueMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->variable( "eZMediaCatalogueMain", "TemplateDir" ),
                      "kernel/ezmediacatalogue/admin/intl/", $Language, "categoryedit.php" );
 
 $t->set_file( "category_edit_tpl", "categoryedit.tpl" );

@@ -31,8 +31,8 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
 
 // include_once( "ezuser/classes/ezusergroup.php" );
 // include_once( "ezuser/classes/ezpermission.php" );
@@ -46,7 +46,7 @@ if ( !is_a( $user, "eZUser" ) )
 }
 
 if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) &&
-     $ini->read_var( "eZContactMain", "ShowAllConsultations" ) != "enabled" )
+     $ini->variable( "eZContactMain", "ShowAllConsultations" ) != "enabled" )
 {
     // include_once( "classes/ezhttptool.php" );
     eZHTTPTool::header( "Location: /contact/nopermission/consultation" );
@@ -60,7 +60,7 @@ if ( !eZPermission::checkPermission( $user, "eZContact", "Consultation" ) &&
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, "consultationedit.php" );
 $t->setAllStrings();
 
@@ -102,7 +102,7 @@ $status_id = 0;
 */
 
 if ( !eZConsultation::belongsTo( $ConsultationID, $user->id() ) &&
-     $ini->read_var( "eZContactMain", "ShowAllConsultations" ) != "enabled" )
+     $ini->variable( "eZContactMain", "ShowAllConsultations" ) != "enabled" )
 {
     print( "<h1>Sorry, This page isn't for you. </h1>" );
 }

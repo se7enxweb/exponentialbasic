@@ -27,7 +27,7 @@
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 // include_once( "ezfilemanager/classes/ezvirtualfolder.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
 function getFiles( $dir )
 {
@@ -46,9 +46,9 @@ function getFiles( $dir )
 function addFile( $dir, $file )
 {
     global $ini;
-    $readGroup = $ini->read_var( "eZFileManagerMain", "SyncronizeReadGroup" );
-    $writeGroup = $ini->read_var( "eZFileManagerMain", "SyncronizeWriteGroup" );
-    $syncUser = $ini->read_var( "eZFileManagerMain", "SyncronizedFilesOwner" );
+    $readGroup = $ini->variable( "eZFileManagerMain", "SyncronizeReadGroup" );
+    $writeGroup = $ini->variable( "eZFileManagerMain", "SyncronizeWriteGroup" );
+    $syncUser = $ini->variable( "eZFileManagerMain", "SyncronizedFilesOwner" );
     if ( !eZVirtualFile::fileExists( $dir, $file ) )
     {
         $folder = new eZVirtualFolder( eZVirtualFolder::getByName( $dir, 0, true, $readGroup, $writeGroup ) );
@@ -63,12 +63,12 @@ function addFile( $dir, $file )
     }
 }
 
-$autoSync = $ini->read_var( "eZFileManagerMain", "AutoSyncronize" );
+$autoSync = $ini->variable( "eZFileManagerMain", "AutoSyncronize" );
 
 if ( $autoSync || $autoSync == "true" )
 {
-    $localDir = $ini->read_var( "eZFileManagerMain", "LocalSyncronizeDir" );
-    getFiles( eZFile::dir( $localDir, false ) );
+    $localDir = $ini->variable( "eZFileManagerMain", "LocalSyncronizeDir" );
+    getFiles( eZPBFile::dir( $localDir, false ) );
 }
 
 ?>

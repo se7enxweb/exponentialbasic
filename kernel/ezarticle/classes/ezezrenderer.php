@@ -382,26 +382,26 @@ class eZEzRenderer
                         // add image if a valid image was found, else report an error in the log.
                         if ( is_a( $image, "eZImage" ) )
                         {
-                            $ini =& INIFile::globalINI();
+                            $ini =& eZINI::instance( 'site.ini' );
 
                             switch ( $imageSize )
                             {
                                 case "small" :
                                 {
-                                    $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "SmallImageWidth" ),
-                                    $ini->read_var( "eZArticleMain", "SmallImageHeight" ) );
+                                    $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "SmallImageWidth" ),
+                                    $ini->variable( "eZArticleMain", "SmallImageHeight" ) );
                                 }
                                 break;
                                 case "medium" :
                                 {
-                                    $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "MediumImageWidth" ),
-                                    $ini->read_var( "eZArticleMain", "MediumImageHeight" ) );
+                                    $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "MediumImageWidth" ),
+                                    $ini->variable( "eZArticleMain", "MediumImageHeight" ) );
                                 }
                                 break;
                                 case "large" :
                                 {
-                                    $variation =& $image->requestImageVariation( $ini->read_var( "eZArticleMain", "LargeImageWidth" ),
-                                    $ini->read_var( "eZArticleMain", "LargeImageHeight" ) );
+                                    $variation =& $image->requestImageVariation( $ini->variable( "eZArticleMain", "LargeImageWidth" ),
+                                    $ini->variable( "eZArticleMain", "LargeImageHeight" ) );
                                 }
                                 break;
                             }

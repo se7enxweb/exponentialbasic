@@ -27,18 +27,18 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$errorIni = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/userlist.php.ini", false );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$errorIni = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/userlist.php.ini", false );
 
-$Max = $ini->read_var( "eZUserMain", "MaxUserList" );
+$Max = $ini->variable( "eZUserMain", "MaxUserList" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
                      "kernel/ezuser/admin/" . "/intl", $Language, "userlist.php" );
 $t->setAllStrings();
 
@@ -112,7 +112,7 @@ $t->set_var( "total_user_count", $TotalTypes );
 
 if ( count( $userList ) == 0 )
 {
-    $error = $errorIni->read_var( "strings", "no_users" );
+    $error = $errorIni->variable( "strings", "no_users" );
     $t->set_var( "user_item", $error );
 }
 else

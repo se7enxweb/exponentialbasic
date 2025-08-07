@@ -34,9 +34,9 @@
 
 // include_once( "eztodo/classes/ezstatus.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTodoMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZTodoMain", "DocumentRoot" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTodoMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZTodoMain", "DocumentRoot" );
 
 if ( isset( $Cancel ) )
 {
@@ -78,7 +78,7 @@ if ( isset( $Action ) && $Action == "delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->read_var( "eZTodoMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/admin/" . $ini->variable( "eZTodoMain", "AdminTemplateDir" ),
                      "kernel/eztodo/admin/intl", $Language, "statustypeedit.php" );
 $t->set_file( array(
     "statustypeedit" => "statustypeedit.tpl"

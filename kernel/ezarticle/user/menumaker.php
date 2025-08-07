@@ -47,10 +47,10 @@ function menuMaker()
     // include_once( "ezarticle/classes/ezarticle.php" );
     // include_once( "ezuser/classes/ezobjectpermission.php" );
     
-    $ini =& INIFile::globalINI();
+    $ini =& eZINI::instance( 'site.ini' );
     
-    $Language = $ini->read_var( "eZArticleMain", "Language" );
-    $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->read_var( "eZArticleMain", "TemplateDir" ),
+    $Language = $ini->variable( "eZArticleMain", "Language" );
+    $t = new eZTemplate( "kernel/ezarticle/user/" . $ini->variable( "eZArticleMain", "TemplateDir" ),
                          "kernel/ezarticle/user/intl", $Language, "menumaker.php" );
     
     $t->setAllStrings();

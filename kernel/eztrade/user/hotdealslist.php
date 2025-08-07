@@ -28,14 +28,14 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$hotDealColumns  = $ini->read_var( "eZTradeMain", "HotDealColumns" );
-$hotDealImageWidth  = $ini->read_var( "eZTradeMain", "HotDealImageWidth" );
-$hotDealImageHeight  = $ini->read_var( "eZTradeMain", "HotDealImageHeight" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$hotDealColumns  = $ini->variable( "eZTradeMain", "HotDealColumns" );
+$hotDealImageWidth  = $ini->variable( "eZTradeMain", "HotDealImageWidth" );
+$hotDealImageHeight  = $ini->variable( "eZTradeMain", "HotDealImageHeight" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezproductcategory.php" );
@@ -45,7 +45,7 @@ $PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enab
 
 $user =& eZUser::currentUser();
 
-$RequireUser = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
+$RequireUser = $ini->variable( "eZTradeMain", "RequireUserLogin" ) == "enabled" ? true : false;
 $ShowPrice = $RequireUser ? is_a( $user, "eZUser" ) : true;
 
 $PriceGroup = 0;
@@ -56,7 +56,7 @@ if ( is_a( $user, "eZUser" ) )
 if ( !$ShowPrice )
     $PriceGroup = -1;
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "hotdealslist.php" );
 
 if ( isset( $HotDealsPage ) )

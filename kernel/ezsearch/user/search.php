@@ -27,10 +27,10 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZSearchMain", "Language" );
-$SearchModules = $ini->read_var( "eZSearchMain", "SearchModules" );
+$Language = $ini->variable( "eZSearchMain", "Language" );
+$SearchModules = $ini->variable( "eZSearchMain", "SearchModules" );
 
 $moduleArray = explode( ";", $SearchModules );
 
@@ -43,7 +43,7 @@ if ( isset ($SectionIDOverride) )
     $sectionObject->setOverrideVariables();
 }
 
-$t = new eZTemplate( "kernel/ezsearch/user/" . $ini->read_var( "eZSearchMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezsearch/user/" . $ini->variable( "eZSearchMain", "TemplateDir" ),
                      "kernel/ezsearch/user/intl/", $Language, "search.php" );
 
 $t->set_file( "search_tpl", "search.tpl" );
@@ -67,7 +67,7 @@ foreach ( $moduleArray as $module )
 {
     $module = strtolower( $module );
     unset( $SearchResult );
-    if ( eZFile::file_exists( "kernel/$module/user/searchsupplier.php" ) )
+    if ( file_exists( "kernel/$module/user/searchsupplier.php" ) )
     {
         include( "kernel/$module/user/searchsupplier.php" );
 

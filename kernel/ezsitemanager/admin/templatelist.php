@@ -31,8 +31,8 @@ if ( $filePath == "" )
     $realPath = str_replace( "-", "/", $filePath );
     $filePathArray = explode( "-", $filePath );
 
-    $file = eZFile::file( $realPath );
-    $dir = eZFile::dir( $realPath );
+    $file = eZPBFile::file( $realPath );
+    $dir = eZPBFile::dir( $realPath );
     $is_file = $file && $dir == false ? true : false;
 }
 elseif( str_contains( $filePath, '.-' ) )
@@ -41,8 +41,8 @@ elseif( str_contains( $filePath, '.-' ) )
     $realPath = str_replace( "-", "/", $filePath );
     $filePathArray = explode( "-", $filePath );
 
-    $file = eZFile::file( $realPath );
-    $dir = eZFile::dir( $realPath );
+    $file = eZPBFile::file( $realPath );
+    $dir = eZPBFile::dir( $realPath );
     $is_file = $file && $dir == false ? true : false;
 }
 else
@@ -51,15 +51,15 @@ else
     $realPath = str_replace( "-", "/", $filePath );
     $filePathArray = explode( "-", $filePath );
 
-    $file = eZFile::file( $realPath );
-    $dir = eZFile::dir( $realPath );
+    $file = eZPBFile::file( $realPath );
+    $dir = eZPBFile::dir( $realPath );
     $is_file = $file && $dir == false ? true : false;
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "templatelist.php" );
 $t->setAllStrings();
 

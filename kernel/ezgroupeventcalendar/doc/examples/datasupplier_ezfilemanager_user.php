@@ -29,8 +29,8 @@ include_once( "classes/eztime.php" );
 include_once( "classes/ezlocale.php" );
 include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZFileManagerMain", "DefaultSection" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZFileManagerMain", "DefaultSection" );
 
 switch ( $url_array[2] )
 {

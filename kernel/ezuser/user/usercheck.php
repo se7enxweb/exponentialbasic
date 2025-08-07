@@ -28,8 +28,8 @@
 // include_once( "ezuser/classes/ezpermission.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-if ( $ini->read_var( "eZUserMain", "RequireUserLogin" ) == "enabled" )
+$ini =& eZINI::instance( 'site.ini' );
+if ( $ini->variable( "eZUserMain", "RequireUserLogin" ) == "enabled" )
 {
     $user =& eZUser::currentUser();
     if ( !$user )

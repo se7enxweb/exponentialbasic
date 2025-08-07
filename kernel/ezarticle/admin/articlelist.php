@@ -34,11 +34,11 @@
 // include_once( "classes/ezcachefile.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 $Locale = new eZLocale( $Language );
-$AdminListLimit = $ini->read_var( "eZArticleMain", "AdminListLimit" );
+$AdminListLimit = $ini->variable( "eZArticleMain", "AdminListLimit" );
 
 $session =& eZSession::globalSession();
 
@@ -187,7 +187,7 @@ if ( isset( $DeleteCategories ) )
 }
 
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "articlelist.php" );
 
 $t->setAllStrings();
@@ -274,7 +274,7 @@ if ( $category->sortMode() == "absolute_placement" )
 $t->set_var( "current_category_id", $category->id() );
 
 //EP: CategoryDescriptionXML=enabled, description go in XML -------------------
-if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
+if ( $ini->variable( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
 {
     if ( $CategoryID )
     {
@@ -351,7 +351,7 @@ foreach ( $categoryList as $categoryItem )
     }
     
     //EP: CategoryDescriptionXML=enabled, description go in XML -------------------
-    if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
+    if ( $ini->variable( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
     {
         // include_once( "ezarticle/classes/ezarticlerenderer.php" );
        

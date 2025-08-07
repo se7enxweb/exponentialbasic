@@ -33,9 +33,9 @@
 
 // include_once( "ezimagecatalogue/classes/ezimage.php" );
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 $session = new eZSession();
 
@@ -140,7 +140,7 @@ if ( $Action == "StoreDef" )
 //    exit();
 }
 
-$t = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                      "kernel/ezbug/user/intl/", $Language, "imageedit.php" );
 
 $t->setAllStrings();

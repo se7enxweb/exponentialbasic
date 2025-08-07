@@ -29,9 +29,9 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZUserMain", "Language" );
-$UserWithAddress = $ini->read_var( "eZUserMain", "UserWithAddress" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZUserMain", "Language" );
+$UserWithAddress = $ini->variable( "eZUserMain", "UserWithAddress" );
 
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "ezuser/classes/ezusergroup.php" );
@@ -61,7 +61,7 @@ if ( isset( $Register ) )
 unset ( $t );
 
 // Template
-$t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/user/" . $ini->variable( "eZUserMain", "TemplateDir" ),
                      "kernel/ezuser/user/intl", $Language, "login.php" );
 
 $t->setAllStrings();
@@ -71,7 +71,7 @@ $t->set_file( array("login" => "login.tpl") );
 $t->set_block( "login", "buttons_tpl", "buttons" );
 
 $t->set_var( "buttons", "" );
-if ( $ini->read_var( "eZUserMain", "RequireUserLogin" ) != "enabled" )
+if ( $ini->variable( "eZUserMain", "RequireUserLogin" ) != "enabled" )
     $t->parse( "buttons", "buttons_tpl" );
 else
 $t->set_var( "buttons", "" );
@@ -87,7 +87,7 @@ if ( isset( $Action ) && $Action == "login" )
         if ( $user->get( $user->id() ) )
         {
             $logins = $user->getLogins( $user->id() );
-            $AllowSimultaneousLogins =  $ini->read_var( "eZUserMain", "SimultaneousLogins" );
+            $AllowSimultaneousLogins =  $ini->variable( "eZUserMain", "SimultaneousLogins" );
 
             if ( $AllowSimultaneousLogins == "disabled" )
             {

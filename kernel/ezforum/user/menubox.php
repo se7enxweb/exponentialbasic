@@ -26,11 +26,11 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezcachefile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 
-$PageCaching = $ini->read_var( "eZForumMain", "PageCaching" );
+$PageCaching = $ini->variable( "eZForumMain", "PageCaching" );
 
 unset( $menuCachedFile );
 // do the caching
@@ -64,7 +64,7 @@ function createPage( $menuCacheFile = false )
     // include_once( "classes/ezdb.php" );
     // include_once( "ezforum/classes/ezforumcategory.php" );
 
-    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                          "kernel/ezforum/user/intl", $Language, "menubox.php" );
 
     $t->setAllStrings();
@@ -82,9 +82,9 @@ function createPage( $menuCacheFile = false )
 
     if ( !$categories )
     {
-        $Language = $ini->read_var( "eZForumMain", "Language" );
-        $nofound = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
-        $noitem =  $nofound->read_var( "strings", "noitem" );
+        $Language = $ini->variable( "eZForumMain", "Language" );
+        $nofound = new eZINI( "kernel/ezforum/user/intl/" . $Language . "/categorylist.php.ini", false );
+        $noitem =  $nofound->variable( "strings", "noitem" );
 
         $t->set_var( "category", $noitem );
     }

@@ -38,8 +38,8 @@
 */
 
 $ini =& $GlobalSiteIni;
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
+$Language = $ini->variable( "eZContactMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZContactMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 
@@ -50,7 +50,7 @@ $DOC_ROOT = $ini->read_var( "eZContactMain", "DocumentRoot" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      $DOC_ROOT . "admin/intl", $Language, $language_file );
 $t->setAllStrings();
 

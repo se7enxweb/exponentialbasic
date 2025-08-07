@@ -106,8 +106,8 @@
 */
 
 
-include_once( "kernel/classes/ezlog.php" );
-include_once( "kernel/classes/INIFile.php" );
+// include_once( "kernel/classes/ezlog.php" );
+// include_once( "kernel/classes/INIFile.php" );
 
 class eZDB
 {
@@ -130,32 +130,34 @@ class eZDB
       Returns a reference to the global database object, if it doesn't exists it is initialized.
       This is safe to call without an object since it does not access member variables.
     */
-    static public function &globalDatabase(  )
+    static public function &globalDatabase()
     {
         $impl =& $GLOBALS["eZDB"];
-	if( !$impl === null )
-	{
-            $class = strtolower( get_class( $impl ) );
-	}
-	else
-	{
-	    $class = false;
-	}
+
+        if( !$impl === null )
+        {
+                $class = strtolower( get_class( $impl ) );
+        }
+        else
+        {
+            $class = false;
+        }
+
         if ( $impl == null || !preg_match( "/ez.+?db/", $class ) )
         {
-            $ini =& INIFile::globalINI();
+            $ini =& eZINI::instance( 'site.ini' );
 
-            $server =& $ini->read_var( "site", "Server" );
-            $db =& $ini->read_var( "site", "Database" );
-            $user =& $ini->read_var( "site", "User" );
-            $password =& $ini->read_var( "site", "Password" );
-            $databaseImplementation =& $ini->read_var( "site", "DatabaseImplementation" );
+            $server =& $ini->variable( "site", "Server" );
+            $db =& $ini->variable( "site", "Database" );
+            $user =& $ini->variable( "site", "User" );
+            $password =& $ini->variable( "site", "Password" );
+            $databaseImplementation =& $ini->variable( "site", "DatabaseImplementation" );
 
             switch ( $databaseImplementation )
             {
                 case "mysql" :
                 {
-                    include_once( "kernel/classes/ezmysqldb.php" );
+                    //include_once( "kernel/classes/ezmysqldb.php" );
 
                     $impl = new eZMySQLDB( $server, $db, $user, $password );
                 }
@@ -163,7 +165,7 @@ class eZDB
 
                 case "postgresql" :
                 {
-                    include_once( "kernel/classes/ezpostgresqldb.php" );
+                    // include_once( "kernel/classes/ezpostgresqldb.php" );
 
                     $impl = new eZPostgreSQLDB( $server, $db, $user, $password );
                 }
@@ -171,7 +173,7 @@ class eZDB
 
                 case "informix" :
                 {
-                    include_once( "kernel/classes/ezinformixdb.php" );
+                    // include_once( "kernel/classes/ezinformixdb.php" );
                     $impl = new eZInformixDB( $server, $db, $user, $password );
                 }
                 break;
@@ -184,7 +186,6 @@ class eZDB
             }
         }
 
-
         return $impl;
     }
 
@@ -195,6 +196,7 @@ class eZDB
     static public function finish( &$resultArray, &$db )
     {
         $db->unlock();
+
         if ( !is_array( $resultArray ) )
             $resultArray = array( $resultArray );
 

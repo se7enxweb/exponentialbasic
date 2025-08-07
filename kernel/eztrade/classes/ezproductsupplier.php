@@ -58,7 +58,7 @@ class eZProductSupplier
     */
     function &urlList( $type, $category = 0, $offset = 0 )
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $ret = false;
         switch( $type )
         {
@@ -66,7 +66,7 @@ class eZProductSupplier
             {
                 include_once( "eztrade/classes/ezproduct.php" );
                 include_once( "eztrade/classes/ezproductcategory.php" );
-                $limit = $ini->read_var( "eZTradeMain", "ProductLimit" );
+                $limit = $ini->variable( "eZTradeMain", "ProductLimit" );
                 $cat = new eZProductCategory( $category );
                 $categories = $cat->getByParent( $cat );
                 $products = $cat->products( "alpha", false, $offset, $limit );

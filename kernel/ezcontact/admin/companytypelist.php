@@ -29,10 +29,10 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$MaxCompanyList = $ini->read_var( "eZContactMain", "MaxCompanyList" );
-$CompanyOrder = $ini->read_var( "eZContactMain", "CompanyOrder" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
+$MaxCompanyList = $ini->variable( "eZContactMain", "MaxCompanyList" );
+$CompanyOrder = $ini->variable( "eZContactMain", "CompanyOrder" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlist.php" );
@@ -76,7 +76,7 @@ if ( !$type->id() && $TypeID != 0 )
 }
 else
 {
-    $t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+    $t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                          "kernel/ezcontact/admin/intl/", $Language, "companytype.php" );
     $t->setAllStrings();
 
@@ -201,8 +201,8 @@ else
 
     if ( is_numeric( $ImageID ) && $ImageID != 0 )
     {
-        $imageWidth = $ini->read_var( "eZContactMain", "CategoryImageWidth" );
-        $imageHeight = $ini->read_var( "eZContactMain", "CategoryImageHeight" );
+        $imageWidth = $ini->variable( "eZContactMain", "CategoryImageWidth" );
+        $imageHeight = $ini->variable( "eZContactMain", "CategoryImageHeight" );
 
         $image = new eZImage( $ImageID );
 

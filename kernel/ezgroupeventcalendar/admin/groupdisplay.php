@@ -56,7 +56,7 @@ elseif( !isset( $NoDisplayIDArray ) && isset( $Store ) )
 	$nodisplay->dumpTable();
 }
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->read_var( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/admin/" . $ini->variable( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
                      "kernel/ezgroupeventcalendar/admin/intl", $Language, "groupdisplay.php" );
 
 $locale = new eZLocale( $Language ); 

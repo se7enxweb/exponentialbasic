@@ -100,10 +100,10 @@ elseif ( isset( $Action ) && $Action != "Insert" )
     $game = false;
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZQuizMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZQuizMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezquiz/admin/" . $ini->read_var( "eZQuizMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezquiz/admin/" . $ini->variable( "eZQuizMain", "AdminTemplateDir" ),
                      "kernel/ezquiz/admin/intl", $Language, "gameedit.php" );
 $t->setAllStrings();
 

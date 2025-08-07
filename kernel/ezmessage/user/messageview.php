@@ -30,10 +30,10 @@
 
 // include_once( "ezmessage/classes/ezmessage.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMessageMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMessageMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmessage/user/" . $ini->read_var( "eZMessageMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmessage/user/" . $ini->variable( "eZMessageMain", "TemplateDir" ),
                      "kernel/ezmessage/user/intl", $Language, "messageview.php" );
 
 $locale = new eZLocale( $Language ); 

@@ -179,7 +179,7 @@ class eZModule
         if ( $returnOnlyActive == true )
         {
             $modules = array();
-            $ini =& INIFile::globalINI();
+            $ini =& eZINI::instance( 'site.ini' );
             foreach ( $ini->read_array( "site", "EnabledModules") as $mod)
             {
                 $modules[] = "'" . $db->escapeString( $mod ) . "'";

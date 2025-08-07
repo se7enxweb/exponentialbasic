@@ -38,9 +38,9 @@ if ( isset( $ItemArrayID ) and is_array( $ItemArrayID ) )
 
 $page_path = "/address/onlinetype";
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZAddressMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZAddressMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZAddressMain", "DocumentRoot" );
 
 // include_once( "classes/eztemplate.php" );
 
@@ -51,7 +51,7 @@ $DOC_ROOT = $ini->read_var( "eZAddressMain", "DocumentRoot" );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZAddressMain", "AdminTemplateDir" ),
+$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->variable( "eZAddressMain", "AdminTemplateDir" ),
                      $DOC_ROOT . "admin/intl", $Language, $language_file );
 $t->setAllStrings();
 

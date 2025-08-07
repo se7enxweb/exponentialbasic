@@ -1,7 +1,7 @@
 <?php
 
 #########################################################
-#    Copyright © EliteWeaver UK All rights reserved.    #
+#    Copyright ï¿½ EliteWeaver UK All rights reserved.    #
 #########################################################
 #                                                       #
 #  Program         : IPN Development Handler            #
@@ -10,7 +10,7 @@
 #  Function        : Skeleton IPN Handler               #
 #  Version         : 2.0                                #
 #  Last Modified   : 10/04/2003                         #
-#  Copyright ©     : EliteWeaver UK                     #
+#  Copyright ï¿½     : EliteWeaver UK                     #
 #                                                       #
 #########################################################
 #    THIS SCRIPT IS FREEWARE AND IS NOT FOR RE-SALE!    #
@@ -22,7 +22,7 @@
 # script, documentation and/or any other materials that #
 # may  have been provided in the original distribution. #
 #########################################################
-#    Copyright © EliteWeaver UK All rights reserved.    #
+#    Copyright ï¿½ EliteWeaver UK All rights reserved.    #
 #########################################################
 
 // include_once( "classes/ezlog.php" );
@@ -33,9 +33,9 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "ezmail/classes/ezmail.php" );
 
-$PaypalEmail = $ini->read_var( "Checkout", "PaypalEmail" );
-$PaypalMode = $ini->read_var( "Checkout", "PaypalMode" );
-$SiteURL = $ini->read_var( "Site", "SiteURL" );
+$PaypalEmail = $ini->variable( "Checkout", "PaypalEmail" );
+$PaypalMode = $ini->variable( "Checkout", "PaypalMode" );
+$SiteURL = $ini->variable( "Site", "SiteURL" );
 
 // IPN validation modes, choose: 1, 2, or 3
 
@@ -297,7 +297,7 @@ if ( $orderID != "" && is_numeric($orderID) )
 	}
 
 $mail = new eZMail();
-$mail->setFrom( $ini->read_var( "eZTradeMain", "OrderSenderEmail" ) );
+$mail->setFrom( $ini->variable( "eZTradeMain", "OrderSenderEmail" ) );
 $mail->setTo( $PaypalEmail );
 $mail->setSubject( "Paypal payment warning from ".$SiteURL );
 $mail->setBody( $warningMail );
@@ -378,7 +378,7 @@ $paypal->store();
 		}
 	
 	$mail = new eZMail();
-	$mail->setFrom( $ini->read_var( "eZTradeMain", "OrderSenderEmail" ) );
+	$mail->setFrom( $ini->variable( "eZTradeMain", "OrderSenderEmail" ) );
 	$mail->setTo( $PaypalEmail );
 	$mail->setSubject( "Warning: INVALID payment attempt at ".$SiteURL );
 	$mail->setBody( $warningMail );
@@ -442,7 +442,7 @@ function debugInfo()
 	@header('Pragma: no-cache'."\r\n");
 	@header('Expires: 0'."\r\n\r\n");
 	echo '#########################################################'."\r\n";
-	echo '#    Copyright © EliteWeaver UK All rights reserved.    #'."\r\n";
+	echo '#    Copyright ï¿½ EliteWeaver UK All rights reserved.    #'."\r\n";
 	echo '#########################################################'."\r\n";
 	echo '#              END USER LICENCE AGREEMENT               #'."\r\n";
 	echo '# Redistribution and  use in source and/or binary forms #'."\r\n";
@@ -506,7 +506,7 @@ function debugInfo()
 
 
 #########################################################
-#    Copyright © EliteWeaver UK All rights reserved.    #
+#    Copyright ï¿½ EliteWeaver UK All rights reserved.    #
 #########################################################
 #              END USER LICENCE AGREEMENT               #
 # Redistribution and  use in source and/or binary forms #

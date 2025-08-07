@@ -54,14 +54,14 @@ function shortenText($text, $chars=25) {
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$SiteDesign = $ini->read_var( "site", "SiteDesign" );
-$Language   = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
-$Sitedesign = $ini->read_var( "site", "SiteDesign" );
-$TruncateTitle = $ini->read_var( "eZGroupEventCalendarMain", "TruncateTitle" );
-$TruncateTitleSize = $ini->read_var( "eZGroupEventCalendarMain", "TruncateTitleSize" );
+$SiteDesign = $ini->variable( "site", "SiteDesign" );
+$Language   = $ini->variable( "eZGroupEventCalendarMain", "Language" );
+$Sitedesign = $ini->variable( "site", "SiteDesign" );
+$TruncateTitle = $ini->variable( "eZGroupEventCalendarMain", "TruncateTitle" );
+$TruncateTitleSize = $ini->variable( "eZGroupEventCalendarMain", "TruncateTitleSize" );
 
-$TemplateDir = $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
-$GlobalSectionID = $ini->read_var( "eZGroupEventCalendarMain", "DefaultSection" );
+$TemplateDir = $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" );
+$GlobalSectionID = $ini->variable( "eZGroupEventCalendarMain", "DefaultSection" );
 
 $Locale     = new eZLocale( $Language );
 
@@ -155,10 +155,10 @@ if ( $templateDirTmp != null && trim( $templateDirTmp ) != "" )
 }
 else
 {
-    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" );
+    $TemplateDir = "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" );
 }
 
-//$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "TemplateDir" ),
+//$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "TemplateDir" ),
 $t = new eZTemplate(  $TemplateDir,
                      "kernel/ezgroupeventcalendar/user/intl", $Language, "monthview.php",
                      "default", "kernel/ezgroupeventcalendar" . "/user", "$Year-$zMonth-$GetByGroupID" . $isMyCalendar );

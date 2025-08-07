@@ -60,8 +60,8 @@
 // include_once( "kernel/classes/ezhttptool.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( $INIGroup, "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( $INIGroup, "Language" );
 $Modules = $ini->read_array( $INIGroup, "ModuleList" );
 
 if ( !isset( $ClientRoot ) )
@@ -79,7 +79,7 @@ foreach( $Modules as $module )
 {
     $dir = strtolower( "kernel/" . $module ) . "/user/intl/";
     $file = strtolower( "kernel/" . $module ) . "/user/urlsupplier.php";
-    if ( eZFile::file_exists( $file ) )
+    if ( file_exists( $file ) )
     {
         $intl_dirs[] = $dir;
         $php_files[] = "urlsupplier.php";
@@ -121,7 +121,7 @@ if ( isset( $ItemInsert ) )
         default:
         {
             $file = $module_lower . "/user/urlsupplier.php";
-            if ( eZFile::file_exists( $file ) )
+            if ( file_exists( $file ) )
             {
                 unset( $Supplier );
                 include( $file );
@@ -164,7 +164,7 @@ if ( isset( $ItemInsert ) )
     }
 }
 
-$t = new eZTemplate( $ClientRoot . $ini->read_var( $INIGroup, "AdminTemplateDir" ),
+$t = new eZTemplate( $ClientRoot . $ini->variable( $INIGroup, "AdminTemplateDir" ),
                      $intl_dirs, $Language, $php_files );
 
 $t->set_file( "link_list_tpl", "linklist.tpl" );
@@ -192,7 +192,7 @@ foreach( $Modules as $module )
 {
     $module_lower = strtolower( $module );
     $file = $module_lower . "/user/urlsupplier.php";
-    if ( eZFile::file_exists( $file ) )
+    if ( file_exists( $file ) )
     {
         unset( $Supplier );
         include( $file );

@@ -31,8 +31,8 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 $move_item = true;
 
 // include_once( "eztrade/classes/ezvoucher.php" );
@@ -69,7 +69,7 @@ if ( isset( $Action ) && $Action == "Delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "voucherview.php" );
 
 $t->setAllStrings();

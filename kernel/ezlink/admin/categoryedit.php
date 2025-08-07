@@ -26,8 +26,8 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZLinkMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZLinkMain", "Language" );
 $error = new INIFIle( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 $error_msg = false;
 
@@ -123,12 +123,12 @@ if ( isset( $Action ) && $Action == "insert" )
         }
         else
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
     {
-        $error_msg = $error->read_var( "strings", "error_norights" );
+        $error_msg = $error->variable( "strings", "error_norights" );
         eZHTTPTool::header( "Location: /link/norights" );
         exit();
     }
@@ -255,7 +255,7 @@ if ( isset( $Action ) && $Action == "update" )
         }
         else
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -264,7 +264,7 @@ if ( isset( $Action ) && $Action == "update" )
     }
 }
 
-$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->variable( "eZLinkMain", "AdminTemplateDir" ),
                      "kernel/ezlink/admin/" . "/intl/", $Language, "categoryedit.php" );
 $t->setAllStrings();
 
@@ -273,7 +273,7 @@ $t->set_file( array(
     ));
 
 $languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/categoryedit.php.ini", false );
-$headline = $languageIni->read_var( "strings", "headline_insert" );
+$headline = $languageIni->variable( "strings", "headline_insert" );
 
 $t->set_block( "category_edit", "section_item_tpl", "section_item" );
 $t->set_block( "category_edit", "parent_category_tpl", "parent_category" );
@@ -308,7 +308,7 @@ if ( $Action == "new" )
 if ( $Action == "edit" )
 {
     $languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/categoryedit.php.ini", false );
-    $headline = $languageIni->read_var( "strings", "headline_edit" );
+    $headline = $languageIni->variable( "strings", "headline_edit" );
 
     if ( !eZPermission::checkPermission( $user, "eZLink", "LinkCategoryModify" ) )
     {
@@ -330,8 +330,8 @@ if ( $Action == "edit" )
 
         if ( is_a( $image, "eZImage" ) && $image->id() != 0 )
         {
-            $imageWidth =& $ini->read_var( "eZLinkMain", "CategoryImageWidth" );
-            $imageHeight =& $ini->read_var( "eZLinkMain", "CategoryImageHeight" );
+            $imageWidth =& $ini->variable( "eZLinkMain", "CategoryImageWidth" );
+            $imageHeight =& $ini->variable( "eZLinkMain", "CategoryImageHeight" );
 
             $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 

@@ -5,10 +5,10 @@
     // include_once( "ezsurvey/classes/ezquestion.php" );
     // include_once( "ezsurvey/classes/ezquestionchoice.php" );
     
-    $ini =& INIFile::globalINI();
-    $Language = $ini->read_var( "eZSurveyMain", "Language" );
+    $ini =& eZINI::instance( 'site.ini' );
+    $Language = $ini->variable( "eZSurveyMain", "Language" );
     
-    $t = new eZTemplate( "kernel/ezsurvey/admin/" . $ini->read_var( "eZSurveyMain", "AdminTemplateDir" ),
+    $t = new eZTemplate( "kernel/ezsurvey/admin/" . $ini->variable( "eZSurveyMain", "AdminTemplateDir" ),
                          "kernel/ezsurvey/admin/intl", $Language, "values.php" );
                          
     

@@ -34,14 +34,14 @@
 // include_once( "ezmail/classes/ezmail.php" );
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
-$ForceCategoryDefinition = $ini->read_var( "eZArticleMain", "ForceCategoryDefinition" );
-$TemplateDir = $ini->read_var( "eZArticleMain", "TemplateDir" );
-$CapitalizeHeadlines = $ini->read_var( "eZArticleMain", "CapitalizeHeadlines" );
-$ListImageWidth = $ini->read_var( "eZArticleMain", "ListImageWidth" );
-$ListImageHeight = $ini->read_var( "eZArticleMain", "ListImageHeight" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
+$ForceCategoryDefinition = $ini->variable( "eZArticleMain", "ForceCategoryDefinition" );
+$TemplateDir = $ini->variable( "eZArticleMain", "TemplateDir" );
+$CapitalizeHeadlines = $ini->variable( "eZArticleMain", "CapitalizeHeadlines" );
+$ListImageWidth = $ini->variable( "eZArticleMain", "ListImageWidth" );
+$ListImageHeight = $ini->variable( "eZArticleMain", "ListImageHeight" );
 
 if ( !is_numeric( $ArticleID ) )
 {
@@ -92,7 +92,7 @@ $sectionOverride = "_sectionoverride_$GlobalSectionID";
 
 if ( $StaticPage == true )
 {
-    if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/articlestatic" . $override  . ".tpl" ) )
+    if ( file_exists( "kernel/ezarticle/user/$TemplateDir/articlestatic" . $override  . ".tpl" ) )
         $t->set_file( "article_view_page_tpl", "articlestatic" . $override  . ".tpl"  );
     else
         $t->set_file( "article_view_page_tpl", "articlestatic.tpl"  );
@@ -106,14 +106,14 @@ else
     else
     {
         // category override
-        if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/articleview" . $override  . ".tpl" ) )
+        if ( file_exists( "kernel/ezarticle/user/$TemplateDir/articleview" . $override  . ".tpl" ) )
         {
             $t->set_file( "article_view_page_tpl", "articleview" . $override  . ".tpl"  );
         }
         else
         {
             // section override
-            if ( eZFile::file_exists( "kernel/ezarticle/user/$TemplateDir/articleview" . $sectionOverride  . ".tpl" ) )
+            if ( file_exists( "kernel/ezarticle/user/$TemplateDir/articleview" . $sectionOverride  . ".tpl" ) )
             {
                 $t->set_file( "article_view_page_tpl", "articleview" . $sectionOverride  . ".tpl"  );
             }
@@ -158,8 +158,8 @@ $t->set_block( "type_item_tpl", "attribute_item_tpl", "attribute_item" );
 $t->set_block( "section_item_tpl", "link_item_tpl", "link_item" );
 
 // read user override variables for image size
-$ListImageWidth = $ini->read_var( "eZArticleMain", "ListImageWidth" );
-$ListImageHeight = $ini->read_var( "eZArticleMain", "ListImageHeight" );
+$ListImageWidth = $ini->variable( "eZArticleMain", "ListImageWidth" );
+$ListImageHeight = $ini->variable( "eZArticleMain", "ListImageHeight" );
 
 // Make the manual keywords available in the articleview template
 $ManualKeywords =& $article->manualKeywords();
@@ -179,7 +179,7 @@ if ( $listImageHeightOverride )
 }
 
 
-$SiteURL = $ini->read_var( "site", "UserSiteURL" );
+$SiteURL = $ini->variable( "site", "UserSiteURL" );
 
 $t->set_var( "article_url", $SiteURL . $_SERVER['REQUEST_URI'] );
 $t->set_var( "article_url_item", "" );
@@ -224,8 +224,8 @@ if ( $article->get( $ArticleID ) )
 
     if ( is_a( $image, "eZImage" ) && ( $image->id() != 0 ) )
     {
-        $imageWidth =& $ini->read_var( "eZArticleMain", "CategoryImageWidth" );
-        $imageHeight =& $ini->read_var( "eZArticleMain", "CategoryImageHeight" );
+        $imageWidth =& $ini->variable( "eZArticleMain", "CategoryImageWidth" );
+        $imageHeight =& $ini->variable( "eZArticleMain", "CategoryImageHeight" );
 
         $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 
@@ -632,7 +632,7 @@ else
 // as defined in the corresponding template block article_edit_tpl
 $currentuser =& eZUser::currentUser(); 
 $t->set_block( "article_view_page_tpl", "article_edit_tpl", "article_edit" ); 
-$editOwnArticle=$ini->read_var( "eZArticleMain", "UserEditOwnArticle" );
+$editOwnArticle=$ini->variable( "eZArticleMain", "UserEditOwnArticle" );
 
 //if ($currentuser->id() == $article->author(false) && $editOwnArticle == "enabled")
 if ( eZArticle::isAuthor($currentuser, $article->id()) && $editOwnArticle == "enabled")
@@ -658,7 +658,7 @@ $SiteKeywordsOverride  = str_replace( "qdom", "", $SiteKeywordsOverride );
 
 if ( isset( $GenerateStaticPage ) && $GenerateStaticPage == "true" )
 {
-    $fp = eZFile::fopen( $cachedFile, "w+");
+    $fp = eZPBFile::fopen( $cachedFile, "w+");
 
     // add PHP code in the cache file to store variables
     $output = "<?php\n";

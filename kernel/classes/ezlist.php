@@ -78,9 +78,9 @@ class eZList
         if ( isset( $params["ini"] ) )
             $ini =& $params["ini"];
         else
-            $ini =& INIFile::globalINI();
+            $ini =& eZINI::instance( 'site.ini' );
         if ( !is_a( $ini, "INIFile" ) )
-            $ini =& INIFile::globalINI();
+            $ini =& eZINI::instance( 'site.ini' );
 
         $module = $params["module"];
         $module_main = $params["module_main"];
@@ -92,15 +92,15 @@ class eZList
             $template_dir = "AdminTemplateDir";
         $language_file = $params["language_file"];
 
-        $Language = $ini->read_var( $module_main, "Language" );
-        // $DOC_ROOT = $ini->read_var( $module_main, "DocumentRoot" );
+        $Language = $ini->variable( $module_main, "Language" );
+        // $DOC_ROOT = $ini->variable( $module_main, "DocumentRoot" );
 
         // include_once( "kernel/classes/eztemplate.php" );
 
 	if ( !isset( $params["typelist"] ) )
-            $template_dir = "kernel/classes/" . $ini->read_var( "classes", $template_dir );
+            $template_dir = "kernel/classes/" . $ini->variable( "classes", $template_dir );
         else
-            $template_dir = "kernel/$module/$place/" . $ini->read_var( $module_main, $template_dir );
+            $template_dir = "kernel/$module/$place/" . $ini->variable( $module_main, $template_dir );
 
 
         if ( !isset( $params["template"] ) or !is_a( $params["template"], "eZTemplate" ) )

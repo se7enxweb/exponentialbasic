@@ -26,18 +26,18 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZPollMain", "Language" );
-$DOC_ROOT = $ini->read_var( "eZPollMain", "DocumentRoot" );
+$Language = $ini->variable( "eZPollMain", "Language" );
+$DOC_ROOT = $ini->variable( "eZPollMain", "DocumentRoot" );
 $errorIni = new INIFIle( "kernel/ezpoll/user/intl/" . $Language . "/pollist.php.ini", false );
 
-$noItem = $errorIni->read_var( "strings", "noitem" );
+$noItem = $errorIni->variable( "strings", "noitem" );
 
 // include_once( $DOC_ROOT . "/classes/ezpoll.php" );
 
 
-$t = new eZTemplate( "kernel/ezpoll/user/" . $ini->read_var( "eZPollMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezpoll/user/" . $ini->variable( "eZPollMain", "TemplateDir" ),
                      "kernel/ezpoll/user/intl/", $Language, "pollist.php" );
 
 $t->setAllStrings();
@@ -51,9 +51,9 @@ $t->set_block( "poll_list_page", "poll_item_tpl", "poll_item" );
 $poll = new eZPoll();
 $pollList = $poll->getAllActive( );
 
-$languageIni = new INIFile( "kernel/ezpoll/user/intl/" . $Language . "/pollist.php.ini", false );
-$nonActive =  $languageIni->read_var( "strings", "non_active" );
-$active =  $languageIni->read_var( "strings", "active" );
+$languageIni = new eZINI( "kernel/ezpoll/user/intl/" . $Language . "/pollist.php.ini", false );
+$nonActive =  $languageIni->variable( "strings", "non_active" );
+$active =  $languageIni->variable( "strings", "active" );
 
 if ( !$pollList )
 {

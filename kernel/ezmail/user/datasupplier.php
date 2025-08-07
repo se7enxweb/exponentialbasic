@@ -28,9 +28,9 @@
 // include_once( "ezmail/classes/ezmailfolder.php" );
 // include_once( "ezuser/classes/ezuser.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZMailMain", "DefaultSection" );
-$SiteDesign = $ini->read_var( "site", "SiteDesign" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZMailMain", "DefaultSection" );
+$SiteDesign = $ini->variable( "site", "SiteDesign" );
 
 switch ( $url_array[2] )
 {

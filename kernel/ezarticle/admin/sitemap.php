@@ -38,7 +38,7 @@
 // include_once( "ezarticle/classes/ezarticlegenerator.php" );
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "sitemap.php" );
 
 $t->setAllStrings();

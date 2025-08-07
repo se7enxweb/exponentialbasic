@@ -32,17 +32,17 @@ if ( isset( $Delete ) )
 {
     foreach ( $FileDeleteArray as $file )
     {
-        if ( eZFile::file_exists( "kernel/ezsitemanager/staticfiles/$file" ) )
+        if ( file_exists( "kernel/ezsitemanager/staticfiles/$file" ) )
         {
-            eZFile::unlink( "kernel/ezsitemanager/staticfiles/$file" );
+            eZPBFile::unlink( "kernel/ezsitemanager/staticfiles/$file" );
         }
     }
 
     foreach ( $ImageDeleteArray as $file )
     {
-        if ( eZFile::file_exists( "kernel/ezsitemanager/staticfiles/images/$file" ) )
+        if ( file_exists( "kernel/ezsitemanager/staticfiles/images/$file" ) )
         {
-            eZFile::unlink( "kernel/ezsitemanager/staticfiles/images/$file" );
+            eZPBFile::unlink( "kernel/ezsitemanager/staticfiles/images/$file" );
         }
     }
 }
@@ -66,10 +66,10 @@ if ( isset( $Upload ) )
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "filelist.php" );
 $t->setAllStrings();
 
@@ -83,7 +83,7 @@ $t->set_var( "image", "" );
 
 $t->set_var( "site_style", $SiteDesign );
 
-$dir = eZFile::dir( "kernel/ezsitemanager/staticfiles/" );
+$dir = eZPBFile::dir( "kernel/ezsitemanager/staticfiles/" );
 $ret = array();
 $i=0;
 
@@ -102,7 +102,7 @@ while ( $entry = $dir->read() )
     }
 }
 
-$dir = eZFile::dir( "kernel/ezsitemanager/staticfiles/images" );
+$dir = eZPBFile::dir( "kernel/ezsitemanager/staticfiles/images" );
 $ret = array();
 while ( $entry = $dir->read() )
 {

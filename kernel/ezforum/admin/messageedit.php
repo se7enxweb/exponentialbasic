@@ -25,9 +25,9 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezhttptool.php" );
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
+$Language = $ini->variable( "eZForumMain", "Language" );
 $error = new INIFIle( "kernel/ezforum/admin/intl/" . $Language . "/messageedit.php.ini", false );
 
 // include_once( "ezforum/classes/ezforummessage.php" );
@@ -72,7 +72,7 @@ if ( $Action == "update" )
         }
         else
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -100,7 +100,7 @@ if ( $Action == "delete" )
         }
         else
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
         }
     }
     else
@@ -134,14 +134,14 @@ if ( $Action == "DeleteMessages" )
     }
 }
 
-$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->read_var( "eZForumMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/admin/" . $ini->variable( "eZForumMain", "AdminTemplateDir" ),
 "kernel/ezforum/admin/" . "/intl", $Language, "messageedit.php" );
 $t->setAllStrings();
 
 $t->set_file( Array( "message_page" => "messageedit.tpl" ) );
 
-$languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/messageedit.php.ini", false );
-$headline =  $languageIni->read_var( "strings", "head_line_insert" );
+$languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/messageedit.php.ini", false );
+$headline =  $languageIni->variable( "strings", "head_line_insert" );
 
 $t->set_block( "message_page", "message_edit_tpl", "message_edit" );
 $locale = new eZLocale( $Language );
@@ -166,8 +166,8 @@ if ( $Action == "new" )
 
 if ( $Action == "edit" )
 {
-    $languageIni = new INIFile( "kernel/ezforum/admin/" . "intl/" . $Language . "/messageedit.php.ini", false );
-    $headline =  $languageIni->read_var( "strings", "head_line_edit" );
+    $languageIni = new eZINI( "kernel/ezforum/admin/" . "intl/" . $Language . "/messageedit.php.ini", false );
+    $headline =  $languageIni->variable( "strings", "head_line_edit" );
 
     if ( !eZPermission::checkPermission( $user, "eZForum", "MessageModify" ) )
     {
@@ -185,7 +185,7 @@ if ( $Action == "edit" )
         if ( $msg->userName() )
             $anonymous = $msg->userName();
         else
-            $anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+            $anonymous = $ini->variable( "eZForumMain", "AnonymousPoster" );
 
         if ( $author->id() == 0 )
         {

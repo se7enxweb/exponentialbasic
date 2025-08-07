@@ -31,15 +31,15 @@
 // include_once( "ezquiz/classes/ezquizgame.php" );
 // include_once( "ezquiz/classes/ezquizscore.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZQuizMain", "Language" );
-$ListLimit = $ini->read_var( "eZQuizMain", "ListLimit" );
+$Language = $ini->variable( "eZQuizMain", "Language" );
+$ListLimit = $ini->variable( "eZQuizMain", "ListLimit" );
 
-$intl = new INIFile( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
+$intl = new eZINI( "kernel/ezquiz/user/intl/". $Language . "/quiz.php.ini" );
 $Limit = $ListLimit;
 
-$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->read_var( "eZQuizMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezquiz/user/" . $ini->variable( "eZQuizMain", "TemplateDir" ),
                      "kernel/ezquiz/user/intl/", $Language, "quiz.php" );
 
 $t->set_file( "quiz_list_page_tpl", "quizlist.tpl" );
@@ -259,37 +259,37 @@ if ( $error )
     {
         case "list_empty":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_list_empty" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_list_empty" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
         case "future_empty":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_future_empty" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_future_empty" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
         case "past_empty":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_past_empty" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_past_empty" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
         case "open_empty":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_open_empty" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_open_empty" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
         case "closed_empty":
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_closed_empty" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_closed_empty" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;
         default:
         {
-            $t->set_var( "error_message", $intl->read_var( "strings", "error_undefined" ) );
+            $t->set_var( "error_message", $intl->variable( "strings", "error_undefined" ) );
             $t->parse( "error_item", "error_item_tpl" );
         }
         break;

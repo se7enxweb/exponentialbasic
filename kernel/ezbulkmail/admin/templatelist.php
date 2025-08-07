@@ -41,7 +41,7 @@ if( isset( $Delete ) && count( $TemplateArrayID ) > 0 )
         eZBulkMailTemplate::delete( $templateID );
 }
 
-$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->read_var( "eZBulkMailMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezbulkmail/admin/" . $ini->variable( "eZBulkMailMain", "AdminTemplateDir" ),
                      "kernel/ezbulkmail/admin/intl", $Language, "templatelist.php" );
 
 $t->set_file( array(

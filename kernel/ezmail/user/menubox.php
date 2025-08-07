@@ -27,7 +27,7 @@
 
 $ini =& $GLOBALS["GlobalSiteIni"];
 
-$Language = $ini->read_var( "eZMailMain", "Language" );
+$Language = $ini->variable( "eZMailMain", "Language" );
 
     
 // include_once( "classes/eztemplate.php" );
@@ -38,7 +38,7 @@ $Language = $ini->read_var( "eZMailMain", "Language" );
 $user =& eZUser::currentUser();
 if( $user )
 {
-    $t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                          "kernel/ezmail/user/intl", $Language, "menubox.php" );
 
     $t->setAllStrings();

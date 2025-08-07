@@ -24,9 +24,9 @@
 //
 
 // include_once( "classes/INIFile.php" );
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZContactMain", "Language" );
-$Max = $ini->read_var( "eZContactMain", "MaxPersonList" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZContactMain", "Language" );
+$Max = $ini->variable( "eZContactMain", "MaxPersonList" );
 
 if ( !is_numeric( $Max ) )
 {
@@ -37,7 +37,7 @@ if ( !is_numeric( $Max ) )
 // include_once( "classes/ezuritool.php" );
 // include_once( "classes/ezlist.php" );
 
-$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezcontact/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ),
                      "kernel/ezcontact/admin/intl", $Language, "personedit.php" );
 $t->setAllStrings();
 
@@ -224,8 +224,8 @@ else
         $image =& $persons[$i]->image();
         if ( get_class( $image ) == "ezimage" && $image->id() != 0 )
         {
-            $imageWidth =& $ini->read_var( "eZContactMain", "PersonlistImageWidth" );
-            $imageHeight =& $ini->read_var( "eZContactMain", "PersonlistImageHeight" );
+            $imageWidth =& $ini->variable( "eZContactMain", "PersonlistImageWidth" );
+            $imageHeight =& $ini->variable( "eZContactMain", "PersonlistImageHeight" );
             $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
             $imageURL = "/" . $variation->imagePath();
             $imageWidth = $variation->width();

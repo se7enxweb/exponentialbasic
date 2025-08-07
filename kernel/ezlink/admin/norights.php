@@ -27,11 +27,11 @@
 // include_once( "classes/ezdb.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini = INIFile::globalINI();
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-// $DOC_ROOT = $ini->read_var( "eZLinkMain", "DocumentRoot" );
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+// $DOC_ROOT = $ini->variable( "eZLinkMain", "DocumentRoot" );
 
-$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->variable( "eZLinkMain", "AdminTemplateDir" ),
 "kernel/ezlink/admin/" . "/intl", $Language, "noright.php" );
 $t->setAllStrings();
 

@@ -53,7 +53,7 @@ class Template {
    * root:   new template directory.
    */  
   function set_root($root) {
-    if (!eZFile::is_dir($root)) {
+    if (!eZPBFile::is_dir($root)) {
       $this->halt("set_root: $root is not a directory.");
       return false;
     }
@@ -317,7 +317,7 @@ class Template {
       $filename = $this->root."/".$filename;
     }
     
-    if (!eZFile::file_exists($filename))
+    if (!file_exists($filename))
       $this->halt("filename: file $filename does not exist.");
 
     return $filename;

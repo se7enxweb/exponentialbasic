@@ -66,7 +66,7 @@ if ( ( isset( $Store ) ) || ( isset( $NewAuthor ) ) ||( isset( $DeleteAuthor ) )
     }
 }
 
-$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->read_var( "eZUserMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/admin/" . $ini->variable( "eZUserMain", "AdminTemplateDir" ),
                      "kernel/ezuser/admin/intl", $Language, "authorlist.php" );
 
 $locale = new eZLocale( $Language ); 

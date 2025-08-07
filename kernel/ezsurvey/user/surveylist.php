@@ -7,8 +7,8 @@
     // include_once( "ezsurvey/classes/ezresponse.php" );
     // include_once( "ezsurvey/classes/ezresponsequestion.php" );
     
-    $ini = INIFile::globalINI();
-    $Language = $ini->read_var( "eZSurveyMain", "Language" );
+    $ini = eZINI::instance( 'site.ini' );
+    $Language = $ini->variable( "eZSurveyMain", "Language" );
     
     $SurveyID = $url_array[3];
     $Page = $url_array[4];
@@ -23,7 +23,7 @@
         $ResponseID = false;
     }
 
-    $t = new eZTemplate( "kernel/ezsurvey/user/" . $ini->read_var( "eZSurveyMain", "AdminTemplateDir" ),
+    $t = new eZTemplate( "kernel/ezsurvey/user/" . $ini->variable( "eZSurveyMain", "AdminTemplateDir" ),
                          "kernel/ezsurvey/user/intl", $Language, "surveylist.php" );
                          
     $t->set_file( "surveylist_tpl", "surveylist.tpl" );
@@ -121,7 +121,7 @@
                     {
                         if ( $question->isRequired() && $Value[$i] == "" )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "is_required" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "is_required" );
                         }
                         else
                         {
@@ -138,11 +138,11 @@
                     {
                         if ( $question->isRequired() && $Value[$i] == "" )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "is_required" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "is_required" );
                         }
                         elseif ( !is_numeric( $Value[$i] ) )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "not_a_number" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "not_a_number" );
                         }
                         else
                         {
@@ -161,11 +161,11 @@
                         
                         if ( $question->isRequired() && $Value[$i] == "" )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "is_required" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "is_required" );
                         }
                         elseif ( $Value[$i] != "" && ( count($data_array) != "3" || !checkdate( $data_array[1], $data_array[0], $data_array[2] ) ) )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "not_a_date" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "not_a_date" );
                         }
                         else
                         {
@@ -182,7 +182,7 @@
                     {
                         if ( $question->isRequired() && count($Value[$i][0]) == 0 )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "is_required" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "is_required" );
                         }
                         else
                         {
@@ -200,7 +200,7 @@
                     {
                         if ( $question->isRequired() && count($Value[$i][0]) == 0 )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "is_required" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "is_required" );
                         }
                         else
                         {
@@ -229,7 +229,7 @@
                     {
                         if ( $question->isRequired() && count($Value[$i]) != count($Rank[$i]) )
                         {
-                            $errorMessages[] = $question->content() . " " . $t->Ini->read_var( "strings", "is_required" );
+                            $errorMessages[] = $question->content() . " " . $t->Ini->variable( "strings", "is_required" );
                         }
                         elseif ( count($Value[$i]) > 0 )
                         {
@@ -684,7 +684,7 @@
         $t->set_var( "title", "" );
         $t->set_var( "info", "" );
         
-        $t->set_var( "error_message", $t->Ini->read_var( "strings", "no_such_survey" ) );
+        $t->set_var( "error_message", $t->Ini->variable( "strings", "no_such_survey" ) );
         $t->parse( "error_item", "error_item_tpl", true );
         $t->parse( "error_list", "error_list_tpl" );
     }

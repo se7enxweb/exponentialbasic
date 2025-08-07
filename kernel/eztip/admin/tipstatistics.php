@@ -35,12 +35,12 @@
 // include_once( "eztip/classes/eztipcategory.php" );
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTipMain", "Language" );
-$ImageDir = $ini->read_var( "eZTipMain", "ImageDir" );
+$Language = $ini->variable( "eZTipMain", "Language" );
+$ImageDir = $ini->variable( "eZTipMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/eztip/admin/" . $ini->read_var( "eZTipMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztip/admin/" . $ini->variable( "eZTipMain", "AdminTemplateDir" ),
                      "kernel/eztip/admin/intl/", $Language, "tipstatistics.php" );
 
 $t->setAllStrings();

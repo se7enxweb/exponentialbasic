@@ -41,9 +41,9 @@ if ( isset( $Cancel ) )
 // include_once( "ezarticle/classes/ezarticlegenerator.php" );
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 // include_once( "ezarticle/classes/ezarticlecategory.php" );
 
@@ -103,7 +103,7 @@ if ( $Action == "insert" && !$error )
     }
 
     //EP: CategoryDescriptionXML=enabled, description go in XML -------------------
-    if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
+    if ( $ini->variable( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
     {
 
         $generator = new eZArticleGenerator();
@@ -247,7 +247,7 @@ if ( isset( $Action ) && $Action == "update" && !$error )
     }
 
     //EP: CategoryDescriptionXML=enabled, description go in XML -------------------
-    if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
+    if ( $ini->variable( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
     {
 
 //    $category->setDescription( htmlspecialchars ($Description) );
@@ -405,7 +405,7 @@ if ( $Action == "delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "categoryedit.php" );
 
 $t->setAllStrings();
@@ -465,7 +465,7 @@ if ( $Action == "edit" )
     $t->set_var( "list_limit_value", $category->listLimit() ? $category->listLimit() : "" );
 
     //EP: CategoryDescriptionXML=enabled, description go in XML -------------------------
-    if ( $ini->read_var( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
+    if ( $ini->variable( "eZArticleMain", "CategoryDescriptionXML" ) == "enabled" )
     {
         $generator = new eZArticleGenerator();
         $desc1 = $generator->decodeXML( $category->description( false ) );
@@ -489,8 +489,8 @@ if ( $Action == "edit" )
     $image =& $category->image();
     if ( is_a( $image, "eZImage" ) && $image->id() != 0 )
     {
-        $imageWidth =& $ini->read_var( "eZArticleMain", "CategoryImageWidth" );
-        $imageHeight =& $ini->read_var( "eZArticleMain", "CategoryImageHeight" );
+        $imageWidth =& $ini->variable( "eZArticleMain", "CategoryImageWidth" );
+        $imageHeight =& $ini->variable( "eZArticleMain", "CategoryImageHeight" );
 
         $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 

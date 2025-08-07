@@ -31,9 +31,9 @@
 // include_once( "ezarticle/classes/ezarticleform.php" );
 
 $ActionValue = "list";
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFormMain", "Language" );
+$Language = $ini->variable( "eZFormMain", "Language" );
 
 $article = new eZArticle( $ArticleID );
 $selectedForm = eZArticleForm::articleHasForm( $article );
@@ -53,7 +53,7 @@ if( isset( $OK ) )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "formlist.php" );
 $t->setAllStrings();
 

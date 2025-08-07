@@ -31,8 +31,8 @@
 // include_once( "classes/ezhttptool.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
-$Language = $ini->read_var( "eZLinkMain", "Language" );
-$error = new INIFile( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
+$Language = $ini->variable( "eZLinkMain", "Language" );
+$error = new eZINI( "kernel/ezuser/admin/intl/" . $Language . "/useredit.php.ini", false );
 $error_msg = false;
 // include_once( "classes/eztemplate.php" );
 
@@ -158,8 +158,8 @@ if ( isset( $GetSite ) && $GetSite )
         }
         /* else if( count( $metaList ) == 0 )
         {
-            $inierror = new INIFile( "kernel/ezlink/user/" . "/intl/" . $Language . "/suggestlink.php.ini", false );
-            $terror_msg = $inierror->read_var( "strings", "nometa" );
+            $inierror = new eZINI( "kernel/ezlink/user/" . "/intl/" . $Language . "/suggestlink.php.ini", false );
+            $terror_msg = $inierror->variable( "strings", "nometa" );
         } */
         if ( $metaList["description"] )
             $tdescription = $metaList["description"];
@@ -308,7 +308,7 @@ if ( $Action == "update" )
         }
         else
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
             $action_value = "edit";
 
             $tname = $Name;
@@ -473,7 +473,7 @@ if ( $Action == "insert" )
         }
         else if ( !isset( $Update ) && !isset( $GetSite ) )
         {
-            $error_msg = $error->read_var( "strings", "error_missingdata" );
+            $error_msg = $error->variable( "strings", "error_missingdata" );
             $action_value = "new";
 
             $tname = $Name;
@@ -490,7 +490,7 @@ if ( $Action == "insert" )
 
 // set the template files.
 
-$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->read_var( "eZLinkMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezlink/admin/" . $ini->variable( "eZLinkMain", "AdminTemplateDir" ),
 "kernel/ezlink/admin/" . "/intl", $Language, "linkedit.php" );
 $t->setAllStrings();
 
@@ -510,7 +510,7 @@ $t->set_block( "attribute_list_tpl", "attribute_tpl", "attribute" );
 
 
 $languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/linkedit.php.ini", false );
-$headline = $languageIni->read_var( "strings", "headline_insert" );
+$headline = $languageIni->variable( "strings", "headline_insert" );
 
 $linkselect = new eZLinkCategory();
 
@@ -533,7 +533,7 @@ if ( $Action == "edit" )
 {
 
     $languageIni = new INIFIle( "kernel/ezlink/admin/intl/" . $Language . "/linkedit.php.ini", false );
-    $headline =  $languageIni->read_var( "strings", "headline_edit" );
+    $headline =  $languageIni->variable( "strings", "headline_edit" );
 
     if ( !eZPermission::checkPermission( $user, "eZLink", "LinkModify" ) )
     {
@@ -575,8 +575,8 @@ if ( $Action == "edit" )
 
         if ( $image )
         {
-            $imageWidth =& $ini->read_var( "eZLinkMain", "CategoryImageWidth" );
-            $imageHeight =& $ini->read_var( "eZLinkMain", "CategoryImageHeight" );
+            $imageWidth =& $ini->variable( "eZLinkMain", "CategoryImageWidth" );
+            $imageHeight =& $ini->variable( "eZLinkMain", "CategoryImageHeight" );
 
             $variation =& $image->requestImageVariation( $imageWidth, $imageHeight );
 

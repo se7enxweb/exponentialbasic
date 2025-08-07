@@ -27,12 +27,12 @@
 // include_once( "classes/INIFile.php" );
 
 //$ini = new INIFIle( "site.ini");
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTodoMain", "Language" );
-$NotDoneID = $ini->read_var( "eZTodoMain", "NotDoneID" );
+$Language = $ini->variable( "eZTodoMain", "Language" );
+$NotDoneID = $ini->variable( "eZTodoMain", "NotDoneID" );
 
-$iniLanguage = new INIFile( "kernel/eztodo/user/intl/$Language/todolist.php.ini", false );
+$iniLanguage = new eZINI( "kernel/eztodo/user/intl/$Language/todolist.php.ini", false );
 
 // include_once( "classes/eztemplate.php" );
 
@@ -41,7 +41,7 @@ $iniLanguage = new INIFile( "kernel/eztodo/user/intl/$Language/todolist.php.ini"
 
 $user =& eZUser::currentUser();
 
-$t = new eZTemplate( "kernel/eztodo/user/" . $ini->read_var( "eZTodoMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztodo/user/" . $ini->variable( "eZTodoMain", "TemplateDir" ),
                      "kernel/eztodo/user/intl/", $Language, "todomenulist.php" );
 $t->setAllStrings();
 $t->set_file( "todo_list_page", "todomenulist.tpl" );

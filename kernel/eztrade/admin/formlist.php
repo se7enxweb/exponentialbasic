@@ -31,9 +31,9 @@
 // include_once( "eztrade/classes/ezproductform.php" );
 
 $ActionValue = "list";
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZFormMain", "Language" );
+$Language = $ini->variable( "eZFormMain", "Language" );
 
 $product = new eZProduct( $ProductID );
 $selectedForm =& eZProductForm::productHasForm( $product );
@@ -53,7 +53,7 @@ if( isset( $OK ) )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "formlist.php" );
 $t->setAllStrings();
 

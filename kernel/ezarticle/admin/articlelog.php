@@ -29,7 +29,7 @@
 // include_once( "classes/INIFile.php" );
 
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl", $Language, "articlelog.php" );
 
 $locale = new eZLocale( $Language ); 

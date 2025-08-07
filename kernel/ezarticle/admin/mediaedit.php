@@ -33,8 +33,8 @@
 // include_once( "ezmediacatalogue/classes/ezmediatype.php" );
 // include_once( "ezuser/classes/ezauthor.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZArticleMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZArticleMain", "Language" );
 
 // include_once( "ezarticle/classes/ezarticlecategory.php" );
 // include_once( "ezarticle/classes/ezarticle.php" );
@@ -131,7 +131,7 @@ if ( isset ( $DeleteSelected ) )
     }
 }
 
-$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->read_var( "eZArticleMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezarticle/admin/" . $ini->variable( "eZArticleMain", "AdminTemplateDir" ),
                      "kernel/ezarticle/admin/intl/", $Language, "mediaedit.php" );
 
 $t->setAllStrings();
@@ -174,14 +174,14 @@ if ( is_numeric( $MediaID ) )
     if ( $media->fileExists( true ) )
     {
         $mediaPath =& $media->filePath( true );
-        $size = eZFile::filesize( $mediaPath );
+        $size = eZPBFile::filesize( $mediaPath );
     }
     else
     {
         $size = 0;
     }
 
-    $size = eZFile::siFileSize( $size );
+    $size = eZPBFile::siFileSize( $size );
 
     $t->set_var( "media_size", $size["size-string"] );
     $t->set_var( "media_unit", $size["unit"] );

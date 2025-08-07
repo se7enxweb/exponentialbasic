@@ -24,10 +24,10 @@
 //
 
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$GlobalSectionID = $ini->read_var( "site", "DefaultSection" );
-$PageCaching = $ini->read_var( "eZNewsfeedMain", "PageCaching" );
+$GlobalSectionID = $ini->variable( "site", "DefaultSection" );
+$PageCaching = $ini->variable( "eZNewsfeedMain", "PageCaching" );
 
 switch ( $url_array[2] )
 {
@@ -42,7 +42,7 @@ switch ( $url_array[2] )
             $CategoryID = $url_array[3];
             $cachedFile = "eznewsfeed/cache/latestnews," . $CategoryID . ".cache";
 
-            if ( eZFile::file_exists( $cachedFile ) )
+            if ( file_exists( $cachedFile ) )
             {
                 include( $cachedFile );
             }

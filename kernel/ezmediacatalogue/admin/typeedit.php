@@ -35,8 +35,8 @@ if ( isset( $Cancel ) )
 // include_once( "classes/eztemplate.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMediaCatalogueMain", "Language" );
 $move_item = true;
 
 // include_once( "ezmediacatalogue/classes/ezmediatype.php" );
@@ -134,7 +134,7 @@ if ( isset( $Action ) && $Action == "Delete" )
     exit();
 }
 
-$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->variable( "eZMediaCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezmediacatalogue/admin/intl/", $Language, "typeedit.php" );
 
 $t->setAllStrings();

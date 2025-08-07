@@ -31,7 +31,7 @@
 // include_once( "ezmessage/classes/ezmessage.php" );
 
 
-$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->read_var( "eZMessageMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->variable( "eZMessageMain", "AdminTemplateDir" ),
                      "kernel/ezmessage/admin/intl", $Language, "messagelist.php" );
 
 $locale = new eZLocale( $Language ); 

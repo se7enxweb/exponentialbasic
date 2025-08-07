@@ -32,8 +32,8 @@
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZGroupEventCalendarMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZGroupEventCalendarMain", "Language" );
 
 //include_once( "ezgroupeventcalendar/classes/ezgroupeventcategory.php" );
 //include_once( "ezgroupeventcalendar/classes/ezgroupevent.php" );
@@ -130,7 +130,7 @@ if ( $Action == "Delete" )
     exit();    
 }
 
-$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->read_var( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezgroupeventcalendar/user/" . $ini->variable( "eZGroupEventCalendarMain", "AdminTemplateDir" ),
                      "kernel/ezgroupeventcalendar/user/intl/", $Language, "fileedit.php" );
 
 $t->setAllStrings();

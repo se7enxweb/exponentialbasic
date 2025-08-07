@@ -28,9 +28,9 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/ezfile.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
-$SitePath = $ini->read_var( "site", "SitePath" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
+$SitePath = $ini->variable( "site", "SitePath" );
 
 /* Nice Idea, Not Needed because of classes/ezfile's predicate path
    Specificly the sitedir.ini does this work for us (dependancy)
@@ -46,14 +46,14 @@ $ini_php_file = "/override/site.ini.php" ;
 
 if ( isset( $Store ) )
 {
-    if ( eZFile::file_exists( "settings/override/site.ini.php" ) )
-      	$fp = eZFile::fopen( "settings/override/site.ini.php", "w+");
-    elseif ( eZFile::file_exists( "settings/override/site.ini" ) )
-      	$fp = eZFile::fopen( "settings/site.ini", "w+");
-    elseif ( eZFile::file_exists( "settings/site.ini.php" ) )
-      	$fp = eZFile::fopen( "settings/site.ini.php", "w+");
-    elseif ( eZFile::file_exists( "settings/site.ini" ) )
-      	$fp = eZFile::fopen( "settings/site.ini", "w+");
+    if ( file_exists( "settings/override/site.ini.php" ) )
+      	$fp = eZPBFile::fopen( "settings/override/site.ini.php", "w+");
+    elseif ( file_exists( "settings/override/site.ini" ) )
+      	$fp = eZPBFile::fopen( "settings/site.ini", "w+");
+    elseif ( file_exists( "settings/site.ini.php" ) )
+      	$fp = eZPBFile::fopen( "settings/site.ini.php", "w+");
+    elseif ( file_exists( "settings/site.ini" ) )
+      	$fp = eZPBFile::fopen( "settings/site.ini", "w+");
 
     $Contents =& str_replace ("\r", "", $Contents );
     fwrite ( $fp, $Contents );
@@ -61,30 +61,30 @@ if ( isset( $Store ) )
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "siteconfig.php" );
 $t->setAllStrings();
 
 $t->set_file( "site_config_tpl", "siteconfig.tpl" );
 
-if ( eZFile::file_exists( "settings/override/site.ini.php" ) )
+if ( file_exists( "settings/override/site.ini.php" ) )
 {
-    $lines = eZFile::file( "settings/override/site.ini.php" );
+    $lines = eZPBFile::file( "settings/override/site.ini.php" );
 }
-elseif ( eZFile::file_exists( "settings/override/site.ini" ) )
+elseif ( file_exists( "settings/override/site.ini" ) )
 {
-        $lines = eZFile::file( "settings/override/site.ini" );
+        $lines = eZPBFile::file( "settings/override/site.ini" );
 }
-elseif ( eZFile::file_exists( "settings/site.ini.php" ) )
+elseif ( file_exists( "settings/site.ini.php" ) )
 {
-    $lines = eZFile::file( "settings/site.ini.php" );
+    $lines = eZPBFile::file( "settings/site.ini.php" );
 }
-elseif ( eZFile::file_exists( "settings/site.ini" ) )
+elseif ( file_exists( "settings/site.ini" ) )
 {
-    $lines = eZFile::file( "settings/site.ini" );
+    $lines = eZPBFile::file( "settings/site.ini" );
 }
 else
 {

@@ -25,9 +25,9 @@
 
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$GlobalSectionID = $ini->read_var( "eZBulkmailMain", "DefaultSection" );
-$SiteDesign = $ini->read_var( "site", "SiteDesign" );
+$ini =& eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( "eZBulkmailMain", "DefaultSection" );
+$SiteDesign = $ini->variable( "site", "SiteDesign" );
 
 switch ( $url_array[2] )
 {
@@ -48,7 +48,7 @@ switch ( $url_array[2] )
         $New = "new";
     case "login" :
     {
-        if ( $ini->read_var( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
+        if ( $ini->variable( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
         {
             $user =& eZUser::currentUser();
             if ( $user )

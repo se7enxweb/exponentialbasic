@@ -36,13 +36,13 @@
 // include_once( "ezimagecatalogue/classes/ezimagecategory.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZImageCatalogueMain", "Language" );
+$Language = $ini->variable( "eZImageCatalogueMain", "Language" );
 
-$ImageDir = $ini->read_var( "eZImageCatalogueMain", "ImageDir" );
+$ImageDir = $ini->variable( "eZImageCatalogueMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->read_var( "eZImageCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezimagecatalogue/admin/" . $ini->variable( "eZImageCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezimagecatalogue/admin/intl/", $Language, "browse.php" );
 
 $t->set_file( "image_list_page_tpl", "browse.tpl" );
@@ -209,9 +209,9 @@ foreach ( $imageList as $image )
         $t->parse( "multi_images", "multi_images_tpl" );
     }
 
-    $width =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewWidth" );
+    $width =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewWidth" );
     
-    $height =& $ini->read_var( "eZImageCatalogueMain", "ThumbnailViewHight" );
+    $height =& $ini->variable( "eZImageCatalogueMain", "ThumbnailViewHight" );
     
     $variation =& $image->requestImageVariation( $width, $height );
 
@@ -225,14 +225,14 @@ foreach ( $imageList as $image )
     if ( $image->fileExists( true ) )
     {
         $imagePath =& $image->filePath( true );
-        $size = eZFile::filesize( $imagePath );
+        $size = eZPBFile::filesize( $imagePath );
     }
     else
     {
         $size = 0;
     }
 
-    $size = eZFile::siFileSize( $size );
+    $size = eZPBFile::siFileSize( $size );
 
     $t->set_var( "image_size", $size["size-string"] );
     $t->set_var( "image_unit", $size["unit"] );

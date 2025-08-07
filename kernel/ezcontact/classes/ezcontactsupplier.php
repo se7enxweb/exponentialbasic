@@ -58,7 +58,7 @@ class eZContactSupplier
     */
     function &urlList( $type, $category = 0, $offset = 0 )
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $ret = false;
         switch ( $type )
         {
@@ -66,7 +66,7 @@ class eZContactSupplier
             {
                 // include_once( "ezcontact/classes/ezcompany.php" );
                 // include_once( "ezcontact/classes/ezcompanytype.php" );
-                $limit = $ini->read_var( "eZContactMain", "MaxCompanyList" );
+                $limit = $ini->variable( "eZContactMain", "MaxCompanyList" );
                 $categories = eZCompanyType::getByParentID( $category, "name" );
                 $companies = eZCompany::getByCategory( $category, $offset, $limit );
                 $num_companies = eZCompany::countByCategory( $category );

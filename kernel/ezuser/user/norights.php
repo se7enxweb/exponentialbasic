@@ -26,15 +26,15 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztexttool.php" );
 
-$ini =& INIFile::globalINI();
-$DOC_ROOT = $ini->read_var( "eZUserMain", "DocumentRoot" );
-$Language = $ini->read_var( "eZUserMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$DOC_ROOT = $ini->variable( "eZUserMain", "DocumentRoot" );
+$Language = $ini->variable( "eZUserMain", "Language" );
 $errorIni = new INIFIle( "kernel/ezuser/user/intl/" . $Language . "/norights.php.ini", false );
 
 // include_once( "classes/ezdb.php" );
 // include_once( "classes/eztemplate.php" );
 
-$t = new eZTemplate( "kernel/ezuser/user/" . $ini->read_var( "eZUserMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezuser/user/" . $ini->variable( "eZUserMain", "TemplateDir" ),
 "kernel/ezuser/user/" . "/intl", $Language, "norights.php" );
 $t->setAllStrings();
 
@@ -42,19 +42,19 @@ switch ( $_REQUEST['Error'] )
 {
     case "WrongPassword":
     {
-        $errorMsg = $errorIni->read_var( "strings", "wrong_password" );
+        $errorMsg = $errorIni->variable( "strings", "wrong_password" );
     }
     break;
 
     case "MaxLogins":
     {
-	$errorMsg = $errorIni->read_var( "strings", "max_logins" );
+	$errorMsg = $errorIni->variable( "strings", "max_logins" );
     }
     break;
 
     default:
     {
-        $errorMsg = $errorIni->read_var( "strings", "default_error" );
+        $errorMsg = $errorIni->variable( "strings", "default_error" );
     }
     break;
 }

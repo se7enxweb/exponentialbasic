@@ -340,9 +340,9 @@ class eZImage
 			$db->query( "DELETE FROM eZImageCatalogue_ImageForumLink WHERE ImageID='$this->ID'" );
 
             // Delete from the filesystem
-            if ( eZFile::file_exists( $this->filePath( true ) ) )
+            if ( file_exists( $this->filePath( true ) ) )
             {
-                eZFile::unlink( $this->filePath( true ) );
+                eZPBFile::unlink( $this->filePath( true ) );
             }
         }
     }
@@ -785,7 +785,7 @@ class eZImage
 
        $relPath = "kernel/ezimagecatalogue/catalogue/" . $this->FileName;
 
-       return eZFile::file_exists( $relPath ) and is_file( $relPath );
+       return file_exists( $relPath ) and is_file( $relPath );
     }
     /*!
       Returns the path and filename to the original image.
@@ -806,7 +806,7 @@ class eZImage
            $path = "/kernel/ezimagecatalogue/catalogue/" . $this->FileName;
        }
 
-       if ( !eZFile::file_exists( $relPath ) or !is_file( $relPath ) )
+       if ( !file_exists( $relPath ) or !is_file( $relPath ) )
        {
            $path = "kernel/ezimagecatalogue/admin/images/failedimage.gif";
            if ( !$relative )
@@ -831,7 +831,7 @@ class eZImage
            $path = "/ezimagecatalogue/catalogue/fullwatermarks/" . $this->FileName;
        }
 
-       if ( !eZFile::file_exists( $relPath ) or !is_file( $relPath ) )
+       if ( !file_exists( $relPath ) or !is_file( $relPath ) )
        {
           if (!$this->createWatermark()) {
            $path = "ezimagecatalogue/admin/images/failedimage.gif";
@@ -843,14 +843,14 @@ class eZImage
     }
     
     function &createWatermark() {
-	    $ini =& INIFile::globalINI();
-		$sitePath = $ini->read_var("site", "SitePath");
-    	    if ( $ini->has_var( "watermark", "watermarkImage" ) )
-             $watermark_image = $ini->read_var( "watermark", "watermarkImage" );
-	    if ( $ini->has_var( "watermark", "watermarkImageBr" ) )
-             $watermark_image_br = $ini->read_var( "watermark", "watermarkImageBr" );
-	    if ( $ini->has_var( "watermark", "watermarkImageBrSmall" ) )
-             $watermark_image_br_small = $ini->read_var( "watermark", "watermarkImageBrSmall" );
+	    $ini =& eZINI::instance( 'site.ini' );
+		$sitePath = $ini->variable("site", "SitePath");
+    	    if ( $ini->hasVariable( "watermark", "watermarkImage" ) )
+             $watermark_image = $ini->variable( "watermark", "watermarkImage" );
+	    if ( $ini->hasVariable( "watermark", "watermarkImageBr" ) )
+             $watermark_image_br = $ini->variable( "watermark", "watermarkImageBr" );
+	    if ( $ini->hasVariable( "watermark", "watermarkImageBrSmall" ) )
+             $watermark_image_br_small = $ini->variable( "watermark", "watermarkImageBrSmall" );
 		$imagepath = $this->filePath( true);
 		$dest = 'ezimagecatalogue/catalogue/fullwatermarks/' . $this->FileName;
 		$actualsize = getimagesize($imagepath);
@@ -876,7 +876,7 @@ class eZImage
   		  $err_water = system( $watermarkCodeBR, $ret_code_water );
   		  if ( $ret_code_water == 0 )
   		    {
-  		      @eZFile::chmod( $dest, 0644 );
+  		      @eZPBFile::chmod( $dest, 0644 );
   		      $ret = true;
   		    }
   		  else
@@ -1195,7 +1195,7 @@ class eZImage
     */
     function width()
     {
-        if ( eZFile::file_exists( $this->filePath( true ) ) and is_file( $this->filePath( true ) ) )
+        if ( file_exists( $this->filePath( true ) ) and is_file( $this->filePath( true ) ) )
         {
             $size = getimagesize( $this->filePath( true ) );
             return $size[0];
@@ -1209,7 +1209,7 @@ class eZImage
     */
     function height()
     {
-        if ( eZFile::file_exists( $this->filePath( true ) ) and is_file( $this->filePath( true ) ) )
+        if ( file_exists( $this->filePath( true ) ) and is_file( $this->filePath( true ) ) )
         {
             $size = getimagesize( $this->filePath( true ) );
             return $size[1];
@@ -1427,8 +1427,8 @@ class eZImage
 
             $forum->store();
 			
-			$ini =& INIFile::globalINI();
-			$linkModules = $ini->read_var( "eZForumMain", "LinkModules" );
+			$ini =& eZINI::instance( 'site.ini' );
+			$linkModules = $ini->variable( "eZForumMain", "LinkModules" );
 			$module_array = explode(',', $linkModules );
 			unset ($linkModules);
 			foreach ( $module_array as $module)

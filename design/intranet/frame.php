@@ -51,13 +51,13 @@ else
 
 <meta name="author" content="<?php
 
-    $SiteAuthor = $ini->read_var( "site", "SiteAuthor" );
+    $SiteAuthor = $ini->variable( "site", "SiteAuthor" );
     print( $SiteAuthor );
 
 ?>" />
 <meta name="copyright" content="<?php
 
-    $SiteCopyright = $ini->read_var( "site", "SiteCopyright" );
+    $SiteCopyright = $ini->variable( "site", "SiteCopyright" );
     print( $SiteCopyright );
 
 ?>" />
@@ -69,7 +69,7 @@ if ( isset( $SiteDescriptionOverride ) )
 }
 else
 {
-    $SiteDescription = $ini->read_var( "site", "SiteDescription" );
+    $SiteDescription = $ini->variable( "site", "SiteDescription" );
     print( $SiteDescription );
 }
 
@@ -81,7 +81,7 @@ if ( isset( $SiteKeywordsOverride ) )
 }
 else
 {
-    $SiteKeywords = $ini->read_var( "site", "SiteKeywords" );
+    $SiteKeywords = $ini->variable( "site", "SiteKeywords" );
     print( $SiteKeywords );
 }
 
@@ -202,7 +202,7 @@ else
     <div align="center">
         <?php
 
-//        $CategoryID = $ini->read_var( "eZAdMain", "DefaultCategory" );
+//        $CategoryID = $ini->variable( "eZAdMain", "DefaultCategory" );
 //        $Limit = 1;
 //        include( "kernel/ezad/user/adlist.php" );
 
@@ -274,7 +274,7 @@ else
 // It will be no overhead with this method for storing stats
 //
 
-$StoreStats = $ini->read_var( "eZStatsMain", "StoreStats" );
+$StoreStats = $ini->variable( "eZStatsMain", "StoreStats" );
 
 if ( $StoreStats == "enabled" )
 {

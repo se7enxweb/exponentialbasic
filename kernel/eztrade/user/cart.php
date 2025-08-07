@@ -33,22 +33,22 @@
 // include_once( "eztrade/classes/ezcart.php" );
 
 // Load settings
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
-$ShowNamedQuantity = $ini->read_var( "eZTradeMain", "ShowNamedQuantity" ) == "true";
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
-$RequireQuantity = $ini->read_var( "eZTradeMain", "RequireQuantity" ) == "true";
-$ShowOptionQuantity = $ini->read_var( "eZTradeMain", "ShowOptionQuantity" ) == "true";
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
-$ShowExTaxColumn = $ini->read_var( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
-$ShowIncTaxColumn = $ini->read_var( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
-$ShowExTaxTotal = $ini->read_var( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
-$ShowTaxBasis = $ini->read_var( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
-$ColSpanSizeTotals = $ini->read_var( "eZTradeMain", "ColSpanSizeTotals" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
+$ShowNamedQuantity = $ini->variable( "eZTradeMain", "ShowNamedQuantity" ) == "true";
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
+$RequireQuantity = $ini->variable( "eZTradeMain", "RequireQuantity" ) == "true";
+$ShowOptionQuantity = $ini->variable( "eZTradeMain", "ShowOptionQuantity" ) == "true";
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$ShowExTaxColumn = $ini->variable( "eZTradeMain", "ShowExTaxColumn" ) == "enabled" ? true : false;
+$ShowIncTaxColumn = $ini->variable( "eZTradeMain", "ShowIncTaxColumn" ) == "enabled" ? true : false;
+$ShowExTaxTotal = $ini->variable( "eZTradeMain", "ShowExTaxTotal" ) == "enabled" ? true : false;
+$ShowTaxBasis = $ini->variable( "eZTradeMain", "ShowTaxBasis" ) == "enabled" ? true : false;
+$ColSpanSizeTotals = $ini->variable( "eZTradeMain", "ColSpanSizeTotals" );
 
-//$checkups = $ini->read_var( "eZTradeMain", "UPSOFF" );
+//$checkups = $ini->variable( "eZTradeMain", "UPSOFF" );
 
 
 if ( isset( $ShopMore ) ) 
@@ -350,7 +350,7 @@ if ( isset( $Action ) && $Action == "AddToBasket" )
 
 // Load the template
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "cart.php" );
 
 $t->set_file( "cart_page_tpl", "cart.tpl" );
@@ -587,8 +587,8 @@ if ($user)
   }
 }
 
-$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == 'enabled'?1:0;
-$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == 'enabled'?1:0;
+$upscheck = $ini->variable( "eZTradeMain", "UPSXMLShipping" ) == 'enabled'?1:0;
+$uspscheck = $ini->variable( "eZTradeMain", "USPSXMLShipping" ) == 'enabled'?1:0;
 
 if ( $ShowCart == true )
 {

@@ -273,9 +273,9 @@ class eZPriceGroup
     {
         $db =& eZDB::globalDatabase();
 
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $ret = false;
-        $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
+        $ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
 
         if ( $ShowPriceGroups == true )
         {
@@ -342,9 +342,9 @@ class eZPriceGroup
     {
         $db =& eZDB::globalDatabase();
 
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
         $ret = false;
-        $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
+        $ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
 
         if ( $ShowPriceGroups == true )
         {
@@ -414,8 +414,8 @@ class eZPriceGroup
     {
         $db =& eZDB::globalDatabase();
 
-        $ini =& INIFile::globalINI();
-        $ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
+        $ini =& eZINI::instance( 'site.ini' );
+        $ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true" ? true : false;
         $group_text = false;
         if ( $ShowPriceGroups == true )
         {

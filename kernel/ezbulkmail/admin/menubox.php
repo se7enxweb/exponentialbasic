@@ -25,7 +25,7 @@
 
 // Supply $menuItems to get a menubox
 
-if ( $ini->read_var( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
+if ( $ini->variable( "eZBulkMailMain", "UseEZUser" ) == "enabled" )
 {
 $menuItems = array(
     array( "/bulkmail/categorylist/", "{intl-category_list}" ),

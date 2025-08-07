@@ -25,16 +25,16 @@
 
 // include_once( "classes/INIFile.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
 
     
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdb.php" );
 // include_once( "ezuser/classes/ezobjectpermission.php" );
 
-$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->read_var( "eZCalendarMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezcalendar/user/" . $ini->variable( "eZCalendarMain", "TemplateDir" ),
                      "kernel/ezcalendar/user/intl", $Language, "menubox.php" );
 
 $t->setAllStrings();

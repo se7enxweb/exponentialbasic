@@ -70,10 +70,10 @@ if( isset( $Cancel ) )
 }
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMailMain", "Language" ); 
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMailMain", "Language" ); 
 
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl/", $Language, "accountedit.php" );
 $t->setAllStrings();
 

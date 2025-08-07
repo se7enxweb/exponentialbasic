@@ -24,10 +24,10 @@
 //
 
 $ini =& $GlobalSiteIni;
-$Language = $ini->read_var( "eZContactMain", "Language" );
+$Language = $ini->variable( "eZContactMain", "Language" );
 $DOC_ROOT = 'ezcontact';
 
-$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->read_var( "eZContactMain", "AdminTemplateDir" ), $DOC_ROOT . "/admin/intl", $Language, "error.php" );
+$t = new eZTemplate( $DOC_ROOT . "/admin/" . $ini->variable( "eZContactMain", "AdminTemplateDir" ), $DOC_ROOT . "/admin/intl", $Language, "error.php" );
 $t->setAllStrings();
 
 $page_path = "/contact/error";

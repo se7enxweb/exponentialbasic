@@ -117,10 +117,10 @@ if ( isset( $Link ) )
     exit();
 }
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMailMain", "Language" ); 
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMailMain", "Language" ); 
 
-$t = new eZTemplate( "kernel/ezmail/user/" . $ini->read_var( "eZMailMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezmail/user/" . $ini->variable( "eZMailMain", "TemplateDir" ),
                      "kernel/ezmail/user/intl/", $Language, "mailview.php" );
 $t->setAllStrings();
 
@@ -143,7 +143,7 @@ $t->set_var( "to", htmlspecialchars( $mail->to() ) );
 $t->set_var( "from", htmlspecialchars( $mail->from() ) );
 $t->set_var( "subject", htmlspecialchars( $mail->subject() ) );
 
-if ( $ini->read_var( "eZMailMain", "HTMLMail" ) == "enabled" )
+if ( $ini->variable( "eZMailMain", "HTMLMail" ) == "enabled" )
     $t->set_var( "mail_body", nl2br( ( $mail->body() ) ) );
 else
     $t->set_var( "mail_body", nl2br( htmlspecialchars( $mail->body() ) ) );

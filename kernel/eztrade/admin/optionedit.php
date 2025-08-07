@@ -30,13 +30,13 @@
 // include_once( "classes/ezcachefile.php" );
 // include_once( "classes/ezhttptool.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 $StdHeaders = $ini->read_array( "eZTradeMain", "StandardOptionHeaders" );
-$MinHeaders = $ini->read_var( "eZTradeMain", "MinimumOptionHeaders" );
-$MinValues = $ini->read_var( "eZTradeMain", "MinimumOptionValues" );
-$SimpleOptionHeaders = $ini->read_var( "eZTradeMain", "SimpleOptionHeaders" ) == "true" ? true : false;
-$ShowQuantity = $ini->read_var( "eZTradeMain", "ShowQuantity" ) == "true";
+$MinHeaders = $ini->variable( "eZTradeMain", "MinimumOptionHeaders" );
+$MinValues = $ini->variable( "eZTradeMain", "MinimumOptionValues" );
+$SimpleOptionHeaders = $ini->variable( "eZTradeMain", "SimpleOptionHeaders" ) == "true" ? true : false;
+$ShowQuantity = $ini->variable( "eZTradeMain", "ShowQuantity" ) == "true";
 
 // include_once( "eztrade/classes/ezproductcategory.php" );
 // include_once( "eztrade/classes/ezproduct.php" );
@@ -195,7 +195,7 @@ if ( isset( $OK ) )
     exit();
 }
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "optionedit.php" );
 
 $t->setAllStrings();

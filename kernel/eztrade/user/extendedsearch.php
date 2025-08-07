@@ -31,16 +31,16 @@
 // include_once( "classes/ezhttptool.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$RequireUserLogin = $ini->read_var( "eZTradeMain", "RequireUserLogin" ) == "true";
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$RequireUserLogin = $ini->variable( "eZTradeMain", "RequireUserLogin" ) == "true";
 $ExtendedSearchCategories = $ini->read_array( "eZTradeMain", "ExtendedSearchCategories" );
-$MaxSearchForProducts = $ini->read_var( "eZTradeMain", "MaxSearchForProducts" );
+$MaxSearchForProducts = $ini->variable( "eZTradeMain", "MaxSearchForProducts" );
 
-$SmallImageWidth = $ini->read_var( "eZTradeMain", "SmallImageWidth" );
-$SmallImageHeight = $ini->read_var( "eZTradeMain", "SmallImageHeight" );
+$SmallImageWidth = $ini->variable( "eZTradeMain", "SmallImageWidth" );
+$SmallImageHeight = $ini->variable( "eZTradeMain", "SmallImageHeight" );
 
 // include_once( "eztrade/classes/ezproduct.php" );
 // include_once( "eztrade/classes/ezproductcategory.php" );
@@ -57,7 +57,7 @@ if ( isset ( $SearchButton ) )
 
 $user =& eZUser::currentUser();
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ) ,
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ) ,
                      "kernel/eztrade/user/intl/", $Language, "extendedsearch.php" );
 
 $t->setAllStrings();

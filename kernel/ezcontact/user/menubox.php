@@ -35,11 +35,11 @@ if ( is_a( $user, "eZUser" ) and
 {
     // include_once( "classes/INIFile.php" );
 
-    $Language = $ini->read_var( "eZContactMain", "Language" );
+    $Language = $ini->variable( "eZContactMain", "Language" );
 
     // include_once( "classes/eztemplate.php" );
 
-    $t = new eZTemplate( "kernel/ezcontact/user/" . $ini->read_var( "eZContactMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/ezcontact/user/" . $ini->variable( "eZContactMain", "TemplateDir" ),
                          "kernel/ezcontact/user/intl", $Language, "menubox.php" );
     $t->setAllStrings();
     $t->set_file( "menu_box_tpl", "menubox.tpl" );

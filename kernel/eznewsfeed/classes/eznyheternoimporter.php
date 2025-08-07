@@ -69,7 +69,7 @@ class eZNyheterNOImporter
 
         print( $site );
         
-        // $fp = eZFile::fopen( "$site", "r" );
+        // $fp = eZPBFile::fopen( "$site", "r" );
 	// kracker: untested attempt at adding error protection to import process (original line above)
 
         if (!($fp = @fopen($site, "r"))) {

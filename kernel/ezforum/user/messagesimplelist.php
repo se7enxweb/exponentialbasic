@@ -36,18 +36,18 @@
 // include_once( "ezforum/classes/ezforumcategory.php" );
 // include_once( "ezforum/classes/ezforum.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZForumMain", "Language" );
-$SimpleUserList = $ini->read_var( "eZForumMain", "SimpleUserList" );
-$anonymous = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+$Language = $ini->variable( "eZForumMain", "Language" );
+$SimpleUserList = $ini->variable( "eZForumMain", "SimpleUserList" );
+$anonymous = $ini->variable( "eZForumMain", "AnonymousPoster" );
 
 if ( isset( $ProductID ) )
 	{ $ListTemplate = "reviewsimplelist.php"; }
 else
 	{ $ListTemplate = "messagesimplelist.php"; }
 
-$t = new eZTemplate( "kernel/ezforum/user/" . $ini->read_var( "eZForumMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezforum/user/" . $ini->variable( "eZForumMain", "TemplateDir" ),
                      "kernel/ezforum/user/intl", $Language, "messagesimplelist.php" );
 
 $t->set_file( "messagelist", "messagesimplelist.tpl"  );
@@ -71,8 +71,8 @@ $t->set_var( "total_posts", $messageCount );
 
 if ( !$messageList )
 {
-    $errorIni = new INIFile( "kernel/ezforum/user/intl/" . $Language . "/messagesimplelist.php.ini", false );
-    $noitem =& $errorIni->read_var( "strings", "noitem" );
+    $errorIni = new eZINI( "kernel/ezforum/user/intl/" . $Language . "/messagesimplelist.php.ini", false );
+    $noitem =& $errorIni->variable( "strings", "noitem" );
 
     $t->set_var( "message_list", $noitem );
 }

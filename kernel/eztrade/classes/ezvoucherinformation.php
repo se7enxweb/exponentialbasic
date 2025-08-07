@@ -571,15 +571,15 @@ class eZVoucherInformation
     */
     function sendEMail()
     {
-        $ini =& INIFile::globalINI();
+        $ini =& eZINI::instance( 'site.ini' );
 
         $voucher =& $this->voucher();
 
         $fromUser =& $this->fromEmail();
 
-        $Language = $ini->read_var( "eZTradeMain", "Language" );
+        $Language = $ini->variable( "eZTradeMain", "Language" );
 
-        $t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+        $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                              "kernel/eztrade/user/intl/", $Language, "voucheremail.php" );
 
         $t->setAllStrings();

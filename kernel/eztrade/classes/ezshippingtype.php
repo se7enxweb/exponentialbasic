@@ -257,13 +257,13 @@ class eZShippingType
         $user =& eZUser::currentUser();
         $ret = new eZVATType();
 
-        $ini =& INIFile::globalINI();
-        if ( $ini->read_var( "eZTradeMain", "PricesIncVATBeforeLogin" ) == "enabled" )
+        $ini =& eZINI::instance( 'site.ini' );
+        if ( $ini->variable( "eZTradeMain", "PricesIncVATBeforeLogin" ) == "enabled" )
             $useVAT = true;
         else
             $useVAT = false;
 
-        if ( $ini->read_var( "eZTradeMain", "CountryVATDiscrimination" ) == "enabled" )
+        if ( $ini->variable( "eZTradeMain", "CountryVATDiscrimination" ) == "enabled" )
             $CountryDisc = true;
         else
             $CountryDisc = false;

@@ -38,15 +38,15 @@ if ( isset( $Cancel ) )
 // include_once( "ezuser/classes/ezuser.php" );
 
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZTradeMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZTradeMain", "Language" );
 
-$TinyImageWidth = $ini->read_var( "eZImageCatalogueMain", "TinyImageWidth" );
-$TinyImageHeight = $ini->read_var( "eZImageCatalogueMain", "TinyImageHeight" );
+$TinyImageWidth = $ini->variable( "eZImageCatalogueMain", "TinyImageWidth" );
+$TinyImageHeight = $ini->variable( "eZImageCatalogueMain", "TinyImageHeight" );
 
-$ShowPriceGroups = $ini->read_var( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
-$upscheck = $ini->read_var( "eZTradeMain", "UPSXMLShipping" ) == "enabled"?1:0;
-$uspscheck = $ini->read_var( "eZTradeMain", "USPSXMLShipping" ) == "enabled"?1:0;
+$ShowPriceGroups = $ini->variable( "eZTradeMain", "PriceGroupsEnabled" ) == "true";
+$upscheck = $ini->variable( "eZTradeMain", "UPSXMLShipping" ) == "enabled"?1:0;
+$uspscheck = $ini->variable( "eZTradeMain", "USPSXMLShipping" ) == "enabled"?1:0;
 if(($upscheck==0)&&($uspscheck==0))
 $checkups=0;
 else
@@ -63,7 +63,7 @@ $languageINI = new INIFIle( "kernel/eztrade/user/intl/" . $Language . "/ordervie
 
 // include_once( "eztrade/classes/ezorderstatustype.php" );
 
-$t = new eZTemplate( "kernel/eztrade/user/" . $ini->read_var( "eZTradeMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
                      "kernel/eztrade/user/intl/", $Language, "orderview.php" );
 
 $t->setAllStrings();
@@ -309,7 +309,7 @@ $statusTypeArray = $statusType->getAll();
 foreach ( $statusTypeArray as $status )
 {
     $statusName = preg_replace( "#intl-#", "", $status->name() );
-    $statusName =  $languageINI->read_var( "strings", $statusName );
+    $statusName =  $languageINI->variable( "strings", $statusName );
     
     $t->set_var( "option_name", $statusName );
     $t->set_var( "option_id", $status->id() );
@@ -340,7 +340,7 @@ foreach ( $historyArray as $status )
     else
         $statusName = "Pending";
     
-    // $statusName =  $languageINI->read_var( "strings", $statusName );
+    // $statusName =  $languageINI->variable( "strings", $statusName );
     
     $t->set_var( "status_date", $locale->format( $status->altered() ) );
     $t->set_var( "status_name", $statusName );

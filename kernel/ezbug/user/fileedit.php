@@ -32,9 +32,9 @@
 // include_once( "ezbug/classes/ezbug.php" );
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
-$ini = INIFile::globalINI();
+$ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZBugMain", "Language" );
+$Language = $ini->variable( "eZBugMain", "Language" );
 
 $session = new eZSession();
 
@@ -118,7 +118,7 @@ if ( $Action == "Delete" )
 }
 
 
-$t = new eZTemplate( "kernel/ezbug/user/" . $ini->read_var( "eZBugMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/ezbug/user/" . $ini->variable( "eZBugMain", "TemplateDir" ),
                      "kernel/ezbug/user/intl", $Language, "fileedit.php" );
 
 $t->setAllStrings();

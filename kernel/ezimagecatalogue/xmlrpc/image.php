@@ -98,7 +98,7 @@ else if( $Command == "data" ) // Dump image info!
             if ( $image->fileExists( true ) )
             {
                 $imagePath =& $image->filePath( true );
-                $size = eZFile::filesize( $imagePath );
+                $size = eZPBFile::filesize( $imagePath );
                 $user = $image->user();
                 $user_id = is_a( $user, "eZUser" ) ? $user->id() : 0;
                 $cat_def = $image->categoryDefinition();

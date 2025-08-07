@@ -28,8 +28,8 @@
 // include_once( "classes/ezlocale.php" );
 // include_once( "classes/ezcurrency.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMediaCatalogueMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMediaCatalogueMain", "Language" );
 
 // include_once( "ezmediacatalogue/classes/ezmediacategory.php" );
 // include_once( "ezmediacatalogue/classes/ezmedia.php" );
@@ -44,7 +44,7 @@ if( isset( $Delete ) )
     }
 }
 
-$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->read_var( "eZMediaCatalogueMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezmediacatalogue/admin/" . $ini->variable( "eZMediaCatalogueMain", "AdminTemplateDir" ),
                      "kernel/ezmediacatalogue/admin/intl/", $Language, "typelist.php" );
 
 $t->setAllStrings();

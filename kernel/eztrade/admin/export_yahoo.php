@@ -43,23 +43,23 @@ ini_set('upload_max_filesize', 5242880); // 5MB
 //////////////////////////////////////////////////////
 // Settings
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$SiteURL = $ini->read_var( "site", "UserSiteURL" );
-$wwwDir = $ini->read_var( "site", "UserSiteURL" );
-$PricesIncludeVAT = $ini->read_var( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
-$MainImageWidth = $ini->read_var( "eZTradeMain", "MainImageWidth" );
-$MainImageHeight = $ini->read_var( "eZTradeMain", "MainImageHeight" );
-$SitePath = $ini->read_var( "site", "SitePath" );
+$SiteURL = $ini->variable( "site", "UserSiteURL" );
+$wwwDir = $ini->variable( "site", "UserSiteURL" );
+$PricesIncludeVAT = $ini->variable( "eZTradeMain", "PricesIncludeVAT" ) == "enabled" ? true : false;
+$MainImageWidth = $ini->variable( "eZTradeMain", "MainImageWidth" );
+$MainImageHeight = $ini->variable( "eZTradeMain", "MainImageHeight" );
+$SitePath = $ini->variable( "site", "SitePath" );
 
 
 //////////////////////////////////////////////////////
 // FTP: Server, User, Password
 
 // use file location + name
-//$YahooServer = $ini->read_var( "site", "ServerYahoo" );
-//$YahooUser = $ini->read_var( "site", "UserYahoo" );
-//$froogle_pass = $ini->read_var( "site", "PasswordYahoo" );
+//$YahooServer = $ini->variable( "site", "ServerYahoo" );
+//$YahooUser = $ini->variable( "site", "UserYahoo" );
+//$froogle_pass = $ini->variable( "site", "PasswordYahoo" );
 
 $YahooServer="hedwig.google.com";
 $YahooUser="fullthrottle";

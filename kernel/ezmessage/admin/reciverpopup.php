@@ -3,10 +3,10 @@
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "classes/eztemplate.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZMessageMain", "Language" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZMessageMain", "Language" );
 
-$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->read_var( "eZMessageMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezmessage/admin/" . $ini->variable( "eZMessageMain", "AdminTemplateDir" ),
                      "kernel/ezmessage/admin/intl", $Language, "reciverpopup.php" );
 
 $t->set_file( "message_page_tpl", "reciverpopup.tpl" );

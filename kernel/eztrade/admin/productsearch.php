@@ -29,15 +29,15 @@
 // include_once( "classes/ezcurrency.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 
-$Language = $ini->read_var( "eZTradeMain", "Language" );
-$Limit = $ini->read_var( "eZTradeMain", "ProductSearchLimit" );
+$Language = $ini->variable( "eZTradeMain", "Language" );
+$Limit = $ini->variable( "eZTradeMain", "ProductSearchLimit" );
 
 // include_once( "eztrade/classes/ezproductcategory.php" );
 // include_once( "eztrade/classes/ezproduct.php" );
 
-$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->read_var( "eZTradeMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eztrade/admin/" . $ini->variable( "eZTradeMain", "AdminTemplateDir" ),
                      "kernel/eztrade/admin/intl/", $Language, "productsearch.php" );
 
 $t->setAllStrings();

@@ -27,7 +27,7 @@
 // include_once( "ezsession/classes/ezpreferences.php" );
 // include_once( "ezmodule/classes/ezmodulehandler.php" );
 
-$ini =& INIFile::globalINI();
+$ini =& eZINI::instance( 'site.ini' );
 $preferences = new eZPreferences();
 $single_module = eZModuleHandler::useSingleModule();
 

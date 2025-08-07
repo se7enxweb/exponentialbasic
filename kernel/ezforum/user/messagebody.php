@@ -27,14 +27,14 @@
 // include_once( "classes/ezlocale.php" );
 
 $ini =& $GLOBALS["GlobalSiteIni"];
-$Language = $ini->read_var( "eZCalendarMain", "Language" );
+$Language = $ini->variable( "eZCalendarMain", "Language" );
 $Locale = new eZLocale( $Language );
 
 if ( isset( $ShowMessage ) && $ShowMessage )
 {
     // include_once( "classes/eztexttool.php" );
-    $AllowedTags = $ini->read_var( "eZForumMain", "AllowedTags" );
-    $AllowHTML = $ini->read_var( "eZForumMain", "AllowHTML" );
+    $AllowedTags = $ini->variable( "eZForumMain", "AllowedTags" );
+    $AllowHTML = $ini->variable( "eZForumMain", "AllowHTML" );
     
     $t->set_file( "body", "messagebody.tpl" );
     
@@ -69,7 +69,7 @@ if ( isset( $ShowMessage ) && $ShowMessage )
             if ( $msg->userName() && $Action != "reply" )
                 $MessageAuthor = $msg->userName();
             else
-                $MessageAuthor = $ini->read_var( "eZForumMain", "AnonymousPoster" );
+                $MessageAuthor = $ini->variable( "eZForumMain", "AnonymousPoster" );
         }
         else
         {
@@ -99,7 +99,7 @@ if ( isset( $ShowMessage ) && $ShowMessage )
         case 1:
         case true:
         {
-            $t->Ini->read_var( "strings", "notice_yes" );
+            $t->Ini->variable( "strings", "notice_yes" );
         }
         break;
 
@@ -109,7 +109,7 @@ if ( isset( $ShowMessage ) && $ShowMessage )
         case 0:
         case false:
         {
-            $t->Ini->read_var( "strings", "notice_no" );
+            $t->Ini->variable( "strings", "notice_no" );
         }
         break;
     }

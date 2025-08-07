@@ -27,13 +27,13 @@
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlist.php" );
 
-$ini =& INIFile::globalINI();
-$Language = $ini->read_var( "eZSiteManagerMain", "Language" );
-$Limit = $ini->read_var( "eZSiteManagerMain", "AdminListLimit" );
+$ini =& eZINI::instance( 'site.ini' );
+$Language = $ini->variable( "eZSiteManagerMain", "Language" );
+$Limit = $ini->variable( "eZSiteManagerMain", "AdminListLimit" );
 
 // include_once( "ezsitemanager/classes/ezmenu.php" );
 
-$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->read_var( "eZSiteManagerMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/ezsitemanager/admin/" . $ini->variable( "eZSiteManagerMain", "AdminTemplateDir" ),
                      "kernel/ezsitemanager/admin/" . "/intl", $Language, "menulist.php" );
 $t->setAllStrings();
 

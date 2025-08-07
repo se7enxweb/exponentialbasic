@@ -2,7 +2,7 @@
 .idea
 composer.lock
 bin/logs
-bin/sql/captions
+update/captions
 error_log
 var/cache
 var/site/storage

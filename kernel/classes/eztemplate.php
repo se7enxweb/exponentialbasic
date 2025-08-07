@@ -240,7 +240,7 @@ class eZTemplate
     */
     function setAllStrings()
     {
-        if ( isset( $this->TextStrings ) and is_array( $this->TextStrings ) )
+        if ( isset( $this->TextStrings ) and is_array( $this->TextStrings ) && isset( $this->TextStrings["strings"] ) )
         {
             reset( $this->TextStrings );
             foreach ($this->TextStrings["strings"] as $i => $tmp)

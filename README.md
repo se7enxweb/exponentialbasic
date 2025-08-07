@@ -69,9 +69,9 @@ Follow these steps to set up eZ Publish Basic via Composer:
 
 3. Update settings files
 
-Update settings file ```bin/ini/override/site.ini``` as needed to include the default settings customized to your own needs.
+Update settings file ```settings/override/site.ini``` as needed to include the default settings customized to your own needs.
 
-- Update site name, domain hostnames for user and admin websites, default design, database name and database connection username and password settings all in the site.ini in bin/ini/override/site.ini
+- Update site name, domain hostnames for user and admin websites, default design, database name and database connection username and password settings all in the site.ini in settings/override/site.ini
 
 4. Configure .htacesss or Web Server Mod_Rewrite Rules
 

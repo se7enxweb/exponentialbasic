@@ -51,6 +51,8 @@ class eZVirtualFolder
         $this->ExcludeFromSearch = false;
         $this->UserID = 0;
         $this->SectionID = 0;
+        $this->ParentID = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -288,7 +290,7 @@ class eZVirtualFolder
         }
         else
         {
-//              array_push( $path, $category->name() );
+            // array_push( $path, $category->name() );
         }
 
         if ( $categoryID != 0 )
@@ -621,9 +623,14 @@ class eZVirtualFolder
     static public function sectionIDStatic($folderID )
     {
         $db =& eZDB::globalDatabase();
+        $res = array();
+
         $db->query_single( $res, "SELECT SectionID from eZFileManager_Folder WHERE ID='$folderID'");
 
-        $sectionID = $res[$db->fieldName("SectionID")];
+        if( is_array( $res ) && count( $res ) > 0 )
+            $sectionID = $res[$db->fieldName("SectionID")];
+        else
+            $sectionID = 0;
 
         if ( $sectionID > 0 )
             return $sectionID;

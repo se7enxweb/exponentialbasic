@@ -44,6 +44,8 @@ class eZVirtualFile
     */
     function __construct( $id="" )
     {
+        $this->UserID = 0;
+
         if ( $id != "" )
         {
             $this->ID = $id;

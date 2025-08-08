@@ -92,100 +92,6 @@ exit();
 */
 $user =& eZUser::currentUser();
 
-function syncDir( $root, $category )
-{
-    global $user;
-    $dir = eZPBFile::dir( $root, false );
-
-    while ( $entry = $dir->read() )
-
-    {
-        if ( $entry != "." && $entry != ".." )
-        {
-            if ( filetype( $root . $entry ) == "dir" )
-            {
-                // check if category exists if not create it:
-                $subCategoryArray =& $category->getByParent( $category );
-
-                $sub = false;
-                foreach ( $subCategoryArray as $subCategory )
-                {
-                    if ( $subCategory->name() == $entry )
-                    {
-                        $sub = $subCategory;
-                    }
-                    print( $subCategory->name() . "\n<br>" );
-                }
-
-                if ( $sub == false )
-                {
-
-					$sub = new eZVirtualFolder();
-					$sub->setUser( $user );
-					$sub->setName( $entry );
-					$sub->setParent( $category );
-					$sub->store();
-
-					//sets permissions
-                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "r" );
-                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "w" );
-                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "u" );
-
-                    $group = new eZUserGroup( -1 );
-                    eZObjectPermission::setPermission( -1, $sub->id(), "filemanager_folder", "r" );
-
-                    eZObjectPermission::setPermission( 1, $sub->id(), "filemanager_folder", "w" );
-                    eZObjectPermission::setPermission( 1, $sub->id(), "filemanager_folder", "u" );
-                }
-                print( "Syncing dir " . $root . $entry . "\n<br>" );
-                syncDir( $root . $entry . "/", $sub );
-            }
-            else if ( filetype( $root . $entry ) == "file" )
-            {
-                $files = $category->files( "time", 0, -1 );
-
-                $fileExists = false;
-
-                foreach ( $files as $file )
-                {
-                    if ( $entry == $file->name() )
-                    {
-                        $fileExists = true;
-                    }
-      }
-
-                if ( $fileExists == false )
-      {
-
-						
-						$uploadedFile = new eZVirtualFile();
-					    $uploadedFile->setUser( $user );
-						$uploadedFile->setName( $entry );
-						
-						$uploadedFile->setDescription( $entry );												
-                        print( "adding file: " . $root . $entry . "\n<br>" );
-                        $getFile = new eZFile();
-                        $getFile->getFile( $root . $entry );
-				
-					    $uploadedFile->store();
-					    $uploadedFile->setFile( $getFile );
-						
-					    $folder = new eZVirtualFolder( $category->id() );
-					    $folder->addFile( $uploadedFile );
-					    $uploadedFile->setOriginalFileName( $entry );
-						$uploadedFile->store();
-						
-                        eZObjectPermission::removePermissions( $uploadedFile->id(), "filemanager_file", "r" );
-                        eZObjectPermission::removePermissions( $uploadedFile->id(), "filemanager_file", "w" );
-
-                        eZObjectPermission::setPermission( -1, $uploadedFile->id(), "filemanager_file", "r" );
-                        eZObjectPermission::setPermission( 1, $uploadedFile->id(), "filemanager_file", "w" );
-                }
-            }
-        }
-    }
-}
-
 if ( isSet ( $FileUpload ) )
 {
 
@@ -196,9 +102,6 @@ if ( isSet ( $FileUpload ) )
 }
 
 $folder = new eZVirtualFolder( $FolderID );
-
-// sections
-// include_once( "ezsitemanager/classes/ezsection.php" );
 
 if ( $FolderID == 0 )
     $GlobalSectionID = $ini->variable( "eZFileManagerMain", "DefaultSection" );
@@ -317,7 +220,7 @@ if ( count( $folderList ) > 0 )
 }
 else
 {
-    $t->set_var( "folder_list", "" );
+    $t->set_var( "folder_list", "No folders to display. Click new folder to create one." );
 }
 
 // Print out the files.
@@ -470,6 +373,101 @@ else
 {
     eZHTTPTool::header( "Location: /error/403/" );
     exit();
+}
+
+
+function syncDir( $root, $category )
+{
+    global $user;
+    $dir = eZPBFile::dir( $root, false );
+
+    while ( $entry = $dir->read() )
+
+    {
+        if ( $entry != "." && $entry != ".." )
+        {
+            if ( filetype( $root . $entry ) == "dir" )
+            {
+                // check if category exists if not create it:
+                $subCategoryArray =& $category->getByParent( $category );
+
+                $sub = false;
+                foreach ( $subCategoryArray as $subCategory )
+                {
+                    if ( $subCategory->name() == $entry )
+                    {
+                        $sub = $subCategory;
+                    }
+                    print( $subCategory->name() . "\n<br>" );
+                }
+
+                if ( $sub == false )
+                {
+
+					$sub = new eZVirtualFolder();
+					$sub->setUser( $user );
+					$sub->setName( $entry );
+					$sub->setParent( $category );
+					$sub->store();
+
+					//sets permissions
+                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "r" );
+                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "w" );
+                    eZObjectPermission::removePermissions( $sub->id(), "filemanager_folder", "u" );
+
+                    $group = new eZUserGroup( -1 );
+                    eZObjectPermission::setPermission( -1, $sub->id(), "filemanager_folder", "r" );
+
+                    eZObjectPermission::setPermission( 1, $sub->id(), "filemanager_folder", "w" );
+                    eZObjectPermission::setPermission( 1, $sub->id(), "filemanager_folder", "u" );
+                }
+                print( "Syncing dir " . $root . $entry . "\n<br>" );
+                syncDir( $root . $entry . "/", $sub );
+            }
+            else if ( filetype( $root . $entry ) == "file" )
+            {
+                $files = $category->files( "time", 0, -1 );
+
+                $fileExists = false;
+
+                foreach ( $files as $file )
+                {
+                    if ( $entry == $file->name() )
+                    {
+                        $fileExists = true;
+                    }
+      }
+
+                if ( $fileExists == false )
+      {
+
+						
+						$uploadedFile = new eZVirtualFile();
+					    $uploadedFile->setUser( $user );
+						$uploadedFile->setName( $entry );
+						
+						$uploadedFile->setDescription( $entry );												
+                        print( "adding file: " . $root . $entry . "\n<br>" );
+                        $getFile = new eZFile();
+                        $getFile->getFile( $root . $entry );
+				
+					    $uploadedFile->store();
+					    $uploadedFile->setFile( $getFile );
+						
+					    $folder = new eZVirtualFolder( $category->id() );
+					    $folder->addFile( $uploadedFile );
+					    $uploadedFile->setOriginalFileName( $entry );
+						$uploadedFile->store();
+						
+                        eZObjectPermission::removePermissions( $uploadedFile->id(), "filemanager_file", "r" );
+                        eZObjectPermission::removePermissions( $uploadedFile->id(), "filemanager_file", "w" );
+
+                        eZObjectPermission::setPermission( -1, $uploadedFile->id(), "filemanager_file", "r" );
+                        eZObjectPermission::setPermission( 1, $uploadedFile->id(), "filemanager_file", "w" );
+                }
+            }
+        }
+    }
 }
 
 ?>

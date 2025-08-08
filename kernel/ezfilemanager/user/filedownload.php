@@ -41,15 +41,16 @@ if ( eZObjectPermission::hasPermission( $file->id(), "filemanager_file", "r", $u
 
 $fileName = $file->name();
 
-if ( $ini->variable( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" )
+if ( $ini->variable( "eZFileManagerMain", "DownloadOriginalFilename" ) == "true" && $file->originalFileName() != "" )
     $originalFileName = $file->originalFileName();
 else
     $originalFileName = $file->name();
 
 $filePath = $file->filePath( true );
+// echo "<hr>"; svar_dump( $filePath ); echo "<hr>";
 $userID = $user->ID;
 
-$file_debug = false;
+$file_debug = true;
 $download_style_inline = true;
 
 //###################################################
@@ -86,9 +87,9 @@ if ( ( $userID != '' ) && ( $userID != 0 ) )
 */
 //###################################################
 
-include_once( "ezstats/classes/ezpageview.php" );
+//include_once( "ezstats/classes/ezpageview.php" );
 
-if ( !is_a( $GlobalPageView, "eZPageView" ) )
+if ( !isset( $GlobalPageView ) )
 {
     $GlobalPageView = new eZPageView();
     $GlobalPageView->store();
@@ -184,6 +185,10 @@ switch ( $suffix )
         break;
    case "jpeg" :
    case "JPEG" :
+        header( "Content-Type: image/jpeg" );
+        break;
+   case "png" :
+   case "PNG" :
         header( "Content-Type: image/jpeg" );
         break;
    case "JPG" :

@@ -230,54 +230,48 @@ $locale = new eZLocale( $Language );
 $currency = new eZCurrency();
 
 $user = eZUser::currentUser();
+
 if($checkups==1)
 {
-if ($user)
-{
+    if ($user)
+    {
+        $currency->setValue( $total["shipinctax"] );
+        $t->set_var( "shipping_sum", $locale->format( $currency ) );
 
-$currency->setValue( $total["shipinctax"] );
-$t->set_var( "shipping_sum", $locale->format( $currency ) );
+        $currency->setValue( $total["inctax"] );
+        $t->set_var( "cart_sum", $locale->format( $currency ) );
+        $t->set_var( "subtotal_sum", $locale->format( $currency ) );
 
-$currency->setValue( $total["inctax"] );
-$t->set_var( "cart_sum", $locale->format( $currency ) );
-$t->set_var( "subtotal_sum", $locale->format( $currency ) );
-
-$currency->setValue( $total["tax"] );
-$t->set_var( "cart_vat_sum", $locale->format( $currency ) );
-$t->parse( "cart_item_prelist", "cart_item_prelist_tpl", true );
-
-}
-else
-{
-
-$t->set_var( "cart_item", "" );
-$t->set_var( "cart_item_prelist", "" );
-$t->set_var( "shipping_sum","");
-$t->set_var( "cart_sum","");
-$t->set_var( "subtotal_sum","");
-$t->set_var( "cart_vat_sum","");
- }
+        $currency->setValue( $total["tax"] );
+        $t->set_var( "cart_vat_sum", $locale->format( $currency ) );
+        $t->parse( "cart_item_prelist", "cart_item_prelist_tpl", true );
+    }
+    else
+    {
+        $t->set_var( "cart_item", "" );
+        $t->set_var( "cart_item_prelist", "" );
+        $t->set_var( "shipping_sum","");
+        $t->set_var( "cart_sum","");
+        $t->set_var( "subtotal_sum","");
+        $t->set_var( "cart_vat_sum","");
+    }
 
 }
 else
 {
-{
-$currency->setValue( $total["shipinctax"] );
-$t->set_var( "shipping_sum", $locale->format( $currency ) );
+    $currency->setValue( $total["shipinctax"] );
+    $t->set_var( "shipping_sum", $locale->format( $currency ) );
 
-$currency->setValue( $total["inctax"] );
-$t->set_var( "cart_sum", $locale->format( $currency ) );
+    $currency->setValue( $total["inctax"] );
+    $t->set_var( "cart_sum", $locale->format( $currency ) );
 
-$currency->setValue( $total["subinctax"] );
+    $currency->setValue( $total["subinctax"] );
+    $t->set_var( "subtotal_sum", $locale->format( $currency ) );
 
-var_dump( $locale->format( $currency ) );
-$t->set_var( "subtotal_sum", $locale->format( $currency ) );
+    $currency->setValue( $total["tax"] );
+    $t->set_var( "cart_vat_sum", $locale->format( $currency ) );
 
-$currency->setValue( $total["tax"] );
-$t->set_var( "cart_vat_sum", $locale->format( $currency ) );
-$t->parse( "cart_item_prelist", "cart_item_prelist_tpl", true );
-}
-
+    $t->parse( "cart_item_prelist", "cart_item_prelist_tpl", true );
 }
 
 if ( count( $items ) > 0 and $can_checkout )

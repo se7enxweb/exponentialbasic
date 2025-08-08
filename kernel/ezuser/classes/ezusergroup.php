@@ -334,7 +334,6 @@ class eZUserGroup
         }
         else if ( !is_numeric( $GroupID ) )
         {
-            $GroupID = $this->ID;
             $userSQL = "UGL.GroupID='$GroupID'";
         }
         else

@@ -240,6 +240,7 @@ $t->set_var( "shipping_sum", $locale->format( $currency ) );
 
 $currency->setValue( $total["inctax"] );
 $t->set_var( "cart_sum", $locale->format( $currency ) );
+$t->set_var( "subtotal_sum", $locale->format( $currency ) );
 
 $currency->setValue( $total["tax"] );
 $t->set_var( "cart_vat_sum", $locale->format( $currency ) );
@@ -253,6 +254,7 @@ $t->set_var( "cart_item", "" );
 $t->set_var( "cart_item_prelist", "" );
 $t->set_var( "shipping_sum","");
 $t->set_var( "cart_sum","");
+$t->set_var( "subtotal_sum","");
 $t->set_var( "cart_vat_sum","");
  }
 
@@ -265,6 +267,11 @@ $t->set_var( "shipping_sum", $locale->format( $currency ) );
 
 $currency->setValue( $total["inctax"] );
 $t->set_var( "cart_sum", $locale->format( $currency ) );
+
+$currency->setValue( $total["subinctax"] );
+
+var_dump( $locale->format( $currency ) );
+$t->set_var( "subtotal_sum", $locale->format( $currency ) );
 
 $currency->setValue( $total["tax"] );
 $t->set_var( "cart_vat_sum", $locale->format( $currency ) );

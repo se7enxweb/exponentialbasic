@@ -40,6 +40,7 @@ $t->setAllStrings();
 
 $t->set_file( "category_list_page_tpl", "menubox.tpl" );
 $t->set_block( "category_list_page_tpl", "category_tpl", "category" );
+$t->set_block( "category_list_page_tpl", "category_list_tpl", "category_list" );
 
 $t->set_block( "category_list_tpl",'category_image_hot_deals_tpl', "category_image_hot_deals" );
 $t->set_block( "category_list_tpl", "category_image_list_tpl", "category_image_list" );
@@ -74,8 +75,14 @@ if ( $CategoryListProductImages == true )
             $t->set_var( "category_image_hot_deals", "");
         }
     }
-    
+
     $t->parse( "category_image_list", "category_image_list_tpl", true);
+}
+else
+{
+        $t->parse( "category_image_hot_deals", "category_image_hot_deals_tpl", true);
+        $t->set_var( "category_image", "");
+        $t->set_var( "category_image_list", "");
 }
 
 foreach ( $categoryList as $category )
@@ -86,6 +93,6 @@ foreach ( $categoryList as $category )
 }
 //$t->set_var( "category", "" );
 
-$t->pparse( "output", "category_list_page_tpl" );
+$t->pparse( "output", "category_list_tpl" );
 		
 ?>

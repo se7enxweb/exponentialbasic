@@ -88,14 +88,17 @@ class eZMySQLDB
       Execute a query on the global MySQL database link.  If it returns an error,
       the script is halted and the attempted SQL query and MySQL error message are printed.
     */
-    function &query( $sql, $print=false, $debug=true )
+    function &query( $sql, $print=false, $debug=false )
     {
-        if ( $debug )
+        if ( $debug == true )
         {
+            echo "Executing SQL: $sql<hr>";
+            
             // include_once( "kernel/classes/ezbenchmark.php" );
-            // echo "Executing SQL: $sql<br>";
+            
             $bench = new eZBenchmark();
             $bench->start();
+            
             $result =& mysqli_query( $this->Database, $sql );
 
             $bench->stop();

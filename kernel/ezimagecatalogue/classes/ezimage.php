@@ -776,14 +776,14 @@ class eZImage
     {
        if ( $relative == true )
        {
-           $path = "kernel/ezimagecatalogue/catalogue/" .$this->FileName;
+           $path = "var/site/storage/ezimagecatalogue/" .$this->FileName;
        }
        else
        {
-           $path = "/kernel/ezimagecatalogue/catalogue/" .$this->FileName;
+           $path = "/var/site/storage/ezimagecatalogue/" .$this->FileName;
        }
 
-       $relPath = "kernel/ezimagecatalogue/catalogue/" . $this->FileName;
+       $relPath = "var/site/storage/ezimagecatalogue/" . $this->FileName;
 
        return file_exists( $relPath ) and is_file( $relPath );
     }
@@ -795,15 +795,15 @@ class eZImage
     */
     function filePath( $relative = false )
     {
-       $relPath = "kernel/ezimagecatalogue/catalogue/" . $this->FileName;
+       $relPath = "var/site/storage/ezimagecatalogue/" . $this->FileName;
 
        if ( $relative == true )
        {
-           $path = "kernel/ezimagecatalogue/catalogue/" . $this->FileName;
+           $path = "var/site/storage/ezimagecatalogue/" . $this->FileName;
        }
        else
        {
-           $path = "/kernel/ezimagecatalogue/catalogue/" . $this->FileName;
+           $path = "/var/site/storage/ezimagecatalogue/" . $this->FileName;
        }
 
        if ( !file_exists( $relPath ) or !is_file( $relPath ) )
@@ -1080,13 +1080,13 @@ class eZImage
 					$tmpname = $fname . $uniqueID . '.' . $suffix;
 					$postfix = "";
 					}
-               $file->copy( "kernel/ezimagecatalogue/catalogue/" . basename( $tmpname ) . $postfix );
+               $file->copy( "var/site/storage/ezimagecatalogue/" . basename( $tmpname ) . $postfix );
            }
            else
            {
                // Convert it to jpg.
-//               if ( !$file->convertCopy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() ) . ".jpg" ) )
-               if ( !$file->convertCopy( "kernel/ezimagecatalogue/catalogue/" . basename( $file->tmpName() )  ) )
+//               if ( !$file->convertCopy( "var/site/storage/ezimagecatalogue/" . basename( $file->tmpName() ) . ".jpg" ) )
+               if ( !$file->convertCopy( "var/site/storage/ezimagecatalogue/" . basename( $file->tmpName() )  ) )
                    return false;
                $postfix = ".jpg";
            }

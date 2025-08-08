@@ -397,7 +397,7 @@ class eZVirtualFile
     {
         if ( $relative == true )
         {
-            $path = "kernel/ezfilemanager/files/" . $this->FileName;
+            $path = "var/site/storage/ezfilemanager/" . $this->FileName;
         }
         else
         {
@@ -499,7 +499,7 @@ class eZVirtualFile
             // the path to the catalogue
 
             // Copy the file since we support it directly
-            $file->copy( "kernel/ezfilemanager/files/" . basename( $file->tmpName() ) . $postfix );
+            $file->copy( "var/site/storage/ezfilemanager/" . basename( $file->tmpName() ) . $postfix );
 
             $this->FileName = basename( $file->tmpName() ) . $postfix;
 

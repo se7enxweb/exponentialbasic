@@ -206,7 +206,7 @@ class eZImageVariation
                 $postfix = $info["dot-suffix"];
                 $imageFile->setType( $info["image-type"] );
 
-                $dest = "kernel/ezimagecatalogue/catalogue/variations/" . $image->id() . "-"
+                $dest = "var/site/storage/ezimagecatalogue/variations/" . $image->id() . "-"
                       . $variationGroup->width() . "x". $variationGroup->height() . $modification . $postfix;
 
                 $result = $imageFile->scaleCopy( $dest, $variationGroup->width(), $variationGroup->height(), $convertToGray );

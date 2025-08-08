@@ -161,7 +161,7 @@ if ( ( $userID == '' ) && ($userID == 0 ) )
 //###################################################
 
 // Rewrote to be compatible with virtualhost-less install
-$size = eZPBFile::filesize( "kernel/ezfilemanager/files/$filePath" );
+$size = eZPBFile::filesize( "var/site/storage/ezfilemanager/$filePath" );
 
 $nameParts = explode( ".", $editedFileName );
 $suffix = $nameParts[count( $nameParts ) - 1];
@@ -250,7 +250,7 @@ if(!$download_style_inline){
 }
 
 // include the file's contents to browser ... 
-$fh = eZPBFile::fopen( "kernel/ezfilemanager/files/$filePath", "rb" );
+$fh = eZPBFile::fopen( "var/site/storage/ezfilemanager/$filePath", "rb" );
 fpassthru( $fh );
 exit();
 

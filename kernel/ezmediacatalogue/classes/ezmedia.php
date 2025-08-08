@@ -437,7 +437,7 @@ class eZMedia
     */
     function filePath( $relative=false )
     {
-       $path = "kernel/ezmediacatalogue/catalogue/" . $this->FileName;
+       $path = "var/site/storage/ezmediacatalogue/" . $this->FileName;
 
        if ( !$relative )
        {

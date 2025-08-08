@@ -9,12 +9,12 @@ var/cache
 var/site/storage
 autoload
 kernel/classes/cache
-kernel/ezimagecatalogue/catalogue/variations
-kernel/ezimagecatalogue/catalogue
-kernel/ezmediacatalogue/catalogue
+var/site/storage/ezimagecatalogue/variations
+var/site/storage/ezimagecatalogue
+var/site/storage/ezmediacatalogue
 kernel/ezcalendar/admin/cache
 kernel/ezcontact/admin/cache
-kernel/ezfilemanager/files
+var/site/storage/ezfilemanager
 kernel/ezarticle/cache
 kernel/ezarticle/admin/cache
 kernel/ezcalendar/user/cache

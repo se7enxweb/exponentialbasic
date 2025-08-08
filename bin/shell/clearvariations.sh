@@ -2,7 +2,7 @@
 echo "Clearing the existing image variations in cache ... ";
 
 dirs="
-kernel/ezimagecatalogue/catalogue/variations
+var/site/storage/ezimagecatalogue/variations
 "
 
 for dir in $dirs

@@ -85,6 +85,15 @@ class eZBug
     */
     function __construct( $id=-1)
     {
+        $this->IsHandled = 0;
+        $this->IsClosed = 0;
+        $this->IsPrivate = 0;
+        $this->PriorityID = 0;
+        $this->StatusID = 0;
+        $this->OwnerID = 0;
+        $this->UserID = 0;
+        $this->ID = 0;
+
         if ( $id != -1 )
         {
             $this->ID = $id;
@@ -108,7 +117,7 @@ class eZBug
 
         $timeStamp = (new eZDateTime())->timeStamp( true );
 
-        if ( !isset( $this->ID ) )
+        if ( !isset( $this->ID ) || $this->ID == 0 || $this->ID == null)
         {
             $db->lock( "eZBug_Bug" );
 			$this->ID = $db->nextID( "eZBug_Bug", "ID" );
@@ -503,7 +512,7 @@ class eZBug
        }
        else
        {
-           $this->OwnerID = NULL;
+           $this->OwnerID = 0;
        }
     }
 
@@ -606,7 +615,6 @@ class eZBug
     function category()
     {
         $db =& eZDB::globalDatabase();
-
         $db->array_query( $category_array, "SELECT CategoryID
                                             FROM eZBug_BugCategoryLink
                                             WHERE BugID='$this->ID'" );
@@ -627,8 +635,17 @@ class eZBug
         $db =& eZDB::globalDatabase();
         $db->begin();
 
-        $res = $db->query( "DELETE FROM eZBug_BugCategoryLink
+        $res = $db->query( "SELECT Count(*) FROM eZBug_BugCategoryLink
                             WHERE BugID='$this->ID'" );
+
+        if ( $res != false )
+        {
+            $query = "DELETE FROM eZBug_BugCategoryLink
+                            WHERE BugID='$this->ID'";
+                            echo $query; echo "<hr>";
+            $res = $db->query( $query );
+        }
+
         if ( $res == false )
             $db->rollback();
         else
@@ -708,13 +725,14 @@ class eZBug
         if ( is_a( $image, "eZImage" ) )
         {
             $imageID = $image->id();
+            $created = (new eZDateTime())->timeStamp( true );
             $db =& eZDB::globalDatabase();
             $db->begin();
             $db->lock( "eZBug_BugImageLink" );
             $nextID = $db->nextID( "eZBug_BugImageLink", "ID" );
             $res = $db->query( "INSERT INTO eZBug_BugImageLink
-                                (ID, BugID, ImageID)
-                                VALUES ('$nextID','$this->ID','$imageID')" );
+                                (ID, BugID, ImageID, Created)
+                                VALUES ('$nextID','$this->ID','$imageID', '$created')" );
             $db->unlock();
 
             if ( $res == false )

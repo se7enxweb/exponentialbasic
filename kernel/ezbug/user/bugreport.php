@@ -82,6 +82,7 @@ if ( $Action == "New" )
     $module = new eZBugModule( $ModuleID );
     $bug->removeFromCategories();
     $bug->removeFromModules();
+
     $category->addBug( $bug );
     $module->addBug( $bug );
 
@@ -168,9 +169,6 @@ if ( isset( $Ok ) ) // here check for errors. and display them if nescacary
         $AllFieldsError = true;
     }
 }
-else{
-    $BugID = 0;
-}
 
 if ( isset( $InsertFile ) )
 {
@@ -197,7 +195,7 @@ if ( isset( $DeleteSelected ) )
         }
     }
 
-    if ( count( $FileArrayID ) > 0 )
+    if ( isset( $FileArrayID ) && count( $FileArrayID ) > 0 )
     {
         foreach ( $FileArrayID as $fileID )
         {

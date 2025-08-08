@@ -26,9 +26,7 @@
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlog.php" );
-
 // include_once( "classes/ezfile.php" );
-
 // include_once( "ezbug/classes/ezbug.php" );
 // include_once( "ezfilemanager/classes/ezvirtualfile.php" );
 
@@ -38,11 +36,12 @@ $Language = $ini->variable( "eZBugMain", "Language" );
 
 $session = new eZSession();
 
-//$BugID = $session->variable( "BugID" );
+// Turns out this is not needed.
+// $BugID = $session->variable( "BugID" );
 
 if ( $Action == "Insert" )
 {
-    $file = new eZFile();
+    $file = new eZPBFile();
 
     if ( $file->getUploadedFile( "userfile" ) )
     { 
@@ -66,6 +65,8 @@ if ( $Action == "Insert" )
     }
 
     // include_once( "classes/ezhttptool.php" );
+    echo "Location: /bug/report/edit/" . $BugID . "/";
+    die();
     eZHTTPTool::header( "Location: /bug/report/edit/" . $BugID . "/" );
     exit();
 }

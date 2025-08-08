@@ -233,11 +233,12 @@ class eZBugCategory
            $db =& eZDB::globalDatabase();
            $db->begin();
            $db->lock( "eZBug_BugCategoryLink" );
-           $nextid = $db->nextID( "eZBug_BugCategoryLink", "ID" );
+           $nextID = $db->nextID( "eZBug_BugCategoryLink", "ID" );
            $res = $query = "INSERT INTO eZBug_BugCategoryLink
                             (ID, CategoryID, BugID)
                             VALUES
                             ('$nextID','$this->ID','$bugID')";
+                            echo $query; echo "<hr>";
            $db->query( $query );
            $db->unlock();
        }

@@ -133,7 +133,7 @@ if ( $Action == "Update" )
             if ( $OwnerID != -1 )
                 $owner = new eZUser( $OwnerID );
             else
-                $owner = NULL;
+                $owner = 0;
 
             $bug = new eZBug( $BugID );
 
@@ -147,6 +147,7 @@ if ( $Action == "Update" )
 
             $bug->setPriority( $priority );
             $bug->setStatus( $status );
+
             // check if owner is actually among the valid owners
             $bug->setOwner( $owner );
 

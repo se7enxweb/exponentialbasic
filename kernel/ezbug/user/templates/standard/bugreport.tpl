@@ -43,7 +43,7 @@
 <br /><br />
 
 <!-- BEGIN email_address_tpl -->
-<p class="boxtext">{intl-email_address} ({intl-if_you_are_a registered_user_please_log_in}):</p>
+<p class="boxtext">{intl-email_address} ({intl-if_you_are_a_registered_user_please_log_in}):</p>
 <input class="halfbox" type="text" size="20" name="Email" value="{usr_email}"/>
 <!-- END email_address_tpl -->
 

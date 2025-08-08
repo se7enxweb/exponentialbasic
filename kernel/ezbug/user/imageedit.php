@@ -39,7 +39,8 @@ $Language = $ini->variable( "eZBugMain", "Language" );
 
 $session = new eZSession();
 
-//$BugID = $session->variable( "BugID" );
+// This turns out to be not needed.
+// $BugID = $session->variable( "BugID" );
 
 if ( $Action == "Insert" )
 {

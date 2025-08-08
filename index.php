@@ -7,7 +7,7 @@
  */
 
 // Set a default time zone if none is given to avoid "It is not safe to rely
-// on the system's timezone settings" warnings. The time zone can be overriden
+// on the system's timezone settings" warnings. The time zone can be overridden
 // in config.php or php.ini.
 if ( !ini_get( "date.timezone" ) )
 {

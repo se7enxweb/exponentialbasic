@@ -85,9 +85,9 @@ SiteYahooExportDir=/home/ezpbasiclatest/doc/var/site/export/yahoo/
 # Database settings set DatabaseImplementation to mysql|postgresql|informix|...
 DatabaseImplementation=mysql
 Server=localhost
-Database=ezpbasiclatest_web
-User=ezpbasiclatest_web
-Password=db-ezpbasiclatest-web-2025
+Database=ezpbasicdbname
+User=ezpbasicdbuser
+Password=db-ezpbasic-secret-key-2001
 # If you need to specify the socket to use with mysql use this variable
 MySQLSocket=disabled
 
@@ -107,8 +107,8 @@ URLTranslationKeyword=section-standard;section-intranet;section-trade;section-ne
 
 CacheHeaders=true
 CheckDependence=enabled
-LogDir=bin/logs/
-LogFileName=error
+LogDir=var/logs/
+LogFileName=error_reports
 DemoSite=disabled
 ModuleTab=enabled
 Sections=enabled
@@ -783,7 +783,7 @@ DefaultWeight=10
 #
 ## Import
 #CSVImportPath=detailed path to filename for CSV file import
-CSVImportPath=/home/ezpbasiclatest/doc//import/importcsv/products.csv
+CSVImportPath=/home/ezpbasiclatest/doc/import/importcsv/products.csv
 #CSVImportCat=target product category for CSV file import
 CSVImportCat=312
 #CSVDelimiter=CSV file delimiter
@@ -812,7 +812,7 @@ StateTaxBilling=enabled
 #StateTaxShipping=enable state tax using shipping address
 StateTaxShipping=enabled
 
-+CategoryListProductImages=enabled
+CategoryListProductImages=enabled
 
 [Checkout]
 #PaymentMethods=allowed payment methods, Name1|file1.php;Name2|file2.php

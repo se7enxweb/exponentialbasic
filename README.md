@@ -86,7 +86,9 @@ This will direct all trafic by hostname match to index.php or index_admin.php as
 
 4.3 Add your IPv4 address (escape periods for syntax match) to the provided .htaccess file configuration.
 
-5. Initialize the application in your web browser. We recommend loading the admin site first but it doesn't matter much.
+5. Run shell script to set permissions for webserver to own the user and group and have file permissions of 775. Run shell script, ```./bin/shell/modfix.sh;```
+
+6. Initialize the application in your web browser. We recommend loading the admin site first but it doesn't matter much.
 
 # Default Admin Account in eZ Publish Basic
 
@@ -100,13 +102,72 @@ This will direct all trafic by hostname match to index.php or index_admin.php as
 
 Note: Your work is now done. Enjoy the free software and a healthy snack. :)
 
+Up next default content creation in the admin for your first visistor to see!
+
 # Documentation
 
 Further documentation can be read from the [documentation](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation) directory [README](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation/README).
 
-## Software Features
+## Features
 
 eZ Publish Basic provides a feature rich cms based website building platform that is ready to use upon it's quick installation setup.
+
+- Webserver support: Any web server (Really) preferably one that supports a url rewriting module like Apache's mod_rewrite.
+
+- PHP Support for PHP 8.1+, 8.2+, 8.3+, 8.4+
+
+- Database Support for MySQL, PostgreSQL, SQLite, Informix and More through plugin based system.
+
+- Simple application kernel design. Easy to learn and change.
+
+- Module based kernel application functionality. Extendable by default (Settings based).
+
+- eZ Publish 2 Kernel Transformed into eZ Publish 3 Kernel in Directory Structure and Storage of Code. This was then transformed into a hybrid of eZ Publish 2.4.0.0 kernel and eZ Publish 6 kernel sub system classes forming eZ Publish v2.4.0.1 our second version.
+
+- Administration that makes creating content quick and simple.
+
+- User side provides full functionality to create content through existing module views. This helps your users engage with your site.
+
+- eZ Publish (Basic) is one of the very oldest CMS Projects under the GPL with over 20 years of history. It stands as the leader in cms design throughout this time, leaving others to refactor their own solutions while eZ Publish Basic Developers just keep developing solutions with little need to refactor.
+
+- eZ Publish Basic is Free Software! We respect your freedoms. Try our software and join our community.
+
+- Support / Discussion Forums available on [Share eZ Publish! Forums for eZ Publish Basic](https://share.ezpublish.one/forums/ez-publish-basic)
+
+- Heavily tested software that is supported. If you find an issue we will fix it promptly.
+
+- Refactored kernel provides for future expansion to begin to provide support for even more extension based functionality.
+-- Autoloadable functionality within a plugin known as an extension
+-- Extensions could contain designs/settings/classes/modules/sql/doc/bin/etc.
+-- Extensions could be loaded based on settings based whitelist array of extension names.
+
+- eZ is a web based application suite. It delivers functionality ranging from publishing, web logs and diaries, through web shop functionality like shopping carts and wishlists and forums to intranet functions like contact handling and bug reporting.
+
+- The software uses caching and other optimization techniques to speed up page serving. It handles users, user preferences and user tracking through a user database and both cookie-based and non-bookie sessions.
+
+- It supports statistics for page views, links to followed and banner ads, both images and HTML with presentation logic.
+
+- The package lends itself to customization, from changing the look and feel by changing templates, localizing the languages and other internationalization issues to add new functionality.
+
+- The target audience for eZ is e-commerce, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring,, pollstodo lists, appointments as well as personal web sites.
+
+- Advertising with statistics
+- Article Publication and Management
+- Bug handling and reporting
+- Calendar functionality for creating appointments and events
+- Contact handling for keeping track of people and businesses
+- File manager for keeping track of uploaded files
+- Moderated forums for discussions
+- Image manager for keeping track of uploaded images
+- Link manager which is used to categorize links
+- News Feeding, fetch news and headlines from other sites and to incorporate in your own
+- Poll module for creating user polls.
+- Session module for keeping track of users and their preferences
+- Statistics module for information about page views and visitors
+- To-do module for assigning tasks to people
+- Trade module which is an online shop, with shopping cart and Wish list
+- User management for registering users, giving access to different groups to different parts of the site
+
 
 Learn more about eZ Publish Basic features in detail. Study our documentation, [FEATURES.md](documentation/FEATURES.md).
 
@@ -144,7 +205,7 @@ We welcome you to create new code not just bugfix existing code:
 2. You could add new template system support for additional templating engines like smarty or twig.
 3. You could add new database driver support for additional database server implementations as needed or desired. Note: they are very simple in design currently and quick to get working; 7x just added SQLite Database Support in the latest GitHub version (v2.4.0.1; unreleased officially) 
 4. You could help extend the kernel to support cleaner features like settings based debug output by type. We are working on this in the near future.
-5. You could help extend the language translation files to support more complete translation of all language file strings and phrases. Also you could provide new translations in new languges based on eng_US (the new default for 2.4.0.1).
+5. You could help extend the language translation files to support more complete translation of all language file strings and phrases. Also you could provide new translations in new languages based on eng_US (the new default for 2.4.0.1).
 7. You could help extend the library of site designs by providing a new design folder implementation. 7x just did this in providing the ecommerce design and related module templates design + templates based on eng_US language for strings in v2.4.0.1. It's very simple to create a custom design and share it.
  
 Try today for starters. Become a eZ Publish Contributor and Share your work with everyone.

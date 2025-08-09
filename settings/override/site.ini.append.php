@@ -76,8 +76,8 @@ HelpLanguage=en_US
 SiteTmpDir=/tmp/
 
 # Database Settings
-# Database settings set DatabaseImplementation to mysql|postgresql|sqlite|informix|...
-DatabaseImplementation=sqlite
+## Database settings set DatabaseImplementation to mysql|postgresql|sqlite|informix|...
+DatabaseImplementation=mysql
 Server=localhost
 
 DatabaseSQLitePath=var/site/
@@ -126,14 +126,13 @@ CharsetSwitch=disabled
 Charsets=en_US-English;en_GB-English;en_UC-Unicode;no_NO-Norwegian;ru_RU-Russian;lv_LV-Latvian;
 #fr_FR-French;it_IT-Italian;de_DE-German;
 
-
-
 # eZ publish image import scipt
 SiteTmpDir=/home/ezpbasiclatest/doc/var/site/import/images/
 # eZ publish froogle export script
 SiteFroogleExportDir=/home/ezpbasiclatest/doc/var/site/export/froogle/
 # eZ publish yahoo export script
 SiteYahooExportDir=/home/ezpbasiclatest/doc/var/site/export/yahoo/
+
 
 [classes]
 AdminTemplateDir=templates/standard/

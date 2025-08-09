@@ -74,20 +74,20 @@ SiteKeywords=Content Management System, CMS, e-commerce, ecommerce, website, bui
 # HelpLanguage=en_GB
 HelpLanguage=en_US
 SiteTmpDir=/tmp/
-# eZ publish image import scipt
-SiteTmpDir=/home/ezpbasiclatest/doc/var/site/import/images/
-# eZ publish froogle export script
-SiteFroogleExportDir=/home/ezpbasiclatest/doc/var/site/export/froogle/
-# eZ publish yahoo export script
-SiteYahooExportDir=/home/ezpbasiclatest/doc/var/site/export/yahoo/
 
 # Database Settings
-# Database settings set DatabaseImplementation to mysql|postgresql|informix|...
-DatabaseImplementation=mysql
+# Database settings set DatabaseImplementation to mysql|postgresql|sqlite|informix|...
+DatabaseImplementation=sqlite
 Server=localhost
+
+DatabaseSQLitePath=var/site/
+#DatabaseSQLiteFile=ezpb-site-demo-db
+DatabaseSQLiteFile=ezpb-site-demo-database.db
+
 Database=ezpbasicdbname
 User=ezpbasicdbuser
 Password=db-ezpbasic-secret-key-2001
+
 # If you need to specify the socket to use with mysql use this variable
 MySQLSocket=disabled
 
@@ -107,7 +107,7 @@ URLTranslationKeyword=section-standard;section-intranet;section-trade;section-ne
 
 CacheHeaders=true
 CheckDependence=enabled
-LogDir=var/logs/
+LogDir=var/log/
 LogFileName=error_reports
 DemoSite=disabled
 ModuleTab=enabled
@@ -125,6 +125,15 @@ SiteCacheTimeout=120
 CharsetSwitch=disabled
 Charsets=en_US-English;en_GB-English;en_UC-Unicode;no_NO-Norwegian;ru_RU-Russian;lv_LV-Latvian;
 #fr_FR-French;it_IT-Italian;de_DE-German;
+
+
+
+# eZ publish image import scipt
+SiteTmpDir=/home/ezpbasiclatest/doc/var/site/import/images/
+# eZ publish froogle export script
+SiteFroogleExportDir=/home/ezpbasiclatest/doc/var/site/export/froogle/
+# eZ publish yahoo export script
+SiteYahooExportDir=/home/ezpbasiclatest/doc/var/site/export/yahoo/
 
 [classes]
 AdminTemplateDir=templates/standard/

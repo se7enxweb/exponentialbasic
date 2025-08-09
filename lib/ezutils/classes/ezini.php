@@ -664,21 +664,41 @@ class eZINI
      */
     protected function saveCache( $cachedDir, $cachedFile, array $data, array $inputFiles, $iniFile )
     {
-        if ( !file_exists( $cachedDir ) )
+        // 7x: Note eZINI::saveCache by default is not very smart when it comes to creating cache directories recursively.
+        // Specifically when the cacheFile is created in a subdirectory of the cacheDir, it will not create the subdirectory.
+        // This is a simple solution to provide for the needed features for eZ Publish Basic.
+
+        // Get the path to the cache file
+        $tmpFileDir = explode( '/', $cachedFile );
+        array_pop( $tmpFileDir );
+        $tmpFileDir = implode( '/', $tmpFileDir );
+        $tmpFileDirPath = eZDir::cleanPath( $tmpFileDir, 2 );
+
+        // var_dump( "Writing cache file 'cachedFile' in $tmpFileDirPath\n\n", __METHOD__ );
+        // var_dump( eZDir::mkdir( $tmpFileDirPath, 0777, true ) );
+        
+        if ( !eZDir::mkdir( $tmpFileDirPath, 0777, true ) )
         {
-            if ( !eZDir::mkdir( $cachedDir, 0777, true ) )
+            if( $GLOBALS['DEBUG'] == true )
+            eZDebug::writeError( "Initial attempt: Couldn't create cache directory $tmpFileDir, perhaps wrong permissions", __METHOD__ );
+        }
+
+        if ( !file_exists( $tmpFileDirPath ) )
+        {
+            if ( !eZDir::mkdir( $tmpFileDirPath, 0777, true ) )
             {
-                eZDebug::writeError( "Couldn't create cache directory $cachedDir, perhaps wrong permissions", __METHOD__ );
+                eZDebug::writeError( "Main attempt. Couldn't create cache directory $cachedDir, perhaps wrong permissions", __METHOD__ );
                 return false;
             }
         }
 
         // Save the data to a temp cached file
         $tmpCacheFile = $cachedFile . '_' . substr( md5( mt_rand() ), 0, 8 );
+
         $fp = @fopen( $tmpCacheFile, "w" );
         if ( $fp === false )
         {
-            eZDebug::writeError( "Couldn't create cache file '$cachedFile', perhaps wrong permissions?", __METHOD__ );
+            eZDebug::writeError( "Couldn't create cache file '$cachedFile' in $cachedDir, perhaps wrong permissions?", __METHOD__ );
             return false;
         }
 

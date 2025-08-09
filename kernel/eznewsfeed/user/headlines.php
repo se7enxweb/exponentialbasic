@@ -43,10 +43,10 @@ if( !function_exists( 'printNewsHeaderList' ) )
     
             $ini = eZINI::instance( 'site.ini' );
     
-            $Language = $ini->variable( "eZNewsfeedMain", "Language" );
-            $ImageDir = $ini->variable( "eZNewsfeedMain", "ImageDir" );
+            $Language = $ini->variable( "eZNewsFeedMain", "Language" );
+            $ImageDir = $ini->variable( "eZNewsFeedMain", "ImageDir" );
     
-            $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
+            $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsFeedMain", "TemplateDir" ),
                                  "kernel/eznewsfeed/user/intl/", $Language, "headlines.php" );
     
             $t->setAllStrings();
@@ -104,7 +104,7 @@ if( !function_exists( 'printNewsHeaderList' ) )
         }
 }
 
-$PageCaching = $ini->variable( "eZNewsfeedMain", "PageCaching" );
+$PageCaching = $ini->variable( "eZNewsFeedMain", "PageCaching" );
 $cachedFile = "kernel/eznewsfeed/cache/headlines," . $CategoryID . ".cache";
 
 if ( $PageCaching == "enabled" )

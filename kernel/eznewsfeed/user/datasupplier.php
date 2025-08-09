@@ -27,7 +27,7 @@
 $ini =& eZINI::instance( 'site.ini' );
 
 $GlobalSectionID = $ini->variable( "site", "DefaultSection" );
-$PageCaching = $ini->variable( "eZNewsfeedMain", "PageCaching" );
+$PageCaching = $ini->variable( "eZNewsFeedMain", "PageCaching" );
 
 switch ( $url_array[2] )
 {

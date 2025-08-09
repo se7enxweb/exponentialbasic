@@ -32,7 +32,7 @@
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
 
 if( isset( $DeleteCategories ) && count( $CategoryArrayID ) > 0 )
 {
@@ -52,7 +52,7 @@ if( isset( $DeleteNews ) && count( $NewsArrayID ) > 0)
     }
 }
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsFeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "newsarchive.php" );
 
 $t->setAllStrings();

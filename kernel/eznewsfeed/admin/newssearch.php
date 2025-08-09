@@ -32,9 +32,9 @@
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsFeedMain", "TemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "newssearch.php" );
 
 $t->setAllStrings();

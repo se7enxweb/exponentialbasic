@@ -110,9 +110,9 @@ if( isset( $Action ) && $Action == "DeleteCat" )
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsFeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "unpublished.php" );
 
 $t->setAllStrings();

@@ -141,7 +141,10 @@ switch ( $url_array[2] )
 
     case "archive" :
     {
-        $ModuleID = $url_array[3];
+        if( isset( $url_array[3] ) && $url_array[3] != "" )
+            $ModuleID = $url_array[3];
+        else
+            $ModuleID = 0;
 
         include( "kernel/ezbug/user/buglist.php" );
     }

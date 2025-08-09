@@ -32,11 +32,11 @@
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
 
 if ( $SearchText == "" )
 {   //show anohther template if the search is 
-    $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsFeedMain", "TemplateDir" ),
                          "kernel/eznewsfeed/user/intl/", $Language, "search.php" );
 
     $t->setAllStrings();
@@ -50,7 +50,7 @@ if ( $SearchText == "" )
 else
 {
 
-    $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
+    $t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsFeedMain", "TemplateDir" ),
                          "kernel/eznewsfeed/user/intl/", $Language, "search.php" );
     
     $t->setAllStrings();

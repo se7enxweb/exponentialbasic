@@ -69,10 +69,10 @@ $news = new eZNews();
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
-$ImageDir = $ini->variable( "eZNewsfeedMain", "ImageDir" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
+$ImageDir = $ini->variable( "eZNewsFeedMain", "ImageDir" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsFeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "categoryedit.php" );
 
 $t->setAllStrings();

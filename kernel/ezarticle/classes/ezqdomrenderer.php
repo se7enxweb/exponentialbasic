@@ -882,7 +882,7 @@ class eZQDomRenderer
             $articleID = $this->Article->id();
 
             $level = 1;
-            if  ( count( $paragraph->attributes ) > 0 )
+            if  ( isset( $paragraph->attributes ) and ( $paragraph->attributes ) > 0 )
             foreach ( $paragraph->attributes as $attr )
             {
                 switch ( $attr->name )

@@ -33,9 +33,9 @@
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsfeedMain", "TemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/user/" . $ini->variable( "eZNewsFeedMain", "TemplateDir" ),
                      "kernel/eznewsfeed/user/intl/", $Language, "allcategories.php" );
 
 $t->setAllStrings();

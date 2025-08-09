@@ -80,9 +80,9 @@ if ( isset( $Delete ) )
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsFeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "importnews.php" );
 
 $t->setAllStrings();

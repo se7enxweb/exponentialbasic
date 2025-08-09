@@ -66,7 +66,7 @@ class eZSQLite3DB
         if ( !$ret )
         {
             // No reason to continue as nothing will work.
-            print( "<H1>SQLite Error</H1><br />" . mysqli_errno( $this->Database ) . ": " . mysqli_error( $this->Database )."<br /><hr />Please inform the system administrator." );
+            print( "<H1>SQLite Error</H1><br />" . mysqli_errno( $this->Database ) . ": " . $this->error( $this->Database )."<br /><hr />Please inform the system administrator." );
             exit;
         }
     }
@@ -164,6 +164,11 @@ class eZSQLite3DB
         return "sqlite";
     }
 
+    function error()
+    {
+        return $this->Database->lastErrorMsg();
+    }
+
     /*!
       Execute a query on the global MySQL database link.  If it returns an error,
       the script is halted and the attempted SQL query and MySQL error message are printed.
@@ -221,7 +226,7 @@ class eZSQLite3DB
         else
         {
             $this->unlock();
-            $this->Error = "<code>" . htmlentities( $sql ) . "</code><br>\n<b>" . htmlentities(mysqli_error( $this->Database)) . "</b>\n" ;
+            $this->Error = "<code>" . htmlentities( $sql ) . "</code><br>\n<b>" . htmlentities($this->error( $this->Database)) . "</b>\n" ;
             if ( $debug )
             {
                 print( "<b>MySQL Query Error</b>: " . htmlentities( $sql ) . "<br><b> Error number:</b>" . $errorNum . "<br><b> Error message:</b> ". $errorMsg ."<br>" );
@@ -418,11 +423,11 @@ class eZSQLite3DB
         $result = $this->query( "SELECT $field FROM $table Order BY $field DESC LIMIT 1" );
 
         $id = 1;
-        if ( $result )
+        if ( !is_bool( $result ) )
         {
             if ( !$this->Database->changes() == 0 )
             {
-                $array = mysqli_fetch_row( $result );
+                $array = $result->fetchArray( SQLITE3_ASSOC );
                 $id = $array[0];
                 $id++;
             }

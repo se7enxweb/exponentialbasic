@@ -28,8 +28,8 @@
 
 $ini = eZINI::instance( 'site.ini' );
 
-$Language = $ini->variable( "eZNewsfeedMain", "Language" );
-$ImageDir = $ini->variable( "eZNewsfeedMain", "ImageDir" );
+$Language = $ini->variable( "eZNewsFeedMain", "Language" );
+$ImageDir = $ini->variable( "eZNewsFeedMain", "ImageDir" );
 
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezlocale.php" );
@@ -114,7 +114,7 @@ if ( $Action == "Update" )
 }
 
 
-$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsfeedMain", "AdminTemplateDir" ),
+$t = new eZTemplate( "kernel/eznewsfeed/admin/" . $ini->variable( "eZNewsFeedMain", "AdminTemplateDir" ),
                      "kernel/eznewsfeed/admin/intl/", $Language, "sourcesiteedit.php" );
 
 $t->setAllStrings();

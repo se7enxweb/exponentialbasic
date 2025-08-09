@@ -15,6 +15,7 @@ The following modules are available with eZ Publish Basic providing a rich featu
 - ezfilemanager
 - ezform
 - ezforum
+- ezgroupeventcalendar
 - ezimagecatalogue
 - ezlink
 - ezmail
@@ -28,7 +29,9 @@ The following modules are available with eZ Publish Basic providing a rich featu
 - ezsession
 - ezsitemanager
 - ezstats
+- ezsurvey
 - ezsysinfo
+- eztip
 - eztodo
 - eztrade
 - ezurltranslator
@@ -135,16 +138,10 @@ The following administration / admin modules and views are included in eZ Publis
   - listtable
   - page
 - ezfilemanager
-  - filedownload
-  - filelist
-  - fileupload
-  - fileview
-  - folderedit
+  - browse
+  - cron
   - menubox
-  - menufilelist
-  - menufolderlist
-  - search
-  - viewfile
+  - unassigned
 - ezform
   - formview
 - ezforum
@@ -161,6 +158,14 @@ The following administration / admin modules and views are included in eZ Publis
   - search
   - unapprovededit
   - unapprovedlist
+- ezgroupeventcalendar
+  - categoryedit
+  - categorylist
+  - groupdisplay
+  - groupeditor
+  - menubox
+  - typeedit
+  - typelist
 - ezimagecatalogue
   - browse
   - categoryedit
@@ -263,6 +268,14 @@ The following administration / admin modules and views are included in eZ Publis
   - monthreport
   - dayreport
   - storestats
+- ezsurvey
+  - default
+  - menubox
+  - preview
+  - stats
+  - surveyedit
+  - surveylist
+  - values
 - ezsysinfo
   - fileinfo
   - hwinfo
@@ -270,47 +283,58 @@ The following administration / admin modules and views are included in eZ Publis
   - menubox
   - netinfo
   - sysinfo
+- eztip
+  - categoryedit
+  - menubox
+  - tipedit
+  - tiplist
+  - tipstatistics
 - eztodo
+  - categorytypeedit
+  - cate3gorytypelist 
   - menubox
-  - todoedit
-  - todoinfo
-  - todolist
-  - todomenulist
-  - todoview
+  - prioritytypeedit
+  - prioritytypelist
+  - statustypeedit
+  - statustypelist
 - eztrade
-  - cart
+  - attribteedit
+  - boxtypes
+  - categoryedit
   - categorylist
-  - categorytreelist
-  - checkout
-  - confirmation
-  - customerlogin
-  - extendedsearch
-  - findwishlist
-  - hostdealslist
-  - invoice
-  - mastercard
+  - cron
+  - currency
+  - customerlist
+  - customerview
+  - detailcategorylist
+  - export_froogle
+  - export_yahoo
+  - fileedit
+  - formlist
+  - froogle
+  - imageedit
+  - imagelist
+  - linklist
+  - linkselect
   - menubox
-  - metasupplier
+  - optionedit
+  - optionlist
+  - orderedit
   - orderlist
-  - ordersendt
   - orderview
-  - payment
-  - paypalnotify
-  - precheckout
-  - productlist
+  - pricegroupedit
+  - pricegroups
+  - productedit
+  - productpreview
   - productsearch
-  - productview
-  - searchsupplier
-  - sendwishlist
-  - smallcart
-  - smallproductlist
-  - viewwishlist
-  - visa
-  - voucher
-  - voucherinformation
-  - vouchermain
-  - voucherview
-  - wishlist
+  - seti
+  - shippingtypes
+  - simplecate3gorylist
+  - typeedit
+  - typelist
+  - vattypes
+  - voucheredit
+  - voucherlist
 - ezurltranslator
   - menubox
   - urledit
@@ -451,6 +475,16 @@ The following user modules and views are included in eZ Publish Basic:
   - search
   - searchsupplier
   - userlogin
+- ezgroupeventcalendar
+  - dayview
+  - eventedit
+  - eventview
+  - fileedit
+  - filelist
+  - menubox
+  - monthview
+  - weekview
+  - yearview
 - ezimagecatalogue
   - categoryedit
   - customimage
@@ -518,10 +552,16 @@ The following user modules and views are included in eZ Publish Basic:
   - static - Undocumented static content view.
 - ezstats
   - storestats
+- ezsurvey
+  - surveylist
+  - thanks
 - ezsysinfo
   - No user module views. Only Admin module views.
+- eztip
+  - gototip
+  - queuedtiplist
+  - tiplist
 - eztodo
-  - menubox
   - todoedit
   - todoinfo
   - todolist

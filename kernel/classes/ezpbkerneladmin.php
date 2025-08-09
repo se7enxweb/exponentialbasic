@@ -749,13 +749,14 @@ try
             include( $page );
         }
 
+        // html footer
+        include( "design/admin/loginfooter.php" );
+
         $moduleResult =& ob_get_contents();
 
         ob_end_clean();
         ob_start();
 
-        // html footer
-        include( "design/admin/loginfooter.php" );
     }
 
 

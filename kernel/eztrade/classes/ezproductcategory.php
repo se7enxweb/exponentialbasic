@@ -137,7 +137,6 @@ class eZProductCategory
                                   '$this->ImageID',
                                   '$this->SectionID',
                                   '$this->Parent' ) ";
-             echo $query;
 
             $res = $db->query( $query );
 

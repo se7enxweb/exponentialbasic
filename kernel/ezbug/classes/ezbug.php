@@ -642,7 +642,7 @@ class eZBug
         {
             $query = "DELETE FROM eZBug_BugCategoryLink
                             WHERE BugID='$this->ID'";
-                            echo $query; echo "<hr>";
+
             $res = $db->query( $query );
         }
 

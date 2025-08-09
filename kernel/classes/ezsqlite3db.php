@@ -66,7 +66,7 @@ class eZSQLite3DB
         if ( !$ret )
         {
             // No reason to continue as nothing will work.
-            print( "<H1>SQLite Error</H1><br />" . mysqli_errno( $this->Database ) . ": " . $this->error( $this->Database )."<br /><hr />Please inform the system administrator." );
+            print( "<H1>SQLite Error</H1><br />" . $this->error( $this->Database ) . ": " . $this->error( $this->Database )."<br /><hr />Please inform the system administrator." );
             exit;
         }
     }

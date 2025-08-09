@@ -486,6 +486,17 @@ class eZUser
                 AND Password=CONCAT('*', UPPER(SHA1(UNHEX(SHA1('$password')))));";
             $db->array_query( $user_array, $sqlQuery );
 	    }
+        elseif ( $db->isA() == "sqlite" )
+        {
+            // Calculate MySQL-style hash in PHP so SQLite can just compare strings
+            $hash = '*' . strtoupper( sha1( hex2bin( sha1( $password ) ) ) );
+
+            $sqlQuery = "SELECT *
+                        FROM eZUser_User
+                        WHERE Login='$login'
+                        AND Password = '$hash'";
+            $db->array_query( $user_array, $sqlQuery );
+        }
         else
         {
             $password = md5( $password );

@@ -442,7 +442,7 @@ DefaultSection=2
 # Shows which modules are linked to what forum categories (format eZModule:ForumID)
 # Not needed for eZArticle yet
 LinkModules=eZTrade:5,eZImageCatalogue:6
-
+ExcludeFeatureForums=disabled
 
 [eZImageCatalogueMain]
 # AdminTemplateDir=templates/standard/
@@ -784,6 +784,7 @@ EmailBeforeExpire=2
 NoUserShowVAT=disabled
 
 ShowPrintableRecieptLink=enabled
+ReviewLimit=25
 
 #
 #DefaultWeight=default item weight if none assigned

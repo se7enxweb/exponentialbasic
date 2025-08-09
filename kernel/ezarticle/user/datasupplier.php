@@ -102,7 +102,7 @@ switch ( $url_array[2] )
 
             $cachedFile = $file->filename( true );
 
-            if ( $file->exists() )
+            if ( $file->exists() && $userID !== null)
             {
                 include( $cachedFile );
             }

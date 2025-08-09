@@ -53,17 +53,17 @@ class eZURLTranslator
     static public function translate( $url )
     {
         $ret = false;
-
-	// Hack to delete a trailing slash
-	$url = preg_replace("'/$'", "", $url);
-
+        $url_array = array();
         $db =& eZDB::globalDatabase();
+
+        // Hack to delete a trailing slash
+        $url = preg_replace("'/$'", "", $url);
 
         $db->array_query( $url_array,
             "SELECT Dest FROM eZURLTranslator_URL
              WHERE Source='$url'" );
 
-	$url = preg_replace("'/$'", "", $url);
+        // $url = preg_replace("'/$'", "", $url);
 
         if ( count( $url_array ) > 0 )
         {
@@ -129,6 +129,7 @@ class eZURLTranslator
 
             if ( count( $url_array ) > 1 )
             {
+                // $db->array_query( $url_array, "DELETE FROM eZURLTranslator_URL WHERE ID='$id'" );
                 die( "Error: Url translations's with the same ID was found in the database. This shouldn't happen." );
             }
             else if ( count( $url_array ) == 1 )

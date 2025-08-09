@@ -534,16 +534,26 @@ try
     if ( ( $requireUserLogin == "disabled" ) ||
         ( ( $requireUserLogin == "enabled" ) && ( is_a( $user, "eZUser" ) ) && ( $user->id() != 0 ) ) )
     {
-
         // do url translation if needed
         $URLTranslationKeyword = $ini->variable( "site", "URLTranslationKeyword" );
-
         $urlTranslatorArray = explode( ";", $URLTranslationKeyword );
 
-        if ( in_array( $url_array[1], $urlTranslatorArray ) )
+        if( isset( $url_array[2] ) && $url_array[2] != "" )
+            $combinedURIs = '/'. $url_array[1] . '/'. $url_array[2];
+        else
+            $combinedURIs = '/' . $url_array[1];
+
+        if( isset( $url_array[3] ) && $url_array[3] != "" )
+            $combinedURIs = '/' . $url_array[1] . '/'. $url_array[2] . '/' . $url_array[3];
+
+        // var_dump($combinedURIs); echo "<hr>";
+        if ( in_array( $url_array[1], $urlTranslatorArray ) ||
+            in_array( $combinedURIs, $urlTranslatorArray ) ||
+            in_array( $_SERVER['REQUEST_URI'], $urlTranslatorArray ) )
         {
-            // // include_once( "ezurltranslator/classes/ezurltranslator.php" );
-            $translatedURL = eZURLTranslator::translate( $_SERVER['REQUEST_URI'] );
+            $translatedURL = eZURLTranslator::translate( $combinedURIs );
+            // var_dump($translatedURL); echo "<hr>";
+
             if ( $translatedURL )
             {
                 $_SERVER['REQUEST_URI'] = $translatedURL;

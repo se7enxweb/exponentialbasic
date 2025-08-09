@@ -350,6 +350,8 @@ class eZINI
             return true;
         else if ( file_exists( $rootDir . '/' . $fileName . '.append' ) )
             return true;
+        else if ( file_exists( $rootDir . '/' . $fileName . '.php' ) )
+            return true;
         return false;
     }
 
@@ -503,11 +505,15 @@ class eZINI
                 {
                     $inputFiles[] = $overrideFile . '.append.php';
                 }
-
                 if ( file_exists( $overrideFile . '.append' ) )
                 {
                     // recursion eZDebug::writeStrict( "INI files with *.ini.append suffix is DEPRECATED, use *.ini or *.ini.append.php instead: $overrideFile.append", __METHOD__ );
                     $inputFiles[] = $overrideFile . '.append';
+                }
+
+                if ( file_exists( $overrideFile . '.php' ) )
+                {
+                    $inputFiles[] = $overrideFile . '.php';
                 }
             }
         }

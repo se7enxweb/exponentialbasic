@@ -117,9 +117,6 @@ class eZSession
         // escape hash
         $hash = $db->escapeString( $this->Hash );
 
-        var_dump( $hash ); echo "<hr>";
-        var_dump( $this->ID ); echo "<hr>";
-die( "test" );
         if ( !isset( $this->ID ) )
         {
             $nextID = $db->nextID( "eZSession_Session", "ID" );

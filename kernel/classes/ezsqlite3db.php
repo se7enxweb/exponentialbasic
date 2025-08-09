@@ -420,9 +420,11 @@ class eZSQLite3DB
     */
     function nextID( $table, $field="ID" )
     {
-        $result = $this->query( "SELECT $field FROM $table Order BY $field DESC LIMIT 1" );
+        $results = array();
+        $query = "SELECT max($field) as ID FROM $table Order BY $field DESC LIMIT 1";
+        $result = $this->array_query( $results, $query );
 
-        $id = 1;
+        $id = null;
         if ( !is_bool( $result ) )
         {
             if ( !$this->Database->changes() == 0 )
@@ -432,7 +434,10 @@ class eZSQLite3DB
                 $id++;
             }
             else
-                $id = 1;
+            {
+                $array = $result[0];
+                $id = $array["ID"] + 1;
+            }
         }
         return $id;
     }

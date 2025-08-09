@@ -679,8 +679,7 @@ class eZINI
         
         if ( !eZDir::mkdir( $tmpFileDirPath, 0777, true ) )
         {
-            if( $GLOBALS['DEBUG'] == true )
-            eZDebug::writeError( "Initial attempt: Couldn't create cache directory $tmpFileDir, perhaps wrong permissions", __METHOD__ );
+            // Debug::writeError( "Initial attempt: Couldn't create cache directory $tmpFileDir, perhaps wrong permissions", __METHOD__ );
         }
 
         if ( !file_exists( $tmpFileDirPath ) )

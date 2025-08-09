@@ -443,11 +443,11 @@ $StoreStats = $ini->variable( "eZStatsMain", "StoreStats" );
 $session =& eZSession::globalSession();
 
 // 7x: Convert the following to ini settings
-global $GLOBALS;
-
 $GLOBALS["DEBUG"] = false;
 $GLOBALS["DDD"] = '';
 $UsePHPSessions = false;
+global $GLOBALS;
+
 
 global $GlobalSiteIni;
 $GlobalSiteIni =& $ini;

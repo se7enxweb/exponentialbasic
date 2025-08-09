@@ -33,6 +33,23 @@ DebugDatabaseTransactions=disabled
 SiteDesign=standard
 AdminDesign=ezpublish
 SiteStyle=white
+
+# Database Settings
+## Database settings set DatabaseImplementation to mysql|postgresql|sqlite|informix|...
+DatabaseImplementation=mysql
+Server=localhost
+
+DatabaseSQLitePath=var/site/db/
+#DatabaseSQLiteFile=ezpb-site-demo-db
+DatabaseSQLiteFile=ezpb-site-demo-database.db
+
+Database=ezpbasicdbname
+User=ezpbasicdbuser
+Password=db-ezpbasic-secret-key-2001
+
+# If you need to specify the socket to use with mysql use this variable
+MySQLSocket=disabled
+
 SiteTitle=eZ Publish Basic a community based framework and website cms
 Keywords=eZPublishBasic CMS Framework Website Content Management System e-commerce ecommerce website building cms 7x tools web application system.
 # Example site Language setting options:
@@ -75,21 +92,6 @@ SiteKeywords=Content Management System, CMS, e-commerce, ecommerce, website, bui
 HelpLanguage=en_US
 SiteTmpDir=/tmp/
 
-# Database Settings
-## Database settings set DatabaseImplementation to mysql|postgresql|sqlite|informix|...
-DatabaseImplementation=mysql
-Server=localhost
-
-DatabaseSQLitePath=var/site/
-#DatabaseSQLiteFile=ezpb-site-demo-db
-DatabaseSQLiteFile=ezpb-site-demo-database.db
-
-Database=ezpbasicdbname
-User=ezpbasicdbuser
-Password=db-ezpbasic-secret-key-2001
-
-# If you need to specify the socket to use with mysql use this variable
-MySQLSocket=disabled
 
 # can be e.g. /article/view/42 or disabled
 # Default Page : can be e.g. /article/view/42 or disabled

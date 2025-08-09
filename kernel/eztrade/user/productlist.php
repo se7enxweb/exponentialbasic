@@ -87,7 +87,7 @@ $t->set_block( "option_tpl", "value_price_header_tpl", "value_price_header" );
 $t->set_block( "option_tpl", "value_tpl", "value" );
 
 $t->set_block( "value_price_header_tpl", "value_description_header_tpl", "value_description_header" );
-$t->set_block( "value_price_header_tpl", "value_price_header_item_tpl", "value_price_header_item" );
+// $t->set_block( "value_price_header_tpl", "value_price_header_item_tpl", "value_price_header_item" );
 $t->set_block( "value_price_header_tpl", "value_currency_header_item_tpl", "value_currency_header_item" );
 
 $t->set_block( "value_tpl", "value_description_tpl", "value_description" );

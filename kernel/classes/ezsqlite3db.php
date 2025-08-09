@@ -215,7 +215,7 @@ class eZSQLite3DB
         {
             if ( $debug )
             {
-                print( $sql . "<br>");
+                print( $sql . "<hr>");
             }
         }
 
@@ -249,7 +249,7 @@ class eZSQLite3DB
     {
         $array = array();
         $results = $this->array_query_append( $array, $sql, $min, $max, $column );
-        return $results;
+        return $array;
     }
 
     /*!
@@ -264,7 +264,7 @@ class eZSQLite3DB
             $row = $array[0];
         else
             $row = "";
-        return $ret;
+        return $row;
     }
 
     /*!
@@ -302,7 +302,7 @@ class eZSQLite3DB
         if ( $results == false )
         {
             $this->Error = $this->Database->lastErrorCode();
-            print( $this->Error );
+            // print( $this->Error );
             // eZPBLog::writeWarning( $this->Error );
             // return false;
         }

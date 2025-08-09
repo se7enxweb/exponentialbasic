@@ -1,4 +1,17 @@
 <?php /*
+#?ini charset="utf-8"?
+# eZ Publish configuration file.
+#
+# NOTE: It is not recommended to edit this files directly, instead
+#       a file in override should be created for setting the
+#       values that is required for your site. Either create
+#       a file called settings/override/site.ini.append or
+#       settings/override/site.ini.append.php for more security
+#       in non-virtualhost modes (the .php file may already be present
+#       and can be used for this purpose).
+
+
+/*
 #
 # If you have a production site and a staging site with different settings
 # you can create a directory called "override" in the main publish directory.
@@ -13,42 +26,77 @@
 # production database, but in all other parts use the correct site.ini settings.
 #
 
+########################################
+# Site Accessibility Settings for eZ Publish Basic
+########################################
+
 [site]
 SitePath=/home/demo/doc/
 SiteURL=basic.demo.ezpublish.one
-AdminSiteURL=admin.basic.demo.ezpublish.one
-AdminSiteProtocol=https
 UserSiteURL=basic.demo.ezpublish.one
+AdminSiteURL=admin.basic.demo.ezpublish.one
 UserSiteProtocol=https
+AdminSiteProtocol=https
+
+
+########################################
+# Debug Output Settings for eZ Publish Basic
+########################################
 
 # DebugOutput=enabled
 # DebugOutput=disabled
-DebugOutput=enabled
+DebugOutput=disabled
 DebugTemplate=disabled
 DebugLanguage=disabled
 DebugDatabaseTransactions=disabled
 
+
+########################################
+# Design Settings for eZ Publish Basic
+########################################
+
 # SiteDesign=standard
 # SiteDesign=ecommerce
 SiteDesign=standard
-AdminDesign=ezpublish
 SiteStyle=white
 
-# Database Settings
-## Database settings set DatabaseImplementation to mysql|postgresql|sqlite|informix|...
-DatabaseImplementation=mysql
-Server=localhost
+AdminDesign=ezpublish
+AdminSiteStyle=white
 
+
+########################################
+# Database Settings for eZ Publish Basic
+########################################
+Database=ezpbasicdbname
+User=ezpbasicdbuser
+Password=db-ezpbasic-secret-key-2001
+Server=localhost
+# Port=3306
+# Port=27017
+Port=3306
+# If you need to specify the socket to use with mysql use this variable
+MySQLSocket=disabled
+
+
+########################################
+# Database Implementation Setting for eZ Publish Basic
+########################################
+## DatabaseImplementation setting can be set to mysql|postgresql|sqlite|informix
+DatabaseImplementation=mysql
+
+
+########################################
+# SQLite Database Settings for eZ Publish Basic
+########################################
 DatabaseSQLitePath=var/site/db/
 #DatabaseSQLiteFile=ezpb-site-demo-db
 DatabaseSQLiteFile=ezpb-site-demo-database.db
 
-Database=ezpbasicdbname
-User=ezpbasicdbuser
-Password=db-ezpbasic-secret-key-2001
 
-# If you need to specify the socket to use with mysql use this variable
-MySQLSocket=disabled
+########################################
+# Site Meta Information: Title, Description 
+# and Keywords Settings for eZ Publish Basic
+########################################
 
 SiteTitle=eZ Publish Basic a community based framework and website cms
 Keywords=eZPublishBasic CMS Framework Website Content Management System e-commerce ecommerce website building cms 7x tools web application system.
@@ -60,31 +108,34 @@ Keywords=eZPublishBasic CMS Framework Website Content Management System e-commer
 # Language=en_US
 # Replace value with British English setting option en_GB as shown bellow.
 # Language=en_GB
-
 Language=en_US
-#
-#
-# froogle export
-UserFroogle=fullthrottle
-PasswordFroogle=fullthrottle42
+
+
+########################################
+# External API Connection Key 
+# Settings for eZ Publish Basic
+########################################
+# Froogle export
+UserFroogle=remote-api-service-user-name
+PasswordFroogle=remote-api-service-user-name
 ServerFroogle=hedwig.google.com
 
 # yahoo export
-UserYahoo=fullthrottle
-PasswordYahoo=fullthrottle
+UserYahoo=remote-api-service-user-name
+PasswordYahoo=remote-api-service-user-name
 ServerYahoo=ftp.productsubmit.adcentral.yahoo.com
 
 # shipping module info
-UserUPS=fullthrottle
+UserUPS=remote-api-service-user-name
 AccessUPS=CBA8236E8100AC06
-PassUPS=fullthrottle
+PassUPS=remote-api-service-user-name
 UserUSPSServer=http://production.shippingapis.com/ShippingAPI.dll
-UserUSPS=fullthrottle42
-PassUSPS=fullthrottle42
+UserUSPS=remote-api-service-user-name
+PassUSPS=remote-api-service-user-name
 
 # Meta content variable
 SiteAuthor=7x
-SiteCopyright=7x &copy; 1999 - 2025
+SiteCopyright=7x &copy; 1998 - 2025
 SiteDescription=eZ publish basic - the web application suite
 SiteKeywords=Content Management System, CMS, e-commerce, ecommerce, website, building, cms
 
@@ -136,11 +187,22 @@ SiteFroogleExportDir=/home/ezpbasiclatest/doc/var/site/export/froogle/
 SiteYahooExportDir=/home/ezpbasiclatest/doc/var/site/export/yahoo/
 
 
+
+########################################
+# Framework Specific Settings aka 
+# the Framework Main Settings.
+########################################
+
 [classes]
 AdminTemplateDir=templates/standard/
 TemplateDir=templates/standard/
 ImageConversionProgram=convert
 DefaultSection=1
+
+########################################
+# Settings specific to eztrade's 
+# unique homepage module view operations.
+########################################
 
 [homepage]
 DealerDescription=Shop for products that fit your needs
@@ -165,6 +227,10 @@ GalleryThumbHeight=75
 CommentLimit=5
 CommentLetterLimit=250
 
+########################################
+# Module Specific Settings aka 
+# the Module Main Settings.
+########################################
 
 [eZAboutMain]
 AdminTemplateDir=templates/standard/
@@ -660,9 +726,9 @@ AuthorizeNetMode=test
 # AuthorizeNetMode=standard
 #
 # Third Key - new May 31, 2005
-AuthorizeNetKey=fullthrottle42
-AuthorizeNetLogin=fullthrottle
-AuthorizeNetPassword=fullthrottle42
+AuthorizeNetKey=remote-api-service-user-name
+AuthorizeNetLogin=remote-api-service-user-name
+AuthorizeNetPassword=remote-api-service-user-name
 
 FreeShippingUser=0
 FreeShippingDealer=0
@@ -699,7 +765,7 @@ Language=en_US
 PageCaching=disabled
 #Order Disclaimer
 OrderDisclaimer=enabled
-OrderDisclaimerText=By submitting this order, I hereby agree to FullThrottle.com\'s Return Policy and Shipping Policy
+OrderDisclaimerText=By submitting this order, I hereby agree to the Terms and Conditions, Return Policy and Shipping Policy
 ShippingDisclaimerText=Please call us before ordering to confirm availability if you need the items delivered by a specific date!
 OrderSenderEmail=nospam@example.org
 OrderReceiverEmail=nospam@example.org
@@ -805,7 +871,7 @@ DefaultDealerPriceGroup=2
 # SETI integration variables below
 SetiUser=fulluser
 SetiPassword=codel
-Code=fullthrottle
+Code=remote-api-service-user-name
 Version=2.0
 #UPSXMLShipping=enabled/disabled, whether to enable UPS XML rates retrieval
 UPSXMLShipping=disabled
@@ -924,5 +990,9 @@ DefaultSection=5
 
 [eZXMLRPC]
 UserIndex=/index.php
+
+########################################
+# END OF FILE
+########################################
 
 */ ?>

@@ -90,28 +90,27 @@ class eZPBLog
             $ini =& eZINI::instance( 'site.ini' );
 
             $fileName = $ini->variable( "site", "LogFileName" );
-	    $logDir = $ini->variable( "site", "LogDir" );
+	        $logDir = $ini->variable( "site", "LogDir" );
 
-	    // build timestamp for today's date 	    
-	    //include_once( "kernel/classes/ezdate.php" );
+	        // build timestamp for today's date 	    
+	        //include_once( "kernel/classes/ezdate.php" );
 
-	    $today = new eZDate();
-	    $year = eZDateTime::addZero( $today->year() );
+	        $today = new eZDate();
+	        $year = eZDateTime::addZero( $today->year() );
     	    $month = eZDateTime::addZero( $today->month() );
             $day = eZDateTime::addZero( $today->day() );
 
-	    // append timestamp to log file name
-	    $timestamp = $year ."_". $month ."_". $day;
-
+	        // append timestamp to log file name
+	        $timestamp = $year ."_". $month ."_". $day;
             $fileName = $logDir . $fileName ."_". $timestamp .".log";
 
-	    if ( file_exists( $fileName ) )
+            if ( file_exists( $fileName ) )
             {	
-	       $this->LogFile = eZPBFile::fopen( $fileName, "a" );
+                $this->LogFile = eZPBFile::fopen( $fileName, "a" );
             } 
-	    else
+            else
             {
-               $this->LogFile = eZPBFile::fopen( $fileName, "a+" );
+                $this->LogFile = eZPBFile::fopen( $fileName, "a+" );
             }
     
             if ( !$this->LogFile )
@@ -134,8 +133,8 @@ class eZPBLog
     */
     function notice( $notice )
     {
-        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
-        $notice = "[ " . $time . " ] [notice] " . $notice . "\n"; 
+        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );
+        $notice = "[ " . $time . " ] [notice] " . $notice . "\n";
         fwrite( $this->LogFile, $notice );
     }
 
@@ -144,19 +143,18 @@ class eZPBLog
     */
     function warning( $warning )
     {
-        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
-        $warning = "[ " . $time . " ] [warning] " . $warning . "\n"; 
+        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );
+        $warning = "[ " . $time . " ] [warning] " . $warning . "\n";
         fwrite( $this->LogFile, $warning );
     }
-
 
     /*!
       Writes out an error to the log file.
     */
     function error( $error )
     {
-        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );        
-        $error = "[ " . $time . " ] [error] " . $error . "\n"; 
+        $time = date("%b %d %Y %H:%M:%S", strtotime( "now" ) );
+        $error = "[ " . $time . " ] [error] " . $error . "\n";
         fwrite( $this->LogFile, $error );
     }
 
@@ -234,10 +232,10 @@ class eZPBLog
                 $log->notice( $message );
                 $log->close();
             }
-            break;            
+            break;
         }
     }
-    
+
     var $LogFile;
 }
 

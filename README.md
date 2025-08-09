@@ -116,7 +116,7 @@ eZ Publish Basic provides a feature rich cms based website building platform tha
 
 - PHP Support for PHP 8.1+, 8.2+, 8.3+, 8.4+
 
-- Database Support for MySQL, PostgreSQL, SQLite, Informix and More through plugin based system.
+- Database Support for MySQL, MariaDB (via the MySQL Driver) PostgreSQL, SQLite, Informix and More through plugin based system.
 
 - Simple application kernel design. Easy to learn and change.
 

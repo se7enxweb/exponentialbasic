@@ -570,6 +570,20 @@ try
                 //if( $singleModule == 'enabled' )
                 //    $modules = array( $modules[0] );
 
+                // set the module logo
+                $moduleName =& $url_array[1];
+
+                foreach ( $admin_modules as $moduleString )
+                {
+                    $moduleArray = explode( "|", $moduleString );
+
+                    if( $moduleArray[1] == "ez" . $moduleName )
+                    {
+                        $moduleNameMixedCase = $moduleArray[0];
+                        $moduleSettingsGroupName = $moduleArray[0] . "Main";
+                        break;
+                    }
+                }
                 // draw modules
                 foreach ( $modules as $module )
                 {
@@ -580,9 +594,9 @@ try
                         unset( $menuItems );
                         include( "$module_dir/admin/menubox.php" );
                         if ( isset( $menuItems ) )
-                            eZMenuBox::createBox(  $module,  $module_dir, "admin",
+                            eZMenuBox::createBox(  $moduleName, $module_dir, "admin",
                             $siteDesign, $menuItems, true, false,
-                            "kernel/$module_dir/admin/menubox.php", false, true );
+                            "$module_dir/admin/menubox.php", false, true, $moduleSettingsGroupName );
                         unset( $module_dir );
                     }
                 }
@@ -663,7 +677,62 @@ try
             if ( empty($_REQUEST['PrintableVersion']))
             {
                 // break the column an draw a horizontal line
-                include( "design/admin/separator.php" );
+                // include( "design/admin/separator.php" );
+
+                $single_module = $preferences->variable( "SingleModule" ) == "enabled";
+
+                $ini =& eZINI::instance('site.ini');
+    
+                $Language = $ini->variable( $moduleSettingsGroupName, "Language" );
+       
+                $t = new eZTemplate( "design/admin/templates/" . $siteDesign,
+                    "kernel/ez" . $moduleName . "/admin/intl/", $Language, "menubox.php" );
+                $t->set_file( array(
+                    "separator_tpl" => "separator.tpl"
+                    ) );
+
+                $t->set_block( "separator_tpl", "left_spacer_tpl", "left_spacer_item" );
+                $t->set_block( "separator_tpl", "top_field_tpl", "top_field_item" );
+                $t->set_block( "top_field_tpl", "help_tpl", "help" );
+
+                $t->set_var( "site_style", $siteDesign );
+
+                $t->set_var( "module_name", $moduleName );
+
+                $t->set_var( "current_url", $_SERVER['REQUEST_URI'] );
+
+                if( isset( $url_array[2] ) )
+                {
+                    // check for help file
+                    $helpFile = "kernel/ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . "_" . $url_array[2] . ".hlp";
+                }
+                else {
+                    // check for help file
+                    $helpFile = "kernel/ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . ".hlp";
+                }
+                $t->set_var( "help", "" );
+
+                if ( file_exists( $helpFile ) )
+                {
+                    $t->set_var( "help_url", "/help/" . $moduleName . "/" . $url_array[1] . "/" . $url_array[2]. "/" );
+                    $t->parse( "help", "help_tpl" );
+                }
+
+                $t->setAllStrings();
+
+                $t->set_var( "module_count", count ( $modules ) );
+                $t->set_var( "left_spacer_item", "" );
+
+                $moduletab = $ini->variable( "site", "ModuleTab" );
+
+                if ( ( $moduletab == "enabled" ) && ( count ( $modules ) != 0 ) )
+                {
+                    $t->parse( "left_spacer_item", "left_spacer_tpl" );
+                }
+
+                $t->parse( "top_field_item", "top_field_tpl" );
+
+                $t->pparse( "output", "separator_tpl" );
             }
 
             if ( file_exists( $page ) )

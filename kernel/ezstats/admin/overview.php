@@ -25,17 +25,15 @@
 
 // include_once( "classes/INIFile.php" );
 // include_once( "classes/ezmenubox.php" );
-
-$ini =& eZINI::instance( 'site.ini' );
-$SiteDesign =& $ini->variable( "site", "SiteStyle" );
-
-$Language = $ini->variable( "eZStatsMain", "Language" );
-
 // include_once( "classes/eztemplate.php" );
 // include_once( "classes/ezdate.php" );
-
 // include_once( "ezstats/classes/ezpageview.php" );
 // include_once( "ezstats/classes/ezpageviewquery.php" );
+
+
+$ini = eZINI::instance( 'site.ini' );
+$SiteDesign = $ini->variable( "site", "SiteStyle" );
+$Language = $ini->variable( "eZStatsMain", "Language" );
 
 $t = new eZTemplate( "kernel/ezstats/admin/" . $ini->variable( "eZStatsMain", "AdminTemplateDir" ),
                      "kernel/ezstats/admin/intl", $Language, "overview.php" );
@@ -66,6 +64,7 @@ $menuItems = array(
     );
 
 eZMenuBox::createBox( "eZStats", "kernel/ezstats", "admin",
-                      $SiteDesign, $menuItems, true, "menuitems.tpl", "kernel/ezstats/admin/overview.php", true );
+$SiteDesign, $menuItems, true, 
+"menuitems.tpl", "kernel/ezstats/admin/overview.php", true, false, "eZStatsMain"  );
 
 ?>

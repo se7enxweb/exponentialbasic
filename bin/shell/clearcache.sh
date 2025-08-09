@@ -29,6 +29,7 @@ kernel/ezbulkmail
 kernel/ezform
 kernel/ezmediacatalogue
 kernel/ezsysinfo
+var
 "
 
 for dir in $dirs

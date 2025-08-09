@@ -59,14 +59,17 @@ class eZMenuBox
 
     static public function createBox( $ModuleName, $module_dir, $place, $SiteDesign,
                         &$menuItems, $print = true, $templatefile = false,
-                        $phpfile = false, $ignore_status = false, $allow_module_template = false )
+                        $phpfile = false, $ignore_status = false, $allow_module_template = false, $settingsModuleName = false )
     {
         // include_once( "kernel/ezsession/classes/ezpreferences.php" );
         $preferences = new eZPreferences();
-        
+
         $ini =& eZINI::instance( 'site.ini' );
 
-        $Language = $ini->variable( $ModuleName . "Main", "Language" );
+        if ( $settingsModuleName == false )
+            $settingsModuleName = $ModuleName . "Main";
+
+        $Language = $ini->variable( $settingsModuleName, "Language" );
 
         $menuStatus =& $preferences->variable( $module_dir . "_status" );
 
@@ -95,8 +98,8 @@ class eZMenuBox
         $template_dir = "design/admin/templates/" . $SiteDesign;
         if ( $allow_module_template )
         {
-            $mod_dir = $ini->variable( $ModuleName . "Main", "AdminTemplateDir" );
-            $mod_dir = "kernel/$module_dir/admin/$mod_dir";
+            $mod_dir = $ini->variable( $settingsModuleName . "Main", "AdminTemplateDir" );
+            $mod_dir = "$module_dir/admin/$mod_dir";
             if ( file_exists( "$mod_dir/menubox.tpl" ) and
                  file_exists( "$mod_dir/menubox_closed.tpl" ) )
             {

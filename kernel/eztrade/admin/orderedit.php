@@ -451,6 +451,8 @@ if ( $numberOfItems > 0 )
 
 $t->setAllStrings();
 
+global $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn;
+
 turnColumnsOnOff( "header" );
 
 if ( $ShowCart == true )

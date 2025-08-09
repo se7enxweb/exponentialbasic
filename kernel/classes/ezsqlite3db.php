@@ -464,15 +464,6 @@ class eZSQLite3DB
         $this->Database->close();
     }
 
-    /*
-      will be removed
-     */
-    function insertID()
-    {
-//        print( "insertid is obsolete" );
-        return mysqli_insert_id( $this->Database );
-    }
-
     function printConnection()
     {
         print "DatabaseFile: " . $this->Server . "<br>\n";

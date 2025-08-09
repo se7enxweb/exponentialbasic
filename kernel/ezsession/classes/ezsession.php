@@ -177,19 +177,39 @@ class eZSession
 
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $session_array = array();
 
         if ( $id != "" )
         {
-            $db->array_query( $session_array, "SELECT * FROM eZSession_Session WHERE ID='$id'" );
-            if ( count( $session_array ) > 1 )
+            if( $db->isA() == "mysql" )
             {
-                die( "Error: Session's with the same ID was found in the database. This shouldent happen." );
+                $db->array_query( $session_array, "SELECT * FROM eZSession_Session WHERE ID='$id'" );
+                if ( count( $session_array ) > 1 )
+                {
+                    die( "Error: Session's with the same ID was found in the database. This should not happen." );
+                }
+                else if ( count( $session_array ) == 1 )
+                {
+                    $this->fill( $session_array[0] );
+                    $ret = true;
+                }
             }
-            else if ( count( $session_array ) == 1 )
+            elseif( $db->isA() == "sqlite" )
             {
-                $this->fill( $session_array[0] );
-                $ret = true;
+                $db->array_query( $session_array, "SELECT * FROM eZSession_Session WHERE ID='$id'" );
+                if ( count( $session_array ) > 1 )
+                {
+                    // $db->query( "DELETE FROM eZSession_Session WHERE ID='$id'" );
+                    eZDebug::writeError( "Error: Session's with the same ID was found in the database. This should not happen.", __METHOD__ );
+                }
+                else if ( count( $session_array ) == 1 )
+                {
+                    $this->fill( $session_array[0] );
+                    $ret = true;
+                }
             }
+
+
         }
         return $ret;
     }

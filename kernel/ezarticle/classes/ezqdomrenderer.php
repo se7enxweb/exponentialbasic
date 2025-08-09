@@ -513,7 +513,7 @@ class eZQDomRenderer
         if ( $paragraph->name == "header" )
         {
             $level = 1;
-            if  ( count( $paragraph->attributes ) > 0 )
+            if  ( isset( $paragraph->attributes ) and count( $paragraph->attributes ) > 0 )
             foreach ( $paragraph->attributes as $attr )
             {
                 switch ( $attr->name )
@@ -573,7 +573,7 @@ class eZQDomRenderer
 			}
 
             $level = 1;
-            if  ( count( $paragraph->attributes ) > 0 )
+            if  ( isset( $paragraph->attributes ) and count( $paragraph->attributes ) > 0 )
             foreach ( $paragraph->attributes as $attr )
             {
                 switch ( $attr->name )
@@ -1245,7 +1245,7 @@ class eZQDomRenderer
 	$text = "";
         if ( $paragraph->name == "link" )
         {
-            if ( count( $paragraph->attributes ) > 0 )
+            if ( isset( $paragraph->attributes ) && count( $paragraph->attributes ) > 0 )
             foreach ( $paragraph->attributes as $attr )
             {
                 switch ( $attr->name )
@@ -1284,7 +1284,7 @@ class eZQDomRenderer
 
         if ( $paragraph->name == "popuplink" )
         {
-            if ( count( $paragraph->attributes ) > 0 )
+            if ( isset( $paragraph->attributes ) && count( $paragraph->attributes ) > 0 )
             foreach ( $paragraph->attributes as $attr )
             {
                 switch ( $attr->name )
@@ -1333,7 +1333,7 @@ class eZQDomRenderer
         // mail
         if ( $paragraph->name == "mail" )
         {
-            if ( count( $paragraph->attributes ) > 0 )
+            if ( isset( $paragraph->attributes ) && count( $paragraph->attributes ) > 0 )
             foreach ( $paragraph->attributes as $mailItem )
             {
                 switch ( $mailItem->name )
@@ -1491,7 +1491,7 @@ class eZQDomRenderer
 
             $tableWidth = "100%";
             $tableBorder = 1;
-            if  ( count( $paragraph->attributes ) > 0 )
+            if  ( isset( $paragraph->attributes ) && count( $paragraph->attributes ) > 0 )
             foreach ( $paragraph->attributes as $attr )
             {
                 switch ( $attr->name )

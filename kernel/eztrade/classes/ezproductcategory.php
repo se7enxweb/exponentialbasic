@@ -96,7 +96,8 @@ class eZProductCategory
     function __construct( $id = -1 )
     {
         $this->ImageID = 0;
-	$this->Parent = 0;
+	    $this->Parent = 0;
+        $this->ID = 0;
 
         if ( $id != -1 )
         {
@@ -117,7 +118,7 @@ class eZProductCategory
         $description = $db->escapeString( $this->Description );
         $remoteID = $db->escapeString( $this->RemoteID );
 
-	if( $this->Parent == null )
+	    if( $this->Parent == null )
            $this->Parent = 0;
 
         if ( $this->ID == false )
@@ -229,7 +230,7 @@ class eZProductCategory
                 $this->ID =& $category_array[0][$db->fieldName( "ID" )];
                 $this->Name =& $category_array[0][$db->fieldName( "Name" )];
                 $this->Description =& $category_array[0][$db->fieldName( "Description" )];
-		if( $category_array[0][$db->fieldName( "Parent" )] != NULL )
+		        if( $category_array[0][$db->fieldName( "Parent" )] != NULL )
                 $this->Parent =& $category_array[0][$db->fieldName( "Parent" )];
                 $this->SortMode =& $category_array[0][$db->fieldName( "SortMode" )];
                 $this->RemoteID =& $category_array[0][$db->fieldName( "RemoteID" )];
@@ -278,8 +279,7 @@ class eZProductCategory
             $category_array = array();
 
             $parentID = $parent->id();
-            $query = "SELECT ID, Name FROM eZTrade_Category WHERE Parent='$parentID' ORDER BY Name";
-
+            $query = "SELECT ID, Name FROM eZTrade_Category WHERE Parent='$parentID';";
             $db->array_query( $category_array, $query );
 
             for ( $i = 0; $i < count( $category_array ); $i++ )

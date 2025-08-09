@@ -53,7 +53,7 @@ $category->get( $CategoryID );
 
 $categoryList = $category->getByParent( $category );
 
-if ( $CategoryListProductImages == true )
+if ( $CategoryListProductImages == true && count( $categoryList ) > 0  )
 {
     foreach ( $categoryList as $category )
     {
@@ -83,6 +83,7 @@ else
         $t->parse( "category_image_hot_deals", "category_image_hot_deals_tpl", true);
         $t->set_var( "category_image", "");
         $t->set_var( "category_image_list", "");
+        $t->set_var( "category", "");
 }
 
 foreach ( $categoryList as $category )

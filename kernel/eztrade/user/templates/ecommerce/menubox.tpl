@@ -12,7 +12,7 @@
 	<!-- END category_image_list_tpl -->
 
 <!-- BEGIN category_tpl -->
-<dd class="categoryItem" style="font-weight: bolder; font-size: larger;"><a href="{www_dir}{index}/eztrade/productlist/{id}/">{name}</a></dd>
+<dd class="categoryItem" style="font-weight: bolder; font-size: larger;"><a href="{www_dir}{index}/trade/productlist/{id}/">{name}</a></dd>
 <!-- END category_tpl -->
 
 <!-- END category_list_tpl -->

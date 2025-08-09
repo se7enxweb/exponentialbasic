@@ -315,6 +315,7 @@ if ( !$product->showProduct() )
 	echo "Sorry, this product is not currently available.";	
 	exit();
 }
+
 if ( isset ( $Voucher ) )
 {
     $range = $product->priceRange();

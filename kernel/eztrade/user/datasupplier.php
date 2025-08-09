@@ -25,7 +25,6 @@
 
 $PageCaching = $ini->variable( "eZTradeMain", "PageCaching");
 
-
 // include_once( "ezuser/classes/ezuser.php" );
 // include_once( "eztrade/classes/ezpricegroup.php" );
 // include_once( "classes/ezhttptool.php" );
@@ -229,6 +228,7 @@ switch ( $url_array[2] )
             $CategoryID = $url_array[4];
             include( "kernel/eztrade/user/productview.php" );
         }
+
         if  ( ( $PrintableVersion != "enabled" ) && ( $UserReviews == "enabled" ) )
         {
             $RedirectURL = "/trade/productview/$ProductID/$CategoryID/";

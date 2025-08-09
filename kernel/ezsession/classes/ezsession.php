@@ -281,12 +281,14 @@ class eZSession
             $db =& eZDB::globalDatabase();
             $db->begin();
 
+
             $timestampObject = new eZDateTime();
             $timeStamp =& $timestampObject->timeStamp( true );
             // update session
             $ret = $db->query( "UPDATE eZSession_Session SET
                                   LastAccessed='$timeStamp'
                                   WHERE ID='$this->ID'" );
+
             if ( $ret == false )
             {
                 $db->rollback();
@@ -504,7 +506,6 @@ class eZSession
 
         $db->array_query( $value_array, $query );
 
-
         if ( count( $value_array ) == 1 )
         {
             $valueID = $value_array[0][$db->fieldName("ID")];
@@ -530,7 +531,6 @@ class eZSession
             if ( $res == false )
                 $dbError = true;
         }
-
         $db->unlock();
 
         if ( $dbError == true )

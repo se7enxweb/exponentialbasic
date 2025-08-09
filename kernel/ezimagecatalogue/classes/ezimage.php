@@ -914,7 +914,7 @@ class eZImage
        {
            $group->get( $group->groupExists( $width, $height ) );
 
-           $ret =& $variation->requestVariation( $this, $group, $convertToGray, $allow_error );
+           $ret = $variation->requestVariation( $this, $group, $convertToGray, $allow_error );
        }
        else
        {
@@ -923,7 +923,7 @@ class eZImage
            $group->store();
 
 
-           $ret =& $variation->requestVariation( $this, $group, $convertToGray, $allow_error );
+           $ret = $variation->requestVariation( $this, $group, $convertToGray, $allow_error );
        }
 
        return $ret;
@@ -1370,15 +1370,42 @@ class eZImage
     public static function randomImage( $categoryID=0 )
     {
         $db =& eZDB::globalDatabase();
-
         $res = array();
 
-        if ( is_numeric ( $categoryID ) )
-            $db->query_single( $res, "SELECT ImageID as ID, ((ImageID*0)+RAND()) AS Random FROM eZImageCatalogue_ImageCategoryLink WHERE CategoryID='$categoryID' ORDER BY Random LIMIT 1" );
-        else
-            $db->query_single( $res, "SELECT ID, ((ID*0)+RAND()) AS Random FROM eZImageCatalogue_Image ORDER BY Random LIMIT 1" );
-	if( is_array( $res ) )
-            return new eZImage( $res["ID"] );
+        if( $db->isA() == "mysql" )
+        {
+            if ( is_numeric ( $categoryID ) )
+                $db->query_single( $res, "SELECT ImageID as ID, ((ImageID*0)+RAND()) AS Random FROM eZImageCatalogue_ImageCategoryLink WHERE CategoryID='$categoryID' ORDER BY Random LIMIT 1" );
+            else
+                $db->query_single( $res, "SELECT ID, ((ID*0)+RAND()) AS Random FROM eZImageCatalogue_Image ORDER BY Random LIMIT 1" );
+
+            if( is_array( $res ) )
+                return new eZImage( $res["ID"] );
+        }
+        elseif( $db->isA() == "sqlite" )
+        {
+            if ( is_numeric( $categoryID ) )
+            $db->query_single(
+                $res,
+                "SELECT ImageID as ID
+                FROM eZImageCatalogue_ImageCategoryLink
+                WHERE CategoryID='$categoryID'
+                ORDER BY RANDOM()
+                LIMIT 1"
+            );
+            else
+                $db->query_single(
+                    $res,
+                    "SELECT ID
+                    FROM eZImageCatalogue_Image
+                    ORDER BY RANDOM()
+                    LIMIT 1"
+                );
+
+            if( is_array( $res ) )
+                return new eZImage( $res["ID"] );
+        }
+
 	return new eZImage();
     }
 

@@ -13,18 +13,21 @@ if ( !ini_get( "date.timezone" ) )
 {
     date_default_timezone_set( "UTC" );
 }
+else
+{
+    // 7x: Move into autoload.php and config.php configuration file
+    date_default_timezone_set( 'America/Los_Angeles' );
+}
 
 ignore_user_abort( true );
 error_reporting ( E_ALL );
 
 ini_set( 'display_errors', 'On' );
+// ini_set('max_execution_time', '300');
+// phpinfo();
 
 // Include composer based autoloads (new in 2.4.0.0)
 require __DIR__ . '/vendor/autoload.php';
-
-// phpinfo();
-// ini_set('display_errors','On');
-// ini_set('max_execution_time', '300');
 
 $kernel = new ezpbKernel( new ezpbKernelWeb() );
 echo $kernel->run()->getContent();

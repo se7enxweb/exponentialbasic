@@ -69,7 +69,13 @@ class eZImageVariation
 
         $this->ID = $db->nextID( "eZImageCatalogue_ImageVariation", "ID" );
 
-        $query = "INSERT INTO eZImageCatalogue_ImageVariation
+        $ret = $db->query( "Select ID FROM eZImageCatalogue_ImageVariation WHERE ID='$this->ID'" );
+        // if ( $ret == true )
+        // $db->query( "DELETE FROM eZImageCatalogue_ImageVariation WHERE ID='$this->ID'" );
+
+        if( $ret == false )
+        {
+            $query = "INSERT INTO eZImageCatalogue_ImageVariation
                                  ( ID, ImageID, VariationGroupID, Width, Height, ImagePath, Modification ) VALUES
                                  ( '$this->ID',
                                    '$this->ImageID',
@@ -78,14 +84,16 @@ class eZImageVariation
                                    '$this->Height',
                                    '$this->ImagePath',
                                    '$this->Modification' )";
-
-        $res = $db->query( $query );
+          $res = $db->query( $query );
+        }
         $db->unlock();
 
         if ( $res == false )
             $db->rollback( );
         else
             $db->commit();
+
+        return $res;
     }
 
     /*!
@@ -97,7 +105,9 @@ class eZImageVariation
 
         if ( $id != "" )
         {
-            $db->array_query( $image_variation_array, "SELECT * FROM eZImageCatalogue_ImageVariation WHERE ID='$id'" );
+            $query = "SELECT * FROM eZImageCatalogue_ImageVariation WHERE ID='$id'";
+
+            $db->array_query( $image_variation_array, $query );
             if ( count( $image_variation_array ) > 1 )
             {
                 print( "Error: ImageVariations's with the same ID was found in the database. This shouldent happen." );
@@ -236,7 +246,7 @@ class eZImageVariation
                         return $allow_error ? false : eZImageVariation::createErrorImage();
                     $size = GetImageSize( $dest );
                     if ( !$size )
-                        return $allow_error ? fales : eZImageVariation::createErrorImage();
+                        return $allow_error ? false : eZImageVariation::createErrorImage();
 
                     $variation->setWidth( $size[0] );
                     $variation->setHeight( $size[1] );
@@ -245,10 +255,9 @@ class eZImageVariation
                     $variation->setVariationGroupID(  $variationGroup->id() );
                     $variation->setModification( $modification );
 
-
                     $variation->store();
 
-                    $ret =& $variation;
+                    $ret = $variation;
                 }
                 else
                     return $allow_error ? false : eZImageVariation::createErrorImage();

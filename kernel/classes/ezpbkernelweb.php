@@ -430,25 +430,17 @@ $index = "";
 preg_match( "/([^?]+)/", $_SERVER['REQUEST_URI'], $regs );
 $_SERVER['REQUEST_URI'] = $regs[1];
 
-// 7x: Move into autoload.php and config.php configuration file
-date_default_timezone_set( 'America/Los_Angeles' );
-
 // settings for sessions
 // max timeout is set to 48 hours
 ini_alter( "session.gc_maxlifetime", "172800" );
 ini_alter( "session.entropy_file","/dev/urandom" );
 ini_alter( "session.entropy_length", "512" );
 
-/*
-// include_once( "classes/INIFile.php" );
-// include_once( "classes/ezdb.php" );
-// include_once( "classes/ezhttptool.php" );
-*/
-
 global $ini;
 $ini =& eZINI::instance( 'site.ini' );
-
 $StoreStats = $ini->variable( "eZStatsMain", "StoreStats" );
+
+$session =& eZSession::globalSession();
 
 // 7x: Convert the following to ini settings
 global $GLOBALS;
@@ -468,14 +460,6 @@ unset( $index );
 unset( $wwwDir );
 
 // Design
-// // include_once( "ezsession/classes/ezsession.php" );
-// // include_once( "ezuser/classes/ezuser.php" );
-
-// File functions
-// // include_once( "classes/ezfile.php" );
-
-$session =& eZSession::globalSession();
-
 // Final variables before the kernel loads
 unset( $siteStyle );
 unset( $siteDesign );
@@ -734,7 +718,6 @@ try
             $iso =& $Locale->languageISO();
             if ( $iso != false )
                 header( "Content-type: text/html;charset=$iso" );
-
 
             $MainContents =& ob_get_contents();
             ob_end_clean();

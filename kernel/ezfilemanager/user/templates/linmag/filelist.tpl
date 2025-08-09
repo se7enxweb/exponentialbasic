@@ -33,7 +33,7 @@
 <a class="path" href="{www_dir}{index}/filemanager/list/0/">{intl-file_root}</a>
 
 <!-- BEGIN path_item_tpl -->
-<img src="{www_dir}/images/path-slash.gif" height="10" width="16" border="0" alt="" />
+<img src="{www_dir}/design/base/images/icons/path-slash.gif" height="10" width="16" border="0" alt="" />
 <a class="path" href="{www_dir}{index}/filemanager/list/{folder_id}/">{folder_name}</a>
 <!-- END path_item_tpl -->
 

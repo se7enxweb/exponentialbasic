@@ -590,7 +590,7 @@ class eZImageCategory
       Removes an image from the category.
       Can be used as a static function if $categoryid is supplied
     */
-    function removeImage( $value, $categoryid = false )
+    public static function removeImage( $value, $categoryid = false )
     {
         if ( is_a( $value, "eZImage" ) )
             $imageID = $value->id();
@@ -598,9 +598,6 @@ class eZImageCategory
             $imageID = $value;
         else
             return false;
-
-        if ( !$categoryid )
-            $categoryid = $this->ID;
 
         $db =& eZDB::globalDatabase();
         $query = "DELETE FROM eZImageCatalogue_ImageCategoryLink

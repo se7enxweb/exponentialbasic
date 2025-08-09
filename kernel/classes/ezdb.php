@@ -157,9 +157,16 @@ class eZDB
             {
                 case "mysql" :
                 {
-                    //include_once( "kernel/classes/ezmysqldb.php" );
-
+                    // include_once( "kernel/classes/ezmysqldb.php" );
                     $impl = new eZMySQLDB( $server, $db, $user, $password );
+                }
+                break;
+
+                case "sqlite" :
+                {
+                    // include_once( "kernel/classes/ezsqlitedb.php" );
+                    $fileName = $ini->variable( "site", "DatabaseSQLiteFile" );
+                    $impl = new eZSQLite3DB( $fileName );
                 }
                 break;
 

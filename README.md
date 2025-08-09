@@ -8,11 +8,14 @@ This project is led by [7x](https://se7enx.com) and aims to ensure the long-term
 
 ---
 
+ * Current release: Version 2.4.0.0 (Stable) [Release](https://github.com/se7enxweb/ezpublishbasic/releases/tag/v2.4.0.0)
+ * Download: [zip](https://github.com/se7enxweb/ezpublishbasic/archive/refs/tags/v2.4.0.0.zip) or [tar.gz](https://github.com/se7enxweb/ezpublishbasic/archive/refs/tags/v2.4.0.0.tar.gz)
  * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)
- * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
  * Website:  [https://basic.ezpublish.one](https://basic.ezpublish.one)
+ * Current unreleased Version In Development: Version 2.4.0.1 (Stable)
+ * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
  * Maintainer: [7x](https://se7enx.com)
- * Document Last revised: 2025.02.19
+ * Document Last revised: 2025.08.09
 
 ---
 
@@ -59,7 +62,7 @@ Follow these steps to set up eZ Publish Basic via Composer:
 
 2. Set up your database in your database server.
 
-- You will first need to generate the database SQL file. Run this command: ```cd /path/to/ezpb/; ./bin/shell/make_sql.sh```
+- You will first need to generate the database SQL file. Run this command: ```cd /path/to/ezpb/; ./bin/shell/db-generate.sh```
 - Then load the SQL file generated from: ```mysql -u user databaseName -p < ./update/generated/publish_mysql.sql;``
 
 2.1 Install Default Content Database Data and Image File Content
@@ -135,8 +138,19 @@ We welcome contributions from the community! To get involved:
 2. Create a new branch for your feature or bugfix. 
 3. Submit a pull request.
 
+We welcome you to create new code not just bugfix existing code:
+
+1. You could contribute a new module providing additional desired features of any kind.
+2. You could add new template system support for additional templating engines like smarty or twig.
+3. You could add new database driver support for additional database server implementations as needed or desired. Note: they are very simple in design currently and quick to get working; 7x just added SQLite Database Support in the latest GitHub version (v2.4.0.1; unreleased officially) 
+4. You could help extend the kernel to support cleaner features like settings based debug output by type. We are working on this in the near future.
+5. You could help extend the language translation files to support more complete translation of all language file strings and phrases. Also you could provide new translations in new languges based on eng_US (the new default for 2.4.0.1).
+7. You could help extend the library of site designs by providing a new design folder implementation. 7x just did this in providing the ecommerce design and related module templates design + templates based on eng_US language for strings in v2.4.0.1. It's very simple to create a custom design and share it.
+ 
+Try today for starters. Become a eZ Publish Contributor and Share your work with everyone.
+
 Check out the Contributing Guidelines for more details.
 
 ---
 
-Developed with ❤️ by 7x.
+Developed with ❤️ by 7x. The company driving eZ in 2025 and beyond.

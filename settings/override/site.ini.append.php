@@ -151,10 +151,10 @@ SiteTmpDir=/tmp/
 # DefaultPage=/article/homepage/
 DefaultPage=/article/frontpage/1/
 
-EnabledModules=eZArticle;eZTrade;eZForum;eZLink;eZPoll;eZAd;eZNewsfeed;eZBug;eZContact;eZTodo;eZCalendar;eZGroupEventCalendar;eZFileManager;eZImageCatalogue;eZMediaCatalogue;eZAddress;eZForm;eZBulkMail;eZMessage;eZQuiz;eZSurvey;eZTip;eZStats;eZURLTranslator;eZSiteManager;eZUser;eZSysinfo
+EnabledModules=eZArticle;eZTrade;eZForum;eZLink;eZPoll;eZAd;eZNewsFeed;eZBug;eZContact;eZTodo;eZCalendar;eZGroupEventCalendar;eZFileManager;eZImageCatalogue;eZMediaCatalogue;eZAddress;eZForm;eZBulkMail;eZMessage;eZQuiz;eZSurvey;eZTip;eZStats;eZURLTranslator;eZSiteManager;eZUser;eZSysinfo
 EnabledAdminModules=eZArticle|ezarticle;eZTrade|eztrade;eZForum|ezforum;eZLink|ezlink;eZPoll|ezpoll;eZAd|ezad;eZNewsFeed|eznewsfeed;eZBug|ezbug;eZContact|ezcontact;eZTodo|eztodo;eZCalendar|ezcalendar;eZGroupEventCalendar|ezgroupeventcalendar;eZFileManager|ezfilemanager;eZImageCatalogue|ezimagecatalogue;eZMediaCatalogue|ezmediacatalogue;eZAddress|ezaddress;eZForm|ezform;eZBulkMail|ezbulkmail;eZMessage|ezmessage;eZQuiz|ezquiz;eZSurvey|ezsurvey;eZTip|eztip;eZStats|ezstats;eZURLTranslator|ezurltranslator;eZSiteManager|ezsitemanager;eZUser|ezuser;eZSysinfo|ezsysinfo;eZError|ezerror
 
-ModuleList=eZArticle;eZTrade;eZForum;eZLink;eZPoll;eZAd;eZNewsfeed;eZBug;eZContact;eZTodo;eZCalendar;eZGroupEventCalendar;eZFileManager;eZImageCatalogue;eZMediaCatalogue;eZAddress;eZForm;eZBulkMail;eZMessage;eZQuiz;eZSurvey;eZTip;eZStats;eZURLTranslator;eZSiteManager;eZUser;eZSysinfo
+ModuleList=eZArticle;eZTrade;eZForum;eZLink;eZPoll;eZAd;eZNewsFeed;eZBug;eZContact;eZTodo;eZCalendar;eZGroupEventCalendar;eZFileManager;eZImageCatalogue;eZMediaCatalogue;eZAddress;eZForm;eZBulkMail;eZMessage;eZQuiz;eZSurvey;eZTip;eZStats;eZURLTranslator;eZSiteManager;eZUser;eZSysinfo
 
 URLTranslationKeyword=section-standard;section-intranet;section-trade;section-news;7x;games;section-ecommerce;contact;gallery;shop;forums;links;/sitemap/article;/sitemap/product;news;reviews;reports
 

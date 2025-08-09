@@ -78,7 +78,7 @@ if ( isset( $Action ) && $Action == "login" )
 
             if ( ( $logins < $MaxLogins ) || ( $MaxLogins == 0 ) )
             {
-                eZPBLog::writeNotice( "Admin login: $Username from IP: $remoteAddress" );
+                eZDebug::writeNotice( "Admin login: $Username from IP: $remoteAddress" );
 
                 eZUser::loginUser( $user );
                 if ( !isset( $RefererURL ) )

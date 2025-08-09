@@ -195,7 +195,7 @@ foreach ( $adList as $ad )
 if ( count( $adList ) > 0 )
     $t->parse( "ad_list", "ad_list_tpl" );
 else
-    $t->set_var( "ad_list", "" );
+    $t->set_var( "ad_list", "No Ad categories available. Create one by clicking the 'New Category' button." );
 
 
 $t->pparse( "output", "ad_list_page_tpl" );

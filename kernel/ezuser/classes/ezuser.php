@@ -1023,6 +1023,8 @@ class eZUser
      */
     function hasRootAccess()
     {
+        $result = array();
+
         if ( $this->HasRoot < 0 )
         {
             $db =& eZDB::globalDatabase();

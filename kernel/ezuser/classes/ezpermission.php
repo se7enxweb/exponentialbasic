@@ -430,6 +430,7 @@ class eZPermission
     */
     static public function checkPermission( $user, $moduleName, $permissionName )
     {
+        $value_array = array();
         $module = new eZModule();
         $module = $module->exists( $moduleName );
 

@@ -84,8 +84,6 @@ class eZSession
     function store()
     {
         $db =& eZDB::globalDatabase();
-
-
         $dbError = false;
         $db->begin( );
 
@@ -112,13 +110,16 @@ class eZSession
         setcookie ( "eZSessionCookie", $this->Hash, time()+3456000, "/" )
             or print( "Error: could not set cookie." );
 
-//         eZHTTPTool::setCookie ( "eZSessionCookie", $this->Hash );
+        // eZHTTPTool::setCookie ( "eZSessionCookie", $this->Hash );
 
         $remoteIP = $_SERVER["REMOTE_ADDR"];
 
         // escape hash
         $hash = $db->escapeString( $this->Hash );
 
+        var_dump( $hash ); echo "<hr>";
+        var_dump( $this->ID ); echo "<hr>";
+die( "test" );
         if ( !isset( $this->ID ) )
         {
             $nextID = $db->nextID( "eZSession_Session", "ID" );
@@ -260,7 +261,6 @@ class eZSession
 			{
 	            // escape the hash value.
 	            $hash = $db->escapeString( $hash );
-
 				$db->array_query( $session_array, "SELECT * FROM eZSession_Session WHERE Hash='$hash'" );
 
 				if ( count( $session_array ) == 1 )

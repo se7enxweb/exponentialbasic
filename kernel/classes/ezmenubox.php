@@ -67,8 +67,13 @@ class eZMenuBox
         $ini =& eZINI::instance( 'site.ini' );
 
         if ( $settingsModuleName == false )
-            $settingsModuleName = $ModuleName . "Main";
-
+        {
+            if( str_contains($ModuleName, "Main") )
+                $settingsModuleName = $ModuleName;
+            else
+                $settingsModuleName = $ModuleName . "Main";
+        }
+        $settingsModuleName = str_replace( "MainMain", "", $settingsModuleName );
         $Language = $ini->variable( $settingsModuleName, "Language" );
 
         $menuStatus =& $preferences->variable( $module_dir . "_status" );
@@ -98,7 +103,7 @@ class eZMenuBox
         $template_dir = "design/admin/templates/" . $SiteDesign;
         if ( $allow_module_template )
         {
-            $mod_dir = $ini->variable( $settingsModuleName . "Main", "AdminTemplateDir" );
+            $mod_dir = $ini->variable( $settingsModuleName, "AdminTemplateDir" );
             $mod_dir = "$module_dir/admin/$mod_dir";
             if ( file_exists( "$mod_dir/menubox.tpl" ) and
                  file_exists( "$mod_dir/menubox_closed.tpl" ) )

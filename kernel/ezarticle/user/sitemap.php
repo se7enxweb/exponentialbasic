@@ -39,7 +39,6 @@
 // include_once( "ezarticle/classes/ezarticlerenderer.php" );
 
 $Language = $ini->variable( "eZArticleMain", "Language" );
-
 // sections
 // include_once( "ezsitemanager/classes/ezsection.php" );
 
@@ -168,7 +167,6 @@ foreach ( $treeArray as $catItem )
 
     }
 }
-
 
 $t->pparse( "output", "article_sitemap_page_tpl" );
 

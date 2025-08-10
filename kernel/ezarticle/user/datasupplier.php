@@ -55,7 +55,7 @@ switch ( $url_array[2] )
         if ( isset( $url_array[3] ) && $url_array[3] != '' )
             $CategoryID = $url_array[3];
         else
-            $CategoryID = false;
+            $CategoryID = 0;
         include( "kernel/ezarticle/user/sitemap.php" );
     }
     break;

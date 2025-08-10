@@ -6,6 +6,7 @@ bin/logs
 update/generated
 update/captions
 error_log
+var/log
 var/cache
 var/site/storage
 autoload

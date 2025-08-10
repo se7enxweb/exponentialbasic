@@ -429,9 +429,12 @@ class eZSQLite3DB
         {
             if ( !$this->Database->changes() == 0 )
             {
-                $array = $result->fetchArray( SQLITE3_ASSOC );
-                $id = $array[0];
-                $id++;
+                // $array = $result->fetchArray( SQLITE3_ASSOC );
+                // $id = $array[0];
+                // $id++;
+
+                $array = $result[0];
+                $id = $array["ID"] + 1;
             }
             else
             {

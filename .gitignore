@@ -3,6 +3,7 @@
 composer.lock
 .htaccess
 bin/logs
+update/generated
 update/captions
 error_log
 var/cache

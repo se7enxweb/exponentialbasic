@@ -63,7 +63,7 @@ $t->set_var( "site_style", $SiteDesign );
 
 if ( isset( $AddImages ) )
 {
-    if ( count( $ImageArrayID ) > 0 )
+    if ( isset( $ImageArrayID ) && ( $ImageArrayID ) > 0 )
     {
         foreach ( $ImageArrayID as $imageID )
         {

@@ -68,14 +68,18 @@ class eZOptionValue
     */
     function store()
     {
+        $ini = eZINI::instance( "site.ini" );
         $db =& eZDB::globalDatabase();
         $db->begin();
+        $qry_array = array();
+        $ret = array();
 
         $this->OptionID = $db->escapeString( $this->OptionID );
 
         $price = $this->Price == "" ? "NULL" : "'$this->Price'";
 
-        $ini->variable( "site", "DebugOutput" ) == "enabled" = true;
+        $ini->variable( "site", "DebugOutput" ) == "enabled" ? true : false;
+
         if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTrade_OptionValue" );

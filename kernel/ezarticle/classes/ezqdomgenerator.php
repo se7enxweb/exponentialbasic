@@ -945,7 +945,7 @@ class eZQDomGenerator
                             $tdWidth="";
                             $tdColspan="";
                             $tdRowspan="";
-                            if  ( isset( $paragraph->attributes ) && count( $data->attributes ) > 0 )
+                            if  ( isset( $paragraph->attributes ) && !is_null( $data->attributes ) && count( $data->attributes ) > 0 )
                                 foreach ( $data->attributes as $attr )
                                 {
                                     switch ( $attr->name )

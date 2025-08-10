@@ -464,7 +464,8 @@ class eZPBINIFile
     function error( $errmsg )
     {
         $this->ERROR = $errmsg;
-        if ( $GLOBALS["DEBUG"] == true )
+        $ini = $this->globalINI();
+        if ( $ini->variable( "site", "DebugOutput" ) == "enabled" )
         {
             print( "Error:" . $this->ERROR . "<br>\n" );
         }

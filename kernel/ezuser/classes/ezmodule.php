@@ -179,15 +179,18 @@ class eZModule
         if ( $returnOnlyActive == true )
         {
             $modules = array();
-            $ini =& eZINI::instance( 'site.ini' );
-            foreach ( $ini->read_array( "site", "EnabledModules") as $mod)
+            $ini = eZINI::instance( 'site.ini' );
+            $moduleList = explode( ';', $ini->variable( "site", "EnabledModules" ) );
+
+            foreach ( $moduleList as $mod)
             {
                 $modules[] = "'" . $db->escapeString( $mod ) . "'";
             }
 
             $allModules = join(',', $modules);
+            $query = "SELECT ID,Name FROM eZUser_Module WHERE Name IN ($allModules) ORDER BY Name";
 
-            $db->array_query( $module_array, "SELECT ID,Name FROM eZUser_Module WHERE Name IN ($allModules) ORDER BY Name" );
+            $db->array_query( $module_array, $query );
         }
         else
         {

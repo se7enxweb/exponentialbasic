@@ -755,7 +755,7 @@ try
                 $sectionObject =& eZSection::globalSectionObject( $GlobalSectionID );
                 $sectionObject->setOverrideVariables();
 
-                if ( $GLOBALS['DEBUG'] == true )
+                if ( $ini->variable( "site", "DebugOutput") == "enabled" )
                 {
     //                print( "Section Debug $GlobalSectionID: <br>" );
     //                print( "sitedesign: " . $sectionObject->siteDesign() . " <br>" );

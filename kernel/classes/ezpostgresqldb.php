@@ -35,7 +35,8 @@ class eZPostgreSQLDB
 {
     function __construct( $server, $db, $user, $password  )
     {
-        if ( $GLOBALS["DEBUG"] == true)
+        $this->INI = eZINI::instance( "site.ini" );
+        if ( $this->INI->->variable( "site", "DebugOutput" ) == "enabled")
         {
             $this->Database = pg_pconnect( "host=$server dbname=$db user=$user password=$password" );
             if ( !$this->Database )
@@ -63,7 +64,7 @@ class eZPostgreSQLDB
             
             if ( !$result )
             {
-                if ( $GLOBALS["DEBUG"] == true )
+                if ( $this->INI->->variable( "site", "DebugOutput" ) == "enabled" )
                 {
                     print( "PostgreSQL error: error executing query: $sql ".
                            pg_errormessage ( $this->Database ) );
@@ -110,7 +111,7 @@ class eZPostgreSQLDB
 
         if ( $result == false )
         {
-            if ( $GLOBALS["DEBUG"] == true )
+            if ( $this->INI->->variable( "site", "DebugOutput" ) == "enabled" )
             {
                 print( $this->Error );
             }
@@ -246,6 +247,7 @@ class eZPostgreSQLDB
     
     /// database connection
     var $Database;
+    var $INI;
 }
 
 

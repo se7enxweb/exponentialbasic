@@ -243,7 +243,7 @@ foreach ( $moduleList as $moduleItem )
     $t->set_var( "module_name", $moduleItem->name() );
     $t->set_var( "module_id", $moduleItem->id() );
 
-    $permission = new eZPermission();
+	$permission = new eZPermission();
     $permissionList = $permission->getAllByModule( $moduleItem );
 
     $t->set_var( "permission_item", "" );

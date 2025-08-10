@@ -75,7 +75,7 @@ class eZOptionValue
 
         $price = $this->Price == "" ? "NULL" : "'$this->Price'";
 
-        $GLOBALS["DEBUG"] = true;
+        $ini->variable( "site", "DebugOutput" ) == "enabled" = true;
         if ( !isset( $this->ID ) )
         {
             $db->lock( "eZTrade_OptionValue" );

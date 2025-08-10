@@ -138,6 +138,28 @@ class eZUser
                                  SimultaneousLogins='$this->SimultaneousLogins'" );
                 $this->ID = $nextID;
             }
+            elseif ( $db->isA() == "sqlite" )
+            {
+                // Calculate MySQL-style hash in PHP so SQLite can just compare strings
+                $hash = '*' . strtoupper( sha1( hex2bin( sha1( $password ) ) ) );
+
+                $db->query( "INSERT INTO eZUser_User
+                ( ID, Login, Password, Email, InfoSubscription, FirstName, LastName, Signature, CookieLogin, AccountNumber,SimultaneousLogins )
+                VALUES
+                ( '$nextID',
+                  '$login',
+                  '$hash',
+                  '$email',
+                  '$this->InfoSubscription',
+                  '$firstname',
+                  '$lastname',
+                  '$signature',
+                  '$this->CookieLogin',
+                  '$account_number',
+                  '$this->SimultaneousLogins')" );
+
+                $this->ID = $nextID;             
+            }
             else
             {
                 $password = md5( $this->Password );
@@ -183,6 +205,15 @@ class eZUser
                 {
                     $db->query( "UPDATE eZUser_User SET
                                  Password=PASSWORD('$this->Password')
+                                 WHERE ID='$this->ID'" );
+                }
+                // backwards compatible passwords
+                if ( $db->isA() == "sqlite" )
+                {
+                    // Calculate MySQL-style hash in PHP so SQLite can just compare strings
+                    $hash = '*' . strtoupper( sha1( hex2bin( sha1( $this->Password ) ) ) );
+                    $db->query( "UPDATE eZUser_User SET
+                                 Password='$hash'
                                  WHERE ID='$this->ID'" );
                 }
                 else
@@ -474,6 +505,7 @@ class eZUser
     {
         $db =& eZDB::globalDatabase();
         $ret = false;
+        $user_array = array();
 
         $login = $db->escapeString( $login );
         $password = $db->escapeString( $password );
@@ -787,7 +819,6 @@ class eZUser
             }
 
             $session->refresh();
-//            $session->refresh();
 
             $session->setVariable( "AuthenticatedUser", $user->id() );
 

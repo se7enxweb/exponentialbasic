@@ -115,12 +115,11 @@ class eZPermission
     function store()
     {
         $db =& eZDB::globalDatabase();
-
         $dbError = false;
+        $ret = false;
+        $value_array = array();
         $db->begin( );
 
-
-        $ret = false;
         $name = addslashes( $this->Name );
 
         if ( ( $this->ModuleID != "" ) && ( $this->ModuleID != 0 ) )
@@ -229,12 +228,11 @@ class eZPermission
             $return_array = array();
             $permission_array = array();
 
-	    $query ="SELECT ID,Name FROM eZUser_Permission
+	        $query ="SELECT ID,Name FROM eZUser_Permission
                      WHERE ModuleID='$moduleID'
                      ORDER BY Name";
 
-	    $db->array_query( $permission_array, $query );
-
+	        $db->array_query( $permission_array, $query );
 
             for ( $i=0; $i < count( $permission_array ); $i++ )
             {

@@ -108,6 +108,21 @@ Up next default content creation in the admin for your first visistor to see!
 
 Further documentation can be read from the [documentation](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation) directory [README](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation/README).
 
+More information can be found at our [project website](https://basic.ezpublish.one)
+
+Older documentation on the core of our framework design fundamentals should be studied at the [Older v2 Era Documentation @ Wayback Machine](http://web.archive.org/web/20060901154601/http://doc22.ez.no/)
+
+This includes the following key documentation (from the above doc link archive):
+
+- [eZ publish 2.2 User Manuals](http://web.archive.org/web/20060901154506/http://doc22.ez.no/article/archive/2/index.html)
+
+- [eZ publish 2.2 Admin Manuals](http://web.archive.org/web/20060901154627/http://doc22.ez.no/article/archive/4/index.html)
+
+- [eZ publish 2.2 Designer Manuals](http://web.archive.org/web/20060901154703/http://doc22.ez.no/article/archive/5/index.html)
+
+- [eZ Publish 2.2 PHP Class Reference Documentation](http://web.archive.org/web/20060901154614/http://doc22.ez.no/class_ref/doc/view/)
+
+
 ## Features
 
 eZ Publish Basic provides a feature rich cms based website building platform that is ready to use upon it's quick installation setup.

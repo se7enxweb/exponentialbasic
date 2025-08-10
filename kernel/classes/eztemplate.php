@@ -171,14 +171,14 @@ class eZTemplate
                 }
                 else
                 {
-                    if ( $GLOBALS["DEBUG"] == true )
+                    if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
                     {
                         print( "<br><b>Error: language file, $lang_file, could not be found.</b><br>" );
                     }
                 }
                 
             }
-            if ( $GLOBALS["DEBUG"] == true )
+            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
             {
                 if ( count( $this->languageFile ) == 0 )
                 {
@@ -194,7 +194,7 @@ class eZTemplate
 
             // 7x: Add a setting for this debug output statement to be encouraged durring debugging.
             // Add a setting to enable this statement.
-            if( $GLOBALS["DEBUG"] == true && $GLOBALS["DEBUG_EZTEMPLATE"] == true )
+            if( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" && $GLOBALS["DEBUG_EZTEMPLATE"] == true )
             {
                 echo "<hr>"; echo $this->languageFile; echo "<hr>";
             }
@@ -206,7 +206,7 @@ class eZTemplate
             }
             else
             {
-                if ( $GLOBALS["DEBUG"] == true )
+                if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
                 {
                     debug_print_backtrace();
                     print( "<br><b>Error: language file, $this->languageFile, could not be found.</b><br>" );
@@ -215,7 +215,7 @@ class eZTemplate
         }
         else
         {
-            if ( $GLOBALS["DEBUG"] == true )
+            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
             {                    
                 print( "<br><b>Error: $" . "intlDir and $" . "phpFile must either be arrays or strings.</b><br>" );
             }
@@ -373,7 +373,7 @@ class eZTemplate
         $CacheFile =& $this->cacheFile();
         if ( !file_exists( $this->CacheDir ) )
         {
-            if ( $GLOBALS["DEBUG"] == true )
+            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
             {                    
                 print( "<br /><b>TemplateCache: directory $this->CacheDir does not exist, cannot create cache file</b><br />" );
             }
@@ -401,7 +401,7 @@ class eZTemplate
         $CacheFile =& $this->cacheFile();
         if ( !file_exists( $this->CacheDir ) )
         {
-            if ( $GLOBALS["DEBUG"] == true )
+            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
             {
                 print( "<br /><b>TemplateCache: directory $this->CacheDir does not exist, cannot delete cache file</b><br />" );
             }
@@ -958,7 +958,7 @@ class eZTemplate
     function haltmsg( $msg )
     {
         $err_msg = "<b>Template Error:</b> $msg<br>\n";
-        if ( $GLOBALS["DEBUG"] == true )
+        if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
         {
             print( $err_msg );
         }

@@ -573,7 +573,7 @@ class eZQDomGenerator
 
                 $level = 1;
 
-                if ( count( $paragraph->attributes ) > 0 )                 
+                if ( isset( $paragraph->attributes ) && count( $paragraph->attributes ) > 0 )                 
                 foreach ( $paragraph->attributes as $attr )
                 {
                     switch ( $attr->name )
@@ -913,7 +913,7 @@ class eZQDomGenerator
         if ( $paragraph->name == "table" )
         {
     
-            if  ( count( $paragraph->attributes ) > 0 )
+            if  ( isset( $paragraph->attributes ) && count( $paragraph->attributes ) > 0 )
                 foreach ( $paragraph->attributes as $attr )
                 {
                     switch ( $attr->name )
@@ -945,7 +945,7 @@ class eZQDomGenerator
                             $tdWidth="";
                             $tdColspan="";
                             $tdRowspan="";
-                            if  ( count( $data->attributes ) > 0 )
+                            if  ( isset( $paragraph->attributes ) && count( $data->attributes ) > 0 )
                                 foreach ( $data->attributes as $attr )
                                 {
                                     switch ( $attr->name )

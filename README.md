@@ -54,27 +54,42 @@ Follow these steps to set up eZ Publish Basic via Composer:
 
 - Web Server setup a new virtual host for the website(s) that power this software package. There are two by default. User and Admin websites.
   - You will require separate virtual hosts for www and admin domains.
+
 - Database Server
   - You will require a new database and database user and password access configured.
+
 - Filesystem User and Group Permissions
+
 - Generate eZ Publish Basics Autoloads
   - Use this command: ```bin/shell/php/ezpgenerateautoloads.php -k;```
+
+- Create the two most used shell script alias commands via Shell script command aliases or by creating symbolic links in Linux / Unix / BSD / GNU.
+   - Use this command: ```ln -s ./bin/shell/php/ezpgenerateautoloads.php regenerate-autoloads; ln -s bin/shell/clearcache.sh clear-cache;``` 
+   -- Then you can run ```./reginerate-autoloads -k;``` (your shell autocomplete feature will make this easy to type twice. also shell aliases) or run ```./clear;```.
 
 2. Set up your database in your database server.
 
 - You will first need to generate the database SQL file. Run this command: ```cd /path/to/ezpb/; ./bin/shell/db-generate.sh```
-- Then load the SQL file generated from: ```mysql -u user databaseName -p < ./update/generated/publish_mysql.sql;``
 
-2.1 Install Default Content Database Data and Image File Content
-- Then load the SQL file from: ```mysql -u user databaseName -p < ./update/data_mysql.sql;```
-- Then uncompress the tar.gz file from: ```tar -vzxf ./share/data/data.tar.gz;```
-- Then finally run the script from: ```./bin/shell/modfix.sh;```
+- Then load the MySQL Schema SQL file generated from: ```mysql -u user databaseName -p < ./update/generated/publish_mysql.sql;``
+
+- Then load the SQLite Schmea SQL SQL file generated from: ```sqlite3 var/site/db/site.db < ./update/generated/publish_sqlite.sql;``
+
+2.1 Install Default Content Database Data and Image File Content into a Mysql Database
+- Then load the MySQL Default Data SQL file from: ```mysql -u user databaseName -p < ./update/database/content/data_mysql.sql;```
+- Then uncompress the Default File Data tar.gz file from: ```tar -vzxf ./share/data/data.tar.gz;```
+- Then finally run permissions assignment the script from: ```./bin/shell/modfix.sh;```
+
+2.1 Install Default Content Database Data and Image File Content into a SQLite Database
+- Then load the MySQL Default Data SQL file from: ```sqlite3 var/site/db/site.db < ./update/database/content/data_sqlite.sql;```
+- Then uncompress the Default File Data tar.gz file from: ```tar -vzxf ./share/data/data.tar.gz;```
+- Then finally run permissions assignment the script from: ```./bin/shell/modfix.sh;```
 
 3. Update settings files
 
-Update settings file ```settings/override/site.ini``` as needed to include the default settings customized to your own needs.
+Update settings file ```settings/override/site.ini.append.php``` as needed to include the default settings customized to your own needs.
 
-- Update site name, domain hostnames for user and admin websites, default design, database name and database connection username and password settings all in the site.ini in settings/override/site.ini
+- Update site name, domain hostnames for user and admin websites, default design, database name and database connection username and password settings all in the site.ini in settings/override/site.ini.append.php
 
 4. Configure .htacesss or Web Server Mod_Rewrite Rules
 
@@ -102,7 +117,7 @@ This will direct all trafic by hostname match to index.php or index_admin.php as
 
 Note: Your work is now done. Enjoy the free software and a healthy snack. :)
 
-Up next default content creation in the admin for your first visistor to see!
+Up next default content creation in the admin for your first visitor to see!
 
 # Documentation
 
@@ -164,7 +179,7 @@ eZ Publish Basic provides a feature rich cms based website building platform tha
 
 - The package lends itself to customization, from changing the look and feel by changing templates, localizing the languages and other internationalization issues to add new functionality.
 
-- The target audience for eZ is e-commerce, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring,, pollstodo lists, appointments as well as personal web sites.
+- The target audience for eZ is e-commerce, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
 
 - Advertising with statistics
 - Article Publication and Management

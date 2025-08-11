@@ -1522,6 +1522,7 @@ class eZArticle
         if ( is_a( $image, "eZImage" ) )
         {
             $db =& eZDB::globalDatabase();
+            $res_array = array();
 
             $imageID = $image->id();
 
@@ -1540,12 +1541,14 @@ class eZArticle
             else
             {
                 $db->begin( );
-
-
-                $res = $db->query( "INSERT INTO eZArticle_ArticleImageDefinition
-                                         ( ArticleID, ThumbnailImageID )
+                $forumID = $this->forum( false );
+                $nextID = $db->nextID( "eZArticle_ArticleImageDefinition" );
+                $query = "INSERT INTO eZArticle_ArticleImageDefinition
+                                         ( ID, ArticleID, ThumbnailImageID, ForumID )
                                          VALUES
-                                         ( '$this->ID', '$imageID' )" );
+                                         ( '$nextID', '$this->ID', '$imageID', '$forumID' )";
+
+                $res = $db->query( $query );
                 $db->unlock();
 
                 if ( $res == false )
@@ -1579,11 +1582,13 @@ class eZArticle
     {
         $ret = false;
         $db =& eZDB::globalDatabase();
+        $res_array = array();
 
-        $db->array_query( $res_array, "SELECT * FROM eZArticle_ArticleImageDefinition
+        $query = "SELECT * FROM eZArticle_ArticleImageDefinition
                                      WHERE
-                                     ArticleID='$this->ID'
-                                   " );
+                                     ArticleID='$this->ID'";
+
+        $db->array_query( $res_array, $query );
 
         if ( count( $res_array ) == 1 )
         {

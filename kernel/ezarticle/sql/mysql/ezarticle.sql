@@ -67,6 +67,7 @@ CREATE TABLE eZArticle_ArticleForumLink (
 CREATE TABLE eZArticle_ArticleImageDefinition (
   `ID` int(11) NOT NULL DEFAULT 0,
   ArticleID int(11) NOT NULL DEFAULT 0,
+  ThumbnailImageID int(11) DEFAULT 0,
   ForumID int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`)
 );

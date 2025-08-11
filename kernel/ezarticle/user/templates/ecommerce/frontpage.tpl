@@ -19,6 +19,12 @@
 	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a></div>
 	<div class="small">( {article_published} )</div>
 
+	<p>{article_intro}
+        <!-- BEGIN message_count_tpl -->
+	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
+	<!-- END message_count_tpl -->
+	</p>
+
 	<!-- BEGIN one_column_article_image_tpl -->
 	    <table width="1%" cellpadding="2" cellspacing="0" align="right">
 	        <tr>
@@ -34,19 +40,12 @@
              </table>
         <!-- END one_column_article_image_tpl -->
 
-
-	<p>{article_intro}
-        <!-- BEGIN message_count_tpl -->
-	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
-	<!-- END message_count_tpl -->
-	</p>
-
         <!-- BEGIN one_column_read_more_tpl -->
 		<div class="inline-navigation">
-	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
-	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
-	</div>
+			<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
+			<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
+			| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
+		</div>
         <!-- END one_column_read_more_tpl -->
 	</td>
 </tr>
@@ -67,6 +66,7 @@
 	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
 	<!-- END left_message_count_tpl -->
 	</div></div>
+
 	<!-- BEGIN left_article_image_tpl -->
 	    <table width="1%" cellpadding="2" cellspacing="0" align="right">
 	        <tr>
@@ -82,13 +82,13 @@
 		</table>
         <!-- END left_article_image_tpl -->
 
-				<!-- BEGIN left_read_more_tpl -->
-					<div class="inline-navigation" style="clear: both;">
-						<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-						<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
-						| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
-					</div>
-				<!-- END left_read_more_tpl -->
+		<!-- BEGIN left_read_more_tpl -->
+			<div class="inline-navigation" style="clear: both;">
+				<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
+				<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
+				| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
+			</div>
+		<!-- END left_read_more_tpl -->
 	<!-- END left_article_tpl -->
 	</td>
 	
@@ -98,6 +98,12 @@
 	<!-- BEGIN right_article_tpl -->
 	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a></div>
 	<div class="small">( {article_published} )</div>
+
+	<div class="spacer"><div class="p">{article_intro}
+        <!-- BEGIN right_message_count_tpl -->
+	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
+	<!-- END right_message_count_tpl -->
+	</div></div>
 
 	<!-- BEGIN right_article_image_tpl -->
 	    <table width="1%" cellpadding="2" cellspacing="0" align="right">
@@ -114,17 +120,11 @@
              </table>
         <!-- END right_article_image_tpl -->
 
-	<div class="spacer"><div class="p">{article_intro}
-        <!-- BEGIN right_message_count_tpl -->
-	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
-	<!-- END right_message_count_tpl -->
-	</div></div>
-
         <!-- BEGIN right_read_more_tpl -->
-		<div class="inline-navigation">
-	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
-	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
+		<div class="inline-navigation" style="clear: both;">
+			<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
+			<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
+			| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
         </div>
 		<!-- END right_read_more_tpl -->
 	<!-- END right_article_tpl -->

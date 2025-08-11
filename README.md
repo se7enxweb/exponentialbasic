@@ -15,7 +15,7 @@ This project is led by [7x](https://se7enx.com) and aims to ensure the long-term
  * Current unreleased Version In Development: Version 2.4.0.1 (Stable)
  * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
  * Maintainer: [7x](https://se7enx.com)
- * Document Last revised: 2025.08.09
+ * Document Last revised: 2025.08.10
 
 ---
 

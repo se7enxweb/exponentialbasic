@@ -62,36 +62,33 @@
 	<div class="listheadline"><a class="listheadline" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_name}</a></div>
 	<div class="small">( {article_published} )</div>
 
-	<!-- BEGIN left_article_image_tpl -->
-	    <table width="1%" cellpadding="2" cellspacing="0" align="left">
-	        <tr>
-			<td>
-			<a href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" alt="" /></a>
-            </td>
-                </tr>
-                <tr>
-                         <td class="pictext">
-                         {thumbnail_image_caption}
-                         </td>
-                </tr>
-             </table>
-        <!-- END left_article_image_tpl -->
-
-
 	<div class="spacer"><div class="p">{article_intro}
         <!-- BEGIN left_message_count_tpl -->
 	<span class="smallbold">&nbsp;({messages} {intl-message_count})</span>
 	<!-- END left_message_count_tpl -->
 	</div></div>
+	<!-- BEGIN left_article_image_tpl -->
+	    <table width="1%" cellpadding="2" cellspacing="0" align="right">
+	        <tr>
+				<td>
+				<a href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/"><img src="{www_dir}{thumbnail_image_uri}" border="0" width="{thumbnail_image_width}" height="{thumbnail_image_height}" alt="" /></a>
+				</td>
+            </tr>
+            <tr>
+				<td class="pictext">
+				{thumbnail_image_caption}
+				</td>
+			</tr>
+		</table>
+        <!-- END left_article_image_tpl -->
 
-        <!-- BEGIN left_read_more_tpl -->
-		<div class="inline-navigation">
-	<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
-	<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
-	| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
-        </div>
-		<!-- END left_read_more_tpl -->
-
+				<!-- BEGIN left_read_more_tpl -->
+					<div class="inline-navigation" style="clear: both;">
+						<img src="{www_dir}/design/base/images/icons/path-arrow.gif" height="10" width="12" border="0" alt="" />
+						<a class="path" href="{www_dir}{index}/article/articleview/{article_id}/1/{category_id}/">{article_link_text}</a>
+						| <a class="path" href="{www_dir}{index}/article/archive/{category_def_id}/">{category_def_name}</a>
+					</div>
+				<!-- END left_read_more_tpl -->
 	<!-- END left_article_tpl -->
 	</td>
 	

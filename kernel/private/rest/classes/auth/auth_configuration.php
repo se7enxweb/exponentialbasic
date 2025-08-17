@@ -13,7 +13,7 @@
  *
  * This class sets up the defaults for which routes require auth and which
  * can be omitted. This class acts as a compatibility bridge between the REST-
- * layer and the traditional eZ Publish permission configuration.
+ * layer and the traditional Exponential permission configuration.
  */
 class ezpRestAuthConfiguration
 {

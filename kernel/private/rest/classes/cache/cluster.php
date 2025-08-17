@@ -27,7 +27,7 @@ abstract class ezpRestCacheStorageCluster extends ezpRestCacheStorageFile implem
     protected $clusterCacheFile;
 
     /**
-     * Creates a new cache storage for a given location through eZ Publish cluster mechanism
+     * Creates a new cache storage for a given location through Exponential cluster mechanism
      * Options can contain the 'ttl' ( Time-To-Life ). This is per default set
      * to 1 day.
      *

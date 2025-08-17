@@ -22,7 +22,7 @@ interface ezpKernelHandler
 
     /**
      * Runs a callback function in the kernel environment.
-     * This is useful to run eZ Publish 4.x code from a non-related context (like eZ Publish 5)
+     * This is useful to run Exponential 4.x code from a non-related context (like Exponential 5)
      *
      * @param \Closure $callback
      * @param bool $postReinitialize Default is true.

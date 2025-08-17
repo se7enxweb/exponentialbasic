@@ -9,7 +9,7 @@
  */
 
 /**
- * This is the base exception for the eZ Publish content API
+ * This is the base exception for the Exponential content API
  *
  * @package ezp_api
  */

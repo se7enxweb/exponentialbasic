@@ -11,7 +11,7 @@
 /*!
   \class eZWebDAVContentBackend ezwebdavcontentbackend.php
   \ingroup eZWebDAV
-  \brief Provides access to eZ Publish kernel using WebDAV.
+  \brief Provides access to Exponential kernel using WebDAV.
          Based on the eZ Components Webdav component.
 
   @todo Replace direct path manipulation with path factory from ezcWebdav
@@ -24,17 +24,17 @@
 */
 
 /**
- * WebDAV backend for eZ Publish, based on eZ Components Webdav component.
+ * WebDAV backend for Exponential, based on eZ Components Webdav component.
  */
 class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdavLockBackend
 {
     /**
-     * The name of the content folder in eZ Publish.
+     * The name of the content folder in Exponential.
      */
     const VIRTUAL_CONTENT_FOLDER_NAME = 'Content';
 
     /**
-     * The name of the media folder in eZ Publish.
+     * The name of the media folder in Exponential.
      */
     const VIRTUAL_MEDIA_FOLDER_NAME = 'Media';
 
@@ -49,12 +49,12 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     const DIRECTORY_MIMETYPE = 'httpd/unix-directory';
 
     /**
-     * Mimetype for eZ Publish objects which don't have a mimetype.
+     * Mimetype for Exponential objects which don't have a mimetype.
      */
     const DEFAULT_MIMETYPE = "application/octet-stream";
 
     /**
-     * Default size in bytes for eZ Publish objects which don't have a size.
+     * Default size in bytes for Exponential objects which don't have a size.
      */
     const DEFAULT_SIZE = 0;
 
@@ -147,7 +147,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      */
     public function lock( $waitTime, $timeout )
     {
-        // @as @todo implement locking with eZ Publish functionality (object states)
+        // @as @todo implement locking with Exponential functionality (object states)
     }
 
     /**
@@ -157,7 +157,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      */
     public function unlock()
     {
-        // @as @todo implement locking with eZ Publish functionality (object states)
+        // @as @todo implement locking with Exponential functionality (object states)
     }
 
     /**
@@ -179,7 +179,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      */
     protected function acquireLock( $readOnly = false )
     {
-        // @as @todo implement locking with eZ Publish functionality (object states)
+        // @as @todo implement locking with Exponential functionality (object states)
     }
 
     /**
@@ -189,7 +189,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      */
     protected function freeLock()
     {
-        // @as @todo implement locking with eZ Publish functionality (object states)
+        // @as @todo implement locking with Exponential functionality (object states)
     }
 
     /**
@@ -659,7 +659,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      *
      * This method is an overwrite of the propFind method from
      * ezcWebdavSimpleBackend, a hack necessary to permit correct
-     * output of eZ Publish nodes. The array of ezcWebdavPropFindResponse
+     * output of Exponential nodes. The array of ezcWebdavPropFindResponse
      * objects returned by ezcWebdavSimpleBackend::propFind is iterated and
      * the paths of the nodes in the ezcWebdavPropFindResponse objects
      * are encoded properly, in order to be displayed correctly in WebDAV
@@ -1342,13 +1342,13 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     }
 
 
-    // eZ Publish functionality -----------------------------------------
+    // Exponential functionality -----------------------------------------
 
 
     /**
      * Sets the current site.
      *
-     * From eZ Publish.
+     * From Exponential.
      *
      * @param string $site Eg. 'plain_site_user'
      * @todo remove or move in another class?
@@ -1372,7 +1372,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     /**
      * Detects a possible/valid site-name in start of a path.
      *
-     * From eZ Publish.
+     * From Exponential.
      *
      * @param string $path Eg. '/plain_site_user/Content/Folder1/file1.txt'
      * @return string The name of the site that was detected (eg. 'plain_site_user')
@@ -1431,7 +1431,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
         $urlAlias = $node->urlAlias();
 
         // By default, everything is displayed as a folder:
-        // Trim the name of the node, it is in some cases whitespace in eZ Publish
+        // Trim the name of the node, it is in some cases whitespace in Exponential
         $name = trim( $node->attribute( 'name' ) );
 
         // @as 2009-03-09: return node_id as displayname in case name is missing
@@ -3077,7 +3077,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     /**
      * Logs to var/log/webdav.log AND var/<site_name>/log/webdav.log.
      *
-     * From eZ Publish.
+     * From Exponential.
      *
      * @param string $logString String to record
      * @param string $label Label to put in front of $logString
@@ -3154,7 +3154,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     }
 
     /**
-     * The name of the content folder in eZ Publish, translated.
+     * The name of the content folder in Exponential, translated.
      *
      * @return string
      */
@@ -3164,7 +3164,7 @@ class eZWebDAVContentBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     }
 
     /**
-     * The name of the media folder in eZ Publish, translated.
+     * The name of the media folder in Exponential, translated.
      *
      * @return string
      */

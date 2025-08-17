@@ -1,6 +1,6 @@
 <?php
 /**
- * File containing the global eZ Publish 4 functions
+ * File containing the global Exponential 4 functions
  *
  * @deprecated Since 5.0
  *

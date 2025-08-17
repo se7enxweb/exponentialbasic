@@ -9,7 +9,7 @@
  */
 
 /**
- * This is the base exception for the eZ Publish REST layer
+ * This is the base exception for the Exponential REST layer
  *
  * @package rest
  */

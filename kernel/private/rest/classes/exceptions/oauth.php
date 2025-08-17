@@ -9,7 +9,7 @@
  */
 
 /**
- * This is the base exception for the eZ Publish oauth library.
+ * This is the base exception for the Exponential oauth library.
  *
  * @package oauth
  */

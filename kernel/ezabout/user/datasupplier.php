@@ -28,7 +28,7 @@
 $version = eZPublish::version();
 
 ?>
-<a href="https://basic.ezpublish.one/"><h1>About eZ Publish Basic</h1></a>
+<a href="https://basic.ezpublish.one/"><h1>About Exponential Basic</h1></a>
 <h2>Content Management System</h2>
 
 <a href="https://basic.ezpublish.one/"><h2>Version: <? echo $version; ?></h2></a>
@@ -51,8 +51,8 @@ The package lends itself easily to customization, from changing the look and fee
 The target audience for <a href="https://basic.ezpublish.one">eZ publish basic</a> are <a href="https://basic.ezpublish.one">e-commerce</a>, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
 </p>
 
-<p>eZ Publish was created by norwegen commercial company Ibexa (Formerly, eZ Systems) in 1999</p>
-<p>eZ Publish Basic was created by usa commercial company 7x (Formerly, Brookins Consulting) in 2024 from external resources like our php5 port, ezregion features, usa stores, encryption payment solutions via email, and so much more massive improvements to the cms core and unreleased code now being integrated in our basic edition of "eZ Publish Basic 2.4".</p>
+<p>Exponential was created by norwegen commercial company Ibexa (Formerly, eZ Systems) in 1999</p>
+<p>Exponential Basic was created by usa commercial company 7x (Formerly, Brookins Consulting) in 2024 from external resources like our php5 port, ezregion features, usa stores, encryption payment solutions via email, and so much more massive improvements to the cms core and unreleased code now being integrated in our basic edition of "Exponential Basic 2.4".</p>
 
 <p>
 It is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL license</a> and can be downloaded from <a href="https://github.com/se7enxweb/ezpublishbasic">github.com/se7enxweb/ezpublishbasic</a>.

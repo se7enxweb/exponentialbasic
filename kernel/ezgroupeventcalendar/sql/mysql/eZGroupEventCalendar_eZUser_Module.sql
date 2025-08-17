@@ -54,7 +54,7 @@ INSERT INTO eZUser_Permission (ID, Name, ModuleID) (SELECT max(eZUser_Permission
 -- INSERT INTO eZUser_Permission VALUES ('55', '24', 'ModuleEdit');
 -- INSERT INTO eZUser_Permission VALUES ('56', '24', 'ModuleAnswer');
 
--- Modified or Customized eZ Publish installations may need larger values instead:
+-- Modified or Customized Exponential installations may need larger values instead:
 -- INSERT INTO eZUser_Permission VALUES ('250', '42', 'Read');
 -- INSERT INTO eZUser_Permission VALUES ('251', '42', 'WriteToRoot');
 

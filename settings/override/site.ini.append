@@ -1,0 +1,42 @@
+[site]
+########################################
+# Database Settings for eZ Publish Basic
+########################################
+
+DatabaseSQLitePath=var/site/db/demo/
+DatabaseSQLiteFile=site-demo.db
+#DatabaseSQLiteFile=ezpb-site-demo-database.db
+
+
+########################################
+# Site Accessibility Settings for eZ Publish Basic
+########################################
+
+SitePath=/home/ezpbasiclatest/doc/
+SiteURL=latest.basic.demo.ezpublish.one
+AdminSiteURL=admin.latest.basic.demo.ezpublish.one
+AdminSiteProtocol=https
+UserSiteURL=latest.basic.demo.ezpublish.one
+
+
+########################################
+## Development Settings (Used for internal 7x testing)
+########################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+## Fin
+#

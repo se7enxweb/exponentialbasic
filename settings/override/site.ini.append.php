@@ -1,6 +1,6 @@
 <?php /*
 #?ini charset="utf-8"?
-# eZ Publish configuration file.
+# Exponential configuration file.
 #
 # NOTE: It is not recommended to edit this files directly, instead
 #       a file in override should be created for setting the
@@ -27,7 +27,7 @@
 #
 
 ########################################
-# Site Accessibility Settings for eZ Publish Basic
+# Site Accessibility Settings for Exponential Basic
 ########################################
 
 [site]
@@ -40,7 +40,7 @@ AdminSiteProtocol=https
 
 
 ########################################
-# Debug Output Settings for eZ Publish Basic
+# Debug Output Settings for Exponential Basic
 ########################################
 
 # DebugOutput=enabled
@@ -52,7 +52,7 @@ DebugDatabaseTransactions=disabled
 
 
 ########################################
-# Design Settings for eZ Publish Basic
+# Design Settings for Exponential Basic
 ########################################
 
 # SiteDesign=standard
@@ -65,7 +65,7 @@ AdminSiteStyle=white
 
 
 ########################################
-# Database Settings for eZ Publish Basic
+# Database Settings for Exponential Basic
 ########################################
 Database=ezpbasicdbname
 User=ezpbasicdbuser
@@ -79,14 +79,14 @@ MySQLSocket=disabled
 
 
 ########################################
-# Database Implementation Setting for eZ Publish Basic
+# Database Implementation Setting for Exponential Basic
 ########################################
 ## DatabaseImplementation setting can be set to mysql|postgresql|sqlite|informix
 DatabaseImplementation=mysql
 
 
 ########################################
-# SQLite Database Settings for eZ Publish Basic
+# SQLite Database Settings for Exponential Basic
 ########################################
 DatabaseSQLitePath=var/site/db/demo
 DatabaseSQLiteFile=site-demo.db
@@ -94,14 +94,14 @@ DatabaseSQLiteFile=site-demo.db
 
 ########################################
 # Site Meta Information: Title, Description 
-# and Keywords Settings for eZ Publish Basic
+# and Keywords Settings for Exponential Basic
 ########################################
 
-SiteTitle=eZ Publish Basic a community based framework and website cms
+SiteTitle=Exponential Basic a community based framework and website cms
 Keywords=eZPublishBasic CMS Framework Website Content Management System e-commerce ecommerce website building cms 7x tools web application system.
 # Example site Language setting options:
 # Note: You can create any language you wish to support via file override via setting feature.
-# Note: en_US support by default is the next development target for eZ Publish 2.4.0.1
+# Note: en_US support by default is the next development target for Exponential 2.4.0.1
 
 # Replace value with USA English setting option en_US as shown bellow.
 # Language=en_US
@@ -112,7 +112,7 @@ Language=en_US
 
 ########################################
 # External API Connection Key 
-# Settings for eZ Publish Basic
+# Settings for Exponential Basic
 ########################################
 # Froogle export
 UserFroogle=remote-api-service-user-name
@@ -135,7 +135,7 @@ PassUSPS=remote-api-service-user-name
 # Meta content variable
 SiteAuthor=7x
 SiteCopyright=7x &copy; 1998 - 2025
-SiteDescription=eZ publish basic - the web application suite
+SiteDescription=Exponential basic - the web application suite
 SiteKeywords=Content Management System, CMS, e-commerce, ecommerce, website, building, cms
 
 # HelpLanguage=en_GB
@@ -177,11 +177,11 @@ CharsetSwitch=disabled
 Charsets=en_US-English;en_GB-English;en_UC-Unicode;no_NO-Norwegian;ru_RU-Russian;lv_LV-Latvian;
 #fr_FR-French;it_IT-Italian;de_DE-German;
 
-# eZ publish image import scipt
+# Exponential image import scipt
 SiteTmpDir=/home/ezpbasiclatest/doc/var/site/import/images/
-# eZ publish froogle export script
+# Exponential froogle export script
 SiteFroogleExportDir=/home/ezpbasiclatest/doc/var/site/export/froogle/
-# eZ publish yahoo export script
+# Exponential yahoo export script
 SiteYahooExportDir=/home/ezpbasiclatest/doc/var/site/export/yahoo/
 
 
@@ -313,7 +313,7 @@ AdminURLTranslator=disabled
 # Ability to use XML tags inside the category description, administrator have a possibility
 # to format category description. This switch must be set before category creation. If you
 # change this switch after some content created, YOU WILL LOOSE CATEGORIES !!!
-# This feature is not currently supported in eZ publish desktop edition.
+# This feature is not currently supported in Exponential desktop edition.
 CategoryDescriptionXML=disabled
 
 # if the article view should show the path of the categorydefinition even if linked from 
@@ -322,7 +322,7 @@ ForceCategoryDefinition=disabled
 
 MailToFriendSender=nospam@example.org
 
-# add extra tags here if you want to have your own custom tags in eZ publish
+# add extra tags here if you want to have your own custom tags in Exponential
 #
 CustomTags=logo
 
@@ -335,7 +335,7 @@ FromURL=/article/
 
 [eZArticleRSS]
 # Channel Title, Link, Description and Language
-Title=eZ publish 2
+Title=Exponential 2
 Link=http://ezcommunity.net/
 Description=News
 Language=en_US

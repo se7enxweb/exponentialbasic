@@ -9,7 +9,7 @@
  */
 
 /**
- * Utility class for generating autoload arrays for eZ Publish.
+ * Utility class for generating autoload arrays for Exponential.
  *
  * The class can handle classes from the kernel and extensions.
  *
@@ -933,7 +933,7 @@ class eZAutoloadGenerator
         return <<<ENDL
 <?php
 /**
- * Autoloader definition for eZ Publish $description files.
+ * Autoloader definition for Exponential $description files.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.

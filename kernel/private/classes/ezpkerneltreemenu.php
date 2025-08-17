@@ -162,7 +162,7 @@ class ezpKernelTreeMenu implements ezpKernelHandler
 
     /**
      * Initializes the session. If running, through Symfony the session
-     * parameters from Symfony override the session parameter from eZ Publish.
+     * parameters from Symfony override the session parameter from Exponential.
      */
     protected function sessionInit()
     {

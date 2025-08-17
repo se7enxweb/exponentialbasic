@@ -6,7 +6,7 @@ Exponential Basic is an open-source project to modernize the classic Exponential
 
 This project is led by [7x](https://se7enx.com) and aims to ensure the long-term viability of Exponential 2.x for community portal solutions and their future portability (export to another cms).
 
-"Please Note: This project is not associated with the original eZ Publish software or its original developer, eZ Systems or Ibexa".
+"Please Note: This project is not associated with the original Exponential software or its original developer, eZ Systems or Ibexa".
 
 ---
 

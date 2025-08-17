@@ -46,7 +46,7 @@ class ezpRestClient
     public $endpoint_uri = null;
 
     /**
-     * ID of the eZ Publish user who owns the application
+     * ID of the Exponential user who owns the application
      * @var int
      */
     public $owner_id = null;

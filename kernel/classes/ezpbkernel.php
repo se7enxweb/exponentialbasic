@@ -8,7 +8,7 @@
  */
 
 /**
- * Base eZ Publish kernel class.
+ * Base Exponential kernel class.
  * Wraps a "kernel handler" and forwards calls to it.
  * This allows to have different kernel handlers depending on the context (i.e. "web" or "cli")
  */
@@ -32,7 +32,7 @@ class ezpbKernel implements ezpWebBasedKernelHandler
         if ( version_compare( PHP_VERSION, '5.3.3' ) < 0 )
         {
             echo "<h1>Unsupported PHP version " . PHP_VERSION . "</h1>",
-            "<p>eZ Publish 5.x does not run with PHP version lower than 5.3.3.</p>",
+            "<p>Exponential 5.x does not run with PHP version lower than 5.3.3.</p>",
             "<p>For more information about supported software please visit ",
             "<a href=\"http://ez.no/\" >us, eZ Systems, on http://ez.no</a>. See you there :-)</p>";
             exit;
@@ -55,7 +55,7 @@ class ezpbKernel implements ezpWebBasedKernelHandler
 
     /**
      * Runs a callback function in the kernel environment.
-     * This is useful to run eZ Publish 4.x code from a non-related context (like eZ Publish 5)
+     * This is useful to run Exponential 4.x code from a non-related context (like Exponential 5)
      *
      * @param \Closure $callback
      * @param bool $postReinitialize Default is true.

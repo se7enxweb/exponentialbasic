@@ -1,7 +1,7 @@
 eZSurvey README
 
 Based on the work of jimmerman@users.sourceforge.net on phpESP (http://phpesp.sourceforge.net/),
-eZ Survey is an eZ Publish module capable of managing several surveys....
+eZ Survey is an Exponential module capable of managing several surveys....
 
 * Surveys can have several types of questions: Yes/Box, Text Box, Text Area, Radio/Check Buttons, 
 Select box, Date, Numeric, etc (you can easily add new types though)

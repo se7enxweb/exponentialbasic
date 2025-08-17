@@ -9,7 +9,7 @@
  */
 
 /**
- * Object representing an eZ Publish extension
+ * Object representing an Exponential extension
  */
 class ezpExtension
 {

@@ -89,7 +89,7 @@ class eZContentObjectStateGroupLanguage extends eZPersistentObject
     }
 
     /**
-     * return the eZ Publish content language associated with this content object state group language
+     * return the Exponential content language associated with this content object state group language
      *
      * @return eZContentLanguage
      */

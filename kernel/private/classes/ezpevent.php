@@ -9,7 +9,7 @@
  */
 
 /**
- * This class handles internal kernel events in eZ Publish, aka hooks.
+ * This class handles internal kernel events in Exponential, aka hooks.
  *
  * @internal
  * @since 4.5.0

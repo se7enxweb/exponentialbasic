@@ -290,7 +290,7 @@ class ezpbKernelWeb implements ezpWebBasedKernelHandler
                     if ( ini_get('display_errors') == 1 )
                     {
                         if ( eZDebug::isDebugEnabled() )
-                            echo "<p>The execution of eZ Publish was abruptly ended, the debug output is present below.</p>";
+                            echo "<p>The execution of Exponential was abruptly ended, the debug output is present below.</p>";
                         else
                             echo "<p>Debug information can be found in the log files normally placed in var/log/* or by enabling 'DebugOutput' in site.ini</p>";
                     }
@@ -367,7 +367,7 @@ class ezpbKernelWeb implements ezpWebBasedKernelHandler
 // header( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" );
 // header( "Cache-Control: no-cache, must-revalidate" );
 // header( "Pragma: no-cache" );
-// header( "X-Powered-By: eZ Publish Basic" );
+// header( "X-Powered-By: Exponential Basic" );
 
 // Find out, where our files are.
 if ( preg_match( "/(.*\/)([^\/]+\.php)$/", $_SERVER['SCRIPT_FILENAME'], $regs ) )
@@ -1527,7 +1527,7 @@ $ini = eZINI::instance();
 
     /**
      * Initializes the session. If running, through Symfony the session
-     * parameters from Symfony override the session parameter from eZ Publish.
+     * parameters from Symfony override the session parameter from Exponential.
      */
     protected function sessionInit()
     {

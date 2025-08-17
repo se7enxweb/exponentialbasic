@@ -65,7 +65,7 @@ class ezpRestRequest extends ezcMvcRequest
      * @param array $variables Containing request variables set by the router
      * @param array $get The GET variables which are available in the request
      * @param array $post The POST variables that are available in the request
-     * @param array $contentVariables GET variables related to eZ Publish content
+     * @param array $contentVariables GET variables related to Exponential content
      * @param bool $isEncrypted Is the request made over an encrypted connection
      * @param string $body
      * @param array(ezcMvcRequestFile) $files

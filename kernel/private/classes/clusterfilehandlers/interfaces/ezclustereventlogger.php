@@ -10,10 +10,10 @@
 /**
  * Interface for eZClusterEvent loggers.
  *
- * Cluster events can be used either inside eZ Publish (cache read/write, file handling...), but also
+ * Cluster events can be used either inside Exponential (cache read/write, file handling...), but also
  * through index_cluster.php in order to serve binary files.
  * In the last case, the process should be as fast as possible and consume less resources as possible.
- * Thus we should not include heavy dependencies on eZ Publish utility classes like eZDebug in order to log errors.
+ * Thus we should not include heavy dependencies on Exponential utility classes like eZDebug in order to log errors.
  * This interface is to be implemented by classes dedicated to error logging, depending on context.
  */
 interface eZClusterEventLogger

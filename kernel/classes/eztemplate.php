@@ -958,7 +958,10 @@ class eZTemplate
     */
     function haltmsg( $msg )
     {
+        $this->debugINI = eZINI::instance( "site.ini" );
+
         $err_msg = "<b>Template Error:</b> $msg<br>\n";
+
         if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
         {
             print( $err_msg );

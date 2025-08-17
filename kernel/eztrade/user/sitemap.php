@@ -9,8 +9,8 @@ $ini =& eZINI::instance( 'site.ini' );
 
 $Language = $ini->variable( "eZTradeMain", "Language" );
 
-$t = new eZTemplate( "eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
-		     "eztrade/user/intl/", $Language, "sitemap.php" );
+$t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
+		     "kernel/eztrade/user/intl/", $Language, "sitemap.php" );
 
 $t->set_file( "sitemap_page_tpl", "sitemap.tpl" );
 $t->set_block( "sitemap_page_tpl", "sitemap_line_tpl", "sitemap_line" );

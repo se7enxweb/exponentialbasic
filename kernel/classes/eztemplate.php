@@ -153,6 +153,7 @@ class eZTemplate
 
         $this->set_root( $templateDir );
         $this->set_unknowns( "remove" );
+        $this->debugINI = eZINI::instance( 'site.ini' );
 
         if ( is_array( $phpFile ) and is_array( $intlDir ) )
         {
@@ -171,14 +172,14 @@ class eZTemplate
                 }
                 else
                 {
-                    if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
+                    if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
                     {
                         print( "<br><b>Error: language file, $lang_file, could not be found.</b><br>" );
                     }
                 }
                 
             }
-            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
+            if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
             {
                 if ( count( $this->languageFile ) == 0 )
                 {
@@ -194,7 +195,7 @@ class eZTemplate
 
             // 7x: Add a setting for this debug output statement to be encouraged durring debugging.
             // Add a setting to enable this statement.
-            if( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" && $GLOBALS["DEBUG_EZTEMPLATE"] == true )
+            if( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" && $GLOBALS["DEBUG_EZTEMPLATE"] == true )
             {
                 echo "<hr>"; echo $this->languageFile; echo "<hr>";
             }
@@ -206,7 +207,7 @@ class eZTemplate
             }
             else
             {
-                if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
+                if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
                 {
                     debug_print_backtrace();
                     print( "<br><b>Error: language file, $this->languageFile, could not be found.</b><br>" );
@@ -215,7 +216,7 @@ class eZTemplate
         }
         else
         {
-            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
+            if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
             {                    
                 print( "<br><b>Error: $" . "intlDir and $" . "phpFile must either be arrays or strings.</b><br>" );
             }
@@ -373,7 +374,7 @@ class eZTemplate
         $CacheFile =& $this->cacheFile();
         if ( !file_exists( $this->CacheDir ) )
         {
-            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
+            if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
             {                    
                 print( "<br /><b>TemplateCache: directory $this->CacheDir does not exist, cannot create cache file</b><br />" );
             }
@@ -401,7 +402,7 @@ class eZTemplate
         $CacheFile =& $this->cacheFile();
         if ( !file_exists( $this->CacheDir ) )
         {
-            if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
+            if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
             {
                 print( "<br /><b>TemplateCache: directory $this->CacheDir does not exist, cannot delete cache file</b><br />" );
             }
@@ -503,10 +504,10 @@ class eZTemplate
             if ( !$this->loadfile( $parent ) )
             {
                 if ( $required )
-					{
+                {
                     	$phpFile = $this->phpFile;
 						$this->halt("subst ($phpFile): unable to load $parent.");
-					}
+                }
                 return false;
             }
             if ( $name == "" )
@@ -958,7 +959,7 @@ class eZTemplate
     function haltmsg( $msg )
     {
         $err_msg = "<b>Template Error:</b> $msg<br>\n";
-        if ( $this->Ini->variable( "site", "DebugOutput" ) == "enabled" )
+        if ( $this->debugINI->variable( "site", "DebugOutput" ) == "enabled" )
         {
             print( $err_msg );
         }
@@ -967,6 +968,7 @@ class eZTemplate
 
     var $TextStrings;
     var $Ini;
+    var $debugINI;
     var $Style;
     var $ModuleDir;
     var $State;

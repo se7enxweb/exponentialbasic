@@ -1,4 +1,4 @@
- <?php
+<?php
 // 
 // $Id: hotdealsgallery.php,v 1.1.2.1 2002/05/14 13:02:54 kracker Exp $
 //
@@ -399,6 +399,10 @@ foreach ( $productList as $product )
     }
 }
 
+$TotalTypes = count( $productList );
+eZList::drawNavigator( $t, $TotalTypes, $Limit, $Offset, "product_list_tpl" );
+
+
 if ( count( $productList ) > 0 )
 {
     $t->pparse( "product_list", "product_list_tpl" );
@@ -407,24 +411,6 @@ else
 {
     $t->set_var( "product_list", "" );
 }
-
-
-
-eZList::drawNavigator( $t, $TotalTypes, $Limit, $Offset, "product_list_page_tpl" );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 foreach ( $productList as $product )

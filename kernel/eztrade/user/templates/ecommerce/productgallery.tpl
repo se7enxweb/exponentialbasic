@@ -84,7 +84,7 @@
 	<form action="{www_dir}{index}/{module}/{action_url}/{product_id}/" method="post">
 	<div align="right">
 	<div class="spacer"><div class="pris">
-	<input type="image" src="/design/aih_standard/images/addtocart.gif" name="Cart" value="{intl-add_to_cart}" />
+	<input type="image" src="/design/trade/images/addtocart.gif" name="Cart" value="{intl-add_to_cart}" />
 	</div></div>
 	</div>
 	</form>

@@ -1,4 +1,4 @@
-
+<!-- BEGIN product_list_page_tpl -->
 <!-- BEGIN product_list_tpl -->
 <!-- start #contentWrap -->
 <div id="contentWrap">
@@ -78,7 +78,7 @@
 <tr>
 	<!-- BEGIN type_list_previous_tpl -->
 	<td>
-	<a class="path" href="{www_dir}{index}/trade/productlist/{category_id}/{item_previous_index}">&lt;&lt;&nbsp;{intl-previous}</a>&nbsp;|
+	<a class="path" href="{www_dir}{index}/trade/hotdealsgallery/{category_id}/{item_previous_index}">&lt;&lt;&nbsp;{intl-previous}</a>&nbsp;|
 	</td>
 	<!-- END type_list_previous_tpl -->
 
@@ -106,7 +106,7 @@
 
 	<!-- BEGIN type_list_next_tpl -->
 	<td>
-	&nbsp;<a class="path" href="{www_dir}{index}/trade/productlist/{category_id}/{item_next_index}">{intl-next}&nbsp;&gt;&gt;</a>
+	&nbsp;<a class="path" href="{www_dir}{index}/trade/hotdealsgallery/{category_id}/{item_next_index}">{intl-next}&nbsp;&gt;&gt;</a>
 	</td>
 	<!-- END type_list_next_tpl -->
 
@@ -126,3 +126,4 @@
 </div>
 
 <!-- END product_list_tpl -->
+<!-- END product_list_page_tpl -->

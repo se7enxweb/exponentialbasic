@@ -1,17 +1,19 @@
-# eZ Publish Basic
+# Exponential Basic
 
 ![20BD8EBA-3B49-4ACB-8252-4165196D87B9_1_102_o](https://github.com/user-attachments/assets/9651c6e1-c110-4344-a151-de1b58a473e8)
 
-eZ Publish Basic is an open-source project to modernize the classic eZ Publish 2.x CMS, bringing its functionality up-to-date with PHP 8 standards while retaining its simplicity and community-focused design.
+Exponential Basic is an open-source project to modernize the classic Exponential 2.x CMS, bringing its functionality up-to-date with PHP 8 standards while retaining its simplicity and community-focused design.
 
-This project is led by [7x](https://se7enx.com) and aims to ensure the long-term viability of eZ Publish 2.x for community portal solutions and their future portability (export to another cms).
+This project is led by [7x](https://se7enx.com) and aims to ensure the long-term viability of Exponential 2.x for community portal solutions and their future portability (export to another cms).
+
+"Please Note: This project is not associated with the original eZ Publish software or its original developer, eZ Systems or Ibexa".
 
 ---
 
  * Current release: Version 2.4.0.0 (Stable) [Release](https://github.com/se7enxweb/ezpublishbasic/releases/tag/v2.4.0.0)
  * Download: [zip](https://github.com/se7enxweb/ezpublishbasic/archive/refs/tags/v2.4.0.0.zip) or [tar.gz](https://github.com/se7enxweb/ezpublishbasic/archive/refs/tags/v2.4.0.0.tar.gz)
  * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)
- * Website:  [https://basic.ezpublish.one](https://basic.ezpublish.one)
+ * Website:  [https://basic.exponential.earth](https://basic.exponential.earth)
  * Current unreleased Version In Development: Version 2.4.0.1 (Stable)
  * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
  * Maintainer: [7x](https://se7enx.com)
@@ -25,7 +27,7 @@ Read more [about](documentation/ABOUT.md) our project and it's historic value ad
 
 # Installation via Git & GitHub
 
-Follow these steps to set up eZ Publish Basic via GitHub:
+Follow these steps to set up Exponential Basic via GitHub:
 
 1. Clone the repository:
    ```bash
@@ -41,7 +43,7 @@ Follow these steps to set up eZ Publish Basic via GitHub:
 
 ## Installation via Composer & Packagist
 
-Follow these steps to set up eZ Publish Basic via Composer:
+Follow these steps to set up Exponential Basic via Composer:
 
 1. Clone the latest release:
    ```bash
@@ -60,7 +62,7 @@ Follow these steps to set up eZ Publish Basic via Composer:
 
 - Filesystem User and Group Permissions
 
-- Generate eZ Publish Basics Autoloads
+- Generate Exponential Basics Autoloads
   - Use this command: ```bin/shell/php/ezpgenerateautoloads.php -k;```
 
 - Create the two most used shell script alias commands via Shell script command aliases or by creating symbolic links in Linux / Unix / BSD / GNU.
@@ -105,15 +107,15 @@ This will direct all trafic by hostname match to index.php or index_admin.php as
 
 6. Initialize the application in your web browser. We recommend loading the admin site first but it doesn't matter much.
 
-# Default Admin Account in eZ Publish Basic
+# Default Admin Account in Exponential Basic
 
 - Username: 'admin'
 - Password: 'publish'
 
 ## Example usage of user login view
 
-- Example usage via web browser using eZ User URL: https://basic.demo.ezpublish.one/user/login
-- Example usage via web browser using eZ Admin URL: https://admin.basic.demo.ezpublish.one/user/login
+- Example usage via web browser using eZ User URL: https://basic.demo.exponential.earth/user/login
+- Example usage via web browser using eZ Admin URL: https://admin.basic.demo.exponential.earth/user/login
 
 Note: Your work is now done. Enjoy the free software and a healthy snack. :)
 
@@ -123,24 +125,24 @@ Up next default content creation in the admin for your first visitor to see!
 
 Further documentation can be read from the [documentation](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation) directory [README](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation/README).
 
-More information can be found at our [project website](https://basic.ezpublish.one)
+More information can be found at our [project website](https://basic.exponential.earth)
 
 Older documentation on the core of our framework design fundamentals should be studied at the [Older v2 Era Documentation @ Wayback Machine](http://web.archive.org/web/20060901154601/http://doc22.ez.no/)
 
 This includes the following key documentation (from the above doc link archive):
 
-- [eZ publish 2.2 User Manuals](http://web.archive.org/web/20060901154506/http://doc22.ez.no/article/archive/2/index.html)
+- [Exponential Basic 2.2 User Manuals](http://web.archive.org/web/20060901154506/http://doc22.ez.no/article/archive/2/index.html)
 
-- [eZ publish 2.2 Admin Manuals](http://web.archive.org/web/20060901154627/http://doc22.ez.no/article/archive/4/index.html)
+- [Exponential Basic 2.2 Admin Manuals](http://web.archive.org/web/20060901154627/http://doc22.ez.no/article/archive/4/index.html)
 
-- [eZ publish 2.2 Designer Manuals](http://web.archive.org/web/20060901154703/http://doc22.ez.no/article/archive/5/index.html)
+- [Exponential Basic 2.2 Designer Manuals](http://web.archive.org/web/20060901154703/http://doc22.ez.no/article/archive/5/index.html)
 
-- [eZ Publish 2.2 PHP Class Reference Documentation](http://web.archive.org/web/20060901154614/http://doc22.ez.no/class_ref/doc/view/)
+- [Exponential Basic 2.2 PHP Class Reference Documentation](http://web.archive.org/web/20060901154614/http://doc22.ez.no/class_ref/doc/view/)
 
 
 ## Features
 
-eZ Publish Basic provides a feature rich cms based website building platform that is ready to use upon it's quick installation setup.
+Exponential Basic provides a feature rich cms based website building platform that is ready to use upon it's quick installation setup.
 
 - Webserver support: Any web server (Really) preferably one that supports a url rewriting module like Apache's mod_rewrite.
 
@@ -152,17 +154,17 @@ eZ Publish Basic provides a feature rich cms based website building platform tha
 
 - Module based kernel application functionality. Extendable by default (Settings based).
 
-- eZ Publish 2 Kernel Transformed into eZ Publish 3 Kernel in Directory Structure and Storage of Code. This was then transformed into a hybrid of eZ Publish 2.4.0.0 kernel and eZ Publish 6 kernel sub system classes forming eZ Publish v2.4.0.1 our second version.
+- Exponential 2 Kernel Transformed into Exponential 3 Kernel in Directory Structure and Storage of Code. This was then transformed into a hybrid of Exponential 2.4.0.0 kernel and Exponential 6 kernel sub system classes forming Exponential v2.4.0.1 our second version.
 
 - Administration that makes creating content quick and simple.
 
 - User side provides full functionality to create content through existing module views. This helps your users engage with your site.
 
-- eZ Publish (Basic) is one of the very oldest CMS Projects under the GPL with over 20 years of history. It stands as the leader in cms design throughout this time, leaving others to refactor their own solutions while eZ Publish Basic Developers just keep developing solutions with little need to refactor.
+- Exponential (Basic) is one of the very oldest CMS Projects under the GPL with over 20 years of history. It stands as the leader in cms design throughout this time, leaving others to refactor their own solutions while Exponential Basic Developers just keep developing solutions with little need to refactor.
 
-- eZ Publish Basic is Free Software! We respect your freedoms. Try our software and join our community.
+- Exponential Basic is Free Software! We respect your freedoms. Try our software and join our community.
 
-- Support / Discussion Forums available on [Share eZ Publish! Forums for eZ Publish Basic](https://share.ezpublish.one/forums/ez-publish-basic)
+- Support / Discussion Forums available on [Share Exponential! Forums for Exponential Basic](https://share.exponential.earth/forums/ez-publish-basic)
 
 - Heavily tested software that is supported. If you find an issue we will fix it promptly.
 
@@ -199,27 +201,27 @@ eZ Publish Basic provides a feature rich cms based website building platform tha
 - User management for registering users, giving access to different groups to different parts of the site
 
 
-Learn more about eZ Publish Basic features in detail. Study our documentation, [FEATURES.md](documentation/FEATURES.md).
+Learn more about Exponential Basic features in detail. Study our documentation, [FEATURES.md](documentation/FEATURES.md).
 
 ## Software Features Roadmap
 
-Learn more about eZ Publish Basic features roadmap in detail. Study our documentation, [ROADMAP.md](documentation/ROADMAP.md).
+Learn more about Exponential Basic features roadmap in detail. Study our documentation, [ROADMAP.md](documentation/ROADMAP.md).
 
 ## PHP Compatability
 
-For the latest information about the development of php 8 compatibility read our documentation, [COMPATIBILITY.md](documentation/COMPATIBILITY.md) - eZ Publish Basic Module Compatibility with PHP8.x. 
+For the latest information about the development of php 8 compatibility read our documentation, [COMPATIBILITY.md](documentation/COMPATIBILITY.md) - Exponential Basic Module Compatibility with PHP8.x. 
 
 ## Module Documentation
 
-For the latest detailed list of views in eZ Publish Basic read our documentation, [MODULES.md](documentation/MODULES.md).
+For the latest detailed list of views in Exponential Basic read our documentation, [MODULES.md](documentation/MODULES.md).
 
 ## Contributions
 
-We are currently seeking others with eZ Publish 2 code improvements to share them with our project to grow the default installation feature set even further.
+We are currently seeking others with Exponential 2 code improvements to share them with our project to grow the default installation feature set even further.
 
-### Community eZ Publish 2 Modules
+### Community Exponential 2 Modules
 
-The worldwide eZ community on the internet likely holds old copies of custom modules. Some community members may be willing to contribute their modules for inclusion in eZ Publish Basic.
+The worldwide eZ community on the internet likely holds old copies of custom modules. Some community members may be willing to contribute their modules for inclusion in Exponential Basic.
 
 ## How to Contribute
 
@@ -238,7 +240,7 @@ We welcome you to create new code not just bugfix existing code:
 5. You could help extend the language translation files to support more complete translation of all language file strings and phrases. Also you could provide new translations in new languages based on eng_US (the new default for 2.4.0.1).
 7. You could help extend the library of site designs by providing a new design folder implementation. 7x just did this in providing the ecommerce design and related module templates design + templates based on eng_US language for strings in v2.4.0.1. It's very simple to create a custom design and share it.
  
-Try today for starters. Become a eZ Publish Contributor and Share your work with everyone.
+Try today for starters. Become a Exponential Contributor and Share your work with everyone.
 
 Check out the Contributing Guidelines for more details.
 

@@ -1,7 +1,7 @@
 php_flag magic_quotes_gpc off
 
 ##############################
-# PHP : Required variable changes required for eZ publish v2 && php v > 4.3.2?
+# PHP : Required variable changes required for Exponential Basic v2 && php v > 4.3.2?
 ##############################
 
 php_flag register_globals on

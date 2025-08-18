@@ -236,7 +236,7 @@
 
 	  <div class="poweredByLogo">
 	      <div align="center"><a target="" href="/about"><img src="/design/base/images/logo/powered-by-ezpublish-100x35-trans-lgrey.gif" width="90" height="35" border="0" alt="Powered by eZ publish"></a></div>
-              <div class="poweredBy">Powered by <a href="https://basic.ezpublish.one">eZ Publish Basic</a> version <a href="/about"><? echo eZPublish::version(); ?></a></div>
+              <div class="poweredBy">Powered by <a href="https://basic.exponential.earth">Exponential Basic</a> version <a href="/about"><? echo eZPublish::version(); ?></a></div>
 	  </div>
           <? $SiteCopyright = $ini->variable( "site", "SiteCopyright" ); ?>
           <div class="copyright"><? echo $SiteCopyright; ?></div>

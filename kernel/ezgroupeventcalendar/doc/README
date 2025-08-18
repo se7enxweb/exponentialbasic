@@ -12,7 +12,7 @@ LICENCE               (see doc/LICENCE for official licence)
 
 These source files are part of eZ publish 2, web publishing software,
 and developed for the eZ publish 2 community
-Copyright © 2004 Graham Brookins | Brookins Consulting
+Copyright ï¿½ 2004 Graham Brookins | Brookins Consulting
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -50,7 +50,7 @@ When The installation, introduction documentation has failed
 to yeild an answere to your question, you may seek support from
 one of these sources of eZ publish 2 support.
 
-(Community) eZ publish 2 Support | Documentation : http://ezcommunity.net/forum
+(Community) eZ publish 2 Support | Documentation : http://web.archive.org/web/20060822010037/http://ezcommunity.net/forum
 (Commercial) eZ publish 2 Support | Development : http://brookinsconsulting.com/
 
 

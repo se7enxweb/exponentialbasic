@@ -1,6 +1,6 @@
 #Exponential Basic Module Compatibility with PHP 8.x
 
-This document represents months of writing documentation durring development to provide for eZ Publish Basic the ability to boot, function normally and refactor the product to address age and thousands of bug patterns hidden within the original ezpublish2 source code.
+This document represents months of writing documentation durring development to provide for Exponential Basic the ability to boot, function normally and refactor the product to address age and thousands of bug patterns hidden within the original ezpublish2 source code.
 
 ## User Modules
 

@@ -1,4 +1,4 @@
-eZ publish changelog:
+Exponential Basic changelog:
 ---------------------
 
 
@@ -10,7 +10,7 @@ Changes from 2.3.0 to 2.4.0 (alpha)
 
 - Extend Project Documentation Extensively.
 -- Documented in README.md the extensive nature of the status, listings of available module views in detail of status and testing results.
--- Documented in README.md how to install eZ Publish Basic via git
+-- Documented in README.md how to install Exponential Basic via git
 
 
 Changes from 2.2.10 to 2.3.0 (alpha)
@@ -133,7 +133,7 @@ Changes from 2.2.4 to 2.2.5
 * Sitewide language setting is now controlled by the Language key in group site, the old eZCalendarMain code is still present.
 * Fixed problem where the session language setting was overriden by the section language.
 * Added support for sending over the sitewide language and charset in xmlrpc interface.
-* Fixed notification bug when articles got published from eZ publish DE.
+* Fixed notification bug when articles got published from Exponential Basic DE.
 * Fixed several permission bugs in eZ imagecatalogue.
 * Fixed several permission bugs in eZ filemanager.
 * Fixed problem with updating cache files introduced in 2.2.4
@@ -513,7 +513,7 @@ Changes from version 2.0 beta 1 to version 2.0 beta 2
 
 Changes from version 1.0.5 to version 2.0 beta 1
 ------------------------------------------------
-* Merged eZ trade with eZ publish
+* Merged eZ trade with Exponential Basic
 * Added about module
 * Added ad module
 * Added address module

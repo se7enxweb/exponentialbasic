@@ -14,7 +14,7 @@
 </tr>
 </table>
 
-<a href="http://ezcommunity.net" target="_vblank"><img src="{www_dir}/design/admin/images/{site_style}/ezsystems-minilogo.gif" width="100" height="25" border="0" align="right" alt="" /></a><br />
+<a href="http://web.archive.org/web/20060822010037/http://ezcommunity.net" target="_vblank"><img src="{www_dir}/design/admin/images/{site_style}/ezsystems-minilogo.gif" width="100" height="25" border="0" align="right" alt="" /></a><br />
 
 	</td>
 </tr>

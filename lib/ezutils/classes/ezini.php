@@ -672,7 +672,7 @@ class eZINI
     {
         // 7x: Note eZINI::saveCache by default is not very smart when it comes to creating cache directories recursively.
         // Specifically when the cacheFile is created in a subdirectory of the cacheDir, it will not create the subdirectory.
-        // This is a simple solution to provide for the needed features for eZ Publish Basic.
+        // This is a simple solution to provide for the needed features for Exponential Basic.
 
         // Get the path to the cache file
         $tmpFileDir = explode( '/', $cachedFile );
@@ -2153,7 +2153,7 @@ class eZINI
     /// If \c true eZINI will check each setting (before saving) for correspondence of settings in site.ini[eZINISetting].ReadonlySettingList
     public $ReadOnlySettingsCheck = true;
 
-    /* PHP8 Required Properties To Boot eZ Publish Basic Kernel with this package from ezpublish version 6 */
+    /* PHP8 Required Properties To Boot Exponential Basic Kernel with this package from ezpublish version 6 */
 
     public $Index;
     public $WWWDir;

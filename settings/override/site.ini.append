@@ -1,6 +1,6 @@
 [site]
 ########################################
-# Database Settings for eZ Publish Basic
+# Database Settings for Exponential Basic
 ########################################
 
 DatabaseSQLitePath=var/site/db/demo/
@@ -9,14 +9,14 @@ DatabaseSQLiteFile=site-demo.db
 
 
 ########################################
-# Site Accessibility Settings for eZ Publish Basic
+# Site Accessibility Settings for Exponential Basic
 ########################################
 
 SitePath=/home/ezpbasiclatest/doc/
-SiteURL=latest.basic.demo.ezpublish.one
-AdminSiteURL=admin.latest.basic.demo.ezpublish.one
+SiteURL=latest.basic.demo.exponential.earth
+AdminSiteURL=admin.latest.basic.demo.exponential.earth
 AdminSiteProtocol=https
-UserSiteURL=latest.basic.demo.ezpublish.one
+UserSiteURL=latest.basic.demo.exponential.earth
 
 
 ########################################

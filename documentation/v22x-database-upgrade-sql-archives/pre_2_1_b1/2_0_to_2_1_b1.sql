@@ -1,6 +1,6 @@
 #
 #
-# SQL upgrade information for eZ publish 2.0-> 2.1 Beta 1
+# SQL upgrade information for Exponential Basic 2.0-> 2.1 Beta 1
 #
 # -------------------------------------------------
 #

@@ -4,7 +4,7 @@
 # ezinstaller - version 1.10 - (c) 2001 Kai D�bbert <kai@duebbert.de>, eZ Systems
 # ===============================================================================
 #
-# This shell script will install eZ publish 2 (http://ezcommunity.net/) on a Linux 
+# This shell script will install eZ publish 2 (http://web.archive.org/web/20060822010037/http://ezcommunity.net/) on a Linux 
 # (or Unix like) system.
 #
 #---------------------------------------------------------------------------

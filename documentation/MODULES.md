@@ -1,6 +1,6 @@
 ## Modules Available
 
-The following modules are available with eZ Publish Basic providing a rich feature set that doesn't require investment of effort to develop only your content is needed to get started.
+The following modules are available with Exponential Basic providing a rich feature set that doesn't require investment of effort to develop only your content is needed to get started.
 
 - ezabout
 - ezad
@@ -41,12 +41,12 @@ The following modules are available with eZ Publish Basic providing a rich featu
 
 Currently by default there are 34 modules which offer user, admin or combined siteaccess module views for general use.
 
-### eZ Publish Basic Admin Module Views Available
+### Exponential Basic Admin Module Views Available
 
-The following administration / admin modules and views are included in eZ Publish Basic:
+The following administration / admin modules and views are included in Exponential Basic:
 
 - ezabout
-  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+  - about - One Datasupplier based module view about Exponential Basic Website Installation / Project CMS. Available via /about Relative URL.
 - ezad
   - adlist
   - gotoadd
@@ -354,12 +354,12 @@ The following administration / admin modules and views are included in eZ Publis
 - ezxmlrpc
   - Classes only module. No views.
 
-### eZ Publish Basic User Module Views Available
+### Exponential Basic User Module Views Available
 
-The following user modules and views are included in eZ Publish Basic:
+The following user modules and views are included in Exponential Basic:
 
 - ezabout
-  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+  - about - One Datasupplier based module view about Exponential Basic Website Installation / Project CMS. Available via /about Relative URL.
 - ezad
   - adlist
   - gotoadd
@@ -619,9 +619,9 @@ The following user modules and views are included in eZ Publish Basic:
 - ezxmlrpc
   - Classes only module. No views.
 
-### eZ Publish Basic User Module Views URL Calls Available
+### Exponential Basic User Module Views URL Calls Available
 
-The following user modules views are included in eZ Publish Basic:
+The following user modules views are included in Exponential Basic:
 
 - ez about
   - about
@@ -1285,9 +1285,9 @@ The following user modules views are included in eZ Publish Basic:
     - URI: /trade/xmlrpcimport
 
 
-### eZ Publish Basic Admin Module Views URL Calls Available
+### Exponential Basic Admin Module Views URL Calls Available
 
-The following admin modules views are included in eZ Publish Basic:
+The following admin modules views are included in Exponential Basic:
 
 - ezabout
   - about

@@ -55,7 +55,7 @@
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
 	<td width="1%" class="tdmini">
-	<a href="http://basic.ezpublish.one" target="_vblank"><img src="{www_dir}/design/admin/images/{site_style}/top-ezpublishlogo.gif" width="200" height="40" border="0" alt="" /></a><br />
+	<a href="http://basic.exponential.earth" target="_vblank"><img src="{www_dir}/design/admin/images/{site_style}/top-ezpublishlogo.gif" width="200" height="40" border="0" alt="" /></a><br />
 	</td>
 	<td width="92%">
 	<img src="{www_dir}/design/admin/images/1x1.gif" width="20" height="10" border="0" alt="" />

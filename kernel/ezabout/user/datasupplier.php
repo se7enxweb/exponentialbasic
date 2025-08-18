@@ -28,14 +28,14 @@
 $version = eZPublish::version();
 
 ?>
-<a href="https://basic.ezpublish.one/"><h1>About Exponential Basic</h1></a>
+<a href="https://basic.exponential.earth/"><h1>About Exponential Basic</h1></a>
 <h2>Content Management System</h2>
 
-<a href="https://basic.ezpublish.one/"><h2>Version: <? echo $version; ?></h2></a>
+<a href="https://basic.exponential.earth/"><h2>Version: <? echo $version; ?></h2></a>
 <hr noshade="noshade" size="4" />
 
 <p>
-<a href="https://basic.ezpublish.one">eZ publish basic</a> is a web based application suite or a <a href="https://basic.ezpublish.one">Content Management System</a>.
+<a href="https://basic.exponential.earth">Exponential Basic</a> is a web based application suite or a <a href="https://basic.exponential.earth">Content Management System</a>.
 It delivers functionality ranging from publishing of news, web logs and diaries, through web shop functionality like shopping carts and wishlists and forums to intranet functions like contact handling and bug reporting.
 </p>
 <p>
@@ -48,7 +48,7 @@ It supports statistics for page views, links followed and banner ads, both image
 The package lends itself easily to customization, from changing the look and feel by changing templates, localizing the languages and other internationalization issues to adding new functionality.
 </p>
 <p>
-The target audience for <a href="https://basic.ezpublish.one">eZ publish basic</a> are <a href="https://basic.ezpublish.one">e-commerce</a>, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
+The target audience for <a href="https://basic.exponential.earth">Exponential Basic</a> are <a href="https://basic.exponential.earth">e-commerce</a>, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
 </p>
 
 <p>Exponential was created by norwegen commercial company Ibexa (Formerly, eZ Systems) in 1999</p>

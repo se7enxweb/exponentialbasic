@@ -158,7 +158,7 @@ else
 <?
 if ($url_array[1] == "groupeventcalendar" && $url_array[2] == "eventedit" ){
 ?>
-    <link rel="alternate stylesheet" type="text/css" media="all" href="http://ezcommunity.net/ezgroupeventcalendar/user/templates/standard/jscalendar/calendar-system.css" title="system" />
+    <link rel="alternate stylesheet" type="text/css" media="all" href="http://web.archive.org/web/20060822010037/http://ezcommunity.net/ezgroupeventcalendar/user/templates/standard/jscalendar/calendar-system.css" title="system" />
 
     <!-- eZGroupEventCalendar:jscalendar script dependancies -->
 

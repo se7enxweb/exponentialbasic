@@ -20,7 +20,7 @@ class eZPublishSDK
     const VERSION_STATE = 'stable';
     const VERSION_DEVELOPMENT = false;
     const VERSION_ALIAS = '2.4.0.1';
-    const EDITION = 'eZ Publish Basic';
+    const EDITION = 'Exponential Basic';
 
     /*!
       \return the SDK version as a string

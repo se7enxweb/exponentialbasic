@@ -1,7 +1,7 @@
-eZ trade / eZ publish 2 translation guide
+eZ trade / Exponential Basic 2 translation guide
 ---------------------------------------
 
-This is an attempt to make a comprehensive explanation of how eZ publish
+This is an attempt to make a comprehensive explanation of how Exponential Basic
 translation should be handled. Any questions, suggestions or corrections should
 be directed to translators@lists.ez.no, or to the translation coordinator,
 Gunnstein Lye <gl@ez.no>.
@@ -12,7 +12,7 @@ http://developer.ez.no/article/static/73
 
 BACKGROUND
 
-Download eZ publish and or eZ trade. you will find a directory structure like:
+Download Exponential Basic and or eZ trade. you will find a directory structure like:
 
          ezarticle
          ezimagecagalogue
@@ -43,13 +43,13 @@ You'll find more information about the locale conventions here:
 ftp.isi.edu/in-notes/rfc1766.txt and here:
 ftp.isi.edu/in-notes/rfc2277.txt
 
-The primary language of eZ publish is en_GB (British English). You should copy
+The primary language of Exponential Basic is en_GB (British English). You should copy
 from en_GB when you create a new translation. You can safely assume that the
 keys in the en_GB translation are correct. If you find they are not, please
 submit a bug report:
 http://developer.ez.no/bug/report/
 
-All static strings in eZ publish are stored in separate translation files
+All static strings in Exponential Basic are stored in separate translation files
 called *.php.ini. They consist of a header and key=value pairs, like this:
 [strings]
 head_line=Latest news
@@ -65,7 +65,7 @@ So, in short, what you need to do is to translate these values. But read on, the
 
 LOCALE
 
-In classes/locale in your eZ publish distribution are a set of *.ini files,
+In classes/locale in your Exponential Basic distribution are a set of *.ini files,
 one for each translated language. These locale files contain general settings
 for things like time and date display, currency and day/month names. Here is
 an extract from en_GB.ini:
@@ -124,7 +124,7 @@ en_GB. It will change your files when it sees fit, so back up first and use
 with care!
 
 publish-tr.pl is just a batch script; it runs sanitizetrf.pl and updatetrf.pl
-recursively through an eZ publish distribution. You need to edit the @MOD_DIRS
+recursively through an Exponential Basic distribution. You need to edit the @MOD_DIRS
 array, this specifies which modules to check. Also, if you have not put
 sanitizetrf.pl and updatetrf.pl in your PATH, then you must edit $SAN and $UPD
 and provide an absolute path.
@@ -157,7 +157,7 @@ OTHER PROGRAMS
 ezTrx
 
 Ergin Soysal, Turkish translator, has made ezTrx, an alternative translation
-program for eZ publish and eZ trade.
+program for Exponential Basic and eZ trade.
 
 You can get it here:
 http://www.phped.org/ezTrx.zip        Binary download (WinNT, 95 & 98)
@@ -187,7 +187,7 @@ http://developer.ez.no/filemanager/list/11/
 
 THANK YOU!
 
-Finally, a great Thank You to all the translators! We want to make eZ publish
+Finally, a great Thank You to all the translators! We want to make Exponential Basic
 the best web publishing and e-commerce solution available, and all the
 translations are a big plus in the quality score.
 

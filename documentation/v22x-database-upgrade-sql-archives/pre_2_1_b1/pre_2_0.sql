@@ -1,6 +1,6 @@
 #
 #
-# SQL upgrade information for eZ publish pre 2.0
+# SQL upgrade information for Exponential Basic pre 2.0
 #
 # ----------------------------------------------
 

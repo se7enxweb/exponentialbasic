@@ -51,7 +51,7 @@
 
 \begin{document}
 
-\title{eZ publish 2.2 Installation Guide}
+\title{Exponential Basic 2.2 Installation Guide}
 
 
 \author{\resizebox*{0.75\columnwidth}{!}{\includegraphics{screenshots/2.0/ezpublish.eps}} }
@@ -63,7 +63,7 @@ registration number NO 981 601 564 (http://www.brreg.no/oppslag/enhet/detalj.ssc
 
 All images and text herein is Copyright 2001 eZ systems.
 
-eZ publish is a software package released under the GPL lisence (http://www.gnu.org/copyleft/gpl.html),
+Exponential Basic is a software package released under the GPL lisence (http://www.gnu.org/copyleft/gpl.html),
 its primary point of distribution and information is http://developer.ez.no/
 
 \tableofcontents{}
@@ -75,35 +75,35 @@ its primary point of distribution and information is http://developer.ez.no/
 \textbf{{}``He who asks is a fool for five minutes, but he who does
 not ask remains a fool forever.''} - \- Chinese proverb
 \end{quote}
-eZ publish is a content management system, among a lot of other things.
+Exponential Basic is a content management system, among a lot of other things.
 This installation manual will try to cover the job of installing eZ
 publish on your server.
 
-Since version 2.2 eZ publish has a new possible way to be installed:
+Since version 2.2 Exponential Basic has a new possible way to be installed:
 without virtual hosts and mod\_rewrite. This makes it possible for
-people, who don't have a dedicated server or a specialized eZ publish
-hoster, to install eZ publish on their accounts as long as they have
+people, who don't have a dedicated server or a specialized Exponential Basic
+hoster, to install Exponential Basic on their accounts as long as they have
 PHP and a supported database (e.g. mySQL or PostgreSQL). 
 
 This opens some new options for installing:
 
 If you have an account at a webhoster with PHP and mySQL, your option
 should be chapter \ref{chpt: nVH}, because you won't be able to install
-eZ publish as it's explained in chapter \ref{chpt: dedicated server}.
+Exponential Basic as it's explained in chapter \ref{chpt: dedicated server}.
 
 If you have a dedicated server with Apache and mySQL already running
 and you don't want to mess with the Apache configuration, then chapter
 \ref{chpt: nVH} might be of interest of you. 
 
 If you have a dedicated server and want some help on how to install
-all needed software and eZ publish on it, then chapter \ref{chpt: dedicated server}
+all needed software and Exponential Basic on it, then chapter \ref{chpt: dedicated server}
 is for you.
 
 
 \section{Pre-Configured Hosting}
 
 It is possible to get pre-configured hosting services where you can
-install and manage your eZ publish site with ease. Read more about
+install and manage your Exponential Basic site with ease. Read more about
 our hosting partners at eZ systems web site (\texttt{\footnotesize http://}ez.no/shop/hosting).
 
 
@@ -116,7 +116,7 @@ A line starting with a hash-sign {}``\#'' are input from the user
 to the shell.
 
 
-\chapter{\label{chpt: dedicated server}Installing eZ publish (standard%
+\chapter{\label{chpt: dedicated server}Installing Exponential Basic (standard%
 \footnote{An alternative install method is described in chapter \ref{chpt: nVH}
 } method)}
 
@@ -159,13 +159,13 @@ for binaries for Solaris 2.5.1, 2.6, 2.7/SPARC, 2.7/Intel, IRIX 6.2,
 
 \subsection{Needed Privileges}
 
-For the standard installation of eZ publish you will need to have
+For the standard installation of Exponential Basic you will need to have
 the following privileges on your system:
 
 \begin{itemize}
 \item Access to Apache's httpd.conf for creating two virtual hosts, enabling
 the rewrite engine and creating rewrite rules. However, this is not
-needed if you want to run eZ publish in nVH mode. More information
+needed if you want to run Exponential Basic in nVH mode. More information
 aboutthe nVH mode is available in chapter \ref{chpt: nVH}.
 \item Access to compiler, only needed if you can't use any of the pre-compiled
 packages available. (You will have to install the gcc compiler on
@@ -186,15 +186,15 @@ You also need to download and install the following packages, if they
 aren't present on your system already:
 
 \begin{itemize}
-\item A database. Currently, eZ publish suppports MySQL (http://www.mysql.com)
+\item A database. Currently, Exponential Basic suppports MySQL (http://www.mysql.com)
 version 3.23 or later and PostgreSQL (http://www.postgresql.org) version
 7.1.3 or later.
 \item ImageMagick (http://www.imagemagick.org/) newest version (Needed by
 eZ article, eZ image catalogue, and all modules using images. You
 need only the command line version.)
 \item Apache (http://httpd.apache.org/) latest 1.3 release. (It is always
-recommended to run the latest Apache release, though eZ publish shouldn't
-be very picky with the Apache versions. We've used eZ publish with
+recommended to run the latest Apache release, though Exponential Basic shouldn't
+be very picky with the Apache versions. We've used Exponential Basic with
 Apache 1.3.13, some have reported that Apache 1.3.9 isn't useful.)
 \item mod\_rewrite. This apache module is included in all recent versions
 of RedHat Linux. If you use an other distro, you may need to recompile
@@ -202,10 +202,10 @@ apache with mod\_rewrite
 \item Any and all modules you need for apache in addition to mod\_php. (http://modules.apache.org/)
 \item PHP (http://www.php.net/) version 4.0.4pl1 or later. Version 4.0.6
 is recommended. You need the source code version from this site, for
-windows you can just download the binary. (eZ publish uses references
+windows you can just download the binary. (Exponential Basic uses references
 for objects and foreach loops. Only version 4.0.4pl1 and later supports
 both of these features satisfactorily.)
-\item eZ publish (http://developer.ez.no/) verision 2.0 or later stable
+\item Exponential Basic (http://developer.ez.no/) verision 2.0 or later stable
 releases.
 \end{itemize}
 The libraries and php are packaged pre-compiled for Linux i386 on
@@ -215,10 +215,10 @@ You should also find a list of RPMs at http://www.brandish.co.uk/phprpm
 
 \textbf{Important release note:}
 
-eZ publish version 2.2.2 does not require neither QDom or libxml as
-previosly releases did. In this release, eZ publish uses it own xml
+Exponential Basic version 2.2.2 does not require neither QDom or libxml as
+previosly releases did. In this release, Exponential Basic uses it own xml
 parser : eZ xml. Optioninal support for libxml will probably be reintroduced
-in a future version of eZ publish
+in a future version of Exponential Basic
 
 
 \subsection{Which Software is Already Installed?}
@@ -350,7 +350,7 @@ You should always do a search of the forums before posting any questions.
 Important : YOU NEED TO RECOMPILE PHP. No known Linux distros does
 yet have all the php features required by eZ~publish. This means
 that you need to compile the php module from source.\\
-You may find precompiled binaries for your system at the eZ publish web site,  \url{http://developer.ez.no}.
+You may find precompiled binaries for your system at the Exponential Basic web site,  \url{http://developer.ez.no}.
 Take a look at the {}``Contributions'' section in the download area.
 
 
@@ -373,7 +373,7 @@ to move into the directory you extracted php into:\\
 \subsubsection{Configuration\label{chptr: PHP configuration}}
 
 You'll need either an apache module or a command line (CGI) version
-of PHP to use eZ publish on your website. We recommend you use PHP
+of PHP to use Exponential Basic on your website. We recommend you use PHP
 as an apache module. You will also need the command line version if
 you want to use the cron jobs for periodical updates of the eZ news
 feed module.
@@ -399,8 +399,8 @@ default. you can also turn this feature on and off on a directory
 by directory basis in either the {}``.htaccess'' files (if you use
 them) or in the setup of the virtual server in {}``httpd.conf''.
 \item [IMORTANT]: From version 2.1%
-\footnote{eZ publish versions prior to 2.1 required magic quotes to be enabled
-} onwards magic quotes must be turned off for eZ publish to work properly.\\
+\footnote{Exponential Basic versions prior to 2.1 required magic quotes to be enabled
+} onwards magic quotes must be turned off for Exponential Basic to work properly.\\
 ({\footnotesize http://www.php.net/manual/en/install.configure.php\#install.configure.enable-magic-quotes})
 \item [--with-imap]This configures PHP to include imap support. This is
 used by eZ mail module. This parameters require ssl support. Imap
@@ -669,7 +669,7 @@ for a complete understanding of the above information you'll need
 to read that documentation.
 
 The directory {}``/your/docroot/'' is the directory where you extracted
-eZ publish.
+Exponential Basic.
 
 
 \paragraph{Error Checking}
@@ -694,7 +694,7 @@ can be written in this general form:
 \texttt{\footnotesize ~~~~~RewriteRule Pattern Substitution {[}FLAGS{]}}\\
 
 
-The rewrite rules for eZ publish do the following:\\
+The rewrite rules for Exponential Basic do the following:\\
 \\
 \texttt{\footnotesize ~~~~~RewriteRule .{*}/ezmediacatalogue/catalogue/(.{*})\$
 /your/docroot/ezmediacatalogue/catalogue/\$1 {[}T=\char`\"{}application/oct-stream\char`\"{},L{]}}{\footnotesize \par}
@@ -713,7 +713,7 @@ so that the correct file is served.\\
 An result of this rewrite rule is that a file in the mediacatalog
 will be served independet if which user is logget on. Permissions
 on the media file will not checked if the user knows the filename.
-This will be fixed in a later version of eZ publish.\\
+This will be fixed in a later version of Exponential Basic.\\
 
 
 \texttt{\scriptsize ~~~~~~RewriteRule \textasciicircum{}/stats/store/(.{*}).gif\$~
@@ -751,8 +751,8 @@ rules if this rewrite rule matches .\\
 \texttt{\scriptsize ~~~~~~RewriteRule \textasciicircum{}/xmlrpc.{*}\$
 /your/docroot/index\_xmlrpc.php {[}L{]}}{\scriptsize \par}
 
-This rewrite rule is required if you want to connect to your eZ publish
-site with eZ publish Desktop Edition. eZ publish Desktop Edition is
+This rewrite rule is required if you want to connect to your Exponential Basic
+site with Exponential Basic Desktop Edition. Exponential Basic Desktop Edition is
 a GUI client for Linux and Windows. With this application you can
 edit articles in a WYSIWYG environment, no need to remember the different
 tags.
@@ -810,12 +810,12 @@ containing the following text:\\
 \texttt{\footnotesize ~~~~php\_flag magic\_quotes\_gpc off}{\footnotesize \par}
 
 
-\section{eZ publish Installation}
+\section{Exponential Basic Installation}
 
 
 \subsection{Program Files}
 
-The next step is to install the eZ publish package in your document
+The next step is to install the Exponential Basic package in your document
 root directory. First you need to unpack the software in a temporary
 directory:\\
 
@@ -831,7 +831,7 @@ The next step is to move the files to your document root:\\
 \texttt{\footnotesize ~~~~\# mv /tmp/publish\_dist /your/apache/documentroot}~\\
 {\footnotesize \par}
 
-When all this is done you need to tell eZ publish a little about the
+When all this is done you need to tell Exponential Basic a little about the
 site you're running. You'll need to edit the {}``site.ini'' file
 which you will find in the document root:\\
 
@@ -844,7 +844,7 @@ which you will find in the document root:\\
 Instead of vi you can use your preferred text editor. You'll need
 to add information about the username, hostname and password of your
 database. More information on what you can do with {}``site.ini''
-can be found in the {}``eZ publish Customisation Guide''.
+can be found in the {}``Exponential Basic Customisation Guide''.
 
 The next important step is to run the script {}``modfix.sh''. \\
 
@@ -912,7 +912,7 @@ Then we need to send the SQL data into the database:\\
 {\footnotesize \par}
 
 Finally we run clearcache%
-\footnote{A new feature in eZ publish 2.2 is the possibility of clearing the
+\footnote{A new feature in Exponential Basic 2.2 is the possibility of clearing the
 cache from the admin site
 } to make sure that everything presented is cached correctly:\\
 
@@ -922,14 +922,14 @@ cache from the admin site
 
 \subsubsection{PostgreSQL configuration}
 
-Important note regarding PostgreSQL support in eZ publish:
+Important note regarding PostgreSQL support in Exponential Basic:
 
-PostgreSQL has one limitation which is not good for eZ publish:
+PostgreSQL has one limitation which is not good for Exponential Basic:
 
 Max length of indentifiers used in the database, table names, column
 names etc is default set to 32.
 
-eZ publish uses names which sometimes are longer, e.g: eZImageCatalogue\_ImageVariationGroup
+Exponential Basic uses names which sometimes are longer, e.g: eZImageCatalogue\_ImageVariationGroup
 
 Therefore you need to recompile PostgreSQL to support a larger value
 by altering: 
@@ -985,7 +985,7 @@ DatabaseImplementation=postgresql
 \subsubsection{Updating the Installation}
 
 This section is for users who are updating from a previous version
-of eZ publish. There should be several files ending with {}``.sql''
+of Exponential Basic. There should be several files ending with {}``.sql''
 in the directory {}``updates''. Run the files needed to update your
 version to the current. You need to apply all the updates for every
 version since your version.
@@ -993,7 +993,7 @@ version since your version.
 
 \subsection{Setting up the cronjob job}
 
-eZ publish has a crontab script.
+Exponential Basic has a crontab script.
 
 In order to edit your crontab, type :
 
@@ -1013,7 +1013,7 @@ Please replace {}``/your/docroot'' with your real document root.
 
 \section{Now What?}
 
-After installing eZ publish you can test your site through the URL
+After installing Exponential Basic you can test your site through the URL
 \texttt{\footnotesize http://www.yoursite.com/} and you can administrate
 your site from the URL \texttt{\footnotesize http://admin.yoursite.com/},
 of course, if you did anything different the names of the admin and
@@ -1022,14 +1022,14 @@ the public site might be different.
 \emph{NOTE:} The default user name and password for your site will
 be admin/publish. Remember to change the password.
 
-The next manual you should read is the {}``eZ publish Customisation
+The next manual you should read is the {}``Exponential Basic Customisation
 Guide'', it tells you how to configure the software to use the functionality
 you want, as well as how you change the templates to suit your needs.
 
 When you're finished with the design and the initial testing you can
 head over to \texttt{\footnotesize http://zez.org/} for articles about
 community building as well as programming, or you can visit \texttt{\footnotesize http://developer.ez.no}
-for updates, articles about eZ publish and how to work with it, as
+for updates, articles about Exponential Basic and how to work with it, as
 well as keeping abreast of new developments.
 
 
@@ -1042,7 +1042,7 @@ well as keeping abreast of new developments.
 \item Can you access your virtual hosts at all?
 \item Does the user site work?
 \item Does the admin site work?
-\item Consider this: all eZ publish sites has an admin site, perhaps you
+\item Consider this: all Exponential Basic sites has an admin site, perhaps you
 should call the admin host something different than admin?
 \item Check that you've downloaded and read the configuration manual. A
 quick tip is to read through the file {}``site.ini'' and change
@@ -1902,14 +1902,14 @@ name you just entered (ez.my.intranet and ezadmin.my.intranet) and
 for every client.
 
 
-\subsection{eZ publish 2.2.x}
+\subsection{Exponential Basic 2.2.x}
 
 
 \subsubsection*{Unpacking the files}
 
 Extract the ezpublish file to C:\textbackslash{}Apache\textbackslash{}htdocs\textbackslash{}
 , using folder names. This will give you all files in C:\textbackslash{}Apache\textbackslash{}htdocs\textbackslash{}ezpublish\_2\_2\_x
-(x is replaced with the current eZ publish version). Put createdirs.bat
+(x is replaced with the current Exponential Basic version). Put createdirs.bat
 in C:\textbackslash{}Apache\textbackslash{}htdocs\textbackslash{}ezpublish\_2\_2\_x
 and run it. This creates the cache directories. If your did not uses
 publish/publish as your MySQL user/password settings, open site.ini,
@@ -2136,12 +2136,12 @@ In your webbrowser, open http://ez.my.intranet. This should give you
 the ezPublish screen, now with sample articles.
 
 
-\subsection{eZ publish and IIS}
+\subsection{Exponential Basic and IIS}
 
 Not very much information is available for this webserver. We have
 however received reports that since IIS does not have a mod\_rewrite
 module you may use this hack%
-\footnote{Since eZ publish now can be run without mod\_rewrite you may take
+\footnote{Since Exponential Basic now can be run without mod\_rewrite you may take
 look at chapter \ref{chpt: nVH} as it may provide you with a better
 solution
 } instead:
@@ -2155,7 +2155,7 @@ solution
 
 - In the virtual hosts config for the user site, change the custom
 errors%
-\footnote{The eZ publish developers want to point out that this does NOT seem
+\footnote{The Exponential Basic developers want to point out that this does NOT seem
 to be a secure workaround. This workaround should not be used in an
 environment where the server might be exposed to untrusted users (i.e
 the internet)
@@ -2195,13 +2195,13 @@ Download what you need from \texttt{\footnotesize http://developer.ez.no/fileman
 and install the rpms!
 
 That's all; read the manual from the start after that, and install
-eZ publish as described.
+Exponential Basic as described.
 
 
-\chapter{\label{chpt: nVH}Installing eZ publish without virtual hosts and
+\chapter{\label{chpt: nVH}Installing Exponential Basic without virtual hosts and
 mod\_rewrite}
 
-Installing eZ publish this way has several advantages:
+Installing Exponential Basic this way has several advantages:
 
 \begin{itemize}
 \item no root rights needed
@@ -2235,7 +2235,7 @@ have permissions to use it:
 \end{itemize}
 \end{itemize}
 The following software is optional, but required for some modules
-of eZ publish:
+of Exponential Basic:
 
 \begin{itemize}
 \item ImageMagick (\url{http://www.imagemagick.org}) newest version (Needed
@@ -2243,22 +2243,22 @@ by eZ article, eZ image catalogue, and all modules using images. You
 need only the command line version.)
 \end{itemize}
 
-\section{eZ publish installation}
+\section{Exponential Basic installation}
 
 
 \subsection{Installing in one directory (Recommended install)}
 
 
-\subsubsection{Installing the files for eZ publish}
+\subsubsection{Installing the files for Exponential Basic}
 
 \begin{enumerate}
-\item Extract the eZ publish files (if you want some example data, extract
+\item Extract the Exponential Basic files (if you want some example data, extract
 \texttt{\footnotesize data.tar.gz} too) and if they are not on the
 server yet, transfer them to the server in a directory of your choice.\\
 (example: \texttt{\footnotesize /home/userA/ezpublish} reachable by
 \texttt{\footnotesize http://www.yourserver.com/ezpublish})
 \item Copy \texttt{\footnotesize installation/htaccess-nVH} to \texttt{\footnotesize .htaccess}
-in the top directory of your eZ publish installation.\\
+in the top directory of your Exponential Basic installation.\\
 (example: \texttt{\footnotesize /home/userA/ezpublish/.htaccess})
 \item Edit the file \texttt{\footnotesize sitedir.ini} and set the right
 directory.\\
@@ -2272,7 +2272,7 @@ If you have shell access to create the database, see section \ref{sec: Database 
 \begin{enumerate}
 \item Create a database (e.g. \texttt{\footnotesize publish})
 \item Create a user and give him permissions to access it
-\item Create the data structures for eZ publish with file \texttt{\footnotesize sql/publish\_mysql.sql}
+\item Create the data structures for Exponential Basic with file \texttt{\footnotesize sql/publish\_mysql.sql}
 or \texttt{\footnotesize sql/publish\_postgresql.sql}{\footnotesize \par}
 \item If you extracted \texttt{\footnotesize data.tar.gz} before, you should
 also fill the database with the example data in file \texttt{\footnotesize sql/data\_mysql.sql}{\footnotesize \par}
@@ -2290,7 +2290,7 @@ browser\\
 a) If you get a {}``Forbidden'', everything is good and safe.\\
 b) If you get the file, then your server doesn't obey \texttt{\footnotesize .htaccess}
 files. Try the next install in section \ref{sec: Install without shell},
-it is much safer then. Otherwise you can still use eZ publish, but
+it is much safer then. Otherwise you can still use Exponential Basic, but
 have to remember that it is not as safe as it could be.
 \item Finished!!\\
 Go to \texttt{\footnotesize http://www.yourserver.com/ezpublish/index\_admin.php},
@@ -2300,11 +2300,11 @@ Have fun.
 \end{enumerate}
 
 \subsection{\label{sec: Install without shell}Installing with shell access on
-server and two separate directories for eZ publish}
+server and two separate directories for Exponential Basic}
 
 If you have shell access on your server and you have the possibility
 to create directories which are not accessible by WWW browsers, you
 can use the script \texttt{\footnotesize ezinstaller.sh}. It will
-ask you all relevant questions and install eZ publish in a very secure
+ask you all relevant questions and install Exponential Basic in a very secure
 way.
 \end{document}

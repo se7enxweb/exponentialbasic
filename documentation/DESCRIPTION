@@ -1,11 +1,11 @@
 One-line description:
 
-eZ publish is a content management system for e-commerce, e-publishing and intranets
-eZ publish: content management system for e-commerce, e-publishing and intranets
+Exponential Basic is a content management system for e-commerce, e-publishing and intranets
+Exponential Basic: content management system for e-commerce, e-publishing and intranets
 
 Short description:
 
-eZ publish is a web based application suite. It delivers functionality ranging from publishing of news, web logs and diaries, through web shop functionality like shopping carts and wishlists and forums to intranet functions like contact handling and bug reporting.
+Exponential Basic is a web based application suite. It delivers functionality ranging from publishing of news, web logs and diaries, through web shop functionality like shopping carts and wishlists and forums to intranet functions like contact handling and bug reporting.
 
 The software uses caching and other optimization techniques to speed up page serving. It handles users, user preferences and user tracking through a user database and both cookie-based and non-cookie sessions.
 
@@ -13,13 +13,13 @@ It supports statistics for page views, links followed and banner ads, both image
 
 The package lends itself easily to customization, from changing the look and feel by changing templates, localizing the languages and other internationalization issues to adding new functionality.
 
-The target audience for eZ publish are e-commerce, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
+The target audience for Exponential Basic are e-commerce, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
 
 
 
 Long description:
 
-eZ publish is a web based application suite which delivers the following
+Exponential Basic is a web based application suite which delivers the following
 functionality:
 
     * Advertising with statistics
@@ -55,14 +55,14 @@ The software does not believe in limits(2):
       user groups
       
 Based on PHP, the leading programming language module for the Apache
-web server software, eZ publish draws on the speed from this renown
+web server software, Exponential Basic draws on the speed from this renown
 software. The backend database is MySQL which is fast and reliable,
 proven on thousands of Internet sites.
 
-Further speed enhancements are made in the eZ publish by using caching
+Further speed enhancements are made in the Exponential Basic by using caching
 of data and reduced connections to the database.
 
-All the default templates delivered with eZ publish are tested on a
+All the default templates delivered with Exponential Basic are tested on a
 diverse mix of browsers, Opera, Internet Explorer, Netscape, Konqueror
 and Lynx, thus enabling all users to gain access to your site.
 
@@ -70,7 +70,7 @@ So called cookie-less sessions are supported, a method used to enable
 user recognition even for those who objects to use cookies, no-one will
 feel left out or overseen.
 
-eZ publish keeps track of the statistics of your site. How many
+Exponential Basic keeps track of the statistics of your site. How many
 visitors, from where, what do they buy and what are they looking at.
 
 The package has been translated to several languages, you can even
@@ -85,7 +85,7 @@ For those proficient in programming PHP the source code is available,
 it can be used as a basis for adding new modules and functionality
 tailored to your specific needs.
 
-The target audience for eZ publish are e-commerce, ASP (Application
+The target audience for Exponential Basic are e-commerce, ASP (Application
 Service Providers), BSP (Business Service Providers), news publishing,
 intranets, bug reporting, content management, discussion boards, FAQ and
 knowledge handling, file and image management, group ware, calendaring,

@@ -32,19 +32,19 @@ INSTALLATION
 STEP 0: (Dependencies) Obtain eZ publish 2 Calendar Module Source Code
 ############################################################
 You can find the eZ GroupEventCalendar Distributed from any of these fine sources:
-http://ezcommunity.net/
+http://web.archive.org/web/20060822010037/http://ezcommunity.net/
 http://berlios.net/
 http://sourceforge.net/
 http://ez.no/ez_publish/2.2/info/contributions
 
-wget http://ezcommunity.net/filemanager/download/402 .;
+wget http://web.archive.org/web/20060822010037/http://ezcommunity.net/filemanager/download/402 .;
 
 
 STEP 1: (Dependencies) Install eZ publish 2 Calendar Module Source Code
 ############################################################
 Copy entire directory ezgroupeventcalendar into the document root of eZPublish.
 cd /var/www/;
-wget http://ezcommunity.net/filemanager/download/402 .;
+wget http://web.archive.org/web/20060822010037/http://ezcommunity.net/filemanager/download/402 .;
 tar -zxf ezgroupeventcalendar_v2-0-2.tar.gz .;
 
 
@@ -381,7 +381,7 @@ Support
 ############################################################
 Still Having Problems? Refer your inquiries to one of these sources of eZ publish 2 support.
 
-eZ publish 2 Community Support : http://ezcommunity.net/
+eZ publish 2 Community Support : http://web.archive.org/web/20060822010037/http://ezcommunity.net/
 
 eZ publish 2 Support / Development : http://brookinsconsulting.com/
 

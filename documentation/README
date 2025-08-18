@@ -1,7 +1,7 @@
-eZ publish Basic 2.4.0.0
+Exponential Basic 2.4.0.0
 ----------------
 
-eZ publish Basic is a content management system for e-commerce, e-publishing and intranets.
+Exponential Basic is a content management system for e-commerce, e-publishing and intranets.
 
 The software is licensed under the GPL as described in the file LICENSE.
 
@@ -9,7 +9,7 @@ For the changelog consult the file CHANGELOG.
 
 For the credits (who made what) consult the CREDITS file.
 
-For information about how to translate eZ publish consult the file TRANSLATION
+For information about how to translate Exponential Basic consult the file TRANSLATION
 
 For installation information consult the file INSTALL.txt
 
@@ -20,17 +20,17 @@ L I N K S:
 
 For developer information / contribution / internationalisation issues / documentation issues and information contact Graham Brookins (info at se7enx dot com).
 
-eZ Publish Basic homepage:
-https://basic.ezpublish.one
+Exponential Basic homepage:
+https://basic.exponential.earth
 
-Latest eZ publish basic software :
+Latest Exponential Basic software :
 https://github.com/se7enxweb/ezpublishbasic
 
-Latest eZ publish basic releases on sourceforge :
+Latest Exponential Basic releases on sourceforge :
 https://sourceforge.net/projects/ezpublishbasic/
 
 U P G R A D E:
 --------------
 
-For information about how you can upgrade your database to fit a new eZ publish release
+For information about how you can upgrade your database to fit a new Exponential Basic release
 consult the files ending with sql in the directories in the upgrade directory.

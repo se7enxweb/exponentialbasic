@@ -22,7 +22,7 @@ YearsPrint=19
 [eZGroupEventCalendarRSS]
 # Channel Title, Link, Description and Language
 Title=eZ Community Calendar
-Link=http://ezcommunity.net/
+Link=http://web.archive.org/web/20060822010037/http://ezcommunity.net/
 Description=Calendar Events, stuff that matters . . .
 Encoding=ISO-8859-1
 #RssVersion=0.9|1.0|2.0

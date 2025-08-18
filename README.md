@@ -10,8 +10,8 @@ This project is led by [7x](https://se7enx.com) and aims to ensure the long-term
 
 ---
 
- * Current release: Version 2.4.0.0 (Stable) [Release](https://github.com/se7enxweb/ezpublishbasic/releases/tag/v2.4.0.0)
- * Download: [zip](https://github.com/se7enxweb/ezpublishbasic/archive/refs/tags/v2.4.0.0.zip) or [tar.gz](https://github.com/se7enxweb/ezpublishbasic/archive/refs/tags/v2.4.0.0.tar.gz)
+ * Current release: Version 2.4.0.0 (Stable) [Release](https://github.com/se7enxweb/exponentialbasic/releases/tag/v2.4.0.0)
+ * Download: [zip](https://github.com/se7enxweb/exponentialbasic/archive/refs/tags/v2.4.0.0.zip) or [tar.gz](https://github.com/se7enxweb/exponentialbasic/archive/refs/tags/v2.4.0.0.tar.gz)
  * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)
  * Website:  [https://basic.exponential.earth](https://basic.exponential.earth)
  * Current unreleased Version In Development: Version 2.4.0.1 (Stable)
@@ -126,7 +126,7 @@ Up next default content creation in the admin for your first visitor to see!
 
 # Documentation
 
-Further documentation can be read from the [documentation](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation) directory [README](https://github.com/se7enxweb/ezpublishbasic/tree/master/documentation/README).
+Further documentation can be read from the [documentation](https://github.com/se7enxweb/exponentialbasic/tree/master/documentation) directory [README](https://github.com/se7enxweb/exponentialbasic/tree/master/documentation/README).
 
 More information can be found at our [project website](https://basic.exponential.earth)
 

@@ -9,7 +9,7 @@ Table of Contents
 0.2     What if I don't Find any Help Here?
 0.3     Contact Info
 0.4     Support
-1       What is eZ publish 2
+1       What is Exponential Basic 2
 1.1     One Liner
 1.2     Short Description
 1.3     Long Description
@@ -37,13 +37,13 @@ headings as a guide to the sections and what they cover.
 
 0.2 What If I Don't Find Any Help Here?
 
-Then you should check search or browse the eZ publish 2 forums at:
+Then you should check search or browse the Exponential Basic 2 forums at:
 
-    http://ezcommunity.net/forum/categorylist
+    http://web.archive.org/web/20060822010037/http://ezcommunity.net/forum/categorylist
 
 If the forums fail to help you, you should search the mailing list:
 
-    http://ezcommunity.net/mailman/ezpublish2-list/
+    http://web.archive.org/web/20060822010037/http://ezcommunity.net/mailman/ezpublish2-list/
 
 If the maling list fails you, try asking a question in one of the forums or
 the mailing list; but make sure that you have done an adequate search and
@@ -54,17 +54,17 @@ exhausted the documentation.
 0.3 Contact Info
 0.3.1 Web Site
 
-eZ publish 2 is maintained by eZ Community, The main web site for information about eZ publish 2 is:
+Exponential Basic 2 is maintained by eZ Community, The main web site for information about Exponential Basic 2 is:
 
-    http://ezcommunity.net/
+    http://web.archive.org/web/20060822010037/http://ezcommunity.net/
 
 
 0.3.2 Mailing Lists
 
-You can subscribe to the public lists available for eZ publish 2 through this
+You can subscribe to the public lists available for Exponential Basic 2 through this
 website:
 
-    http://ezcommunity.net/mailman/listinfo
+    http://web.archive.org/web/20060822010037/http://ezcommunity.net/mailman/listinfo
 
 Follow the links to one of the mailing lists and follow the instructions on
 that page to register with the list.
@@ -74,7 +74,7 @@ that page to register with the list.
 0.3.2 Discussion Forums
 
 You can find discussion forums at ezcommunity.net where you can discuss
-eZ publish 2 with other users. The address is:
+Exponential Basic 2 with other users. The address is:
 
     http://lists.ez.no/pipermail/publish-list/
 
@@ -83,31 +83,31 @@ eZ publish 2 with other users. The address is:
 0.4 Support
 0.4.1 Commercial
 
-You can aquire different support options for eZ publish 2, visit our online
+You can aquire different support options for Exponential Basic 2, visit our online
 shop to read more about the commercial support:
 
-    http://ezcommunity.net/trade/productlist/2
+    http://web.archive.org/web/20060822010037/http://ezcommunity.net/trade/productlist/2
 
 
 
 0.4.2 Community Based
 
-The community based support is available for all users of eZ publish 2; you
+The community based support is available for all users of Exponential Basic 2; you
 will find it at our web site, forums and mailing lists. See chapter
 "0.3 Contact Info" for addresses to these.
 
 
 
-1 What is eZ publish 2?
+1 What is Exponential Basic 2?
 1.1 One Line Description
 
-eZ publish 2 is a content management system for e-commerce, e-publishing and intranets.
+Exponential Basic 2 is a content management system for e-commerce, e-publishing and intranets.
 
 
 
 1.2 Short Description
 
-eZ publish 2 is a web based application suite. It delivers functionality
+Exponential Basic 2 is a web based application suite. It delivers functionality
 ranging from publishing of news, web logs and diaries, through web shop
 functionality like shopping carts and wishlists and forums to intranet
 functions like contact handling and bug reporting.
@@ -123,7 +123,7 @@ The package lends itself easily to customization, from changing the look
 and feel by changing templates, localizing the languages and other
 internationalization issues to adding new functionality.
 
-The target audience for eZ publish 2 are e-commerce, ASP (Application Service
+The target audience for Exponential Basic 2 are e-commerce, ASP (Application Service
 Providers), BSP (Business Service Providers), news publishing, intranets,
 bug reporting, content management, discussion boards, FAQ and knowledge
 handling, file and image management, group ware, calendaring, polls, todo
@@ -134,10 +134,10 @@ lists, appointments as well as personal web sites.
 1.3 Long Description
 
 Together with the distribution you will find a file which describes
-eZ publish 2 extensively. Read that for more info, then visit the eZ Community
+Exponential Basic 2 extensively. Read that for more info, then visit the eZ Community
 site:
 
-    http://ezcommunity.net
+    http://web.archive.org/web/20060822010037/http://ezcommunity.net
 
 
 
@@ -203,7 +203,7 @@ You must configure php to handle files bigger than 2MB.
 
 5.2 ' and " appear as \" and \', why?
 
-eZ publish 2.1 and newer must have magick quotes disabled to work propperly. eZ publish 2 
+Exponential Basic 2.1 and newer must have magick quotes disabled to work propperly. Exponential Basic 2 
 handles the escaping of characters by itself.
 
 

@@ -151,7 +151,7 @@ if ( isset($CSVImport) )
     		{
     			if ( $item->name() != $row[0] )
 					$item->setName( $row[0] );
-				
+
 				$contentsArray =& $generator->decodeXML( $item->contents() );
 
 				if ( $contentsArray[0] != $row[3] )
@@ -584,7 +584,7 @@ if ( isSet( $UpdateProducts ) )
 }
 
 
-if ( isSet( $DeleteProducts ) )
+if ( isset( $DeleteProducts ) )
 {
     $Action = "DeleteProducts";
 }
@@ -707,7 +707,8 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
 			$product->setStockDate( "" );
 
         $product->store();
-//				print_r($product); exit();
+        // print_r($product); exit();
+        $ProductID = $product->id();
         $productID = $product->id();
 
         if ( $product->productType() == 2 )
@@ -746,7 +747,7 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         }
 
 
-        eZObjectPermission::removePermissions( $productID, "trade_product", 'w' );
+        eZObjectPermission::removePermissions( $ProductID, "trade_product", 'w' );
         if( isset( $WriteGroupArray ) )
         {
             if( $WriteGroupArray[0] == 0 )
@@ -763,11 +764,11 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         }
         else
         {
-            eZObjectPermission::removePermissions( $productID, "trade_product", 'w' );
+            eZObjectPermission::removePermissions( $ProductID, "trade_product", 'w' );
         }
 
         /* read access thingy */
-        eZObjectPermission::removePermissions( $productID, "trade_product", 'r' );
+        eZObjectPermission::removePermissions( $ProductID, "trade_product", 'r' );
         if ( isset( $ReadGroupArray ) )
         {
             if( $ReadGroupArray[0] == 0 )
@@ -784,7 +785,7 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
         }
         else
         {
-            eZObjectPermission::removePermissions( $productID, "trade_product", 'r' );
+            eZObjectPermission::removePermissions( $ProductID, "trade_product", 'r' );
         }
 
         // Calculate which categories are new and which are unused
@@ -826,7 +827,7 @@ if ( isset( $Action ) && $Action == "Update"  or isset( $Action ) && $Action == 
 
         // add a product to the categories
         $category = new eZProductCategory( $CategoryID );
-        $product->setCategoryDefinition( $category );
+        $categorySetResult = $product->setCategoryDefinition( $category );
 
         if( empty( $add_categories ) )
         {
@@ -959,7 +960,6 @@ if ( isset( $Action ) && $Action == "DeleteProducts" )
                 $categoryIDArray[] = $cat->id();
             }
 
-
             // clear the cache files.
             deleteCache( $ProductID, $CategoryID, $categoryIDArray, $product->isHotDeal() );
 
@@ -967,7 +967,6 @@ if ( isset( $Action ) && $Action == "DeleteProducts" )
             $categoryID = $category->id();
 
             $product->delete();
-
             eZPriceGroup::removePrices( $ProductID, -1 );
         }
     }
@@ -1064,7 +1063,9 @@ $t->set_var( "price_max", "0" );
 $t->set_var( "external_link", "" );
 
 $t->set_var( "action_value", "insert" );
+$t->set_var( "product_id", 0 );
 $t->set_var( "flat_combine_checked", "");
+
 $writeGroupsID = array();
 $readGroupsID = array();
 
@@ -1073,6 +1074,7 @@ $PriceGroupID = array();
 
 $VatType = false;
 $BoxType = false;
+
 // edit
 if ( isset( $Action ) && $Action == "Edit" )
 {
@@ -1089,7 +1091,16 @@ if ( isset( $Action ) && $Action == "Edit" )
     $t->set_var( "external_link", $product->externalLink() );
 
     $generator = new eZArticleGenerator();
-    $contentsArray =& $generator->decodeXML( $product->contents() );
+//    var_dump( $product->contents() ); die('funny');
+
+    if( $product->contents() !== "" )
+    {
+        $contentsArray =& $generator->decodeXML( $product->contents() );             
+    }
+    else
+    {
+        $contentsArray = array( "", "" );
+    }
 
     if ( isset( $Contents_Override ) && count( $Contents_Override ) == 2 )
     {
@@ -1171,7 +1182,7 @@ if ( isset( $Action ) && $Action == "Edit" )
         $t->set_var( "day_id", $i );
         $t->set_var( "day_value", $i );
         $t->set_var( "selected", "" );
-//                if ( ( $StockDay == "" and $i == 1 ) or $StockDay == $i )
+        // if ( ( $StockDay == "" and $i == 1 ) or $StockDay == $i )
         if ( $StockDay == $i )
                 $t->set_var( "selected", "selected" );
         if ( $StockDay == "" and $i == date(j) )

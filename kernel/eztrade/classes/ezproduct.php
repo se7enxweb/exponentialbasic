@@ -335,11 +335,13 @@ class eZProduct
     */
     function delete()
     {
-        $db =& eZDB::globalDatabase();
+        $db = eZDB::globalDatabase();
+        $qry_array = array();
+        $db->begin();
 
         if ( isset( $this->ID ) )
         {
-            $db->begin();
+            echo "Removing: ". $this->ID;
             $res[] = $db->query( "DELETE FROM eZTrade_ProductTypeLink WHERE ProductID='$this->ID'" );
             $res[] = $db->query( "DELETE FROM eZTrade_AttributeValue WHERE ProductID='$this->ID'" );
 
@@ -359,14 +361,16 @@ class eZProduct
             }
             $res[] = $db->query( "DELETE FROM eZTrade_ProductQuantityDict WHERE ProductID='$this->ID'" );
 
-
+            $db->commit();
+            $db->begin();
             $options = $this->options();
             foreach ( $options as $option )
             {
                 $option->delete();
             }
 
-            $res[] = $db->query( "DELETE FROM eZTrade_Product WHERE ID='$this->ID'" );
+            $query = "DELETE FROM eZTrade_Product WHERE ID='$this->ID';";
+            $res[] = $db->query( $query );
 
             if ( in_array( false, $res ) )
                 $db->rollback( );
@@ -939,6 +943,8 @@ class eZProduct
         $db->begin();
         $res[] = $db->query( "DELETE FROM eZTrade_ProductQuantityDict WHERE ProductID='$id'" );
 
+        $db->commit();
+        $db->begin();
         foreach( $qry_array as $row )
         {
             $q_id = $row[$db->fieldName( "ID" )];
@@ -2214,6 +2220,7 @@ class eZProduct
        if ( is_a( $value, "eZProductCategory" ) )
        {
            $db =& eZDB::globalDatabase();
+           $res = array();
            $db->begin();
 
            $categoryID = $value->id();
@@ -2225,17 +2232,20 @@ class eZProduct
            $nextID = $db->nextID( "eZTrade_ProductCategoryDefinition", "ID" );
 
            $query = "INSERT INTO eZTrade_ProductCategoryDefinition
-                         ( ID,
-                           CategoryID,
-                           ProductID )
-                         VALUES
-                         ( '$nextID',
-                           '$categoryID',
-                           '$this->ID' )";
-           $db->unlock();
+                    ( ID,
+                    CategoryID,
+                    ProductID )
+                    VALUES
+                    ( '$nextID',
+                    '$categoryID',
+                    '$this->ID' )";
+
            $res[] = $db->query( $query );
 
-           eZDB::finish( $res, $db );
+           $db->unlock();
+           $db->commit();
+
+           return $res[0];
        }
     }
 
@@ -2246,11 +2256,14 @@ class eZProduct
     {
        $db =& eZDB::globalDatabase();
        $res = array();
-    
-       $db->array_query( $res, "SELECT CategoryID FROM
-                                            eZTrade_ProductCategoryDefinition
-                                            WHERE ProductID='$this->ID'" );
+
+       $query = "SELECT CategoryID FROM
+                        eZTrade_ProductCategoryDefinition
+                        WHERE ProductID='$this->ID'";
+
+       $db->array_query( $res, $query );
        $category = false;
+
        if ( count( $res ) == 1 )
        {
            if ( $as_object )
@@ -2261,7 +2274,7 @@ class eZProduct
        else
        {
            print( "<br><b>Failed to fetch product category definition for ID $this->ID</b><br>" );
-           // debug_print_backtrace();
+           debug_print_backtrace();
        }
 
        return $category;

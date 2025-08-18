@@ -183,6 +183,7 @@ class eZOption
     function delete()
     {
         $db =& eZDB::globalDatabase();
+        $option_array = array();
         $db->begin();
 
         $db->array_query( $option_array, "SELECT ID FROM eZTrade_OptionValue WHERE OptionID='$this->ID'" );
@@ -198,7 +199,8 @@ class eZOption
         $res[] = $db->query( "DELETE FROM eZTrade_ProductPriceLink WHERE OptionID='$this->ID'" );
         $res[] = $db->query( "DELETE FROM eZTrade_OptionValueHeader WHERE OptionID='$this->ID'" );
 
-        eZDB::finish( $res, $db );
+        $db->commit();
+       eZDB::finish( $res, $db );
     }
 
     /*!

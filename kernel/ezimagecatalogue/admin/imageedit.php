@@ -285,6 +285,9 @@ if ( $Action == "Insert" && $error == false )
 
     $image->setCategoryDefinition( $category );
 
+    if( !isset( $CategoryArray ) || !is_array( $CategoryArray ) || count( $CategoryArray ) == 0 )
+        $CategoryArray = array();
+
     $categories = array_unique( array_merge( $CategoryArray, array( $CategoryID ) ) );
 
     foreach ( $categories as $categoryItem )

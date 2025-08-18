@@ -62,6 +62,7 @@ class eZSQLite3DB
         // WAL mode has better control over concurrency.
         // Source: https://www.sqlite.org/wal.html
         $ret = $this->query( 'PRAGMA journal_mode = wal;' );
+        //$ret = $this->query( 'PRAGMA busy_timeout = 15000;' );
 
         if ( !$ret )
         {
@@ -204,11 +205,20 @@ class eZSQLite3DB
         {
             $errorNum = $this->Database->lastErrorCode();
             $errorMsg = $this->Database->lastErrorMsg();
+            echo "<hr>";
+            var_dump( $errorNum, $errorMsg );
+            echo "<hr>";
+            echo $sql;
+            echo "<hr>";
+            
         }
         else
         {
             $errorNum = 0;
             $errorMsg = '';
+            // echo "<hr> Last: <br>";
+            // echo $sql;
+            // echo "<hr>";
         }
 
         if ( $print )
@@ -219,7 +229,7 @@ class eZSQLite3DB
             }
         }
 
-        if ( $result )
+        if ( $result == true )
         {
             return $result;
         }

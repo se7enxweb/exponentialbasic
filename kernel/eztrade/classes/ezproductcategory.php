@@ -554,14 +554,14 @@ class eZProductCategory
             return false;
 
         if ( !$categoryid )
-            $categoryid = $this->ID;
+            $categoryid = 1;
 
         $db =& eZDB::globalDatabase();
 
         $db->array_query( $qry, "SELECT Placement FROM eZTrade_ProductCategoryLink
                                              ORDER BY Placement DESC", array( "Limit" => 1 ) );
-        $placement = count( $qry ) == 1 ? $qry[0][$db->fieldName( "Placement" )] + 1 : 1;
 
+        $placement = count( $qry ) == 1 ? $qry[0][$db->fieldName( "Placement" )] + 1 : 1;
 
         $db->begin();
         $db->lock( "eZTrade_ProductCategoryLink" );
@@ -572,7 +572,6 @@ class eZProductCategory
                     VALUES ('$nextID', '$categoryid', '$prodID', '$placement')" );
 
         $res = $db->query( $query );
-
         $db->unlock();
 
         if ( $res == false )

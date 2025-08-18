@@ -495,7 +495,7 @@ class eZPriceGroup
     */
     static public function removePrices( $productid, $optionid = 0, $valueid = 0, $priceid='' )
     {
-        $db =& eZDB::globalDatabase();
+        $db = eZDB::globalDatabase();
         $db->begin();
         if ( $optionid >= 0 )
             $option_text = "AND OptionID='$optionid'";

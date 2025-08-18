@@ -1,4 +1,4 @@
-# eZ Publish Basic - Cronjobs / Crons / Cron Scripts Available to a eZ Publish Basic User / Developer / Administrator
+#Exponential Basic - Cronjobs / Crons / Cron Scripts Available to a Exponential Basic User / Developer / Administrator
 
 The following is a list of cron scripts provided by each module.
 

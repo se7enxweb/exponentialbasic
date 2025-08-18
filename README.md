@@ -15,9 +15,9 @@ This project is led by [7x](https://se7enx.com) and aims to ensure the long-term
  * LICENSE: [GNU GPLv2 (or later)](COPYRIGHT.md)
  * Website:  [https://basic.exponential.earth](https://basic.exponential.earth)
  * Current unreleased Version In Development: Version 2.4.0.1 (Stable)
- * Source Code [https://github.com/se7enxweb/ezpublishbasic](https://github.com/se7enxweb/ezpublishbasic)
+ * Source Code [https://github.com/se7enxweb/exponentialbasic](https://github.com/se7enxweb/exponentialbasic)
  * Maintainer: [7x](https://se7enx.com)
- * Document Last revised: 2025.08.10
+ * Document Last revised: 2025.08.18
 
 ---
 

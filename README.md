@@ -6,7 +6,7 @@ Exponential Basic is an open-source project to modernize the classic Exponential
 
 This project is led by [7x](https://se7enx.com) and aims to ensure the long-term viability of Exponential 2.x for community portal solutions and their future portability (export to another cms).
 
-"Please Note: This project is not associated with the original Exponential software or its original developer, eZ Systems or Ibexa".
+"Please Note: This project is not associated with the original eZ Publish software or its original developer, eZ Systems or Ibexa".
 
 ---
 
@@ -29,17 +29,19 @@ Read more [about](documentation/ABOUT.md) our project and it's historic value ad
 
 Follow these steps to set up Exponential Basic via GitHub:
 
+Please note that thr installation of required PHP software packages via [composer](https://getcomposer.org/download/) package magager is required. Download and install composer first before proceeding.
+
 1. Clone the repository:
    ```bash
-   git clone https://github.com/se7enxweb/ezpublishbasic.git
+   git clone https://github.com/se7enxweb/exponentialbasic.git;
 
 2. Navigate to the project directory:
    ```bash 
-   cd ezpublishbasic
+   cd exponentialbasic;
 
 3. Install dependencies:
    ```bash
-    composer install
+    composer install;
 
 ## Installation via Composer & Packagist
 
@@ -47,8 +49,8 @@ Follow these steps to set up Exponential Basic via Composer:
 
 1. Clone the latest release:
    ```bash
-   composer create-project se7enxweb/ezpublishbasic -s dev ezpublishbasic;
-   cd ezpublishbasic;
+   composer create-project se7enxweb/exponentialbasic -s dev exponentialbasic;
+   cd exponentialbasic
 
 ## Configure your installation of the software package
 
@@ -63,7 +65,8 @@ Follow these steps to set up Exponential Basic via Composer:
 - Filesystem User and Group Permissions
 
 - Generate Exponential Basics Autoloads
-  - Use this command: ```bin/shell/php/ezpgenerateautoloads.php -k;```
+  - Use this command: ```cd /path/ro/exponentialbasic;```
+```bin/shell/php/ezpgenerateautoloads.php -k;```
 
 - Create the two most used shell script alias commands via Shell script command aliases or by creating symbolic links in Linux / Unix / BSD / GNU.
    - Use this command: ```ln -s ./bin/shell/php/ezpgenerateautoloads.php regenerate-autoloads; ln -s bin/shell/clearcache.sh clear-cache;``` 
@@ -71,7 +74,7 @@ Follow these steps to set up Exponential Basic via Composer:
 
 2. Set up your database in your database server.
 
-- You will first need to generate the database SQL file. Run this command: ```cd /path/to/ezpb/; ./bin/shell/db-generate.sh```
+- You will first need to generate the database SQL file. Run this command: ```cd /path/to/exponentialbasic/; ./bin/shell/db-generate.sh```
 
 - Then load the MySQL Schema SQL file generated from: ```mysql -u user databaseName -p < ./update/generated/publish_mysql.sql;``
 
@@ -154,7 +157,9 @@ Exponential Basic provides a feature rich cms based website building platform th
 
 - Module based kernel application functionality. Extendable by default (Settings based).
 
-- Exponential 2 Kernel Transformed into Exponential 3 Kernel in Directory Structure and Storage of Code. This was then transformed into a hybrid of Exponential 2.4.0.0 kernel and Exponential 6 kernel sub system classes forming Exponential v2.4.0.1 our second version.
+- Exponential Basic version 2 Kernel Transformed into Exponential 3 Kernel in Directory Structure and Storage of Code. This was then transformed into a hybrid of Exponential 2.4.0.0 kernel and Exponential 6 kernel sub system classes forming Exponential v2.4.0.1 our second version.
+
+- Exponential Basic supports specific overrideable INI File configuration settings. Try it today and load your database and other minor customizations isolated and overriding thr dedault settings in new file ```settings/override/site.ini.php```.
 
 - Administration that makes creating content quick and simple.
 
@@ -166,7 +171,7 @@ Exponential Basic provides a feature rich cms based website building platform th
 
 - Support / Discussion Forums available on [Share Exponential! Forums for Exponential Basic](https://share.exponential.earth/forums/ez-publish-basic)
 
-- Heavily tested software that is supported. If you find an issue we will fix it promptly.
+- Heavily tested software that is supported. If you find an issue we will fix it promptly. [Report your issues](https://github.com/se7enxweb/exponentialbasic/issues) with the software today!
 
 - Refactored kernel provides for future expansion to begin to provide support for even more extension based functionality.
 -- Autoloadable functionality within a plugin known as an extension

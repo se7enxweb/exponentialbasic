@@ -1,4 +1,4 @@
-# eZ Publish Basic Module Compatibility with PHP 8.x
+#Exponential Basic Module Compatibility with PHP 8.x
 
 This document represents months of writing documentation durring development to provide for eZ Publish Basic the ability to boot, function normally and refactor the product to address age and thousands of bug patterns hidden within the original ezpublish2 source code.
 
@@ -7,7 +7,7 @@ This document represents months of writing documentation durring development to 
 The general status of user module support is 100% Functional for each module and all of it's views.
 
 - ezabout
-  - about - One Datasupplier based module view about eZ Publish Basic Website Installation / Project CMS. Available via /about Relative URL.
+  - about - One Datasupplier based module view about Exponential Basic Website Installation / Project CMS. Available via /about Relative URL.
 - ezad
   - adlist
   - gotoadd
@@ -426,13 +426,13 @@ Note: Printable admin view features currently has fatal errors and distracting w
 - ezad
 - ezpoll
 - ezarticle
+- ezcontact
+- ezcalendar
+- ezbulkmail
+- ezmail
 
 ## Default Module Menu Views That Need Further Development
 
 The following modules need work to be considered complete, tested and working correctly. Currently we rate these as only 95% complete.
 
-- ezcontact
-- ezcalendar
-- ezbulkmail
-- ezmail
 - ezstats

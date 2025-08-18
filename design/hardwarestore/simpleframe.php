@@ -103,7 +103,7 @@ else
 
 <meta name="MSSmartTagsPreventParsing" content="TRUE">
 
-<meta name="generator" content="eZ publish" />
+<meta name="generator" content="Exponential Basic" />
 
 <body>
      <a href="/"><img src="/sitedesign/aih_standard/images/aihlogo3.gif" height="98" width="182" border="0" alt="" /></a><br />

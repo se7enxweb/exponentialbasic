@@ -63,7 +63,7 @@ else
 
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
 
-<meta name="generator" content="eZ publish" />
+<meta name="generator" content="Exponential Basic" />
 
 </head>
 

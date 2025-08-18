@@ -1,6 +1,6 @@
 # Exponential Basic
 
-![20BD8EBA-3B49-4ACB-8252-4165196D87B9_1_102_o](https://github.com/user-attachments/assets/9651c6e1-c110-4344-a151-de1b58a473e8)
+![20BD8EBA-3B49-4ACB-8252-4165196D87B9_1_102_o](https://github.com/user-attachments/assets/0ff99726-6f4f-41bd-bcd9-105155050888)
 
 Exponential Basic is an open-source project to modernize the classic Exponential 2.x CMS, bringing its functionality up-to-date with PHP 8 standards while retaining its simplicity and community-focused design.
 

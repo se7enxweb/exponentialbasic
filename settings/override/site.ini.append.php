@@ -98,7 +98,7 @@ DatabaseSQLiteFile=site-demo.db
 ########################################
 
 SiteTitle=Exponential Basic a community based framework and website cms
-Keywords=eZPublishBasic CMS Framework Website Content Management System e-commerce ecommerce website building cms 7x tools web application system.
+Keywords=Exponential Basic CMS Framework Website Content Management System e-commerce ecommerce website building cms 7x tools web application system.
 # Example site Language setting options:
 # Note: You can create any language you wish to support via file override via setting feature.
 # Note: en_US support by default is the next development target for Exponential 2.4.0.1

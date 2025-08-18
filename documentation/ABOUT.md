@@ -1,10 +1,10 @@
-# eZ Publish Basic - About Software / Project Documentation
+# Exponential Basic - About Software / Project Documentation
 
 ## About
 
-We are actively working to bring **eZ Publish Basic 2.4.0** to the general public.
+We are actively working to bring **Exponential Basic 2.4.0** to the general public.
 
-eZ Publish 2.4 is the completed work started by 7x years ago to upgrade eZ Publish 2 Kernel Implementation of a easy to use PHP Personal Home Page CMS or Community Website Building Platform to more modern PHP versions.
+Exponential Basic 2.4 is the completed work started by 7x years ago to upgrade eZ Publish 2 Kernel Implementation of a easy to use PHP Personal Home Page CMS or Community Website Building Platform to more modern PHP versions.
 
 ## The story
 
@@ -12,13 +12,13 @@ Previously this was developed and released as eZ Community 2.3 the community por
 
 Today is a new day and a new chance to complete the work started by 7x with the eZ Community Distribution of eZ Pubilsh 2+.
 
-To distinguish between different product releases we have decided to release the finished work under the original name with a brand identifier 'basic' to indicate that eZ publish basic or eZ Publish Basic is supporting PHP8.3 Web Servers and can be used today in 2024 to learn how to more quickly build simple web applications in minutes rather than days as common needs can follow existing developed code patterns in implementation phase(s). Learn by example, Learn by doing, build a bridge to a new world not a wall.
+To distinguish between different product releases we have decided to release the finished work under the original name with a brand identifier 'basic' to indicate that exponential basic or Exponential Basic is supporting PHP 8.1 - 8.3 powered Web Servers. It can be used today in 2025 to learn how to more quickly build simple web applications in minutes rather than days as common needs can follow existing developed code patterns in implementation phase(s). Learn by example, Learn by doing, build a bridge to a new world not a wall.
 
 We are also incrementing the version number from 2.3.x to 2.4.x.x to give more version number space while clearly marking this release as unique. Short standard for the version numbers will be 2.4
 
 ### Goals:
 
-- Provide an **educational project** for new developers to learn eZ Publish development concepts.
+- Provide an **educational project** for new developers to learn Exponential development concepts.
 - Deliver a **simple starter solution** for building a PHP-based CMS.
 - Enable a lightweight alternative for **personal home page-based CMS** needs.
 
@@ -35,14 +35,14 @@ This project involves documenting and updating the following:
 
 ### Status Summary:
 
-- EL5: eZ User Websites Boot (Expected pages load correctly site wide without errors)
-- Extended: eZ Administration Website Boots (loads the UI without fatal or distracting errors) yet the eZ Admin Website requires additional refactoring for each admin module to work correctly in real life usage.
-- Real story: eZ Admin and eZ User Website Currently Require Extensive Development to free eZ Publish Basic from existing implementation limitations resulting in conflicts with the language preventing error free usage on a per siteacccess, module view, module view action(s) per module view.
+- EL5: EB User Websites Boot (Expected pages load correctly site wide without errors)
+- Extended: EB Administration Website Boots (loads the UI without fatal or distracting errors) yet the EB Admin Website requires additional refactoring for each admin module to work correctly in real life usage.
+- Real story: EB Admin and EB User Website Currently Require Extensive Development to free Exponential Basic from existing implementation limitations resulting in conflicts with the language preventing error free usage on a per siteacccess, module view, module view action(s) per module view.
 
 ---
 
-- Default eZPB User Modules Views Boot with Minror warnings or visual errors.
-- Default eZPB Admin Module Views Boot With Major warnings or errors per module view set.
+- Default EB User Modules Views Boot with Minror warnings or visual errors.
+- Default EB Admin Module Views Boot With Major warnings or errors per module view set.
 - eZ User, eZ SysInfo, eZ Site Manager Are the First 3 Upgraded Default eZPB Admin siteaccess module views to Run 98% without visual or noticeable issues.
 
 ### Modules Tested with PHP 8.3
@@ -68,7 +68,7 @@ In mid-2001, **7x** began development based on **eZ Community 2.x**, a PHP/MySQL
 
 - Release framework update to provide composer based autoloads using a free GPL solution from eZ Publish Legacy a script and classes which creates the required autoloads for composer from all detected classes in the installation.
 
-- Released stable finished work (only small bugs **might** remain) **eZ Publish Basic 2.4.0.0** in 2024/12 as a quite release of a christmas gift from Graham Brookins and 7x to the eZ Community.
+- Released stable finished work (only small bugs **might** remain) **Exponential Basic 2.4.0.0** in 2024/12 as a quiet release of a christmas gift from Graham Brookins and 7x to the eZ Community.
 
 - Released (as is / example work in progress) **eZ Community 2.3** around 2006.
 

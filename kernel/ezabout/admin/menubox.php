@@ -26,18 +26,17 @@
 
 // Supply $menuItems to get a menubox
 
+
 $menuItems = array(
-    array( "/article/archive/", "{intl-archive}" ),
-    array( "/article/unpublished/", "{intl-unpublished}" ),
-    array( "/article/pendinglist/", "{intl-pending_list}" ),
-	array( "/article/sitemap/", "{intl-sitemap}" ),
-    array( "/article/topiclist/", "{intl-topiclist}" ),
-	array( "/article/type/list", "{intl-list_type}" ),
-    array( "/article/type/edit", "{intl-new_type}" ),
-    array( "/article/categoryedit/new/", "{intl-new_category}" ),
-    array( "/article/articleedit/new/", "{intl-new_article}" ),
-    array( "/article/search/advanced", "{intl-search_advanced}" )
-//    array( "/article/export", "{intl-export}" )
+    array( "/sitemanager/cache/", "{intl-cache_admin}" ),
+    array( "/sitemanager/cache/variation", "{intl-variation_admin}" ),
+    array( "/sitemanager/siteconfig/", "{intl-site_config}" ),
+    array( "/sitemanager/csseditor/", "{intl-css_editor}" ),
+    array( "/sitemanager/file/list/", "{intl-file_list}" ),
+    array( "/sitemanager/template/list/", "{intl-template_list}" ),
+    array( "/sitemanager/section/list/", "{intl-section_list}" ),
+    array( "/sitemanager/menu/list/", "{intl-menu_config}" ),
+    array( "/sitemanager/sqladmin/query/", "{intl-sql_admin}" )
     );
 
 ?>

@@ -91,7 +91,7 @@
     <td class="repeatx" colspan="2" width="98%" valign="absmiddle" bgcolor="#ffffff" align="left">
 	<div class="header">
 		<div class="logo">
-			<a href="{admin_site_protocol}://{admin_site_host}" target=""><img src="{www_dir}/design/base/images/logo/ezpublish-logo-200x40.png" width="200" height="40" border="0" alt="" /></a><br />
+			<a href="{admin_site_protocol}://{admin_site_host}" target=""><img src="{www_dir}/design/base/images/logo/exponential-basic.png" width="250" height="50" border="0" alt="" /></a><br />
 		</div>
 		<div class="infos">
 		<!-- BEGIN charset_switch_tpl -->

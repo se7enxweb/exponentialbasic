@@ -29,7 +29,7 @@ Read more [about](documentation/ABOUT.md) our project and it's historic value ad
 
 Follow these steps to set up Exponential Basic via GitHub:
 
-Please note that thr installation of required PHP software packages via [composer](https://getcomposer.org/download/) package magager is required. Download and install composer first before proceeding.
+Please note that thr installation of required PHP software packages via [composer](https://getcomposer.org/download/) package manager is required. Download and install composer first before proceeding.
 
 1. Clone the repository:
    ```bash
@@ -46,6 +46,8 @@ Please note that thr installation of required PHP software packages via [compose
 ## Installation via Composer & Packagist
 
 Follow these steps to set up Exponential Basic via Composer:
+
+Please note that thr installation of required PHP software packages via [composer](https://getcomposer.org/download/) package manager is required. Download and install composer first before proceeding.
 
 1. Clone the latest release:
    ```bash
@@ -99,6 +101,8 @@ Update settings file ```settings/override/site.ini.append.php``` as needed to in
 4. Configure .htacesss or Web Server Mod_Rewrite Rules
 
 This will direct all trafic by hostname match to index.php or index_admin.php as needed.
+
+A reference file for the required configuration is available in file, ```.htaccess_example```.
 
 4.1 Add your user website domain name (escape periods for syntax match) to the provided .htaccess file configuration.
 
@@ -159,7 +163,13 @@ Exponential Basic provides a feature rich cms based website building platform th
 
 - Exponential Basic version 2 Kernel Transformed into Exponential 3 Kernel in Directory Structure and Storage of Code. This was then transformed into a hybrid of Exponential 2.4.0.0 kernel and Exponential 6 kernel sub system classes forming Exponential v2.4.0.1 our second version.
 
-- Exponential Basic supports specific overrideable INI File configuration settings. Try it today and load your database and other minor customizations isolated and overriding thr dedault settings in new file ```settings/override/site.ini.php```.
+- Exponential Basic supports specific overridable INI File configuration settings. Try it today and load your database and other minor customizations isolated and overriding thr dedault settings in new file ```settings/override/site.ini.php```.
+
+- Exponential Basic supports a rather larger amount of customizable settings organized into groups or blocks which can completely change the display and configuration of your Exponential Basic website. Use INI settings overrides (described above) to completely customized Exponential Basic in hundreds of different ways. 
+   - One configuration many users do is to define a global default section across all module settings blocks DefaultSection settings values to make EB display a single design frame.php for all functions of a user facing website unique to your own website requirements. 
+   - Today we recommend starting with the ```ecommerce``` design for your default section (configured in the admin under ezsitemanager / sections). 
+      - In the future we will release a customized example ini settings file which clearly documents these changes for you to use as a basis for your own custom settings override:  ```settings/override/site.ini.php```.
+      - We will also document briefly the instructions for the steps to use this example settings and the admin steps required to activate a design in a new section + design + language configuration.
 
 - Administration that makes creating content quick and simple.
 

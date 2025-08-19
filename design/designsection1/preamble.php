@@ -6,7 +6,7 @@
 if ( isset( $Title ) )
     print( $Title );
 else
-	print( "eZ publish" );
+	print( "Exponential Basic" );
     ?></title>
     
 <link rel="stylesheet" type="text/css" href="<? print $GlobalSiteIni->WWWDir; ?>/sitedesign/designsection1/style.css" />

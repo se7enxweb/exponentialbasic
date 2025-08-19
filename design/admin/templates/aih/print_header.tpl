@@ -4,7 +4,7 @@
 
 <head>
 
-<title>eZ publish administrasjon</title>
+<title>Exponential Basic administrasjon</title>
 
 <link rel="stylesheet" type="text/css" href="{www_dir}/admin/templates/{site_style}/style.css" />
 

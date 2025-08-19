@@ -1,8 +1,8 @@
 <?php  
-  // eZ publish : Full Throttle : Design : Page : Header 
+  // Exponential Basic : Full Throttle : Design : Page : Header 
   // #############################################################################
 
-  // eZ publish : Application : Doc Type (Headers)
+  // Exponential Basic : Application : Doc Type (Headers)
   // #############################################################################
   //echo "<?xml version=\"1.0\" encoding=\"iso-8859-1\">";
 ?>
@@ -12,7 +12,7 @@
 <head>
 <?php
 
-   // eZ publish : Application : Doc Type / Content Type && Primary Application StyleSheet
+   // Exponential Basic : Application : Doc Type / Content Type && Primary Application StyleSheet
    // #############################################################################
    // <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 ?>	
@@ -20,7 +20,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title><?php
 
-    // eZ publish : Application : Page Title + Breadcrumb
+    // Exponential Basic : Application : Page Title + Breadcrumb
     // #############################################################################
 
     // print($SiteTitleAppend);
@@ -39,12 +39,12 @@ href="<? print $GlobalSiteIni->WWWDir; ?>/design/<?
 print ($GlobalSiteDesign); ?>/css/responsive.css" />
 <?php 
 
-   // eZ publish : Application : Page Meta Keywords
+   // Exponential Basic : Application : Page Meta Keywords
    // ############################################################################# 
    include_once("design/$GlobalSiteDesign/frame_head_keywords.append.php");
 
 
-   // eZ publish : application : refreesh | Check if we need a http-equiv refresh
+   // Exponential Basic : application : refreesh | Check if we need a http-equiv refresh
    // #############################################################################
 
    if ( isset( $MetaRedirectLocation ) && isset( $MetaRedirectTimer ) )

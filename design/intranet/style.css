@@ -1,4 +1,4 @@
-/* Intranet eZ publish stylesheet */
+/* Intranet Exponential Basic stylesheet */
 
 body, div, span, p, .p, h1, h2, .listheadline, .listproducts, h3, ul, li, a, td ,th, select, input, textarea, credit
 {
@@ -270,7 +270,7 @@ hr
 
 
 
-/* Standard eZ publish stylesheet */
+/* Standard Exponential Basic stylesheet */
 
 body,
 div,
@@ -563,7 +563,7 @@ td.menu-right {
 
 
 /* 
- * 7x - Responsive redesign of eZ Publish 2
+ * 7x - Responsive redesign of Exponential Basic 2
  * Date: 2024/11/17
  */
  @media screen and (max-width: 575.98px) {

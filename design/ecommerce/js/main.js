@@ -10,7 +10,7 @@ function init()
             'addWish'
         );
 
-        // eZ publish : dom ui icons
+        // Exponential Basic : dom ui icons
         MM_preloadImages('/images/redigerminimrk.gif','/images/slettminimrk.gif','/images/downloadminimrk.gif','/images/addminimrk.gif');
 
         // buttons : array : item style over, off switch

@@ -1,5 +1,5 @@
 <? 
-  // eZ publish : Application : Page Meta Keywords
+  // Exponential Basic : Application : Page Meta Keywords
   // #############################################################################
 ?>
 <? /* <!-- set the content meta information -->  */ ?>

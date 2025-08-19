@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="no" lang="no">
 
 <head>
-<title>eZ publish administrasjon</title>
+<title>Exponential Basic administrasjon</title>
 <link rel="stylesheet" type="text/css" href="{www_dir}{index}/templates/{site_style}/style.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
 

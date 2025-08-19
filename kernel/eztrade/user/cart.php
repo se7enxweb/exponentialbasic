@@ -686,8 +686,12 @@ if ( $ShowCart == true )
     }
   */
   //  die("here5");		
-
-  $t->set_var( "tax_percentage", round( (($total["tax"])/$total["subextax"])*100 , 2) );
+    if (!empty($total['subextax'])) {
+        $taxPercentage = round(($total['tax'] / $total['subextax']) * 100, 2);
+    } else {
+        $taxPercentage = 0; // or null, or whatever default makes sense in your case
+    }
+    $t->set_var("tax_percentage", $taxPercentage);
 
     $currency->setValue( $total["tax"] );
     $t->set_var( "total_cart_tax", $locale->format( $currency ) );

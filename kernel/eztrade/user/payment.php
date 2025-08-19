@@ -40,7 +40,7 @@ $session =& eZSession::globalSession();
 
 // fetch the cart
 $cart = new eZCart();
-$cart = $cart->getBySession( $session, "Cart" );
+$cart = $cart->getBySession( $session );
 $RequireUserLogin = true;
 
 $Language =& $ini->variable( "eZTradeMain", "Language" );
@@ -101,7 +101,6 @@ if ( !$cart )
         $user =& eZUser::currentUser();
         $order = new eZOrder( $orderCompletedID );
         $orderUser = $order->user();
-
         if ( $user->id() == $orderUser->id() )
         {
             eZHTTPTool::header( "Location: http://" . $HTTP_HOST . $indexFile . "/trade/ordersendt/$orderCompletedID/" );
@@ -152,6 +151,7 @@ else
 {
     $PaymentSuccess = true;
 }
+
 
 
 if ( $PaymentSuccess == true )
@@ -219,7 +219,7 @@ if ( $PaymentSuccess == true )
             // product price
 
         
-        if ( ( !$RequireUserLogin or get_class( $user ) == "ezuser" ) and
+        if ( ( !$RequireUserLogin or get_class( $user ) == "eZUser" ) and
              $ShowPrice and $product->showPrice() == true  )
         {
             $price = $item->correctPrice( false, true, false );
@@ -364,7 +364,7 @@ if ( $PaymentSuccess == true )
 
         $region = $billingAddress->region();
 
-        if ( ( get_class( $region ) == "ezregion" ) )
+        if ( ( get_class( $region ) == "eZRegion" ) )
         {
             if ( $ini->variable( "eZUserMain", "SelectRegion" ) == "enabled" )
                 $mailTemplate->set_var( "billing_region", $region->name() );
@@ -426,7 +426,7 @@ if ( $PaymentSuccess == true )
 
         $region = $shippingAddress->region();
 
-        if ( ( get_class( $region ) == "ezregion" ) )
+        if ( ( get_class( $region ) == "eZRegion" ) )
         {
             if ( $ini->variable( "eZUserMain", "SelectRegion" ) == "enabled" )
                 $mailTemplate->set_var( "shipping_region", $region->name() );
@@ -1078,7 +1078,7 @@ if ( $PaymentSuccess == true )
         $session->setVariable( "PayWithVoucher", "" );
     }
     
-    $cart->delete();
+    // $cart->delete();
 
     // call the payment script after the payment is successful.
     // some systems needs this, e.g. to print out the OrderID which was cleared..

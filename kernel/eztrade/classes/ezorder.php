@@ -117,6 +117,8 @@ class eZOrder
                                    '$this->CompanyID',
                                    '$comment' )" );
             $db->unlock();
+            $db->commit();
+            $db->begin();
 			$this->ID = $nextID;
 
             // store the status
@@ -154,7 +156,7 @@ class eZOrder
 
         }
 
-        eZDB::finish( $ret, $db );
+        // eZDB::finish( $ret, $db );
         return true;
     }
 

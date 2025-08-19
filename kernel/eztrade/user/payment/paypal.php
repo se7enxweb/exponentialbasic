@@ -24,9 +24,9 @@
 //
 
 
-include_once( "classes/ezhttptool.php" );
-include_once( "classes/INIFile.php" );
-include_once( "ezaddress/classes/ezaddress.php" );
+// include_once( "classes/ezhttptool.php" );
+// include_once( "classes/INIFile.php" );
+// include_once( "ezaddress/classes/ezaddress.php" );
 
 // retrieve site.ini config variables
 $indexFile = $ini->Index;
@@ -90,9 +90,10 @@ $URL .= '&notify_url=http://'.$HTTP_HOST.$wwwDir.$indexFile.'/trade/paypal/'.$se
 $URL .= '&no_note=1';
 $URL .= '&no_shipping=1';
 
-//include_once( "classes/ezlog.php" );
-//$writeURL = print_r($URL, true);
-//eZPBLog::writeNotice( $writeURL."\n" );	
+// include_once( "classes/ezlog.php" );
+// $writeURL = print_r($URL, true);
+// eZPBLog::writeNotice( $writeURL."\n" );	
+// eZDebug::writeNotice( "Payment Processing URL: $URL" );
 
 eZHTTPTool::header("Location: $URL");
 

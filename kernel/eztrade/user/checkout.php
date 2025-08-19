@@ -132,7 +132,6 @@ $cart = $cart->getBySession( $session, "Cart" );
 if ( !$cart || !$cart->items() )
 {
     eZHTTPTool::header( "Location: /trade/cart/" );
-    exit();
 }
 
 $t = new eZTemplate( "kernel/eztrade/user/" . $ini->variable( "eZTradeMain", "TemplateDir" ),
@@ -525,9 +524,12 @@ if (true || eZHTTPTool::getVar( "ShippingTypeID" ) || eZHTTPTool::getVar( "Shipp
 {
   //$currentTypeID = eZHTTPTool::getVar( "ShippingTypeID" );
   $shipaddID = eZHTTPTool::getVar( "ShippingAddressID" );
-  $cart->AddressID=$shipaddID;
-  $cart->ShipServiceCode=$currentTypeID[0];
-  $cart->storeshipoptions($currentTypeID[0],$shipaddID);
+  if ( is_numeric( $shipaddID ) )
+  {
+    $cart->AddressID=$shipaddID;
+    $cart->ShipServiceCode=$currentTypeID[0];
+    $cart->storeshipoptions($currentTypeID[0],$shipaddID);
+}
 }
 
 //End qcomp AMin.
@@ -659,9 +661,9 @@ if ( $vat == false )
     $ShowExTaxTotal = true;
     $ShowIncTaxColumn = false;
 }
-function turnColumnsOnOff( $rowName )
+
+function turnColumnsOnOff( $rowName, $t, $ShowSavingsColumn = false, $ShowExTaxColumn = false, $ShowIncTaxColumn = false )
 {
-    global $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn;
     if ( $ShowSavingsColumn == true )
     {
         $t->parse( $rowName . "_savings_item", $rowName . "_savings_item_tpl" );
@@ -734,7 +736,7 @@ foreach ( $items as $item )
 
     foreach ( $optionValues as $optionValue )
     {
-        turnColumnsOnOff( "option" );
+        turnColumnsOnOff( "option", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
 
         $option =& $optionValue->option();
         $value =& $optionValue->optionValue();
@@ -761,8 +763,8 @@ foreach ( $items as $item )
 
         $numberOfOptions++;
     }
-    turnColumnsOnOff( "cart" );
-    turnColumnsOnOff( "basis" );
+    turnColumnsOnOff( "cart", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
+    turnColumnsOnOff( "basis", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
 
     if ( $ShowSavingsColumn == true )
     {
@@ -809,7 +811,7 @@ if ( $numberOfItems > 0 )
 
 $t->setAllStrings();
 
-turnColumnsOnOff( "header" );
+turnColumnsOnOff( "header", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
 
 $locale = new eZLocale( $Language );
 $currency = new eZCurrency();

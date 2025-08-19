@@ -168,7 +168,7 @@ class eZCart
 
             if ( count( $cart_array ) > 1 )
             {
-                die( "Error: Cart's with the same ID was found in the database. This shouldent happen." );
+                die( "Error: Cart's with the same ID was found in the database. This should not happen." );
             }
             else if ( count( $cart_array ) == 1 )
             {
@@ -203,11 +203,9 @@ if ( count( $cartshipoptions_array ) == 1 )
 
         $ret = false;
         $cart_array = array();
-
         if ( is_a( $session, "eZSession" ) )
         {
             $sid = $session->id();
-
             $query = "SELECT * FROM eZTrade_Cart WHERE SessionID='$sid'";
 
             $db->array_query( $cart_array, $query );

@@ -89,7 +89,7 @@ class eZOrderConfirmation
     function confirmOrder( $sessionID )
     {
         $ret[] = true;
-        if ( is_Numeric( $sessionID ) )
+        if ( is_numeric( $sessionID ) )
         {
             $ret[] = $this->sendMail( $sessionID );
             $ret[] = $this->confirm( $sessionID );
@@ -99,7 +99,7 @@ class eZOrderConfirmation
             $ret[] = false;
         }
 
-        if ( in_Array( false, $ret ) )
+        if ( in_array( false, $ret ) )
         {
             return false;
         }
@@ -570,8 +570,8 @@ class eZOrderConfirmation
 
 if($total["shiptax"] == 0){
             $mailTemplate->set_var( "total_ex_tax", str_pad( $extax, $len_product_total_ex_tax + 3, " ", STR_PAD_LEFT ) );
-            $mailTemplate->set_var( "sales-tax-inc", str_pad( "", "" , " ", STR_PAD_LEFT ) );
-            $mailTemplate->set_var( "sales-tax", str_pad( "", "" , " ", STR_PAD_LEFT ) );
+            $mailTemplate->set_var( "sales-tax-inc", str_pad( "", "2" , " ", STR_PAD_LEFT ) );
+            $mailTemplate->set_var( "sales-tax", str_pad( "", "2" , " ", STR_PAD_LEFT ) );
 }else{
 
             $currency->setValue( $total["tax"] );
@@ -802,7 +802,6 @@ $mailTemplate->set_var( "shipping_type",$service_name);
 
             // get the cart or create it
             $cart = new eZCart();
-            debug_print_backtrace();
             $cart = $cart->getBySession( $session );
             $cart->cartTotals( $tax, $total );
 

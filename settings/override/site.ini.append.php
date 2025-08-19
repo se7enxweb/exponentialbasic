@@ -849,7 +849,7 @@ EmailBeforeExpire=2
 # Should TAX be enabled by default if user is not logged in?
 NoUserShowVAT=disabled
 
-ShowPrintableRecieptLink=enabled
+ShowPrintableRecieptLink=disabled
 ReviewLimit=25
 
 #

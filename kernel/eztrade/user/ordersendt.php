@@ -402,9 +402,9 @@ $totalVAT = 0.0;
 // 
 // $t->parse( "order_item_list", "order_item_list_tpl" );
 
-function turnColumnsOnOff( $rowName )
+function turnColumnsOnOff( $rowName, $t, $ShowSavingsColumn = false, $ShowExTaxColumn = false, $ShowIncTaxColumn = false )
 {
-    global $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn;
+    // global $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn;
     if ( $ShowSavingsColumn == true )
     {
         $t->parse( $rowName . "_savings_item", $rowName . "_savings_item_tpl" );
@@ -467,7 +467,7 @@ foreach ( $items as $item )
 
     foreach ( $optionValues as $optionValue )
     {
-        turnColumnsOnOff( "option" );
+        turnColumnsOnOff( "option", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
     
         $t->set_var( "option_id", "" );
         $t->set_var( "option_name", $optionValue->valueName() );
@@ -477,8 +477,8 @@ foreach ( $items as $item )
         
         $numberOfOptions++;
     }
-    turnColumnsOnOff( "cart" );
-    turnColumnsOnOff( "basis" );
+    turnColumnsOnOff( "cart", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
+    turnColumnsOnOff( "basis", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
     
     if ( $numberOfOptions ==  0 )
     {
@@ -508,7 +508,7 @@ if ( $numberOfItems > 0 )
 
 $t->setAllStrings();
 
-turnColumnsOnOff( "header" );
+turnColumnsOnOff( "header", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
 
 if ( $ShowCart == true )
 {
@@ -656,8 +656,8 @@ $t->set_var( "voucher_item_list", "" );
 
 if ( count ( $usedVouchers ) > 0 )
 {
-    turnColumnsOnOff( "voucher_used_header");
-    turnColumnsOnOff( "voucher_left_header");
+    turnColumnsOnOff( "voucher_used_header", $t , $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
+    turnColumnsOnOff( "voucher_left_header", $t , $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
     $j = 0;
     foreach ( $usedVouchers as $voucherUsed )
     {
@@ -679,8 +679,8 @@ if ( count ( $usedVouchers ) > 0 )
         $currency->setValue( $total["inctax"] );
         $t->set_var( "voucher_left_inc_tax", $locale->format( $currency ) );
 
-        turnColumnsOnOff( "voucher_used" );
-        turnColumnsOnOff( "voucher_left" );
+        turnColumnsOnOff( "voucher_used", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
+        turnColumnsOnOff( "voucher_left", $t, $ShowSavingsColumn, $ShowExTaxColumn, $ShowIncTaxColumn );
         $t->parse( "voucher_item", "voucher_item_tpl", true );
         
     }
@@ -805,8 +805,6 @@ else
 {
     $t->set_var( "printable_reciept", "" );
 }
-
-$t->setAllStrings();
 
 $t->pparse( "output", "order_sendt_tpl" );
 

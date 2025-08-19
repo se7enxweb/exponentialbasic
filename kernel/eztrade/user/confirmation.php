@@ -39,11 +39,10 @@ $indexFile = $ini->Index;
 $orderConfirmation = $session->variable( "OrderConfirmation" ); 
 
 
-if ( is_Numeric( $orderID ) && $orderConfirmation == $orderID )
+if ( is_numeric( $orderID ) && $orderConfirmation == $orderID )
 {
-    $confirmation = new eZOrderConfirmation( $orderID );
-    
-    $result = $confirmation->confirmOrder( $session );
+    $confirmation = new eZOrderConfirmation( $orderID );   
+    $result = $confirmation->confirmOrder( $session->id() );
 
     // redirect to the confirmation site if the order is sent
     $user =& eZUser::currentUser();
@@ -67,7 +66,7 @@ if ( is_Numeric( $orderID ) && $orderConfirmation == $orderID )
         exit();
     }
 }
-else if ( is_Numeric( $orderID ) )
+else if ( is_numeric( $orderID ) )
 {
     eZHTTPTool::header( "Location: https://" . $HTTP_HOST . $wwwDir . $indexFile . "/trade/ordersendt/$orderID/" );
     exit();

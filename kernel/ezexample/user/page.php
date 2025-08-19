@@ -1,5 +1,5 @@
 <?
 
-print( "<h1>This is an eZ publish example page </h1>" );
+print( "<h1>This is an Exponential Basic example page </h1>" );
 
 ?>

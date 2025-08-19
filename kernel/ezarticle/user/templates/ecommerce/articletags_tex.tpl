@@ -197,5 +197,5 @@
 <!-- END table_tpl -->
 
 <!-- BEGIN logo_tpl -->
-<a href="developer.ez.no">eZ publish</a>{contents}
+<a href="developer.ez.no">Exponential Basic</a>{contents}
 <!-- END logo_tpl -->

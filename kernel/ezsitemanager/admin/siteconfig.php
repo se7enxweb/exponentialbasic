@@ -4,7 +4,7 @@
 //
 // Created on: <12-Jul-2001 10:45:55 bf>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //
@@ -88,7 +88,7 @@ elseif ( file_exists( "settings/site.ini" ) )
 }
 else
 {
-  print("<span style='color: red;'>Warning</span>: The eZ publish site.ini file could not be found : <span style='color: red;'>$ini_file</span>");
+  print("<span style='color: red;'>Warning</span>: The Exponential Basic site.ini file could not be found : <span style='color: red;'>$ini_file</span>");
 
   //  print("<br />");
 }

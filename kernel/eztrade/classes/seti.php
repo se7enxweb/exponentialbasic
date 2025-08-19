@@ -5,7 +5,7 @@
 // Created on: <10-Jan-2004 Bob Sims>
 //
 // This source file integrates Stone Edge Order Manager
-// with eZ publish v2.2 publishing software.
+// with Exponential Basic v2.2 publishing software.
 //
 // Copyright (C) 2004 Bob Sims.  All rights reserved.
 include_once( "eztrade/classes/ezorder.php" );

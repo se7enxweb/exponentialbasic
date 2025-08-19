@@ -5,7 +5,7 @@
 // Christoffer A. Elo <ce@ez.no>
 // Created on: <08-Feb-2001 14:11:48 ce>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 // Copyright (C) 1999-2000 eZ systems as
 //
 // This program is free software; you can redistribute it and/or

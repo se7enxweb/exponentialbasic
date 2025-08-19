@@ -3,7 +3,7 @@
 //
 // Created on: Created on: <18-Jul-2000 08:56:19 lw>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //

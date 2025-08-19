@@ -251,4 +251,4 @@ Check out the Contributing Guidelines for more details.
 
 ---
 
-Developed with ❤️ by 7x. The company driving eZ in 2025 and beyond.
+Developed with ❤️ by 7x. The company driving Exponential Basic development in 2025 and beyond.

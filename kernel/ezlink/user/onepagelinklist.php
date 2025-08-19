@@ -5,7 +5,7 @@
 // Bj�rn Reiten <br@ez.no>
 // Created on: Created on: <03-Sep-2001 11:09:42 br>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 // Copyright (C) 1999-2001 eZ systems as
 //
 // This program is free software; you can redistribute it and/or

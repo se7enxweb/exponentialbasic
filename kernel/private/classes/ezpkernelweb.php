@@ -360,7 +360,7 @@ class ezpKernelWeb implements ezpWebBasedKernelHandler
         {
             $wwwDir = eZSys::wwwDir();
             // On host based site accesses this can be empty, causing the cookie to be set for the current dir,
-            // but we want it to be set for the whole eZ publish site
+            // but we want it to be set for the whole Exponential Basic site
             $cookiePath = $wwwDir != '' ? $wwwDir : '/';
 
             if ( eZUser::isCurrentUserRegistered() )

@@ -6,7 +6,7 @@
 //
 // Created on: <15-Mar-2001 20:40:06 fh>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //
@@ -32,7 +32,7 @@
   Functions that are used when sending mail have ideas from:
     Sascha Schumann <sascha@schumann.cx>
     Tobias Ratschiller <tobias@dnet.it>
-  extended and modified to fit eZ publish needs by
+  extended and modified to fit Exponential Basic needs by
      Frederik Holljen <fh@ez.no>
 
   Example code:

@@ -1,12 +1,12 @@
 eZ GroupEventCalendar Introduction
 
-eZ calendar is an extension to the eZ publish 2 cms. eZ calendar provides
+eZ calendar is an extension to the Exponential Basic 2 cms. eZ calendar provides
 an advanced web based calendar application.
 
 Brookins Consulting has provided much needed additional refinements
 and improvements to eZ calendar v2.0 (formerly known as eZGroupEventCalendar).
 
-The eZ calendar, eZ publish 2 module enables an eZ publish instance to provide
+The eZ calendar, Exponential Basic 2 module enables an Exponential Basic instance to provide
 a full fledged web calendar to users. eZ calendar supports recurring events,
 event comments, event group, event type, event category, event priority,
 event status, event comments, event files, event links, sort events by group,
@@ -31,7 +31,7 @@ It also supports a new dhtml, css user interphase, advanced repeat event,
 file/image/map attachments, directions link, html descriptions, 
 multi-tier event groupings and many more features . . .
 
-eZ calendar is a powerful component to add into any existing eZ publish 
+eZ calendar is a powerful component to add into any existing Exponential Basic 
 installation, especially used for collaborative and informative sites.
 
 eZ calendar provides calendar features which match most handheld and computer 
@@ -40,10 +40,10 @@ desktop datebook / calendar applications.
 eZ calendar has been extended to support every possible kind of reoccurring 
 event type you can imagine.
 
-eZ calendar is a standalone module, which depends on the eZ publish framework, 
+eZ calendar is a standalone module, which depends on the Exponential Basic framework, 
 modules and classes.
 
-A special thanks goes out to everyone in the eZ publish user community 
+A special thanks goes out to everyone in the Exponential Basic user community 
 who contributed to eZ calendar's design, development, motivation, funding, 
 testing, extension, feedback and so much more . . .
 

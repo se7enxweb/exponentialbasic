@@ -4,7 +4,7 @@
 //
 // Created on: <24-Feb-2002 17:53:20 ghb>
 //
-// This source file is part of XP publish, based on eZ publish.
+// This source file is part of XP publish, based on Exponential Basic.
 //
 // Copyright (C) 2001-2002 Brookins Consulting.  All rights reserved.
 //

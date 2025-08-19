@@ -6,7 +6,7 @@
 //
 // Created on: <18-Oct-2000 13:50:24 bf>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //
@@ -3161,7 +3161,7 @@ eZUser_Author as Author
     var $StopDate;
     var $ImportID;
 
-    // tell eZ publish to show the article to the public
+    // tell Exponential Basic to show the article to the public
     var $IsPublished;
 
     // variable for storing the number of pages in the article.

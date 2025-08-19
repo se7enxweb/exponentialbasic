@@ -4,7 +4,7 @@ Licence: GNU GPL v2 (or greater)
 Thank you to Brendan Pike for his generous funding, help, ideas and suggestions.
 
 A special thank you to Jo Henrik Endrerud for his generous help, ideas and 
-suggestions with eZ publish 2 eZDateTime Storage Implimentations.
+suggestions with Exponential Basic 2 eZDateTime Storage Implimentations.
 
 
 Releases:
@@ -22,8 +22,8 @@ Release (Aproximetly): 02/06/2002
 
 References:
 
-eZ Community (eZ publish 2 Community): http://web.archive.org/web/20060822010037/http://ezcommunity.net/
-eZ Community Calendar (eZ publish 2 Community): http://web.archive.org/web/20060822010037/http://ezcommunity.net/calendar
+eZ Community (Exponential Basic 2 Community): http://web.archive.org/web/20060822010037/http://ezcommunity.net/
+eZ Community Calendar (Exponential Basic 2 Community): http://web.archive.org/web/20060822010037/http://ezcommunity.net/calendar
 
 Original eZGroupEventCalendar v1: http://web.archive.org/web/20060822010037/http://ezcommunity.net/article/view/165/
 Original Release Statement: http://web.archive.org/web/20020603120338/developer.ez.no/article/articleview/273/1/1/

@@ -4,7 +4,7 @@
 //
 // Created on: <22-Jun-2001 13:16:55 br>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2005 eZ Systems.  All rights reserved.
 //
@@ -311,7 +311,7 @@ if( $exportCSVFile ){
 
    $date = "$month".'/'."$day".'/'."$year".' | '."$hour".' : '."$minute";
    echo "Date : $date \n";
-   echo "CSV : eZ publish (trade) Product : Export File : ($fileSize kb) : $fileName \n";
+   echo "CSV : Exponential Basic (trade) Product : Export File : ($fileSize kb) : $fileName \n";
 
 
    //////////////////////////////////////////////

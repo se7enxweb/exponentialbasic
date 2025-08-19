@@ -4,7 +4,7 @@
 
 <h2>Tags which you can use</h2>
 <p>Note that you can't cascade tags, ie. you can't have tags within tags. If you need more sophisticated rendering of the text use the &lt;html> and &lt;/html> around plain html which does what you want.</p>
-<p>Note also that these are the tags working in the <i>default</i> renderer when eZ publish is installed. If diffrent renderer is in use ignore these.</p>
+<p>Note also that these are the tags working in the <i>default</i> renderer when Exponential Basic is installed. If diffrent renderer is in use ignore these.</p>
 <dl>
     <dt>&lt;bold> &lt;/bold></dt>
     <dd><p>Turns on <b>bold</b> text.</p></dd>
@@ -62,7 +62,7 @@
     <dt>&lt;italic> &lt;/italic></dt>
     <dd><p>Turns on <i>italic</i> text.</p></dd>
     <dt>&lt;module <i>modulename</i>></dt>
-    <dd><p>Insert the contents of file <i>modulename</i>.php into the text (the .php part is added automatically). The file should reside in the modules directory in the eZ publish root.</p></dd>
+    <dd><p>Insert the contents of file <i>modulename</i>.php into the text (the .php part is added automatically). The file should reside in the modules directory in the Exponential Basic root.</p></dd>
     <dt>&lt;page></dt>
     <dd><p>A page break.</p></dd>
     <dt>&lt;perl> &lt;/perl></dt>

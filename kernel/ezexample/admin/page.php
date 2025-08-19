@@ -1,4 +1,4 @@
-<h1>This is an eZ publish admin page</h1>
+<h1>This is an Exponential Basic admin page</h1>
 
 <hr noshade="noshade" size="4" />
 <br />

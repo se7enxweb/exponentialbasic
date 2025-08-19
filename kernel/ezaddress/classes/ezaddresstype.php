@@ -6,7 +6,7 @@
 //
 // Created on: <26-Jun-2001 13:40:19 ce>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //

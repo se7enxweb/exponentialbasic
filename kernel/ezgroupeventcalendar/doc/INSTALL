@@ -12,8 +12,8 @@ Load the Database Data
 Install the package
 Configure the package
 
-Test the site by using the module in the eZ publish Installation.
-Customize the calendar user / group permissions using eZ publish's admin
+Test the site by using the module in the Exponential Basic Installation.
+Customize the calendar user / group permissions using Exponential Basic's admin
 Customize the the sitedesign (js / css calendar dependancies)
 
 Optional:
@@ -29,7 +29,7 @@ Customize the documentation
 INSTALLATION
 ############################################################
 
-STEP 0: (Dependencies) Obtain eZ publish 2 Calendar Module Source Code
+STEP 0: (Dependencies) Obtain Exponential Basic 2 Calendar Module Source Code
 ############################################################
 You can find the eZ GroupEventCalendar Distributed from any of these fine sources:
 http://web.archive.org/web/20060822010037/http://ezcommunity.net/
@@ -40,7 +40,7 @@ http://ez.no/ez_publish/2.2/info/contributions
 wget http://web.archive.org/web/20060822010037/http://ezcommunity.net/filemanager/download/402 .;
 
 
-STEP 1: (Dependencies) Install eZ publish 2 Calendar Module Source Code
+STEP 1: (Dependencies) Install Exponential Basic 2 Calendar Module Source Code
 ############################################################
 Copy entire directory ezgroupeventcalendar into the document root of eZPublish.
 cd /var/www/;
@@ -52,7 +52,7 @@ STEP 2.0.0: (Dependencies) Prepare / Edit the sql file
 ############################################################
 located in .../ezgroupeventcalendar/sql/eZGroupEventCalendar.sql from your command prompt.
 
-RE: eZGroupEventCalender : eZ publish 2 : eZUser_Module & eZUser_Permissions Problems
+RE: eZGroupEventCalender : Exponential Basic 2 : eZUser_Module & eZUser_Permissions Problems
 
 First this is a required part of the installation process that is manual and must be done with care and by hand.
 
@@ -98,7 +98,7 @@ If you are using another database besides MySQL check the sql syntext located in
 sql/ezGroupEventCalendar.sql for compatability with your brand of sql server.
 
 
-STEP 3.0.2: (Dependencies) Install eZ publish 2 Module Permission Dependancies.
+STEP 3.0.2: (Dependencies) Install Exponential Basic 2 Module Permission Dependancies.
 ############################################################
 Execute the sql script to insert the database table values needed by the calendar for event permissions.
 Designed to only be run once per installation. Multiple uses on the same unchecked database may prove unwise or unnecessary.
@@ -107,7 +107,7 @@ Designed to only be run once per installation. Multiple uses on the same uncheck
 
 STEP 4: (Dependencies) Install and configure your calendar's site.ini additions, changes, sections and variables.
 ############################################################
-Add the following lines to your eZ publish's site.ini file and modify the settings as needed.
+Add the following lines to your Exponential Basic's site.ini file and modify the settings as needed.
 Bellow is a limited example of the full module ini settings required, 
 reference the doc/examples/site.ini.add
 
@@ -142,7 +142,7 @@ eZGroupEventCalendar supports en_US & en_GB by default, other languages can be a
 STEP 6: (Dependencies) Add these lines to the head of your sitedesign frame.php
 ############################################################
 In the html head section of your frame.php just below the default 
-eZ publish css style sheet include (in ie: sitedesign/standard/frame.php)
+Exponential Basic css style sheet include (in ie: sitedesign/standard/frame.php)
 
 For a proven installation example see ezgroupeventcalendar/doc/examples/frame.php and ezgroupeventcalendar/doc/examples/site.ini.add
 
@@ -176,7 +176,7 @@ lynx http://YourWebsiteUrl/groupeventcalendar/monthview/
 STEP 8: (Dependencies) Calendar Edit Privileges (Creating Events)
 ############################################################
 
-To Administer the Group Event Calendar (Add,Edit,Delete Events), first login to the eZ publish site
+To Administer the Group Event Calendar (Add,Edit,Delete Events), first login to the Exponential Basic site
 with a user account which is in the Administrator Group and assign the calendar user group module / permissions.
 
 eZ GroupEventCalendar Editors Permissions
@@ -235,7 +235,7 @@ from files uploaded at that time and will not be able to select files already in
 cp -a ezgroupeventcalendar/doc/examples/datasupplier_ezfilemanager_user.php ezfilemanager/user/datasupplier.php
 
 
-STEP 9: (optional) Example /calendar eZ publish 2 alias
+STEP 9: (optional) Example /calendar Exponential Basic 2 alias
 ############################################################
 To setup a url alias to the calendar design / application,
 
@@ -253,10 +253,10 @@ site.ini (add these lines to your URLTranslator ini variable)
 URLTranslator = (existing items);calendar,calendar/day,calendar/week,calendar/year,calendar/month
 
 Manually mirror example site.ini.add into the desired site.ini file of the
-desired eZ publish 2 installation (webdocs,html,docs,www dir)
+desired Exponential Basic 2 installation (webdocs,html,docs,www dir)
 
 The best way to do this is to edit the contents of the site.ini or override/site.ini to match the examples
-provided in the contents of the site.ini.add into the desired eZ publish 2 installation's site.ini.
+provided in the contents of the site.ini.add into the desired Exponential Basic 2 installation's site.ini.
 Backup your original first.
 
 cp -a html/;
@@ -269,10 +269,10 @@ eZ GroupEventCalendar ( Module Tools )
 ############################################################
 
 
-(optinal) Replacement eZ publish Clear Cache Script
+(optinal) Replacement Exponential Basic Clear Cache Script
 ############################################################
 See doc/example/clearcache2.sh
-Must copy the doc/example/clearcache2.sh into the root of your eZ publish 2 installation (webdocs,html,docs,www dir)
+Must copy the doc/example/clearcache2.sh into the root of your Exponential Basic 2 installation (webdocs,html,docs,www dir)
 cd html/ezgroupeventcalendar; cp -a doc/example/clearcache2.sh ../;
 
 You may wish to make a symbolic link to the script to ease its use.
@@ -300,7 +300,7 @@ A fairly human crontab example: http://www.adminschoice.com/docs/crontab.htm#Cro
 ############################################################
 See doc/example/.htaccess
 
-Must copy the doc/example/.htaccess into the root of your eZ publish 2 installation (webdocs,html,docs,www dir)
+Must copy the doc/example/.htaccess into the root of your Exponential Basic 2 installation (webdocs,html,docs,www dir)
 
 
 (optional) Example frame.php
@@ -308,7 +308,7 @@ Must copy the doc/example/.htaccess into the root of your eZ publish 2 installat
 See doc/example/frame.php
 
 Manually mirror example frame.php into the desired sitedesign frame.php
-of the desired eZ publish 2 installation (webdocs,html,docs,www dir)
+of the desired Exponential Basic 2 installation (webdocs,html,docs,www dir)
 
 
 (optional) Example site.ini.add
@@ -316,17 +316,17 @@ of the desired eZ publish 2 installation (webdocs,html,docs,www dir)
 See doc/example/site.ini.add
 
 Manually mirror example site.ini.add into the desired site.ini file of the
-desired eZ publish 2 installation (webdocs,html,docs,www dir)
+desired Exponential Basic 2 installation (webdocs,html,docs,www dir)
 
 A quick way to do this is to place the contents of the site.ini.add into the 
-desired eZ publish 2 installation's site.ini and backup the original first.
+desired Exponential Basic 2 installation's site.ini and backup the original first.
 
 cp -a html/;
 cp -a site.ini site.ini.12_21_2004_pre_ezgroupcalendar_install;
 cat ezgroupeventcalendar/doc/example/site.ini.add >> site.ini;
 
 You should customize the eZGroupEventCalendarMain and eZGroupEventCalendarRSSMain
-sections of the desired eZ publish 2 installation's site.ini file (which are near the bottom of the file).
+sections of the desired Exponential Basic 2 installation's site.ini file (which are near the bottom of the file).
 
 
 (reference) Example eZForum.sql
@@ -335,7 +335,7 @@ See doc/example/eZForum.sql
 
 eZGroupEventCalendar v2 implements support for ezforum threads and messages used as comments for events.
 
-The doc/example/eZForum.sql script does not need to be used for most existing eZ publish 2 which has eZ Forum already installed (hint: most do by default).
+The doc/example/eZForum.sql script does not need to be used for most existing Exponential Basic 2 which has eZ Forum already installed (hint: most do by default).
 
 The doc/example/eZForum.sql is a eZForum DB creation sql file for users who have the eZForum code but
 not the db sql, or alternately for reference of the tables structure it uses for the comments.
@@ -347,7 +347,7 @@ mysql -uroot -p publish < ezgroupeventcalendar/doc/example/eZForum.sql
 You should specify the name of the category that the eZGroupEventCalendar : Forum as
 ( Default looks like:  LinkModules=eZGroupEventCalendar:1000). You could change the 1000
 to the eZ Forum Category you want to use for the storage of the event's comments
-from eZGroupEventCalendarMain section of the desired eZ publish 2 installation's site.ini
+from eZGroupEventCalendarMain section of the desired Exponential Basic 2 installation's site.ini
 file (which are near the bottom of the file).
 
 
@@ -357,9 +357,9 @@ A brief list required resources, outside the scope of this module.
 
 eZ GroupEvent Calendar v2:
 
-eZ publish framework
-core eZ publish modules and classes
-eZ publish installation database
+Exponential Basic framework
+core Exponential Basic modules and classes
+Exponential Basic installation database
 classes/ezdate.php;
 classes/ezdatetime.php;
 ezfilemanager
@@ -369,8 +369,8 @@ site.ini
 
 eZ GroupEvent Calendar v1.0:
 
-eZ publish framework
-core eZ publish modules and classes
+Exponential Basic framework
+core Exponential Basic modules and classes
 classes/ezdate.php;
 classes/ezdatetime.php;
 index.php, site.ini, index_admin, admin/, sitedesign,
@@ -379,11 +379,11 @@ index.php, site.ini, index_admin, admin/, sitedesign,
 
 Support
 ############################################################
-Still Having Problems? Refer your inquiries to one of these sources of eZ publish 2 support.
+Still Having Problems? Refer your inquiries to one of these sources of Exponential Basic 2 support.
 
-eZ publish 2 Community Support : http://web.archive.org/web/20060822010037/http://ezcommunity.net/
+Exponential Basic 2 Community Support : http://web.archive.org/web/20060822010037/http://ezcommunity.net/
 
-eZ publish 2 Support / Development : http://brookinsconsulting.com/
+Exponential Basic 2 Support / Development : http://brookinsconsulting.com/
 
 Check doc/BUGS for a match of the description of the issue and our solution / background information about the issue.
 

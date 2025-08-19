@@ -6,7 +6,7 @@
 //
 // Created on: <30-Apr-2001 17:11:32 bf>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //
@@ -26,9 +26,9 @@
 //
 
 //!! eZCommon
-//! The eZPublish class provides global eZ publish variables.
+//! The eZPublish class provides global Exponential Basic variables.
 /*!
-  Has the version number of eZ publish.
+  Has the version number of Exponential Basic.
   
 */
 
@@ -36,7 +36,7 @@ class eZPublish
 {
     /*!
       \static
-      Returns the eZ publish version number.
+      Returns the Exponential Basic version number.
     */
     static public function version()
     {
@@ -45,7 +45,7 @@ class eZPublish
 
     /*!
       \static
-      Returns the eZ publish svn version number.
+      Returns the Exponential Basic svn version number.
       This static public function is currently static, it will need to become dynamic 
       to check an external source and return the actual dynamic svn number
     */
@@ -57,7 +57,7 @@ class eZPublish
 
     /*!
       \static
-      Returns the eZ publish git version number.
+      Returns the Exponential Basic git version number.
       This static public function is currently static, it will need to become dynamic 
       to check an external source and return the actual dynamic git number
     */
@@ -69,7 +69,7 @@ class eZPublish
 
     /*!
       \static
-      Returns the eZ publish installation version number.
+      Returns the Exponential Basic installation version number.
     */
     static public function installationVersion()
     {

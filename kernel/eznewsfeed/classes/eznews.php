@@ -6,7 +6,7 @@
 //
 // Created on: <13-Nov-2000 12:51:40 bf>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //
@@ -32,7 +32,7 @@
   \code
   $news = new eZNews( );
 
-  $news->setName( "eZ publish released" );
+  $news->setName( "Exponential Basic released" );
   $news->setIntro( "Is publish is a ....." );
   $news->setIsPublished( true );
 

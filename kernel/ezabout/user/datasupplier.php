@@ -4,7 +4,7 @@
 //
 // Created on: <23-Oct-2000 17:53:46 bf>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //
@@ -51,7 +51,7 @@ The package lends itself easily to customization, from changing the look and fee
 The target audience for <a href="https://basic.exponential.earth">Exponential Basic</a> are <a href="https://basic.exponential.earth">e-commerce</a>, ASP (Application Service Providers), BSP (Business Service Providers), news publishing, intranets, bug reporting, content management, discussion boards, FAQ and knowledge handling, file and image management, group ware, calendaring, polls, todo lists, appointments as well as personal web sites.
 </p>
 
-<p>eZ Publish 2 was created by norwegen commercial company Ibexa (Formerly, eZ Systems) in 1999</p>
+<p>Exponential Basic 2 was created by norwegen commercial company Ibexa (Formerly, eZ Systems) in 1999</p>
 <p>Exponential Basic was created by usa commercial company 7x (Formerly, Brookins Consulting) in 2024 from external resources like our php5 port, ezregion features, usa stores, encryption payment solutions via email, and so much more massive improvements to the cms core and unreleased code now being integrated in our basic edition of "Exponential Basic 2.4".</p>
 
 <p>

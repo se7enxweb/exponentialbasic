@@ -5,7 +5,7 @@ Brief List of Key Breakdowns that are possible
 
 Checklist
 
-1. eZ publish 2 (stock) clearcache.sh script fails on calender cache dirs
+1. Exponential Basic 2 (stock) clearcache.sh script fails on calender cache dirs
 
 If your calendar installation gets googled / indexed by a web spider it is very possible to fill up over
 10,000 - 30,000 cache files of different calender views.
@@ -13,13 +13,13 @@ If your calendar installation gets googled / indexed by a web spider it is very 
 This is even more possible with eZGroupEventCalendar / eZ Calendar / eZ Trade for the above
 spider / cache issue to become a problem.
 
-The clearcache script stock that's distributed with eZ publish 2.2 uses a feature in the linux/unix/bash
+The clearcache script stock that's distributed with Exponential Basic 2.2 uses a feature in the linux/unix/bash
 called keyword expansion which is limited by the servers available memory which can fail to expand a
 directory with several thousands of files.
 
 There have been many reported cases of this occurance, this is not myth or folkore.
 
-To solve this problem with clearing eZ publish 2 cache directories with a large number of cache files,
+To solve this problem with clearing Exponential Basic 2 cache directories with a large number of cache files,
 I developed a replacement clearcache.sh script which did not use command line keyword expansion,
 instead it uses the find program in combination with the xargs program and unix pipes to achive 
 the same functionality without the previous limitations.
@@ -29,7 +29,7 @@ In most cases the clearcache2.sh script would only need to be used in on a produ
 where a few extra seconds to do the job properly are a fair trade off.
 
 
-2. eZGroupEventCalender : eZ publish 2 : eZUser_Module & eZUser_Permissions Problems
+2. eZGroupEventCalender : Exponential Basic 2 : eZUser_Module & eZUser_Permissions Problems
 
 First this is a required part of the installation process that is manual and must be done with care and by hand.
 
@@ -51,13 +51,13 @@ This is a *required* step that must be completed properly for the calendar edit 
 (We are looking for an automated solution to this step, suggestions gladly welcome :)
 
 3. eZGroupEventCalender TIMESTAMP problems with MySQL v4.1 and greater
-The eZGroupEventCalender v1 was designed like much of eZ publish 2 to use the MySQL v3.x -> v4.0 API
+The eZGroupEventCalender v1 was designed like much of Exponential Basic 2 to use the MySQL v3.x -> v4.0 API
 
 The MySQL v4.1 API was changed dramaticly in v4.1 which droped support in general for the MySQL 
 Column Type TIMESTAMP "width" paramiter which eZGroupEventCalender like a lot of applications which
-used eZ publish 2 :: eZDate:MysqlTimeStamp() for database date storage.
+used Exponential Basic 2 :: eZDate:MysqlTimeStamp() for database date storage.
 
-The eZGroupEventCalender v2 was developed to use MySQL v4.0.x API like much of eZ publish 2.
+The eZGroupEventCalender v2 was developed to use MySQL v4.0.x API like much of Exponential Basic 2.
 So it continued to use the original design for date timestamp db storage. 
 
 This was not a problem until our project sponsor DB Informatics, which happend to use MySQL v4.1-alpha

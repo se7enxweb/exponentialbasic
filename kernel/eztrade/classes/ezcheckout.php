@@ -6,7 +6,7 @@
 //
 // Created on: <02-Feb-2001 15:00:11 bf>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 //
 // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
 //
@@ -33,13 +33,13 @@
   your own specific implementation.
 
   To create your own checkout routine simply create a folder named checkout/
-  in the eZ publish root and copy the ezcheckoutsuppliergateway.php to the classes/
+  in the Exponential Basic root and copy the ezcheckoutsuppliergateway.php to the classes/
   folder of that directory. The reason for the checkout folder for custom checkout
   code is compatibility with upgrades of the software and some CVS issues.
 
   You will also find an example implementation of a custom checkout routine
   in the file checkout.tar.gz which is found in the custom folder of your
-  eZ publish installation.
+  Exponential Basic installation.
   
 */
 

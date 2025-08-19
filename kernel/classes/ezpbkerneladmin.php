@@ -345,7 +345,7 @@ class ezpbKernelAdmin implements ezpWebBasedKernelHandler
     //
     // Created on: <09-Nov-2000 14:52:40 ce>
     //
-    // This source file is part of eZ publish, publishing software.
+    // This source file is part of Exponential Basic, publishing software.
     //
     // Copyright (C) 1999-2001 eZ Systems.  All rights reserved.
     //
@@ -853,7 +853,7 @@ $ini = eZINI::instance();
         {
             $wwwDir = eZSys::wwwDir();
             // On host based site accesses this can be empty, causing the cookie to be set for the current dir,
-            // but we want it to be set for the whole eZ publish site
+            // but we want it to be set for the whole Exponential Basic site
             $cookiePath = $wwwDir != '' ? $wwwDir : '/';
 
             if ( eZUser::isCurrentUserRegistered() )

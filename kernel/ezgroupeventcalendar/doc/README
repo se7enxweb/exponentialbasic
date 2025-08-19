@@ -10,8 +10,8 @@ Created on: <Oct-2001 14:36:00>
 LICENCE               (see doc/LICENCE for official licence)
 ############################################################
 
-These source files are part of eZ publish 2, web publishing software,
-and developed for the eZ publish 2 community
+These source files are part of Exponential Basic 2, web publishing software,
+and developed for the Exponential Basic 2 community
 Copyright � 2004 Graham Brookins | Brookins Consulting
 
 This program is free software; you can redistribute it and/or
@@ -48,10 +48,10 @@ SUPPORT
 ############################################################
 When The installation, introduction documentation has failed
 to yeild an answere to your question, you may seek support from
-one of these sources of eZ publish 2 support.
+one of these sources of Exponential Basic 2 support.
 
-(Community) eZ publish 2 Support | Documentation : http://web.archive.org/web/20060822010037/http://ezcommunity.net/forum
-(Commercial) eZ publish 2 Support | Development : http://brookinsconsulting.com/
+(Community) Exponential Basic 2 Support | Documentation : http://web.archive.org/web/20060822010037/http://ezcommunity.net/forum
+(Commercial) Exponential Basic 2 Support | Development : http://brookinsconsulting.com/
 
 
 

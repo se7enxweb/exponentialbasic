@@ -4,7 +4,7 @@
 //
 // Created on: <14-Sep-2001 14:39:54 jhe>
 //
-// This source file is part of eZ publish, publishing software.
+// This source file is part of Exponential Basic, publishing software.
 // Copyright (C) 1999-2001 eZ systems as
 //
 // This program is free software; you can redistribute it and/or

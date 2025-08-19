@@ -68,7 +68,7 @@ function init() {
 
 <?
 /*
-  These Javascript functions are stock from eZ publish 2 and are required for the eZ GroupEventCalendar's Editor Mode
+  These Javascript functions are stock from Exponential Basic 2 and are required for the eZ GroupEventCalendar's Editor Mode
 */
 ?>
 <script language="JavaScript1.2" type="text/javascript">
@@ -144,7 +144,7 @@ else
 ?>" />
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
 
-<meta name="generator" content="eZ publish" />
+<meta name="generator" content="Exponential Basic" />
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
 <? /* part of ie alpha-png fix */ ?>

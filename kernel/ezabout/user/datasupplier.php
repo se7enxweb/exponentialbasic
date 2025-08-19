@@ -55,7 +55,7 @@ The target audience for <a href="https://basic.exponential.earth">Exponential Ba
 <p>Exponential Basic was created by usa commercial company 7x (Formerly, Brookins Consulting) in 2024 from external resources like our php5 port, ezregion features, usa stores, encryption payment solutions via email, and so much more massive improvements to the cms core and unreleased code now being integrated in our basic edition of "Exponential Basic 2.4".</p>
 
 <p>
-It is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL license</a> and can be downloaded from <a href="https://github.com/se7enxweb/ezpublishbasic">github.com/se7enxweb/ezpublishbasic</a>.
+It is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL license</a> and can be downloaded from <a href="https://github.com/se7enxweb/exponentialbasic">github.com/se7enxweb/exponentialbasic</a>.
 
 You can get commercial support, upgrades, data imports, maintenance from <a href="https://se7enx.com/">7x</a>.
 </p>

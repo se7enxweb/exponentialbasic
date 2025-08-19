@@ -122,14 +122,14 @@ else
 <table class="all" width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
    <td class="tdmini" width="99%" colspan="2">
-     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif"
+     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/exponential-basic-yourcontentmadeeasy.png"
 									 height="20" width="290" border="0" alt="" /></a><br />
    </td>
 </tr>
    <tr>
    <td class="tdmini" width="99%" colspan="2">
      <!--     <a class="logo" href="<?php print $GlobalSiteIni->WWWDir; ?>/"><img class="logoImage" 
-	      src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/ezpublish-yourcontentmadeeasy.gif"
+	      src="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/images/exponential-basic-yourcontentmadeeasy.png"
 	      height="20" width="290" border="0" alt="" /></a><br />
      </td>
      <td class="tdmini" width="1%" align="right">

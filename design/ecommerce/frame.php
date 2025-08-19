@@ -30,7 +30,7 @@
 </map>
 
 */ ?>
-     <div id="banner"><a href="/"><img class="logoImage" src="/design/ecommerce/images/bannerBg.png" usemap="#ezmap1" border="0" style="position: relative; width: 24rem; height: 98%;" /></a></div>
+     <div id="banner"><a href="/"><img class="logoImage" src="/design/ecommerce/images/exponential-basic-ecommerce-header-logo.png" usemap="#ezmap1" border="0" style="position: relative; width: 24rem; height: 98%;" /></a></div>
 <? /*
 
 

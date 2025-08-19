@@ -205,12 +205,18 @@ class eZSQLite3DB
         {
             $errorNum = $this->Database->lastErrorCode();
             $errorMsg = $this->Database->lastErrorMsg();
-            echo "<hr>";
-            var_dump( $errorNum, $errorMsg );
-            echo "<hr>";
-            echo $sql;
-            echo "<hr>";
             
+            $ini = eZINI::instance( 'site.ini' );
+            $debug = $ini->variable( 'site', 'DebugOutput' ) == 'enabled' ? true : false;
+                
+            if ( $debug )
+            {
+                echo "<hr>";
+                var_dump( $errorNum, $errorMsg );
+                echo "<hr>";
+                echo $sql;
+                echo "<hr>";   
+            }
         }
         else
         {

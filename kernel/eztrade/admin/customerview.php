@@ -100,7 +100,14 @@ foreach ( $addressArray as $address )
     $t->set_var( "place", $address->place() );
 
     $country = $address->country();
-    $t->set_var( "country", $country->name() );
+    if( !is_bool( $country ) )
+    {
+        $t->set_var( "country", $country->name() );
+    }
+    else
+    {
+        $t->set_var( "country", "" );
+    }
     $t->parse( "address_item", "address_item_tpl", true );
 }
 

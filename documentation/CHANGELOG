@@ -1,7 +1,7 @@
 Exponential Basic changelog:
 ---------------------
 
-Changes from 2.4.0.2 to 2.4.0.3
+Changes from 2.4.0.1 to 2.4.0.2
 ---------------------------
 
 PERFORMANCE — eztrade productlist N+1 query elimination
@@ -164,9 +164,6 @@ CODE QUALITY — global variable naming convention
   PascalCase names.
 
 - Updated: kernel/classes/linklist.php (admin) — minor PHP 8 compatibility cleanup.
-
-Changes from 2.4.0.1 to 2.4.0.2
----------------------------
 
 - Updated: Added example store site design, 'ecommerce' to convert from short php tags to full php tags within design templates in php.
 

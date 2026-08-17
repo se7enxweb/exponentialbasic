@@ -23,6 +23,14 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
+if ( !headers_sent() )
+{
+    header( "Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate" );
+    header( "Pragma: no-cache" );
+    header( "Expires: 0" );
+    header( "X-Accel-Expires: 0" );
+}
+
 // include_once( "classes/INIFile.php" );
 $ini = eZINI::instance( 'site.ini' );
 $Language = $ini->variable( "eZStatsMain", "Language" );
@@ -73,8 +81,8 @@ if ( count( $latest ) > 0 )
 
         if ( $referer["Domain"] == "" && $referer["URI"] == "" )
         {
-            $t->set_var( "referer_domain", "" );
-            $t->set_var( "referer_uri", "" );
+            $t->set_var( "referer_domain", "Direct" );
+            $t->set_var( "referer_uri", "(none)" );
             $t->set_var( "referer_link", "" );
             $t->parse( "referer_direct", "referer_direct_tpl", false );
         }
@@ -102,11 +110,6 @@ else
 
 $t->set_var( "view_mode", $viewMode );
 $t->set_var( "view_limit", $viewLimit );
-
-header( "Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate" );
-header( "Pragma: no-cache" );
-header( "Expires: 0" );
-header( "X-Accel-Expires: 0" );
 
 $t->pparse( "output", "referer_page_tpl" );
 

@@ -225,8 +225,8 @@ foreach ( $orderArray as $order )
             $t->set_var( "customer_first_name", $customer->name() );
             $t->set_var( "customer_last_name", "" );
         	}
-        $emailList = $customer->emailAddress();
-        $t->set_var( "customer_email", $emailList[0] );
+        $emailAddress = $customer->emailAddress();
+        $t->set_var( "customer_email", ( $emailAddress !== false ) ? $emailAddress : "" );
     	}
 	}
 

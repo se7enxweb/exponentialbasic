@@ -147,8 +147,8 @@ switch ( $setifunction )
             		$customer = new eZCompany( $eachOrder->companyID() );
             		$billtoFullName=$customer->name();
         			}
-				$emailList = $customer->emailAddress();
-		        $emailAddress = $emailList[0];
+				$emailAddress = $customer->emailAddress();
+		        if ( $emailAddress === false ) $emailAddress = "";
 				}
 						
 			//print bill to first name (optional)

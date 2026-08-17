@@ -419,6 +419,7 @@ a:hover.gcalYearViewMonthName { color: #CC6666; }
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  color: #fff;
 }
 
 /* Events area: one gcalTimeRow per slot, each row aligns with the left time label */

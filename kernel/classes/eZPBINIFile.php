@@ -61,7 +61,7 @@ class eZPBINIFile
     {
         //include_once( "kernel/classes/ezfile.php" );
 
-        $cachedFile = "kernel/classes/cache/" . md5( eZPBFile::realpath( $inifilename ) ) . ".php";
+        $cachedFile = "var/cache/classes/ini-" . md5( eZPBFile::realpath( $inifilename ) ) . ".php";
 
         // check for modifications
         $cacheTime = eZPBFile::filemtime( $cachedFile );
@@ -70,7 +70,7 @@ class eZPBINIFile
         $appendTime = eZPBFile::filemtime( "settings/override/" . basename($inifilename) . ".append" );
 
         $loadCache = false;
-        if ( file_exists( $cachedFile ) )
+        if ( eZPBFile::file_exists( $cachedFile ) )
         {
             $loadCache = true;
             if ( $cacheTime < $origTime )

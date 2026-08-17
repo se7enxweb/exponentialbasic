@@ -263,11 +263,32 @@ class eZPBFile
     /*!
       Same as file_exists(), but prepends $siteDir if $filename not empty.
     */
+
+    /*!
+      \static
+      Redirects legacy cache paths under kernel/ into var/cache/.
+    */
+    public static function mapPath( $path )
+    {
+        if ( $path == "" )
+            return $path;
+        if ( strpos( $path, "var/" ) === 0 )
+            return $path;
+        if ( strpos( $path, "kernel/classes/cache/" ) === 0 )
+            return "var/cache/classes/" . substr( $path, 21 );
+        if ( preg_match( "#^kernel/([^/]+)/((?:admin|user)/)?cache/#", $path ) )
+            return "var/cache/" . substr( $path, 7 );
+        if ( preg_match( "#^([a-z][a-z0-9_]*)/((?:admin|user)/)?cache/#i", $path ) )
+            return "var/cache/" . $path;
+        return $path;
+    }
+
     public static function file_exists( $filename )
     {
 		global $GlobalSiteIni;
     	if ( $filename != "")
         {
+            $filename = eZPBFile::mapPath( $filename );
         	if ( $GlobalSiteIni )
         	{
     			$filename = $GlobalSiteIni->SiteDir . $filename;
@@ -288,6 +309,7 @@ class eZPBFile
 		global $GlobalSiteIni;
     	if ( $filename != "")
         {
+            $filename = eZPBFile::mapPath( $filename );
         	if ($GlobalSiteIni)
         	{
     			$filename = $GlobalSiteIni->SiteDir . $filename;
@@ -305,6 +327,10 @@ class eZPBFile
     public static function filemtime( $filename )
     {
 		global $GlobalSiteIni;
+    	if ( $filename != "" )
+        {
+            $filename = eZPBFile::mapPath( $filename );
+        }
     	if ( $filename != "" && $GlobalSiteIni)
         {
             $filename = $GlobalSiteIni->SiteDir . $filename;
@@ -325,9 +351,19 @@ class eZPBFile
     public static function fopen( $filename, $options )
     {
 		global $GlobalSiteIni;
+    	if ( $filename != "" )
+        {
+            $filename = eZPBFile::mapPath( $filename );
+        }
     	if ( $filename != "" && $GlobalSiteIni)
         {
     		$filename = $GlobalSiteIni->SiteDir . $filename;
+        }
+        if ( ( $options[0] ?? '' ) === 'w' || ( $options[0] ?? '' ) === 'a' )
+        {
+            $dir = dirname( $filename );
+            if ( ! is_dir( $dir ) )
+                @mkdir( $dir, 0777, true );
         }
         return fopen( $filename, $options );
     }
@@ -338,6 +374,10 @@ class eZPBFile
     public static function filesize( $filename )
     {
 		global $GlobalSiteIni;
+    	if ( $filename != "" )
+        {
+            $filename = eZPBFile::mapPath( $filename );
+        }
     	if ( $filename != "" && $GlobalSiteIni)
         {
     		$filename = $GlobalSiteIni->SiteDir . $filename;
@@ -351,6 +391,10 @@ class eZPBFile
     public static function unlink( $filename )
     {
 		global $GlobalSiteIni;
+    	if ( $filename != "" )
+        {
+            $filename = eZPBFile::mapPath( $filename );
+        }
     	if ( $filename != "" && $GlobalSiteIni)
         {
     		$filename = $GlobalSiteIni->SiteDir . $filename;
@@ -370,6 +414,10 @@ class eZPBFile
     public static function chmod( $filename, $mode )
     {
 		global $GlobalSiteIni;
+    	if ( $filename != "" )
+        {
+            $filename = eZPBFile::mapPath( $filename );
+        }
     	if ( $filename != "" && $GlobalSiteIni)
         {
     		$filename = $GlobalSiteIni->SiteDir . $filename;
@@ -384,6 +432,10 @@ class eZPBFile
     {
 		global $GlobalSiteIni;
         $ret = false;
+    	if ( $dir != "" )
+        {
+            $dir = eZPBFile::mapPath( $dir );
+        }
     	if ( $add_sitedir )
         {
             if ( $dir != "" && $GlobalSiteIni)
@@ -391,7 +443,9 @@ class eZPBFile
                 $dir = $GlobalSiteIni->SiteDir . $dir;
             }
         }
-        $ret = dir( $dir );
+        if ( ! is_dir( $dir ) )
+            @mkdir( $dir, 0777, true );
+        $ret = @dir( $dir );
         return $ret;
     }
 
@@ -401,6 +455,10 @@ class eZPBFile
     public static function is_dir( $dir )
     {
 		global $GlobalSiteIni;
+    	if ( $dir != "" )
+        {
+            $dir = eZPBFile::mapPath( $dir );
+        }
     	if ( $dir != "" && $GlobalSiteIni)
         {
             $dir = $GlobalSiteIni->SiteDir . $dir;
@@ -414,6 +472,10 @@ class eZPBFile
     public static function realpath( $filename )
     {
 		global $GlobalSiteIni;
+    	if ( $filename != "" )
+        {
+            $filename = eZPBFile::mapPath( $filename );
+        }
     	if ( $filename != "" && $GlobalSiteIni)
         {
     		$filename = $GlobalSiteIni->SiteDir . $filename;

@@ -46,8 +46,23 @@
 
 class eZCacheFile
 {
+    static public function cacheRoot( $root )
+    {
+        if ( substr( $root, 0, 4 ) === 'var/' )
+            return $root;
+
+        if ( substr( $root, 0, 19 ) === 'kernel/classes/cache/' )
+            return 'var/cache/classes/';
+
+        if ( substr( $root, 0, 7 ) === 'kernel/' )
+            return 'var/cache/' . substr( $root, 7 );
+
+        return 'var/cache/' . $root;
+    }
+
     function __construct( $root, $component, $suffix = "cache", $separator = "-" )
     {
+        $root = eZCacheFile::cacheRoot( $root );
         if ( strlen( $root ) > 1 and $root[strlen($root) - 1] != "/" )
             $root .= "/";
         $this->Root = $root;
@@ -220,6 +235,7 @@ class eZCacheFile
     */
     static public function files( $root, $components, $suffix = "cache", $separator = "-", $as_object = true )
     {
+        $root = eZCacheFile::cacheRoot( $root );
         if ( strlen( $root ) > 1 and $root[strlen($root) - 1] != "/" )
             $root .= "/";
         if ( !is_array( $components ) )

@@ -32,21 +32,26 @@ kernel/ezsysinfo
 var
 "
 
+# Ensure var/cache root and classes subdir exist and are writable
+mkdir -p var/cache/classes
+chmod -R 777 var/cache 2>/dev/null
+
+# Recursively clear the new cache home
+if [ -d var/cache ]; then
+    find var/cache -type f -delete 2>/dev/null
+fi
+
+# Clear any legacy cache files still living under kernel/*
 for dir in $dirs
 do
     if [ -d $dir ]; then
 	    echo "Clearing $dir"
-        rm -f $dir/cache/*.cache
-	rm -f $dir/cache/*.php
-	if [ -d $dir/admin/cache/ ]; then
-	    rm -f $dir/admin/cache/*.cache
-	fi
-	if [ -d $dir/user/cache/ ]; then
-	    rm -f $dir/user/cache/*.cache
-	fi
+        find $dir -path '*/cache/*' -type f ! -name '.keep' -delete 2>/dev/null
+        find $dir -path '*/admin/cache/*' -type f ! -name '.keep' -delete 2>/dev/null
+        find $dir -path '*/user/cache/*' -type f ! -name '.keep' -delete 2>/dev/null
     else
         echo "Creating $dir"
 	    mkdir -p $dir
     fi
-    chmod 777 $dir   
+    chmod 777 $dir 2>/dev/null
 done

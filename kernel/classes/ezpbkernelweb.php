@@ -638,7 +638,7 @@ try
         $content_page = "kernel/ez" . $url_array[1] . "/user/datasupplier.php";
 
         // site cache check
-        $SiteCacheFile = "kernel/classes/cache/" . md5( $_SERVER['REQUEST_URI'] ) . ".php";
+        $SiteCacheFile = "var/cache/classes/site-" . md5( $_SERVER['REQUEST_URI'] ) . ".php";
         $SiteCache = $ini->variable( "site", "SiteCache" );
 
         //This is horrible!!
@@ -796,6 +796,9 @@ try
             // store site cache
             if ( $StoreSiteCache == true )
             {
+                $cacheDir = dirname( $SiteCacheFile );
+                if ( ! is_dir( $cacheDir ) )
+                    @mkdir( $cacheDir, 0777, true );
                 $fp = fopen( $SiteCacheFile, "w+");
 
                 $SiteContents = ob_get_contents();

@@ -231,7 +231,7 @@
           <div>fullthrottle.com is a <a href="<?php echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/policy/security">secure</a> site that respects your <a href="<?php echo $GlobalSiteIni->WWWDir.$GlobalSiteIni->Index; ?>/policy/privacy">privacy</a></div>
 
 	  <div class="poweredByLogo">
-	      <div align="center"><a target="" href="/about"><img src="/design/base/images/logo/exponential-basic-100x35-trans-lgrey.png" width="90" height="35" border="0" alt="Powered by Exponential Basic"></a></div>
+	      <div align="center"><a target="" href="/about"><img src="/design/base/images/logo/exponential-basic-150x52-trans-lgrey.png" width="150" height="52" border="0" alt="Powered by Exponential Basic"></a></div>
               <div class="poweredBy">Powered by <a href="https://basic.exponential.earth">Exponential Basic</a> version <a href="/about"><?php echo eZPublish::version(); ?></a></div>
 	  </div>
           <?php $SiteCopyright = $ini->variable( "site", "SiteCopyright" ); ?>

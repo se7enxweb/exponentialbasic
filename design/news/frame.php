@@ -224,7 +224,7 @@ else
 	   <div align="center"><a class="path" href="?PrintableVersion=enabled">Printable page</a></div><br />
 
 	<div align="center">
-	<a target="_blank" href="/about"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/logo/exponential-basic-100x35-trans-lgrey.png" width="100" height="35" border="0" alt="Powered by Exponential Basic" /></a>
+	<a target="_blank" href="/about"><img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/logo/exponential-basic-150x52-trans-lgrey.png" width="150" height="52" border="0" alt="Powered by Exponential Basic" /></a>
 	</div>
 
 	<img src="<?php print $GlobalSiteIni->WWWDir; ?>/design/base/images/design/1x1.gif" width="130" height="8" border="0" alt="" /><br />

@@ -208,16 +208,19 @@ else
 
         $variation = $image->requestImageVariation( $imageWidth, $imageHeight );
 
-        $imageURL = "/" . $variation->imagePath();
-        $imageWidth = $variation->width();
-        $imageHeight = $variation->height();
-        $imageCaption = $image->caption();
+        if ( $variation )
+        {
+            $imageURL = "/" . $variation->imagePath();
+            $imageWidth = $variation->width();
+            $imageHeight = $variation->height();
+            $imageCaption = $image->caption();
 
-        $t->set_var( "image_width", $imageWidth );
-        $t->set_var( "image_height", $imageHeight );
-        $t->set_var( "image_url", $imageURL );
-        $t->set_var( "image_caption", $imageCaption );
-        $t->parse( "image_item", "image_item_tpl" );
+            $t->set_var( "image_width", $imageWidth );
+            $t->set_var( "image_height", $imageHeight );
+            $t->set_var( "image_url", $imageURL );
+            $t->set_var( "image_caption", $imageCaption );
+            $t->parse( "image_item", "image_item_tpl" );
+        }
     }
 
     $t->parse( "current_type", "current_type_tpl" );
@@ -360,11 +363,19 @@ else
             {
                 $variationObj = $logoObj->requestImageVariation( 150, 150 );
 
-                $t->set_var( "company_logo_src", "/" . $variationObj->imagePath() );
-                $image = new eZImage( $variationObj->imageID() );
-                $t->set_var( "image_alt", $image->caption() );
-                $t->set_var( "no_image", "" );
-                $t->parse( "image_view", "image_view_tpl" );
+                if ( $variationObj )
+                {
+                    $t->set_var( "company_logo_src", "/" . $variationObj->imagePath() );
+                    $image = new eZImage( $variationObj->imageID() );
+                    $t->set_var( "image_alt", $image->caption() );
+                    $t->set_var( "no_image", "" );
+                    $t->parse( "image_view", "image_view_tpl" );
+                }
+                else
+                {
+                    $t->set_var( "image_view", "" );
+                    $t->parse( "no_image", "no_image_tpl" );
+                }
             }
             else
             {

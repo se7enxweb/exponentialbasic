@@ -97,30 +97,37 @@ class eZImageVariation
 
         $db->lock( "eZImageCatalogue_ImageVariation" );
 
-        $this->ID = $db->nextID( "eZImageCatalogue_ImageVariation", "ID" );
+        $this->ID = (int) $db->nextID( "eZImageCatalogue_ImageVariation", "ID" );
 
-        $ret = $db->query( "Select ID FROM eZImageCatalogue_ImageVariation WHERE ID='$this->ID'" );
-        // if ( $ret == true )
-        // $db->query( "DELETE FROM eZImageCatalogue_ImageVariation WHERE ID='$this->ID'" );
+        $existing = array();
+        $db->array_query( $existing, "SELECT ID FROM eZImageCatalogue_ImageVariation WHERE ID=" . $this->ID );
 
         $res = false;
-        if( $ret == false )
+        if ( count( $existing ) === 0 )
         {
+            $id = $this->ID;
+            $imageID = (int) $this->ImageID;
+            $variationGroupID = (int) $this->VariationGroupID;
+            $width = (int) $this->Width;
+            $height = (int) $this->Height;
+            $imagePath = $db->escapeString( $this->ImagePath );
+            $modification = $db->escapeString( $this->Modification );
+
             $query = "INSERT INTO eZImageCatalogue_ImageVariation
                                  ( ID, ImageID, VariationGroupID, Width, Height, ImagePath, Modification ) VALUES
-                                 ( '$this->ID',
-                                   '$this->ImageID',
-                                   '$this->VariationGroupID',
-                                   '$this->Width',
-                                   '$this->Height',
-                                   '$this->ImagePath',
-                                   '$this->Modification' )";
-          $res = $db->query( $query );
+                                 ( '$id',
+                                   '$imageID',
+                                   '$variationGroupID',
+                                   '$width',
+                                   '$height',
+                                   '$imagePath',
+                                   '$modification' )";
+            $res = $db->query( $query );
         }
         $db->unlock();
 
         if ( $res == false )
-            $db->rollback( );
+            $db->rollback();
         else
             $db->commit();
 

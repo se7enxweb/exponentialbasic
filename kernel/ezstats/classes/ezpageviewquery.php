@@ -166,7 +166,7 @@ class eZPageViewQuery
         $sum = 0;
         foreach ( $pageview_array as $pageview )
         {
-            $sum += $pageview[$db->fieldName( "Count" )];
+            $sum += (int) $pageview[$db->fieldName( "Count" )];
         }
         return $sum;
     }
@@ -239,7 +239,7 @@ class eZPageViewQuery
 
             // check if the domain name is fetched, if not try to fetch it
             // and store the result in the table.
-            if ( $hostName = "NULL" )
+            if ( $hostName === "NULL" || $hostName === "" )
             {
                 $db->begin();
                 if ( $ip )

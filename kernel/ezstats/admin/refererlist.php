@@ -69,8 +69,16 @@ if ( count( $latest ) > 0 )
         else
             $t->set_var( "bg_color", "bgdark" );
 
-        $t->set_var( "referer_domain", $referer["Domain"] );
-        $t->set_var( "referer_uri", $referer["URI"] );
+        if ( $referer["Domain"] == "" && $referer["URI"] == "" )
+        {
+            $t->set_var( "referer_domain", "Direct" );
+            $t->set_var( "referer_uri", "" );
+        }
+        else
+        {
+            $t->set_var( "referer_domain", $referer["Domain"] );
+            $t->set_var( "referer_uri", $referer["URI"] );
+        }
         $t->set_var( "page_view_count", $referer["Count"] );
 
         $t->parse( "referer", "referer_tpl", true );

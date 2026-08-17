@@ -70,7 +70,7 @@ if ( count( $latest ) > 0 )
 
         $t->set_var( "browser_name", $browser["Name"] );
         $t->set_var( "page_view_count", $browser["Count"] );
-        $t->set_var( "page_view_percent", round( $browser["Count"]*100/$total_count ) );
+        $t->set_var( "page_view_percent", $total_count > 0 ? round( (int) $browser["Count"]*100/$total_count ) : 0 );
         $t->parse( "browser", "browser_tpl", true );
         $i++;
     }

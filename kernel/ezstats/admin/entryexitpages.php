@@ -54,7 +54,7 @@ $t->set_block( "month_tpl", "month_previous_inactive_tpl", "month_previous_inact
 $t->set_block( "month_tpl", "month_next_tpl", "month_next" );
 $t->set_block( "month_tpl", "month_next_inactive_tpl", "month_next_inactive" );
 
-if ( isset( $year ) && !is_numeric( $year ) || isset( $month ) && !is_numeric( $month ) )
+if ( !isset( $year ) || !is_numeric( $year ) || !isset( $month ) || !is_numeric( $month ) )
 {
     $cur_date = new eZDate();
     $year = $cur_date->year();

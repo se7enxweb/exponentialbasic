@@ -56,7 +56,7 @@ $t->set_block( "day_tpl", "day_previous_inactive_tpl", "day_previous_inactive" )
 $t->set_block( "day_tpl", "day_next_tpl", "day_next" );
 $t->set_block( "day_tpl", "day_next_inactive_tpl", "day_next_inactive" );
 
-if ( !is_numeric( $year ) || !is_numeric( $month ) || !is_numeric( $day ) )
+if ( !isset( $year ) || !is_numeric( $year ) || !isset( $month ) || !is_numeric( $month ) || !isset( $day ) || !is_numeric( $day ) )
 {
     $cur_date = new eZDate();
     $year = $cur_date->year();
@@ -167,8 +167,8 @@ $nextYear = $year;
 $prevYear = $year;
 $nextMonth = $month;
 $prevMonth = $month;
-$nextDay = $day + 1;
-$prevDay = $day - 1;
+$nextDay = (int) $day + 1;
+$prevDay = (int) $day - 1;
 $tmp_day = new eZDate( $year, $month, 1 );
 if ( $nextDay > $tmp_day->daysInMonth() )
 {

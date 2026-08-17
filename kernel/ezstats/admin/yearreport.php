@@ -59,7 +59,7 @@ $t->set_block( "year_tpl", "year_previous_inactive_tpl", "year_previous_inactive
 $t->set_block( "year_tpl", "year_next_tpl", "year_next" );
 $t->set_block( "year_tpl", "year_next_inactive_tpl", "year_next_inactive" );
 
-if ( !is_numeric( $year ) )
+if ( !isset( $year ) || !is_numeric( $year ) )
 {
     $cur_date = new eZDate();
     $year = $cur_date->year();

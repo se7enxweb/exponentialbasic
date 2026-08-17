@@ -885,15 +885,26 @@ class eZTemplate
             $root = $filename[0];
             $filename = $filename[1];
         }
-        if ( substr( $filename, 0, 1 ) != "/" )
+
+        if ( substr( $filename, 0, 1 ) == "/" )
         {
-            $filename = $root."/".$filename;
+            if ( file_exists( $filename ) )
+                return $filename;
+
+            $this->halt( "filename: file $filename does not exist." );
         }
 
-        if ( !file_exists( $filename ) )
-            $this->halt( "filename: file $filename does not exist." );
+        $baseName = $filename;
 
-        return $filename;
+        $resolved = eZDesign::templateFile( $root, $baseName );
+        if ( $resolved !== false )
+            return $resolved;
+
+        $corePath = $root . "/" . $filename;
+        if ( file_exists( $corePath ) )
+            return $corePath;
+
+        $this->halt( "filename: file $corePath does not exist." );
     }
   
     /*!

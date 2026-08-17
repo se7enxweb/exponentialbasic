@@ -77,7 +77,6 @@ if ( count( $latest ) > 0 )
             $t->set_var( "referer_uri", "" );
             $t->set_var( "referer_link", "" );
             $t->parse( "referer_direct", "referer_direct_tpl", false );
-            $t->set_var( "referer_link", "" );
         }
         else
         {

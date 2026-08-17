@@ -117,12 +117,14 @@ Implemented:
   build module links from `kernel/ez<module>/module.info`.
 - Make them also read `extension/<ext>/modules/<module>/module.info`.
 
-### 2.3 Translations
+### 2.3 Translations — DONE
 
-- `kernel/classes/ezlocale.php` loads locale files from `kernel/ez<module>/.../intl/<lang>/...`.
-- Patch it to also search `extension/<ext>/translations/<lang>/`.
-- `kernel/classes/eztemplate.php` `setAllStrings()` / `setIntlLanguage()` should
-  include the extension translation directories.
+- `kernel/classes/eztemplate.php` now calls `loadExtensionTranslations()` from
+  its constructor. It merges `[strings]` blocks from
+  `extension/<ext>/translations/<language>/<phpFile>.ini` into the template's
+  text strings, allowing extension translation overrides.
+- `eZLocale` still loads core locale files from `kernel/ez<module>/.../intl/<lang>/...`.
+  The `eZTemplate` layer is the primary consumer.
 
 ### 2.4 Class autoload
 

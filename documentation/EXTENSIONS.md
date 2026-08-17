@@ -89,7 +89,7 @@ Exponential Basic now supports the following extension features:
 | Frame / CSS / append files | Working | `extension/<ext>/design/<design>/frame.php`, `style.css`, `*.append.php` |
 | Template overrides | Working | `extension/<ext>/design/<design>/templates/<module>/<file>.tpl` |
 | Module dispatch | Working | `extension/<ext>/modules/<mod>/<type>/datasupplier.php` |
-| Translation overrides | Planned | `extension/<ext>/translations/` |
+| Translation overrides | Working | `extension/<ext>/translations/<language>/<phpFile>.ini` |
 | PHP classes and autoloading | Working through `var/autoload/ezp_kernel.php` regen | `extension/<ext>/classes/` |
 
 The sections below explain each feature in detail.
@@ -522,19 +522,63 @@ Admin module menus and link generation still read `kernel/ez<module>/module.info
 
 ---
 
-## Translations (Phase 2 wiring)
+## Translations
 
-Translation catalogues in extensions will be searched from `extension/<ext>/translations/<locale>/`.
+`eZTemplate` now merges translation strings from active extensions into the
+language strings for the current PHP view.  This lets an extension override or
+extend the text strings used by a template.
 
-Example:
+### File layout
 
 ```
-extension/myext/translations/eng-GB/translation.ts
+extension/myext/translations/<language>/<phpFile>.ini
 ```
 
-The `eZLocale` and `eZTemplate::setAllStrings()` layer will be extended to merge these catalogues with the core translations.
+- `<language>` is the eZ language code from `site.ini` (for example `en_US` or `en_GB`).
+- `<phpFile>` is the base name of the PHP view file without the `.php` extension (for example `datasupplier` or `userbox`).
 
-Until then, an extension can still ship plain PHP language files and load them from `extension/<ext>/classes/` or `extension/<ext>/settings/`.
+### INI format
+
+```ini
+[strings]
+hello=Hello from my extension!
+```
+
+In the template, use the key prefixed with `intl-`:
+
+```html
+<h1>{intl-hello}</h1>
+```
+
+Or call `setAllStrings()` and then `set_var( 'hello', $t->TextStrings['strings']['hello'] )`.
+
+### Search order
+
+For each PHP view file referenced by the template:
+
+1. `extension/<active-ext>/translations/<language>/<phpFile>.ini`
+2. `extension/<active-ext>/translations/<language>/<phpFile>.php.ini`
+
+Only the base name of the PHP file is used; the `.php` suffix is stripped
+automatically.
+
+The extension translations are merged with the core language file loaded from
+the view's `intl/` directory.  Extension values override core values with the
+same key.
+
+### Example
+
+`extension/helloworld/translations/en_US/datasupplier.ini`:
+
+```ini
+[strings]
+hello=Hello from the extension module (translated)!
+description=This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.
+```
+
+The `extension/helloworld/modules/helloworld/user/datasupplier.php` sample
+passes the site `Language` to `eZTemplate`, calls `setAllStrings()`, and uses
+the translated strings as template variables.
 
 ---
 

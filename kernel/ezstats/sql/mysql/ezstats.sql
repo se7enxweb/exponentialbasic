@@ -10,7 +10,7 @@ CREATE TABLE eZStats_Archive_PageView (
   `ID` int(11) NOT NULL DEFAULT 0,
   `Hour` int(11) NOT NULL DEFAULT 0,
   Count int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZStats_Archive_RefererURL (

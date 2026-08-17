@@ -97,7 +97,7 @@ CREATE TABLE eZArticle_ArticlePermission (
   GroupID int(11) DEFAULT NULL,
   ReadPermission int(11) DEFAULT 0,
   WritePermission int(11) DEFAULT 0,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`ID`)
 );
 
 CREATE TABLE eZArticle_ArticleSectionDict (

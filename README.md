@@ -128,6 +128,52 @@ Note: Your work is now done. Enjoy the free software and a healthy snack. :)
 
 Up next default content creation in the admin for your first visitor to see!
 
+# Troubleshooting
+
+These are the most common “fresh install does not look right” issues and how to fix them without having to debug the kernel.
+
+## Front page is empty or shows “no content”
+
+The default `IndexPage` may point to an empty content node. Override it in `settings/override/site.ini.append` or `settings/override/site.ini.append.php`:
+
+```ini
+[SiteSettings]
+IndexPage=/article/frontpage/1/
+DefaultPage=/article/frontpage/1/
+```
+
+Then run `./clear` and reload the site.
+
+## Images or thumbnails are missing / broken
+
+1. Make sure the image-variation directory exists and is writable by the web server:
+   ```bash
+   mkdir -p var/site/storage/ezimagecatalogue/variations/
+   chmod -R 777 var/site/storage/ezimagecatalogue/variations/
+   ```
+   You can also re-run `./bin/shell/modfix.sh` to reset ownership and permissions.
+
+2. Make sure the source images from the `share/data/data.tar.gz` archive were extracted into `var/site/storage/`.
+
+3. Clear the cache (`./clear`) after fixing permissions so the image catalogue rebuilds the thumbnail list.
+
+## Image variations are regenerated on every request (slow / empty `eZImageCatalogue_ImageVariation` table)
+
+The `eZImageVariation::store()` method previously checked for an existing row with `$db->query( "SELECT ..." )` and tested the result against `false`. A `SELECT` returns a result object, not `false`, so the `INSERT` never ran and the table stayed empty.
+
+This is fixed in the current source tree in `kernel/ezimagecatalogue/classes/ezimagevariation.php`. `store()` now uses `array_query()` and only inserts when no matching row is found. If you are upgrading from an earlier checkout and your image-variation table is empty, deploy that class change, clear the cache, and reload a page that displays images. The table will be populated as thumbnails are generated.
+
+## Database / 500 errors after install
+
+1. Check `var/log/error.log` for the exact error.
+2. Verify `settings/override/site.ini.append` contains the correct `Database`, `User`, `Password`, `Server`, `Port`, and `DatabaseImplementation` for your environment.
+3. Run `./clear` after any INI, class, or template change.
+4. If you add or rename classes, regenerate autoloads with `php bin/shell/php/ezpgenerateautoloads.php -k` (or your local alias).
+
+## Admin or user site does not load at the expected hostname
+
+The `.htaccess` file (or your vhost config) must route the user hostname to `index.php` and the admin hostname to `index_admin.php`. See `.htaccess_example` and replace the example domains with your own. If you use Apache, make sure `mod_rewrite` is enabled and `AllowOverride` permits `.htaccess` rules.
+
 # Documentation
 
 Further documentation can be read from the [documentation](https://github.com/se7enxweb/exponentialbasic/tree/master/documentation) directory [Project README](https://github.com/se7enxweb/exponentialbasic/tree/master/documentation/PROJECT.md).

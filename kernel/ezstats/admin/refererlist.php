@@ -43,6 +43,8 @@ $t->set_file( "referer_page_tpl", "refererlist.tpl" );
 
 $t->set_block( "referer_page_tpl", "referer_list_tpl", "referer_list" );
 $t->set_block( "referer_list_tpl", "referer_tpl", "referer" );
+$t->set_block( "referer_tpl", "referer_direct_tpl", "referer_direct" );
+$t->set_block( "referer_tpl", "referer_link_tpl", "referer_link" );
 
 if ( !isset( $offset ) or !is_numeric( $offset ) )
     $offset = 0;
@@ -71,15 +73,19 @@ if ( count( $latest ) > 0 )
 
         if ( $referer["Domain"] == "" && $referer["URI"] == "" )
         {
-            $t->set_var( "referer_domain", "Direct" );
+            $t->set_var( "referer_domain", "" );
             $t->set_var( "referer_uri", "" );
-            $t->set_var( "referer_link", "#" );
+            $t->set_var( "referer_link", "" );
+            $t->parse( "referer_direct", "referer_direct_tpl", false );
+            $t->set_var( "referer_link", "" );
         }
         else
         {
             $t->set_var( "referer_domain", $referer["Domain"] );
             $t->set_var( "referer_uri", $referer["URI"] );
             $t->set_var( "referer_link", "http://" . $referer["Domain"] . $referer["URI"] );
+            $t->set_var( "referer_direct", "" );
+            $t->parse( "referer_link", "referer_link_tpl", false );
         }
         $t->set_var( "page_view_count", $referer["Count"] );
 
@@ -97,6 +103,11 @@ else
 
 $t->set_var( "view_mode", $viewMode );
 $t->set_var( "view_limit", $viewLimit );
+
+header( "Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate" );
+header( "Pragma: no-cache" );
+header( "Expires: 0" );
+header( "X-Accel-Expires: 0" );
 
 $t->pparse( "output", "referer_page_tpl" );
 

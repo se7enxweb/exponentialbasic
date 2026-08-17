@@ -35,7 +35,12 @@
     <!-- BEGIN referer_tpl -->
     <tr class="{bg_color}">
 	    <td>
+	        <!-- BEGIN referer_direct_tpl -->
+	        Direct
+	        <!-- END referer_direct_tpl -->
+	        <!-- BEGIN referer_link_tpl -->
 	        <a target="_blank" href="{referer_link}">{referer_domain}</a>
+	        <!-- END referer_link_tpl -->
 	    </td>
 	    <td>
 	        {referer_uri}

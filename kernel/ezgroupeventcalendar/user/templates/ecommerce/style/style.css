@@ -932,6 +932,7 @@ a.gcalDayEventText { font-size: 20px; font-weight: bold; }
   background: #1e293b !important;
   border-color: rgba(255,255,255,0.12) !important;
   border-right: 3px solid rgba(255,255,255,0.25) !important;
+  color: #fff;
 }
 .gcalTimeSlot a.path {
   font-size: 16px !important;

@@ -103,6 +103,31 @@ class eZSysinfo
 
     /*!
       \static
+      Reads a /proc pseudo-file, falling back to shell_exec when open_basedir
+      or file permissions prevent direct fopen().
+    */
+    static public function read_proc( $path )
+    {
+        $content = false;
+        if ( $fd = @fopen( $path, "r" ) )
+        {
+            $content = '';
+            while ( $buf = fgets( $fd, 4096 ) )
+            {
+                $content .= $buf;
+            }
+            fclose( $fd );
+        }
+        elseif ( ( $output = shell_exec( 'cat ' . escapeshellarg( $path ) . ' 2>/dev/null' ) ) !== null )
+        {
+            $content = $output;
+        }
+        return $content;
+    }
+
+
+    /*!
+      \static
       Returns the virtual hostname accessed.
     */
     static public function vhostname()
@@ -158,20 +183,22 @@ class eZSysinfo
     {
         $results = array();
 
-        if ( $fd = @fopen("/proc/pci", "r") )
+        $content = eZSysinfo::read_proc("/proc/pci");
+        if ( $content !== false )
         {
-            while ( $buf = fgets( $fd, 4096 ) )
+            $lines = preg_split( "/(\r\n|\n)/", $content );
+            foreach ( $lines as $buf )
             {
                 if ( preg_match( "/Bus/", $buf ) )
                 {
                     $device = 1;
                     continue;
-                } 
+                }
 
                 if ( $device )
-                { 
+                {
                     list($key, $value) = preg_split(": ", $buf, 2);
-	
+
                     if ( !preg_match( "/bridge/i", $key ) && !preg_match( "/USB/i", $key ) )
                     {
                         $results[] = preg_replace("/\([^\)]+\)\.$/", "", trim( $value ) );
@@ -179,7 +206,25 @@ class eZSysinfo
                     $device = 0;
                 }
             }
-        } 
+        }
+
+        if ( count( $results ) == 0 && ( $lspci = trim( shell_exec( 'lspci -m 2>/dev/null' ) ) ) )
+        {
+            $lines = preg_split( "/(\r\n|\n)/", $lspci );
+            foreach ( $lines as $buf )
+            {
+                $parts = preg_split( '/"\s*,\s*"/', $buf );
+                if ( count( $parts ) >= 4 )
+                {
+                    $vendor = trim( $parts[2], '"' );
+                    $device = trim( $parts[3], '"' );
+                    if ( $vendor && $device && !preg_match( "/bridge/i", $device ) )
+                    {
+                        $results[] = "$vendor $device";
+                    }
+                }
+            }
+        }
 
         return $results;
     }
@@ -195,30 +240,47 @@ class eZSysinfo
     {
         $results = array();
 
-        $handle = @opendir( "/proc/ide" );
-        if( $handle !== false )
+        if ( ( $listing = shell_exec( 'ls -1 /proc/ide 2>/dev/null' ) ) )
         {
-            while ( $file = readdir($handle) )
+            $files = preg_split( "/(\r\n|\n)/", trim( $listing ) );
+            foreach ( $files as $file )
             {
                 if ( preg_match( "/^hd/", $file ) )
                 {
                     $results["$file"] = array();
 
-                    if ( file_exists( "/proc/ide/$file/model" ) )
-                        if ( $fd = fopen("/proc/ide/$file/model", "r") )
-                        {
-                            $results["$file"]["model"] = trim( fgets($fd, 4096) );
-                            fclose( $fd );
-                        }
-                    if ( file_exists( "/proc/ide/$file/capacity" ) )
-                        if ( $fd = fopen("/proc/ide/$file/capacity", "r") )
-                        {
-                            $results["$file"]["capacity"] = trim( fgets($fd, 4096) );
-                            fclose( $fd );
-                        }
+                    $model = eZSysinfo::read_proc( "/proc/ide/$file/model" );
+                    if ( $model !== false )
+                    {
+                        $results["$file"]["model"] = trim( $model );
+                    }
+                    $capacity = eZSysinfo::read_proc( "/proc/ide/$file/capacity" );
+                    if ( $capacity !== false )
+                    {
+                        $results["$file"]["capacity"] = trim( $capacity );
+                    }
                 }
             }
-            closedir($handle);
+        }
+
+        if ( count( $results ) == 0 && ( $lsblk = trim( shell_exec( 'lsblk -b -d -n -o NAME,MODEL,SIZE 2>/dev/null' ) ) ) )
+        {
+            $lines = preg_split( "/(\r\n|\n)/", $lsblk );
+            foreach ( $lines as $buf )
+            {
+                $parts = preg_split( "/\s+/", trim( $buf ), 3 );
+                if ( count( $parts ) >= 2 )
+                {
+                    $name = $parts[0];
+                    $model = $parts[1] == '-' ? 'N/A' : $parts[1];
+                    $size = count( $parts ) >= 3 ? $parts[2] : '';
+                    $results[$name] = array( 'model' => $model );
+                    if ( is_numeric( $size ) && $size > 0 )
+                    {
+                        $results[$name]['capacity'] = (int) $size / 512;
+                    }
+                }
+            }
         }
 
         return $results;
@@ -239,9 +301,11 @@ class eZSysinfo
         $dev_type = "";
         $get_type = false;
 
-        if ( file_exists( "/proc/scsi/scsi" ) and $fd = fopen("/proc/scsi/scsi", "r") )
+        $content = eZSysinfo::read_proc( "/proc/scsi/scsi" );
+        if ( $content !== false )
         {
-            while ( $buf = fgets($fd, 4096))
+            $lines = preg_split( "/(\r\n|\n)/", $content );
+            foreach ( $lines as $buf )
             {
                 if ( preg_match( "/Vendor/", $buf ) )
                 {
@@ -250,7 +314,7 @@ class eZSysinfo
                     $dev_str = $value;
                     $get_type = 1;
                     continue;
-                } 
+                }
 
                 if ( $get_type )
                 {
@@ -259,7 +323,19 @@ class eZSysinfo
                     $get_type = 0;
                 }
             }
-        } 
+        }
+
+        if ( count( $results ) == 0 && ( $lsscsi = trim( shell_exec( 'lsscsi 2>/dev/null' ) ) ) )
+        {
+            $lines = preg_split( "/(\r\n|\n)/", $lsscsi );
+            foreach ( $lines as $buf )
+            {
+                if ( preg_match( "/\[(\d+):(\d+):(\d+):(\d+)\]\s+(\S+)\s+(.*)/", $buf, $matches ) )
+                {
+                    $results[] = $matches[5] . " " . $matches[6];
+                }
+            }
+        }
 
         return $results;
     }
@@ -275,49 +351,55 @@ class eZSysinfo
         $results['ram'] = array();
         $results['swap'] = array();
 
-        if ( $fd = fopen("/proc/meminfo", "r") )
+        $content = eZSysinfo::read_proc( "/proc/meminfo" );
+        if ( $content !== false )
         {
-            while ( $buf = fgets( $fd, 4096 ) )
+            $lines = preg_split( "/(\r\n|\n)/", $content );
+            foreach ( $lines as $buf )
             {
-                if ( preg_match("/Mem:\s+(.*)$/", $buf, $ar_buf ) )
+                if ( preg_match("/^MemTotal:\s+(\d+)\s+kB/i", $buf, $ar_buf ) )
                 {
-                    $ar_buf = preg_split("/\s+/", $ar_buf[1], 6);
-
-                    $results['ram'] = array();
-
-                    @$results['ram']['total'] = $ar_buf[0] / 1024;
-                    @$results['ram']['used'] = $ar_buf[1] / 1024;
-                    @$results['ram']['free'] = $ar_buf[2] / 1024;
-                    @$results['ram']['shared'] = $ar_buf[3] / 1024;
-                    @$results['ram']['buffers'] = $ar_buf[4] / 1024;
-                    @$results['ram']['cached'] = $ar_buf[5] / 1024;
-
-                    @$results['ram']['t_used'] = $results['ram']['used'] - $results['ram']['cached'] - $results['ram']['buffers'];
-                    @$results['ram']['t_free'] = $results['ram']['total'] - $results['ram']['t_used'];
-                    @$results['ram']['percent'] = round( ($results['ram']['t_used'] * 100) / $results['ram']['total']);
+                    $results['ram']['total'] = $ar_buf[1] / 1024;
                 }
-
-                if ( preg_match("/Swap:\s+(.*)$/", $buf, $ar_buf ) )
+                if ( preg_match("/^MemFree:\s+(\d+)\s+kB/i", $buf, $ar_buf ) )
                 {
-                    $ar_buf = preg_split("/\s+/", $ar_buf[1], 3);
-
-                    $results['swap'] = array();
-
-                    @$results['swap']['total'] = $ar_buf[0] / 1024;
-                    @$results['swap']['used'] = $ar_buf[1] / 1024;
-                    @$results['swap']['free'] = $ar_buf[2] / 1024;
-                    @$results['swap']['percent'] = round( ($ar_buf[1] * 100) / $ar_buf[0] );
-	
-                    break;
+                    $results['ram']['free'] = $ar_buf[1] / 1024;
                 }
-            }            
-            fclose( $fd );
-            
-        }
-        else
-        {
-            @$results['ram'] = array();
-            @$results['swap'] = array();
+                if ( preg_match("/^Buffers:\s+(\d+)\s+kB/i", $buf, $ar_buf ) )
+                {
+                    $results['ram']['buffers'] = $ar_buf[1] / 1024;
+                }
+                if ( preg_match("/^Cached:\s+(\d+)\s+kB/i", $buf, $ar_buf ) )
+                {
+                    $results['ram']['cached'] = $ar_buf[1] / 1024;
+                }
+                if ( preg_match("/^SwapTotal:\s+(\d+)\s*kB/i", $buf, $ar_buf ) )
+                {
+                    $results['swap']['total'] = $ar_buf[1] / 1024;
+                }
+                if ( preg_match("/^SwapFree:\s+(\d+)\s*kB/i", $buf, $ar_buf ) )
+                {
+                    $results['swap']['free'] = $ar_buf[1] / 1024;
+                }
+            }
+
+            if ( isset( $results['ram']['total'] ) )
+            {
+                $free = isset( $results['ram']['free'] ) ? $results['ram']['free'] : 0;
+                $buffers = isset( $results['ram']['buffers'] ) ? $results['ram']['buffers'] : 0;
+                $cached = isset( $results['ram']['cached'] ) ? $results['ram']['cached'] : 0;
+
+                $results['ram']['t_used'] = $results['ram']['total'] - $free - $buffers - $cached;
+                $results['ram']['t_free'] = $free + $buffers + $cached;
+                $results['ram']['percent'] = round( ( $results['ram']['t_used'] * 100 ) / $results['ram']['total'] );
+            }
+
+            if ( isset( $results['swap']['total'] ) && $results['swap']['total'] > 0 )
+            {
+                $used = $results['swap']['total'] - ( isset( $results['swap']['free'] ) ? $results['swap']['free'] : 0 );
+                $results['swap']['used'] = $used;
+                $results['swap']['percent'] = round( ( $used * 100 ) / $results['swap']['total'] );
+            }
         }
 
         return $results;
@@ -333,13 +415,16 @@ class eZSysinfo
     {
         $results = array();
 
-        if ( $fd = fopen("/proc/net/dev", "r") )
+        $content = eZSysinfo::read_proc( "/proc/net/dev" );
+        if ( $content !== false )
         {
-            while ( $buf = fgets( $fd, 4096 ) )
+            $lines = preg_split( "/(\r\n|\n)/", $content );
+            foreach ( $lines as $buf )
             {
                 if ( preg_match( "/:/", $buf ) )
                 {
                     list( $dev_name, $stats_list ) = preg_split( "/:/", $buf, 2 );
+                    $dev_name = trim( $dev_name );
                     $stats = preg_split( "/\s+/", trim($stats_list) );
                     $results[$dev_name] = array();
 
@@ -357,7 +442,7 @@ class eZSysinfo
                     $results[$dev_name]['drop'] = $stats[3] + $stats[11];
                 }
             }
-        } 
+        }
 
         return $results;
     }
@@ -469,84 +554,75 @@ class eZSysinfo
       Returns an associative array containing all
       relevant info about the processors in the system.
     */
-    static public function cpu()
+        static public function cpu()
     {
         $results = array();
-        $ar_buf = array();
-	
-        if ( $fd = fopen("/proc/cpuinfo", "r") )
+        $results['model'] = 'N.A.';
+        $results['mhz'] = 'N.A.';
+        $results['cache'] = 'N.A.';
+        $results['bogomips'] = 'N.A.';
+        $results['cpus'] = 'N.A.';
+
+        $content = eZSysinfo::read_proc( "/proc/cpuinfo" );
+        if ( $content !== false )
         {
-            while ( $buf = fgets( $fd, 4096 ) )
+            $lines = preg_split( "/(\r\n|\n)/", $content );
+            foreach ( $lines as $buf )
             {
                 list($key, $value) = array_pad( preg_split("/\s+:\s+/", trim($buf), 2), 2, null );
 
-
-                // All of the tags here are highly architecture dependant.
-                // the only way I could reconstruct them for machines I don't
-                // have is to browse the kernel source.  So if your arch isn't
-                // supported, tell me you want it written in. <infinite@sigkill.com>
                 switch ( $key ) {
                     case "model name":
-                        @$results['model'] = $value;
-					break;
+                    case "cpu":
+                        $results['model'] = $value;
+                        break;
                     case "cpu MHz":
-                        @$results['mhz'] = sprintf("%.2f", $value );
-					break;
-                    case "clock": // For PPC arch (damn borked POS)
-                        @$results['mhz'] = sprintf("%.2f", $value );
-					break;
-                    case "cpu": // For PPC arch (damn borked POS)
-                        @$results['model'] = $value;
-					break;
-                    case "revision": // For PPC arch (damn borked POS)
-                        @$results['model'] .= " ( rev: " . $value . ")";
-					break;
+                    case "clock":
+                        $results['mhz'] = sprintf("%.2f", $value );
+                        break;
+                    case "revision":
+                        $results['model'] .= " ( rev: " . $value . ")";
+                        break;
                     case "cache size":
-                        @$results['cache'] = $value;
-					break;
+                        $results['cache'] = $value;
+                        break;
                     case "bogomips":
-                        @$results['bogomips'] += $value;
-					break;
+                        $results['bogomips'] = isset( $results['bogomips'] ) && is_numeric( $results['bogomips'] ) ? $results['bogomips'] + $value : $value;
+                        break;
                     case "processor":
-                        @$results['cpus'] += 1;
-					break;
-                }	
+                        $results['cpus'] = isset( $results['cpus'] ) && is_numeric( $results['cpus'] ) ? $results['cpus'] + 1 : 1;
+                        break;
+                }
             }
-            fclose($fd);
-        }
-
-        $keys = eZSysinfo::compat_array_keys( $results );
-        $keys2be = array( "model", "mhz", "cache", "bogomips", "cpus" );
-
-        foreach ($keys2be as $key => $ar_buf)
-        {
-            if (! eZSysinfo::compat_in_array( $ar_buf[1], $keys ) ) $results[$ar_buf[1]] = 'N.A.';
         }
 
         return $results;
     }
+
 
     /*!
       \static
       Returns an array of associative arrays
       containing information on every mounted partition.
     */
-    static public function fsinfo()
+        static public function fsinfo()
     {
         $results = array();
         $df = shell_exec( '/bin/df -kP' );
         $mounts = preg_split( "/(\n)/", $df );
         $fstype = array();
+        $fsdev = array();
 
-        if ( $fd = fopen("/proc/mounts", "r") )
+        $content = eZSysinfo::read_proc( "/proc/mounts" );
+        if ( $content !== false )
         {
-            while ( $buf = fgets( $fd, 4096 ) )
+            $lines = preg_split( "/(\r\n|\n)/", $content );
+            foreach ( $lines as $buf )
             {
                 list($dev, $mpoint, $type ) = preg_split("/\s+/", trim($buf), 4);
                 $fstype[$mpoint] = $type;
                 $fsdev[$dev] = $type;
             }
-            fclose($fd);
         }
 
         for ( $i = 1; $i < sizeof($mounts) - 1; $i++ )
@@ -561,12 +637,11 @@ class eZSysinfo
             $results[$i - 1]['free'] = $ar_buf[3];
             $results[$i - 1]['percent'] = $ar_buf[4];
             $results[$i - 1]['mount'] = $ar_buf[5];
-            ($fstype[$ar_buf[5]]) ? $results[$i - 1]['fstype'] = $fstype[$ar_buf[5]] : $results[$i - 1]['fstype'] = $fsdev[$ar_buf[0]];
+            $results[$i - 1]['fstype'] = isset( $fstype[$ar_buf[5]] ) ? $fstype[$ar_buf[5]] : ( isset( $fsdev[$ar_buf[0]] ) ? $fsdev[$ar_buf[0]] : 'N.A.' );
         }
 
         return $results;
     }
-    
 }
 
 ?>

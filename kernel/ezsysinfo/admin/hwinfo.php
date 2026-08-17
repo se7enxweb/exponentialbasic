@@ -70,12 +70,12 @@ $ide_bus = "";
 ksort( $ar_buf );
 if ( count( $ar_buf ) )
 {
-    while ( list($key, $value) = each( $ar_buf ) )
+    foreach ( $ar_buf as $key => $value )
     {
-        $ide_bus .= $key . ": " . $ar_buf[$key]["model"];
-        if ( isset( $ar_buf[$key]["capacity"] ) )
+        $ide_bus .= $key . ": " . $value["model"];
+        if ( isset( $value["capacity"] ) )
         {
-            $ide_bus .= " (Capacity: " . sprintf("%.2f", $ar_buf[$key]["capacity"] / (1024 * 1024 * 2) ) . " GB )";
+            $ide_bus .= " (Capacity: " . sprintf("%.2f", $value["capacity"] / (1024 * 1024 * 2) ) . " GB )";
         }
         $ide_bus .= '<br>';
     }

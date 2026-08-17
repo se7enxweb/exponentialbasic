@@ -617,6 +617,25 @@ class eZCompany
     }
 
     /*!
+      Returns the email address of the company, returns false if none exists.
+    */
+    function emailAddress()
+    {
+        $onlines = $this->onlines();
+        if ( count( $onlines ) >= 1 )
+        {
+            foreach ( $onlines as $online )
+            {
+                if ( $online->urlType() == "mailto" )
+                {
+                    return $online->url();
+                }
+            }
+        }
+        return false;
+    }
+
+    /*!
       Adds an online to the current Company.
     */
     function addOnline( &$online )

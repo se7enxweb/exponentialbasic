@@ -93,23 +93,23 @@ Use it to prove settings overrides and design fallbacks.
 
 ## Phase 2 — Extension modules, translations, classes, and autoload
 
-### 2.1 Module dispatch
+### 2.1 Module dispatch — DONE
 
 Current dispatch in `kernel/classes/ezpbkernelweb.php`:
 
 - Line 638: `$content_page = "kernel/ez" . $url_array[1] . "/user/datasupplier.php";`
 - Admin side uses similar `kernel/ez<module>/admin/...` paths.
 
-Required patches:
+Implemented:
 
-1. Introduce `eZExtension::moduleFile( $module, $type )` or extend `eZModule` to
-   search, in order:
-   - `kernel/ez<module>/<type>/datasupplier.php`
+1. `eZExtension::moduleFile( $module, $type )` in `lib/ezutils/classes/ezextension.php`
+   searches, in order:
    - `extension/<active-ext>/modules/<module>/<type>/datasupplier.php`
-2. Replace the hard-coded `$content_page` construction in `ezpbkernelweb.php` with
-   a call to the new resolver.
-3. Update any `include( "kernel/ez$module/admin/datasupplier.php" )` paths to use
-   the same resolver.
+   - `kernel/ez<module>/<type>/datasupplier.php`
+2. `kernel/classes/ezpbkernelweb.php` uses `eZExtension::moduleFile()` for user
+   module dispatch (main and default-page paths).
+3. `kernel/classes/ezpbkerneladmin.php` uses `eZExtension::moduleFile()` for admin
+   module dispatch and the redirect-only `gotolink` view.
 
 ### 2.2 Admin module menu and URLs
 

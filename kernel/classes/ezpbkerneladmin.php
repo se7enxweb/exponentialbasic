@@ -498,8 +498,12 @@ try
         // Redirect-only modules must run before any HTML output.
         if ( $url_array[2] == "gotolink" )
         {
-            include( "kernel/ez" . $url_array[1] . "/admin/datasupplier.php" );
-            exit();
+            $moduleFile = eZExtension::moduleFile( $url_array[1], 'admin' );
+            if ( $moduleFile !== false )
+            {
+                include( $moduleFile );
+                exit();
+            }
         }
 
         if ( $url_array[1] == "help" )
@@ -660,7 +664,7 @@ try
             $page = "";
 
             // send the URI to the right decoder
-            $page = "kernel/ez" . $url_array[1] . "/admin/datasupplier.php";
+            $page = eZExtension::moduleFile( $url_array[1], 'admin' );
 
             // set the module logo
             $moduleName =& $url_array[1];
@@ -742,7 +746,7 @@ try
                 $t->pparse( "output", "separator_tpl" );
             }
 
-            if ( file_exists( $page ) )
+            if ( $page !== false && file_exists( $page ) )
             {
                 include( $page );
             }
@@ -769,7 +773,7 @@ try
                 {
                     $page = "ez" . $url_array[1] . "/admin/datasupplier.php";
             
-                    if ( file_exists( $page ) )
+                    if ( $page !== false && file_exists( $page ) )
                     {
                         include( $page );
                     }
@@ -818,9 +822,9 @@ try
         $page = "";
 
         // send the URI to the right decoder
-        $page = "kernel/ezuser/admin/datasupplier.php";
+        $page = eZExtension::moduleFile( 'user', 'admin' );
 
-        if ( file_exists( $page ) )
+        if ( $page !== false && file_exists( $page ) )
         {
             include( $page );
         }

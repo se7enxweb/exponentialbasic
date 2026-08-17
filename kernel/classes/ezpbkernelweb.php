@@ -635,7 +635,7 @@ try
         */
 
         // Load the main contents and store in a variable
-        $content_page = "kernel/ez" . $url_array[1] . "/user/datasupplier.php";
+        $content_page = eZExtension::moduleFile( $url_array[1], 'user' );
 
         // site cache check
         $SiteCacheFile = "var/cache/classes/site-" . md5( $_SERVER['REQUEST_URI'] ) . ".php";
@@ -687,7 +687,7 @@ try
             ob_start();
 
             // fetch the module printout
-            if ( file_exists( $content_page ) )
+            if ( $content_page !== false && file_exists( $content_page ) )
             {
                 // the page with the real contents
                 include( $content_page );
@@ -708,8 +708,9 @@ try
                 {
                     $_SERVER['REQUEST_URI'] = $ini->variable( "site", "DefaultPage" );
                     $url_array = explode( "/", $_SERVER['REQUEST_URI'] );
-                    $content_page = "kernel/ez" . $url_array[1] . "/user/datasupplier.php";
-                    include( $content_page );
+                    $content_page = eZExtension::moduleFile( $url_array[1], 'user' );
+                    if ( $content_page !== false )
+                        include( $content_page );
                 }
             }
 
@@ -827,8 +828,8 @@ try
         $page = "";
 
         // send the URI to the right decoder
-        $page = "kernel/ezuser/user/datasupplier.php";
-        if ( file_exists( $page ) )
+        $page = eZExtension::moduleFile( 'user', 'user' );
+        if ( $page !== false )
         {
             include( $page );
         }

@@ -88,7 +88,7 @@ Exponential Basic now supports the following extension features:
 | Design file resolution | Working | `extension/<ext>/design/<design>/...` |
 | Frame / CSS / append files | Working | `extension/<ext>/design/<design>/frame.php`, `style.css`, `*.append.php` |
 | Template overrides | Working | `extension/<ext>/design/<design>/templates/<module>/<file>.tpl` |
-| Module dispatch | Planned | `extension/<ext>/modules/<mod>/...` |
+| Module dispatch | Working | `extension/<ext>/modules/<mod>/<type>/datasupplier.php` |
 | Translation overrides | Planned | `extension/<ext>/translations/` |
 | PHP classes and autoloading | Working through `var/autoload/ezp_kernel.php` regen | `extension/<ext>/classes/` |
 
@@ -416,40 +416,96 @@ Expected output includes:
 HelloWorldGreeting=Hello from extension!
 ```
 
+### `extension/helloworld/modules/helloworld/user/datasupplier.php`
+
+The sample also ships a minimal user module.  It sets `$GlobalSectionID`, loads a template from the extension design path, and prints its output to the main content buffer:
+
+```php
+<?php
+$ini = eZINI::instance( 'site.ini' );
+$GlobalSectionID = $ini->variable( 'eZUserMain', 'DefaultSection' );
+
+$templateDir = eZDesign::file( 'templates/helloworld' );
+if ( $templateDir === false )
+    $templateDir = 'design/standard/templates/helloworld';
+
+$t = new eZTemplate( $templateDir, '', '', 'datasupplier.php' );
+$t->set_file( 'welcome', 'welcome.tpl' );
+$t->set_var( 'hello', 'Hello from the extension module!' );
+$t->pparse( 'output', 'welcome' );
+```
+
+### `extension/helloworld/design/standard/templates/helloworld/welcome.tpl`
+
+```html
+<h1>{hello}</h1>
+<p>This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.</p>
+```
+
+### Module verification
+
+Visit `https://<site>/helloworld/` and you should see the page rendered inside the site frame:
+
+```
+Hello from the extension module!
+This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.
+```
+
 ---
 
-## Developing a new module (Phase 2 wiring)
+## Developing a new module
 
-> This section describes the planned/coming module layout.  The directory structure is ready; the resolver in `kernel/classes/ezpbkernelweb.php` will be wired in the next wave.
+A module extension provides user and/or admin views.  The front controller now resolves module URLs through `eZExtension::moduleFile()`, which looks for an extension module before falling back to the core `kernel/ez<module>/<type>/datasupplier.php` path.
 
-A module extension provides user and/or admin views.  Layout:
+### Layout
 
 ```
 extension/myext/modules/mymodule/
-  datasupplier.php          # User view dispatcher
+  user/
+    datasupplier.php          # User view dispatcher
   admin/
-    datasupplier.php        # Admin view dispatcher
-  module.info               # Title, permissions, menu position
+    datasupplier.php          # Admin view dispatcher
+  xmlrpc/
+    datasupplier.php          # Optional XML-RPC dispatcher
+  module.info                 # Title, permissions, menu position
 ```
+
+### Dispatch order
+
+For a request like `/mymodule/`, the front controller calls `eZExtension::moduleFile( 'mymodule', 'user' )`:
+
+1. `extension/<active-ext>/modules/mymodule/user/datasupplier.php` (each active extension in order)
+2. `kernel/ezmymodule/user/datasupplier.php` (core)
+
+If an extension module exists, it wins over the core module with the same name.
 
 ### Module `datasupplier.php` skeleton
 
 ```php
 <?php
-// extension/myext/modules/mymodule/datasupplier.php
+// extension/myext/modules/mymodule/user/datasupplier.php
 
-$url_array = $Params['Module'];   // or $GlobalRequestURI as an array
-$module = $url_array[0];
-$view   = $url_array[1] ?? 'index';
+$ini = eZINI::instance( 'site.ini' );
+if ( isset( $GlobalSectionIDOverride ) )
+{
+    $GlobalSectionID = $GlobalSectionIDOverride;
+}
+else
+{
+    $GlobalSectionID = $ini->variable( 'eZUserMain', 'DefaultSection' );
+}
 
-// Load a template from the extension design path.
-$tpl = new eZTemplate( eZDesign::file( 'templates/' . $GlobalSiteDesign . '/' ) ?: 'design/' . $GlobalSiteDesign . '/' );
-$tpl->set_file( 'myview', 'myview.tpl' );
-$tpl->set_var( 'hello', 'Hello from my module' );
+$templateDir = eZDesign::file( 'templates/mymodule' );
+if ( $templateDir === false )
+    $templateDir = 'design/' . $GlobalSiteDesign . '/templates/mymodule';
 
-$MainContents = $tpl->parse( 'output', 'myview' );
-include( eZDesign::file( 'frame.php' ) );
+$t = new eZTemplate( $templateDir, '', '', 'datasupplier.php' );
+$t->set_file( 'myview', 'myview.tpl' );
+$t->set_var( 'hello', 'Hello from my module' );
+$t->pparse( 'output', 'myview' );
 ```
+
+The output is captured by the front controller and placed inside the frame.  You do not need to call `include( eZDesign::file( 'frame.php' ) );` yourself.
 
 ### `module.info`
 
@@ -462,7 +518,7 @@ Description=Example module in an extension.
 index=User index view
 ```
 
-When module dispatch is fully wired, the front controller will search `extension/<ext>/modules/<module>/datasupplier.php` after the core `kernel/ez<module>/user/datasupplier.php` path.
+Admin module menus and link generation still read `kernel/ez<module>/module.info`; support for `extension/<ext>/modules/<module>/module.info` is the next wave.
 
 ---
 

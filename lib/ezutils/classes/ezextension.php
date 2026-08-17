@@ -45,6 +45,33 @@ class eZExtension
     }
 
     /**
+     * Return the datasupplier.php file for a module, checking extension modules
+     * before falling back to the core kernel module.
+     *
+     * @param string $module The module name without the 'ez' prefix.
+     * @param string $type   'user', 'admin', 'xmlrpc' or similar.
+     * @return string|false  The resolved file path, or false if not found.
+     */
+    public static function moduleFile( $module, $type = 'user' )
+    {
+        $extensionDirectory = self::baseDirectory();
+        $activeExtensions = self::activeExtensions( false );
+
+        foreach ( $activeExtensions as $activeExtension )
+        {
+            $path = "$extensionDirectory/$activeExtension/modules/$module/$type/datasupplier.php";
+            if ( file_exists( $path ) )
+                return $path;
+        }
+
+        $corePath = "kernel/ez$module/$type/datasupplier.php";
+        if ( file_exists( $corePath ) )
+            return $corePath;
+
+        return false;
+    }
+
+    /**
      * Return an array with activated extensions.
      *
      * @note Default extensions are those who are loaded before a siteaccess are determined while access extensions

@@ -335,7 +335,7 @@ foreach ($productList as $product)
 
 }
 
-$file = new eZFile();
+$file = new eZPBFile();
 $file->dumpYahooDataToFile( $feed, "data.txt" );
 
 $fileName = $file->tmpName();

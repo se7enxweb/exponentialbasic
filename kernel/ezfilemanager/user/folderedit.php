@@ -215,9 +215,9 @@ if ( ( $action == "Insert" || $action == "Update" ) && $error == false )
     $folder->store();
     $folderID = $folder->id();
 
-    changePermissions( $folderID, $readGroupArrayID, 'r' );
-    changePermissions( $folderID, $writeGroupArrayID, 'w' );
-    changePermissions( $folderID, $uploadGroupArrayID, 'u');
+    changeFileManagerFolderPermissions( $folderID, $readGroupArrayID, 'r' );
+    changeFileManagerFolderPermissions( $folderID, $writeGroupArrayID, 'w' );
+    changeFileManagerFolderPermissions( $folderID, $uploadGroupArrayID, 'u');
 
     // check if user uploaded a dir and had upload permission only and is not owner.
     // TODO: No move, insert takes permissions of parent.
@@ -225,9 +225,9 @@ if ( ( $action == "Insert" || $action == "Update" ) && $error == false )
          eZObjectPermission::hasPermission( $parentID, "filemanager_folder", 'w' ) == false &&
          $parent->user( false ) != $user->id() )
     {
-        changePermissions( $folderID, eZObjectPermission::getGroups( $parentID, "filemanager_folder", 'r', false ), 'r' );
-        changePermissions( $folderID, eZObjectPermission::getGroups( $parentID, "filemanager_folder", 'w', false ), 'w' );
-        changePermissions( $folderID, eZObjectPermission::getGroups( $parentID, "filemanager_folder", 'u', false ), 'u' );
+        changeFileManagerFolderPermissions( $folderID, eZObjectPermission::getGroups( $parentID, "filemanager_folder", 'r', false ), 'r' );
+        changeFileManagerFolderPermissions( $folderID, eZObjectPermission::getGroups( $parentID, "filemanager_folder", 'w', false ), 'w' );
+        changeFileManagerFolderPermissions( $folderID, eZObjectPermission::getGroups( $parentID, "filemanager_folder", 'u', false ), 'u' );
         $folder->setUser( $parent->user() );
         $folder->store();
     }
@@ -449,7 +449,7 @@ foreach ( $folderList as $folderItem )
 $t->pparse( "output", "folder_edit_tpl" );
 
 /******* FUNCTIONS ****************************/
-function changePermissions( $objectID, $groups, $permission )
+function changeFileManagerFolderPermissions( $objectID, $groups, $permission )
 {
     eZObjectPermission::removePermissions( $objectID, "filemanager_folder", $permission );
     if ( count( $groups ) > 0 )

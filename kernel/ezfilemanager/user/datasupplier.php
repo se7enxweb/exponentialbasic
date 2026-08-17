@@ -61,14 +61,14 @@ switch ( $url_array[2] )
         $action = "New";
         $newFile = true;
         $folderID = false;
-        include( "kernel/ezfilemanager/user/fileupload.php" );
+        include_once( "kernel/ezfilemanager/user/fileupload.php" );
     }
     break;
 
-    case "insert" :        
+    case "insert" :
     {
         $action = "Insert";
-        include( "kernel/ezfilemanager/user/fileupload.php" );
+        include_once( "kernel/ezfilemanager/user/fileupload.php" );
     }
     break;
 
@@ -76,15 +76,15 @@ switch ( $url_array[2] )
     {
         $fileID = $url_array[3];
         $action = "Edit";
-        include( "kernel/ezfilemanager/user/fileupload.php" );
+        include_once( "kernel/ezfilemanager/user/fileupload.php" );
     }
     break;
-    
+
     case "update" :
     {
         $fileID = $url_array[3];
         $action = "Update";
-        include( "kernel/ezfilemanager/user/fileupload.php" );
+        include_once( "kernel/ezfilemanager/user/fileupload.php" );
     }
     break;
     
@@ -132,21 +132,21 @@ switch ( $url_array[2] )
                 $action = "New";
                 $newFolder = true;
                 $folderID = false;
-                include( "kernel/ezfilemanager/user/folderedit.php" );
+                include_once( "kernel/ezfilemanager/user/folderedit.php" );
             }
             break;
             case "delete" :
             {
                 $folderID = $url_array[4];
                 $action = "Delete";
-                include( "kernel/ezfilemanager/user/folderedit.php" );
+                include_once( "kernel/ezfilemanager/user/folderedit.php" );
             }
             break;
             
             case "insert" :
             {
                 $action = "Insert";
-                include( "kernel/ezfilemanager/user/folderedit.php" );
+                include_once( "kernel/ezfilemanager/user/folderedit.php" );
             }
             break;
 
@@ -154,7 +154,7 @@ switch ( $url_array[2] )
             {
                 $folderID = $url_array[4];
                 $action = "Edit";
-                include( "kernel/ezfilemanager/user/folderedit.php" );
+                include_once( "kernel/ezfilemanager/user/folderedit.php" );
             }
             break;
 
@@ -162,7 +162,7 @@ switch ( $url_array[2] )
             {
                 $folderID = $url_array[4];
                 $action = "Update";
-                include( "kernel/ezfilemanager/user/folderedit.php" );
+                include_once( "kernel/ezfilemanager/user/folderedit.php" );
             }
             break;
 

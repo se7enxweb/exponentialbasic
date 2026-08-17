@@ -27,7 +27,7 @@
 // include_once( "classes/ezmenubox.php" );
 // include_once( "classes/INIFile.php" );
 
-$ini =& $globalSiteIni;
+$ini =& $GlobalSiteIni;
 $siteDesign = $ini->variable( "site", "SiteStyle" );
 
 $menuItems = array(

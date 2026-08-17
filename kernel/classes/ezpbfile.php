@@ -106,6 +106,8 @@ class eZPBFile
         $this->FileName = $fileName;
         $ini = eZINI::instance( 'site.ini' );
         $tmpDir = $ini->variable( "site", "SiteFroogleExportDir" );
+        if ( empty( $tmpDir ) || !is_dir( $tmpDir ) || !is_writable( $tmpDir ) )
+            $tmpDir = sys_get_temp_dir();
         $tmpfileName = tempnam( $tmpDir, "att" );
         $this->TmpFileName = $tmpfileName;
         $fh = fopen( $tmpfileName, 'wb' );
@@ -121,6 +123,8 @@ class eZPBFile
     $this->FileName = $fileName;
     $ini = eZINI::instance( 'site.ini' );
     $tmpDir = $ini->variable( "site", "SiteYahooExportDir" );
+    if ( empty( $tmpDir ) || !is_dir( $tmpDir ) || !is_writable( $tmpDir ) )
+        $tmpDir = sys_get_temp_dir();
     $tmpfileName = tempnam( $tmpDir, "att" );
     $this->TmpFileName = $tmpfileName;
     $fh = fopen( $tmpfileName, 'wb' );

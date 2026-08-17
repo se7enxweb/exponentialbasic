@@ -77,7 +77,7 @@ class eZRDFImporter
         $params["TrimWhiteSpace"] = true;
         $doc = eZXML::domTree( $output, $params );
 
-        if ( count( $doc->children ) > 0 )
+        if ( $doc !== false && count( $doc->children ) > 0 )
         {
             foreach ( $doc->children as $child )
             {

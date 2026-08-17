@@ -232,7 +232,7 @@ foreach ($productList as $product)
     $line['category'] . "\n";
 } 
 
-$file = new eZFile();
+$file = new eZPBFile();
 $file->dumpFroogleDataToFile( $feed, "fullthrottle.txt" );
 
 $fileName = $file->tmpName();

@@ -38,7 +38,7 @@
  * Minimal wrapper restoring the old eZFile upload API (tmpName/name/copy)
  * used by eZVirtualFile::setFile(). Extends eZFile so is_a() check passes.
  */
-if ( !class_exists( 'eZFileUploadWrapper' ) )
+if ( !class_exists( 'eZFileUploadWrapper', false ) )
 {
     class eZFileUploadWrapper extends eZFile
     {
@@ -277,8 +277,8 @@ if ( isset( $action ) && $action == "Insert" && !$error )
     if ( eZObjectPermission::hasPermission( $folderID, "filemanager_folder", 'w' ) ||
          eZVirtualFolder::isOwner( $user, $folderID ) ) 
     {
-        changePermissions( $fileID, $readGroupArrayID, 'r' );
-        changePermissions( $fileID, $writeGroupArrayID, 'w' );
+        changeFileManagerPermissions( $fileID, $readGroupArrayID, 'r' );
+        changeFileManagerPermissions( $fileID, $writeGroupArrayID, 'w' );
     }
     else // user had upload permission only, change ownership, set special rights..
     {
@@ -286,8 +286,8 @@ if ( isset( $action ) && $action == "Insert" && !$error )
 //        eZObjectPermission::setPermission( -1, $fileID, "filemanager_file", 'r' );
 //        $uploadedFile->setUser( $folder->user() );
 
-        changePermissions( $fileID, $readGroupArrayID, 'r' );
-        changePermissions( $fileID, $writeGroupArrayID, 'w' );
+        changeFileManagerPermissions( $fileID, $readGroupArrayID, 'r' );
+        changeFileManagerPermissions( $fileID, $writeGroupArrayID, 'w' );
         
         $uploadedFile->store();
     }
@@ -314,8 +314,8 @@ if ( isset( $action ) && $action == "Update" && $error == false )
     }    
 
     $uploadedFile->store();
-    changePermissions( $fileID, $readGroupArrayID, 'r' );
-    changePermissions( $fileID, $writeGroupArrayID, 'w' );
+    changeFileManagerPermissions( $fileID, $readGroupArrayID, 'r' );
+    changeFileManagerPermissions( $fileID, $writeGroupArrayID, 'w' );
 
     $folder = new eZVirtualFolder( $folderID );
 
@@ -526,7 +526,11 @@ foreach ( $folderList as $folderItem )
 $t->pparse( "output", "file_upload_tpl" );
 
 /******* FUNCTIONS ****************************/
-function changePermissions( $objectID, $groups, $permission )
+
+if ( !function_exists( 'changeFileManagerPermissions' ) )
+{
+
+function changeFileManagerPermissions( $objectID, $groups, $permission )
 {
     eZObjectPermission::removePermissions( $objectID, "filemanager_file", $permission );
     if ( count( $groups ) > 0 )
@@ -541,6 +545,8 @@ function changePermissions( $objectID, $groups, $permission )
             eZObjectPermission::setPermission( $group, $objectID, "filemanager_file", $permission );
         }
     }
+}
+
 }
 
 ?>

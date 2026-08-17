@@ -37,7 +37,7 @@
   If the $sortPage variable is set all items will have hyperlinked names linked to the variable content.
 */
 
-$ini =& $globalSiteIni;
+$ini =& $GlobalSiteIni;
 $language = $ini->variable( "eZContactMain", "Language" );
 $DOC_ROOT = $ini->variable( "eZContactMain", "DocumentRoot" );
 

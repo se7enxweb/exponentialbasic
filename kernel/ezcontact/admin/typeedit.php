@@ -35,7 +35,7 @@
   $page_path: The base name of the url, for example: /contact/consultationtype
 */
 
-$ini =& $globalSiteIni;
+$ini =& $GlobalSiteIni;
 $language = $ini->variable( "eZContactMain", "Language" );
 $DOC_ROOT = $ini->variable( "eZContactMain", "DocumentRoot" );
 

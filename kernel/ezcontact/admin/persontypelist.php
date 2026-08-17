@@ -28,7 +28,7 @@
 */
 // include_once( "classes/INIFile.php" );
 
-$ini =& $globalSiteIni;
+$ini =& $GlobalSiteIni;
 $language = $ini->variable( "eZContactMain", "Language" );
 $DOC_ROOT = $ini->variable( "eZContactMain", "DocumentRoot" );
 

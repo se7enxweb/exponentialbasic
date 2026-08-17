@@ -222,6 +222,8 @@ class eZTemplate
             }
         }
 
+        $this->loadExtensionTranslations();
+
         if ( empty( $this->Style ) || empty( $this->ModuleDir ) )
         {
             $this->CacheSuffix = "";
@@ -233,6 +235,42 @@ class eZTemplate
             if ( !empty( $state ) )
                 $state = "-" . $state;
             $this->CacheSuffix = $style ."-" . $language . $state . ".cache";
+        }
+    }
+
+    /*!
+      Loads translation overrides from active extensions.
+
+      Searches for `extension/<ext>/translations/<language>/<phpFile>.ini` and
+      merges the `[strings]` block into the current template text strings.
+    */
+    function loadExtensionTranslations()
+    {
+        if ( $this->language == '' )
+            return;
+
+        $phpFiles = is_array( $this->phpFile ) ? $this->phpFile : array( $this->phpFile );
+        $extensionBase = eZExtension::baseDirectory();
+        $activeExtensions = eZExtension::activeExtensions( false );
+
+        foreach ( $phpFiles as $phpFile )
+        {
+            $baseName = basename( $phpFile, '.php' );
+            foreach ( $activeExtensions as $activeExtension )
+            {
+                $extFile = "$extensionBase/$activeExtension/translations/" . $this->language . "/$baseName.ini";
+                if ( file_exists( $extFile ) )
+                {
+                    $extIni = eZINI::create( $extFile, false );
+                    $extGroups = $extIni->groups();
+                    if ( isset( $extGroups['strings'] ) && is_array( $extGroups['strings'] ) )
+                    {
+                        if ( !isset( $this->TextStrings['strings'] ) )
+                            $this->TextStrings['strings'] = array();
+                        $this->TextStrings['strings'] = array_merge( $this->TextStrings['strings'], $extGroups['strings'] );
+                    }
+                }
+            }
         }
     }
 

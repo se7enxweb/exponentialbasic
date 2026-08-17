@@ -23,9 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-
-// include_once( "classes/ezdb.php" );
-// include_once( "classes/ezdatetime.php" );
+require( 'autoload.php' );
 
 $db = eZDB::globalDatabase();
 
@@ -51,7 +49,7 @@ $offset = 0;
 $newelements = array( "dummy" );
 while ( count( $newelements ) > 0 )
 {
-    $db->array_query( $newelements, "SELECT COUNT(*), BrowserTypeID FROM eZStats_PageView WHERE Date < " . $timestamp . " GROUP BY BrowserTypeID", array( "Limit" => $limit, "Offset" => $offset ) );
+    $db->array_query( $newelements, "SELECT COUNT(*) AS Count, BrowserTypeID FROM eZStats_PageView WHERE Date < " . $timestamp . " GROUP BY BrowserTypeID", array( "Limit" => $limit, "Offset" => $offset ) );
     $offset += $limit;
     if ( $debug == true )
         print( "." );
@@ -67,12 +65,12 @@ while ( count( $newelements ) > 0 )
         {
             $db->lock( "eZStats_Archive_BrowserType" );
             $nextid = $db->nextID( "eZStats_Archive_BrowserType", "ID" );
-            $res[] = $db->query( "INSERT INTO eZStats_Archive_BrowserType (ID, Browser, Count) VALUES ('$nextid', '$browsername', '$element[0]')" );
+            $res[] = $db->query( "INSERT INTO eZStats_Archive_BrowserType (ID, Browser, Count) VALUES ('$nextid', '$browsername', '" . $element[$db->fieldName( "Count" )] . "')" );
             $db->unlock();
         }
         else
         {
-            $count = $oldelements[0][$db->fieldName("Count")] + $element[0];
+            $count = (int) $oldelements[0][$db->fieldName("Count")] + (int) $element[$db->fieldName("Count")];
             $res[] = $db->query( "UPDATE eZStats_Archive_BrowserType SET Count='$count' WHERE Browser='$browsername'" );
         }
     }
@@ -250,7 +248,6 @@ while ( count( $newelements ) > 0 )
 /* UniqueVisits archive
 
 $db->query( $newelements, "SELECT Date, RemoteHostID FROM eZStats_PageView WHERE Date < " . $timestamp . " ORDER BY Date" );
-
 
 foreach ( $newelements as $element )
 {

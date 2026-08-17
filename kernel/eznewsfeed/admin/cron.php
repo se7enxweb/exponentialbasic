@@ -23,15 +23,9 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
+require( 'autoload.php' );
 
 // this file is designed to run as a cron job
-
-// include_once( "eznewsfeed/classes/eznews.php" );
-// include_once( "eznewsfeed/classes/eznewscategory.php" );
-// include_once( "eznewsfeed/classes/eznewsimporter.php" );
-// include_once( "eznewsfeed/classes/ezsourcesite.php" );
-
-// include_once( "classes/ezdatetime.php" );
 
 // This will fetch the news from every source site
 $action = "ImportNews";

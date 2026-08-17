@@ -23,7 +23,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, US
 //
 
-// include_once( "ezsession/classes/ezsession.php" );
+require( 'autoload.php' );
 
 $session = new eZSession();
 $session->cleanup();

@@ -786,11 +786,15 @@ try
             // include framework
             if ( isset( $PrintableVersion ) and $PrintableVersion == "enabled" )
             {
-                include( "design/$siteDesign/simpleframe.php" );
+                $simpleFrameFile = eZDesign::file( "simpleframe.php", $siteDesign );
+                if ( $simpleFrameFile !== false )
+                    include( $simpleFrameFile );
             }
             else
             {
-                include( "design/$siteDesign/frame.php" );
+                $frameFile = eZDesign::file( "frame.php", $siteDesign );
+                if ( $frameFile !== false )
+                    include( $frameFile );
             }
 
             // store site cache
@@ -835,7 +839,9 @@ try
         ob_end_clean();
         ob_start();
 
-        include( "design/$siteDesign/loginframe.php" );
+        $loginFrameFile = eZDesign::file( "loginframe.php", $siteDesign );
+        if ( $loginFrameFile !== false )
+            include( $loginFrameFile );
     }
 
 

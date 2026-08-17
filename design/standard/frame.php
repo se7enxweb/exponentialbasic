@@ -22,12 +22,19 @@ if ( isset( $MetaRedirectLocation ) && isset( $MetaRedirectTimer ) )
 }
 
 ?>
-<link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/style.css" />
-<link rel="stylesheet" type="text/css" href="<?php print $GlobalSiteIni->WWWDir; ?>/design/<?php print ($GlobalSiteDesign); ?>/responsive.css" />
+<link rel="stylesheet" type="text/css" href="<?php print eZDesign::url( 'style.css' ); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php print eZDesign::url( 'responsive.css' ); ?>" />
 <?php
    // eZ calendar : Client Side ( DHTML/CSS, Client Side Script )
    // #############################################################################
-   include_once("design/$GlobalSiteDesign/frame_head_calendar.append.php");
+   $calendarFile = eZDesign::file( 'frame_head_calendar.append.php' );
+   if ( $calendarFile !== false )
+       include_once( $calendarFile );
+
+   // Generic hook for extensions to append content to <head>
+   $frameHeadFile = eZDesign::file( 'frame_head.append.php' );
+   if ( $frameHeadFile !== false )
+       include_once( $frameHeadFile );
 ?>
 <script language="JavaScript1.2">
 <!--//

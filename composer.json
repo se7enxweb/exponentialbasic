@@ -39,7 +39,7 @@
         "zetacomponents/base": "^1.9.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "10.0.0",
+        "phpunit/phpunit": "13.0.0",
         "zetacomponents/php-generator": "~1.1",
         "rector/rector": "^2.0"
     },

@@ -12,7 +12,7 @@ Previously this was developed and released as eZ Community 2.3 the community por
 
 Today is a new day and a new chance to complete the work started by 7x with the eZ Community Distribution of eZ Pubilsh 2+.
 
-To distinguish between different product releases we have decided to release the finished work under the original name with a brand identifier 'basic' to indicate that exponential basic or Exponential Basic is supporting PHP 8.1 - 8.3 powered Web Servers. It can be used today in 2025 to learn how to more quickly build simple web applications in minutes rather than days as common needs can follow existing developed code patterns in implementation phase(s). Learn by example, Learn by doing, build a bridge to a new world not a wall.
+To distinguish between different product releases we have decided to release the finished work under the original name with a brand identifier 'basic' to indicate that exponential basic or Exponential Basic is supporting PHP 8.1 - 8.3 powered Web Servers. It can be used today in 2026 to learn how to more quickly build simple web applications in minutes rather than days as common needs can follow existing developed code patterns in implementation phase(s). Learn by example, Learn by doing, build a bridge to a new world not a wall.
 
 We are also incrementing the version number from 2.3.x to 2.4.x.x to give more version number space while clearly marking this release as unique. Short standard for the version numbers will be 2.4
 

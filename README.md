@@ -17,7 +17,7 @@ This project is led by [7x](https://se7enx.com) and aims to ensure the long-term
  * Current unreleased Version In Development: Version 2.4.0.2 (Stable)
  * Source Code [https://github.com/se7enxweb/exponentialbasic](https://github.com/se7enxweb/exponentialbasic)
  * Maintainer: [7x](https://se7enx.com)
- * Document Last revised: 2025.09.17
+ * Document Last revised: 2026.08.17
 
 ---
 
@@ -307,4 +307,4 @@ Check out the Contributing Guidelines for more details.
 
 ---
 
-Developed with ❤️ by 7x. The company driving Exponential Basic development in 2025 and beyond.
+Developed with ❤️ by 7x. The company driving Exponential Basic development in 2026 and beyond.

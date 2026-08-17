@@ -73,11 +73,13 @@ if ( count( $latest ) > 0 )
         {
             $t->set_var( "referer_domain", "Direct" );
             $t->set_var( "referer_uri", "" );
+            $t->set_var( "referer_link", "#" );
         }
         else
         {
             $t->set_var( "referer_domain", $referer["Domain"] );
             $t->set_var( "referer_uri", $referer["URI"] );
+            $t->set_var( "referer_link", "http://" . $referer["Domain"] . $referer["URI"] );
         }
         $t->set_var( "page_view_count", $referer["Count"] );
 

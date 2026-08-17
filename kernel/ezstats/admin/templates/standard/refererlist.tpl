@@ -35,7 +35,7 @@
     <!-- BEGIN referer_tpl -->
     <tr class="{bg_color}">
 	    <td>
-	        <a target="_blank" href="http://{referer_domain}{referer_uri}">{referer_domain}</a>
+	        <a target="_blank" href="{referer_link}">{referer_domain}</a>
 	    </td>
 	    <td>
 	        {referer_uri}

@@ -16,10 +16,10 @@ class eZPublishSDK
 {
     const VERSION_MAJOR = 2;
     const VERSION_MINOR = 4.0;
-    const VERSION_RELEASE = 0.2;
+    const VERSION_RELEASE = 0.3;
     const VERSION_STATE = 'stable';
     const VERSION_DEVELOPMENT = false;
-    const VERSION_ALIAS = '2.4.0.2';
+    const VERSION_ALIAS = '2.4.0.3';
     const EDITION = 'Exponential Basic';
 
     /*!

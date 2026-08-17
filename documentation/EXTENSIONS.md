@@ -87,6 +87,7 @@ Exponential Basic now supports the following extension features:
 | Siteaccess-specific settings | Working | `extension/<ext>/settings/siteaccess/<sa>/site.ini.append` |
 | Design file resolution | Working | `extension/<ext>/design/<design>/...` |
 | Frame / CSS / append files | Working | `extension/<ext>/design/<design>/frame.php`, `style.css`, `*.append.php` |
+| Template overrides | Working | `extension/<ext>/design/<design>/templates/<module>/<file>.tpl` |
 | Module dispatch | Planned | `extension/<ext>/modules/<mod>/...` |
 | Translation overrides | Planned | `extension/<ext>/translations/` |
 | PHP classes and autoloading | Working through `var/autoload/ezp_kernel.php` regen | `extension/<ext>/classes/` |
@@ -326,6 +327,43 @@ Then in a frame template the image can be referenced with:
 ```
 
 If the frame still uses hard-coded `design/<?php print $GlobalSiteDesign; ?>/images/...`, the override will not be found.  Those templates are being migrated to `eZDesign::url()` over time.
+
+### Section- and frontpage-specific designs
+
+`eZDesign` also honors the `$GlobalSiteDesign` variable.  The eZ site manager sets `$GlobalSiteDesign` to the design of the current section or front page (for example `ecommerce` for `/section-ecommerce/`).  When `eZDesign::file()` or `eZDesign::url()` is called without an explicit design, it will use `$GlobalSiteDesign` first and fall back to `[site] SiteDesign` and finally to `[DesignSettings] StandardDesign`.  This keeps section-specific frames and CSS working while still allowing extension overrides.
+
+---
+
+## How template overrides work
+
+`eZTemplate::set_file()` has been wired into `eZDesign::templateFile()`.  When a module asks for a template file (for example `loginmain.tpl`), the system now searches for an override in the active design before falling back to the core module template directory.
+
+### Template search order
+
+For a module template loaded from `kernel/<module>/<siteaccess>/templates/<design>/<file>.tpl` (for example `kernel/ezuser/user/templates/standard/loginmain.tpl`):
+
+1. `extension/<active-ext>/design/<current-design>/templates/<module>/<siteaccess>/<file>.tpl`
+2. `extension/<active-ext>/design/<current-design>/templates/<module>/<file>.tpl`
+3. `extension/<active-ext>/design/<current-design>/templates/<file>.tpl`
+4. `design/<current-design>/templates/<module>/<siteaccess>/<file>.tpl`
+5. `design/<current-design>/templates/<module>/<file>.tpl`
+6. `design/<current-design>/templates/<file>.tpl`
+7. The same three paths under each additional and standard design
+8. The original core module template directory
+
+The most specific match wins, and an extension template is always preferred over a core template at the same level.
+
+### Example: overriding a user template
+
+`extension/myext/design/standard/templates/ezuser/user/login.tpl` overrides the user login template.  The more specific `/<siteaccess>/` path is useful when the same template name exists for both `user` and `admin`.
+
+### Example: overriding a frontpage template
+
+`extension/myext/design/standard/templates/ezarticle/frontpage.tpl` overrides the article frontpage for the `standard` design.
+
+### Important note
+
+Because `eZDesign` now honors the active section design (`$GlobalSiteDesign`), template overrides should be provided under the design the section uses.  If you are overriding a template that is shown in the `ecommerce` section, place it under `extension/myext/design/ecommerce/templates/...` (or rely on `standard` fallback).
 
 ---
 
@@ -599,8 +637,8 @@ Reload the site.  The title, favicon text, and headings should reflect the brand
 
 | Method | Returns | Example |
 |---|---|---|
-| `eZDesign::file( $file, $design = false )` | First matching filesystem path, or `false`. | `eZDesign::file('style.css')` |
-| `eZDesign::url( $file, $design = false )` | Web URL ready for `href`/`src`, or `false`. | `eZDesign::url('images/logo.png')` |
+| `eZDesign::file( $file, $design = false )` | First matching filesystem path, or `false`.  Uses `$GlobalSiteDesign` when set. | `eZDesign::file('style.css')` |
+| `eZDesign::url( $file, $design = false )` | Web URL ready for `href`/`src`, or `false`.  Uses `$GlobalSiteDesign` when set. | `eZDesign::url('images/logo.png')` |
 
 ### Extension file search path
 
@@ -736,8 +774,7 @@ The next waves of extension work will add:
 
 1. Module dispatch from `extension/<ext>/modules/<module>/`.
 2. Translation loading from `extension/<ext>/translations/`.
-3. Template resolution through `eZDesign` inside `eZTemplate::set_file()`.
-4. Admin module menu/link support from `module.info` in extensions.
-5. A command-line tool to create a new extension skeleton.
+3. Admin module menu/link support from `module.info` in extensions.
+4. A command-line tool to create a new extension skeleton.
 
 This guide will be updated as those features land.

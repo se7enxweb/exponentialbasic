@@ -90,7 +90,7 @@ Exponential Basic now supports the following extension features:
 | Template overrides | Working | `extension/<ext>/design/<design>/templates/<module>/<file>.tpl` |
 | Module dispatch | Working | `extension/<ext>/modules/<mod>/<type>/datasupplier.php` |
 | Translation overrides | Working | `extension/<ext>/translations/<language>/<phpFile>.ini` |
-| PHP classes and autoloading | Working through `var/autoload/ezp_kernel.php` regen | `extension/<ext>/classes/` |
+| PHP classes and autoloading | Working through `var/autoload/ezp_extension.php` regen | `extension/<ext>/classes/` |
 
 The sections below explain each feature in detail.
 
@@ -590,22 +590,42 @@ Create `extension/myext/classes/myclass.php`:
 
 ```php
 <?php
-class myClass
+class eZMyExtMyClass
 {
     public static function hello()
     {
-        return 'Hello from myClass';
+        return 'Hello from eZMyExtMyClass';
     }
 }
 ```
 
-After creating or renaming a class, regenerate the autoload map:
+After creating or renaming a class, regenerate the extension autoload map:
 
 ```bash
-php bin/shell/php/ezpgenerateautoloads.php -k
+php bin/shell/php/ezpgenerateautoloads.php -e
 ```
 
-The next request will load `myClass` automatically through `autoload.php` / `var/autoload/ezp_kernel.php`.
+The next request will load the class automatically through `autoload.php` and `var/autoload/ezp_extension.php`.
+
+### Sample `extension/helloworld/classes/helloworld.php`
+
+```php
+<?php
+class eZHelloWorld
+{
+    static function greeting()
+    {
+        return 'Hello from the eZHelloWorld class!';
+    }
+}
+```
+
+Run `php bin/shell/php/ezpgenerateautoloads.php -e`, then from a script:
+
+```php
+require 'autoload.php';
+echo eZHelloWorld::greeting();
+```
 
 ### Avoiding name collisions
 
@@ -870,11 +890,12 @@ Earlier experiments used `ezextensions/` and `extensions/` (plural).  The canoni
 
 ## Appendix C — Future roadmap for extensions
 
-The next waves of extension work will add:
+The next wave of extension work will add:
 
-1. Module dispatch from `extension/<ext>/modules/<module>/`.
-2. Translation loading from `extension/<ext>/translations/`.
-3. Admin module menu/link support from `module.info` in extensions.
-4. A command-line tool to create a new extension skeleton.
+1. Admin module menu/link support from `module.info` in extensions (the
+   existing Basic admin menu uses `EnabledAdminModules` in `site.ini`; an
+   `extension/<ext>/modules/<module>/module.info` discovery layer would make
+   extension modules appear there automatically).
+2. A command-line tool to create a new extension skeleton.
 
 This guide will be updated as those features land.

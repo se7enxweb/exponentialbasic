@@ -122,15 +122,14 @@ class eZSysinfo
     */
     static public function chostname()
     {
-        if ( $fp = fopen('/proc/sys/kernel/hostname','r') )
+        $result = "N.A.";
+        if ( function_exists( 'gethostname' ) && ( $hostname = gethostname() ) )
         {
-            $result = trim( fgets( $fp, 4096 ) );
-            fclose( $fp );
-            $result = gethostbyaddr( gethostbyname( $result ) );
+            $result = $hostname;
         }
-        else
+        elseif ( ( $hostname = trim( shell_exec( 'hostname -f 2>/dev/null' ) ) ) )
         {
-            $result = "N.A.";
+            $result = $hostname;
         }
         return $result;
     }
@@ -369,28 +368,16 @@ class eZSysinfo
     */
     static public function kernel()
     {
-        if ( $fd = fopen("/proc/version", "r") )
+        $result = "N.A.";
+        $release = function_exists( 'php_uname' ) ? php_uname( 'r' ) : trim( shell_exec( 'uname -r' ) );
+        if ( $release )
         {
-            $buf = fgets( $fd, 4096 );
-            fclose( $fd );
-
-            if ( preg_match( "/version (.*?) /", $buf, $ar_buf ) )
+            $result = $release;
+            $version = function_exists( 'php_uname' ) ? php_uname( 'v' ) : shell_exec( 'uname -v' );
+            if ( $version && strpos( $version, 'SMP' ) !== false )
             {
-                $result = $ar_buf[1];
-
-                if ( preg_match("/SMP/", $buf) )
-                {
-                    $result .= " (SMP)";
-                }
+                $result .= " (SMP)";
             }
-            else
-            {
-                $result = "N.A.";
-            }
-        }
-        else
-        {
-            $result = "N.A.";
         }
 
         return $result;
@@ -403,16 +390,18 @@ class eZSysinfo
     */
     static public function loadavg()
     {
+        $results = array("N.A.","N.A.","N.A.");
         if ( $fd = fopen("/proc/loadavg", "r") )
         {
-            $results = preg_split( "/[|\s:]/", fgets( $fd, 4096 ) );
+            $line = fgets( $fd, 4096 );
             fclose( $fd );
+            $results = preg_split( "/[|\s:]/", $line );
         }
-        else
+        elseif ( ( $line = trim( shell_exec( 'cat /proc/loadavg 2>/dev/null' ) ) ) )
         {
-            $results = array("N.A.","N.A.","N.A.");
+            $results = preg_split( "/[|\s:]/", $line );
         }
-        
+
         return $results;
     }
 
@@ -424,29 +413,41 @@ class eZSysinfo
     */
     static public function uptime()
     {
-        $result = false;
-        $fd = fopen("/proc/uptime", "r");
-        $ar_buf = preg_split( "/[|\s:]/", fgets( $fd, 4096 ) );
-        fclose( $fd );
-
-        $sys_ticks = trim( $ar_buf[0] );
-
-        $min   = (int) $sys_ticks / 60;
-        $hours = $min / 60;
-        $days  = floor( $hours / 24 );
-        $hours = floor( $hours - ($days * 24) );
-        $min   = floor( $min - ($days * 60 * 24) - ($hours * 60) );
-    
-        if ( $days != 0 )
+        $result = "N.A.";
+        $line = false;
+        if ( $fd = fopen("/proc/uptime", "r") )
         {
-            $result = "$days days, ";
-        }  
-        if ( $hours != 0 )
-        {
-            $result .= "$hours hours, ";
+            $line = fgets( $fd, 4096 );
+            fclose( $fd );
         }
-        $result .= "$min minutes";
-    
+        elseif ( ( $line = shell_exec( 'cat /proc/uptime 2>/dev/null' ) ) )
+        {
+            $line = trim( $line );
+        }
+
+        if ( $line )
+        {
+            $ar_buf = preg_split( "/[|\s:]/", $line );
+            $sys_ticks = trim( $ar_buf[0] );
+
+            $min   = (int) $sys_ticks / 60;
+            $hours = $min / 60;
+            $days  = floor( $hours / 24 );
+            $hours = floor( $hours - ($days * 24) );
+            $min   = floor( $min - ($days * 60 * 24) - ($hours * 60) );
+
+            $result = "";
+            if ( $days != 0 )
+            {
+                $result = "$days days, ";
+            }
+            if ( $hours != 0 )
+            {
+                $result .= "$hours hours, ";
+            }
+            $result .= "$min minutes";
+        }
+
         return $result;
     }
 

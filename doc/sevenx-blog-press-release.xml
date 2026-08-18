@@ -1,0 +1,31 @@
+<section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
+  <section>
+    <header>Exponential Basic 2.4.0.3 is ready: a real extension system, a storage sample, and a cleaner admin UI</header>
+    <paragraph>7x has released <strong>Exponential Basic 2.4.0.3</strong>, the next step in the long-running effort to bring the eZ Publish 2 kernel forward to PHP 8. This release makes extensions a first-class citizen, ships a working database-backed sample, and polishes the admin experience across the board.</paragraph>
+    <paragraph>If you have been looking for a clean way to add your own modules, admin views and database tables without editing the core, this is the release you have been waiting for.</paragraph>
+  </section>
+  <section>
+    <header>Extensions are now a first-class part of the system</header>
+    <paragraph>The headline feature of 2.4.0.3 is a complete extension-module pipeline. Active extensions can now supply <strong>user</strong> and <strong>admin</strong> views, per-view <strong>translations</strong>, <strong>module.info</strong> metadata, admin <strong>menubox.php</strong> side menus and module icons. The front controller, eZTemplate and eZDesign layers now resolve, merge and translate these automatically, so a module living in <emphasize>extension/myext/</emphasize> behaves like a native part of the application.</paragraph>
+    <paragraph>A new <strong>create_extension.php</strong> skeleton generator produces the whole module layout for you: module directories, datasupplier files, intl catalogues, a menubox and even a starter template. This is the fastest way to bootstrap a new eZ Basic extension.</paragraph>
+    <paragraph>To show how everything fits together, the <strong>helloworld</strong> sample has been expanded into a full create-and-list example. It includes the <emphasize>eZHelloWorldItem</emphasize> storage class, which uses <emphasize>eZDB::globalDatabase()</emphasize> for create, fetch, search, update and delete, plus an admin list view styled like the core article archive and a public view that lists stored messages. If you can build a hello-world module, you can build a real one.</paragraph>
+  </section>
+  <section>
+    <header>Admin experience and core stability</header>
+    <paragraph>The white admin design has been refreshed. GIF tile borders have been replaced with CSS, desktop body spacing has been tightened, and mobile responsive styles have been improved. Footer branding now uses the Exponential Basic badge, and referrer list parsing no longer produces broken <emphasize>http://Direct</emphasize> links for blank referrers.</paragraph>
+    <paragraph>Under the surface, 2.4.0.3 fixes admin rendering and fatal errors in contact, file manager, trade, article, newsfeed and eZPBFile views. eZStats reporting has been improved for dates, browser counts, reverse-DNS and blank-referrer handling. Cron scripts now consistently include the autoloader, and the SQLite driver no longer aborts responses when WAL mode cannot be set.</paragraph>
+    <paragraph>Other operational improvements include moving eZ Basic caches out of <emphasize>kernel/</emphasize> and into <emphasize>var/cache/</emphasize>, restoring <emphasize>/proc</emphasize>-based sysinfo pages with a PHP 8-safe fallback, defaulting the site root to the article front page, and bumping the bundled phpunit dependency to a secure version.</paragraph>
+  </section>
+  <section>
+    <header>Try it and get involved</header>
+    <paragraph>Exponential Basic 2.4.0.3 is available now from GitHub. You can read the full changelog or download the release below.</paragraph>
+    <paragraph><link target="_blank" href="https://github.com/se7enxweb/exponentialbasic/releases/tag/v2.4.0.3">Download Exponential Basic 2.4.0.3</link></paragraph>
+    <paragraph><link target="_blank" href="https://github.com/se7enxweb/exponentialbasic/blob/main/doc/changelogs/2.4.0.3.md">Read the full 2.4.0.3 changelog</link></paragraph>
+    <paragraph>Have a question? Ask on the <link target="_blank" href="https://share.se7enx.com/forums">community forums</link>.</paragraph>
+  </section>
+  <section>
+    <header>About Exponential Basic</header>
+    <paragraph>Exponential Basic is the eZ Publish 2 kernel implementation upgraded for PHP 8.1 - 8.3. It is maintained by 7x and released under the GNU General Public License. The project provides a lightweight, educational and production-suitable foundation for personal home pages, community websites and simple PHP applications.</paragraph>
+    <paragraph><emphasize>“This release is a practical milestone,”</emphasize> said Graham Brookins, founder of 7x. <emphasize>“Extension modules were always part of the eZ vision, and now they actually work again on PHP 8. With the helloworld storage sample and the updated admin list, developers can see exactly how to extend the system without changing the core.”</emphasize></paragraph>
+  </section>
+</section>

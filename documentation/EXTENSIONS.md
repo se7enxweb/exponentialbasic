@@ -2,7 +2,7 @@
 
 ## What this guide is for
 
-This document shows how to write, install, and activate extensions for **Exponential Basic** (the eZ Publish 2/PHP 8 port maintained by 7x).  Extensions live in the `extension/` directory and can override settings, add design resources, and (in the next wave of work) provide new modules, translations, and PHP classes without changing the core application files.
+This document shows how to write, install, and activate extensions for **Exponential Basic** (the eZ Publish 2/PHP 8 port maintained by 7x).  Extensions live in the `extension/` directory and can override settings, add design resources, add new modules (with admin/user views, menus, and translations), and add PHP classes without changing the core application files.
 
 The guide is split into two parts:
 
@@ -431,7 +431,7 @@ HelloWorldGreeting=Hello from extension!
 
 ### `extension/helloworld/modules/helloworld/user/datasupplier.php`
 
-The sample also ships a minimal user module.  It sets `$GlobalSectionID`, loads a template from the extension design path, picks up translated strings from `extension/helloworld/module/user/intl/`, and prints its output to the main content buffer:
+The sample also ships a minimal user module.  It sets `$GlobalSectionID`, loads a template from the extension design path, picks up translated strings from `extension/helloworld/modules/helloworld/user/intl/`, and prints its output to the main content buffer:
 
 ```php
 <?php
@@ -499,11 +499,20 @@ A module extension provides user and/or admin views.  The front controller now r
 extension/myext/modules/mymodule/
   user/
     datasupplier.php          # User view dispatcher
+    intl/
+      en_US/
+        datasupplier.ini      # User view strings
   admin/
     datasupplier.php          # Admin view dispatcher
+    menubox.php               # Admin side menu box
+    intl/
+      en_US/
+        datasupplier.ini      # Admin view strings
+        menubox.php.ini       # Side menu title and strings
   xmlrpc/
     datasupplier.php          # Optional XML-RPC dispatcher
   module.info                 # Title, permissions, menu position
+  admin/images/module_icon.png  # Optional 32x32 admin icon
 ```
 
 ### Dispatch order
@@ -571,6 +580,52 @@ index=User index view
 ```
 
 Admin module menus and link generation now also read `extension/<ext>/modules/<module>/module.info`.  The `Name` key supplies the module title and the `admin/menubox.php` (if present) builds the side menu; `module.info` is discovered automatically for active extensions.
+
+### `admin/menubox.php` and `admin/intl/en_US/menubox.php.ini`
+
+An admin module can add a box to the left-side admin menu.  The menubox is an `eZMenuBox` that loads its own template and strings:
+
+`extension/myext/modules/mymodule/admin/menubox.php`:
+
+```php
+<?php
+//
+// extension/myext/modules/mymodule/admin/menubox.php
+//
+// Admin side menu box for the mymodule extension.
+
+$ini = eZINI::instance( 'site.ini' );
+$Language = $ini->variable( 'site', 'Language' );
+
+$moduleBaseDir = eZExtension::moduleBaseDir( 'mymodule', 'admin' );
+if ( $moduleBaseDir === false )
+    $moduleBaseDir = 'extension/myext/modules/mymodule';
+$intlDir = "$moduleBaseDir/admin/intl";
+
+$menu = new eZMenuBox( $intlDir, $Language, 'menubox.php' );
+$menu->setTitle( 'My Module' );
+
+$menu->addItem( array(
+    'url' => '/mymodule/',
+    'name' => 'Overview',
+) );
+$menu->addItem( array(
+    'url' => '/mymodule/admin/',
+    'name' => 'Admin view',
+) );
+
+$menu->printMenuBox();
+```
+
+`extension/myext/modules/mymodule/admin/intl/en_US/menubox.php.ini`:
+
+```ini
+[strings]
+module_name=My Module
+module_description=Example module in an extension.
+```
+
+The `module_name` value is used for the menu title and the admin mainbox header when the module is active.  If `menubox.php` is not provided, the admin title is still read from `module.info`.
 
 ---
 
@@ -783,7 +838,7 @@ BrandColor=#0055aa
 
 ### Step 4 — activate
 
-Edit `settings/site.ini`:
+Edit `settings/override/site.ini.append.php`:
 
 ```ini
 [ExtensionSettings]
@@ -809,8 +864,8 @@ Reload the site.  The title, favicon text, and headings should reflect the brand
 | Setting | File | Meaning |
 |---|---|---|
 | `ExtensionDirectory` | `settings/site.ini [ExtensionSettings]` | Base directory for extensions.  Always `extension` in Exponential Basic. |
-| `ActiveExtensions[]` | `settings/site.ini [ExtensionSettings]` | Extensions loaded before siteaccess matching. |
-| `ActiveAccessExtensions[]` | `settings/site.ini [ExtensionSettings]` | Extensions loaded after siteaccess matching. |
+| `ActiveExtensions[]` | `settings/override/site.ini.append.php [ExtensionSettings]` | Extensions loaded before siteaccess matching.  This is the canonical per-installation activation location. |
+| `ActiveAccessExtensions[]` | `settings/override/site.ini.append.php [ExtensionSettings]` | Extensions loaded after siteaccess matching. |
 | `ExtensionOrdering` | `settings/site.ini [ExtensionSettings]` | `enabled` to sort by declared dependencies. |
 | `StandardDesign` | `settings/site.ini [DesignSettings]` | Fallback design when a resource is missing in the active design. |
 | `AdditionalSiteDesignList[]` | `settings/site.ini [DesignSettings]` | Extra designs to search before falling back to `StandardDesign`. |
@@ -822,6 +877,24 @@ Reload the site.  The title, favicon text, and headings should reflect the brand
 |---|---|---|
 | `eZDesign::file( $file, $design = false )` | First matching filesystem path, or `false`.  Uses `$GlobalSiteDesign` when set. | `eZDesign::file('style.css')` |
 | `eZDesign::url( $file, $design = false )` | Web URL ready for `href`/`src`, or `false`.  Uses `$GlobalSiteDesign` when set. | `eZDesign::url('images/logo.png')` |
+
+### `eZExtension` module API
+
+These helpers are used by the admin frame, `eZMenuBox`, and extension module views to discover module files, names, icons, and translation directories without hard-coding `extension/` or `kernel/ez` paths.
+
+| Method | Returns | Example |
+|---|---|---|
+| `eZExtension::baseDirectory( $siteINI = null )` | The configured `ExtensionDirectory` string, e.g. `extension`. | `eZExtension::baseDirectory()` |
+| `eZExtension::activeExtensions( $extensionType = false, $siteINI = null )` | Array of active extension names. `false` = both `ActiveExtensions` and `ActiveAccessExtensions`. | `eZExtension::activeExtensions( false )` |
+| `eZExtension::moduleFile( $module, $type = 'user' )` | Path to `modules/<module>/<type>/datasupplier.php` or `kernel/ez<module>/<type>/datasupplier.php`, or `false`. | `eZExtension::moduleFile( 'helloworld', 'admin' )` |
+| `eZExtension::moduleMenuFile( $module, $type = 'admin' )` | Path to `modules/<module>/<type>/menubox.php` or core equivalent, or `false`. | `eZExtension::moduleMenuFile( 'helloworld', 'admin' )` |
+| `eZExtension::moduleBaseDir( $module, $type = 'admin' )` | Filesystem base directory for the module, e.g. `extension/helloworld/modules/helloworld`. | `eZExtension::moduleBaseDir( 'helloworld', 'admin' )` |
+| `eZExtension::moduleInfoFile( $module )` | Path to `modules/<module>/module.info` or `kernel/ez<module>/module.info`, or `false`. | `eZExtension::moduleInfoFile( 'helloworld' )` |
+| `eZExtension::moduleName( $module )` | The display name from `module.info` `[Module] Name`, or a mixed-case fallback. | `eZExtension::moduleName( 'helloworld' )` |
+| `eZExtension::moduleUrlName( $moduleName )` | Converts an eZ-style module name (`eZHelloworld`) to a URL name (`helloworld`). | `eZExtension::moduleUrlName( 'eZHelloworld' )` |
+| `eZExtension::moduleIcon( $module, $type = 'admin' )` | URL path to the module icon. Prefers `.png`, falls back to `.gif`, then a generic design icon. | `eZExtension::moduleIcon( 'helloworld', 'admin' )` |
+| `eZExtension::availableModules()` | Array of eZ-style module names found in active extensions. | `eZExtension::availableModules()` |
+| `eZExtension::availableAdminModules( $asStrings = false )` | Array of admin modules. With `$asStrings=true` returns `eZHelloworld|ezhelloworld` style strings. | `eZExtension::availableAdminModules( true )` |
 
 ### Extension file search path
 
@@ -951,17 +1024,11 @@ Earlier experiments used `ezextensions/` and `extensions/` (plural).  The canoni
 
 ---
 
-## Appendix C — Future roadmap for extensions
-
-The next wave of extension work will add:
-
-1. Admin module menu/link support from `module.info` in extensions (the
-   existing Basic admin menu uses `EnabledAdminModules` in `site.ini`; an
-   `extension/<ext>/modules/<module>/module.info` discovery layer would make
-   extension modules appear there automatically).
+## Appendix C — Extension feature status
 
 Done:
 
-2. A command-line tool to create a new extension skeleton — `php bin/shell/php/create_extension.php <name>`.
-
-This guide will be updated as those features land.
+1. Admin module menu/link support from `module.info` in extensions.  `extension/<ext>/modules/<module>/module.info` and `admin/menubox.php` are discovered automatically and appear in the admin menu.
+2. Per-view translation catalogues under `modules/<module>/{admin,user}/intl/<language>/<phpFile>.ini`.
+3. `eZExtension` helpers (`moduleFile`, `moduleMenuFile`, `moduleBaseDir`, `moduleIcon`, `moduleName`, `moduleUrlName`, `availableAdminModules`) for extension module discovery.
+4. A command-line tool to create a new extension skeleton — `php bin/shell/php/create_extension.php <name>`.

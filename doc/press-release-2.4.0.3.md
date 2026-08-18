@@ -1,81 +1,79 @@
-# For Immediate Release
+7x Releases Exponential Basic 2.4.0.3
+======================================
 
-**Exponential Basic 2.4.0.3 Now Available: Extension Modules, Admin UI Refresh, and PHP 8 Hardening**
+7x is very proud of the work released today as **Exponential Basic 2.4.0.3**, a major upgrade to the 2.4 series that completes the extension-module API, ships a working database-backed sample extension, and hardens the admin experience and core modules for PHP 8.
 
-**August 18, 2026**
+This release provides a lot more features under the hood while keeping the same simple-to-use CMS on the surface. Developers can now build and activate new modules, admin views, and database-backed features without touching the core application files.
 
-7x today announced the release of **Exponential Basic 2.4.0.3**, the latest version of the open-source, PHP 8-ready eZ Publish 2 kernel upgrade. This release completes the extension-module API, ships the first fully working sample extension with database storage, and hardens the admin interface and core modules for production use.
+[Download the 2.4.0.3][1] release and give it a try. It is well documented with simple-to-follow instructions for getting started.
 
-Exponential Basic is 7x's long-running project to preserve and modernise the eZ Publish 2 codebase, bringing the proven community-building and personal-home-page CMS engine to PHP 8.1 - 8.3. With 2.4.0.3, developers can now build and activate new modules, admin views and database-backed features without touching the core application files.
+Have a question? Create a [forum][2] post and ask the community for help answering your questions.
+
+Changes from 2.4.0.2 to 2.4.0.3
+---------------------------
+
+EXTENSION SYSTEM
+
+- Added: eZDesign design resolver and extension/helloworld sample.
+- Added: eZExtension::moduleFile(), moduleMenuFile(), moduleBaseDir(), moduleIcon(),
+  moduleName(), moduleUrlName(), availableAdminModules() and related helpers.
+- Added: eZTemplate translation override merging from active extension modules,
+  loading strings from modules/<module>/{admin,user}/intl/<language>/<phpFile>.ini.
+- Added: extension module discovery from module.info for admin menus, icons,
+  menubox.php side-menu boxes and per-view intl paths.
+- Added: php bin/shell/php/create_extension.php skeleton generator.
+- Added: eZHelloWorldItem storage class with eZDB-backed create, fetch, fetchList,
+  fetchBySearch, store, removeById and createTable in extension/helloworld.
+- Added: admin list template (adminlist.tpl) for helloworld, styled after the core
+  article archive list, with search, add-form, row delete and alternating row colours.
+- Added: sample eZHelloWorld class and sample eZHelloWorldItem storage class.
+- Renamed: helloworld translation catalogues to
+  modules/helloworld/{admin,user}/intl/<language>/<phpFile>.ini.
+- Updated: eZTemplate::loadExtensionTranslations() now searches legacy
+  extension/<ext>/translations/ and the new modules/<module>/{admin,user}/intl/ paths.
+- Updated: create_extension.php now generates the modules/<module>/{admin,user}/intl
+  layout, module.info, admin menubox.php and datasupplier skeletons.
+- Updated: documentation/EXTENSIONS.md with the extension API reference, eZExtension
+  helper table, admin menubox example and eZDB storage class example.
+
+ADMINISTRATION UI
+
+- Updated: white admin style box borders and templates; replaced GIF tile borders
+  with CSS, tightened desktop body spacing and improved mobile responsive styles.
+- Updated: footer badge references now use Exponential Basic branding with improved
+  contrast and wording.
+- Updated: preserve the active admin site design in ezuser datasupplier.
+- Updated: refererlist eZ TPL block parsing so blank referers display as "Direct" or
+  "(none)" and do not produce broken http://Direct links.
+
+CORE MODULE STABILITY
+
+- Fixed: remove trailing commas that broke MySQL schema creation for eZArticle and eZStats.
+- Fixed: eZImageVariation::store() now inserts image variation rows.
+- Updated: order views and SETI export use customer emailAddress() as a string and
+  avoid undefined index errors.
+- Added: eZCompany::emailAddress() method returning the first mailto online URL.
+- Updated: company type list guards requestImageVariation failures for category and
+  company logos.
+- Updated: cron scripts include require('autoload.php') and stale commented includes
+  were removed.
+- Updated: admin fatal/rendering errors resolved in contact, filemanager, trade,
+  article, newsfeed and eZPBFile views.
+- Updated: eZStats reports and queries (dates, browser counts, visitor reverse-DNS,
+  blank referer handling).
+
+SITE & OPERATIONS
+
+- Updated: default IndexPage and DefaultPage point to the article frontpage so root / serves content.
+- Updated: eZ Basic caches moved out of kernel/ and into var/cache/.
+- Updated: restore /proc-based sysinfo pages and fix PHP 8 compatibility; also restore
+  system info values when /proc is not directly readable.
+- Updated: Calendar time slot color set to white for default readability.
+- Updated: README.md with a Troubleshooting section for first-time installs.
+- Updated: composer.json phpunit package require from insecure v10 to v13.
+- Updated: documentation/ABOUT.md now targets the 2.4.0.3 release.
 
 ---
 
-## What is new in 2.4.0.3
-
-### Extension modules now work end-to-end
-
-The biggest change in 2.4.0.3 is a complete extension-module pipeline. Active extensions can now supply their own `modules/<module>/{user,admin}/` views, per-view `intl/` translation files, `module.info` metadata, admin side-menu `menubox.php` files, and module icons. The front controller and `eZTemplate` system resolve these in the right order and merge extension translations into the active language.
-
-New `eZExtension` helpers provide a stable API for discovering module files, menus, icons and translation directories without hard-coding `extension/` or `kernel/ez` paths. A revised `php bin/shell/php/create_extension.php` skeleton generator creates the new module layout, `module.info`, `menubox.php`, admin and user `datasupplier.php` files and `design/` templates.
-
-### Hello World sample with eZDB storage
-
-The `extension/helloworld/` sample has been expanded into a full create-and-list example. It includes:
-
-- `eZHelloWorldItem`, a minimal `eZDB::globalDatabase()` storage class with `createTable()`, `fetch()`, `fetchList()`, `fetchBySearch()`, `store()` and `removeById()`.
-- A public view that lists stored messages.
-- An admin view styled like the core `article/archive/` list, with search, add form, row delete, alternating `bglight`/`bgdark` rows and `stdbutton` controls.
-- Per-view `intl/` translation catalogues under the new `modules/helloworld/{admin,user}/intl/<language>/` layout.
-
-This gives developers a concrete, copy-paste pattern for adding database-backed features to their own extensions.
-
-### Admin UI refresh
-
-The white admin design has been overhauled. GIF-tile borders have been replaced with CSS, desktop body spacing has been tightened, and mobile responsive styles have been improved. Footer branding now uses the Exponential Basic badge with better contrast and wording. Referrer list rendering has also been fixed so blank referrers display as "Direct" or "(none)" instead of producing broken `http://Direct` links.
-
-### Core module stability
-
-Dozens of PHP 8 compatibility and correctness fixes have been applied across the core modules, including:
-
-- eZArticle and eZStats MySQL schema creation.
-- eZImageVariation row insertion.
-- eZCompany email address handling in orders and SETI export.
-- eZStats reports, browser counts, reverse-DNS and blank-referrer handling.
-- Cron scripts now include `autoload.php` and no longer rely on stale commented includes.
-- Admin fatal/rendering errors resolved in `contact`, `filemanager`, `trade`, `article`, `newsfeed` and `eZPBFile`.
-
-Other operational improvements include moving eZ Basic caches from `kernel/` to `var/cache/`, restoring `/proc`-based sysinfo pages with a PHP 8-safe fallback, defaulting the site root to the article front page, and updating the bundled `phpunit` dependency to a secure version.
-
----
-
-## About Exponential Basic
-
-Exponential Basic is the eZ Publish 2 kernel implementation upgraded for modern PHP. It is maintained by 7x and released under the GNU General Public License. The project provides a lightweight, educational, and production-suitable starting point for personal home pages, community websites and simple PHP applications.
-
-"This release is a practical milestone," said Graham Brookins, founder of 7x. "Extension modules were always part of the eZ vision, and now they actually work again on PHP 8. With the `helloworld` storage sample and the updated admin list, developers can see exactly how to extend the system without changing the core."
-
----
-
-## Availability and upgrade
-
-Exponential Basic 2.4.0.3 is available immediately from the GitHub release page:
-
-<https://github.com/se7enxweb/exponentialbasic/releases/tag/v2.4.0.3>
-
-Existing sites should back up their `settings/override/` directory and database, then run:
-
-```bash
-php bin/shell/php/ezpgenerateautoloads.php -e
-bash bin/shell/clearcache.sh
-```
-
-and restart PHP-FPM.
-
-For the full technical changelog, see `doc/changelogs/2.4.0.3.md` and `documentation/CHANGELOG` in the repository.
-
----
-
-**Media contact**
-
-7x
-<https://share.exponential.earth>
+[1]: https://github.com/se7enxweb/exponentialbasic/releases/tag/v2.4.0.3
+[2]: https://share.se7enx.com/forums

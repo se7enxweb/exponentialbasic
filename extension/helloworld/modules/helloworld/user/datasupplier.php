@@ -21,8 +21,10 @@ $templateDir = eZDesign::file( 'templates/helloworld' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/helloworld';
 
-$extensionDir = eZExtension::baseDirectory();
-$intlDir = "$extensionDir/helloworld/module/user/intl";
+$moduleBaseDir = eZExtension::moduleBaseDir( 'helloworld', 'user' );
+if ( $moduleBaseDir === false )
+    $moduleBaseDir = 'extension/helloworld/modules/helloworld';
+$intlDir = "$moduleBaseDir/user/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 

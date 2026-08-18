@@ -298,8 +298,10 @@ $templateDir = eZDesign::file( 'templates/__NAME__' );
 if ( $templateDir === false )
     $templateDir = 'design/' . $GlobalSiteDesign . '/templates/__NAME__';
 
-$extensionDir = eZExtension::baseDirectory();
-$intlDir = "$extensionDir/__NAME__/module/user/intl";
+$moduleBaseDir = eZExtension::moduleBaseDir( '__NAME__', 'user' );
+if ( $moduleBaseDir === false )
+    $moduleBaseDir = 'extension/__NAME__/modules/__NAME__';
+$intlDir = "$moduleBaseDir/user/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -344,8 +346,10 @@ $templateDir = eZDesign::file( 'templates/__NAME__' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/__NAME__';
 
-$extensionDir = eZExtension::baseDirectory();
-$intlDir = "$extensionDir/__NAME__/module/admin/intl";
+$moduleBaseDir = eZExtension::moduleBaseDir( '__NAME__', 'admin' );
+if ( $moduleBaseDir === false )
+    $moduleBaseDir = 'extension/__NAME__/modules/__NAME__';
+$intlDir = "$moduleBaseDir/admin/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -362,7 +366,7 @@ else
     $t->set_var( 'description', 'This page is served by the __TITLE__ admin view.' );
 
 $templatePath = $templateDir;
-$translationPath = "$extensionDir/__NAME__/module/admin/intl/$Language/datasupplier.ini";
+$translationPath = "$moduleBaseDir/admin/intl/$Language/datasupplier.ini";
 $t->set_var( 'edit_hint', 'Change this page text by editing the template ' . $templatePath . '/welcome.tpl and strings translation at ' . $translationPath . '.' );
 
 $t->pparse( 'output', 'welcome' );
@@ -404,14 +408,14 @@ EOT
 EOT
         ),
 
-        'module/admin/intl/en_US/datasupplier.ini' => placeholder( <<<'EOT'
+        'modules/__NAME__/admin/intl/en_US/datasupplier.ini' => placeholder( <<<'EOT'
 [strings]
 hello=Hello from the __NAME__ extension (translated)!
 description=This page is served by extension/__NAME__/modules/__NAME__/user/datasupplier.php.
 EOT
         ),
 
-        'module/user/intl/en_US/datasupplier.ini' => placeholder( <<<'EOT'
+        'modules/__NAME__/user/intl/en_US/datasupplier.ini' => placeholder( <<<'EOT'
 [strings]
 hello=Hello from the __NAME__ extension (translated)!
 description=This page is served by extension/__NAME__/modules/__NAME__/user/datasupplier.php.

@@ -242,7 +242,7 @@ class eZTemplate
       Loads translation overrides from active extensions.
 
       Searches for `extension/<ext>/translations/<language>/<phpFile>.ini`
-      and `extension/<ext>/module/{admin,user}/intl/<language>/<phpFile>.ini`,
+      and `extension/<ext>/modules/<module>/{admin,user}/intl/<language>/<phpFile>.ini`,
       then merges the `[strings]` block into the current template text strings.
     */
     function loadExtensionTranslations()
@@ -259,27 +259,48 @@ class eZTemplate
             $baseName = basename( $phpFile, '.php' );
             foreach ( $activeExtensions as $activeExtension )
             {
-                $searchPaths = array(
-                    "$extensionBase/$activeExtension/translations/" . $this->language . "/$baseName.ini",
-                    "$extensionBase/$activeExtension/module/admin/intl/" . $this->language . "/$baseName.ini",
-                    "$extensionBase/$activeExtension/module/user/intl/" . $this->language . "/$baseName.ini",
-                );
-
-                foreach ( $searchPaths as $extFile )
+                $legacyFile = "$extensionBase/$activeExtension/translations/" . $this->language . "/$baseName.ini";
+                if ( file_exists( $legacyFile ) )
                 {
-                    if ( file_exists( $extFile ) )
+                    $this->mergeExtensionStrings( $legacyFile );
+                }
+
+                $moduleBase = "$extensionBase/$activeExtension/modules";
+                if ( !is_dir( $moduleBase ) )
+                    continue;
+
+                $moduleDirs = glob( "$moduleBase/*", GLOB_ONLYDIR );
+                foreach ( $moduleDirs as $moduleDir )
+                {
+                    $searchPaths = array(
+                        "$moduleDir/admin/intl/" . $this->language . "/$baseName.ini",
+                        "$moduleDir/user/intl/" . $this->language . "/$baseName.ini",
+                    );
+
+                    foreach ( $searchPaths as $extFile )
                     {
-                        $extIni = eZINI::create( $extFile, false );
-                        $extGroups = $extIni->groups();
-                        if ( isset( $extGroups['strings'] ) && is_array( $extGroups['strings'] ) )
+                        if ( file_exists( $extFile ) )
                         {
-                            if ( !isset( $this->TextStrings['strings'] ) )
-                                $this->TextStrings['strings'] = array();
-                            $this->TextStrings['strings'] = array_merge( $this->TextStrings['strings'], $extGroups['strings'] );
+                            $this->mergeExtensionStrings( $extFile );
                         }
                     }
                 }
             }
+        }
+    }
+
+    /*!
+      Merges the [strings] block of an extension INI file into TextStrings.
+    */
+    function mergeExtensionStrings( $extFile )
+    {
+        $extIni = eZINI::create( $extFile, false );
+        $extGroups = $extIni->groups();
+        if ( isset( $extGroups['strings'] ) && is_array( $extGroups['strings'] ) )
+        {
+            if ( !isset( $this->TextStrings['strings'] ) )
+                $this->TextStrings['strings'] = array();
+            $this->TextStrings['strings'] = array_merge( $this->TextStrings['strings'], $extGroups['strings'] );
         }
     }
 

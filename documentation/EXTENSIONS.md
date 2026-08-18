@@ -28,7 +28,7 @@ Or use the skeleton generator to create a fully populated extension in one step:
 php bin/shell/php/create_extension.php myfirst
 ```
 
-This creates a `README.md`, `extension.xml`, `settings/`, `design/`, `modules/`, `module/`, `classes/`, and `autoloads/` sample files.
+This creates a `README.md`, `extension.xml`, `settings/`, `design/`, `modules/`, `classes/`, and `autoloads/` sample files.
 
 ## 2. Activate the extension
 
@@ -96,7 +96,7 @@ Exponential Basic now supports the following extension features:
 | Frame / CSS / append files | Working | `extension/<ext>/design/<design>/frame.php`, `style.css`, `*.append.php` |
 | Template overrides | Working | `extension/<ext>/design/<design>/templates/<module>/<file>.tpl` |
 | Module dispatch | Working | `extension/<ext>/modules/<mod>/<type>/datasupplier.php` |
-| Translation overrides | Working | `extension/<ext>/module/{admin,user}/intl/<language>/<phpFile>.ini` |
+| Translation overrides | Working | `extension/<ext>/modules/<module>/{admin,user}/intl/<language>/<phpFile>.ini` |
 | PHP classes and autoloading | Working through `var/autoload/ezp_extension.php` regen | `extension/<ext>/classes/` |
 
 The sections below explain each feature in detail.
@@ -141,16 +141,13 @@ extension/myext/
         intl/
           en_US/
             menubox.php.ini    # Side menu title and strings
+            datasupplier.ini   # Translation for admin datasupplier view
+      user/
+        datasupplier.php       # User view entry point
+        intl/
+          en_US/
+            datasupplier.ini   # Translation for user datasupplier view
       module.info              # Menu/permission metadata
-  module/
-    admin/
-      intl/
-        en_US/
-          datasupplier.ini     # Translation for admin datasupplier view
-    user/
-      intl/
-        en_US/
-          datasupplier.ini     # Translation for user datasupplier view
   classes/                     # PHP classes
     myclass.php
   autoloads/                   # Optional explicit autoload map
@@ -450,8 +447,10 @@ $templateDir = eZDesign::file( 'templates/helloworld' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/helloworld';
 
-$extensionDir = eZExtension::baseDirectory();
-$intlDir = "$extensionDir/helloworld/module/user/intl";
+$moduleBaseDir = eZExtension::moduleBaseDir( 'helloworld', 'user' );
+if ( $moduleBaseDir === false )
+    $moduleBaseDir = 'extension/helloworld/modules/helloworld';
+$intlDir = "$moduleBaseDir/user/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -538,8 +537,10 @@ $templateDir = eZDesign::file( 'templates/mymodule' );
 if ( $templateDir === false )
     $templateDir = 'design/' . $GlobalSiteDesign . '/templates/mymodule';
 
-$extensionDir = eZExtension::baseDirectory();
-$intlDir = "$extensionDir/myext/module/user/intl";
+$moduleBaseDir = eZExtension::moduleBaseDir( 'mymodule', 'user' );
+if ( $moduleBaseDir === false )
+    $moduleBaseDir = 'extension/myext/modules/mymodule';
+$intlDir = "$moduleBaseDir/user/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -581,11 +582,11 @@ extend the text strings used by a template.
 
 ### File layout
 
-Translation catalogues for extension module views live under `module/<type>/intl/`, where `<type>` is `admin` or `user`:
+Translation catalogues for extension module views live next to the view dispatcher under `modules/<module>/<type>/intl/`, where `<module>` is the module name and `<type>` is `admin` or `user`:
 
 ```
-extension/myext/module/admin/intl/<language>/<phpFile>.ini
-extension/myext/module/user/intl/<language>/<phpFile>.ini
+extension/myext/modules/mymodule/admin/intl/<language>/<phpFile>.ini
+extension/myext/modules/mymodule/user/intl/<language>/<phpFile>.ini
 ```
 
 - `<language>` is the eZ language code from `site.ini` (for example `en_US` or `en_GB`).
@@ -612,14 +613,15 @@ Or call `setAllStrings()` and then `set_var( 'hello', $t->TextStrings['strings']
 order for each PHP view file:
 
 1. `extension/<active-ext>/translations/<language>/<phpFile>.ini` (legacy)
-2. `extension/<active-ext>/module/admin/intl/<language>/<phpFile>.ini`
-3. `extension/<active-ext>/module/user/intl/<language>/<phpFile>.ini`
+2. `extension/<active-ext>/modules/<module>/admin/intl/<language>/<phpFile>.ini`
+3. `extension/<active-ext>/modules/<module>/user/intl/<language>/<phpFile>.ini`
 
 Only the base name of the PHP file is used; the `.php` suffix is stripped
 automatically.
 
 In addition, an extension view can pass its own `intlDir` to `eZTemplate` to
-load a specific `module/<type>/intl/<language>/<phpFile>.ini` file directly.
+load a specific `modules/<module>/<type>/intl/<language>/<phpFile>.ini` file
+directly.
 
 The extension translations are merged with the core language file loaded from
 the view's `intl/` directory.  Extension values override core values with the
@@ -627,8 +629,8 @@ same key.
 
 ### Example
 
-`extension/helloworld/module/admin/intl/en_US/datasupplier.ini` and
-`extension/helloworld/module/user/intl/en_US/datasupplier.ini`:
+`extension/helloworld/modules/helloworld/admin/intl/en_US/datasupplier.ini` and
+`extension/helloworld/modules/helloworld/user/intl/en_US/datasupplier.ini`:
 
 ```ini
 [strings]
@@ -638,8 +640,8 @@ description=This page is served by extension/helloworld/modules/helloworld/user/
 
 The `extension/helloworld/modules/helloworld/admin/datasupplier.php` and
 `extension/helloworld/modules/helloworld/user/datasupplier.php` samples pass the
-site `Language` and a per-view `intlDir` to `eZTemplate`, call `setAllStrings()`,
-and use the translated strings as template variables.
+site `Language` and a per-view `intlDir` (resolved from `eZExtension::moduleBaseDir()`)
+to `eZTemplate`, call `setAllStrings()`, and use the translated strings as template variables.
 
 ---
 

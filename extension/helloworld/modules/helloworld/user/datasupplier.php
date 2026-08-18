@@ -40,6 +40,29 @@ if ( isset( $t->TextStrings['strings']['description'] ) )
 else
     $t->set_var( 'description', 'This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.' );
 
+// Make sure the storage table exists, then list the latest stored messages.
+eZHelloWorldItem::createTable();
+$items = eZHelloWorldItem::fetchList( 10 );
+
+$t->set_block( 'welcome', 'item_list_tpl', 'item_list' );
+if ( count( $items ) > 0 )
+{
+    foreach ( $items as $item )
+    {
+        $t->set_var( 'item_name', $item->Name );
+        $t->set_var( 'item_message', $item->Message );
+        $t->set_var( 'item_created', $item->createdDate() );
+        $t->parse( 'item_list', 'item_list_tpl', true );
+    }
+}
+else
+{
+    $t->set_var( 'item_name', '' );
+    $t->set_var( 'item_message', 'No messages stored yet.' );
+    $t->set_var( 'item_created', '' );
+    $t->parse( 'item_list', 'item_list_tpl', false );
+}
+
 $t->set_var( 'edit_hint', '' );
 
 $t->pparse( 'output', 'welcome' );

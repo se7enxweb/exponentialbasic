@@ -1,0 +1,63 @@
+<section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
+  <section>
+    <header>7x Releases Exponential Basic 2.4.0.3</header>
+    <paragraph>7x is very proud of the work released today as <strong>Exponential Basic 2.4.0.3</strong>, a major upgrade to the 2.4 series that completes the extension-module API, ships a working database-backed sample extension, and hardens the admin experience and core modules for PHP 8.</paragraph>
+    <paragraph>This release provides a lot more features under the hood while keeping the same simple-to-use CMS on the surface. Developers can now build and activate new modules, admin views, and database-backed features without touching the core application files.</paragraph>
+    <paragraph><link target="_blank" href="https://github.com/se7enxweb/exponentialbasic/releases/tag/v2.4.0.3">Download the 2.4.0.3</link> release and give it a try. It is well documented with simple-to-follow instructions for getting started.</paragraph>
+    <paragraph>Have a question? Create a <link target="_blank" href="https://share.se7enx.com/forums">forum</link> post and ask the community for help answering your questions.</paragraph>
+  </section>
+  <section>
+    <header>Changes from 2.4.0.2 to 2.4.0.3</header>
+    <section>
+      <header>EXTENSION SYSTEM</header>
+      <paragraph><ul>
+        <li><paragraph>Added: eZDesign design resolver and extension/helloworld sample.</paragraph></li>
+        <li><paragraph>Added: eZExtension::moduleFile(), moduleMenuFile(), moduleBaseDir(), moduleIcon(), moduleName(), moduleUrlName(), availableAdminModules() and related helpers.</paragraph></li>
+        <li><paragraph>Added: eZTemplate translation override merging from active extension modules, loading strings from modules/&lt;module&gt;/{admin,user}/intl/&lt;language&gt;/&lt;phpFile&gt;.ini.</paragraph></li>
+        <li><paragraph>Added: extension module discovery from module.info for admin menus, icons, menubox.php side-menu boxes and per-view intl paths.</paragraph></li>
+        <li><paragraph>Added: php bin/shell/php/create_extension.php skeleton generator.</paragraph></li>
+        <li><paragraph>Added: eZHelloWorldItem storage class with eZDB-backed create, fetch, fetchList, fetchBySearch, store, removeById and createTable in extension/helloworld.</paragraph></li>
+        <li><paragraph>Added: admin list template (adminlist.tpl) for helloworld, styled after the core article archive list, with search, add-form, row delete and alternating row colours.</paragraph></li>
+        <li><paragraph>Added: sample eZHelloWorld class and sample eZHelloWorldItem storage class.</paragraph></li>
+        <li><paragraph>Renamed: helloworld translation catalogues to modules/helloworld/{admin,user}/intl/&lt;language&gt;/&lt;phpFile&gt;.ini.</paragraph></li>
+        <li><paragraph>Updated: eZTemplate::loadExtensionTranslations() now searches legacy extension/&lt;ext&gt;/translations/ and the new modules/&lt;module&gt;/{admin,user}/intl/ paths.</paragraph></li>
+        <li><paragraph>Updated: create_extension.php now generates the modules/&lt;module&gt;/{admin,user}/intl layout, module.info, admin menubox.php and datasupplier skeletons.</paragraph></li>
+        <li><paragraph>Updated: documentation/EXTENSIONS.md with the extension API reference, eZExtension helper table, admin menubox example and eZDB storage class example.</paragraph></li>
+      </ul></paragraph>
+    </section>
+    <section>
+      <header>ADMINISTRATION UI</header>
+      <paragraph><ul>
+        <li><paragraph>Updated: white admin style box borders and templates; replaced GIF tile borders with CSS, tightened desktop body spacing and improved mobile responsive styles.</paragraph></li>
+        <li><paragraph>Updated: footer badge references now use Exponential Basic branding with improved contrast and wording.</paragraph></li>
+        <li><paragraph>Updated: preserve the active admin site design in ezuser datasupplier.</paragraph></li>
+        <li><paragraph>Updated: refererlist eZ TPL block parsing so blank referers display as "Direct" or "(none)" and do not produce broken http://Direct links.</paragraph></li>
+      </ul></paragraph>
+    </section>
+    <section>
+      <header>CORE MODULE STABILITY</header>
+      <paragraph><ul>
+        <li><paragraph>Fixed: remove trailing commas that broke MySQL schema creation for eZArticle and eZStats.</paragraph></li>
+        <li><paragraph>Fixed: eZImageVariation::store() now inserts image variation rows.</paragraph></li>
+        <li><paragraph>Updated: order views and SETI export use customer emailAddress() as a string and avoid undefined index errors.</paragraph></li>
+        <li><paragraph>Added: eZCompany::emailAddress() method returning the first mailto online URL.</paragraph></li>
+        <li><paragraph>Updated: company type list guards requestImageVariation failures for category and company logos.</paragraph></li>
+        <li><paragraph>Updated: cron scripts include require('autoload.php') and stale commented includes were removed.</paragraph></li>
+        <li><paragraph>Updated: admin fatal/rendering errors resolved in contact, filemanager, trade, article, newsfeed and eZPBFile views.</paragraph></li>
+        <li><paragraph>Updated: eZStats reports and queries (dates, browser counts, visitor reverse-DNS, blank referer handling).</paragraph></li>
+      </ul></paragraph>
+    </section>
+    <section>
+      <header>SITE &amp; OPERATIONS</header>
+      <paragraph><ul>
+        <li><paragraph>Updated: default IndexPage and DefaultPage point to the article frontpage so root / serves content.</paragraph></li>
+        <li><paragraph>Updated: eZ Basic caches moved out of kernel/ and into var/cache/.</paragraph></li>
+        <li><paragraph>Updated: restore /proc-based sysinfo pages and fix PHP 8 compatibility; also restore system info values when /proc is not directly readable.</paragraph></li>
+        <li><paragraph>Updated: Calendar time slot color set to white for default readability.</paragraph></li>
+        <li><paragraph>Updated: README.md with a Troubleshooting section for first-time installs.</paragraph></li>
+        <li><paragraph>Updated: composer.json phpunit package require from insecure v10 to v13.</paragraph></li>
+        <li><paragraph>Updated: documentation/ABOUT.md now targets the 2.4.0.3 release.</paragraph></li>
+      </ul></paragraph>
+    </section>
+  </section>
+</section>

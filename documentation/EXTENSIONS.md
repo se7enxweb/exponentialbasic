@@ -509,6 +509,9 @@ extension/myext/modules/mymodule/
       en_US/
         datasupplier.ini      # Admin view strings
         menubox.php.ini       # Side menu title and strings
+  design/standard/templates/mymodule/
+    myview.tpl                # User view template
+    adminlist.tpl             # Optional admin list template
   xmlrpc/
     datasupplier.php          # Optional XML-RPC dispatcher
   module.info                 # Title, permissions, menu position
@@ -904,7 +907,7 @@ foreach ( $items as $item )
 }
 ```
 
-The complete working example is `extension/helloworld/classes/helloworlditem.php`, which is used by both `modules/helloworld/user/datasupplier.php` and `modules/helloworld/admin/datasupplier.php`.  The admin view also posts `name`/`message` and calls `store()` to demonstrate a full create-and-list flow.
+The complete working example is `extension/helloworld/classes/helloworlditem.php`, which is used by both `modules/helloworld/user/datasupplier.php` and `modules/helloworld/admin/datasupplier.php`.  The admin view uses `extension/helloworld/design/standard/templates/helloworld/adminlist.tpl` and renders a table, search box, row delete, and an add form in the style of the core `article/archive/` admin list.
 
 ---
 

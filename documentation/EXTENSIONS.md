@@ -15,12 +15,20 @@ The guide is split into two parts:
 
 ## 1. Create an extension directory
 
-Every extension is a folder under `extension/`.  The folder name is the extension name.  Create a sample extension called `myfirst`:
+Every extension is a folder under `extension/`.  The folder name is the extension name.  You can create a sample extension called `myfirst` by hand:
 
 ```bash
 mkdir -p extension/myfirst/settings
 mkdir -p extension/myfirst/design/standard
 ```
+
+Or use the skeleton generator to create a fully populated extension in one step:
+
+```bash
+php bin/shell/php/create_extension.php myfirst
+```
+
+This creates a `README.md`, `extension.xml`, `settings/`, `design/`, `modules/`, `translations/`, `classes/`, and `autoloads/` sample files.
 
 ## 2. Activate the extension
 
@@ -896,6 +904,9 @@ The next wave of extension work will add:
    existing Basic admin menu uses `EnabledAdminModules` in `site.ini`; an
    `extension/<ext>/modules/<module>/module.info` discovery layer would make
    extension modules appear there automatically).
-2. A command-line tool to create a new extension skeleton.
+
+Done:
+
+2. A command-line tool to create a new extension skeleton — `php bin/shell/php/create_extension.php <name>`.
 
 This guide will be updated as those features land.

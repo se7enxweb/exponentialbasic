@@ -82,7 +82,7 @@ MySQLSocket=disabled
 # Database Implementation Setting for Exponential Basic
 ########################################
 ## DatabaseImplementation setting can be set to mysql|postgresql|sqlite|informix
-DatabaseImplementation=mysql
+DatabaseImplementation=sqlite
 
 
 ########################################
@@ -997,6 +997,13 @@ DefaultSection=5
 
 [eZXMLRPC]
 UserIndex=/index.php
+
+########################################
+# Exponential Basic | ezp3 like settings
+
+[ExtensionSettings]
+# ActiveExtensions[]
+ActiveExtensions[]=helloworld
 
 ########################################
 # END OF FILE

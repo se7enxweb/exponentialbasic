@@ -79,77 +79,69 @@
 			  '/design/intranet/images/tab-mrk-unmrk.gif'
 			  )">
 
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-    <td class="repeaty" width="1" background="{www_dir}/design/admin/images/{site_style}/top-l02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-l01.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m01.gif" valign="absmiddle" bgcolor="#ffffff" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m01.gif" valign="absmiddle" bgcolor="#ffffff" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeaty" width="1" background="{www_dir}/design/admin/images/{site_style}/top-r02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-r01.gif" width="10" height="10" border="0" /><br /></td>
-</tr>
-<tr>
-    <td class="repeaty" width="1" background="{www_dir}/design/admin/images/{site_style}/top-l02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td class="repeatx" colspan="2" width="98%" valign="absmiddle" bgcolor="#ffffff" align="left">
-	<div class="header">
-		<div class="logo">
-			<a href="{admin_site_protocol}://{admin_site_host}" target=""><img src="{www_dir}/design/base/images/logo/exponential-basic.png" width="250" height="50" border="0" alt="" /></a><br />
-		</div>
-		<div class="infos">
-		<!-- BEGIN charset_switch_tpl -->
-		<div class="charset">
-			<form action="{charset_submit_url}" method="post" name="CharsetSwitch">
-				<select name="page_charset" onchange="SwitchCharset()">
-					<!-- BEGIN charset_switch_item_tpl -->
-					<option value="{charset_code}" {charset_selected}>{charset_description}</option>
-					<!-- END charset_switch_item_tpl -->
-				</select>
-				<input type="submit" class="stdbutton" value="Set" />
-			</form>
-		</div>
-		<!-- END charset_switch_tpl -->
-		<div class="version">
-			<span class="top">{intl-ezpublish_version}:</span><br />
-			<span class="topusername">{ezpublish_version}.</span><span class="topusername">{ezpublish_installation_version}</span>
-		</div>
-		<div class="site">
-			<span class="top">{intl-site_url}:</span><br />
-			<span class="topusersite"><a class="sitelink" href="{user_site_protocol}://{site_url}" target="_blank">{site_url}</a></span>
-		</div>
-		<div class="userinfo">
-		<form id="clearCacheForm" name="clearCacheForm" method="POST" action="{admin_site_protocol}://{admin_site_host}/sitemanager/cache/">
+<div class="topbox">
+<div class="topbox-content">
+<div class="header">
+	<div class="logo">
+		<a href="{admin_site_protocol}://{admin_site_host}" target=""><img src="{www_dir}/design/base/images/logo/exponential-basic.png" width="250" height="50" border="0" alt="" /></a><br />
+	</div>
+	<div class="infos">
+	<!-- BEGIN charset_switch_tpl -->
+	<div class="charset">
+		<form action="{charset_submit_url}" method="post" name="CharsetSwitch">
+			<select name="page_charset" onchange="SwitchCharset()">
+				<!-- BEGIN charset_switch_item_tpl -->
+				<option value="{charset_code}" {charset_selected}>{charset_description}</option>
+				<!-- END charset_switch_item_tpl -->
+			</select>
+			<input type="submit" class="stdbutton" value="Set" />
+		</form>
+	</div>
+	<!-- END charset_switch_tpl -->
+	<div class="version">
+		<span class="top">{intl-ezpublish_version}:</span><br />
+		<span class="topusername">{ezpublish_version}.</span><span class="topusername">{ezpublish_installation_version}</span>
+	</div>
+	<div class="site">
+		<span class="top">{intl-site_url}:</span><br />
+		<span class="topusersite"><a class="sitelink" href="{user_site_protocol}://{site_url}" target="_blank">{site_url}</a></span>
+	</div>
+	<div class="userinfo">
+	<form id="clearCacheForm" name="clearCacheForm" method="POST" action="{admin_site_protocol}://{admin_site_host}/sitemanager/cache/">
     <!-- 
 		  <button type="submit" name="ClearCache" id="submitBtnClearCachesForm">Clear Caches</button>
  -->
 		  <button type="submit" name="ClearCache" id="submitBtnClearCachesForm" style="display:none;">Clear Caches</button>
   </form>
   <a onclick="event.preventDefault();document.getElementById('submitBtnClearCachesForm').click();" href="javascript:event.preventDefault(); document.getEkementById('submitBtnClearCachesForm').click();" id="submitBtnClearCaches" class="clearcache">Clear Caches</a>
-		</div>
-		<div class="userinfo">
-		<form id="clearOpcacheForm" name="clearOpcacheForm" method="POST" action="{admin_site_protocol}://{admin_site_host}/sitemanager/cache/opcache">
-		  <button type="submit" name="ClearOpcache" id="submitBtnClearOpcacheForm" style="display:none;">Clear OPcache</button>
-		</form>
-		<a onclick="event.preventDefault();document.getElementById('submitBtnClearOpcacheForm').click();" href="javascript:void(0);" id="submitBtnClearOpcache" class="clearcache">Clear OPcache</a>
-		</div>
-		<div class="userinfo">
-		<a href="{admin_site_protocol}://{admin_site_host}/sitemanager/preload/" id="btnPreloadSite" class="clearcache">Preload Site</a>
-		</div>
-		<div class="userinfo">	
-			<span class="top">{intl-user_name}:</span><br />
-			<aspan class="topusername"><a class="usereditlink" href="/user/useredit/edit/{user_id}">{first_name}&nbsp;{last_name}</a></span>
-		</div>
-		<div class="clientinfo">
-			<span class="top">{intl-ip_address}:</span><br />
-			<span class="topusername">{ip_address}</span>
-		</div>
-		<div class="usersettings">
-			<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/passwordchange/">{intl-change_user_info}</a><br />
-			<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/settings?RefURL={ref_url}">{intl-user_settings}</a><br />
-		</div>
-		<div class="logout">
-			<a  href="{www_dir}{index}/user/login/logout/"><img src="{www_dir}/design/admin/images/{site_style}/top-logout.gif" width="35" height="40" border="0" alt="logout" title="logout" /></a>
-		</div>
-		
-		</div>
 	</div>
+	<div class="userinfo">
+	<form id="clearOpcacheForm" name="clearOpcacheForm" method="POST" action="{admin_site_protocol}://{admin_site_host}/sitemanager/cache/opcache">
+	  <button type="submit" name="ClearOpcache" id="submitBtnClearOpcacheForm" style="display:none;">Clear OPcache</button>
+	</form>
+	<a onclick="event.preventDefault();document.getElementById('submitBtnClearOpcacheForm').click();" href="javascript:void(0);" id="submitBtnClearOpcache" class="clearcache">Clear OPcache</a>
+	</div>
+	<div class="userinfo">
+	<a href="{admin_site_protocol}://{admin_site_host}/sitemanager/preload/" id="btnPreloadSite" class="clearcache">Preload Site</a>
+	</div>
+	<div class="userinfo">	
+		<span class="top">{intl-user_name}:</span><br />
+		<aspan class="topusername"><a class="usereditlink" href="/user/useredit/edit/{user_id}">{first_name}&nbsp;{last_name}</a></span>
+	</div>
+	<div class="clientinfo">
+		<span class="top">{intl-ip_address}:</span><br />
+		<span class="topusername">{ip_address}</span>
+	</div>
+	<div class="usersettings">
+		<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/passwordchange/">{intl-change_user_info}</a><br />
+		<img src="{www_dir}/design/admin/images/{site_style}/top-arrow.gif" width="10" height="13" border="0" alt="" />&nbsp;<a class="top" href="{www_dir}{index}/user/settings?RefURL={ref_url}">{intl-user_settings}</a><br />
+	</div>
+	<div class="logout">
+		<a  href="{www_dir}{index}/user/login/logout/"><img src="{www_dir}/design/admin/images/{site_style}/top-logout.gif" width="35" height="40" border="0" alt="logout" title="logout" /></a>
+	</div>
+	
+	</div>
+</div>
 
 <!-- BEGIN module_list_tpl -->
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -169,20 +161,9 @@
 </tr>
 </table>
 <!-- END module_list_tpl -->
-	
-	</td>
-    <td class="repeaty" width="%" background="{www_dir}/design/admin/images/{site_style}/top-r02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
-</tr>
-<tr>
-    <td class="repeaty" width="1" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-l03.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m02.gif" valign="absmiddle" align="left" bgcolor="#ffffff"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m02.gif" valign="absmiddle" align="left" bgcolor="#ffffff"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeaty" width="1" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-r03.gif" width="10" height="10" border="0" alt="" /><br /></td>
-</tr>
-<tr>
-	<td colspan="4" class="tdmini"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="6" height="6" border="0" alt="" /><br /></td>
-</tr>
-</table>
+
+</div>
+</div>
 
 
 <div>

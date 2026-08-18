@@ -300,12 +300,82 @@ hr
 {
 	background-repeat: repeat-x;
 	font-size: 1px;
+	image-rendering: pixelated;
 }
 
 .repeaty
 {
 	background-repeat: repeat-y;
 	font-size: 1px;
+	image-rendering: pixelated;
+}
+
+.tdmini
+{
+	font-size: 1px;
+	image-rendering: pixelated;
+}
+
+.mainbox
+{
+	box-sizing: border-box;
+	width: 100%;
+	border: 3px solid #000000;
+	border-radius: 3px;
+	background: #ffffff;
+	margin-bottom: 6px;
+}
+
+.mainbox-header
+{
+	border-bottom: 3px solid #000000;
+	padding: 4px;
+	background: #ffffff;
+}
+
+.mainbox-content
+{
+	padding: 4px;
+	background: #ffffff;
+}
+
+.menubox,
+.topbox,
+.footerbox
+{
+	box-sizing: border-box;
+	width: 100%;
+	border: 3px solid #000000;
+	border-radius: 3px;
+	background: #ffffff;
+	margin-bottom: 6px;
+}
+
+.menubox-header,
+.topbox-header,
+.footerbox-header
+{
+	border-bottom: 3px solid #000000;
+	padding: 4px;
+	background: #ffffff;
+}
+
+.menubox-content,
+.topbox-content,
+.footerbox-content
+{
+	padding: 4px;
+	background: #ffffff;
+}
+
+.topbox-content
+{
+	overflow: hidden;
+}
+
+.menubox-closed .menubox-header
+{
+	border-bottom: 0;
 }
 
 /* Hellstr�m 24.8.2001 */

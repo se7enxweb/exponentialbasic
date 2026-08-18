@@ -8,68 +8,48 @@
 
 <!-- BEGIN top_field_tpl -->
 <div class="mainBody">
+<div class="mainbox">
+<div class="mainbox-header">
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
-    <td class="repeaty" rowspan="2" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-l02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-ltop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="98%" background="{www_dir}/design/admin/images/{site_style}/box-m01.gif" valign="absmiddle" bgcolor="#ffffff"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeaty" rowspan="2" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-r02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-rtop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /><br /></td>
-</tr>
-<tr>
-	<td align="bottom" bgcolor="#ffffff">
+	<td width="1%">
 
-	<table width="100%" cellpadding="0" cellspacing="0" border="0">
-	<tr>
-		<td width="1%">
+	<!-- Icon: Start -->
+	<img src="{www_dir}/kernel/ez{module_name}/admin/images/module_icon.gif" width="32" height="32" border="0" align="absmiddle" alt="{module_name}" />
+	<!-- Icon: End -->
 
-		<!-- Icon: Start -->
-		<img src="{www_dir}/kernel/ez{module_name}/admin/images/module_icon.gif" width="32" height="32" border="0" align="absmiddle" alt="{module_name}" />
-		<!-- Icon: End -->
-
-		
-		
-		</td>
-		<td width="1%">
-		<img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="6" height="10" border="0" alt="" />
-		</td>
-		<td width="98%">
-		<span class="modulename">
-
-		<!-- Modulename: Start -->
-		{intl-module_name}
-		<!-- Modulname: End -->
-
-		</span>
-		</td>
-		<td>
-
-		<a href="{www_dir}{index}{current_url}?PrintableVersion=enabled">
-		<img src="{www_dir}/design/admin/images/{site_style}/icon-print.gif" width="32" height="32" border="0" alt="Printable version" />
-		</a>
-		</td>
-
-		<!-- BEGIN help_tpl -->
-		<td>
-		<a target="_help_window" href="{www_dir}{index}{help_url}" onclick="return popup('{www_dir}{index}{help_url}','_help_window')"><img src="{www_dir}/design/admin/images/{site_style}/icon-help.gif" width="32" height="32" border="0" alt="Help" /></a>
-		</td>
-		<!-- END help_tpl -->
-
-	</tr>
-	</table>
-
-	</td>
-</tr>
-<tr>
-    <td class="tdmini" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-l04.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/box-ltop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /></td>
-    <td class="repeatx" width="98%" background="{www_dir}/design/admin/images/{site_style}/box-m02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="11" border="0" alt="" /><br /></td>
-    <td class="tdmini" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-r04.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/box-rtop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /></td>
-</tr>
-<tr>
-    <td class="repeaty" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-l04.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td bgcolor="#ffffff">
 	
-	<table width="100%" cellpadding="4" cellspacing="0" border="0">
-	<tr>
-		<td>
+	
+	</td>
+	<td width="98%" style="padding-left: 6px;">
+	<span class="modulename">
+
+	<!-- Modulename: Start -->
+	{intl-module_name}
+	<!-- Modulname: End -->
+
+	</span>
+	</td>
+	<td style="padding-left: 6px;">
+
+	<a href="{www_dir}{index}{current_url}?PrintableVersion=enabled">
+	<img src="{www_dir}/design/admin/images/{site_style}/icon-print.gif" width="32" height="32" border="0" alt="Printable version" />
+	</a>
+	</td>
+
+	<!-- BEGIN help_tpl -->
+	<td style="padding-left: 6px;">
+	<a target="_help_window" href="{www_dir}{index}{help_url}" onclick="return popup('{www_dir}{index}{help_url}','_help_window')"><img src="{www_dir}/design/admin/images/{site_style}/icon-help.gif" width="32" height="32" border="0" alt="Help" /></a>
+	</td>
+	<!-- END help_tpl -->
+
+</tr>
+</table>
+</div>
+<div class="mainbox-content">
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr>
+	<td>
 
 <!-- Main view: Start -->
 

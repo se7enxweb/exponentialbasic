@@ -42,92 +42,50 @@
 
 <body bgcolor="#ffffff" topmargin="6" marginheight="6" leftmargin="6" marginwidth="6" onload="MM_preloadImages('{www_dir}/design/admin/images/{site_style}/redigerminimrk.gif','{www_dir}/design/admin/images/{site_style}/slettminimrk.gif','{www_dir}/design/admin/images/{site_style}/downloadminimrk.gif')">
 
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-    <td class="repeaty" width="0%" background="{www_dir}/design/admin/images/{site_style}/top-l02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-l01.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m01.gif" valign="absmiddle" bgcolor="#ffffff" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m01.gif" valign="absmiddle" bgcolor="#ffffff" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeaty" width="1" background="{www_dir}/design/admin/images/{site_style}/top-r02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-r01.gif" width="10" height="10" border="0" alt="" /><br /></td>
-</tr>
-<tr>
-    <td class="repeaty" width="1" background="{www_dir}/design/admin/images/{site_style}/top-l02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td class="repeatx" colspan="2" width="98%" valign="absmiddle" bgcolor="#ffffff" align="left">
-
+<div class="topbox">
+<div class="topbox-content">
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
 	<td width="1%" class="tdmini">
 	<a href="http://basic.exponential.earth" target="_vblank"><img src="{www_dir}/design/base/images/logo/exponential-basic.png" width="250" height="40" border="0" alt="" /></a><br />
 	</td>
-	<td width="92%">
-	<img src="{www_dir}/design/admin/images/1x1.gif" width="20" height="10" border="0" alt="" />
-	</td>
 </tr>
 </table>
-
-	</td>
-    <td class="repeaty" width="%" background="{www_dir}/design/admin/images/{site_style}/top-r02.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
-</tr>
-<tr>
-    <td class="repeaty" width="1" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-l03.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m02.gif" valign="absmiddle" align="left" bgcolor="#ffffff"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="50%" background="{www_dir}/design/admin/images/{site_style}/top-m02.gif" valign="absmiddle" align="left" bgcolor="#ffffff"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" alt="" /><br /></td>
-    <td class="repeaty" width="1" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/top-r03.gif" width="10" height="10" border="0" alt="" /><br /></td>
-</tr>
-</table>
-<img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="6" height="6" border="0" alt="" /><br />
+</div>
+</div>
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr>
 	<td width="100%" valign="top">
 
+    <div class="mainbox">
+    <div class="mainbox-header">
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-    <td class="repeaty" rowspan="2" width="0%" background="{www_dir}/design/admin/images/{site_style}/box-l02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-ltop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /><br /></td>
-    <td class="repeatx" width="98%" background="{www_dir}/design/admin/images/{site_style}/box-m01.gif" valign="absmiddle" bgcolor="#ffffff"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="6" border="0" /><br /></td>
-    <td class="repeaty" rowspan="2" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-r02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/box-rtop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /><br /></td>
-</tr>
-<tr>
-	<td align="bottom" bgcolor="#ffffff">
+    <tr>
+        <td width="1%">
 
-	<table width="100%" cellpadding="0" cellspacing="0" border="0">
-	<tr>
-		<td width="1%">
+        <a href="{www_dir}{index}/">
+        <!-- Icon: Start -->
+        <img src="{www_dir}/kernel/ez{module_name}/admin/images/module_icon.png" width="32" height="32" border="0" align="absmiddle" alt="{intl-module_name}" />
+        <!-- Icon: End -->
+        </a>
 
-		<a href="{www_dir}{index}/">
-		<!-- Icon: Start -->
-		<img src="{www_dir}/kernel/ez{module_name}/admin/images/module_icon.png" width="32" height="32" border="0" align="absmiddle" alt="{intl-module_name}" />
-		<!-- Icon: End -->
-		</a>
+        </td>
+        <td width="98%" style="padding-left: 6px;">
+        <span class="modulename">
 
-		</td>
-		<td width="1%">
-		<img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="6" height="10" border="0" alt="" />
-		</td>
-		<td width="98%">
-		<span class="modulename">
+        <!-- Modulename: Start -->
+        {intl-module_name}
+        <!-- Modulname: End -->
 
-		<!-- Modulename: Start -->
-		{intl-module_name}
-		<!-- Modulname: End -->
+        </span>
+        </td>
+    </tr>
+    </table>
+    </div>
+    <div class="mainbox-content">
+    <table width="100%" cellpadding="4" cellspacing="0" border="0">
+    <tr>
+        <td>
 
-		</span>
-		</td>
-	</tr>
-	</table>
-
-	</td>
-</tr>
-<tr>
-    <td class="tdmini" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-l04.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/box-ltop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /></td>
-    <td class="repeatx" width="98%" background="{www_dir}/design/admin/images/{site_style}/box-m02.gif" valign="top"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="120" height="11" border="0" alt="" /><br /></td>
-    <td class="tdmini" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-r04.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/box-rtop.gif" width="10" height="3" border="0" alt="" style="display: block;" /><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="8" border="0" alt="" /></td>
-</tr>
-<tr>
-    <td class="repeaty" width="1%" background="{www_dir}/design/admin/images/{site_style}/box-l04.gif" valign="top" align="left"><img src="{www_dir}/design/admin/images/{site_style}/1x1.gif" width="10" height="10" border="0" alt="" /><br /></td>
-    <td bgcolor="#ffffff">
-	
-	<table width="100%" cellpadding="4" cellspacing="0" border="0">
-	<tr>
-		<td>
-	
     <!-- Main view: Start -->

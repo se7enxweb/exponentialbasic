@@ -2,7 +2,7 @@
 
 ## About
 
-We are now preparing and working to bring **Exponential Basic 2.4.0.2** to the general public.
+We are now preparing and working to bring **Exponential Basic 2.4.0.4** to the general public.
 
 Exponential Basic 2.4 is the completed work started by 7x years ago to upgrade eZ Publish 2 Kernel Implementation of a easy to use PHP Personal Home Page CMS or Community Website Building Platform to more modern PHP versions.
 

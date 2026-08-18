@@ -766,6 +766,146 @@ return array(
 
 This file will be merged into `var/autoload/ezp_extension.php` when autoloads are regenerated.
 
+### Sample storage class
+
+If an extension needs to persist data, create a class that wraps `eZDB::globalDatabase()` (the eZ Publish 2 / Exponential Basic database layer).  This is the same style `eZArticle` and the other core modules use.
+
+`extension/myext/classes/myextitem.php`:
+
+```php
+<?php
+// Minimal storage class for the myext extension.
+class eZMyExtItem
+{
+    public $ID;
+    public $Name;
+    public $Message;
+    public $Created;
+
+    public function __construct( $row = array() )
+    {
+        $this->ID = isset( $row['id'] ) ? (int)$row['id'] : 0;
+        $this->Name = isset( $row['name'] ) ? $row['name'] : '';
+        $this->Message = isset( $row['message'] ) ? $row['message'] : '';
+        $this->Created = isset( $row['created'] ) ? (int)$row['created'] : 0;
+    }
+
+    static function definition()
+    {
+        return array(
+            'table' => 'myext_item',
+            'fields' => array(
+                'id' => array( 'datatype' => 'integer', 'required' => true ),
+                'name' => array( 'datatype' => 'string', 'required' => true, 'max_length' => 255 ),
+                'message' => array( 'datatype' => 'string', 'required' => true, 'max_length' => 2000 ),
+                'created' => array( 'datatype' => 'integer', 'required' => true )
+            ),
+            'keys' => array( 'id' ),
+            'increment_key' => 'id'
+        );
+    }
+
+    static function createTable()
+    {
+        $db = eZDB::globalDatabase();
+        $table = self::definition()['table'];
+        return $db->query( "CREATE TABLE IF NOT EXISTS $table (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name VARCHAR(255) NOT NULL,
+            message TEXT NOT NULL,
+            created INTEGER NOT NULL
+        )" );
+    }
+
+    static function create( $name, $message )
+    {
+        return new eZMyExtItem( array(
+            'id' => 0,
+            'name' => $name,
+            'message' => $message,
+            'created' => time()
+        ) );
+    }
+
+    static function fetch( $id )
+    {
+        $id = (int)$id;
+        $db = eZDB::globalDatabase();
+        $table = self::definition()['table'];
+        $rows = array();
+        $db->array_query( $rows, "SELECT id, name, message, created FROM $table WHERE id = $id" );
+        return is_array( $rows ) && count( $rows ) > 0 ? new eZMyExtItem( $rows[0] ) : false;
+    }
+
+    static function fetchList( $limit = 10 )
+    {
+        $limit = (int)$limit;
+        $db = eZDB::globalDatabase();
+        $table = self::definition()['table'];
+        $rows = array();
+        $db->array_query( $rows, "SELECT id, name, message, created FROM $table ORDER BY id DESC LIMIT $limit" );
+        $items = array();
+        if ( is_array( $rows ) )
+        {
+            foreach ( $rows as $row )
+                $items[] = new eZMyExtItem( $row );
+        }
+        return $items;
+    }
+
+    function store()
+    {
+        $db = eZDB::globalDatabase();
+        $table = self::definition()['table'];
+        $name = $db->escapeString( $this->Name );
+        $message = $db->escapeString( $this->Message );
+        $created = (int)$this->Created;
+
+        if ( $this->ID > 0 )
+        {
+            $sql = "UPDATE $table SET name = '$name', message = '$message', created = $created WHERE id = " . (int)$this->ID;
+        }
+        else
+        {
+            $sql = "INSERT INTO $table (name, message, created) VALUES ('$name', '$message', $created)";
+        }
+
+        return $db->query( $sql );
+    }
+
+    static function removeById( $id )
+    {
+        $id = (int)$id;
+        $db = eZDB::globalDatabase();
+        $table = self::definition()['table'];
+        return $db->query( "DELETE FROM $table WHERE id = $id" );
+    }
+
+    function createdDate()
+    {
+        return date( 'Y-m-d H:i:s', (int)$this->Created );
+    }
+}
+```
+
+Then in the module view, create the table and fetch the list:
+
+```php
+// Make sure the storage table exists.
+eZMyExtItem::createTable();
+
+$items = eZMyExtItem::fetchList( 10 );
+foreach ( $items as $item )
+{
+    $t->set_var( 'item_name', $item->Name );
+    $t->set_var( 'item_message', $item->Message );
+    $t->set_var( 'item_created', $item->createdDate() );
+    $t->parse( 'item_list', 'item_list_tpl', true );
+}
+```
+
+The complete working example is `extension/helloworld/classes/helloworlditem.php`, which is used by both `modules/helloworld/user/datasupplier.php` and `modules/helloworld/admin/datasupplier.php`.  The admin view also posts `name`/`message` and calls `store()` to demonstrate a full create-and-list flow.
+
 ---
 
 ## Siteaccess and extension ordering
@@ -1032,3 +1172,4 @@ Done:
 2. Per-view translation catalogues under `modules/<module>/{admin,user}/intl/<language>/<phpFile>.ini`.
 3. `eZExtension` helpers (`moduleFile`, `moduleMenuFile`, `moduleBaseDir`, `moduleIcon`, `moduleName`, `moduleUrlName`, `availableAdminModules`) for extension module discovery.
 4. A command-line tool to create a new extension skeleton — `php bin/shell/php/create_extension.php <name>`.
+5. A minimal `eZDB` storage class example in `extension/helloworld/classes/helloworlditem.php`.

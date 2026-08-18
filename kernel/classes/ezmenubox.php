@@ -149,7 +149,12 @@ class eZMenuBox
 
                 $t->set_var( "site_style", $SiteDesign );
                 $t->set_var( "module_dir", $module_dir );
-            
+
+                $menuModuleName = basename( $module_dir );
+                if ( strpos( $module_dir, 'kernel/' ) === 0 )
+                    $menuModuleName = preg_replace( '/^ez/i', '', $menuModuleName );
+                $t->set_var( "module_icon", eZExtension::moduleIcon( $menuModuleName, $place ) );
+
                 foreach ( $menuItems as $menuItem )
                 {
                     $t->set_var( "menu_item_link", "" );
@@ -195,6 +200,11 @@ class eZMenuBox
             {
                 $t->set_var( "site_style", $SiteDesign );
                 $t->set_var( "module_dir", $module_dir );
+
+                $menuModuleName = basename( $module_dir );
+                if ( strpos( $module_dir, 'kernel/' ) === 0 )
+                    $menuModuleName = preg_replace( '/^ez/i', '', $menuModuleName );
+                $t->set_var( "module_icon", eZExtension::moduleIcon( $menuModuleName, $place ) );
             }
             $t->setAllStrings();
         }

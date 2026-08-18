@@ -122,9 +122,23 @@ class eZModuleHandler
         $return_array = array();
         $ini = eZINI::instance( 'site.ini' );
         $allModules = explode(";", $ini->variable( "site", "EnabledModules" ) );
+
+        // Merge in modules discovered from active extensions.
+        $extensionModules = eZExtension::availableModules();
+        $allModules = array_merge( $allModules, $extensionModules );
+        $allModules = array_diff( array_unique( $allModules ), array( '' ) );
+
         $user = eZUser::currentUser();
         foreach ( $allModules as $moduleItem )
         {
+            // Extension modules are always shown in the admin module lists,
+            // since their activation already happens through site.ini.
+            if ( in_array( $moduleItem, $extensionModules, true ) )
+            {
+                $return_array[] = $moduleItem;
+                continue;
+            }
+
             if ( eZPermission::checkPermission( $user, $moduleItem, "ModuleEdit" ) )
                 $return_array[] = $moduleItem;
         }

@@ -2,3 +2,9 @@
 # Sample override from the extension/helloworld sample extension.
 # This value is unique and proves the extension settings are merged.
 HelloWorldGreeting=Hello from extension!
+
+[eZHelloworldMain]
+Language=en_US
+
+[eZHelloworld]
+Language=en_US

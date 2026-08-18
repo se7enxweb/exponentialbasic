@@ -47,11 +47,11 @@ $module_tab = eZModuleHandler::activeTab( true );
 
 require( "kernel/ezuser/admin/admincheck.php" );
 
-$url = $GLOBALS["RefURL"];
+$url = isset( $_REQUEST["RefURL"] ) ? $_REQUEST["RefURL"] : "/";
 if ( $url == "/user/settings" )
     $url = "/";
 if( $url == '' )
-    $url == '/';
+    $url = '/';
 
 if ( isset( $cancel ) )
 {

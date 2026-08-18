@@ -28,21 +28,20 @@ Or use the skeleton generator to create a fully populated extension in one step:
 php bin/shell/php/create_extension.php myfirst
 ```
 
-This creates a `README.md`, `extension.xml`, `settings/`, `design/`, `modules/`, `translations/`, `classes/`, and `autoloads/` sample files.
+This creates a `README.md`, `extension.xml`, `settings/`, `design/`, `modules/`, `module/`, `classes/`, and `autoloads/` sample files.
 
 ## 2. Activate the extension
 
-Edit `settings/site.ini` and add the extension name to `[ExtensionSettings] ActiveExtensions[]`:
+Edit `settings/override/site.ini.append.php` and add the extension name to `[ExtensionSettings] ActiveExtensions[]`:
 
 ```ini
 [ExtensionSettings]
-ExtensionDirectory=extension
 ActiveExtensions[]
 ActiveExtensions[]=helloworld
 ActiveExtensions[]=myfirst
 ```
 
-Always keep the empty `ActiveExtensions[]` line first.  Extension settings are read from `extension/<name>/settings/` when the site boots.
+Always keep the empty `ActiveExtensions[]` line first.  Extension settings are read from `extension/<name>/settings/` when the site boots.  `settings/override/` is the canonical place for per-installation activation so the base `settings/site.ini` stays untouched.
 
 ## 3. Add a settings override
 
@@ -97,7 +96,7 @@ Exponential Basic now supports the following extension features:
 | Frame / CSS / append files | Working | `extension/<ext>/design/<design>/frame.php`, `style.css`, `*.append.php` |
 | Template overrides | Working | `extension/<ext>/design/<design>/templates/<module>/<file>.tpl` |
 | Module dispatch | Working | `extension/<ext>/modules/<mod>/<type>/datasupplier.php` |
-| Translation overrides | Working | `extension/<ext>/translations/<language>/<phpFile>.ini` |
+| Translation overrides | Working | `extension/<ext>/module/{admin,user}/intl/<language>/<phpFile>.ini` |
 | PHP classes and autoloading | Working through `var/autoload/ezp_extension.php` regen | `extension/<ext>/classes/` |
 
 The sections below explain each feature in detail.
@@ -136,13 +135,22 @@ extension/myext/
       ...
   modules/
     mymodule/
-      datasupplier.php         # User view entry point (Phase 2)
       admin/
-        datasupplier.php       # Admin view entry point (Phase 2)
-      module.info              # Menu/permission metadata (Phase 2)
-  translations/
-    eng-GB/                    # Translation catalogues (Phase 2)
-      translation.ts
+        datasupplier.php       # Admin view entry point
+        menubox.php            # Admin side menu box
+        intl/
+          en_US/
+            menubox.php.ini    # Side menu title and strings
+      module.info              # Menu/permission metadata
+  module/
+    admin/
+      intl/
+        en_US/
+          datasupplier.ini     # Translation for admin datasupplier view
+    user/
+      intl/
+        en_US/
+          datasupplier.ini     # Translation for user datasupplier view
   classes/                     # PHP classes
     myclass.php
   autoloads/                   # Optional explicit autoload map
@@ -426,20 +434,39 @@ HelloWorldGreeting=Hello from extension!
 
 ### `extension/helloworld/modules/helloworld/user/datasupplier.php`
 
-The sample also ships a minimal user module.  It sets `$GlobalSectionID`, loads a template from the extension design path, and prints its output to the main content buffer:
+The sample also ships a minimal user module.  It sets `$GlobalSectionID`, loads a template from the extension design path, picks up translated strings from `extension/helloworld/module/user/intl/`, and prints its output to the main content buffer:
 
 ```php
 <?php
 $ini = eZINI::instance( 'site.ini' );
-$GlobalSectionID = $ini->variable( 'eZUserMain', 'DefaultSection' );
+if ( isset( $GlobalSectionIDOverride ) )
+    $GlobalSectionID = $GlobalSectionIDOverride;
+else
+    $GlobalSectionID = $ini->variable( 'eZUserMain', 'DefaultSection' );
+
+$Language = $ini->variable( 'site', 'Language' );
 
 $templateDir = eZDesign::file( 'templates/helloworld' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/helloworld';
 
-$t = new eZTemplate( $templateDir, '', '', 'datasupplier.php' );
+$intlDir = 'extension/helloworld/module/user/intl';
+$t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
+$t->setAllStrings();
+
 $t->set_file( 'welcome', 'welcome.tpl' );
-$t->set_var( 'hello', 'Hello from the extension module!' );
+
+if ( isset( $t->TextStrings['strings']['hello'] ) )
+    $t->set_var( 'hello', $t->TextStrings['strings']['hello'] );
+else
+    $t->set_var( 'hello', 'Hello from the extension module!' );
+
+if ( isset( $t->TextStrings['strings']['description'] ) )
+    $t->set_var( 'description', $t->TextStrings['strings']['description'] );
+else
+    $t->set_var( 'description', 'This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.' );
+
+$t->set_var( 'edit_hint', '' );
 $t->pparse( 'output', 'welcome' );
 ```
 
@@ -447,7 +474,8 @@ $t->pparse( 'output', 'welcome' );
 
 ```html
 <h1>{hello}</h1>
-<p>This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.</p>
+<p>{description}</p>
+<p><em>{edit_hint}</em></p>
 ```
 
 ### Module verification
@@ -455,7 +483,7 @@ $t->pparse( 'output', 'welcome' );
 Visit `https://<site>/helloworld/` and you should see the page rendered inside the site frame:
 
 ```
-Hello from the extension module!
+Hello from the extension module (translated)!
 This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.
 ```
 
@@ -503,13 +531,26 @@ else
     $GlobalSectionID = $ini->variable( 'eZUserMain', 'DefaultSection' );
 }
 
+$Language = $ini->variable( 'site', 'Language' );
+
 $templateDir = eZDesign::file( 'templates/mymodule' );
 if ( $templateDir === false )
     $templateDir = 'design/' . $GlobalSiteDesign . '/templates/mymodule';
 
-$t = new eZTemplate( $templateDir, '', '', 'datasupplier.php' );
+$intlDir = 'extension/myext/module/user/intl';
+$t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
+$t->setAllStrings();
+
 $t->set_file( 'myview', 'myview.tpl' );
-$t->set_var( 'hello', 'Hello from my module' );
+
+if ( isset( $t->TextStrings['strings']['hello'] ) )
+    $t->set_var( 'hello', $t->TextStrings['strings']['hello'] );
+else
+    $t->set_var( 'hello', 'Hello from my module' );
+
+if ( isset( $t->TextStrings['strings']['description'] ) )
+    $t->set_var( 'description', $t->TextStrings['strings']['description'] );
+
 $t->pparse( 'output', 'myview' );
 ```
 
@@ -526,7 +567,7 @@ Description=Example module in an extension.
 index=User index view
 ```
 
-Admin module menus and link generation still read `kernel/ez<module>/module.info`; support for `extension/<ext>/modules/<module>/module.info` is the next wave.
+Admin module menus and link generation now also read `extension/<ext>/modules/<module>/module.info`.  The `Name` key supplies the module title and the `admin/menubox.php` (if present) builds the side menu; `module.info` is discovered automatically for active extensions.
 
 ---
 
@@ -538,8 +579,11 @@ extend the text strings used by a template.
 
 ### File layout
 
+Translation catalogues for extension module views live under `module/<type>/intl/`, where `<type>` is `admin` or `user`:
+
 ```
-extension/myext/translations/<language>/<phpFile>.ini
+extension/myext/module/admin/intl/<language>/<phpFile>.ini
+extension/myext/module/user/intl/<language>/<phpFile>.ini
 ```
 
 - `<language>` is the eZ language code from `site.ini` (for example `en_US` or `en_GB`).
@@ -562,13 +606,18 @@ Or call `setAllStrings()` and then `set_var( 'hello', $t->TextStrings['strings']
 
 ### Search order
 
-For each PHP view file referenced by the template:
+`eZTemplate` looks for translation overrides from active extensions in this
+order for each PHP view file:
 
-1. `extension/<active-ext>/translations/<language>/<phpFile>.ini`
-2. `extension/<active-ext>/translations/<language>/<phpFile>.php.ini`
+1. `extension/<active-ext>/translations/<language>/<phpFile>.ini` (legacy)
+2. `extension/<active-ext>/module/admin/intl/<language>/<phpFile>.ini`
+3. `extension/<active-ext>/module/user/intl/<language>/<phpFile>.ini`
 
 Only the base name of the PHP file is used; the `.php` suffix is stripped
 automatically.
+
+In addition, an extension view can pass its own `intlDir` to `eZTemplate` to
+load a specific `module/<type>/intl/<language>/<phpFile>.ini` file directly.
 
 The extension translations are merged with the core language file loaded from
 the view's `intl/` directory.  Extension values override core values with the
@@ -576,7 +625,8 @@ same key.
 
 ### Example
 
-`extension/helloworld/translations/en_US/datasupplier.ini`:
+`extension/helloworld/module/admin/intl/en_US/datasupplier.ini` and
+`extension/helloworld/module/user/intl/en_US/datasupplier.ini`:
 
 ```ini
 [strings]
@@ -584,9 +634,10 @@ hello=Hello from the extension module (translated)!
 description=This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.
 ```
 
-The `extension/helloworld/modules/helloworld/user/datasupplier.php` sample
-passes the site `Language` to `eZTemplate`, calls `setAllStrings()`, and uses
-the translated strings as template variables.
+The `extension/helloworld/modules/helloworld/admin/datasupplier.php` and
+`extension/helloworld/modules/helloworld/user/datasupplier.php` samples pass the
+site `Language` and a per-view `intlDir` to `eZTemplate`, call `setAllStrings()`,
+and use the translated strings as template variables.
 
 ---
 

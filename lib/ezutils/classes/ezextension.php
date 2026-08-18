@@ -72,6 +72,230 @@ class eZExtension
     }
 
     /**
+     * Return the filesystem path to module.info, checking extension modules
+     * before falling back to the core kernel module.
+     *
+     * @param string $module The module name without the 'ez' prefix.
+     * @return string|false
+     */
+    public static function moduleInfoFile( $module )
+    {
+        $extensionDirectory = self::baseDirectory();
+        $activeExtensions = self::activeExtensions( false );
+
+        foreach ( $activeExtensions as $activeExtension )
+        {
+            $path = "$extensionDirectory/$activeExtension/modules/$module/module.info";
+            if ( file_exists( $path ) )
+                return $path;
+        }
+
+        $corePath = "kernel/ez$module/module.info";
+        if ( file_exists( $corePath ) )
+            return $corePath;
+
+        return false;
+    }
+
+    /**
+     * Return the display name of a module as defined in its module.info.
+     * Falls back to a mixed-case version of the directory name.
+     *
+     * @param string $module The module name without the 'ez' prefix.
+     * @return string
+     */
+    public static function moduleName( $module )
+    {
+        $infoFile = self::moduleInfoFile( $module );
+        if ( $infoFile !== false )
+        {
+            $info = @parse_ini_file( $infoFile, true );
+            if ( isset( $info['Module']['Name'] ) && $info['Module']['Name'] != '' )
+            {
+                return $info['Module']['Name'];
+            }
+        }
+
+        // Fallback: my-module-name -> My Module Name
+        return ucwords( str_replace( array( '-', '_' ), ' ', $module ) );
+    }
+
+    /**
+     * Return the public URL path for a module's admin icon.
+     * Prefers .png, then .gif, then a generic design fallback.
+     *
+     * @param string $module The module name without the 'ez' prefix.
+     * @return string
+     */
+    public static function moduleIcon( $module, $type = 'admin' )
+    {
+        $baseDir = self::moduleBaseDir( $module, $type );
+        if ( $baseDir === false )
+            $baseDir = "kernel/ez" . $module;
+
+        foreach ( array( 'png', 'gif' ) as $ext )
+        {
+            $path = "/" . $baseDir . "/" . $type . "/images/module_icon." . $ext;
+            if ( file_exists( substr( $path, 1 ) ) )
+                return $path;
+        }
+
+        return "/design/admin/images/module_icon.png";
+    }
+
+    /**
+     * Return the menubox.php file for a module, checking extension modules
+     * before falling back to the core kernel module.
+     *
+     * @param string $module The module name without the 'ez' prefix.
+     * @param string $type   'admin', 'user' or similar.
+     * @return string|false
+     */
+    public static function moduleMenuFile( $module, $type = 'admin' )
+    {
+        $extensionDirectory = self::baseDirectory();
+        $activeExtensions = self::activeExtensions( false );
+
+        foreach ( $activeExtensions as $activeExtension )
+        {
+            $path = "$extensionDirectory/$activeExtension/modules/$module/$type/menubox.php";
+            if ( file_exists( $path ) )
+                return $path;
+        }
+
+        $corePath = "kernel/ez$module/$type/menubox.php";
+        if ( file_exists( $corePath ) )
+            return $corePath;
+
+        return false;
+    }
+
+    /**
+     * Return the base directory for a module (the parent of the type directory).
+     * This is used by eZMenuBox to locate intl files and templates.
+     *
+     * @param string $module The module name without the 'ez' prefix.
+     * @param string $type   'admin', 'user' or similar.
+     * @return string|false
+     */
+    public static function moduleBaseDir( $module, $type = 'admin' )
+    {
+        $menuFile = self::moduleMenuFile( $module, $type );
+        if ( $menuFile !== false )
+            return dirname( dirname( $menuFile ) );
+
+        $moduleFile = self::moduleFile( $module, $type );
+        if ( $moduleFile !== false )
+            return dirname( dirname( $moduleFile ) );
+
+        return false;
+    }
+
+    /**
+     * Return a list of eZ-style module names (e.g. eZHelloworld) discovered
+     * in active extensions.  These are suitable for EnabledModules.
+     *
+     * @return array
+     */
+    public static function availableModules()
+    {
+        $return = array();
+        $extensionDirectory = self::baseDirectory();
+        $activeExtensions = self::activeExtensions( false );
+
+        foreach ( $activeExtensions as $activeExtension )
+        {
+            $modulesDir = "$extensionDirectory/$activeExtension/modules";
+            if ( !is_dir( $modulesDir ) )
+                continue;
+
+            foreach ( scandir( $modulesDir ) as $module )
+            {
+                if ( $module == '.' || $module == '..' )
+                    continue;
+
+                $userFile = "$modulesDir/$module/user/datasupplier.php";
+                $adminFile = "$modulesDir/$module/admin/datasupplier.php";
+                if ( file_exists( $userFile ) || file_exists( $adminFile ) )
+                {
+                    $return[] = self::ezModuleName( $module );
+                }
+            }
+        }
+
+        return array_unique( $return );
+    }
+
+    /**
+     * Return a list of admin module strings (e.g. eZHelloworld|ezhelloworld)
+     * discovered in active extensions.  These match the EnabledAdminModules
+     * format.
+     *
+     * @param bool $asStrings If true, return strings; otherwise arrays.
+     * @return array
+     */
+    public static function availableAdminModules( $asStrings = false )
+    {
+        $return = array();
+        $extensionDirectory = self::baseDirectory();
+        $activeExtensions = self::activeExtensions( false );
+
+        foreach ( $activeExtensions as $activeExtension )
+        {
+            $modulesDir = "$extensionDirectory/$activeExtension/modules";
+            if ( !is_dir( $modulesDir ) )
+                continue;
+
+            foreach ( scandir( $modulesDir ) as $module )
+            {
+                if ( $module == '.' || $module == '..' )
+                    continue;
+
+                $menuFile = "$modulesDir/$module/admin/menubox.php";
+                $infoFile = "$modulesDir/$module/module.info";
+                if ( file_exists( $menuFile ) || file_exists( $infoFile ) )
+                {
+                    $mixed = self::ezModuleName( $module );
+                    if ( $asStrings )
+                        $return[] = "$mixed|ez$module";
+                    else
+                        $return[] = array( 'mixed' => $mixed, 'module' => $module, 'name' => $mixed );
+                }
+            }
+        }
+
+        return $return;
+    }
+
+    /**
+     * Return the eZ-style mixed-case module name from a module directory name.
+     * e.g. my-module -> eZMyModule, helloworld -> eZHelloworld.
+     *
+     * @param string $module
+     * @return string
+     */
+    public static function ezModuleName( $module )
+    {
+        $name = self::moduleName( $module );
+        $compact = str_replace( array( ' ', '-', '_' ), '', ucwords( str_replace( array( '-', '_' ), ' ', $name ) ) );
+        return 'eZ' . $compact;
+    }
+
+    /**
+     * Return the module URL name from an eZ-style module name.
+     * e.g. eZMyModule -> mymodule, eZArticle -> article.
+     *
+     * @param string $moduleName
+     * @return string
+     */
+    public static function moduleUrlName( $moduleName )
+    {
+        $name = preg_replace( '/^eZ/i', '', $moduleName );
+        $name = str_replace( ' ', '', $name );
+        return strtolower( $name );
+    }
+
+    /**
      * Return an array with activated extensions.
      *
      * @note Default extensions are those who are loaded before a siteaccess are determined while access extensions

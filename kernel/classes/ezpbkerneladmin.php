@@ -534,6 +534,9 @@ try
 
             $site_modules = $ini->variable( "site", "EnabledModules" );
             $admin_modules = explode( ";", $ini->variable( "site", "EnabledAdminModules" ) );
+            // Merge in admin modules discovered from active extensions.
+            $admin_modules = array_merge( $admin_modules, eZExtension::availableAdminModules( true ) );
+            $admin_modules = array_diff( array_unique( $admin_modules ), array( '' ) );
             $modules = eZModuleHandler::active();
 
             $uri = $_SERVER["REQUEST_URI"];
@@ -544,7 +547,10 @@ try
                 {
                     foreach( $modules as $module )
                     {
-                        $module_dir = 'kernel/' . strtolower( $module );
+                        $urlModule = eZExtension::moduleUrlName( $module );
+                        $module_dir = eZExtension::moduleBaseDir( $urlModule, 'admin' );
+                        if ( $module_dir === false )
+                            $module_dir = 'kernel/' . strtolower( $module );
                         if ( $_REQUEST["ToggleMenu"] == $module_dir )
                         {
                             eZModuleHandler::toggle( $module_dir );
@@ -598,15 +604,21 @@ try
                 {
                     if ( !empty( $module ) )
                     {
-                        $module_dir = "kernel/" . strtolower( $module );
+                        $urlModule = eZExtension::moduleUrlName( $module );
+                        $moduleMenuFile = eZExtension::moduleMenuFile( $urlModule, 'admin' );
 
                         unset( $menuItems );
-                        include( "$module_dir/admin/menubox.php" );
-                        if ( isset( $menuItems ) )
-                            eZMenuBox::createBox(  $moduleName, $module_dir, "admin",
-                            $siteDesign, $menuItems, true, false,
-                            "$module_dir/admin/menubox.php", false, true, $moduleSettingsGroupName );
-                        unset( $module_dir );
+                        if ( $moduleMenuFile !== false )
+                        {
+                            include( $moduleMenuFile );
+                            if ( isset( $menuItems ) )
+                            {
+                                $module_dir = eZExtension::moduleBaseDir( $urlModule, 'admin' );
+                                eZMenuBox::createBox( $moduleName, $module_dir, "admin",
+                                $siteDesign, $menuItems, true, false,
+                                $moduleMenuFile, false, true, $moduleSettingsGroupName );
+                            }
+                        }
                     }
                 }
             }
@@ -696,8 +708,17 @@ try
     
                 $Language = $ini->variable( $moduleSettingsGroupName, "Language" );
        
+                $urlModule = eZExtension::moduleUrlName( $moduleName );
+                $moduleBaseDir = eZExtension::moduleBaseDir( $urlModule, 'admin' );
+                if ( $moduleBaseDir === false )
+                    $moduleBaseDir = "kernel/ez" . $moduleName;
+
+                $moduleDisplayName = eZExtension::moduleName( $urlModule );
+                if ( $moduleDisplayName === false )
+                    $moduleDisplayName = $moduleName;
+
                 $t = new eZTemplate( "design/admin/templates/" . $siteDesign,
-                    "kernel/ez" . $moduleName . "/admin/intl/", $Language, "menubox.php" );
+                    $moduleBaseDir . "/admin/intl/", $Language, "menubox.php" );
                 $t->set_file( array(
                     "separator_tpl" => "separator.tpl"
                     ) );
@@ -708,18 +729,19 @@ try
 
                 $t->set_var( "site_style", $siteDesign );
 
-                $t->set_var( "module_name", $moduleName );
+                $t->set_var( "module_name", $moduleDisplayName );
+                $t->set_var( "module_icon", eZExtension::moduleIcon( $urlModule, 'admin' ) );
 
                 $t->set_var( "current_url", $_SERVER['REQUEST_URI'] );
 
                 if( isset( $url_array[2] ) )
                 {
                     // check for help file
-                    $helpFile = "kernel/ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . "_" . $url_array[2] . ".hlp";
+                    $helpFile = $moduleBaseDir . "/admin/help/" . $Language . "/" . $url_array[1] . "_" . $url_array[2] . ".hlp";
                 }
                 else {
                     // check for help file
-                    $helpFile = "kernel/ez" . $moduleName . "/admin/help/". $Language . "/" . $url_array[1] . ".hlp";
+                    $helpFile = $moduleBaseDir . "/admin/help/" . $Language . "/" . $url_array[1] . ".hlp";
                 }
                 $t->set_var( "help", "" );
 

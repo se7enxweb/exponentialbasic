@@ -120,7 +120,7 @@ if ( $dryRun )
 
 echo "PASS: created " . count( $created ) . " files in $extDir\n";
 echo "Next steps:\n";
-echo "  1. Add ActiveExtensions[]=$name to settings/site.ini\n";
+echo "  1. Add ActiveExtensions[]=$name to settings/override/site.ini.append.php\n";
 echo "  2. Run: bash bin/shell/clearcache.sh\n";
 echo "  3. Run: php bin/shell/php/ezpgenerateautoloads.php -e\n";
 echo "  4. Visit https://<site>/$name/\n";
@@ -185,7 +185,7 @@ Describe what this extension does.
 
 ## Installation
 
-1. Activate the extension in `settings/site.ini`:
+1. Activate the extension in `settings/override/site.ini.append.php`:
 
 ```ini
 [ExtensionSettings]
@@ -230,6 +230,12 @@ EOT
 # Use a unique key to prove the extension is being loaded.
 __CLASS__Enabled=true
 __CLASS__Greeting=Hello from __NAME__!
+
+[__CLASS__Main]
+Language=en_US
+
+[__CLASS__]
+Language=en_US
 EOT
         ),
 
@@ -264,13 +270,17 @@ EOT
 
         'design/standard/templates/__NAME__/welcome.tpl' => placeholder( <<<'EOT'
 <h1>{hello}</h1>
-<p>This page is served by extension/__NAME__/modules/__NAME__/user/datasupplier.php.</p>
+<p>{description}</p>
+<p><em>{edit_hint}</em></p>
 EOT
         ),
 
         'modules/__NAME__/user/datasupplier.php' => placeholder( <<<'EOT'
 <?php
-// __TITLE__ extension user view.
+//
+// extension/__NAME__/modules/__NAME__/user/datasupplier.php
+//
+// User view for the __TITLE__ extension module.
 
 $ini = eZINI::instance( 'site.ini' );
 if ( isset( $GlobalSectionIDOverride ) )
@@ -282,23 +292,96 @@ else
     $GlobalSectionID = $ini->variable( 'eZUserMain', 'DefaultSection' );
 }
 
+$Language = $ini->variable( 'site', 'Language' );
+
 $templateDir = eZDesign::file( 'templates/__NAME__' );
 if ( $templateDir === false )
     $templateDir = 'design/' . $GlobalSiteDesign . '/templates/__NAME__';
 
-$t = new eZTemplate( $templateDir, '', '', 'datasupplier.php' );
+$intlDir = 'extension/__NAME__/module/user/intl';
+$t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
+$t->setAllStrings();
+
 $t->set_file( 'welcome', 'welcome.tpl' );
-$t->set_var( 'hello', 'Hello from the __NAME__ extension!' );
+
+if ( isset( $t->TextStrings['strings']['hello'] ) )
+    $t->set_var( 'hello', $t->TextStrings['strings']['hello'] );
+else
+    $t->set_var( 'hello', 'Hello from the __NAME__ extension module!' );
+
+if ( isset( $t->TextStrings['strings']['description'] ) )
+    $t->set_var( 'description', $t->TextStrings['strings']['description'] );
+else
+    $t->set_var( 'description', 'This page is served by extension/__NAME__/modules/__NAME__/user/datasupplier.php.' );
+
+$t->set_var( 'edit_hint', '' );
+
 $t->pparse( 'output', 'welcome' );
 EOT
         ),
 
         'modules/__NAME__/admin/datasupplier.php' => placeholder( <<<'EOT'
 <?php
-// __TITLE__ extension admin view placeholder.
-// Point to an admin template or return an admin dashboard.
+//
+// extension/__NAME__/modules/__NAME__/admin/datasupplier.php
+//
+// Admin view for the __TITLE__ extension module.
 
-echo "<h1>__TITLE__ Admin</h1>";
+$ini = eZINI::instance( 'site.ini' );
+if ( isset( $GlobalSectionIDOverride ) )
+{
+    $GlobalSectionID = $GlobalSectionIDOverride;
+}
+else
+{
+    $GlobalSectionID = $ini->variable( 'eZUserMain', 'DefaultSection' );
+}
+
+$Language = $ini->variable( 'site', 'Language' );
+
+$templateDir = eZDesign::file( 'templates/__NAME__' );
+if ( $templateDir === false )
+    $templateDir = 'design/standard/templates/__NAME__';
+
+$intlDir = 'extension/__NAME__/module/admin/intl';
+$t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
+$t->setAllStrings();
+
+$t->set_file( 'welcome', 'welcome.tpl' );
+
+if ( isset( $t->TextStrings['strings']['hello'] ) )
+    $t->set_var( 'hello', $t->TextStrings['strings']['hello'] );
+else
+    $t->set_var( 'hello', 'Hello from the __NAME__ extension module!' );
+
+if ( isset( $t->TextStrings['strings']['description'] ) )
+    $t->set_var( 'description', $t->TextStrings['strings']['description'] );
+else
+    $t->set_var( 'description', 'This page is served by the __TITLE__ admin view.' );
+
+$templatePath = $templateDir;
+$translationPath = 'extension/__NAME__/module/admin/intl/' . $Language . '/datasupplier.ini';
+$t->set_var( 'edit_hint', 'Change this page text by editing the template ' . $templatePath . '/welcome.tpl and strings translation at ' . $translationPath . '.' );
+
+$t->pparse( 'output', 'welcome' );
+EOT
+        ),
+
+        'modules/__NAME__/admin/menubox.php' => placeholder( <<<'EOT'
+<?php
+// __TITLE__ extension admin menubox.
+
+$menuItems = array(
+    array( "/__NAME__/", "__TITLE__" ),
+    );
+
+?>
+EOT
+        ),
+
+        'modules/__NAME__/admin/intl/en_US/menubox.php.ini' => placeholder( <<<'EOT'
+[strings]
+module_name=__TITLE__
 EOT
         ),
 
@@ -319,7 +402,14 @@ EOT
 EOT
         ),
 
-        'translations/en_US/datasupplier.ini' => placeholder( <<<'EOT'
+        'module/admin/intl/en_US/datasupplier.ini' => placeholder( <<<'EOT'
+[strings]
+hello=Hello from the __NAME__ extension (translated)!
+description=This page is served by extension/__NAME__/modules/__NAME__/user/datasupplier.php.
+EOT
+        ),
+
+        'module/user/intl/en_US/datasupplier.ini' => placeholder( <<<'EOT'
 [strings]
 hello=Hello from the __NAME__ extension (translated)!
 description=This page is served by extension/__NAME__/modules/__NAME__/user/datasupplier.php.

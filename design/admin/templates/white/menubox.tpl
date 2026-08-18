@@ -6,7 +6,7 @@
 <tr>
 	<td width="1%">
 	<!-- Ikon: Start -->
-	<a href="{www_dir}{index}{request_uri}"><img src="{www_dir}/{module_dir}/admin/images/module_icon.png" width="32" height="32" border="0" align="absmiddle" alt="{intl-module_name}" /></a>
+	<a href="{www_dir}{index}{request_uri}"><img src="{www_dir}{module_icon}" width="32" height="32" border="0" align="absmiddle" alt="{intl-module_name}" /></a>
 	<!-- Ikon: Slutt -->		
 	</td>
 	<td width="96%" style="padding-left: 6px;">

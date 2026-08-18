@@ -1,9 +1,8 @@
 <?php
 //
-// extension/helloworld/modules/helloworld/user/datasupplier.php
+// extension/helloworld/modules/helloworld/admin/datasupplier.php
 //
-// Sample module in an extension. It uses an eZTemplate from the extension
-// design path, with extension translation strings merged into the template.
+// Admin view for the Hello World sample extension module.
 
 $ini = eZINI::instance( 'site.ini' );
 if ( isset( $GlobalSectionIDOverride ) )
@@ -21,7 +20,7 @@ $templateDir = eZDesign::file( 'templates/helloworld' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/helloworld';
 
-$intlDir = 'extension/helloworld/module/user/intl';
+$intlDir = 'extension/helloworld/module/admin/intl';
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -35,8 +34,12 @@ else
 if ( isset( $t->TextStrings['strings']['description'] ) )
     $t->set_var( 'description', $t->TextStrings['strings']['description'] );
 else
-    $t->set_var( 'description', 'This page is served by extension/helloworld/modules/helloworld/user/datasupplier.php.' );
+    $t->set_var( 'description', 'This page is served by the Hello World admin view.' );
 
-$t->set_var( 'edit_hint', '' );
+$templatePath = eZDesign::file( 'templates/helloworld' );
+if ( $templatePath === false )
+    $templatePath = 'design/standard/templates/helloworld';
+$translationPath = 'extension/helloworld/module/admin/intl/' . $Language . '/datasupplier.ini';
+$t->set_var( 'edit_hint', 'Change this page text by editing the template ' . $templatePath . '/welcome.tpl and strings translation at ' . $translationPath . '.' );
 
 $t->pparse( 'output', 'welcome' );

@@ -210,8 +210,9 @@ if ( $ModuleTab == true )
 {
     foreach( $site_modules as $site_module )
     {
-        $module = strtolower( $site_module );
-        if ( file_exists( "kernel/" . $module ) )
+        $urlModule = eZExtension::moduleUrlName( $site_module );
+        $moduleBaseDir = eZExtension::moduleBaseDir( $urlModule, 'admin' );
+        if ( $moduleBaseDir !== false )
         {
             if ( $single_module )
             {
@@ -222,14 +223,28 @@ if ( $ModuleTab == true )
                 $t->set_var( "module_action", in_array( $site_module, $modules ) ? "deactivate" : "activate" );
             }
             $t->set_var( "ez_module_name", $site_module );
-            $t->set_var( "ez_dir_name", $module );
+            $t->set_var( "ez_dir_name", strtolower( $site_module ) );
+
             $moduleSettingName = $site_module . "Main";
             $moduleLanguage = $ini->variable( $moduleSettingName, "Language" );
             if ( !$moduleLanguage )
                 $moduleLanguage = $Language;
-            $lang_file = new eZINI( "kernel/$module/admin/intl/$moduleLanguage/menubox.php.ini" );
-            $mod_name = $lang_file->variable( "strings", "module_name" );
+
+            $langFile = "$moduleBaseDir/admin/intl/$moduleLanguage/menubox.php.ini";
+            if ( file_exists( $langFile ) )
+            {
+                $lang_file = new eZINI( $langFile );
+                $mod_name = $lang_file->variable( "strings", "module_name" );
+            }
+            else
+            {
+                $mod_name = eZExtension::moduleName( $urlModule );
+            }
             $t->set_var( "module_name", $mod_name );
+
+            $iconPath = eZExtension::moduleIcon( $urlModule, 'admin' );
+            $t->set_var( "module_icon", $iconPath );
+
             $t->parse( "module_item", "module_item_tpl", true );
         }
     }

@@ -73,8 +73,14 @@ if( strtolower( $moduleName ) != 'all' && strtolower( $moduleName ) != 'none' )
 {
     // set the first menu item active
     unset( $menuItems );
-    include( "kernel/" . strtolower($moduleName) ."/admin/menubox.php" );
-    $uri = $menuItems[0][0];
+    $urlModule = eZExtension::moduleUrlName( $moduleName );
+    $moduleMenuFile = eZExtension::moduleMenuFile( $urlModule, 'admin' );
+    if ( $moduleMenuFile !== false )
+    {
+        include( $moduleMenuFile );
+        if ( isset( $menuItems ) && count( $menuItems ) > 0 )
+            $uri = $menuItems[0][0];
+    }
     unset( $menuItems );
 }
 

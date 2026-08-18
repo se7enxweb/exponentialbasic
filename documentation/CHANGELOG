@@ -63,7 +63,7 @@ SITE & OPERATIONS
 - Updated: Calendar time slot color set to white for default readability.
 - Updated: README.md with a Troubleshooting section for first-time installs.
 - Updated: composer.json phpunit package require from insecure v10 to v13.
-- Updated: documentation/ABOUT.md now targets the 2.4.0.4 release.
+- Updated: documentation/ABOUT.md now targets the 2.4.0.3 release.
 
 
 

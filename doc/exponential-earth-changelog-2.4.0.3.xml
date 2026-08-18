@@ -1,0 +1,69 @@
+<section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
+  <section>
+    <header>Exponential Basic 2.4.0.3</header>
+    <paragraph>2026/08/18 @ 04:26:18 PDT</paragraph>
+    <paragraph><strong>Release of Exponential Basic 2.4.0.3 (From 7x)</strong></paragraph>
+    <paragraph>Official stable release of Exponential Basic 2.4.0.3 (Stable).</paragraph>
+    <paragraph>Release date: 2026.08.18.</paragraph>
+  </section>
+  <section>
+    <header>What's Changed / What's New (Since Exponential Basic 2.4.0.2)</header>
+    <paragraph>The main themes of this release are <strong>Extension Modules</strong>, <strong>Admin UI Refresh</strong> and <strong>PHP 8 Hardening</strong>.</paragraph>
+    <paragraph><strong>Download Release:</strong> <link target="_blank" href="https://github.com/se7enxweb/exponentialbasic/releases/tag/v2.4.0.3">se7enxweb/exponentialbasic/releases/tag/v2.4.0.3</link></paragraph>
+  </section>
+  <section>
+    <header>Changelog Details</header>
+    <section>
+      <header>New Features</header>
+      <paragraph><ul>
+        <li><paragraph>Added eZDesign design resolver and extension/helloworld sample.</paragraph></li>
+        <li><paragraph>Added eZExtension helpers: moduleFile(), moduleMenuFile(), moduleBaseDir(), moduleIcon(), moduleName(), moduleUrlName(), availableAdminModules() and availableModules().</paragraph></li>
+        <li><paragraph>Added eZTemplate translation override merging from active extension modules.</paragraph></li>
+        <li><paragraph>Added extension module discovery from module.info for admin menus, icons, menubox.php side-menu boxes and per-view intl paths.</paragraph></li>
+        <li><paragraph>Added php bin/shell/php/create_extension.php skeleton generator for new modules.</paragraph></li>
+        <li><paragraph>Added eZHelloWorldItem storage class with eZDB-backed create, fetch, fetchList, fetchBySearch, store, removeById and createTable.</paragraph></li>
+        <li><paragraph>Added admin list template (adminlist.tpl) for helloworld styled after the core article archive list.</paragraph></li>
+        <li><paragraph>Added eZCompany::emailAddress() method returning the first mailto online URL.</paragraph></li>
+        <li><paragraph>Changed default IndexPage and DefaultPage to the article frontpage so root / serves content.</paragraph></li>
+        <li><paragraph>Restored /proc-based sysinfo pages and added a PHP 8-safe fallback when /proc is not readable.</paragraph></li>
+      </ul></paragraph>
+    </section>
+    <section>
+      <header>Bug Fixes</header>
+      <paragraph><ul>
+        <li><paragraph>Removed trailing commas that broke MySQL schema creation for eZArticle and eZStats.</paragraph></li>
+        <li><paragraph>Fixed eZImageVariation::store() so image variation rows are inserted correctly.</paragraph></li>
+        <li><paragraph>Fixed order views and SETI export to use customer emailAddress() as a string and avoid undefined index errors.</paragraph></li>
+        <li><paragraph>Fixed company type list to guard requestImageVariation failures for category and company logos.</paragraph></li>
+        <li><paragraph>Added require('autoload.php') to all cron scripts and removed stale commented includes.</paragraph></li>
+        <li><paragraph>Fixed admin fatal/rendering errors in contact, filemanager, trade, article, newsfeed and eZPBFile views.</paragraph></li>
+        <li><paragraph>Fixed eZStats reports and queries: dates, browser counts, visitor reverse-DNS and blank referer handling.</paragraph></li>
+        <li><paragraph>Fixed refererlist eZ TPL block parsing so blank referers display as "Direct" or "(none)" and do not produce broken http://Direct links.</paragraph></li>
+      </ul></paragraph>
+    </section>
+    <section>
+      <header>Maintenance</header>
+      <paragraph><ul>
+        <li><paragraph>Updated white admin style box borders and templates, replacing GIF tile borders with CSS.</paragraph></li>
+        <li><paragraph>Tightened admin module body border spacing on desktop and improved mobile responsive styles.</paragraph></li>
+        <li><paragraph>Updated footer badge references to use Exponential Basic branding with improved contrast and wording.</paragraph></li>
+        <li><paragraph>Moved eZ Basic caches out of kernel/ and into var/cache/.</paragraph></li>
+        <li><paragraph>Set default calendar time slot color to white for readability.</paragraph></li>
+        <li><paragraph>Updated composer.json phpunit package require from insecure v10 to v13.</paragraph></li>
+        <li><paragraph>Updated settings/override/site.ini.append.php to set DatabaseImplementation=sqlite and activate the helloworld extension.</paragraph></li>
+      </ul></paragraph>
+    </section>
+    <section>
+      <header>Documentation</header>
+      <paragraph><ul>
+        <li><paragraph>Updated README.md with a Troubleshooting section for first-time installs.</paragraph></li>
+        <li><paragraph>Updated documentation/EXTENSIONS.md with the extension API reference, eZExtension helper table, admin menubox example and eZDB storage class example.</paragraph></li>
+        <li><paragraph>Added doc/changelogs/2.4.0.3.md and doc/exponential-earth-news-press-release-2.4.0.3.xml.</paragraph></li>
+        <li><paragraph>Updated documentation/ABOUT.md to target the 2.4.0.3 release.</paragraph></li>
+      </ul></paragraph>
+    </section>
+    <section>
+      <header>Contributors: 7x, Graham Brookins</header>
+    </section>
+  </section>
+</section>

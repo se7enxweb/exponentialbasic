@@ -3,6 +3,7 @@
 // extension/helloworld/modules/helloworld/admin/datasupplier.php
 //
 // Admin view for the Hello World sample extension module.
+// Styled like the core eZ Article archive list.
 
 $ini = eZINI::instance( 'site.ini' );
 if ( isset( $GlobalSectionIDOverride ) )
@@ -27,61 +28,76 @@ $intlDir = "$moduleBaseDir/admin/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
-$t->set_file( 'welcome', 'welcome.tpl' );
+$t->set_file( 'adminlist', 'adminlist.tpl' );
 
-if ( isset( $t->TextStrings['strings']['hello'] ) )
-    $t->set_var( 'hello', $t->TextStrings['strings']['hello'] );
-else
-    $t->set_var( 'hello', 'Hello from the extension module!' );
+$t->set_var( 'head_line', 'Hello World Messages' );
+$t->set_var( 'add_head_line', 'Add a message' );
+$t->set_var( 'description', 'List of stored hello-world messages.' );
+$t->set_var( 'item_name_header', 'Name' );
+$t->set_var( 'item_message_header', 'Message' );
+$t->set_var( 'item_created_header', 'Created' );
+$t->set_var( 'no_items_text', 'No messages stored yet.' );
+$t->set_var( 'name_label', 'Name' );
+$t->set_var( 'message_label', 'Message' );
+$t->set_var( 'store_label', 'Store' );
+$t->set_var( 'form_status', '' );
 
-if ( isset( $t->TextStrings['strings']['description'] ) )
-    $t->set_var( 'description', $t->TextStrings['strings']['description'] );
-else
-    $t->set_var( 'description', 'This page is served by the Hello World admin view.' );
-
-// Make sure the storage table exists, then handle adds and list the latest messages.
+// Make sure the storage table exists.
 eZHelloWorldItem::createTable();
 
+// Handle delete action.
+if ( isset( $_POST['DeleteSelected'] ) && isset( $_POST['DeleteArrayID'] ) && is_array( $_POST['DeleteArrayID'] ) )
+{
+    foreach ( $_POST['DeleteArrayID'] as $deleteId )
+    {
+        eZHelloWorldItem::removeById( $deleteId );
+    }
+    $t->set_var( 'form_status', 'Selected messages deleted.' );
+}
+
+// Handle add action.
 if ( isset( $_POST['name'] ) && isset( $_POST['message'] ) && trim( $_POST['name'] ) !== '' && trim( $_POST['message'] ) !== '' )
 {
     $item = eZHelloWorldItem::create( trim( $_POST['name'] ), trim( $_POST['message'] ) );
     $item->store();
     $t->set_var( 'form_status', 'Message stored.' );
 }
+
+// Search or list all.
+if ( isset( $_POST['SearchText'] ) && trim( $_POST['SearchText'] ) !== '' )
+{
+    $items = eZHelloWorldItem::fetchBySearch( trim( $_POST['SearchText'] ), 50 );
+}
 else
 {
-    $t->set_var( 'form_status', '' );
+    $items = eZHelloWorldItem::fetchList( 50 );
 }
 
-$items = eZHelloWorldItem::fetchList( 10 );
+$t->set_block( 'adminlist', 'item_list_tpl', 'item_list' );
+$t->set_block( 'adminlist', 'item_list_block_tpl', 'item_list_block' );
+$t->set_block( 'adminlist', 'no_items_tpl', 'no_items' );
 
-$t->set_block( 'welcome', 'item_list_tpl', 'item_list' );
 if ( count( $items ) > 0 )
 {
+    $i = 0;
     foreach ( $items as $item )
     {
+        $t->set_var( 'item_id', (int)$item->ID );
         $t->set_var( 'item_name', $item->Name );
         $t->set_var( 'item_message', $item->Message );
         $t->set_var( 'item_created', $item->createdDate() );
+        $t->set_var( 'td_class', ( $i % 2 ) == 0 ? 'bglight' : 'bgdark' );
         $t->parse( 'item_list', 'item_list_tpl', true );
+        $i++;
     }
+    $t->parse( 'item_list_block', 'item_list_block_tpl', false );
+    $t->set_var( 'no_items', '' );
 }
 else
 {
-    $t->set_var( 'item_name', '' );
-    $t->set_var( 'item_message', 'No messages stored yet.' );
-    $t->set_var( 'item_created', '' );
-    $t->parse( 'item_list', 'item_list_tpl', false );
+    $t->set_var( 'item_list_block', '' );
+    $t->set_var( 'no_items_text', 'No messages stored yet.' );
+    $t->parse( 'no_items', 'no_items_tpl', false );
 }
 
-$t->set_block( 'welcome', 'add_form_tpl', 'add_form' );
-$t->set_var( 'form_status', $t->get_var( 'form_status' ) );
-$t->parse( 'add_form', 'add_form_tpl', false );
-
-$templatePath = eZDesign::file( 'templates/helloworld' );
-if ( $templatePath === false )
-    $templatePath = 'design/standard/templates/helloworld';
-$translationPath = "$moduleBaseDir/admin/intl/$Language/datasupplier.ini";
-$t->set_var( 'edit_hint', 'Change this page text by editing the template ' . $templatePath . '/welcome.tpl and strings translation at ' . $translationPath . '.' );
-
-$t->pparse( 'output', 'welcome' );
+$t->pparse( 'output', 'adminlist' );

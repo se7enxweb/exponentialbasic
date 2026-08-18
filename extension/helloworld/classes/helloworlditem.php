@@ -179,6 +179,26 @@ class eZHelloWorldItem
     }
 
     /**
+     * Search by name or message.
+     */
+    static function fetchBySearch( $term, $limit = 10 )
+    {
+        $limit = (int)$limit;
+        $db = eZDB::globalDatabase();
+        $table = self::definition()['table'];
+        $term = $db->escapeString( $term );
+        $rows = array();
+        $db->array_query( $rows, "SELECT id, name, message, created FROM $table WHERE name LIKE '%$term%' OR message LIKE '%$term%' ORDER BY id DESC LIMIT $limit" );
+        $items = array();
+        if ( is_array( $rows ) )
+        {
+            foreach ( $rows as $row )
+                $items[] = new eZHelloWorldItem( $row );
+        }
+        return $items;
+    }
+
+    /**
      * Remove an item by ID.
      */
     static function removeById( $id )

@@ -450,7 +450,8 @@ $templateDir = eZDesign::file( 'templates/helloworld' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/helloworld';
 
-$intlDir = 'extension/helloworld/module/user/intl';
+$extensionDir = eZExtension::baseDirectory();
+$intlDir = "$extensionDir/helloworld/module/user/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -537,7 +538,8 @@ $templateDir = eZDesign::file( 'templates/mymodule' );
 if ( $templateDir === false )
     $templateDir = 'design/' . $GlobalSiteDesign . '/templates/mymodule';
 
-$intlDir = 'extension/myext/module/user/intl';
+$extensionDir = eZExtension::baseDirectory();
+$intlDir = "$extensionDir/myext/module/user/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 

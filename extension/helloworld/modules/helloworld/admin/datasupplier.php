@@ -20,7 +20,8 @@ $templateDir = eZDesign::file( 'templates/helloworld' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/helloworld';
 
-$intlDir = 'extension/helloworld/module/admin/intl';
+$extensionDir = eZExtension::baseDirectory();
+$intlDir = "$extensionDir/helloworld/module/admin/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -39,7 +40,7 @@ else
 $templatePath = eZDesign::file( 'templates/helloworld' );
 if ( $templatePath === false )
     $templatePath = 'design/standard/templates/helloworld';
-$translationPath = 'extension/helloworld/module/admin/intl/' . $Language . '/datasupplier.ini';
+$translationPath = "$extensionDir/helloworld/module/admin/intl/$Language/datasupplier.ini";
 $t->set_var( 'edit_hint', 'Change this page text by editing the template ' . $templatePath . '/welcome.tpl and strings translation at ' . $translationPath . '.' );
 
 $t->pparse( 'output', 'welcome' );

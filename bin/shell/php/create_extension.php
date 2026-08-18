@@ -298,7 +298,8 @@ $templateDir = eZDesign::file( 'templates/__NAME__' );
 if ( $templateDir === false )
     $templateDir = 'design/' . $GlobalSiteDesign . '/templates/__NAME__';
 
-$intlDir = 'extension/__NAME__/module/user/intl';
+$extensionDir = eZExtension::baseDirectory();
+$intlDir = "$extensionDir/__NAME__/module/user/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -343,7 +344,8 @@ $templateDir = eZDesign::file( 'templates/__NAME__' );
 if ( $templateDir === false )
     $templateDir = 'design/standard/templates/__NAME__';
 
-$intlDir = 'extension/__NAME__/module/admin/intl';
+$extensionDir = eZExtension::baseDirectory();
+$intlDir = "$extensionDir/__NAME__/module/admin/intl";
 $t = new eZTemplate( $templateDir, $intlDir, $Language, 'datasupplier' );
 $t->setAllStrings();
 
@@ -360,7 +362,7 @@ else
     $t->set_var( 'description', 'This page is served by the __TITLE__ admin view.' );
 
 $templatePath = $templateDir;
-$translationPath = 'extension/__NAME__/module/admin/intl/' . $Language . '/datasupplier.ini';
+$translationPath = "$extensionDir/__NAME__/module/admin/intl/$Language/datasupplier.ini";
 $t->set_var( 'edit_hint', 'Change this page text by editing the template ' . $templatePath . '/welcome.tpl and strings translation at ' . $translationPath . '.' );
 
 $t->pparse( 'output', 'welcome' );

@@ -1,6 +1,14 @@
 Exponential Basic changelog:
 ---------------------
 
+Changes from 2.4.0.3 to 2.4.0.4
+---------------------------
+
+- Updated: settings/menu.ini gives each header tab the icon of the kernel's settings/menu.ini
+  (Content diagram-3, Media images, Users people, Webshop box-seam, Design palette, Setup gear,
+  Dashboard speedometer2) and documents the optional Icon setting.
+- Updated: version 2.4.0.4 in lib/version.php, kernel/classes/ezpublish.php and documentation/ABOUT.md.
+
 Changes from 2.4.0.2 to 2.4.0.3
 ---------------------------
 

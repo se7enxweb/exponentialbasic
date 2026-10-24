@@ -40,7 +40,7 @@ class eZPublish
     */
     static public function version()
     {
-        return "2.4.0.4";
+        return "2.4.0.5";
     }
 
     /*!

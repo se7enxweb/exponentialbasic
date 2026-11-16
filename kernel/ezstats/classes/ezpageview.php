@@ -45,6 +45,19 @@
 class eZPageView
 {
     /*!
+      Returns false when site.ini [eZStatsMain] PageStatistics=disabled.
+      Absent or any other value: page statistics are collected as before.
+    */
+    static function isEnabled()
+    {
+        $ini = eZINI::instance( 'site.ini' );
+        if ( $ini->hasVariable( 'eZStatsMain', 'PageStatistics' ) &&
+             $ini->variable( 'eZStatsMain', 'PageStatistics' ) == 'disabled' )
+            return false;
+        return true;
+    }
+
+    /*!
       Constructs a new eZPageView object.
     */
     function __construct( $id="" )
@@ -64,6 +77,12 @@ class eZPageView
     */
     function store()
     {
+        // site.ini [eZStatsMain] PageStatistics=disabled
+        // stops every page view write (the kernel, the /stats/store tracker
+        // image, ad and tip clicks, file downloads all come through here).
+        if ( !eZPageView::isEnabled() )
+            return false;
+
         $db = eZDB::globalDatabase();
         
         if ( !isset( $this->ID ) )

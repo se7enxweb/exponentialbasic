@@ -641,6 +641,18 @@ try
         $SiteCacheFile = "var/cache/classes/site-" . md5( $_SERVER['REQUEST_URI'] ) . ".php";
         $SiteCache = $ini->variable( "site", "SiteCache" );
 
+        // Only cache plain GET requests for an existing module. An address
+        // that names no module falls back to the default page further down,
+        // so every invented address (scanners probing /wp-json/..., /api/...)
+        // would otherwise get a page cache file of its own that is never
+        // read again and never removed.
+        if ( !isset( $_SERVER['REQUEST_METHOD'] ) ||
+            ( $_SERVER['REQUEST_METHOD'] != "GET" && $_SERVER['REQUEST_METHOD'] != "HEAD" ) ||
+            $content_page === false || !file_exists( $content_page ) )
+        {
+            $SiteCache = "disabled";
+        }
+
         //This is horrible!!
         if ( $_SERVER['REQUEST_METHOD'] == "POST" ||
             $url_array[1] == "forum" ||
@@ -799,7 +811,10 @@ try
             }
 
             // store site cache
-            if ( $StoreSiteCache == true )
+            // Only a successful page is stored: an error page or a redirect
+            // would otherwise be replayed for the whole cache lifetime.
+            $siteCacheStatus = http_response_code();
+            if ( $StoreSiteCache == true && ( $siteCacheStatus === false || $siteCacheStatus == 200 ) )
             {
                 $cacheDir = dirname( $SiteCacheFile );
                 if ( ! is_dir( $cacheDir ) )
@@ -812,6 +827,14 @@ try
                     fwrite( $fp, $SiteContents );
                     fclose( $fp );
 		}
+
+                // An expired file is otherwise only removed when its own
+                // address is requested again, so the directory grows with
+                // every address ever seen. Sweep expired files now and then.
+                if ( mt_rand( 1, 100 ) == 1 )
+                {
+                    self::pruneSiteCache( $cacheDir, (int)$ini->variable( "site", "SiteCacheTimeout" ) * 60 );
+                }
             }
         }
         else
@@ -1762,6 +1785,43 @@ $ini = eZINI::instance();
     public static function setUseExceptions( $useExceptions )
     {
         eZModule::$useExceptions = (bool)$useExceptions;
+    }
+
+    /**
+     * Removes expired site cache files (site-*.php) from $cacheDir.
+     *
+     * At most $limit files are removed per call, so a request that triggers
+     * the sweep stays short even when a large backlog has built up.
+     *
+     * @param string $cacheDir Directory holding the site cache files
+     * @param int $maxAge Age in seconds after which a file has expired
+     * @param int $limit Maximum number of files removed in one call
+     * @return int Number of files removed
+     */
+    public static function pruneSiteCache( $cacheDir, $maxAge, $limit = 5000 )
+    {
+        if ( $maxAge <= 0 || !is_dir( $cacheDir ) )
+            return 0;
+
+        $handle = @opendir( $cacheDir );
+        if ( $handle === false )
+            return 0;
+
+        $expiredBefore = time() - $maxAge;
+        $removed = 0;
+        while ( $removed < $limit && ( $entry = readdir( $handle ) ) !== false )
+        {
+            if ( strncmp( $entry, 'site-', 5 ) !== 0 || substr( $entry, -4 ) !== '.php' )
+                continue;
+
+            $file = $cacheDir . '/' . $entry;
+            $mtime = @filemtime( $file );
+            if ( $mtime !== false && $mtime < $expiredBefore && @unlink( $file ) )
+                $removed++;
+        }
+        closedir( $handle );
+
+        return $removed;
     }
 
     /**

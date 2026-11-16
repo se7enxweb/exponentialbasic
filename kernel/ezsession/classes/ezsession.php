@@ -117,7 +117,8 @@ class eZSession
         // escape hash
         $hash = $db->escapeString( $this->Hash );
 
-        if ( !isset( $this->ID ) )
+        $isNewSession = !isset( $this->ID );
+        if ( $isNewSession )
         {
             $nextID = $db->nextID( "eZSession_Session", "ID" );
             $timestampObject = new eZDateTime();
@@ -158,6 +159,15 @@ class eZSession
             $db->commit();
 
         $this->setVariable( "SessionIP", $remoteIP );
+
+        // Every visitor without a cookie (each crawler request) creates a
+        // session, and cleanup() was only reachable from a cron script that
+        // is not installed by default, so the session tables grew without
+        // limit. Remove idle sessions now and then when a new one starts.
+        if ( $isNewSession && mt_rand( 1, 1000 ) == 1 )
+        {
+            $this->cleanup();
+        }
 
         return true;
     }
@@ -485,19 +495,16 @@ class eZSession
     {
         $db = eZDB::globalDatabase();
 
-        $value_array = array();
-        $timeStamp = (new eZDateTime())->timeStamp( true );
+        // Remove exactly the sessions idle for longer than $maxIdle hours.
+        // The former query (HAVING without GROUP BY) is not portable: PostgreSQL
+        // and older SQLite refuse it, and where it ran it removed every session
+        // up to the newest idle one, active ones included.
+        $expiredBefore = time() - ( 60 * 60 * (int)$maxIdle );
 
-        $db->array_query( $value_array, "SELECT ID, ( $timeStamp - LastAccessed  ) AS Idle
-                                         FROM eZSession_Session
-                                         HAVING Idle>(60*60*$maxIdle) ORDER BY ID DESC" );
-
-        if( isset( $value_array ) && count( $value_array ) > 0 )
-        {
-            $sid = $value_array[0]["ID"];
-
-            $db->query( "DELETE FROM eZSession_SessionVariable WHERE SessionID<='$sid'" );
-            $db->query( "DELETE FROM eZSession_Session WHERE ID<='$sid'" );        }
+        $db->query( "DELETE FROM eZSession_SessionVariable
+                     WHERE SessionID IN ( SELECT ID FROM eZSession_Session
+                                          WHERE LastAccessed < $expiredBefore )" );
+        $db->query( "DELETE FROM eZSession_Session WHERE LastAccessed < $expiredBefore" );
     }
 
     /*!
